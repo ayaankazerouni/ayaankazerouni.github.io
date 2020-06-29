@@ -3,8 +3,9 @@
 echo "Building site..."
 JEKYLL_ENV=production bundle exec jekyll build -d ../ayaankazerouni.github.io/
 
-# echo "Deploying site..."
-# cd ../ayaankazerouni.github.io
-# git push origin master
-# cd -
-# rsync -r -e ssh ./_site/ ayaan@rlogin.cs.vt.edu:/home/grads/ayaan/WWW/people.cs.vt.edu/
+echo "Deploying site..."
+cd ../ayaankazerouni.github.io
+git add --all
+git commit -m "Build."
+git push origin master
+cd -
