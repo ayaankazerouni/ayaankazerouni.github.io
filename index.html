@@ -77,10 +77,10 @@
 <div class='content'>
 <p>I obtained my PhD in Computer Science at <a href="https://cs.vt.edu">Virginia Tech</a> in 2020, under the co-advisement of <a href="http://people.cs.vt.edu/~shaffer/">Cliff Shaffer</a> and <a href="https://scholar.google.com/citations?user=5pV6DQ4AAAAJ&amp;hl=en&amp;oi=sra">Steve Edwards</a>.</p>
 <p>I am broadly interested in <strong>computing education</strong> and <strong>software engineering</strong>.
-I work on methods to assess elements of the personal software process like incremental development, test writing, and test quality.
-The end goal is to provide student software developers with formative feedback about their development habits as they work on projects.</p>
+I work on methods to improve elements of the personal software process like incremental development, test writing, and test quality.
+A primary focus has been to help student software developers acquire procedural knowledge about software development by providing them with formative feedback about their development habits as they work on projects.</p>
 <p>Find out more about my current and past work <a href="/#projects">below</a>.</p>
-<p>I'm an international student from Mumbai, India, and have been living and studying in the United States since 2011.</p>
+<p>I'm an international student from Mumbai, India and have been living in the United States since 2011.</p>
 <p>
 <a href='/assets/cv.pdf' target='_blank'>My CV (May 2020)</a>
 </p>
@@ -95,11 +95,14 @@ Virginia Polytechnic Institute and State University,
 May 2020
 <br>
 </div>
+<strong>Doctoral dissertation:</strong>
+<div class='artifact-list'>
 <details>
 <summary>
-<i style='padding-left: 1.5em;'>
-<a href='https://vtechworks.lib.vt.edu/handle/10919/97723'>Measuring the Software Development Process to Enable Formative Feedback</a>
-</i>
+Measuring the Software Development Process to Enable Formative Feedback
+<div class='sub'>
+<a class='artifact-link' href='https://vtechworks.lib.vt.edu/handle/10919/97723'>link</a>
+</div>
 </summary>
 <p>
 <b>
@@ -108,22 +111,25 @@ Abstract:
 Graduating CS students face well-documented difficulties upon entering the workforce, with reports of a gap between what they learn and what is expected of them in industry. Project management, software testing, and debugging have been repeatedly listed as common "knowledge deficiencies" among newly hired CS graduates. Similar difficulties manifest themselves on a smaller scale in upper-level CS courses, like the Data Structures and Algorithms course at Virginia Tech: students are required to develop large and complex projects over a three to four week lifecycle, and it is common to see close to a quarter of the students drop or fail the course, largely due to the difficult and time-consuming nature of the projects. My research is driven by the hypothesis that regular feedback about the software development process, delivered during development, will help ameliorate these difficulties. Assessment of software currently tends to focus on qualities like correctness, code coverage from test suites, and code style. Little attention or tooling has been developed for the assessment of the software development process. I use empirical software engineering methods like IDE-log analysis, software repository mining, and semi-structured interviews with students to identify effective and ineffective software practices to formulate. Using the results of these analyses, I have worked on assessing students' development in terms of time management, test writing, test quality, and other "self-checking" behaviours like running the program locally or submitting to an oracle of instructor-written test cases. The goal is to use this information to formulate formative feedback about the software development process. In addition to educators, this research is relevant to software engineering researchers and practitioners, since the results from these experiments are based on the work of upper-level students who grapple with issues of design and work-flow that are not far removed from those faced by professionals in industry.
 </p>
 </details>
+</div>
 <div class='degree'>BS, Computer Science</div>
 <div class='sub'>University of West Georgia, April 2015</div>
 </div>
 </div>
 <h2 id='projects'>Projects</h2>
 <div class='blurb'>
-<p>I am interested in <strong>software engineering education</strong>. This section describes the projects I am currently working on or have worked on in the past.</p>
-<p>Relevant publications are shown for each project. See <a href="#publications">a complete list</a> below.</p>
+<p>This section describes the projects I am currently working on or have worked on in the past.
+Relevant publications are shown for each project. See <a href="#publications">a complete list</a> below.</p>
 </div>
 <div class='content-box' id='dev-event-tracker'>
 <h3 class='title'>
-Enabling formative assessment of the software development process (2015 - present)
+Enabling formative assessment of the software development process
 </h3>
 <div class='content'>
-<p>We instrumented Eclipse to collect high-resolution “click-stream” data as developers program.
-Using these data, we quantify the development process in terms of time management, testing, and debugging.
+<p>Novice software developers often face self-regulatory challenges when faced with large or complex programming projects (relative to what they have seen in the past), requiring declarative and procedural knowledge about disciplined software process.</p>
+<p>Changing the way this material is learned requires changing how it is taught, practiced, and assessed.
+We instrumented Eclipse to collect high-resolution data as students work on projects.
+Using these data, we characterise students' development habits in terms of time management, testing, and debugging.
 The goal is to identify effective or ineffective practices, and formulate and deploy <em>timely</em> and <em>intelligent</em> feedback.</p>
 <strong>On GitHub:</strong>
 <div class='artifact-list'>
@@ -146,6 +152,12 @@ branch
 <a href='https://github.com/ayaankazerouni/incremental-testing'>ayaankazerouni/incremental-testing</a>
 <div class='sub'>
 Repository mining, static analysis, and measurements of incremental testing behaviour
+</div>
+</div>
+<div class='artifact'>
+<a href='https://github.com/web-cat/deveventtracker-feedback'>web-cat/deveventtracker-feedback</a>
+<div class='sub'>
+Incremental development feedback provider for Web-CAT projects using data collected by DevEventTracker
 </div>
 </div>
 </div>
@@ -198,7 +210,7 @@ Quantifying Incremental Development Practices and Their Relationship to Procrast
 <div class='content-box' id='code-workout'>
 <h3 class='title'>
 <a href='https://codeworkout.cs.vt.edu'></a>
-CodeWorkout - Drill-and-practice programming exercises for novices (2016 - present)
+CodeWorkout - Drill-and-practice programming exercises for novices
 </h3>
 <div class='content'>
 <p>CodeWorkout is an online system for people learning a programming language for the first time.
@@ -209,6 +221,9 @@ It is a free, open-source solution for practicing small programming problems tha
 <a href='https://github.com/web-cat/code-workout'>
 web-cat/code-workout
 </a>
+<div class='sub'>
+Source for the web application
+</div>
 </div>
 </div>
 <strong>Selected papers:</strong>
