@@ -90,39 +90,53 @@
 <div class='blurb'>
 <p>Current and past research projects. Relevant publications are shown for each project. See a complete list on my <a href="/publications">publications</a> page.</p>
 </div>
+<div class='content-box' id='software-testing'>
+<h2 class='title'>
+Practice and feedback on software testing
+</h2>
+<div class='content'>
+<p>
+Software testing is an important self-regulatory skill involved in software development.
+Unfortunately, many students practice software testing as an afterthought, and face difficulties with testing that follow them into the work force.
+I'm interested in the following research directions:
+<ul>
+<li>Observing students' current software testing practices. How do students practice testing? How do we <em>want</em> them to practice testing? [<a href="assets/publications/assessing-incremental-testing.pdf">SIGCSE '19'</a>]</li>
+<li>The use of <strong>mutation analysis</strong> as a device to provide students with feedback and practice with software testing [<strong>under review</strong>]</li>
+</ul>
+</p>
+</div>
+</div>
 <div class='content-box' id='dev-event-tracker'>
 <h2 class='title'>
 Assessing and improving self-regulatory skills in software development
 </h2>
 <div class='content'>
 <p>
-Novice software developers often face self-regulatory challenges when faced with large or complex programming projects (relative to what they have seen in the past), requiring declarative and procedural knowledge about disciplined software process.
+Novice software developers often face self-regulatory challenges when faced with large or complex programming projects (relative to what they have seen in the past). Successful completion of these projects requires
+<i>declarative knowledge</i>
+of how to write programs (which they typically have) as well as
+<i>procedural knowledge</i>
+of how to engineer software (which they typically don't have).
 </p>
-<p>
-Changing the way this material is learned requires changing how it is taught, practiced, and assessed.
-We instrumented Eclipse to collect high-resolution data as students work on projects.
-Using these data, we characterise students' development habits in terms of time management, testing, and debugging.
-The goal is to identify effective or ineffective practices, and formulate and deploy timely and intelligent feedback.
-</p>
-[<a href='assets/publications/assessing-incremental-testing.pdf'>SIGCSE '19</a>]
-[<a href='assets/publications/quantifying-incremental-development-procrastination.pdf'>ICER '17</a>]
-[<a href='assets/publications/deveventtracker.pdf'>ITiCSE '17</a>]
+<p>Changing the way this material is learned requires changing how it is taught, practiced, and assessed. To that end, we built <a href="https://github.com/web-cat/eclipse-plugins-importer-exporter/tree/DevEventTrackerAddition">DevEventTracker</a> to collect high-resolution log data from Eclipse.</p>
+<ul>
+<li>Using this data, we developed and qualitatively evaluated quantitative measurements of students' time management practices on long-running programming projects [<a href="assets/publications/deveventtracker.pdf">ITiCSE '17</a>]</li>
+<li>We found that students' time management practices had significant impacts on their project performance and timeliness, even after controlling for individual student abilities [<a href="assets/publications/quantifying-incremental-development-procrastination.pdf">ICER '17</a>]</li>
+</ul>
 </div>
 </div>
 <div class='content-box' id='code-workout'>
 <h2 class='title'>
 <a href='https://codeworkout.cs.vt.edu'></a>
-CodeWorkout - Drill-and-practice programming exercises for novices
+CodeWorkout&mdash;Drill-and-practice programming exercises for novices
 </h2>
 <div class='content'>
-<p>
-CodeWorkout is an online drill-and-practice system for people learning a programming language for the first time.
-It is free, open-source, and currently serving thousands of users at Virginia Tech and other universities.
-</p>
-<p>
-<a href='https://github.com/web-cat/code-workout'>See the source at GitHub.</a>
-</p>
-[<a href='assets/publications/codeworkout-comped-2019.pdf'>CompEd '19</a>]
+<p><a href="https://codeworkout.cs.vt.edu">CodeWorkout</a> is an online drill-and-practice system for people learning a programming language for the first time.
+It is free, open-source, and currently serves thousands of users at Virginia Tech and other universities.</p>
+<p><a href="https://github.com/web-cat/code-workout">See the project on GitHub.</a></p>
+<ul>
+<li>We used CodeWorkout in our CS 1 course and explored the effects of <em>voluntary</em> practice of programming assignments on exam performance, controlling for individual student abilities [<a href="assets/publications/codeworkout-comped-2019.pdf">CompEd '19</a>]</li>
+</ul>
 </div>
 </div>
 <div class='content-box'>
@@ -130,7 +144,7 @@ It is free, open-source, and currently serving thousands of users at Virginia Te
 <div class='content'>
 <p>I have collaborated on other projects.</p>
 <ul>
-<li>[<a href="https://doi.org/10.1145/3341525.3387373">ITiCSE '20</a>] A data specification for sharing and analysing programming snapshot datasets</li>
+<li>[<a href="https://doi.org/10.1145/3341525.3387373">ITiCSE '20</a>] ProgSnap2—A data specification for sharing and analysing programming snapshot datasets</li>
 <li>[<a href="https://doi.org/10.1109/ASE.2019.00048">ASE '19</a>] Testing the generalisability of research on regular expressions</li>
 </ul>
 </div>
