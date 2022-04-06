@@ -1,0 +1,281 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Fast and Accurate Incremental Feedback for Students' Software Tests Using Selective Mutation Analysis - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="ayaankazerouni.github.io/posts/fast-accurate-mutation-feedback">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <aside>
+    <nav>
+        <ul>
+        
+            
+            <li><a href="/#" class="nav-link">Home</a></li>
+        
+            
+            <li><a href="/teaching" class="nav-link">Teaching</a></li>
+        
+            
+            <li><a href="/projects" class="nav-link">Projects</a></li>
+        
+            
+            <li><a href="/publications" class="nav-link">Publications</a></li>
+        
+            
+            <li><a href="/about" class="nav-link">About Me</a></li>
+        
+        </ul>
+    </nav>
+</aside>
+
+
+  <main>
+    <article class='post'>
+    <h1 class="post-title">Fast and Accurate Incremental Feedback for Students' Software Tests Using Selective Mutation Analysis</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        <div style="text-align: center;">
+        <time>Mar 17, 2021 • 2432 words</time>
+        </div>
+        <div class="post">
+          <!-- <div class="tags">
+            
+          </div> -->
+          <p><small>
+<em>This post originally appeared on <a href="ayaankazerouni.github.io">my Medium blog</a> on March 17, 2021.</em>
+</small></p>
+
+<p>This is an overview of the paper <em><a href="https://www.sciencedirect.com/science/article/pii/S0164121221000029">Fast and Accurate Incremental Feedback for Students’ Software Tests Using Selective Mutation Analysis</a></em>, published in the Journal of Systems and Software. The paper is freely available. My co-authors were <a href="https://davisjam.github.io">Jamie Davis</a>, <a href="https://arinjoy-basak.github.io/">Arinjoy Basak</a>, <a href="https://people.cs.vt.edu/shaffer">Cliff Shaffer</a>, <a href="https://people.cs.vt.edu/fservant">Francisco Servant</a>, and <a href="https://people.cs.vt.edu/edwards">Steve Edwards</a>.</p>
+
+<p>TL;DR: Use the <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> and arithmetic operator deletion (<code class="language-plaintext highlighter-rouge">AOD</code>) mutation operators for fast and reliable mutation analysis.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Feedback about students’ software tests is often generated using code coverage criteria (like statement or condition coverage). These can be unreliable given that code coverage is satisfied simply by the execution of the code-under-test, and not by the actual assertions in the tests.</p>
+
+<p><em>Mutation analysis</em> is a stronger but much more costly criterion for measuring the adequacy of software tests. In this paper, we evaluated the feasibility of existing approaches to mutation analysis for producing automated feedback for student-written software tests. After finding that existing approaches were infeasible, we proposed new approaches for fast and accurate mutation analysis. Finally, we evaluated our proposed approaches for validity on an external dataset of open-source codebases, and report that our results may be generalisable beyond our educational context.</p>
+
+<p>This post is of interest to Computer Science educators interested in giving students useful feedback about their software testing, and to software engineers interested in using mutation analysis to help them write stronger software tests.</p>
+
+<h2 id="background">Background</h2>
+
+<p>Software testing is important. As it is increasingly incorporated into undergraduate programming courses, teachers are giving students feedback not only about the correctness of their programs, but also about the quality of their software tests.</p>
+
+<p>Much of this feedback is based on assessments of test adequacy, most commonly <em>code coverage criteria</em>.</p>
+
+<p>Code coverage criteria are satisfied when structural elements (statements, conditions, etc.) of a program are exercised by a test suite at least once. For example, under statement coverage, the test suite’s adequacy is measured as the percentage of program constructs that are executed by the tests. Code coverage is <strong>fast to compute</strong> and <strong>amenable to incremental feedback</strong>. But it can be <strong>unreliable</strong>, because the criterion is not bound to the <em>assertions</em> in software tests, just to the underlying code that is executed.</p>
+
+<p><em><a href="https://en.wikipedia.org/wiki/Mutation_testing">Mutation analysis</a></em> is a far more reliable option. Small changes (<em>mutations</em>) are made to the target program, creating incorrect variants called <em>mutants</em>. The test suite is run against these mutants, and its adequacy is measured as the percentage of mutants that are detected by the test suite (i.e., by a failing test). The different kinds of mutations you could make are called <em>mutation operators</em>.</p>
+
+<p>Mutation analysis subsumes code coverage as a test adequacy criterion<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>, and has been shown to be a <strong>reliable measurement of test adequacy</strong>. It can also be used to produce <strong>incremental feedback</strong>: I don’t need a student to have finished a project to give them feedback about their tests.</p>
+
+<h2 id="reducing-the-cost-of-mutation-analysis">Reducing the cost of mutation analysis</h2>
+<p>Unfortunately, mutation analysis can be <strong>prohibitively expensive</strong> computationally. The number of mutants produced for even a moderately sized project (~1 KLoC) can reach well into the thousands. Running the test suite for each of these mutants can take several minutes, sometimes hours.</p>
+
+<p>Significant research effort has been devoted to reducing this cost. One such approach is <em>selective mutation</em>. The main idea behind selective mutation is to select a subset of mutation operators that give you the best “bang for your buck”. That is, out of the <strong>Full</strong> set of mutation operators (all available operators) you want a subset that gives you a reliable test adequacy score — one that is close to the “true” thoroughness of your tests — while producing a small number of mutants.</p>
+
+<p>Numerous such operator subsets have been proposed. One key example is the <strong>Deletion</strong> set, originally proposed by Roland Untch<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup> and reified by Jeff Offutt and colleagues<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>.</p>
+
+<p>Deletion operators create mutants by systematically deleting program constructs. This simple mutation scheme results in significantly fewer mutants. For example, if we were to remove the arithmetic operator in the expression <code class="language-plaintext highlighter-rouge">a + b</code>, we just create two mutants: <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code>. This is in contrast to the four mutants that would be created by arithmetic operator <strong>replacement</strong>: <code class="language-plaintext highlighter-rouge">a — b, a / b, a * b, a % b</code>.</p>
+
+<p>We used the mutation analysis system <a href="https://pitest.org">PIT</a>, which is built for speed and scalability. We approximated the Deletion set in PIT to be:</p>
+
+<ul>
+  <li><strong>RemoveConditionals</strong>, which replaces conditional statements with boolean literals, i.e., <code class="language-plaintext highlighter-rouge">true</code> (forcing the execution of the “if” branch) or <code class="language-plaintext highlighter-rouge">false</code> (forcing execution of the “else” branch)</li>
+  <li><strong>Arithmetic operator deletion (AOD)</strong>. E.g., the expression <code class="language-plaintext highlighter-rouge">a + b</code> would produce the mutants <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code>, removing the arithmetic operator (and one operand) entirely.</li>
+  <li><strong>NonVoidMethodCalls</strong>, which replaces calls to non-void methods with the default values for the specific return type. That is, <code class="language-plaintext highlighter-rouge">int</code>-returning method calls would be replaced with 0, <code class="language-plaintext highlighter-rouge">Object</code>-returning method calls would be replaced with <code class="language-plaintext highlighter-rouge">null</code>, etc.</li>
+  <li><strong>VoidMethodCalls</strong>, which simply removes calls to methods that do not return anything.</li>
+  <li><strong>MemberVariable</strong>, which removes assignments to instance variables.</li>
+  <li><strong>ConstructorCalls</strong>, which replaces calls to constructors with <code class="language-plaintext highlighter-rouge">null</code>.</li>
+</ul>
+
+<h2 id="fast-and-accurate-mutation-based-feedback">Fast and accurate mutation-based feedback</h2>
+
+<p>Students in our courses are allowed and encouraged to make many incremental submissions to the auto-grader to help them ensure they’re on the right track. As deadlines approach, this can result in bursty traffic placing enormous load on the server.</p>
+
+<p>We ran mutation analysis on 1389 submissions in two courses in the CS program at Virginia Tech: a second year course on Software Design and Data Structures, and a third-year course on Data Structures and Algorithms. Projects were implemented in Java, and students were required to turn in <a href="https://junit.org">JUnit</a> test suites with their project submissions.</p>
+
+<p>Analysis was conducted on a machine with similar specifications as the one serving our auto-grading infrastructure, <a href="https://web-cat.github.io">Web-CAT</a>. We did not eliminate <em>equivalent mutants</em> from our data-set. These cannot be automatically identified, which makes eliminating them from our corpus a daunting prospect.</p>
+
+<p>We grouped submissions by source lines of code (SLoC), ranging from ~150 LoC to ~1200 LoC.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" target="_blank">
+    <img src="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" alt="A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code." />
+  </a>
+  <figcaption>Groups of submissions based on source lines of code (SLoC). Dashed lines indicate group boundaries.</figcaption>
+</figure>
+
+<p>For each operator subset, we looked at</p>
+<ul>
+  <li><strong>Computational cost:</strong> the running time in seconds (i.e., how long would a student spend twiddling their thumbs waiting for feedback?) and the number of mutants produced per thousand lines of code</li>
+  <li><strong>Accuracy</strong> at predicting coverage under the Full set. That is, if mutants under a given subset are killed by the test suite, how likely is it that the test suite will also kill mutants under the Full set?</li>
+</ul>
+
+<p>Preliminary results showed that comprehensive mutation (i.e., using all available mutation operators) was certainly too slow for our purposes. For submissions in the larger submissions groups, even the Deletion set took too long (nearly a minute) to produce feedback.</p>
+
+<p>That said, the Deletion set showed promise. As Offutt and friends reported, it produces a remarkably good approximation of mutation adequacy at a fraction of the computational cost of comprehensive mutation.</p>
+
+<p>Can we reduce this cost further?</p>
+
+<h2 id="reducing-the-cost-of-the-deletion-set">Reducing the cost of the Deletion set</h2>
+<p><em>Do we need all six Deletion operators to make a useful approximation of mutation adequacy?</em></p>
+
+<p>We used forward selection to determine an appropriate ordering of Deletion operators, set up as follows:</p>
+
+<ul>
+  <li><strong>Dependent variable:</strong> Mutation coverage using all available operators</li>
+  <li><strong>Independent variables:</strong> Mutation coverage under each individual Deletion operator</li>
+  <li><strong>Procedure:</strong> Starting from an empty set of operators, we iteratively added the single operator that most improved a model predicting comprehensive mutation coverage, stopping when all Deletion operators were included or when the model could no longer improve.</li>
+</ul>
+
+<p>All Deletion operators were included, in the following order: <code class="language-plaintext highlighter-rouge">RemoveConditionals, AOD, NonVoidMethodCalls, VoidMethodCalls, MemberVariable, ConstructorCalls</code></p>
+
+<p>Then, we examined the cost and effectiveness of incremental slices of this ordering:</p>
+
+<ul>
+  <li><strong>1-operator subset</strong>, containing only <code class="language-plaintext highlighter-rouge">RemoveConditionals</code></li>
+  <li><strong>2-operator subset</strong>, containing <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> and <code class="language-plaintext highlighter-rouge">AOD</code></li>
+  <li><strong>3-operator subset</strong>, containing <code class="language-plaintext highlighter-rouge">RemoveConditionals</code>, <code class="language-plaintext highlighter-rouge">AOD</code>, and <code class="language-plaintext highlighter-rouge">NonVoidMethodCalls</code></li>
+  <li>…continued until the entire Deletion set is included</li>
+</ul>
+
+<h2 id="result">Result</h2>
+<p>We found that most of the Deletion set’s effectiveness comes from the first two operators, i.e., <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> and <code class="language-plaintext highlighter-rouge">AOD</code>. Inclusion of additional operators drives up the cost, but with little improvement to accuracy.</p>
+
+<figure class="wide">
+  <a href="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" target="_blank">
+    <img src="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" alt="Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy." />
+  </a>
+  <figcaption>The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R² predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.</figcaption>
+</figure>
+
+<p>In the figure above,</p>
+<ul>
+  <li>Each column represents a single submission group,</li>
+  <li>Each box plot represents the cost distribution of a subset for that submission group, in mutations-per-thousand-LoC,</li>
+  <li>Each blue dot represents the percent of variance in comprehensive mutation that is explained by that subset for the given submission group</li>
+</ul>
+
+<p>We can see that for submission groups 2–4, the cost drops precipitously from Deletion \(\to\) 3-op \(\to\) 2-op \(\to\) 1-op, while the accuracy stays more or less the same. For the smaller submissions in group 1, it’s possible that they simply do not provide enough opportunities for mutation to take place, so accuracy takes a huge hit for each mutation operator that is excluded.</p>
+
+<p>Some key takeaways:</p>
+
+<p><strong>The RemoveConditionals operator, by itself, is enormously effective</strong> for the larger, more complex submissions, pushing 90% adjusted \(R^2\) for group 4 submissions (see the 1-op box plot in the rightmost subplot). For groups 2 and 3, it still does pretty well, but requires the inclusion of <code class="language-plaintext highlighter-rouge">AOD</code> operator to cross the 90% threshold.</p>
+
+<p><strong>Which operators are most useful seems tied to the project itself.</strong> It is no surprise that <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> does not do so well for the group 1 submissions: they are of minimal cyclomatic complexity, meaning they contain few conditional statements. Including <code class="language-plaintext highlighter-rouge">AOD</code> substantially improves the approximation, because these projects tend to focus more on arithmetic operations and less on data structure implementations (in contrast to the submissions found in the Data Structures and Algorithms course).</p>
+
+<h2 id="validating-our-results">Validating our results</h2>
+<p>At this point, it looks like mutation analysis using <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> or <code class="language-plaintext highlighter-rouge">RemoveConditionals+AOD</code> are feasible options for giving our students fast and reliable feedback about their test suites.</p>
+
+<p>The question now is: are these results generally useful? Or are they specific to submissions produced by students in our courses?</p>
+
+<p>We turn to a data-set<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">4</a></sup> released by Marinos Kintis and colleagues containing programs, mutants, and mutation-adequate test suites, drawn from 6 open-source Java projects.</p>
+
+<p>Using this dataset, we evaluated the cost and effectiveness of the Deletion, 3-op, 2-op, and 1-op subsets.</p>
+
+<p>For each subset, we examined:</p>
+<ul>
+  <li><strong>Reliability</strong>, measured by creating a subset-adequate test suite, and seeing how it held up using all possible mutants. In other words, if a developer stopped testing when they satisfied a subset, how thorough would their test suite be under comprehensive mutation?</li>
+  <li><strong>Cost</strong>, measured as the percentage of all possible mutants that were created by the subset.</li>
+</ul>
+
+<p>Kintis et al. also hand-marked equivalent mutants in their published data-set. This gives us an opportunity to test our operator subsets in the absence of these mutants, addressing a limitation present in our analysis of our students’ submissions.</p>
+
+<h2 id="result-1">Result</h2>
+<p>Results were largely in agreement with the study described above.</p>
+
+<p>In terms of <strong>reliability</strong>, it appeared that the incremental subsets were nearly as effective as the entire Deletion set, with the 3-op subset (<code class="language-plaintext highlighter-rouge">NonVoidMethodCalls</code> and beyond) bringing diminishing returns. This is similar to our original results.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" target="_blank">
+    <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" alt="Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively." />
+  </a>
+  <figcaption>Mutation coverage: Proportion of Full mutants detected by the subset-adequate test suite.</figcaption>
+</figure>
+
+<p>The <strong>cost</strong> naturally decreases in the order Deletion \(\to\) 3-op \(\to\) 2-op \(\to\) 1-op.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" target="_blank">
+    <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" alt="The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively." />
+  </a>
+  <figcaption>Computational cost: Number of mutants produced by each subset, expressed as a proportion of the Full number of mutants.</figcaption>
+</figure>
+
+<h2 id="final-remarks">Final remarks</h2>
+<p>These results suggest that the <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> operator is a feasible option for fast and accurate mutation analysis. And this makes sense, because <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> can be thought of as a stronger form of condition coverage—only instead of simply requiring that all conditions evaluate to true and false at least once, it is satisfied when the tests depend on the conditions evaluating to true or false at least once. The difference is subtle, but results in much more thorough tests when used as a basis for measuring test adequacy.</p>
+
+<p>Including the <code class="language-plaintext highlighter-rouge">AOD</code> operator provides an even stronger criterion, and it especially useful when the code-under-test has few logical branches. Including further Deletion operators drives up the cost but without improvements in effectiveness.</p>
+
+<p>It remains to be seen whether mutation-based testing feedback using one or both of these operators helps students to produce stronger test suites. Future work should involve evaluating mutation analysis for its utility as a device for practice and feedback with software testing.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://cs.gmu.edu/media/techreports/ISSE-TR-96-01.pdf">Offutt, 1996</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://dl.acm.org/doi/10.1145/1566445.1566540">Untch, 2009</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="https://ieeexplore.ieee.org/document/6823861">Delamaro, Offutt, &amp; Ammann, 2014</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p><a href="http://pages.cs.aueb.gr/~kintism/papers/scam2016/">Kintis et al., 2016</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    
+    </article>
+		<footer>
+  <div class='get-in-touch'>Contact<br></div>
+  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
+  <!--<div class='address'></div> -->
+  <div class='contact'>
+    <a href='https://twitter.com/ayaankazerouni'>
+      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
+      <span class='visible-hidden'>Twitter profile</span>
+    </a>
+    <a href='https://github.com/ayaankazerouni'>
+      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
+      <span class='visible-hidden'>GitHub profile</span>
+    </a>
+    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
+      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
+      <span class='visible-hidden'>LinkedIn profile</span>
+    </a> -->
+    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
+      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
+      <span class='visible-hidden'>Google Scholar profile</span>
+    </a>
+    <a href='https://orcid.org/0000-0002-6574-1278'>
+      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
+      <span class='visible-hidden'>OrcID profile</span>
+    </a>
+  </div>
+</footer>
+
+  </main>
+</body>
+</html>

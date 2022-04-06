@@ -1,0 +1,291 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Explicit Milestones on Intermediate Software Projects are Pretty Not Bad - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="ayaankazerouni.github.io/posts/explicit-project-milestones">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <aside>
+    <nav>
+        <ul>
+        
+            
+            <li><a href="/#" class="nav-link">Home</a></li>
+        
+            
+            <li><a href="/teaching" class="nav-link">Teaching</a></li>
+        
+            
+            <li><a href="/projects" class="nav-link">Projects</a></li>
+        
+            
+            <li><a href="/publications" class="nav-link">Publications</a></li>
+        
+            
+            <li><a href="/about" class="nav-link">About Me</a></li>
+        
+        </ul>
+    </nav>
+</aside>
+
+
+  <main>
+    <article class='post'>
+    <h1 class="post-title">Explicit Milestones on Intermediate Software Projects are Pretty Not Bad</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        <div style="text-align: center;">
+        <time>Oct 14, 2020 • 2400 words</time>
+        </div>
+        <div class="post">
+          <!-- <div class="tags">
+            
+          </div> -->
+          <p><small>
+<i>This article was originally posted on <a href="ayaankazerouni.medium.com">my Medium blog</a> on October 14, 2020.</i>
+</small></p>
+
+<p><em>This is an overview of the research paper “<strong><a href="/publications#sigcse2021milestones">The Impact of Programming Project Milestones on Procrastination, Project Outcomes, and Course Outcomes</a></strong>” by <a href="https://people.cs.vt.edu/shaffer">Cliff Shaffer</a> and myself, appearing at SIGCSE 2021.</em></p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Undergraduate CS students often lack experience working on large, un-scaffolded, and long-running software projects. When they encounter such projects for the first time in intermediate programming courses, they do so without any procedural knowledge for how to go about tackling them. As a result, many of them struggle to complete these projects on time or correctly. As educators, we can do a better job supporting students as they approach these projects.</p>
+
+<p>We started giving students explicit project milestones with intermediate deadlines, to go with software project specifications in a third-year Data Structures course. The goal is to give students guided practice with project decomposition, time management, and successful project completion.</p>
+
+<p>In a quasi-experiment to determine the impact that milestones had on timeliness, project correctness, and course outcomes, we found that:</p>
+<ul>
+  <li>Milestones had a considerably strong effect on timeliness, reducing the rate of late submissions by nearly 30%</li>
+  <li>Students with milestones produced projects with slightly higher correctness than students without milestones</li>
+  <li>Milestones had little effect on frequencies of course outcomes, with its positive effects limited to the “students in the middle”. Unfortunately, just as many students failed the course, and just as many students withdrew from the course, with or without milestones.</li>
+</ul>
+
+<p>Read on for more information.</p>
+
+<h2 id="background">Background</h2>
+
+<p>Students in intermediate programming courses often work on large, un-scaffolded, and relatively long-running software projects. These tend to be larger and more complex than projects they have worked on in the past, and consequentially bring with them a set of self-regulatory challenges that the students may be ill-equipped to deal with. No longer are assignment specifications given as easy-to-approach bullet-lists of requirements. Instead, they’re presented with a “wall of prose” from which they must extract requirements, plan their development, and get to work.</p>
+
+<p>An expert software developer has the domain-specific self-regulatory skills to tackle such a project. She can decompose such a project into sub-goals and budget the time needed to tackle each one. Novices, however, are often unable to do this decomposition themselves, and are famously poor at estimating the time needed for a development task <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>. So instead, they are left facing the project with no clear place to start, low self-efficacy regarding their ability to finish, and not much prior experience from which to draw strategies or confidence.</p>
+
+<p>A common manifestation of students’ ill-preparedness to approach these projects is procrastination, the “quintessential self-regulatory failure”<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>. According to Science, there are many reasons for procrastination. Chief among them are task-related reasons. For example, we know that people are more likely to procrastinate:</p>
+<ul>
+  <li>when the task’s outcome is expected farther in the future<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>,</li>
+  <li>when they have low expectancy of successfully completing the task<sup id="fnref:3:1" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>, and</li>
+  <li>when the task offers numerous junctures for decision-making (e.g., the student doesn’t know where to start)<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">4</a></sup></li>
+</ul>
+
+<p>Can we use this knowledge to reduce the frequency of procrastination on these projects and ameliorate its negative effects? I previously wrote about the pervasive and pernicious nature of procrastination in this context—students start late, work late, and finish late, often resulting in degraded project outcomes.</p>
+
+<p>In this post, I describe a simple classroom intervention that helped reduce the rate of late submissions on programming projects by about 30%, and helped improve class performance in the intermediate Data Structures and Algorithms (DSA) course at Virginia Tech.</p>
+
+<h2 id="explicit-project-milestones">Explicit project milestones</h2>
+
+<p>Our intermediate DSA course involves three to four programming projects, each of which is worked on for about a month. Each project requires students to build one or more interacting data structures—for example, a hash table or a PR quad-tree. Projects are un-scaffolded (no starter code) and students are free to design their own solutions. They are allowed to make as many submissions as they like to our auto-grader, which tests their solutions using acceptance tests written by the course staff.</p>
+
+<p>Unfortunately, these projects usually have distressingly high rates of late submissions and failing grades, and about 25–30% of students either fail or withdraw from the course.</p>
+
+<p>We believe that poor self-regulation and project management (often manifesting as procrastination) may be a significant contributor to these poor outcomes. Therefore, we instituted explicit project milestones—we broke down projects into sub-tasks that students needed to complete by intermediate deadlines. We expected to observe reduced procrastination stemming from</p>
+<ul>
+  <li>outcomes that are too far in the future to be valued in the present,</li>
+  <li>students not being able to decompose a large engineering task into manageable sub-tasks, and</li>
+  <li>low expectancy of success, because completing each successive sub-task is likely to increase the student’s self-efficacy regarding the larger overarching task</li>
+</ul>
+
+<p>The milestones themselves were pretty straightforward, and checkable using our auto-grading infrastructure. For any given data structure (or database made up of interacting data structures), they were as follows:</p>
+<ul>
+  <li><strong>Milestone 1</strong>: Make a first submission to the auto-grader (speaking as a former instructor for this course, this was surprisingly effective at making students start thinking about the project early)</li>
+  <li><strong>Milestone 2</strong>: Complete the insertion operation</li>
+  <li><strong>Milestone 3</strong>: Complete the search and update operations</li>
+  <li><strong>Final submission</strong>: Complete the removal operation</li>
+</ul>
+
+<p>Done in that order, the removal operation is completed last. This is good because removal is often the hardest-to-implement operation in many data structures, involving complex structural rearrangements (e.g., re-ordering a binary search tree, or re-balancing a B+ tree). Our hope is that the experience of successfully completing the other, simpler operations a week or two earlier helps build the student’s self-efficacy regarding the more difficult sub-task ahead.</p>
+
+<h2 id="how-helpful-were-the-milestones">How helpful were the milestones?</h2>
+<p>We instituted Milestones in the Spring of 2016. We are interested in knowing if the milestones had any impact on procrastination, project outcomes, or course outcomes. So we compared outcomes in the “milestones semester” (Spring 2016) with outcomes in a “no milestones semester”—Fall 2013. In Fall 2013, the course was taught by the same instructor (Cliff), and the projects were of comparable difficulty. In terms of LoC and cyclomatic complexity, there were no differences between project submissions in the two semesters.</p>
+
+<p>We measured differences in terms of timeliness, project correctness, and course outcomes. I present a high-level overview of our results below. More details can be found in the paper.</p>
+
+<h3 id="timeliness">Timeliness</h3>
+
+<p>Milestones were pretty effective! We measured the rate of late submissions and the time of project completion for the two semesters. We checked for differences between the two semesters as well as differences within the milestones semester based on the number of milestones completed.</p>
+<ul>
+  <li>The rate of late submissions dropped from 41% with milestones to 12% without milestones</li>
+  <li>Within the treatment semester, students who completed 0 or 1 milestones tended to finish on the day of or after the deadline, while students who completed 2 or 3 milestones tended to finish their projects a day or more before the deadline</li>
+</ul>
+
+<p>Results are summarised in the figure below.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/explicit-project-milestones/completion-time-milestone-group.png" target="_blank">
+    <img src="/assets/posts/images/explicit-project-milestones/completion-time-milestone-group.png" alt="" />
+  </a>
+  <figcaption>Completion times (in terms of hours before or after the deadline) with and without milestones. Whiskers are the 10th and 90th percentiles. Outliers beyond these percentiles are omitted.</figcaption>
+</figure>
+
+<h3 id="project-correctness">Project correctness</h3>
+
+<p>As I stated above, a lack of self-efficacy or discipline-specific procedural knowledge may be contributing to students’ poor outcomes on these projects. In addition to late submissions, students are prone to submitting incorrect or inadequately tested solutions. So we checked to see if milestones had any impact on project correctness.</p>
+
+<p>Project correctness was defined as the percentage of instructor-written acceptance tests that the student’s submission passed. We checked for differences in correctness between submissions in the two semesters, and differences within the milestones semester based on the number of milestones completed.</p>
+
+<ul>
+  <li>The mean correctness score increased slightly, from 72% (sd = 20%) without milestones to 76% (sd = 21%) with milestones</li>
+  <li>Students who completed 2 or more milestones tended to produce projects with higher correctness than those who completed fewer milestones</li>
+</ul>
+
+<figure class="">
+  <a href="/assets/posts/images/explicit-project-milestones/correctness-milestone-group.png" target="_blank">
+    <img src="/assets/posts/images/explicit-project-milestones/correctness-milestone-group.png" alt="" />
+  </a>
+  <figcaption>Correctness scores with and without milestones</figcaption>
+</figure>
+
+<h3 id="course-outcomes">Course outcomes</h3>
+<p>Having seen that milestones had a positive impact on timeliness and correctness, we now turn to course outcomes.</p>
+
+<p><strong>First</strong>, we examine the pass, fail, and withdrawal rates in the course.</p>
+
+<p>Students at our institution tend to find this course challenging, and it is common to see 25–30% of students withdraw from the course or fail to achieve a grade that will let them progress on to subsequent courses.</p>
+
+<p>Success in the course is largely driven by success on the projects, and students may be withdrawing from the course based on early bad outcomes. So did milestones help to brighten this gloomy picture?</p>
+
+<p>Sadly, no.</p>
+
+<p>We first checked for differences in the frequency of the following course outcomes:</p>
+<ul>
+  <li><em>Pass</em>, where the student achieved a grade that let them move on in the major</li>
+  <li><em>Fail</em>, where the student completed the course, but would need to take it again before moving on</li>
+  <li><em>Withdraw</em>, where the student did not complete the course<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote">5</a></sup></li>
+</ul>
+
+<!-- [<sup id='1-source'>1</sup>](#1-sink) -->
+
+<p>We didn’t find any differences in these outcomes between the two semesters. This is apparent in the figure below.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/explicit-project-milestones/outcomes.png" target="_blank">
+    <img src="/assets/posts/images/explicit-project-milestones/outcomes.png" alt="" />
+  </a>
+  <figcaption>Milestones seem not to have affected course Pass, Fail, and Withdraw rates.</figcaption>
+</figure>
+
+<p><strong>Next</strong>, we explored the impact that milestones had on frequencies of final course grades, which were a composite of project performance, exam performance, and performance on mastery-based homework assignments. Differences in these frequencies could indicate the specific groups of students who were helped or not helped by the milestones intervention.</p>
+
+<p>We examined differences in the frequencies of <em>A</em>, <em>B</em>, <em>C</em>, <em>D</em>, and <em>F</em> grades between the two semesters. Results are in the figure below.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/explicit-project-milestones/grades.png" target="_blank">
+    <img src="/assets/posts/images/explicit-project-milestones/grades.png" alt="" />
+  </a>
+  <figcaption>Final course grades with and without milestones.</figcaption>
+</figure>
+
+<p>More students received <em>A</em> grades in the milestones semester (54%) than in the semester without milestones (34%). In contrast, fewer students received <em>B</em> grades in the milestones semester (20%) than in the semester without milestones (38%). We found no other differences.</p>
+
+<p>Taken together, the results above suggest that the positive effects of the milestones were more pronounced for the students “in the middle”: many <em>B</em>-level students became <em>A</em>-level students, but unfortunately the <em>C</em>-, <em>D</em>-, and <em>F</em>-level students continued to struggle in the course.</p>
+
+<p>It seems as though this intervention, while helpful, failed to assist the most vulnerable students in the course. Other supports and instructional changes are needed to help those students.</p>
+
+<h2 id="what-did-students-think-of-the-milestones">What did students think of the milestones?</h2>
+<p>We included this question in an informal end-of-term survey:</p>
+
+<p><em>How helpful did you find the Milestones in completing your programming projects on time? Please explain why you gave this response.</em></p>
+
+<p>75% of students found the milestones to be Helpful or Very helpful. Students mentioned that milestones helped them avoid procrastination, encouraged them along the path to project completion, and helped them decompose the project.</p>
+
+<p>15% of students were Neutral about the milestones. These students indicated that they were already on track without the milestones.</p>
+
+<p>10% of students who found milestones to be Not helpful or Not at all helpful, and indicated that milestones were stressful and sometimes interfered with their existing project development plans.</p>
+
+<p>We interpret the above to mean that perceptions of the milestones were largely positive, though some students found them to be unnecessary or stressful.</p>
+
+<p>Note that this was just a single question in a survey — this is not a detailed qualitative analysis of students’ attitudes toward assigned project milestones.</p>
+
+<blockquote>
+  <p>Aside: I’ve used milestones when teaching this course over the Summer session, and it may have been a blunder in that context. Summers tend to be intense, squeezing 15 weeks of material into 6 weeks of daily instruction. Month-long projects are 2-week projects. It’s hard to space out milestones appropriately in such a short timeframe (avoiding weekend deadlines, etc.). I had a student mention that they worked a job during the week, and did coursework on weekends. Milestones made this difficult.</p>
+</blockquote>
+
+<h2 id="final-remarks">Final Remarks</h2>
+
+<p>A possible criticism of this work is that the ability to decompose and tackle an un-scaffolded programming project is a core competency that students are expected to learn during intermediate programming courses, and they will no longer do so because “we did it for them”.</p>
+
+<p>Fundamentally, the problem with this is that we don’t really teach these skills at this stage in the curriculum. So we end up putting students through a “trial-by-fire” in these courses, and those who make it can continue on in the major. Ironically, these are the students who reach the later software engineering and capstone courses in which we do teach these skills.</p>
+
+<p>Milestones are by no means perfect, but we believe they help students (1) by making them practice a successful approach to large programming projects, and (2) by giving them the experience of successfully completing these projects, that they can then draw on in later courses. Effects of explicit milestones going into later courses is an open question.</p>
+
+<blockquote>
+  <p>I’d be surprised to learn that this is a novel practice. But I haven’t witnessed this at other institutions I’ve been affiliated with, and the literature review didn’t turn up anything in the context of intermediate project development. If your courses use milestones or something similar, how’s it going for you?</p>
+</blockquote>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://doi.org/10.1145/2591062.2591159">Radermacher, 2014</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="http://doi.apa.org/getdoi.cfm?doi=10.1037/0033-2909.133.1.65">Steel, 2007</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p><a href="http://doi.wiley.com/10.1002/j.2168-9830.2001.tb00599.x">Ponton, 2010</a> <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:3:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p><a href="http://ieeexplore.ieee.org/document/7017768/">Song, 2014</a> <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:5" role="doc-endnote">
+      <p>Withdrawing is not always a bad thing; maybe they just didn’t want to learn the subject. But computing faces a retention crisis due a variety of external and internal factors, and a student in a third-year course probably did want to complete the course. So here, we treat it as a Bad Thing™. <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+        </div>
+    </div>
+    
+    </article>
+		<footer>
+  <div class='get-in-touch'>Contact<br></div>
+  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
+  <!--<div class='address'></div> -->
+  <div class='contact'>
+    <a href='https://twitter.com/ayaankazerouni'>
+      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
+      <span class='visible-hidden'>Twitter profile</span>
+    </a>
+    <a href='https://github.com/ayaankazerouni'>
+      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
+      <span class='visible-hidden'>GitHub profile</span>
+    </a>
+    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
+      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
+      <span class='visible-hidden'>LinkedIn profile</span>
+    </a> -->
+    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
+      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
+      <span class='visible-hidden'>Google Scholar profile</span>
+    </a>
+    <a href='https://orcid.org/0000-0002-6574-1278'>
+      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
+      <span class='visible-hidden'>OrcID profile</span>
+    </a>
+  </div>
+</footer>
+
+  </main>
+</body>
+</html>

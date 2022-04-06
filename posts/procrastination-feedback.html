@@ -1,0 +1,208 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Developing Procrastination Feedback for Student Software Developers - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="ayaankazerouni.github.io/posts/procrastination-feedback">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <aside>
+    <nav>
+        <ul>
+        
+            
+            <li><a href="/#" class="nav-link">Home</a></li>
+        
+            
+            <li><a href="/teaching" class="nav-link">Teaching</a></li>
+        
+            
+            <li><a href="/projects" class="nav-link">Projects</a></li>
+        
+            
+            <li><a href="/publications" class="nav-link">Publications</a></li>
+        
+            
+            <li><a href="/about" class="nav-link">About Me</a></li>
+        
+        </ul>
+    </nav>
+</aside>
+
+
+  <main>
+    <article class='post'>
+    <h1 class="post-title">Developing Procrastination Feedback for Student Software Developers</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        <div style="text-align: center;">
+        <time>Apr 17, 2020 • 1529 words</time>
+        </div>
+        <div class="post">
+          <!-- <div class="tags">
+            
+          </div> -->
+          <p><small>
+<em>This article originally appeared on <a href="ayaankazerouni.medium.com">my Medium blog</a> on April 17, 2020.</em>
+</small></p>
+
+<p><em>This is a brief overview of the following research papers by myself, <a href="https://people.cs.vt.edu/~edwards/">Steve Edwards</a>, and <a href="https://people.cs.vt.edu/~shaffer/">Cliff Shaffer</a>:</em></p>
+
+<ul>
+  <li><em><strong><a href="/publications/iticse2017paper">DevEventTracker: Tracking Development Events to Assess Incremental Development and Procrastination</a></strong></em> (with T. Simin Hall), published at ITiCSE 2017, and</li>
+  <li><em><strong><a href="/publications/icer2017paper">Quantifying Incremental Development Practices and Their Relationship to Procrastination</a></strong></em>, published at ICER 2017</li>
+</ul>
+
+<p>I am summarising these papers together because they are closely related.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>We would like to determine the effectiveness of the time management practices displayed by students as they work on large and complex programming projects for the first time. We used qualitative data (obtained from interviews with students) and quantitative data (obtained using IDE logging infrastructure) to characterise their software development habits, and we analysed their relationships with project outcomes like correctness, total time taken, and the project’s early or late status.</p>
+
+<p>When students worked earlier and more often, they produced projects that:</p>
+<ul>
+  <li>were more correct,</li>
+  <li>were completed earlier,</li>
+  <li>took no more or less time to complete</li>
+</ul>
+
+<p>So working earlier and more often doesn’t seem to be giving the student more time to complete projects, just more <em>constructive</em> time.</p>
+
+<h2 id="motivation">Motivation</h2>
+
+<p>Software development is a skill. Like any skill, it requires practice and feedback in order to develop. Ideally, this feedback should formative — delivered as students work on projects. However, in education contexts, assessments of software projects are driven by “after-the-fact” qualities like correctness, code coverage, code style, etc. In the papers listed above, my co-authors and I present methods to characterise students’ time management habits as they work on large and complex projects. The goal is to use this information to formulate formative feedback about their development practices.</p>
+
+<h2 id="observing-the-development-process">Observing the development process</h2>
+
+<p>To properly assess a ~30-hour programming process, we need to be able to observe it. We developed an Eclipse plugin that emits events for various in-IDE actions, including:</p>
+<ul>
+  <li>executions</li>
+  <li>compilations</li>
+  <li>file saves</li>
+  <li>line-level edits</li>
+</ul>
+
+<p>We use these data to capture, characterise, and determine the effectiveness of the software development process undertaken by students. This process involved ingesting a large (ish) volume of data and turning it into an objective measurement of some aspect of the programming process (in this case, procrastination).</p>
+
+<h2 id="when-do-students-work-on-software-projects">When do students work on software projects?</h2>
+
+<p>We set out to quantitatively measure the extent to which <strong>procrastination</strong> manifests as students work on software projects. We look at the work done by students as a distribution of work days, from the first day the student worked on the project until the last day, typically the day of the project deadline. The value for each work day is the amount of observable “work” that was put in on the project — the number of character code edits. The mean of this distribution gives us the “average day” on which students tended to work on the project. If we measure this in terms of <em>days until the deadline</em>, then a higher number indicates that more work was done earlier, and a lower number indicates that more work was done closer to the deadline.</p>
+
+<p>As an example, consider the figure below, which shows how a real student distributed their work across the days on which they worked on a project.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/procrastination-feedback/tm-early-often.png" target="_blank">
+    <img src="/assets/posts/images/procrastination-feedback/tm-early-often.png" alt="" />
+  </a>
+  <figcaption>The mean edit time for a student, drawn from real data.</figcaption>
+</figure>
+
+<!-- A bar chart showing the amount of work put in by a student on each day from August 28 to September 14. -->
+<p>The red line on September 14 indicates the project deadline, and the black line on September 8 indicates the student’s “mean edit time”, which is 6 days before the deadline. A sizeable portion of work was done within the period of September 1 to September 8, and daily work was much higher during the last three days of the project lifecycle. This leads the mean edit time to be roughly in the middle of those time periods. The student’s score is therefore sensitive to not only the days on which was done, but also to the amount of work that was done on those days. Since this is simply a mean edit time, we can measure this with solution code, test code, or both.</p>
+
+<p>We might also have measured the median edit time (i.e., on what day was half the work done on a project?). However, we opted for the mean since it is more sensitive to outliers, which are important when measuring procrastination (e.g., large amounts of code being written toward the end of a project timeline).</p>
+
+<p>The figure below indicates distributions of the mean edit time for solution code and for test code, across all project implementations.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/procrastination-feedback/solution-test-early-often-dists.png" target="_blank">
+    <img src="/assets/posts/images/procrastination-feedback/solution-test-early-often-dists.png" alt="Two box-and-whisker plots which show the mean edit times for solution code and test code." />
+  </a>
+  <figcaption>On average, students tended to write code fewer than 10 days before the project deadline.</figcaption>
+</figure>
+
+<!-- On average, students tended to write code fewer than 10 days before the project deadline. -->
+<p>This figure tells us that students tended to work rather close to the deadline, even though they were given about 30 days to work on projects. Similar distributions of mean times were observed for solution code (\(\mu=8.48, \sigma=6.44\)), test code (\(\mu=7.78, \sigma=7.04\)), program executions (\(\mu=8.86, \sigma=8.82\)), and test executions (\(\mu=7.09, \sigma=7.10\)). Test editing and launching tends to occur slightly closer to the project deadline, but this difference appears to be negligible.</p>
+
+<h2 id="how-valid-is-our-measurement">How valid is our measurement?</h2>
+
+<p>The measurement described above is simple enough: it’s just a mean. Still, it is worth investigating whether it measures what we think it measures, i.e., the extent to which procrastination manifests on a software project. There is no readily-available “ground truth” against which one can test such a measurement. Therefore, we interviewed students in depth about their development experiences on two such assignments, and compared their responses with our measurements. Interviewees were given our measurements at the end of the interview, and we determined if they matched students’ expectations.</p>
+
+<p>In general, students felt that our measurements were accurate. Additionally, students believed that feedback driven by a measure such as this could help them stay on track on future programming projects. They stated unconditionally that they would make more of an effort to improve their programming practice if they were given feedback about their process between assignments.</p>
+
+<h2 id="can-this-measurement-explain-differences-in-project-outcomes">Can this measurement explain differences in project outcomes?</h2>
+
+<p>A primary thesis of these papers was that different software development habits can explain differences in software project outcomes for intermediate-to-advanced student software developers. With our measures and their qualitative evaluations in hand, we set out to quantitatively examine their relationships with the following project outcomes:</p>
+<ul>
+  <li><strong>Project correctness</strong>, measured as the percentage of instructor-written reference tests passed,</li>
+  <li><strong>Time of completion</strong>, measured as the number of hours before the deadline the project was completed, and</li>
+  <li><strong>Total time spent</strong>, measured by adding up the lengths of all work sessions spent on the project</li>
+</ul>
+
+<p>We used within-subjects comparisons to make inferences, allowing us to control for traits unique to individual students. Different students’ behaviours <em>and</em> outcomes could be symptoms of some other unknown factor (e.g., differing course loads or prior experience), making such inferences weaker. To test for relationships with the outcome variables, we used an ANCOVA with repeated measures for each student. Students were subjects, and assignments served as repeated measures (with unequal variances), allowing within-subjects comparisons. In other words, each student’s software development habits were measured repeatedly (assignments), and differences in outcomes for the same student were analysed.</p>
+
+<p>Results are summarised below.</p>
+
+<p><strong>When students worked earlier and more often, they tended to produce programs with higher correctness.</strong> To illustrate this, we split the dataset roughly into half: those projects that had “solved” the assigned problem (53%), and those that had not (47%). The figure below shows the difference in edit mean times between these populations.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/procrastination-feedback/solution-early-often-by-solved.png" target="_blank">
+    <img src="/assets/posts/images/procrastination-feedback/solution-early-often-by-solved.png" alt="Two box-and-whisker plots showing the mean edit time for solved and unsolved projects." />
+  </a>
+  <figcaption>Comparison of solution edit times between projects that correctly solved an assignment, and those that did not.</figcaption>
+</figure>
+
+<p><strong>When students worked earlier and more often, they tended to finish their projects earlier.</strong> This is so intuitive, it’s almost tautological. It is encouraging that the measurement is able to discriminate between early and late project submissions.</p>
+
+<figure class="">
+  <a href="/assets/posts/images/procrastination-feedback/solution-early-often-by-on-time-status.png" target="_blank">
+    <img src="/assets/posts/images/procrastination-feedback/solution-early-often-by-on-time-status.png" alt="Two box-and-whisker plots showing the mean edit time for late and on-time submissions." />
+  </a>
+  <figcaption>Comparison of solution edit times between on-time and late submissions.</figcaption>
+</figure>
+
+<p>Finally, <strong>there was no relationship between total amount of time spent on the project and the solution edit mean time.</strong></p>
+
+<h2 id="final-remarks">Final Remarks</h2>
+
+<p>The important takeaway from these papers is not the revelation that <em>procrastination = bad</em>. It is that we can reliably identify when procrastination is taking place on software projects. If we can do this during a project timeline, i.e., while the student is working on it, we may be able to intervene and help them adjust their programming behaviours before they face the consequences of procrastination.</p>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    
+    </article>
+		<footer>
+  <div class='get-in-touch'>Contact<br></div>
+  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
+  <!--<div class='address'></div> -->
+  <div class='contact'>
+    <a href='https://twitter.com/ayaankazerouni'>
+      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
+      <span class='visible-hidden'>Twitter profile</span>
+    </a>
+    <a href='https://github.com/ayaankazerouni'>
+      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
+      <span class='visible-hidden'>GitHub profile</span>
+    </a>
+    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
+      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
+      <span class='visible-hidden'>LinkedIn profile</span>
+    </a> -->
+    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
+      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
+      <span class='visible-hidden'>Google Scholar profile</span>
+    </a>
+    <a href='https://orcid.org/0000-0002-6574-1278'>
+      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
+      <span class='visible-hidden'>OrcID profile</span>
+    </a>
+  </div>
+</footer>
+
+  </main>
+</body>
+</html>
