@@ -1,0 +1,231 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Learning a Second Programming Language - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="ayaankazerouni.github.io/courses/csc313/coursenotes/learning-a-second-programming-language/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <aside>
+    <nav>
+        <ul>
+        
+            
+            <li><a href="/#" class="nav-link">Home</a></li>
+        
+            
+            <li><a href="/teaching" class="nav-link">Teaching</a></li>
+        
+            
+            <li><a href="/projects" class="nav-link">Projects</a></li>
+        
+            
+            <li><a href="/publications" class="nav-link">Publications</a></li>
+        
+            
+            <li><a href="/about" class="nav-link">About Me</a></li>
+        
+        </ul>
+    </nav>
+</aside>
+
+
+  <main class="coursenotes">
+  <h2>Learning a Second Programming Language</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        (Coursenotes for CSC 313 Teaching Computing)
+        
+        <p><strong>📖 Readings</strong></p>
+
+<ul>
+  <li>
+    <p><a href="https://dl.acm.org/doi/10.1145/3341525.3387406">Semantic Transfer in Programming Languages: Exploratory Study of Relative Novices</a> by Ethel Tshukudu and Quintin Cutts [1]</p>
+  </li>
+  <li>
+    <p><a href="https://dl.acm.org/doi/10.1145/3372782.3406270">Understanding Conceptual Transfer for Students Learning New Programming Languages</a> by Ethel Tshukudu and Quintin Cutts [2]</p>
+  </li>
+</ul>
+
+<p>Prior work on PL transfer focuses on transfer of <em>problem-solving strategies</em> as experts transition from one language to the next. But we don’t know much about how PL transfer happens during <em>code comprehension</em>.</p>
+
+<p>We’ve previously talked about how students can face difficulties transitioning from blocks-based languages to text-based languages. We have some empirical evidence for the types of programming constructs (loops, conditionals, etc.) that might trouble them, but this empirical evidence doesn’t give us much in the way of a <em>predictive</em> <em>theory</em> of how this transfer takes place and is helped or hindered. Having such a predictive theory can give us clues about the cognitive difficulties that we should pre-empt while teaching a second or third programming language.</p>
+
+<p>These papers propose and evaluate such a theory of transfer of knowledge between programming languages.</p>
+
+<h3 id="mindshift-learning-theory-mlt">Mindshift learning theory (MLT)</h3>
+
+<ul>
+  <li><em>Carryover concept</em><strong>:</strong> concept with similar meaning in the old and new contexts (PLs)</li>
+  <li><em>Changed concept</em><strong>:</strong> concept is similar to a known concept but has a different meaning in the new context (PL)</li>
+  <li><em>Novel concept</em><strong>:</strong> concept not already known to the learner</li>
+</ul>
+
+<h3 id="learning-a-second-natural-language">Learning a second natural language</h3>
+
+<p>We know from fMRI studies that programming languages and natural languages are related; they activate the syntactic and semantic regions of the brain. These papers draw on this relationship.</p>
+
+<p><strong>Similarity relations between languages</strong></p>
+
+<ul>
+  <li><em>Similarity relation:</em> item or pattern in L2 is perceived as similar to a form or pattern in L1. For example, <em>mine</em> (English) and <em>mein</em> (German)</li>
+  <li><em>Contrast relation:</em> Underlying similarities between items, but important differences. For example, <em>lecturer</em> (English) and <em>lektura</em> (<em>reading</em>; Polish).</li>
+  <li><em>Zero relation:</em> Little-to-no perceptible relation between an item in L1 and L2. For example, <em>talk</em> (English) and <em>rozmowa</em> (<em>talk</em> in Polish)</li>
+</ul>
+
+<h2 id="learning-a-second-programming-language">Learning a second programming language</h2>
+
+<p>The paper suggests that knowledge of a programming language is organised into a network of interconnected knowledge structures. These knowledge structures are:</p>
+
+<ul>
+  <li><em>Syntax level</em>: Knowledge of the syntax of a known programming language. For example, <code class="language-plaintext highlighter-rouge">int mark = 4;</code></li>
+  <li><em>Semantic level:</em> The “meaning” of the syntax. For example, the variable <code class="language-plaintext highlighter-rouge">mark</code> is being declared as an integer and initialised to <code class="language-plaintext highlighter-rouge">4</code>.</li>
+  <li><em>Conceptual level:</em> Higher-level concepts known by the programmer. For example, <em>variable introduction.</em></li>
+</ul>
+
+<p>Notice that items #1 and #2 above are making a distinction between two skills: being able to read (trace) programming language syntax, and being able to understand the purpose of that syntax from a higher level. This hearkens back to the idea that <a href="https://doi.org/10.1080/08993408.2019.1565235">introductory programming skills ought to be separated and sequenced</a>.</p>
+
+<h3 id="semantic-transfer-between-pl1-and-pl2">Semantic transfer between PL1 and PL2</h3>
+
+<figure>
+
+  <a href="model.png" target="_blank">
+    <img src="model.png" alt="" />
+  </a>
+  <figcaption>A model of PL transfer (reproduced from [2]).</figcaption>
+</figure>
+
+<p>The paper suggests in the Prior Level, there’s no branching between the syntactic and semantic level. But this is an <em>idealised notion</em>—recall that there can be issues of transfer between the learner’s prior knowledge from other domains with similar tokens or notation (e.g., math). This conceptualisation largely ignores those issues, focusing only knowledge of a programming language.</p>
+
+<p>When learning the second language, relationships between concepts in the two languages are formed.</p>
+
+<ul>
+  <li><em>True carryover construct (TCC):</em> Similar syntax and same underlying semantics in PL1 and PL2. (E.g., a <code class="language-plaintext highlighter-rouge">while</code> loop in Python and Java)</li>
+  <li><em>False carryover construct (FCC):</em> Similar syntax, but different semantics. Negative transfer! (E.g., integer division in Python and Java).</li>
+  <li><em>Abstract true carryover construct (ATCC):</em> different syntax by same semantics. (E.g., objects in Java are kind of like <code class="language-plaintext highlighter-rouge">dict</code> in Python).</li>
+</ul>
+
+<p>Totally new (conceptually, semantically, and syntactically novel) constructs in the second PL will appear as brand new strands, unrelated to any known concepts.</p>
+
+<blockquote>
+  <p>💡 I’m a bit skeptical of the example for ATCC above. But maybe with the introduction of Records in Java, this example holds a bit better. A better example might be semantics for <code class="language-plaintext highlighter-rouge">map</code> in, say, JavaScript, and list comprehensions in Python.</p>
+</blockquote>
+
+<figure>
+
+  <a href="transfer.png" target="_blank">
+    <img src="transfer.png" alt="" />
+  </a>
+  <figcaption>An example of knowledge transfer between PL1 and PL2 (reproduced from [2]).</figcaption>
+</figure>
+
+<h3 id="how-does-this-affect-pl-knowledge-transfer">How does this affect PL knowledge transfer?</h3>
+
+<p>The authors make three predictions:</p>
+
+<ol>
+  <li>When a TCC is encountered (i.e., a concept which has similar syntax and semantics in PL1 and PL2), the learner <em>correctly</em> perceives the similarity between the concept in the two languages. Positive knowledge transfer takes place.</li>
+  <li>When a FCC is encountered (i.e., a concept which has similar syntax, but <em>different semantics</em> in PL1 and PL2), the learner <em>incorrectly</em> perceives that there is a similarity between the concept’s semantics in the two languages. That is, the learner thinks this is a TCC. Negative knowledge transfer takes place.</li>
+  <li>When an ATCC is encountered (i.e., a concept with similar semantics but <em>different syntax</em> in PL1 and PL2), the differing syntax between PL1 and PL2 masks the concept’s similar semantics from the learner, and they fail to transfer that understanding from PL1 to PL2. They therefore perceive the ATCC as a totally new concept. No knowledge transfer takes place.</li>
+</ol>
+
+<blockquote>
+  <p>❓ Think about the first two programming languages you learned. For many of you, this will have been two quarters of Python followed by Java. What aspects of this model hold for you? What doesn’t hold?</p>
+</blockquote>
+
+<h3 id="how-does-this-theory-hold-up">How does this theory hold up?</h3>
+
+<p>Hypotheses:</p>
+
+<ul>
+  <li>H1: No difference in quiz scores for concepts involving TCC between PL1 and PL2</li>
+  <li>H2: PL2 scores will be lower for concepts involving FCC between PL1 and PL2</li>
+  <li>H3: PL2 scores will be lower for concepts involving ATCC between PL1 and PL2</li>
+</ul>
+
+<p><strong>Study 1: Python → Java</strong></p>
+
+<p>Results largely hold up.</p>
+
+<figure>
+
+  <a href="study1.png" target="_blank">
+    <img src="study1.png" alt="" />
+  </a>
+  <figcaption>Predictions largely held up in study 1. (Reproduced from [2])</figcaption>
+</figure>
+
+<p>Example of inappropriate semantic transfer:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># This doesn't work in Python
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Friday is no: "</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Participants expected this to not work in Java</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Friday is no: "</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>Study 2: Java → Python</strong> (IT students; exposure to Java the prior semester; non-CS undergraduate degrees; more advanced level of learning Python than the Study 1 participants were at learning Java)</p>
+
+<p>Results <em>kind of</em> hold up.</p>
+
+<figure>
+
+  <a href="study2.png" target="_blank">
+    <img src="study2.png" alt="" />
+  </a>
+  <figcaption>Predictions kind of held up in study 2, but not as strongly as in 1. (Reproduced from [2].)</figcaption>
+</figure>
+
+<blockquote>
+  <p>❓ It appears that transfer from Java to Python was easier than transfer from Python to Java. Why do you suppose this is?</p>
+</blockquote>
+
+    </div>
+    
+    </article>
+		<footer>
+  <div class='get-in-touch'>Contact<br></div>
+  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
+  <!--<div class='address'></div> -->
+  <div class='contact'>
+    <a href='https://twitter.com/ayaankazerouni'>
+      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
+      <span class='visible-hidden'>Twitter profile</span>
+    </a>
+    <a href='https://github.com/ayaankazerouni'>
+      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
+      <span class='visible-hidden'>GitHub profile</span>
+    </a>
+    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
+      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
+      <span class='visible-hidden'>LinkedIn profile</span>
+    </a> -->
+    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
+      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
+      <span class='visible-hidden'>Google Scholar profile</span>
+    </a>
+    <a href='https://orcid.org/0000-0002-6574-1278'>
+      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
+      <span class='visible-hidden'>OrcID profile</span>
+    </a>
+  </div>
+</footer>
+
+  </main>
+</body>
+</html>

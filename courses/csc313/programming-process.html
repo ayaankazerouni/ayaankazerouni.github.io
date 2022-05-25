@@ -1,0 +1,139 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>CSC 313 Programming process assignment - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="ayaankazerouni.github.io/courses/csc313/programming-process.html">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <aside>
+    <nav>
+        <ul>
+        
+            
+            <li><a href="/#" class="nav-link">Home</a></li>
+        
+            
+            <li><a href="/teaching" class="nav-link">Teaching</a></li>
+        
+            
+            <li><a href="/projects" class="nav-link">Projects</a></li>
+        
+            
+            <li><a href="/publications" class="nav-link">Publications</a></li>
+        
+            
+            <li><a href="/about" class="nav-link">About Me</a></li>
+        
+        </ul>
+    </nav>
+</aside>
+
+
+  <main class="course">
+    <!-- <h1 class="post-title">CSC 313 Programming process assignment</h1> -->
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        <h1 id="csc-313-teaching-computing">CSC 313 Teaching computing</h1>
+
+<h2 id="the-programming-process">The programming process</h2>
+
+<p>Computer science is a relatively new field and we are still figuring out how to teach it. In general, an important aspect of teaching is having an awareness/knowledge of the topic you are trying to teach.</p>
+
+<p>Programming is something we all have engaged in, but we could all benefit from spending time considering the process of programming.  For this assignment, we will be completing a fairly simple program with an API that likely most are not familiar with (to level the playing field, and to put you in the shoes of students who may not be familiar with the programming language they are learning).</p>
+
+<p><strong>Goal</strong>: To examine our personal programming process.</p>
+
+<p><strong>Process</strong>: We will examine and document our personal coding process via the task of writing code to create an interactive map which shows where our classmates (in our small group) are in the world. We will accomplish this via writing code in javascript with calls to the <a href="https://openlayers.org/">OpenLayers API</a>. You may solve this problem by using the structure proposed in the Quick Start guide, i.e. not the “Build an Open Layers Application” instructions. Specifications for the programming aspects will be specified exactly below.</p>
+
+<p><strong>Spirit of the problem</strong>: Document your coding process in detail to help us explore and document the process of programming. Create a detailed list, including a list of times and activities taken to achieve the final goal. See the subset of my process anonymised as generalised activities so as not to not affect your process (yours should include the complete and exact list of the actual queries or tasks you completed!).</p>
+
+<p>The programming specifications are as follows (intentionally general to allow you to explore your process):</p>
+
+<ul>
+  <li>Create a webpage hosted in your own web space which draws an interactive world map using OpenLayers. The map should be centred on Cal Poly (but note that you can zoom out to accommodate a wide area).</li>
+  <li>The map will include three different visual representations of icons used to represent where people enrolled in this class (and specifically in your “small” group) are currently (approximately) located.</li>
+  <li>Identify people’s location based on the ESPG:4326 location of the city they are currently residing in. You do not need to give one another your street address and may choose a closest big city if you feel more comfortable.</li>
+  <li>The visual representations will vary based on the number of people in each area. For example, the below static image from my implementation has one person in Santa Barbara (represented by a smaller yellow icon), two people in San Luis Obispo (represented as a medium sized orange icon) and three or more people in San Diego (represented by a larger purple icon).</li>
+  <li>You may choose a reasonable way to designate which style is associated with what number of people in that area. If your group does not have any regions with overlap, document your choice of what you will use visual style to represent and demonstrate the use of three different visual icon representations.</li>
+  <li>You are free to choose if your code just supports a static set of locations (easier and allowed) or if you would like to generalise it to read in a list of locations.</li>
+  <li>If you are feeling stuck, please do ping me and I can give you some hints but to start I’d like you to explore your process on your own. I will spare you one web wander and note that I found the following page useful: https://epsg.io/</li>
+</ul>
+
+<p><img src="/courses/csc313/map.png" alt="A picture of a map with markers in three locations in California." /></p>
+
+<p><strong>Core task</strong>: Document your programming process in detail. Here is a sample of my process log. Please produce something similar but complete and with exact details (for example, anything labelled <task a=""> should have the actual feature of code you are testing) - include labels about failures and working steps, etc. Highlight key process elements. For example:</task></p>
+
+<ul>
+  <li>Start 8:30</li>
+  <li>Explore idea (waste time identifying correct API)</li>
+  <li>Look for examples of code using identified API</li>
+  <li>Distracted by detail of problem, looked at unrelated example implementations that sounded cool</li>
+  <li>Try copy and pasting some example code - failed</li>
+  <li>Look at developer view to see error</li>
+  <li>Look for simpler example</li>
+  <li>Copy and try again - It worked!</li>
+  <li>Actually read the example code I got to work and think about what it is doing</li>
+  <li>Get distracted by a detail I find interesting and think about it a bit</li>
+  <li>Try changing example to accomplish <task a=""> - fail</task></li>
+  <li>Try changing different part of example for <task b=""> - it works!</task></li>
+  <li>Read documentation about <task a="">, notice an error in my thinking, fix code - it works</task></li>
+  <li>Create a back up of my code</li>
+  <li>Make a major change for <task c=""> - fails</task></li>
+  <li>Revert code to prior version</li>
+  <li>Do more reading about API</li>
+  <li>….etc…. I am not listing all steps so as to not pollute your process - you should list all your steps! And what they were trying to accomplish and whether it worked or failed.</li>
+  <li>5 more steps and simple version of <task c=""> is complete—yay it worked!</task></li>
+  <li>~20 minutes messing around with <tack d=""> &lt;Fill in for your exact steps - &gt;</tack></li>
+  <li>~20 minutes converting to code that generalises better for <task e=""></task></li>
+  <li>Done approximately 2 hours later</li>
+</ul>
+
+<p><strong>Deliverable</strong>: Turn in a PDF describing your process, that includes a link of where your solution is hosted and can be viewed.</p>
+
+    </div>
+    
+		<footer>
+  <div class='get-in-touch'>Contact<br></div>
+  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
+  <!--<div class='address'></div> -->
+  <div class='contact'>
+    <a href='https://twitter.com/ayaankazerouni'>
+      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
+      <span class='visible-hidden'>Twitter profile</span>
+    </a>
+    <a href='https://github.com/ayaankazerouni'>
+      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
+      <span class='visible-hidden'>GitHub profile</span>
+    </a>
+    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
+      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
+      <span class='visible-hidden'>LinkedIn profile</span>
+    </a> -->
+    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
+      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
+      <span class='visible-hidden'>Google Scholar profile</span>
+    </a>
+    <a href='https://orcid.org/0000-0002-6574-1278'>
+      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
+      <span class='visible-hidden'>OrcID profile</span>
+    </a>
+  </div>
+</footer>
+
+  </main>
+</body>
+</html>
