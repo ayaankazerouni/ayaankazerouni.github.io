@@ -145,6 +145,27 @@ Papers and posters I have authored or co-authored. Click on items to see their a
 <div class='content-box'>
 <div class='content'>
 <div class='artifact-list'>
+<details class='artifact' id='p_sigcse2023debugging'>
+<summary>
+<span class='artifact-title'>
+<a href='https://doi.org/10.1145/3545945.3569871'>Exploring the Impact of Cognitive Awareness Scaffolding for Debugging in an Introductory Computer Science Class (to appear)</a>
+</span>
+<div class='sub'>
+<div class='authors'>
+J. Lee, <b>A. M. Kazerouni</b>, C. Siu, T. Migler
+</div>
+<i>ACM Technical Symposium on Computer Science Education&mdash;Experience Reports</i>.
+2023.
+<br>
+<a class='artifact-link' href='https://users.csc.calpoly.edu/~ayaank/pubs/sigcse2023debugging.pdf'>pdf</a>
+</div>
+</summary>
+<p>
+<b>Abstract:</b>
+Debugging involves the simultaneous application of a number of programming skills&mdash;reading code, writing code, problem comprehension, etc. This makes it a challenging activity for novice programmers. Unfortunately, debugging is rarely taught explicitly in introductory programming courses, and is often learned as an implicit goal through programming assignments. In this experience report we explore the impact of a cognitive awareness scaffold to help students monitor their progress as they debug their code. We created a simple form that students used to document their debugging process when they ran into bugs. The form asks questions that students are likely to be asked by course staff during office hours, e.g., ``What have you tried so far?''. This act of verbalizing errors and enumerating successful and unsuccessful strategies to fix them is meant to help students monitor their own debugging progress. We examined the cognitive awareness demonstrated in form responses, finding that responses were more superficial on projects of higher difficulty. Additionally, we gave students an exit survey to measure the perceived impact of the debugging form on students' ability to regulate their debugging process and their confidence while debugging. Students indicated that the form helped them better verbalize errors in their programs, and helped them surmount problems with which they would otherwise have needed help.
+</p>
+</details>
+<hr>
 <details class='artifact' id='p_koli2021help-seeking'>
 <summary>
 <span class='artifact-title'>
@@ -340,27 +361,6 @@ Learning to program can be challenging. Many instructors use drill-and-practice 
 </p>
 </details>
 <hr>
-<details class='artifact' id='p_sigcse2019poster'>
-<summary>
-<span class='artifact-title'>
-<a href='https://doi.org/10.1145/3287324.3293794'>Student Debugging Practices and Their Relationships with Project Outcomes &mdash; Poster</a>
-</span>
-<div class='sub'>
-<div class='authors'>
-<b>A. M. Kazerouni</b>, R. S. Mansur, S. H. Edwards, C. A. Shaffer
-</div>
-<i>ACM Technical Symposium on Computer Science Education</i>.
-2019.
-<br>
-<a class='artifact-link' href='https://users.csc.calpoly.edu/~ayaank/pubs/sigcse2019-debugging-poster.pdf'>pdf</a>
-</div>
-</summary>
-<p>
-<b>Abstract:</b>
-Debugging is an important part of the software development process, studied by both the CS education and software engineering communities. Most prior work has focused either on novice or professional programmers. Intermediate-to-advanced students (such as those enrolled in post-CS2 Data Structures courses) who are working on large and complex projects have largely been ignored. We present results from an empirical observational study that examined junior-level undergraduate students' debugging practices on relatively large (4-week lifecycle) projects, using IDE clickstream data collected by a custom Eclipse plugin. Specifically, we hypothesize that there are differing debugging behaviors exhibited, and that differing behaviors lead to differing project out-comes. For example, how often do students use the symbolic debugger available in modern IDEs, versus how often do they use diagnostic print statements, or both? What triggers a debugging session? What follows a debugging session? Does it matter when in the project lifecycle that debugging takes place? We have a number of interesting preliminary results. When using the debugger, there was a negative relationship between step-over and step-into actions versus final course grades, indicating that when students "spin their wheels" while debugging, they tend to perform more poorly. Students also tend to perform better on the project when debugging takes place earlier in the overall project life-cycle. We developed an algorithm to identify diagnostic print statements in the students' projects. We found that over 90% used at least one diagnostic print statement, and about 75% used the symbolic debugger, at least once in any given project.
-</p>
-</details>
-<hr>
 <details class='artifact' id='p_sigcse2019paper'>
 <summary>
 <span class='artifact-title'>
@@ -385,6 +385,27 @@ Debugging is an important part of the software development process, studied by b
 <p>
 <b>Abstract:</b>
 Software testing is an important aspect of the development process, one that has proven to be a challenge to formally introduce into the typical undergraduate CS curriculum. Unfortunately, existing assessment of testing in student software projects tends to focus on evaluation of metrics like code coverage over the finished software product, thus eliminating the possibility of giving students early feedback as they work on the project. Furthermore, assessing and teaching the process of writing and executing software tests is also important, as shown by the multiple variants proposed and disseminated by the software engineering community, e.g., test-driven development (TDD) or incremental test-last (ITL). We present a family of novel metrics for assessment of testing practices for increments of software development work, thus allowing early feedback before the software project is finished. Our metrics measure the balance and sequence of effort spent writing software tests in a work increment. We performed an empirical study using our metrics to evaluate the test-writing practices of 157 advanced undergraduate students, and their relationships with project outcomes over multiple projects for a whole semester. We found that projects where more testing effort was spent per work session tended to be more semantically correct and have higher code coverage. The percentage of method-specific testing effort spent before production code did not contribute to semantic correctness, and had a negative relationship with code coverage. These novel metrics will enable educators to give students early, incremental feedback about their testing practices as they work on their software projects.
+</p>
+</details>
+<hr>
+<details class='artifact' id='p_sigcse2019poster'>
+<summary>
+<span class='artifact-title'>
+<a href='https://doi.org/10.1145/3287324.3293794'>Student Debugging Practices and Their Relationships with Project Outcomes &mdash; Poster</a>
+</span>
+<div class='sub'>
+<div class='authors'>
+<b>A. M. Kazerouni</b>, R. S. Mansur, S. H. Edwards, C. A. Shaffer
+</div>
+<i>ACM Technical Symposium on Computer Science Education</i>.
+2019.
+<br>
+<a class='artifact-link' href='https://users.csc.calpoly.edu/~ayaank/pubs/sigcse2019-debugging-poster.pdf'>pdf</a>
+</div>
+</summary>
+<p>
+<b>Abstract:</b>
+Debugging is an important part of the software development process, studied by both the CS education and software engineering communities. Most prior work has focused either on novice or professional programmers. Intermediate-to-advanced students (such as those enrolled in post-CS2 Data Structures courses) who are working on large and complex projects have largely been ignored. We present results from an empirical observational study that examined junior-level undergraduate students' debugging practices on relatively large (4-week lifecycle) projects, using IDE clickstream data collected by a custom Eclipse plugin. Specifically, we hypothesize that there are differing debugging behaviors exhibited, and that differing behaviors lead to differing project out-comes. For example, how often do students use the symbolic debugger available in modern IDEs, versus how often do they use diagnostic print statements, or both? What triggers a debugging session? What follows a debugging session? Does it matter when in the project lifecycle that debugging takes place? We have a number of interesting preliminary results. When using the debugger, there was a negative relationship between step-over and step-into actions versus final course grades, indicating that when students "spin their wheels" while debugging, they tend to perform more poorly. Students also tend to perform better on the project when debugging takes place earlier in the overall project life-cycle. We developed an algorithm to identify diagnostic print statements in the students' projects. We found that over 90% used at least one diagnostic print statement, and about 75% used the symbolic debugger, at least once in any given project.
 </p>
 </details>
 <hr>
