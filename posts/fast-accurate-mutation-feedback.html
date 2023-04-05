@@ -53,7 +53,7 @@
     <div class="content-box" style="border: none;">
       <div class="content">
         <div style="text-align: center;">
-        <time>Mar 17, 2021 • 2429 words</time>
+        <time>Mar 17, 2021 • 2433 words</time>
         </div>
         <div class="post">
           <!-- <div class="tags">
@@ -85,14 +85,14 @@
 
 <p><em><a href="https://en.wikipedia.org/wiki/Mutation_testing">Mutation analysis</a></em> is a far more reliable option. Small changes (<em>mutations</em>) are made to the target program, creating incorrect variants called <em>mutants</em>. The test suite is run against these mutants, and its adequacy is measured as the percentage of mutants that are detected by the test suite (i.e., by a failing test). The different kinds of mutations you could make are called <em>mutation operators</em>.</p>
 
-<p>Mutation analysis subsumes code coverage as a test adequacy criterion<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>, and has been shown to be a <strong>reliable measurement of test adequacy</strong>. It can also be used to produce <strong>incremental feedback</strong>: I don’t need a student to have finished a project to give them feedback about their tests.</p>
+<p>Mutation analysis subsumes code coverage as a test adequacy criterion<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>, and has been shown to be a <strong>reliable measurement of test adequacy</strong>. It can also be used to produce <strong>incremental feedback</strong>: I don’t need a student to have finished a project to give them feedback about their tests.</p>
 
 <h2 id="reducing-the-cost-of-mutation-analysis">Reducing the cost of mutation analysis</h2>
 <p>Unfortunately, mutation analysis can be <strong>prohibitively expensive</strong> computationally. The number of mutants produced for even a moderately sized project (~1 KLoC) can reach well into the thousands. Running the test suite for each of these mutants can take several minutes, sometimes hours.</p>
 
 <p>Significant research effort has been devoted to reducing this cost. One such approach is <em>selective mutation</em>. The main idea behind selective mutation is to select a subset of mutation operators that give you the best “bang for your buck”. That is, out of the <strong>Full</strong> set of mutation operators (all available operators) you want a subset that gives you a reliable test adequacy score — one that is close to the “true” thoroughness of your tests — while producing a small number of mutants.</p>
 
-<p>Numerous such operator subsets have been proposed. One key example is the <strong>Deletion</strong> set, originally proposed by Roland Untch<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup> and reified by Jeff Offutt and colleagues<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>.</p>
+<p>Numerous such operator subsets have been proposed. One key example is the <strong>Deletion</strong> set, originally proposed by Roland Untch<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> and reified by Jeff Offutt and colleagues<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>.</p>
 
 <p>Deletion operators create mutants by systematically deleting program constructs. This simple mutation scheme results in significantly fewer mutants. For example, if we were to remove the arithmetic operator in the expression <code class="language-plaintext highlighter-rouge">a + b</code>, we just create two mutants: <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code>. This is in contrast to the four mutants that would be created by arithmetic operator <strong>replacement</strong>: <code class="language-plaintext highlighter-rouge">a — b, a / b, a * b, a % b</code>.</p>
 
@@ -190,7 +190,7 @@
 
 <p>The question now is: are these results generally useful? Or are they specific to submissions produced by students in our courses?</p>
 
-<p>We turn to a data-set<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">4</a></sup> released by Marinos Kintis and colleagues containing programs, mutants, and mutation-adequate test suites, drawn from 6 open-source Java projects.</p>
+<p>We turn to a data-set<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup> released by Marinos Kintis and colleagues containing programs, mutants, and mutation-adequate test suites, drawn from 6 open-source Java projects.</p>
 
 <p>Using this dataset, we evaluated the cost and effectiveness of the Deletion, 3-op, 2-op, and 1-op subsets.</p>
 
@@ -262,9 +262,13 @@
   <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
   <!--<div class='address'></div> -->
   <div class='contact'>
-    <a href='https://twitter.com/ayaankazerouni'>
+    <!-- <a href='https://twitter.com/ayaankazerouni'>
       <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
       <span class='visible-hidden'>Twitter profile</span>
+    </a> -->
+    <a href='https://hci.social/@ayaankazerouni'>
+      <i class='fab fa-mastodon' aria-label="Mastodon" title="Mastodon" target="_blank"></i>
+      <span class='visible-hidden'>Mastodon profile</span>
     </a>
     <a href='https://github.com/ayaankazerouni'>
       <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
@@ -278,10 +282,14 @@
       <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
       <span class='visible-hidden'>Google Scholar profile</span>
     </a>
-    <a href='https://orcid.org/0000-0002-6574-1278'>
+    <a href='https://dblp.org/pid/202/1256.html'>
+      <i class='ai ai-dblp-square' aria-label="DBLP" title="DBLP"></i>
+      <span class='visible-hidden'>DBLP page</span>
+    </a>
+    <!-- <a href='https://orcid.org/0000-0002-6574-1278'>
       <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
       <span class='visible-hidden'>OrcID profile</span>
-    </a>
+    </a> -->
   </div>
 </footer>
 
