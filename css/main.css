@@ -99,11 +99,9 @@ header .info {
 
 main {
   padding: 0 15px;
-  width: 65%;
+  width: 80%;
+  max-width: 80em;
   margin: 0 auto;
-}
-main.course {
-  max-width: 80%;
 }
 
 /* Aside */
