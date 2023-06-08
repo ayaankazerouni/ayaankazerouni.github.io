@@ -349,6 +349,7 @@ blockquote {
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   main {
     max-width: 80%;
+    font-size: 16px;
   }
   header {
     flex-direction: row;
@@ -375,6 +376,7 @@ blockquote {
 @media screen and (max-width: 415px) and (orientation: portrait) {
   details {
     max-width: 100%;
+    font-size: 16px;
   }
   aside nav {
     font-size: 0.8em;
