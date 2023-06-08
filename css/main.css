@@ -13,7 +13,7 @@ body {
   margin: auto;
   color: #000000;
   font-family: "Avenir", sans-serif;
-  font-size: 15px;
+  font-size: 16pt;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -115,7 +115,7 @@ aside {
 aside nav {
   display: flex;
   justify-content: center;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 aside nav ul {
   margin: 0;
@@ -305,7 +305,7 @@ code {
 }
 
 article.post {
-  font-size: 16px;
+  font-size: 16pt;
   margin: auto;
   line-height: 1.8;
   font-family: "Garamond", "Georgia", serif;
