@@ -13,7 +13,7 @@ body {
   margin: auto;
   color: #000000;
   font-family: "Avenir", sans-serif;
-  font-size: 15px;
+  font-size: 16pt;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -99,11 +99,9 @@ header .info {
 
 main {
   padding: 0 15px;
-  width: 65%;
+  width: 80%;
+  max-width: 80em;
   margin: 0 auto;
-}
-main.course {
-  max-width: 80%;
 }
 
 /* Aside */
@@ -117,7 +115,7 @@ aside {
 aside nav {
   display: flex;
   justify-content: center;
-  font-size: 1.2em;
+  font-size: 1em;
 }
 aside nav ul {
   margin: 0;
@@ -307,9 +305,10 @@ code {
 }
 
 article.post {
-  font-size: 16px;
+  font-size: 16pt;
   margin: auto;
   line-height: 1.8;
+  font-family: "Garamond", "Georgia", serif;
 }
 article.post h1 {
   text-align: center;
