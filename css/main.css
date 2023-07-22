@@ -201,7 +201,6 @@ figure.wide {
   display: table;
   position: relative;
   float: right;
-  right: 50%;
   overflow-x: scroll;
 }
 figure.wide img, figure.wide figcaption {
