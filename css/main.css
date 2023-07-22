@@ -206,7 +206,6 @@ figure.wide {
 figure.wide img, figure.wide figcaption {
   display: table-row;
   position: relative;
-  right: -50%;
   max-width: 70vw;
 }
 
