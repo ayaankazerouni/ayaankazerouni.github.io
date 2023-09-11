@@ -304,13 +304,19 @@ code {
 
 .tag {
   font-size: 0.8em;
-  font-family: Quicksand Helvetica sans-serif;
+  font-family: "Quicksand", "Helvetica", sans-serif;
   padding: 2px 5px;
   margin: 5px;
   background-color: rgba(255, 238, 0, 0.4);
   border: 0.5pt solid #E61726;
   border-radius: 8px;
   cursor: pointer;
+}
+.tag.active {
+  background-color: #000000;
+}
+.tag.active a {
+  color: #F9CF00;
 }
 
 article.post {
