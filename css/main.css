@@ -13,8 +13,6 @@ body {
   margin: auto;
   color: #000000;
   font-family: "Avenir", sans-serif;
-  font-size: 13pt;
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -25,13 +23,11 @@ h4,
   font-weight: 600;
   color: #425469;
   font-family: "Muli", sans-serif;
-  line-height: 1.5;
   margin: auto;
 }
 
 h1 {
   color: #000000;
-  font-size: 2.2em;
   font-family: "Muli", sans-serif;
 }
 h1 a,
@@ -46,7 +42,6 @@ h2 {
 }
 
 h3 {
-  font-size: 1.25em;
   padding-top: 5px;
 }
 
@@ -72,7 +67,7 @@ header {
   padding: 0px 15px;
   text-align: center;
   margin: 50px 0 0;
-  height: min(40vh, 250px);
+  height: min(40vh, 200px);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -84,7 +79,7 @@ header.pages {
 }
 header img {
   border-radius: 360px;
-  height: min(35vh, 200px);
+  height: min(35vh, 150px);
   max-height: 200px;
   width: auto;
 }
@@ -102,6 +97,10 @@ main {
   width: 80%;
   max-width: 80em;
   margin: 0 auto;
+}
+main.post {
+  font-size: 1.2em;
+  max-width: 60em;
 }
 
 /* Aside */
@@ -319,15 +318,6 @@ code {
   color: #F9CF00;
 }
 
-article.post {
-  margin: auto;
-  line-height: 1.8;
-  font-family: "Garamond", "Georgia", serif;
-}
-article.post h1 {
-  text-align: center;
-}
-
 .course table {
   margin: 20px auto;
   border-collapse: collapse;
@@ -452,7 +442,7 @@ blockquote {
     float: none;
     width: inherit;
   }
-  article.post {
+  .post article {
     width: 100%;
   }
   img {
