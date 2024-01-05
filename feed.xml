@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.github.io/" rel="alternate" type="text/html" /><updated>2024-01-04T17:51:40-08:00</updated><id>https://ayaankazerouni.github.io/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.github.io/" rel="alternate" type="text/html" /><updated>2024-01-04T20:47:48-08:00</updated><id>https://ayaankazerouni.github.io/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
 </subtitle><entry><title type="html">How relative novices make sense of code coverage and mutation-based feedback</title><link href="https://ayaankazerouni.github.io/posts/test-feedback-sensemaking" rel="alternate" type="text/html" title="How relative novices make sense of code coverage and mutation-based feedback" /><published>2024-01-04T00:00:00-08:00</published><updated>2024-01-04T00:00:00-08:00</updated><id>https://ayaankazerouni.github.io/posts/test-feedback-sensemaking</id><content type="html" xml:base="https://ayaankazerouni.github.io/posts/test-feedback-sensemaking"><![CDATA[<p>This is an overview of the research paper <em><a href="/publications#toce2023testing">A Model of How Students Engineer Test Cases with Feedback</a></em> published in ACM Transactions on Computing Education. The work was conducted at Cal Poly and was led by MS student <a href="https://www.linkedin.com/in/amshin98/">Austin Shin</a>.</p>
 
 <h2 id="background">Background</h2>
 
 <p>Most programming courses require students to write automated software tests to verify and demonstrate the correctness of their solutions to programming problems.
 The quality of these test suites can vary in terms of their defect-detection capability.
-The thoroughness of a test suite can be measured using a <em>test adequacy criterion</em>—a measurement that tells you how thorough a set of tests is—like <a href="https://en.wikipedia.org/wiki/Code_coverage">code coverage</a> or <a href="https://en.wikipedia.org/wiki/Mutation_testing">mutation analysis</a>.</p>
+The thoroughness of a test suite can be measured using a <em>test adequacy criterion</em> like <a href="https://en.wikipedia.org/wiki/Code_coverage">code coverage</a> or <a href="https://en.wikipedia.org/wiki/Mutation_testing">mutation analysis</a>.</p>
 
 <p>In most CS courses, it is matter of course to assess both the correctness of students’ programmed solutions as well as the thoroughness of their software tests.
 As students are encouraged to frequently write and run their own tests to check the correctness of their programs, so they are encouraged to frequently assess the thoroughness of their tests using one of the above criteria.</p>
 
-<p>Within this context, it is useful to understand how students approach software testing feedback while creating test suites.</p>
+<p>Within this context, it is useful to understand how students respond to software testing feedback while creating test suites.</p>
 
 <h2 id="summary">Summary</h2>
 
@@ -67,11 +67,15 @@ For details about our analytic method, see <a href="/publications#toce2023testin
 If they had a shaky understanding of the problem or the code under test, their ability to address gaps in code coverage or mutation coverage suffered.</p>
 
 <p><strong>Various intuitions came into play when no feedback was available.</strong>
-Nearly all students started by with a “happy path” test case—something simple that they could quickly work out in their heads.
+Nearly all students started with a “happy path” test case—something simple that they could quickly work out in their minds.
 They may have been using these simple test cases as scaffolds to confirm that they understood the problem and program correctly.</p>
 
-<p>When no testing feedback was available, students often chose test inputs based on intuitions about “edge cases”—these most often took the form of boundary values for the data type at hand.
-Importantly, these types of inputs were chosen whether or not they represented explored equivalence partitions in the input space.</p>
+<p>When no testing feedback was available, students often chose test inputs based on intuitions about “edge cases”—these most often took the form of boundary values for the data type at hand (e.g., zero, negative numbers, or empty lists).
+Importantly, these types of inputs were chosen whether or not they represented unexplored <a href="https://en.wikipedia.org/wiki/Equivalence_partitioning">equivalence partitions</a> in the input space.</p>
+
+<p>Some students started by identifying beacons<sup id="fnref:beacons" role="doc-noteref"><a href="#fn:beacons" class="footnote" rel="footnote">1</a></sup> in the problem description or program, and targeting their initial tests toward those beacons.
+For example, in the <em>Rainfall problem</em>, the program is given an input list of numbers (daily rainfall), and is expected to compute the mean of all the positive numbers that occur before a “sentinel value” (say, 99999).
+In our interviews, most students zeroed in on that sentinel value requirement and wrote an early test to target that requirement.</p>
 
 <p>Finally, because students had seen code coverage before, some of them mentally simulated code coverage to self-assess their own test suites and identify gaps.</p>
 
@@ -81,8 +85,8 @@ They used various strategies to manage the cognitive load of code comprehension 
 For example,</p>
 
 <ul>
-  <li>While tracing code to identify gaps in (code or mutation) coverage, they often limited their tracing to the <em>basic block</em><sup id="fnref:basic-block" role="doc-noteref"><a href="#fn:basic-block" class="footnote" rel="footnote">1</a></sup> in which the gap existed.</li>
-  <li>They used <em>variable roles</em><sup id="fnref:variable-roles" role="doc-noteref"><a href="#fn:variable-roles" class="footnote" rel="footnote">2</a></sup> to help them reason about the variables involved their tracing.</li>
+  <li>While tracing code to identify gaps in (code or mutation) coverage, students often limited their tracing to the <em>basic block</em><sup id="fnref:basic-block" role="doc-noteref"><a href="#fn:basic-block" class="footnote" rel="footnote">2</a></sup> in which the gap existed.</li>
+  <li>They used <em>variable roles</em><sup id="fnref:variable-roles" role="doc-noteref"><a href="#fn:variable-roles" class="footnote" rel="footnote">3</a></sup> to help them reason about the variables involved their tracing.</li>
   <li>Sometimes, they simply ignored the feedback and opted to write tests based on their intuitions.</li>
 </ul>
 
@@ -110,6 +114,9 @@ One student was so distracted by this parallel comprehension task that when they
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
+    <li id="fn:beacons" role="doc-endnote">
+      <p>Prominent structures or symbols (variable names, function names, comments) in a program (or problem description, here) that help a reader to quickly understand the program’s purpose. <a href="#fnref:beacons" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
     <li id="fn:basic-block" role="doc-endnote">
       <p>A basic block in a program is a straight-line sequence of statements such that “if the first statement is executed, all statements in the block will be executed”. <a href="#fnref:basic-block" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>

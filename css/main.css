@@ -35,11 +35,6 @@ h1 a:visited {
   text-decoration: none;
 }
 
-h2 {
-  color: #000000;
-  margin-bottom: 0px;
-}
-
 h3 {
   padding-top: 5px;
 }
@@ -103,9 +98,6 @@ main.post {
 }
 main.post .post-details {
   padding-bottom: 10px;
-}
-main.post h2, main.post h3, main.post h4, main.post .degree {
-  text-decoration: underline;
 }
 main.post article {
   font-size: 1.2em;
@@ -196,7 +188,7 @@ figure {
   justify-content: center;
 }
 figure figcaption {
-  font-size: 0.9em;
+  font-size: 0.8em;
   padding: 0;
   color: #727375;
   font-family: Avenir;
