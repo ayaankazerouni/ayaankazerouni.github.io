@@ -53,7 +53,8 @@
     <div class="content-box" style="border: none;">
       <div class="content">
         <div class="post">
-        <time>Mar 17, 2021 • 2433 words</time>
+        <div class="post-details">
+          <time>Mar 17, 2021 • 2433 words</time>
           <div style="display: inline-block;">
             
               <span class="tag">
@@ -69,6 +70,7 @@
               </span>
             
           </div>
+        </div>
           <p><small>
 <em>This post originally appeared on <a href="https://ayaankazerouni.medium.com">my Medium blog</a> on March 17, 2021.</em>
 </small></p>
@@ -130,7 +132,9 @@
 <figure>
 
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" target="_blank">
+    
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" alt="A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code." />
+    
   </a>
   <figcaption>Groups of submissions based on source lines of code (SLoC). Dashed lines indicate group boundaries.</figcaption>
 </figure>
@@ -175,7 +179,9 @@
 <figure class="wide">
 
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" target="_blank">
+    
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" alt="Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy." />
+    
   </a>
   <figcaption>The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R² predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.</figcaption>
 </figure>
@@ -220,7 +226,9 @@
 <figure>
 
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" target="_blank">
+    
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" alt="Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively." />
+    
   </a>
   <figcaption>Mutation coverage: Proportion of Full mutants detected by the subset-adequate test suite.</figcaption>
 </figure>
@@ -230,7 +238,9 @@
 <figure>
 
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" target="_blank">
+    
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" alt="The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively." />
+    
   </a>
   <figcaption>Computational cost: Number of mutants produced by each subset, expressed as a proportion of the Full number of mutants.</figcaption>
 </figure>

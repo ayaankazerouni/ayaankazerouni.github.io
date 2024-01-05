@@ -37,7 +37,6 @@ h1 a:visited {
 
 h2 {
   color: #000000;
-  padding-top: 1vw;
   margin-bottom: 0px;
 }
 
@@ -99,8 +98,17 @@ main {
   margin: 0 auto;
 }
 main.post {
-  font-size: 1.2em;
   max-width: 60em;
+  font-family: "EB Garamond", serif;
+}
+main.post .post-details {
+  padding-bottom: 10px;
+}
+main.post h2, main.post h3, main.post h4, main.post .degree {
+  text-decoration: underline;
+}
+main.post article {
+  font-size: 1.2em;
 }
 
 /* Aside */
@@ -183,7 +191,7 @@ aside nav:after {
 }
 
 figure {
-  margin: 20px auto;
+  margin: 25px auto;
   display: grid;
   justify-content: center;
 }

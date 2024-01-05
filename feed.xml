@@ -1,5 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.github.io/" rel="alternate" type="text/html" /><updated>2023-10-25T09:42:33-07:00</updated><id>https://ayaankazerouni.github.io/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
-</subtitle><entry><title type="html">What makes CS students seek or avoid academic help resources?</title><link href="https://ayaankazerouni.github.io/posts/help-seeking-behaviours" rel="alternate" type="text/html" title="What makes CS students seek or avoid academic help resources?" /><published>2021-11-13T00:00:00-08:00</published><updated>2021-11-13T00:00:00-08:00</updated><id>https://ayaankazerouni.github.io/posts/help-seeking-behaviours</id><content type="html" xml:base="https://ayaankazerouni.github.io/posts/help-seeking-behaviours"><![CDATA[<p><small>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.github.io/" rel="alternate" type="text/html" /><updated>2024-01-04T17:47:01-08:00</updated><id>https://ayaankazerouni.github.io/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
+</subtitle><entry><title type="html">How relative novices make sense of code coverage and mutation-based feedback</title><link href="https://ayaankazerouni.github.io/posts/test-feedback-sensemaking" rel="alternate" type="text/html" title="How relative novices make sense of code coverage and mutation-based feedback" /><published>2024-01-04T00:00:00-08:00</published><updated>2024-01-04T00:00:00-08:00</updated><id>https://ayaankazerouni.github.io/posts/test-feedback-sensemaking</id><content type="html" xml:base="https://ayaankazerouni.github.io/posts/test-feedback-sensemaking"><![CDATA[<p>This is an overview of the research paper <em><a href="/publications#toce2023testing">A Model of How Students Engineer Test Cases with Feedback</a></em> published in ACM Transactions on Computing Education. The work was conducted at Cal Poly and was led by MS student <a href="https://www.linkedin.com/in/amshin98/">Austin Shin</a>.</p>
+
+<h2 id="background">Background</h2>
+
+<p>Most programming courses require students to write automated software tests to verify and demonstrate the correctness of their solutions to programming problems.
+The quality of these test suites can vary in terms of their defect-detection capability.
+The thoroughness of a test suite can be measured using a <em>test adequacy criterion</em>—a measurement that tells you how thorough a set of tests is—like <a href="https://en.wikipedia.org/wiki/Code_coverage">code coverage</a> or <a href="https://en.wikipedia.org/wiki/Mutation_testing">mutation analysis</a>.</p>
+
+<p>In most CS courses, it is matter of course to assess both the correctness of students’ programmed solutions as well as the thoroughness of their software tests.
+As students are encouraged to frequently write and run their own tests to check the correctness of their programs, so they are encouraged to frequently assess the thoroughness of their tests using one of the above criteria.</p>
+
+<p>Within this context, it is useful to understand how students approach software testing feedback while creating test suites.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>We qualitatively studied how students made sense of software testing feedback generated using two feedback mechanisms: code coverage and mutation analysis.</p>
+
+<p>Our findings are summarised in the process model below.</p>
+
+<figure>
+
+  <a href="/assets/posts/images/test-feedback-sensemaking/process-model.png" target="_blank">
+    
+    <img src="/assets/posts/images/test-feedback-sensemaking/process-model.png" alt="A process diagram showing a novice's test selection process. A participant receives a testing task, then reads the source code or program description to first understand the problem and program. Once this is done, they write an initial set of tests based on experience and intuition. If any tests fail, the participant re-evaluates their understanding. Once all tests pass, they receive test adequacy feedback. They use strategies like code tracing to identify gaps in branch or mutation feedback. If mutation feedback is too difficult to address, the participant may fall back to addressing branch coverage instead. Once all feedback is satisfied, the testing task is done." />
+    
+  </a>
+  <figcaption>A process model for how novices write software tests when being guided by a test adequacy criterion (code coverage or mutation analysis).</figcaption>
+</figure>
+
+<h2 id="method">Method</h2>
+
+<p>We did a series of one-on-one interviews in which we gave students a number of small programs for which they were asked to write test cases.
+Students were asked to think out loud while performing the testing tasks, and the sessions were recorded.</p>
+
+<p>Interviews went roughly as follows:</p>
+
+<ol>
+  <li>Warm-up problem, with no testing feedback</li>
+  <li>First testing problem, with no testing feedback</li>
+  <li>Warm-up problem, with code coverage feedback</li>
+  <li>Second testing problem, with code coverage feedback</li>
+  <li>Warm-up problem, with mutation-based feedback</li>
+  <li>Third testing problem, with mutation-based feedback</li>
+</ol>
+
+<p>Below is the interface in which students were given testing exercises.</p>
+
+<figure class="wide">
+
+  <a href="/assets/posts/images/test-feedback-sensemaking/muttle.png" target="_blank">
+    
+    <img src="/assets/posts/images/test-feedback-sensemaking/muttle.png" alt="A screenshot of the testing interface, showing where the user creates test cases and receives branch coverage or mutation coverage feedback about those test cases" width="65%" />
+    
+  </a>
+  <figcaption>Each exercise lets the user create, modify or delete test cases (A). If their test cases pass, they are given code coverage feedback in the coloured gutter next to the line numbers (B) or mutation-based feedback in the form of bug badges above the lines of code where mutations were made (C) In this example, the statement <code>return x * y</code> was mutated to <code>return x ** y</code>. The interviewer used the toggles at the top of the screen to switch between no coverage, code coverage, or mutation-based feedback, based on the experimental condition (D).</figcaption>
+</figure>
+
+<p>We qualitatively analysed the transcripts from these interviews.
+For details about our analytic method, see <a href="/publications#toce2023testing">the paper</a>.</p>
+
+<h2 id="results">Results</h2>
+
+<p>Here are the highlights:</p>
+
+<p><strong>Problem and program comprehension had a strong influence on students’ abilities to write useful tests.</strong>
+If they had a shaky understanding of the problem or the code under test, their ability to address gaps in code coverage or mutation coverage suffered.</p>
+
+<p><strong>Various intuitions came into play when no feedback was available.</strong>
+Nearly all students started by with a “happy path” test case—something simple that they could quickly work out in their heads.
+They may have been using these simple test cases as scaffolds to confirm that they understood the problem and program correctly.</p>
+
+<p>When no testing feedback was available, students often chose test inputs based on intuitions about “edge cases”—these most often took the form of boundary values for the data type at hand.
+Importantly, these types of inputs were chosen whether or not they represented explored equivalence partitions in the input space.</p>
+
+<p>Finally, because students had seen code coverage before, some of them mentally simulated code coverage to self-assess their own test suites and identify gaps.</p>
+
+<p><strong>Code tracing strategies were employed while addressing code coverage feedback.</strong>
+As described above, code comprehension played an important role in students’ abilities to address coverage gaps.
+They used various strategies to manage the cognitive load of code comprehension involved during testing.
+For example,</p>
+
+<ul>
+  <li>While tracing code to identify gaps in (code or mutation) coverage, they often limited their tracing to the <em>basic block</em><sup id="fnref:basic-block" role="doc-noteref"><a href="#fn:basic-block" class="footnote" rel="footnote">1</a></sup> in which the gap existed.</li>
+  <li>They used <em>variable roles</em><sup id="fnref:variable-roles" role="doc-noteref"><a href="#fn:variable-roles" class="footnote" rel="footnote">2</a></sup> to help them reason about the variables involved their tracing.</li>
+  <li>Sometimes, they simply ignored the feedback and opted to write tests based on their intuitions.</li>
+</ul>
+
+<p><strong>Addressing mutation-based feedback proved to be cognitively demanding.</strong>
+Reasoning about mutation-based feedback appeared to be a high-cognitive-load activity for the interviewed students.
+To devise test cases to address a gap in mutation coverage, students needed to develop and maintain an understanding of the mutated program <em>while simultaneously</em> maintaining their understanding of the original program.
+Moreover, they need to identify to point at which the two programs diverge.
+This was a demanding task.</p>
+
+<p>Even after demonstrating an understanding of the idea behind mutation analysis, students struggled mightily on certain mutants.
+One student was so distracted by this parallel comprehension task that when they eventually wrote a test case, they wrote one that would <em>pass</em> the mutated program, and <em>fail</em> the original program (i.e., the opposite of the task at hand).</p>
+
+<p>Difficulties more commonly arose for mutants that appeared at conditional branching points in the program, as opposed to, say, mutants that involved changes to arithmetic expressions or variable assignments.</p>
+
+<p>As before, students developing strategies to manage this demanding parallel code tracing task:</p>
+<ul>
+  <li>Like with code coverage, they traced basic blocks and reasoned about the program in terms of variable roles.</li>
+  <li>When addressing mutation-based feedback was too difficult, they “fell back” to addressing the weaker criterion (code coverage) instead. This heuristic—of simply targeting code coverage instead of mutants—was sometimes fruitful.</li>
+  <li>Finally, some students ignored the specific mutations and focused only on the fact that they were <em>present</em>. The presence of an un-addressed mutant alerted students to “suspicious” lines of code, and they did not need to look at the specific mutation in order to target their testing toward those lines.</li>
+</ul>
+
+<p>For more details, see <a href="/publications#toce2023testing">the paper</a>.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:basic-block" role="doc-endnote">
+      <p>A basic block in a program is a straight-line sequence of statements such that “if the first statement is executed, all statements in the block will be executed”. <a href="#fnref:basic-block" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:variable-roles" role="doc-endnote">
+      <p><a href="https://ieeexplore.ieee.org/document/1046340">Sajaniemi</a> suggests that a small number of categories can describe the purposes of most variables in most programs. When novice programmers were explicitly taught to recognise these categories, their performance on code comprehension tasks improved significantly. This general idea has a <a href="https://www.manning.com/books/the-programmers-brain">strong basis in human cognition</a>, even if the specific categories suggested are are bit limited to imperative programming languages. <a href="#fnref:variable-roles" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name></name></author><category term="research-summary" /><category term="software-testing" /><summary type="html"><![CDATA[This is an overview of the research paper A Model of How Students Engineer Test Cases with Feedback published in ACM Transactions on Computing Education. The work was conducted at Cal Poly and was led by MS student Austin Shin.]]></summary></entry><entry><title type="html">What makes CS students seek or avoid academic help resources?</title><link href="https://ayaankazerouni.github.io/posts/help-seeking-behaviours" rel="alternate" type="text/html" title="What makes CS students seek or avoid academic help resources?" /><published>2021-11-13T00:00:00-08:00</published><updated>2021-11-13T00:00:00-08:00</updated><id>https://ayaankazerouni.github.io/posts/help-seeking-behaviours</id><content type="html" xml:base="https://ayaankazerouni.github.io/posts/help-seeking-behaviours"><![CDATA[<p><small>
 <em>This article was originally posted on <a href="https://ayaankazerouni.medium.com">my Medium blog</a> on November 13, 2021.</em>
 </small></p>
 
@@ -35,7 +153,9 @@
 <figure>
 
   <a href="/assets/posts/images/help-seeking-behaviours/frequency.png" target="_blank">
+    
     <img src="/assets/posts/images/help-seeking-behaviours/frequency.png" alt="" />
+    
   </a>
   <figcaption>Frequency of accessing various help resources.</figcaption>
 </figure>
@@ -185,7 +305,9 @@ It’s possible that students who are less inclined to seek help from social sou
 <figure>
 
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" target="_blank">
+    
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" alt="A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code." />
+    
   </a>
   <figcaption>Groups of submissions based on source lines of code (SLoC). Dashed lines indicate group boundaries.</figcaption>
 </figure>
@@ -230,7 +352,9 @@ It’s possible that students who are less inclined to seek help from social sou
 <figure class="wide">
 
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" target="_blank">
+    
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" alt="Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy." />
+    
   </a>
   <figcaption>The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R² predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.</figcaption>
 </figure>
@@ -275,7 +399,9 @@ It’s possible that students who are less inclined to seek help from social sou
 <figure>
 
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" target="_blank">
+    
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" alt="Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively." />
+    
   </a>
   <figcaption>Mutation coverage: Proportion of Full mutants detected by the subset-adequate test suite.</figcaption>
 </figure>
@@ -285,7 +411,9 @@ It’s possible that students who are less inclined to seek help from social sou
 <figure>
 
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" target="_blank">
+    
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" alt="The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively." />
+    
   </a>
   <figcaption>Computational cost: Number of mutants produced by each subset, expressed as a proportion of the Full number of mutants.</figcaption>
 </figure>
@@ -393,7 +521,9 @@ It’s possible that students who are less inclined to seek help from social sou
 <figure>
 
   <a href="/assets/posts/images/explicit-project-milestones/completion-time-milestone-group.png" target="_blank">
+    
     <img src="/assets/posts/images/explicit-project-milestones/completion-time-milestone-group.png" alt="" />
+    
   </a>
   <figcaption>Completion times (in terms of hours before or after the deadline) with and without milestones. Whiskers are the 10th and 90th percentiles. Outliers beyond these percentiles are omitted.</figcaption>
 </figure>
@@ -412,7 +542,9 @@ It’s possible that students who are less inclined to seek help from social sou
 <figure>
 
   <a href="/assets/posts/images/explicit-project-milestones/correctness-milestone-group.png" target="_blank">
+    
     <img src="/assets/posts/images/explicit-project-milestones/correctness-milestone-group.png" alt="" />
+    
   </a>
   <figcaption>Correctness scores with and without milestones</figcaption>
 </figure>
@@ -442,7 +574,9 @@ It’s possible that students who are less inclined to seek help from social sou
 <figure>
 
   <a href="/assets/posts/images/explicit-project-milestones/outcomes.png" target="_blank">
+    
     <img src="/assets/posts/images/explicit-project-milestones/outcomes.png" alt="" />
+    
   </a>
   <figcaption>Milestones seem not to have affected course Pass, Fail, and Withdraw rates.</figcaption>
 </figure>
@@ -454,7 +588,9 @@ It’s possible that students who are less inclined to seek help from social sou
 <figure>
 
   <a href="/assets/posts/images/explicit-project-milestones/grades.png" target="_blank">
+    
     <img src="/assets/posts/images/explicit-project-milestones/grades.png" alt="" />
+    
   </a>
   <figcaption>Final course grades with and without milestones.</figcaption>
 </figure>
@@ -575,7 +711,9 @@ We addressed this by avoiding the “TDD or not” dichotomy. Students’ (and i
 <figure>
 
   <a href="/assets/posts/images/assessing-incremental-testing/example-dev-activity.png" target="_blank">
+    
     <img src="/assets/posts/images/assessing-incremental-testing/example-dev-activity.png" alt="" />
+    
   </a>
   <figcaption>An example sequence of developer activity (synthetic data).</figcaption>
 </figure>
@@ -606,7 +744,9 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 <figure>
 
   <a href="/assets/posts/images/assessing-incremental-testing/metrics.png" target="_blank">
+    
     <img src="/assets/posts/images/assessing-incremental-testing/metrics.png" alt="" />
+    
   </a>
   <figcaption>Measurements to be derived from a programming activity stream. Each row depicts a different way of aggregating the events from the figure above.</figcaption>
 </figure>
@@ -624,7 +764,9 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 <figure>
 
   <a href="/assets/posts/images/assessing-incremental-testing/boxplots-balance-sequence.png" target="_blank">
+    
     <img src="/assets/posts/images/assessing-incremental-testing/boxplots-balance-sequence.png" alt="" />
+    
   </a>
   <figcaption>Distributions of testing effort measurements described above.</figcaption>
 </figure>
@@ -764,7 +906,9 @@ The short-term benefit of this is that we can provide feedback to students “be
 <figure>
 
   <a href="/assets/posts/images/procrastination-feedback/tm-early-often.png" target="_blank">
+    
     <img src="/assets/posts/images/procrastination-feedback/tm-early-often.png" alt="" />
+    
   </a>
   <figcaption>The mean edit time for a student, drawn from real data.</figcaption>
 </figure>
@@ -779,7 +923,9 @@ The short-term benefit of this is that we can provide feedback to students “be
 <figure>
 
   <a href="/assets/posts/images/procrastination-feedback/solution-test-early-often-dists.png" target="_blank">
+    
     <img src="/assets/posts/images/procrastination-feedback/solution-test-early-often-dists.png" alt="Two box-and-whisker plots which show the mean edit times for solution code and test code." />
+    
   </a>
   <figcaption>On average, students tended to write code fewer than 10 days before the project deadline.</figcaption>
 </figure>
@@ -811,7 +957,9 @@ The short-term benefit of this is that we can provide feedback to students “be
 <figure>
 
   <a href="/assets/posts/images/procrastination-feedback/solution-early-often-by-solved.png" target="_blank">
+    
     <img src="/assets/posts/images/procrastination-feedback/solution-early-often-by-solved.png" alt="Two box-and-whisker plots showing the mean edit time for solved and unsolved projects." />
+    
   </a>
   <figcaption>Comparison of solution edit times between projects that correctly solved an assignment, and those that did not.</figcaption>
 </figure>
@@ -821,7 +969,9 @@ The short-term benefit of this is that we can provide feedback to students “be
 <figure>
 
   <a href="/assets/posts/images/procrastination-feedback/solution-early-often-by-on-time-status.png" target="_blank">
+    
     <img src="/assets/posts/images/procrastination-feedback/solution-early-often-by-on-time-status.png" alt="Two box-and-whisker plots showing the mean edit time for late and on-time submissions." />
+    
   </a>
   <figcaption>Comparison of solution edit times between on-time and late submissions.</figcaption>
 </figure>
