@@ -61,7 +61,7 @@
 <loc>https://ayaankazerouni.github.io/how-long</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.github.io/courses/csc203/coursenotes/03-lists-maps-existing-classes/</loc>
+<loc>https://ayaankazerouni.github.io/courses/csc203/coursenotes/04-oop-and-procedural/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.github.io/courses/csc313/coursenotes/metacognitive-awareness-problem-comprehension/</loc>
@@ -79,7 +79,13 @@
 <loc>https://ayaankazerouni.github.io/courses/csc203/coursenotes/02-arithmetic-and-testing/</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.github.io/courses/csc203/coursenotes/03-lists-maps-existing-classes/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.github.io/courses/csc203/coursenotes/01-intro-java/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.github.io/courses/csc203/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.github.io/courses/csc513/</loc>
@@ -130,5 +136,13 @@
 <url>
 <loc>https://ayaankazerouni.github.io/courses/csc203/coursenotes/03-lists-maps-existing-classes/CsCohort.html</loc>
 <lastmod>2024-01-09T15:00:50-08:00</lastmod>
+</url>
+<url>
+<loc>https://ayaankazerouni.github.io/courses/csc203/coursenotes/04-oop-and-procedural/PitcherProc.html</loc>
+<lastmod>2024-01-10T12:59:30-08:00</lastmod>
+</url>
+<url>
+<loc>https://ayaankazerouni.github.io/courses/csc203/coursenotes/04-oop-and-procedural/PitcherProcUtil.html</loc>
+<lastmod>2024-01-10T13:10:05-08:00</lastmod>
 </url>
 </urlset>
