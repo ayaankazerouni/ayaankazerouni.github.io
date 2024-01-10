@@ -318,28 +318,29 @@ code {
   color: #F9CF00;
 }
 
-.course table {
+table {
   margin: 20px auto;
   border-collapse: collapse;
   font-size: 0.9em;
 }
-.course table th {
+table th {
   border-top: 1pt solid;
   border-bottom: 1pt solid;
   background-color: #000000;
   color: #F9CF00;
 }
-.course table tr:nth-child(4n), .course table tr:nth-child(4n-1) {
-  background: lightgrey;
-}
-.course table tr {
+table tr {
   border-bottom: 0.5pt solid;
 }
-.course table tr > td, .course table tr > th {
+table tr > td, table tr > th {
   padding: 0.5em;
 }
-.course table tr > td:not(:last-child), .course table tr > th:not(:last-child) {
+table tr > td:not(:last-child), table tr > th:not(:last-child) {
   border-right: 1pt solid;
+}
+
+.course table tr:nth-child(4n), .course table tr:nth-child(4n-1) {
+  background: lightgrey;
 }
 
 blockquote {
