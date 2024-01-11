@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Casdoc: PitcherUtil</title>
+		<title>Casdoc: Pitcher</title>
         <style>
 @media (max-width: 767px) {
 	.center-on-large {
@@ -536,36 +536,147 @@ https://amphiluke.github.io/floating-scroll/
 <pre class="code-container java"><button onclick="redo()" class="redoButton" title="Redo show/hide popover" data-toggle="tooltip">&#8618;</button><button onclick="undo()" class="undoButton" title="Undo show/hide popover" data-toggle="tooltip">&#8617;</button><div id="dropDownBar"  class="dropdown-content"><input type="text" placeholder=" Search within popovers..." id="inputBar" onkeyup="searchFunction()" title="Search within popovers" data-toggle="tooltip"></div><code>/**
  * Code annotated using <a href="https://www.cs.mcgill.ca/~martin/casdoc/index.html">Casdoc</a>.
  */
-<span class='pin' id='pinpublicclassPitcherUtil' style='display:none;' >&#128204;</span><span class="popoverHover publicclassPitcherUtil" href="#" id="popoverpublicclassPitcherUtil" data-toggle="popover"  data-original-title="&#128161; public class PitcherUtil" data-placement="right">public class PitcherUtil</span> 
+public class <span class='pin' id='pinPitcher' style='display:none;' >&#128204;</span><span class="popoverHover Pitcher" href="#" id="popoverPitcher" data-toggle="popover"  data-original-title="&#128161; Pitcher" data-placement="right">Pitcher</span>
 {
+    public <span class='pin' id='pinstatic' style='display:none;' >&#128204;</span><span class="popoverHover static" href="#" id="popoverstatic" data-toggle="popover"  data-original-title="&#128161; static" data-placement="right">static</span> final int INNINGS_PER_GAME = 9;
+   
+<span class='pin' id='pinBlock0' style='display:none;' >&#128204;</span><span class="popoverHover Block Block0" href="#" id="popoverBlock0" data-toggle="popover" data-placement="top"><span class='greyDot' id='greyDotBlock0'>&#9898;</span></span><span class="blockAnchor" id="blockAnchorBlock0">    private double inningsPitched;
+    private int runsScored;
+    private int wins;
+    private int losses;</span>
 
-<span class='pin' id='pinBlock0' style='display:none;' >&#128204;</span><span class="popoverHover Block Block0" href="#" id="popoverBlock0" data-toggle="popover" data-placement="top"><span class='greyDot' id='greyDotBlock0'>&#9898;</span></span><span class="blockAnchor" id="blockAnchorBlock0">    public static double ERA(Pitcher p) {
-      if (<span class='pin' id='pinpinningsPitched' style='display:none;' >&#128204;</span><span class="popoverHover pinningsPitched" href="#" id="popoverpinningsPitched" data-toggle="popover"  data-original-title="&#128161; p.inningsPitched" data-placement="right">p.inningsPitched</span> &gt; 0) {
-         return p.runsScored / p.inningsPitched * 9; // 9 innings per game
-      }
+    <span class='pin' id='pinpublicPitcher' style='display:none;' >&#128204;</span><span class="popoverHover publicPitcher" href="#" id="popoverpublicPitcher" data-toggle="popover"  data-original-title="&#128161; public Pitcher()" data-placement="right">public Pitcher()</span> {
+        // Empty constructor, doesn't do anything.
+    }
 
-      return 0.0;
-   }
+    <span class='pin' id='pinpublicPitcherdoubleinningsPitchedintrunsScoredintwinsintlosses' style='display:none;' >&#128204;</span><span class="popoverHover publicPitcherdoubleinningsPitchedintrunsScoredintwinsintlosses" href="#" id="popoverpublicPitcherdoubleinningsPitchedintrunsScoredintwinsintlosses" data-toggle="popover"  data-original-title="&#128161; public Pitcher(double inningsPitched, int runsScored, int wins, int losses)" data-placement="right">public Pitcher(double inningsPitched, int runsScored, int wins, int losses)</span> {
+        this.inningsPitched = inningsPitched;
+        this.runsScored = runsScored; 
+        this.wins = wins; 
+        this.losses = losses;
+    }
+
+    <span class='pin' id='pinpublicPitcherdoubleinningsPitchedintrunsScored' style='display:none;' >&#128204;</span><span class="popoverHover publicPitcherdoubleinningsPitchedintrunsScored" href="#" id="popoverpublicPitcherdoubleinningsPitchedintrunsScored" data-toggle="popover"  data-original-title="&#128161; public Pitcher(double inningsPitched, int runsScored)" data-placement="right">public Pitcher(double inningsPitched, int runsScored)</span> {
+       this.inningsPitched = inningsPitched;
+       this.runsScored = runsScored;
+    }
+    
+
+    <span class='pin' id='pinpublicdoubleERA' style='display:none;' >&#128204;</span><span class="popoverHover publicdoubleERA" href="#" id="popoverpublicdoubleERA" data-toggle="popover"  data-original-title="&#128161; public double ERA()" data-placement="right">public double ERA()</span> {
+        if (<span class='pin' id='pinthisinningsPitched' style='display:none;' >&#128204;</span><span class="popoverHover thisinningsPitched" href="#" id="popoverthisinningsPitched" data-toggle="popover"  data-original-title="&#128161; this.inningsPitched" data-placement="right">this.inningsPitched</span> &gt; 0) {
+            return this.runsScored/this.inningsPitched*INNINGS_PER_GAME;
+        }
+
+        return 0.0;
+    }
+
+    // Accessor methods
+    public double inningsPitched() {
+        return this.inningsPitched;
+    }
+
+    public int runsScored() {
+        return this.runsScored;
+    }
+
+    public int wins() {
+        return this.wins;
+    }
+
+    public int losses() {
+        return this.losses;
+    }
+    
+    // Mutator method
+    public void incrementWins() {
+        this.wins++;
+    }
 }
 </code></pre>
-<div class="dialogTitle" id="titlepinningsPitched" style="display:none;">&#128161;p.inningsPitched</div><div class="dialog" id="dialogpinningsPitched">
-  <p><p>Since the <code>Pitcher</code>'s instance variables are <code>public</code>,
-we can access them directly from the <code>p</code> variable, by using the
-dot operator.</p>
-</p></div><div class="popover_title" id="popover_titlepinningsPitched" style="display: none">
-<div>&#128161;p.inningsPitched</div></div><div class="popover_content" id="popover_content_wrapperpinningsPitched" style="display: none; font-size: 10px;" ><p>Since the <code>Pitcher</code>'s instance variables are <code>public</code>,
-we can access them directly from the <code>p</code> variable, by using the
-dot operator.</p>
-</div><div class="dialogTitle" id="titleBlock0" style="display:none;">&#128161; ERA method</div><div class="dialog" id="dialogBlock0">
-  <p><p>This method's purpose is to calculate the <i>earned run average</i> for
-a given <code>Pitcher</code>.</p>
+<div class="dialogTitle" id="titlestatic" style="display:none;">&#128161;static</div><div class="dialog" id="dialogstatic">
+  <p><p>This variable is declared to be <code>static</code>, which means that it does
+not belong to any one instance of the class. It belongs to the <i>class itself</i>.</p>
+<p>Here, we do that because all Pitchers have the same number of innings per game — that
+value is shared by all Pitchers.</p>
+</p></div><div class="popover_title" id="popover_titlestatic" style="display: none">
+<div>&#128161;static</div></div><div class="popover_content" id="popover_content_wrapperstatic" style="display: none; font-size: 10px;" ><p>This variable is declared to be <code>static</code>, which means that it does
+not belong to any one instance of the class. It belongs to the <i>class itself</i>.</p>
+<p>Here, we do that because all Pitchers have the same number of innings per game — that
+value is shared by all Pitchers.</p>
+</div><div class="dialogTitle" id="titleBlock0" style="display:none;">&#128161; Instance variables</div><div class="dialog" id="dialogBlock0">
+  <p><p>Notice that we have made these instance variables <code>private</code>. See
+the previous lesson's notes about <i>encapsulation</i> for a reminder of why
+we do this.</p>
 </p></div><div class="popover_title" id="popover_titleBlock0" style="display: none">
-<div>&#128161; ERA method</div></div><div class="popover_content" id="popover_content_wrapperBlock0" style="display: none; font-size: 10px;" ><p>This method's purpose is to calculate the <i>earned run average</i> for
-a given <code>Pitcher</code>.</p>
-</div><div class="dialogTitle" id="titlepublicclassPitcherUtil" style="display:none;">&#128161;public class PitcherUtil</div><div class="dialog" id="dialogpublicclassPitcherUtil">
-  <p><p>This is where behaviours are defined for the Pitcher class.</p>
-</p></div><div class="popover_title" id="popover_titlepublicclassPitcherUtil" style="display: none">
-<div>&#128161;public class PitcherUtil</div></div><div class="popover_content" id="popover_content_wrapperpublicclassPitcherUtil" style="display: none; font-size: 10px;" ><p>This is where behaviours are defined for the Pitcher class.</p>
+<div>&#128161; Instance variables</div></div><div class="popover_content" id="popover_content_wrapperBlock0" style="display: none; font-size: 10px;" ><p>Notice that we have made these instance variables <code>private</code>. See
+the previous lesson's notes about <i>encapsulation</i> for a reminder of why
+we do this.</p>
+</div><div class="dialogTitle" id="titlepublicPitcher" style="display:none;">&#128161;public Pitcher()</div><div class="dialog" id="dialogpublicPitcher">
+  <p><p>This is commonly referred to as the &quot;default constructor&quot;. It does not take any parameters.
+What do you suppose are the values of this Pitcher's instance variables, if it is created
+using this constructor?</p>
+</p></div><div class="popover_title" id="popover_titlepublicPitcher" style="display: none">
+<div>&#128161;public Pitcher()</div></div><div class="popover_content" id="popover_content_wrapperpublicPitcher" style="display: none; font-size: 10px;" ><p>This is commonly referred to as the &quot;default constructor&quot;. It does not take any parameters.
+What do you suppose are the values of this Pitcher's instance variables, if it is created
+using this constructor?</p>
+</div><div class="dialogTitle" id="titlepublicPitcherdoubleinningsPitchedintrunsScoredintwinsintlosses" style="display:none;">&#128161;public Pitcher(double inningsPitched, int runsScored, int wins, int losses)</div><div class="dialog" id="dialogpublicPitcherdoubleinningsPitchedintrunsScoredintwinsintlosses">
+  <p><p>This is an alternative constructor. It takes inputs for all of the instance variables.</p>
+</p></div><div class="popover_title" id="popover_titlepublicPitcherdoubleinningsPitchedintrunsScoredintwinsintlosses" style="display: none">
+<div>&#128161;public Pitcher(double inningsPitched, int runsScored, int wins, int losses)</div></div><div class="popover_content" id="popover_content_wrapperpublicPitcherdoubleinningsPitchedintrunsScoredintwinsintlosses" style="display: none; font-size: 10px;" ><p>This is an alternative constructor. It takes inputs for all of the instance variables.</p>
+</div><div class="dialogTitle" id="titlepublicPitcherdoubleinningsPitchedintrunsScored" style="display:none;">&#128161;public Pitcher(double inningsPitched, int runsScored)</div><div class="dialog" id="dialogpublicPitcherdoubleinningsPitchedintrunsScored">
+  <p><p>This is yet another constructor, which only takes inputs for the
+<code>inningsPitched</code> and <code>runsScored</code> instance variables.</p>
+<p>We do this when we are okay with the default values of the other instance variables.
+In this case, we are okay with the <code>wins</code> and <code>losses</code> defaulting
+to 0 to begin with.</p>
+</p></div><div class="popover_title" id="popover_titlepublicPitcherdoubleinningsPitchedintrunsScored" style="display: none">
+<div>&#128161;public Pitcher(double inningsPitched, int runsScored)</div></div><div class="popover_content" id="popover_content_wrapperpublicPitcherdoubleinningsPitchedintrunsScored" style="display: none; font-size: 10px;" ><p>This is yet another constructor, which only takes inputs for the
+<code>inningsPitched</code> and <code>runsScored</code> instance variables.</p>
+<p>We do this when we are okay with the default values of the other instance variables.
+In this case, we are okay with the <code>wins</code> and <code>losses</code> defaulting
+to 0 to begin with.</p>
+</div><div class="dialogTitle" id="titlethisinningsPitched" style="display:none;">&#128161;this.inningsPitched</div><div class="dialog" id="dialogthisinningsPitched">
+  <p><p>Recall from the previous lesson that the <code>this</code> keyword is a reference
+to the object that is calling this instance method.</p>
+<p>In this case, we could omit the <code>this</code> keyword, and just write
+<code>inningsPitched</code>, since there
+is no other <code>inningsPitched</code> variable in scope. But it is always more
+clear to use the <code>this</code> keyword.</p>
+</p></div><div class="popover_title" id="popover_titlethisinningsPitched" style="display: none">
+<div>&#128161;this.inningsPitched</div></div><div class="popover_content" id="popover_content_wrapperthisinningsPitched" style="display: none; font-size: 10px;" ><p>Recall from the previous lesson that the <code>this</code> keyword is a reference
+to the object that is calling this instance method.</p>
+<p>In this case, we could omit the <code>this</code> keyword, and just write
+<code>inningsPitched</code>, since there
+is no other <code>inningsPitched</code> variable in scope. But it is always more
+clear to use the <code>this</code> keyword.</p>
+</div><div class="dialogTitle" id="titlepublicdoubleERA" style="display:none;">&#128161;public double ERA()</div><div class="dialog" id="dialogpublicdoubleERA">
+  <p><p>This is an <i>instance method</i>. Where previously the <code>ERA</code> function was
+written in a separate <code>PitcherUtil</code> class, and took a Pitcher as a parameter,
+we now write the <code>ERA</code> function right here in the <code>Pitcher</code> class
+itself.</p>
+<p>Notice that the function (method) does not take a <code>Pitcher</code> as a parameter.
+As an instance member of the <code>Pitcher</code> class, it already has access to
+the <code>Pitcher</code> object to which it belongs. It can access the object using
+the <code>this</code> keyword.</p>
+</p></div><div class="popover_title" id="popover_titlepublicdoubleERA" style="display: none">
+<div>&#128161;public double ERA()</div></div><div class="popover_content" id="popover_content_wrapperpublicdoubleERA" style="display: none; font-size: 10px;" ><p>This is an <i>instance method</i>. Where previously the <code>ERA</code> function was
+written in a separate <code>PitcherUtil</code> class, and took a Pitcher as a parameter,
+we now write the <code>ERA</code> function right here in the <code>Pitcher</code> class
+itself.</p>
+<p>Notice that the function (method) does not take a <code>Pitcher</code> as a parameter.
+As an instance member of the <code>Pitcher</code> class, it already has access to
+the <code>Pitcher</code> object to which it belongs. It can access the object using
+the <code>this</code> keyword.</p>
+</div><div class="dialogTitle" id="titlePitcher" style="display:none;">&#128161;Pitcher</div><div class="dialog" id="dialogPitcher">
+  <p><p>This class represents a baseball pitcher. The pitcher
+has a number of innings pitched, a number of runs scored,
+a number of wins, and a number of losses. The pitcher is also
+able to compute its own &quot;earned run average&quot; (ERA).</p>
+</p></div><div class="popover_title" id="popover_titlePitcher" style="display: none">
+<div>&#128161;Pitcher</div></div><div class="popover_content" id="popover_content_wrapperPitcher" style="display: none; font-size: 10px;" ><p>This class represents a baseball pitcher. The pitcher
+has a number of innings pitched, a number of runs scored,
+a number of wins, and a number of losses. The pitcher is also
+able to compute its own &quot;earned run average&quot; (ERA).</p>
 </div>
 	</body>
 </html>

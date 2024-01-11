@@ -20,41 +20,29 @@
 
 
 <body>
-  <aside>
-    <nav>
-        <ul>
-        
-            
-            <li><a href="/#" class="nav-link">Home</a></li>
-        
-            
-            <li><a href="/teaching" class="nav-link">Teaching</a></li>
-        
-            
-            <li><a href="/projects" class="nav-link">Projects</a></li>
-        
-            
-            <li><a href="/publications" class="nav-link">Publications</a></li>
-        
-            
-            <li><a href="/posts" class="nav-link">Posts</a></li>
-        
-            
-            <li><a href="/about" class="nav-link">About Me</a></li>
-        
-        </ul>
-    </nav>
-</aside>
-
-
   <main class="coursenotes">
   <h1>Procedural and Object-oriented Programming</h1>
     <div class="content-box" style="border: none;">
       <div class="content">
         
-          (Coursenotes for <a href="/courses/csc203">CSC 203 Object-oriented Programming and Design)</a>
+          (Coursenotes for <a href="/courses/csc203">CSC 203 Object-oriented Programming and Design</a>)
         
-        <p>In this lesson, we’ll compare and contrast two styles of programming, or <em>programming paradigms</em>: <strong>procedural programming</strong> and <strong>object-oriented programming</strong> (the latter being the focus of this course).</p>
+        <h2 id="overview">Overview</h2>
+
+<p>In this lesson, we’ll compare and contrast two styles of programming, or <em>programming paradigms</em>: <strong>procedural programming</strong> and <strong>object-oriented programming</strong> (the latter being the focus of this course).</p>
+
+<h2 id="objectives">Objectives</h2>
+
+<p>After this lesson, you will know about:</p>
+
+<ul>
+  <li>The difference between procedural and object-oriented programs</li>
+  <li>Constructors and overloaded constructors</li>
+  <li>The difference between <code class="language-plaintext highlighter-rouge">static</code> members and instance members of a class</li>
+  <li>The meaning and usage of the <code class="language-plaintext highlighter-rouge">this</code> keyword in Java</li>
+</ul>
+
+<h2 id="procedural-and-object-oriented-programming">Procedural and object-oriented programming</h2>
 
 <p><em>Procedural programming</em> is a style of programming that focuses on providing a series of instructions to be executed.
 These would the <em>statements</em> in the program.
@@ -66,7 +54,7 @@ As programming projects started to get larger and more complex, because software
 In procedural programming, it is easy to get into a “spaghetti code” situation, where you have a large program with tons of functions operating on a number of data structures.
 The onus is on the programmer to structure the program so that it would be easily readable, testable, and changeable.</p>
 
-<p>One proposed solution was <em>Object-oriented programming</em> (OOP).</p>
+<p>One proposed solution was <strong>Object-oriented programming</strong> (OOP).</p>
 
 <p>In OOP, instead of focusing our program on data and functions that operate on that data, we use <em>objects</em>, which bundle up related data and behaviours that operate on those data into <em>classes</em>.</p>
 
@@ -105,72 +93,19 @@ Any behaviours we want to perform must be written as separate functions — thos
 
 <object data="PitcherProc.html" width="100%" height="600px"></object>
 
-<p>Any behaviours use the <code class="language-plaintext highlighter-rouge">Pitcher</code>’s data must be written in separate functions, which will take the <code class="language-plaintext highlighter-rouge">Pitcher</code> object as a parameter. Those are written in the <code class="language-plaintext highlighter-rouge">PitcherUtil</code> class.</p>
+<p>Any behaviours that use the <code class="language-plaintext highlighter-rouge">Pitcher</code>’s data must be written in separate functions, which will take the <code class="language-plaintext highlighter-rouge">Pitcher</code> object as a parameter. Those are written in the <code class="language-plaintext highlighter-rouge">PitcherUtil</code> class.</p>
 
-<object data="PitcherProcUtil.html" width="100%" height="300px"><object>
+<object data="PitcherProcUtil.html" width="100%" height="300px"></object>
 
-## Object-oriented programming 
+<h2 id="object-oriented-programming">Object-oriented programming</h2>
 
-### Activity (5–10 minutes)
+<p>Here is the same program written in an Object-oriented style.</p>
 
-- In groups of 2–3, take a look at the Pitcher and PitcherToo classes
-- Is there anything your group does not recognise in the Pitcher class?
-- Does your group have a preference between the Pitcher and PitcherToo ways of doing things?
-
-## 10 minutes
-
-- Go over the Pitcher class in detail
-    - Instance variables
-    - Constructors, overloaded constructors
-    - Meaning of `this` (compare with the PitcherToo and PitcherUtil)
-    - `static` variables and methods
-
-## Reminder about quiz 1
-
-## Remaining time
-
-Go over the project
-</object></object>
+<object data="Pitcher.html" width="100%" height="100%"></object>
 
     </div>
     
     </article>
-		<footer>
-  <div class='get-in-touch'>Contact<br></div>
-  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
-  <!--<div class='address'></div> -->
-  <div class='contact'>
-    <!-- <a href='https://twitter.com/ayaankazerouni'>
-      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
-      <span class='visible-hidden'>Twitter profile</span>
-    </a> -->
-    <a rel="me" href='https://hci.social/@ayaankazerouni'>
-      <i class='fab fa-mastodon' aria-label="Mastodon" title="Mastodon" target="_blank"></i>
-      <span class='visible-hidden'>Mastodon profile</span>
-    </a>
-    <a href='https://github.com/ayaankazerouni'>
-      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
-      <span class='visible-hidden'>GitHub profile</span>
-    </a>
-    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
-      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
-      <span class='visible-hidden'>LinkedIn profile</span>
-    </a> -->
-    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
-      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
-      <span class='visible-hidden'>Google Scholar profile</span>
-    </a>
-    <a href='https://dblp.org/pid/202/1256.html'>
-      <i class='ai ai-dblp-square' aria-label="DBLP" title="DBLP"></i>
-      <span class='visible-hidden'>DBLP page</span>
-    </a>
-    <!-- <a href='https://orcid.org/0000-0002-6574-1278'>
-      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
-      <span class='visible-hidden'>OrcID profile</span>
-    </a> -->
-  </div>
-</footer>
-
   </main>
 </body>
 </html>
