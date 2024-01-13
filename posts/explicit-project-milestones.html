@@ -3,13 +3,15 @@
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
 
 	<title>Explicit Milestones on Intermediate Software Projects are Pretty Not Bad - Ayaan M. Kazerouni</title>
 
 	<link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	<link rel="canonical" href="ayaankazerouni.github.io/posts/explicit-project-milestones">
+	<link rel="canonical" href="https://ayaankazerouni.github.io/posts/explicit-project-milestones">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
 	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
@@ -35,6 +37,9 @@
             <li><a href="/publications" class="nav-link">Publications</a></li>
         
             
+            <li><a href="/posts" class="nav-link">Posts</a></li>
+        
+            
             <li><a href="/about" class="nav-link">About Me</a></li>
         
         </ul>
@@ -42,20 +47,32 @@
 </aside>
 
 
-  <main>
-    <article class='post'>
+  <main class='post'>
     <h1 class="post-title">Explicit Milestones on Intermediate Software Projects are Pretty Not Bad</h1>
+    <article>
     <div class="content-box" style="border: none;">
       <div class="content">
-        <div style="text-align: center;">
-        <time>Oct 14, 2020 • 2396 words</time>
-        </div>
         <div class="post">
-          <!-- <div class="tags">
+        <div class="post-details">
+          <time>Oct 14, 2020 • 2402 words</time>
+          <div style="display: inline-block;">
             
-          </div> -->
+              <span class="tag">
+                <a href="/posts/tagged/research-summary">
+                  research-summary
+                </a>
+              </span>
+            
+              <span class="tag">
+                <a href="/posts/tagged/procrastination">
+                  procrastination
+                </a>
+              </span>
+            
+          </div>
+        </div>
           <p><small>
-<i>This article was originally posted on <a href="ayaankazerouni.medium.com">my Medium blog</a> on October 14, 2020.</i>
+<i>This article was originally posted on <a href="https://ayaankazerouni.medium.com">my Medium blog</a> on October 14, 2020.</i>
 </small></p>
 
 <p><em>This is an overview of the research paper “<strong><a href="/publications#sigcse2021milestones">The Impact of Programming Project Milestones on Procrastination, Project Outcomes, and Course Outcomes</a></strong>” by <a href="https://people.cs.vt.edu/shaffer">Cliff Shaffer</a> and myself, appearing at SIGCSE 2021.</em></p>
@@ -79,13 +96,13 @@
 
 <p>Students in intermediate programming courses often work on large, un-scaffolded, and relatively long-running software projects. These tend to be larger and more complex than projects they have worked on in the past, and consequentially bring with them a set of self-regulatory challenges that the students may be ill-equipped to deal with. No longer are assignment specifications given as easy-to-approach bullet-lists of requirements. Instead, they’re presented with a “wall of prose” from which they must extract requirements, plan their development, and get to work.</p>
 
-<p>An expert software developer has the domain-specific self-regulatory skills to tackle such a project. She can decompose such a project into sub-goals and budget the time needed to tackle each one. Novices, however, are often unable to do this decomposition themselves, and are famously poor at estimating the time needed for a development task <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote">1</a></sup>. So instead, they are left facing the project with no clear place to start, low self-efficacy regarding their ability to finish, and not much prior experience from which to draw strategies or confidence.</p>
+<p>An expert software developer has the domain-specific self-regulatory skills to tackle such a project. She can decompose such a project into sub-goals and budget the time needed to tackle each one. Novices, however, are often unable to do this decomposition themselves, and are famously poor at estimating the time needed for a development task <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>. So instead, they are left facing the project with no clear place to start, low self-efficacy regarding their ability to finish, and not much prior experience from which to draw strategies or confidence.</p>
 
-<p>A common manifestation of students’ ill-preparedness to approach these projects is procrastination, the “quintessential self-regulatory failure”<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote">2</a></sup>. According to Science, there are many reasons for procrastination. Chief among them are task-related reasons. For example, we know that people are more likely to procrastinate:</p>
+<p>A common manifestation of students’ ill-preparedness to approach these projects is procrastination, the “quintessential self-regulatory failure”<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>. According to Science, there are many reasons for procrastination. Chief among them are task-related reasons. For example, we know that people are more likely to procrastinate:</p>
 <ul>
-  <li>when the task’s outcome is expected farther in the future<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>,</li>
-  <li>when they have low expectancy of successfully completing the task<sup id="fnref:3:1" role="doc-noteref"><a href="#fn:3" class="footnote">3</a></sup>, and</li>
-  <li>when the task offers numerous junctures for decision-making (e.g., the student doesn’t know where to start)<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote">4</a></sup></li>
+  <li>when the task’s outcome is expected farther in the future<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>,</li>
+  <li>when they have low expectancy of successfully completing the task<sup id="fnref:3:1" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>, and</li>
+  <li>when the task offers numerous junctures for decision-making (e.g., the student doesn’t know where to start)<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup></li>
 </ul>
 
 <p>Can we use this knowledge to reduce the frequency of procrastination on these projects and ameliorate its negative effects? I previously wrote about the pervasive and pernicious nature of procrastination in this context—students start late, work late, and finish late, often resulting in degraded project outcomes.</p>
@@ -133,7 +150,9 @@
 <figure>
 
   <a href="/assets/posts/images/explicit-project-milestones/completion-time-milestone-group.png" target="_blank">
+    
     <img src="/assets/posts/images/explicit-project-milestones/completion-time-milestone-group.png" alt="" />
+    
   </a>
   <figcaption>Completion times (in terms of hours before or after the deadline) with and without milestones. Whiskers are the 10th and 90th percentiles. Outliers beyond these percentiles are omitted.</figcaption>
 </figure>
@@ -152,7 +171,9 @@
 <figure>
 
   <a href="/assets/posts/images/explicit-project-milestones/correctness-milestone-group.png" target="_blank">
+    
     <img src="/assets/posts/images/explicit-project-milestones/correctness-milestone-group.png" alt="" />
+    
   </a>
   <figcaption>Correctness scores with and without milestones</figcaption>
 </figure>
@@ -172,7 +193,7 @@
 <ul>
   <li><em>Pass</em>, where the student achieved a grade that let them move on in the major</li>
   <li><em>Fail</em>, where the student completed the course, but would need to take it again before moving on</li>
-  <li><em>Withdraw</em>, where the student did not complete the course<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote">5</a></sup></li>
+  <li><em>Withdraw</em>, where the student did not complete the course<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">5</a></sup></li>
 </ul>
 
 <!-- [<sup id='1-source'>1</sup>](#1-sink) -->
@@ -182,7 +203,9 @@
 <figure>
 
   <a href="/assets/posts/images/explicit-project-milestones/outcomes.png" target="_blank">
+    
     <img src="/assets/posts/images/explicit-project-milestones/outcomes.png" alt="" />
+    
   </a>
   <figcaption>Milestones seem not to have affected course Pass, Fail, and Withdraw rates.</figcaption>
 </figure>
@@ -194,7 +217,9 @@
 <figure>
 
   <a href="/assets/posts/images/explicit-project-milestones/grades.png" target="_blank">
+    
     <img src="/assets/posts/images/explicit-project-milestones/grades.png" alt="" />
+    
   </a>
   <figcaption>Final course grades with and without milestones.</figcaption>
 </figure>
@@ -267,9 +292,13 @@
   <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
   <!--<div class='address'></div> -->
   <div class='contact'>
-    <a href='https://twitter.com/ayaankazerouni'>
+    <!-- <a href='https://twitter.com/ayaankazerouni'>
       <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
       <span class='visible-hidden'>Twitter profile</span>
+    </a> -->
+    <a rel="me" href='https://hci.social/@ayaankazerouni'>
+      <i class='fab fa-mastodon' aria-label="Mastodon" title="Mastodon" target="_blank"></i>
+      <span class='visible-hidden'>Mastodon profile</span>
     </a>
     <a href='https://github.com/ayaankazerouni'>
       <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
@@ -283,10 +312,14 @@
       <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
       <span class='visible-hidden'>Google Scholar profile</span>
     </a>
-    <a href='https://orcid.org/0000-0002-6574-1278'>
+    <a href='https://dblp.org/pid/202/1256.html'>
+      <i class='ai ai-dblp-square' aria-label="DBLP" title="DBLP"></i>
+      <span class='visible-hidden'>DBLP page</span>
+    </a>
+    <!-- <a href='https://orcid.org/0000-0002-6574-1278'>
       <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
       <span class='visible-hidden'>OrcID profile</span>
-    </a>
+    </a> -->
   </div>
 </footer>
 

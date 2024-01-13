@@ -1,0 +1,117 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Procedural and Object-oriented Programming - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.github.io/courses/csc203/coursenotes/04-oop-and-procedural/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
+  <h1>Procedural and Object-oriented Programming</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <h2 id="overview">Overview</h2>
+
+<p>In this lesson, we’ll compare and contrast two styles of programming, or <em>programming paradigms</em>: <strong>procedural programming</strong> and <strong>object-oriented programming</strong> (the latter being the focus of this course).</p>
+
+<h2 id="objectives">Objectives</h2>
+
+<p>After this lesson, you will know about:</p>
+
+<ul>
+  <li>The difference between procedural and object-oriented programs</li>
+  <li>Constructors and overloaded constructors</li>
+  <li>The difference between <code class="language-plaintext highlighter-rouge">static</code> members and instance members of a class</li>
+  <li>The meaning and usage of the <code class="language-plaintext highlighter-rouge">this</code> keyword in Java</li>
+</ul>
+
+<h2 id="procedural-and-object-oriented-programming">Procedural and object-oriented programming</h2>
+
+<p><em>Procedural programming</em> is a style of programming that focuses on providing a series of instructions to be executed.
+These would the <em>statements</em> in the program.
+A procedural program can also bundle up instructions into <em>functions</em> that can be used and re-used as needed.
+Similarly, data can be bundled up into compound objects, simply for the purposes of packaging up related pieces of information.</p>
+
+<p>Procedural programming was the dominant way of doing things until Object-oriented programming (OOP) was invented in the 70s and 80s.
+As programming projects started to get larger and more complex, because software was quickly being integrated into many domains, software engineers started to run into problems with software maintainability.
+In procedural programming, it is easy to get into a “spaghetti code” situation, where you have a large program with tons of functions operating on a number of data structures.
+The onus is on the programmer to structure the program so that it would be easily readable, testable, and changeable.</p>
+
+<p>One proposed solution was <strong>Object-oriented programming</strong> (OOP).</p>
+
+<p>In OOP, instead of focusing our program on data and functions that operate on that data, we use <em>objects</em>, which bundle up related data and behaviours that operate on those data into <em>classes</em>.</p>
+
+<p>Orienting our programs around objects (the argument goes) lets us modularise the various parts of a large software system, with each part only reading or affecting its own data. This leads to a number of beneficial effects:</p>
+
+<ul>
+  <li>The amount of <em>global</em> data (data that is shared by multiple objects or parts of a system) is limited. By bundling up data into objects, and tending to make that data <code class="language-plaintext highlighter-rouge">private</code> by default, the programmers exerts a fair amount of control over who can see what parts of a system.</li>
+  <li>Because we use <code class="language-plaintext highlighter-rouge">private</code> data and <code class="language-plaintext highlighter-rouge">public</code> functions to induce this degree of separation between parts of a system, those parts are <em>decoupled</em> from each other.</li>
+  <li>Features we will learn later this quarter will show us that this also helps introduce a degree of <em>resilience to change</em> into our programs. Software requirements change often — if we are unable to change our software easily to meet new requirements, we’re gonna have a bad time.</li>
+</ul>
+
+<p>Of course, all of the above are hypothetical. It’s perfectly possible to gain all of the above benefits using procedural programming, just like it is possible to write terrible, unmaintainable programs using OOP.</p>
+
+<p>In this class, we’re going to aim to understand the higher-level principles of good software design, using OOP as a vehicle to put those principles into practice.
+This does <em>not</em> mean that those principles are unique to OOP.</p>
+
+<p>This is a good time to note a few things!</p>
+
+<ul>
+  <li>There are many conflicting views about both Java and object-oriented programming.</li>
+  <li>This course is not meant to evangelise Java or object-oriented programming. It is <em>not</em> the “one true way” to develop maintainable software. But it is <em>one</em> way, and an important one. So it is worth learning.</li>
+  <li>There are other programming paradigms, which you will learn and use in other courses and, indeed, later in this course itself.</li>
+</ul>
+
+<p>Ok, let’s look at examples! We’ll look at the same super-simple program written in each of the two styles.</p>
+
+<h2 id="procedural-programming">Procedural programming</h2>
+
+<p>Consider the code below.</p>
+
+<p>We have the <code class="language-plaintext highlighter-rouge">Pitcher</code> class, which is simply a bundle of data members. You can think of this as more-or-less like a <code class="language-plaintext highlighter-rouge">dict</code> in Python, or a <code class="language-plaintext highlighter-rouge">struct</code> in C.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Pitcher</code> class above <em>only</em> has data, and has no behaviours.
+Unlike the <code class="language-plaintext highlighter-rouge">CsCohort</code> that we looked at in the previous lesson, the <code class="language-plaintext highlighter-rouge">Pitcher</code> cannot perform any actions itself, it cannot do anything using its data.
+Any behaviours we want to perform must be written as separate functions — those functions will take the <code class="language-plaintext highlighter-rouge">Pitcher</code> object as a parameter, and perform actions using the <code class="language-plaintext highlighter-rouge">Pitcher</code>’s data.</p>
+
+<object data="PitcherProc.html" width="100%" height="600px"></object>
+
+<p>Any behaviours that use the <code class="language-plaintext highlighter-rouge">Pitcher</code>’s data must be written in separate functions, which will take the <code class="language-plaintext highlighter-rouge">Pitcher</code> object as a parameter. Those are written in the <code class="language-plaintext highlighter-rouge">PitcherUtil</code> class.</p>
+
+<object data="PitcherProcUtil.html" width="100%" height="300px"></object>
+
+<h2 id="object-oriented-programming">Object-oriented programming</h2>
+
+<p>Here is the same program written in an Object-oriented style.</p>
+
+<object data="Pitcher.html" width="100%" height="100%"></object>
+
+    </div>
+    
+    </article>
+  </main>
+</body>
+</html>
