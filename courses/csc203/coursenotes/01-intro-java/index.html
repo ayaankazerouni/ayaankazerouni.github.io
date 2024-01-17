@@ -21,11 +21,17 @@
 
 <body>
   <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
   <h1>Introduction</h1>
     <div class="content-box" style="border: none;">
       <div class="content">
-        
-          (Coursenotes for <a href="/courses/csc203">CSC 203 Object-oriented Programming and Design</a>)
         
         <p>This lecture covers:</p>
 
@@ -212,9 +218,7 @@ You can have multiple references to the same data.</p>
 <span class="nc">Point</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span> <span class="c1">// Another point at coordinates (1, 2).</span>
 </code></pre></div></div>
 
-<p><strong>What would the expression <code class="language-plaintext highlighter-rouge">p1 == p2</code> result in? <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>?</strong></p>
-
-<p>The answer is <code class="language-plaintext highlighter-rouge">false</code>, because the <code class="language-plaintext highlighter-rouge">==</code> operator checks <em>sameness</em>, not <em>equality</em>.</p>
+<p class="callout ponder">What would the expression <code class="language-plaintext highlighter-rouge">p1 == p2</code> result in? <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>?<sup id="fnref:sameness-answer" role="doc-noteref"><a href="#fn:sameness-answer" class="footnote" rel="footnote">2</a></sup></p>
 
 <p>Because <code class="language-plaintext highlighter-rouge">p1</code> and <code class="language-plaintext highlighter-rouge">p2</code> are <em>reference types</em>, each of those variables is pointing to a different location in memory. Now, you and me and everyone else understands that if two points have the same <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> coordinates, they should probably be considered equal.</p>
 
@@ -524,10 +528,14 @@ The <code class="language-plaintext highlighter-rouge">do-while</code> loop chec
 
 <p>This can be a useful loop to use in cases where you want to perform an action <em>at least once</em>, and then repeat based on some condition.</p>
 
+<hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:compiler-test-suite" role="doc-endnote">
       <p>You can think of the compiler as a type of limited test suite. Instead of checking functional correctness, it checks for syntax and, in statically-typed languages, type-related correctness. <a href="#fnref:compiler-test-suite" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:sameness-answer" role="doc-endnote">
+      <p>The answer is <code class="language-plaintext highlighter-rouge">false</code>, because the <code class="language-plaintext highlighter-rouge">==</code> operator checks <em>sameness</em>, not <em>equality</em>. <a href="#fnref:sameness-answer" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

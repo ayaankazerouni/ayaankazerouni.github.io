@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="nofollow">
-  <title>Casdoc - CsCohort</title>
+  <title>Casdoc - Circle</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -354,233 +354,111 @@ table td, table th {
   </nav>
   <div id="casdoc" class="container">
     <div class="col-12" id="preamble-inject"></div>
-    <pre class="col-12"><code class="language-java" id="root-content"><span class="codeline" id="line-1"><span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-73" id="anc-102"><span class="marker custom">public class CsCohort</span></span> {</span>
-<span class="codeline" id="line-2"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-75" id="anc-111"><div class="marker custom"></div></div><span class="codeline" id="line-3">   private int year;</span>
-<span class="codeline" id="line-4">   private <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-76" id="anc-103"><span class="marker custom">final</span></span> int enrolled;</span>
-<span class="codeline" id="line-5">   private double retainedPercent;</span></div>
+    <pre class="col-12"><code class="language-java" id="root-content"><span class="codeline" id="line-1">/**</span>
+<span class="codeline" id="line-2"> * A really simple class representing a Circle.</span>
+<span class="codeline" id="line-3"> */</span>
+<span class="codeline" id="line-4">public class Circle {</span>
+<span class="codeline" id="line-5">    private final double radius;</span>
 <span class="codeline" id="line-6"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-77" id="anc-112"><div class="marker custom"></div></div><span class="codeline" id="line-7">   public CsCohort(int year, int inEnroll, double inPercent) {</span>
-<span class="codeline" id="line-8">      <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-78" id="anc-104"><span class="marker custom">this</span></span>.year = year;</span>
-<span class="codeline" id="line-9">      this.enrolled = inEnroll;</span>
-<span class="codeline" id="line-10">      this.retainedPercent = inPercent;</span>
-<span class="codeline" id="line-11">   }</span>
-<span class="codeline" id="line-12"></span></div>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-79" id="anc-113"><div class="marker custom"></div></div><div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-80" id="anc-114"><div class="marker custom"></div></div><span class="codeline" id="line-13">   <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-81" id="anc-106"><span class="marker custom">public</span></span> <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-82" id="anc-105"><span class="marker custom">int</span></span> getYear() {</span>
-<span class="codeline" id="line-14">      return this.year;</span>
-<span class="codeline" id="line-15">   }</span></div>
-<span class="codeline" id="line-16"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-83" id="anc-115"><div class="marker custom"></div></div><span class="codeline" id="line-17">   public <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-85" id="anc-108"><span class="marker custom">void</span></span> setYear(<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-84" id="anc-107"><span class="marker custom">int year</span></span>) {</span>
-<span class="codeline" id="line-18">      this.year = year;</span>
-<span class="codeline" id="line-19">   }</span></div>
-<span class="codeline" id="line-20"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-86" id="anc-116"><div class="marker custom"></div></div><span class="codeline" id="line-21">   public int getEnrolled() {</span>
-<span class="codeline" id="line-22">      return this.enrolled;</span>
-<span class="codeline" id="line-23">   }</span></div>
-<span class="codeline" id="line-24"></span>
-<span class="codeline" id="line-25">   public double getPercent() {</span>
-<span class="codeline" id="line-26">      return this.retainedPercent;</span>
-<span class="codeline" id="line-27">   }</span>
-<span class="codeline" id="line-28"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-87" id="anc-117"><div class="marker custom"></div></div><span class="codeline" id="line-29">   public void setRetainedPercent(double newPercent) {</span>
-<span class="codeline" id="line-30">      if (newPercent &gt;= 0 &amp;&amp; newPercent &lt;= 1) {</span>
-<span class="codeline" id="line-31">         this.retainedPercent = newPercent;</span>
-<span class="codeline" id="line-32">      } else {</span>
-<span class="codeline" id="line-33">         // newPercent is not a valid value; print an error message</span>
-<span class="codeline" id="line-34">         System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-110"><span class="marker javadoc">out</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-1" id="anc-109"><span class="marker javadoc">println</span></span>("Expected a value between 0 and 1");</span>
-<span class="codeline" id="line-35">      }</span>
-<span class="codeline" id="line-36">   }</span></div>
-<span class="codeline" id="line-37"></span>
-<span class="codeline" id="line-38">   public int retained() {</span>
-<span class="codeline" id="line-39">      return (int) (this.retainedPercent * this.enrolled);</span>
-<span class="codeline" id="line-40">   }</span>
-<span class="codeline" id="line-41">}</span></div></code></pre>
+<span class="codeline" id="line-7">    public Circle(double radius) {</span>
+<span class="codeline" id="line-8">        this.radius = radius;</span>
+<span class="codeline" id="line-9">    }</span>
+<span class="codeline" id="line-10"></span>
+<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-1" id="anc-4"><div class="marker custom"></div></div><span class="codeline" id="line-11">    public <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-3"><span class="marker javadoc">String</span></span> toString() {</span>
+<span class="codeline" id="line-12">        return "Radius: " + this.radius;</span>
+<span class="codeline" id="line-13">    }</span></div>
+<span class="codeline" id="line-14">}</span></code></pre>
     <div class="col-12" id="footer-inject"><span>Created with <a href="https://www.cs.mcgill.ca/~martin/casdoc/">Casdoc</a>, a project led by <a href="https://www.cs.mcgill.ca/~mnassif/">Mathieu Nassif</a> and <a href="https://www.cs.mcgill.ca/~martin/">Martin Robillard</a></span></div>
   </div>
-  <div id="annotations"><template class="annotation popover-custom" id="pop-79">
-<span class="ann-title">Instance methods</span>
-<div class="ann-short"><div><p>These are the <em>behaviours</em> that each <code>CsCohort</code> can perform, using
-its instance variables. We refer to these behaviours as <em>instance methods</em>.</p>
-</div></div>
-<div class="ann-long"><div><p>These are the <em>behaviours</em> that each <code>CsCohort</code> can perform, using
-its instance variables. We refer to these behaviours as <em>instance methods</em>.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-77">
-<span class="ann-title">Constructor</span>
-<div class="ann-short"><div><p>This is the <code>constructor</code> for the <code>CsCohort</code> class.
-The constructor's job is to create a new <code>CsCohort</code> object.
-Here, the constructor takes in 3 parameters — the values of these parameters are given to the instance variables.</p>
-</div></div>
-<div class="ann-long"><div><p>This is the <code>constructor</code> for the <code>CsCohort</code> class.
-The constructor's job is to create a new <code>CsCohort</code> object.
-Here, the constructor takes in 3 parameters — the values of these parameters are given to the instance variables.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-1">
-<span class="ann-title">println(String)</span>
-<div class="ann-short"><div>Prints a String and then terminates the line.  This method behaves as
- though it invokes <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#print(java.lang.String)" target="_blank"><code>print(String)</code></a> and then
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>println()</code></a>.</div></div>
-<div class="ann-long"><div><div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">println</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&nbsp;x)</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.String)"></a></div><div class="block">Prints a String and then terminates the line.  This method behaves as
- though it invokes <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#print(java.lang.String)" target="_blank"><code>print(String)</code></a> and then
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>println()</code></a>.</div><dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>x</code> - The <code>String</code> to be printed.</dd>
-</dl></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-78">
-<span class="ann-title">this</span>
-<div class="ann-short"><div><p><code>this</code> is the keyword used for the object to refer to itself.
-So, in this example, <code>this.year</code> refers to this particular <code>CsCohort</code> object's <code>year</code> instance variable.
-Notice that some of constructor parameters have the same name as the instance variables.
-In this case, <code>this</code> is necessary to help the compiler distinguish between the two.
-For variables where the instance variable and local variables are not named the same, you don't <em>need</em> to use <code>this</code>, but I still recommend it because it makes your code more clear.</p>
-</div></div>
-<div class="ann-long"><div><p><code>this</code> is the keyword used for the object to refer to itself.
-So, in this example, <code>this.year</code> refers to this particular <code>CsCohort</code> object's <code>year</code> instance variable.
-Notice that some of constructor parameters have the same name as the instance variables.
-In this case, <code>this</code> is necessary to help the compiler distinguish between the two.
-For variables where the instance variable and local variables are not named the same, you don't <em>need</em> to use <code>this</code>, but I still recommend it because it makes your code more clear.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-0">
-<span class="ann-title">out</span>
-<div class="ann-short"><div>The "standard" output stream. This stream is already
- open and ready to accept output data. Typically this stream
- corresponds to display output or another output destination
- specified by the host environment or user. The encoding used
- in the conversion from characters to bytes is equivalent to
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a> if the <code>Console</code> exists,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a> otherwise.
+  <div id="annotations"><template class="annotation popover-javadoc" id="popj-0">
+<span class="ann-title">java.lang.String</span>
+<div class="ann-short"><div>The <code>String</code> class represents character strings. All
+ string literals in Java programs, such as <code>"abc"</code>, are
+ implemented as instances of this class.
  </div></div>
-<div class="ann-long"><div><div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html" title="class in java.io" target="_blank">PrintStream</a></span>&nbsp;<span class="element-name">out</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#out"></a></div><div class="block">The "standard" output stream. This stream is already
- open and ready to accept output data. Typically this stream
- corresponds to display output or another output destination
- specified by the host environment or user. The encoding used
- in the conversion from characters to bytes is equivalent to
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a> if the <code>Console</code> exists,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a> otherwise.
+<div class="ann-long"><div><div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">String</span>
+<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class in java.lang" target="_blank">Object</a>
+implements <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Serializable.html" title="interface in java.io" target="_blank">Serializable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Comparable.html" title="interface in java.lang" target="_blank">Comparable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&gt;, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/CharSequence.html" title="interface in java.lang" target="_blank">CharSequence</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/Constable.html" title="interface in java.lang.constant" target="_blank">Constable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/ConstantDesc.html" title="interface in java.lang.constant" target="_blank">ConstantDesc</a></span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html#class-description"></a></div><div class="block">The <code>String</code> class represents character strings. All
+ string literals in Java programs, such as <code>"abc"</code>, are
+ implemented as instances of this class.
  <p>
- For simple stand-alone Java applications, a typical way to write
- a line of output data is:
- </p><blockquote><pre>     System.out.println(data)
+ Strings are constant; their values cannot be changed after they
+ are created. String buffers support mutable strings.
+ Because String objects are immutable they can be shared. For example:
+ </p><blockquote><pre>     String str = "abc";
+ </pre></blockquote><p></p><p>
+ is equivalent to:
+ </p><blockquote><pre>     char data[] = {'a', 'b', 'c'};
+     String str = new String(data);
+ </pre></blockquote><p></p><p>
+ Here are some more examples of how strings can be used:
+ </p><blockquote><pre>     System.out.println("abc");
+     String cde = "cde";
+     System.out.println("abc" + cde);
+     String c = "abc".substring(2, 3);
+     String d = cde.substring(1, 2);
  </pre></blockquote>
  <p></p><p>
- See the <code>println</code> methods in class <code>PrintStream</code>.</p></div><dl class="notes">
+ The class <code>String</code> includes methods for examining
+ individual characters of the sequence, for comparing strings, for
+ searching strings, for extracting substrings, and for creating a
+ copy of a string with all characters translated to uppercase or to
+ lowercase. Case mapping is based on the Unicode Standard version
+ specified by the <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html" title="class in java.lang" target="_blank"><code>Character</code></a> class.
+ </p><p>
+ The Java language provides special support for the string
+ concatenation operator (&nbsp;+&nbsp;), and for conversion of
+ other objects to strings. For additional information on string
+ concatenation and conversion, see <i>The Java Language Specification</i>.
+
+ </p><p> Unless otherwise noted, passing a <code>null</code> argument to a constructor
+ or method in this class will cause a <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/NullPointerException.html" title="class in java.lang" target="_blank"><code>NullPointerException</code></a> to be
+ thrown.
+
+ </p><p>A <code>String</code> represents a string in the UTF-16 format
+ in which <em>supplementary characters</em> are represented by <em>surrogate
+ pairs</em> (see the section <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html#unicode" target="_blank">Unicode
+ Character Representations</a> in the <code>Character</code> class for
+ more information).
+ Index values refer to <code>char</code> code units, so a supplementary
+ character uses two positions in a <code>String</code>.
+ </p><p>The <code>String</code> class provides methods for dealing with
+ Unicode code points (i.e., characters), in addition to those for
+ dealing with Unicode code units (i.e., <code>char</code> values).
+
+ </p><p>Unless otherwise noted, methods for comparing Strings do not take locale
+ into account.  The <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/text/Collator.html" title="class in java.text" target="_blank"><code>Collator</code></a> class provides methods for
+ finer-grain, locale-sensitive String comparison.</p></div><dl class="notes">
+<dt>Implementation Note:</dt>
+<dd>The implementation of the string concatenation operator is left to
+ the discretion of a Java compiler, as long as the compiler ultimately conforms
+ to <i>The Java Language Specification</i>. For example, the <code>javac</code> compiler
+ may implement the operator with <code>StringBuffer</code>, <code>StringBuilder</code>,
+ or <code>java.lang.invoke.StringConcatFactory</code> depending on the JDK version. The
+ implementation of string conversion is typically through the method <code>toString</code>,
+ defined by <code>Object</code> and inherited by all classes in Java.</dd>
+<dt>See <i>Java Language Specification</i>:</dt>
+<dd>
+<a href="https://docs.oracle.com/javase/specs/jls/se20/html/jls-15.html#jls-15.18.1" target="_blank">15.18.1 String Concatenation Operator +</a><br></dd>
+<dt>Since:</dt>
+<dd>1.0</dd>
 <dt>See Also:</dt>
 <dd>
-<ul class="tag-list-long">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>PrintStream.println()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(boolean)" target="_blank"><code>PrintStream.println(boolean)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(char)" target="_blank"><code>PrintStream.println(char)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(char%5B%5D)" target="_blank"><code>PrintStream.println(char[])</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(double)" target="_blank"><code>PrintStream.println(double)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(float)" target="_blank"><code>PrintStream.println(float)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(int)" target="_blank"><code>PrintStream.println(int)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(long)" target="_blank"><code>PrintStream.println(long)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.Object)" target="_blank"><code>PrintStream.println(java.lang.Object)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.String)" target="_blank"><code>PrintStream.println(java.lang.String)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a></li>
+<ul class="tag-list">
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" target="_blank"><code>Object.toString()</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuffer.html" title="class in java.lang" target="_blank"><code>StringBuffer</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuilder.html" title="class in java.lang" target="_blank"><code>StringBuilder</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/nio/charset/Charset.html" title="class in java.nio.charset" target="_blank"><code>Charset</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/serialized-form.html#java.lang.String" target="_blank">Serialized Form</a></li>
 </ul>
 </dd>
 </dl></div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-75">
-<span class="ann-title">Instance variables</span>
-<div class="ann-short"><div><p>These are the <em>instance variables</em> of this class.
-Each <code>CsCohort</code> object will have its own <code>year</code>, <code>enrolled</code>, and
-<code>retainedPercent</code>.</p>
+</template><template class="annotation popover-custom" id="pop-1">
+<span class="ann-title">`toString`</span>
+<div class="ann-short"><div><p>The <code>toString</code> method is used to provide a string representation of an object. It is a good idea to write a <code>toString</code> method for every class you write.</p>
 </div></div>
-<div class="ann-long"><div><p>These are the <em>instance variables</em> of this class.
-Each <code>CsCohort</code> object will have its own <code>year</code>, <code>enrolled</code>, and
-<code>retainedPercent</code>.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-86">
-<span class="ann-title">public int getEnrolled</span>
-<div class="ann-short"><div><p>We only provide a getter method for the <code>enrolled</code> instance variable, but not a setter method.
-This means that no other class that modify this <code>CsCohort</code>'s <code>enrolled</code> value, but they can still read it.</p>
-</div></div>
-<div class="ann-long"><div><p>We only provide a getter method for the <code>enrolled</code> instance variable, but not a setter method.
-This means that no other class that modify this <code>CsCohort</code>'s <code>enrolled</code> value, but they can still read it.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-87">
-<span class="ann-title">setRetainedPercent(double newPercent)</span>
-<div class="ann-short"><div><p>This is a setter method for the <code>retainedPercent</code> instance variable.
-We use this setter method to perform some validation on the <code>newPercent</code> parameter, before we assign its value to the <code>retainedPercent</code> instance variable.</p>
-</div></div>
-<div class="ann-long"><div><p>This is a setter method for the <code>retainedPercent</code> instance variable.
-We use this setter method to perform some validation on the <code>newPercent</code> parameter, before we assign its value to the <code>retainedPercent</code> instance variable.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-76">
-<span class="ann-title">final</span>
-<div class="ann-short"><div><p><code>final</code> indicates that this variable's value cannot be changed after it is initialized.</p>
-</div></div>
-<div class="ann-long"><div><p><code>final</code> indicates that this variable's value cannot be changed after it is initialized.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-73">
-<span class="ann-title">public class CsCohort</span>
-<div class="ann-short"><div><p>This is the <em>declaration</em> of a <span class="anchor inline hover-zone popover-anchor" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-74" id="anc-118"><span class="marker custom">public</span></span> class called <code>CsCohort</code>.</p>
-</div></div>
-<div class="ann-long"><div><p>This is the <em>declaration</em> of a <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-74" id="anc-120"><span class="marker custom">public</span></span> class called <code>CsCohort</code>.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-84">
-<span class="ann-title">int year</span>
-<div class="ann-short"><div><p>Unlike the getter method above, this setter method takes in a parameter, which is the new value to be given to the <code>year</code> instance variable. The type of that parameter needs to match the type of the instance variable.</p>
-</div></div>
-<div class="ann-long"><div><p>Unlike the getter method above, this setter method takes in a parameter, which is the new value to be given to the <code>year</code> instance variable. The type of that parameter needs to match the type of the instance variable.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-74">
-<span class="ann-title">public</span>
-<div class="ann-short"><div><p><code>public</code> indicates that this class is visible to and can be used by other classes.</p>
-</div></div>
-<div class="ann-long"><div><p><code>public</code> indicates that this class is visible to and can be used by other classes.</p>
-</div></div>
-<span class="ann-backlinks">pop-73</span>
-</template><template class="annotation popover-custom" id="pop-85">
-<span class="ann-title">void</span>
-<div class="ann-short"><div><p>Since this method's job is only to change the value of the <code>year</code> instance variable, it does not return anything. Hence its return type is declared as <code>void</code>.</p>
-</div></div>
-<div class="ann-long"><div><p>Since this method's job is only to change the value of the <code>year</code> instance variable, it does not return anything. Hence its return type is declared as <code>void</code>.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-82">
-<span class="ann-title">int</span>
-<div class="ann-short"><div><p><code>int</code> is the return type of this method. It indicates that this method returns an integer value. The return type here is dictated by the data type of the <code>year</code> instance variable.</p>
-</div></div>
-<div class="ann-long"><div><p><code>int</code> is the return type of this method. It indicates that this method returns an integer value. The return type here is dictated by the data type of the <code>year</code> instance variable.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-83">
-<span class="ann-title">Setter method</span>
-<div class="ann-short"><div><p>This is a <em>setter</em> method or <em>mutator</em> method.
-It sets the value of the <code>year</code> instance variable.</p>
-</div></div>
-<div class="ann-long"><div><p>This is a <em>setter</em> method or <em>mutator</em> method.
-It sets the value of the <code>year</code> instance variable.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-80">
-<span class="ann-title">Getter method</span>
-<div class="ann-short"><div><p>This is a <em>getter</em> method or <em>accessor</em> method.
-It returns the value of the <code>year</code> instance variable.</p>
-</div></div>
-<div class="ann-long"><div><p>This is a <em>getter</em> method or <em>accessor</em> method.
-It returns the value of the <code>year</code> instance variable.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-81">
-<span class="ann-title">public</span>
-<div class="ann-short"><div><p><code>public</code> indicates that the method is visible to other classes. That is, when other classes have a <code>CsCohort</code> object, they can call this method on that object.</p>
-</div></div>
-<div class="ann-long"><div><p><code>public</code> indicates that the method is visible to other classes. That is, when other classes have a <code>CsCohort</code> object, they can call this method on that object.</p>
+<div class="ann-long"><div><p>The <code>toString</code> method is used to provide a string representation of an object. It is a good idea to write a <code>toString</code> method for every class you write.</p>
 </div></div>
 <span class="ann-backlinks"></span>
 </template></div>
