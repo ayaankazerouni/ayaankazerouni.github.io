@@ -1,0 +1,548 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Introduction - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc203/coursenotes/01-intro-java/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
+  <h1>Introduction</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>This lecture covers:</p>
+
+<ul>
+  <li>Static vs. dynamic typing</li>
+  <li>Variables</li>
+  <li>Primitive vs. reference types</li>
+  <li>Arrays</li>
+  <li>Default values</li>
+  <li>Control flow
+    <ul>
+      <li>Conditionals</li>
+      <li>Looping</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="data-types-in-java">Data types in Java</h2>
+
+<p>Since many of you are likely coming from a Python background, some of this discussion will refer back to commonalities and differences between Java and Python. If you have no Python experiences, that is fine. We do not assume Python knowledge.</p>
+
+<p>We’ll work through the <code class="language-plaintext highlighter-rouge">JavaSample.java</code> file in this lecture.
+Due to some language features in Java, I will sometimes ask you to ignore certain keywords for the time being.
+I only do this because I will explain what those mean later when we get to those topics.
+By the end of the quarter, there won’t be keywords we see in class that I’ll ask you to ignore.</p>
+
+<h3 id="static-typing">Static typing</h3>
+
+<p><strong>Java is a <em>statically typed</em> language.</strong> What does this mean? It means that before you can <em>run</em> Java code, a <em>compiler</em> checks that variables are used in ways that are consistent with their declared types.</p>
+
+<p>For example, consider the following expression:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"foobar"</span> <span class="o">/</span> <span class="mi">10</span>
+</code></pre></div></div>
+
+<p>It attempts to divide the text <code class="language-plaintext highlighter-rouge">"foobar''</code> by the number <code class="language-plaintext highlighter-rouge">10</code>, which is a meaningless operation.
+The above expression would result in errors in <em>statically-typed</em> languages (like Java) as well as in <em>dynamically-typed</em> languages (like Python).
+But exactly <em>when</em> those errors occur is different between the two languages.</p>
+
+<p>In a <em>dynamically-typed</em> language like Python, the program would begin to run, encounter the expression above, and then crash with an error message. The program would execute right up until it encounters the erroneous line, and then crash. That is, the error appears <em>at run time</em>.</p>
+
+<p>In a <em>statically-typed</em> language like Java, before the program runs, the <em>compiler</em> checks the program for erroneous uses of values like we see above. If the compiler finds any errors, you must fix them before you’re able to run the program.</p>
+
+<p>If the code has type errors like this, the code will not execute at all.</p>
+
+<p>A statically-typed language like Java helps us catch these errors at <em>compile time</em> instead of at <em>run time</em>.
+There is ongoing debate about whether statically-typed languages are better than dynamically-typed languages, and also what “better” means in this context.</p>
+
+<p>Proponents of statically-typed languages argue that programming is less error-prone with static typing, particularly in large codebases or in codebases where the developer is unfamiliar with the code (i.e., they didn’t write it themselves).</p>
+
+<p>Proponents of dynamically-typed languages argue that programming becomes less verbose and more flexible, and that a good test suite can catch most of the type-related errors that a compiler would flag.<sup id="fnref:compiler-test-suite" role="doc-noteref"><a href="#fn:compiler-test-suite" class="footnote" rel="footnote">1</a></sup></p>
+
+<h3 id="declaring-and-initialising-variables">Declaring and initialising variables</h3>
+
+<p>You may already know what it means to <em>declare</em> and <em>initialize</em> variables using whatever language you’re coming from, but we will revisit this vocabulary briefly.</p>
+
+<p>When you <em>declare</em> a variable, you are creating it, i.e., you are saying that there is now a variable with the given name. 
+When you <em>initialize</em> a variable, you are giving that variable an initial value.
+When you <em>assign</em> a value to a variable, you are giving it a value, potentially replacing its previous value.</p>
+
+<p>When you <em>declare</em> a variable in Java, you must also say what its <em>data type</em> is.
+For example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">z</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>The variable <code class="language-plaintext highlighter-rouge">z</code> above can now <em>only</em> hold integer values. Its type also dictates that we can only perform “integer-friendly” operations using its value, like math operations or printing.
+We can’t do things like turn it to “upper case”, because that doesn’t make sense for an integer.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">z</span> <span class="o">=</span> <span class="s">"this isn't a number!"</span><span class="o">;</span> <span class="c1">// this code will not compile</span>
+<span class="n">z</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="c1">// this will be fine</span>
+</code></pre></div></div>
+
+<p>You can also declare and initialize a variable in the same line (and will usually do this).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> 
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mi">12</span><span class="o">;</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="mi">12</span><span class="o">;</span> <span class="c1">// you can update z's value</span>
+</code></pre></div></div>
+
+<h3 id="primitive-types-and-reference-types">Primitive types and reference types</h3>
+
+<p>There are eight basic or <em>primitive</em> data types in Java:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data type</th>
+      <th>Description</th>
+      <th>Allowed values</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">byte</code></td>
+      <td>A 1-byte integer.<br />We will not use this type in this course.</td>
+      <td>-128 to 127 (inclusive)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">short</code></td>
+      <td>A 2-byte integer.<br />Use this when you need to save memory.</td>
+      <td>-32,768 to 32,767 (inclusive)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td>A 4-byte integer.<br />Simply using an integer value (e.g., <code class="language-plaintext highlighter-rouge">12</code> or <code class="language-plaintext highlighter-rouge">4305</code>) will default to using the <code class="language-plaintext highlighter-rouge">int</code> type.</td>
+      <td>$-2^{31}$ to $2^{31}-1$ (inclusive)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long</code></td>
+      <td>An 8-byte integer.<br />Use this when you need larger numbers than <code class="language-plaintext highlighter-rouge">int</code> provides.<br />An an <code class="language-plaintext highlighter-rouge">L</code> after a number to indicate that you mean for it to be a <code class="language-plaintext highlighter-rouge">long</code>, i.e., <code class="language-plaintext highlighter-rouge">256L</code> will be a <code class="language-plaintext highlighter-rouge">long</code> value and not an <code class="language-plaintext highlighter-rouge">int</code> value.</td>
+      <td>$-2^{63}$ to $2^{63}-1$ (inclusive)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">float</code></td>
+      <td>A 4-byte floating point number.<br />To indicate that a decimal value is a <code class="language-plaintext highlighter-rouge">float</code>, add an <code class="language-plaintext highlighter-rouge">F</code> after it, i.e., <code class="language-plaintext highlighter-rouge">12.5F</code>.</td>
+      <td>Beyond the scope of this course.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td>An 8-byte floating point number.<br />Simply using a decimal value (e.g, <code class="language-plaintext highlighter-rouge">12.5</code>) will default to using the <code class="language-plaintext highlighter-rouge">double</code> type.</td>
+      <td>Beyond the scope of this course.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td>Track true/false conditions.</td>
+      <td><code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td>A single 2-byte character.</td>
+      <td>‘\u0000’ (or 0) to <code class="language-plaintext highlighter-rouge">\uffff</code> (or 65535)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There are also <em>reference</em> types, for example the <code class="language-plaintext highlighter-rouge">String</code> type.
+Reference types are abstractions created for programming convenience.
+They are built using primitive types or other reference types as building blocks.</p>
+
+<p>The most commonly used reference type in Java is the <code class="language-plaintext highlighter-rouge">String</code> type. It stores <em>text</em>. The <code class="language-plaintext highlighter-rouge">String</code> type “strings together” a bunch of <code class="language-plaintext highlighter-rouge">char</code>s to make a longer piece of text.</p>
+
+<p>You can declare and initialise a <code class="language-plaintext highlighter-rouge">String</code> variable like below. Notice the double-quotes! Single-quotes are reserved for the <code class="language-plaintext highlighter-rouge">char</code> type. You must use double-quotes for <code class="language-plaintext highlighter-rouge">String</code>s.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">course</span> <span class="o">=</span> <span class="s">"CSC 203"</span><span class="o">;</span> 
+</code></pre></div></div>
+
+<h3 id="reference-types-and-equality">Reference types and equality</h3>
+
+<p>The value of a variable that is declared as a reference type is a <em>reference</em> to the data stored somewhere in memory.
+Hence the name.
+You can have multiple references to the same data.</p>
+
+<p>There are implications to this.</p>
+
+<p>Consider the <code class="language-plaintext highlighter-rouge">==</code> operator (“double equals”).</p>
+
+<p>For the 8 primitive types mentioned above, the behaviour of the <code class="language-plaintext highlighter-rouge">==</code> operator is pretty much what you’d expect.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">12</span><span class="o">;</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span> <span class="c1">// This will print false.</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">10</span><span class="o">);</span> <span class="c1">// This will print true.</span>
+
+<span class="kt">char</span> <span class="n">theLetterA</span> <span class="o">=</span> <span class="sc">'a'</span><span class="o">;</span>
+<span class="n">chat</span> <span class="n">theLetterAAgain</span> <span class="o">=</span> <span class="sc">'a'</span><span class="o">;</span> 
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">theLetterA</span> <span class="o">==</span> <span class="n">theLetterAAgain</span><span class="o">);</span> <span class="c1">// This will print true.</span>
+</code></pre></div></div>
+
+<p><em>However, for reference types, this operator’s behaviour differs between Java and Python.</em></p>
+
+<p>For reference types, the <code class="language-plaintext highlighter-rouge">==</code> operator checks whether the two operands are the <em>same</em> (as in, physically the same item in memory), and not whether they are <em>equal</em> according to some logical rule for equality.</p>
+
+<p><strong>Example</strong>. Suppose we have two <code class="language-plaintext highlighter-rouge">Point</code> objects, representing points in 2-dimensional space.</p>
+
+<p>(We will talk more about <code class="language-plaintext highlighter-rouge">Point</code>s later—those details are less relevant for this example.)</p>
+
+<p>In the example below, we use the <code class="language-plaintext highlighter-rouge">new</code> keyword to create two new <code class="language-plaintext highlighter-rouge">Point</code> objects.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Point</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span> <span class="c1">// A point at coordinates (1, 2).</span>
+<span class="nc">Point</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span> <span class="c1">// Another point at coordinates (1, 2).</span>
+</code></pre></div></div>
+
+<p class="callout ponder">What would the expression <code class="language-plaintext highlighter-rouge">p1 == p2</code> result in? <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>?<sup id="fnref:sameness-answer" role="doc-noteref"><a href="#fn:sameness-answer" class="footnote" rel="footnote">2</a></sup></p>
+
+<p>Because <code class="language-plaintext highlighter-rouge">p1</code> and <code class="language-plaintext highlighter-rouge">p2</code> are <em>reference types</em>, each of those variables is pointing to a different location in memory. Now, you and me and everyone else understands that if two points have the same <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> coordinates, they should probably be considered equal.</p>
+
+<p>That is why all reference types provide an <code class="language-plaintext highlighter-rouge">equals</code> function, which checks <em>equality</em> (using some logical definition of equality) rather than <em>sameness</em>.</p>
+
+<p>We can use it as follows:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Point</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+<span class="nc">Point</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+
+<span class="nc">Point</span> <span class="n">p1Again</span> <span class="o">=</span> <span class="n">p1</span><span class="o">;</span> <span class="c1">// p1Again and p1 are both pointing to the same Point.</span>
+
+<span class="c1">// This will print false, because p1 and p2 are not the same object.</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="n">p2</span><span class="o">);</span>
+
+<span class="c1">// This will print true, because p1 and p1Again are the same object.</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="n">p1Again</span><span class="o">);</span>
+
+<span class="c1">// This will print true, because p1 and p2 are logically equal objects.</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">p2</span><span class="o">));</span>
+</code></pre></div></div>
+
+<h4 id="string-equality">String equality</h4>
+
+<p>Strings are special type of reference type.
+They are so commonly used that Java provides a specialized syntax for creating a new String without using the <code class="language-plaintext highlighter-rouge">new</code> keyword.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">make</span> <span class="o">=</span> <span class="s">"Santa Cruz"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">model</span> <span class="o">=</span> <span class="s">"Bronson"</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Since they are reference types, you should compare Strings for equality using the <code class="language-plaintext highlighter-rouge">equals</code> function, and <em>not</em> the <code class="language-plaintext highlighter-rouge">==</code> operator.</p>
+
+<p>However, the Java compiler is smart enough to SOMETIMES recognise when multiple <code class="language-plaintext highlighter-rouge">String</code> variables hold the same <code class="language-plaintext highlighter-rouge">String</code> value.
+It will therefore <em>intern</em> or cache the String value.
+Each additional <code class="language-plaintext highlighter-rouge">String</code> variable with the same value will point to the same <code class="language-plaintext highlighter-rouge">String</code> in memory.</p>
+
+<p>This means that, sometimes, the <code class="language-plaintext highlighter-rouge">equals</code> function and the <code class="language-plaintext highlighter-rouge">==</code> operator will have similar behaviour for <code class="language-plaintext highlighter-rouge">String</code>s, even though <code class="language-plaintext highlighter-rouge">String</code> is a reference type.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">csc203</span> <span class="o">=</span> <span class="s">"CSC 203"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">csc203Again</span> <span class="o">=</span> <span class="s">"CSC 203"</span><span class="o">;</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">csc203</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">csc203Again</span><span class="o">));</span> <span class="c1">// This will print true, as expected.</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">csc203</span> <span class="o">==</span> <span class="n">csc203Again</span><span class="o">);</span> <span class="c1">// This will also print true.</span>
+</code></pre></div></div>
+
+<p>However, this is a compiler optimisation, and you should not rely upon it.
+You can’t predict when <code class="language-plaintext highlighter-rouge">==</code> and <code class="language-plaintext highlighter-rouge">equals</code> will behave the same for <code class="language-plaintext highlighter-rouge">String</code>s, so you should still use <code class="language-plaintext highlighter-rouge">equals</code> to compare <code class="language-plaintext highlighter-rouge">String</code>s for equality.</p>
+
+<h3 id="arrays">Arrays</h3>
+
+<p>To store a collection of items in Java, the simplest collection you can use is an <em>array</em>.
+Two things are important to know about arrays:</p>
+
+<ul>
+  <li>Their types are fixed. You can’t mix types in an array.</li>
+  <li>Their sizes are fixed. An array can’t grow or shrink after its initial creation.</li>
+</ul>
+
+<p>Here is how to declare and initialize an integer array with some data:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span><span class="mi">83</span><span class="o">,</span> <span class="mi">43</span><span class="o">,</span> <span class="mi">77</span><span class="o">,</span> <span class="mi">92</span><span class="o">,</span> <span class="mi">73</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">81</span><span class="o">,</span> <span class="mi">42</span><span class="o">};</span>
+</code></pre></div></div>
+
+<p>Arrays are <em>0-indexed</em>, which means that the first item in the array is at position 0, the second is at position 1, etc.</p>
+
+<p>You can use box brackets (<code class="language-plaintext highlighter-rouge">[</code> and <code class="language-plaintext highlighter-rouge">]</code>) to <em>index into</em> an array, i.e., access a particular position in an array.
+You can use this syntax to <em>read</em> data from an array, or <em>write</em> data to the array.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span><span class="mi">83</span><span class="o">,</span> <span class="mi">43</span><span class="o">,</span> <span class="mi">77</span><span class="o">,</span> <span class="mi">92</span><span class="o">,</span> <span class="mi">73</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">81</span><span class="o">,</span> <span class="mi">42</span><span class="o">};</span>
+
+<span class="c1">// Reading data</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">scores</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span> <span class="c1">// This will print the value 83</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">scores</span><span class="o">[</span><span class="mi">7</span><span class="o">]);</span> <span class="c1">// This will print the value 42</span>
+
+<span class="c1">// Writing data</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">scores</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span> <span class="c1">// This will print the value 43.</span>
+<span class="n">scores</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="mi">37</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">scores</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span> <span class="c1">// This will now print 37.</span>
+</code></pre></div></div>
+
+<p>If you try to look at a position that’s beyond the bounds of the array’s size, your program will crash (i.e., there will be an error at run time).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span><span class="mi">83</span><span class="o">,</span> <span class="mi">42</span><span class="o">,</span> <span class="mi">77</span><span class="o">,</span> <span class="mi">92</span><span class="o">,</span> <span class="mi">73</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">81</span><span class="o">,</span> <span class="mi">42</span><span class="o">};</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">scores</span><span class="o">[</span><span class="mi">11</span><span class="o">]);</span> <span class="c1">// There is no position 11. This program will crash.</span>
+</code></pre></div></div>
+
+<p>Remember that arrays sizes are fixed! You can’t grow the array beyond its initial size.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span><span class="mi">83</span><span class="o">,</span> <span class="mi">42</span><span class="o">,</span> <span class="mi">77</span><span class="o">,</span> <span class="mi">92</span><span class="o">,</span> <span class="mi">73</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">81</span><span class="o">,</span> <span class="mi">42</span><span class="o">};</span>
+<span class="n">scores</span><span class="o">[</span><span class="mi">8</span><span class="o">]</span> <span class="o">=</span> <span class="mi">78</span><span class="o">;</span> <span class="c1">// There is no position 8. This program will crash.</span>
+</code></pre></div></div>
+
+<p>Similar to variables, you can also declare an array without initializing it.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span><span class="o">;</span> <span class="c1">// without initialization</span>
+</code></pre></div></div>
+
+<p>You can also declare an array and <em>fix its size</em>, but not specify its contents.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">4</span><span class="o">];</span> <span class="c1">// A new array of size 4</span>
+</code></pre></div></div>
+
+<p>The above line created an array <code class="language-plaintext highlighter-rouge">scores</code> of size 4. But we didn’t specify the contents of this array.
+However, the array is not “empty”—there is no such thing as an empty array in Java.</p>
+
+<p>When you create an array, you’re allocating that amount of contiguous space for its contents.
+So, whether or not you declare the contents of the array, that space is allocated.</p>
+
+<p>What’s sitting in that space?</p>
+
+<h3 id="default-values">Default values</h3>
+
+<p>Java has sort of “placeholder” values for all data types. They are referred to as their <em>default</em> values. So if you create an array but don’t declare its contents, Java places the default values for that type in the array.</p>
+
+<p>Here are the default values for all the primitive types:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data type</th>
+      <th>Default value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">byte</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">short</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">int</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">long</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0L</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">float</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.0F</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">double</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0.0</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">boolean</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">char</code></td>
+      <td><code class="language-plaintext highlighter-rouge">\u000</code> (or 0)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All reference types like <code class="language-plaintext highlighter-rouge">String</code> or <code class="language-plaintext highlighter-rouge">Point</code> or others we learn about have the same default value.
+It is a special value in Java called <code class="language-plaintext highlighter-rouge">null</code>.
+When a variable’s “value” is <code class="language-plaintext highlighter-rouge">null</code>, it means that the variable is “pointing to nothing”.</p>
+
+<h2 id="control-flow">Control flow</h2>
+
+<h3 id="conditionals">Conditionals</h3>
+
+<p>Java uses <code class="language-plaintext highlighter-rouge">if</code>, <code class="language-plaintext highlighter-rouge">else if</code>, and <code class="language-plaintext highlighter-rouge">else</code> for conditional logic.</p>
+
+<p>Unlike Python, Java does not use indentation to denote <em>scope</em>. We use curly braces to denote what happens inside each clause of the “if-else ladder” below.</p>
+
+<p>However, you should still use appropriate indentation to improve readability.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Point</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+<span class="nc">Point</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span> 
+    <span class="c1">// The above condition is false, so this line will not execute.</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Condition 1"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">))</span> <span class="o">{</span>
+    <span class="c1">// The above condition is also false, so this line will not execute, either.</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Condition 2"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="c1">// This is the "otherwise" clause.</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Condition 3"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="repetition-looping">Repetition (“looping”)</h3>
+
+<p>There are 4 looping constructs in Java.</p>
+
+<p>In most cases, any looping construct can be used to perform any task involving repetition.
+But the different types of loops are provided as “syntactic sugar”—each loop type is “nicer” (more intuitive, less error-prone, etc.) to use for some tasks than others.</p>
+
+<h4 id="the-for-loop">The <code class="language-plaintext highlighter-rouge">for</code> loop</h4>
+
+<p>Use this when you want to do something repeatedly a certain number of times.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">for</code> loop has 3 main pieces:</p>
+
+<ul>
+  <li>The counter variable: <code class="language-plaintext highlighter-rouge">int i = 0</code>  in the example below. This statement runs once <em>before</em> the entire loop.</li>
+  <li>The looping condition: <code class="language-plaintext highlighter-rouge">i &lt; 10</code> in the example below. The loop will keep repeating as long as this condition is <code class="language-plaintext highlighter-rouge">true</code>.</li>
+  <li>The counting step: <code class="language-plaintext highlighter-rouge">i++</code> in the example below. This is shorthand for <code class="language-plaintext highlighter-rouge">i = i + 1</code>. This statement runs <em>after</em> each iteration of the loop.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The code above will print</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+1
+2
+3
+4
+</code></pre></div></div>
+
+<p>You can use the <code class="language-plaintext highlighter-rouge">for</code> loop to step through (or <em>iterate over</em>) an array.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span><span class="mi">83</span><span class="o">,</span> <span class="mi">43</span><span class="o">,</span> <span class="mi">77</span><span class="o">,</span> <span class="mi">92</span><span class="o">,</span> <span class="mi">73</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">81</span><span class="o">,</span> <span class="mi">42</span><span class="o">};</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">scores</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">scores</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Because <code class="language-plaintext highlighter-rouge">i</code> runs through the values <code class="language-plaintext highlighter-rouge">0</code> through <code class="language-plaintext highlighter-rouge">7</code>, we can use <code class="language-plaintext highlighter-rouge">i</code> to access elements from the <code class="language-plaintext highlighter-rouge">scores</code> array.
+The code above would print</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>83
+43
+77
+92
+73
+95
+81
+42
+</code></pre></div></div>
+
+<p>There is a lot of “surface area” for potential errors in these kinds of loops.
+For example, you could mess up the starting value of <code class="language-plaintext highlighter-rouge">i</code> (should it be <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code>?) or the looping condition (should it be <code class="language-plaintext highlighter-rouge">i &lt; scores.length</code>, <code class="language-plaintext highlighter-rouge">i &lt;= scores.length</code>?).</p>
+
+<p>So for iteration, we use another looping construct: the <code class="language-plaintext highlighter-rouge">for-each</code> loop.</p>
+
+<h4 id="the-for-each-loop">The <code class="language-plaintext highlighter-rouge">for-each</code> loop</h4>
+
+<p>The <code class="language-plaintext highlighter-rouge">for-each</code> loop takes care of the details of stepping through a collection for us.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span><span class="mi">83</span><span class="o">,</span> <span class="mi">43</span><span class="o">,</span> <span class="mi">77</span><span class="o">,</span> <span class="mi">92</span><span class="o">,</span> <span class="mi">73</span><span class="o">,</span> <span class="mi">95</span><span class="o">,</span> <span class="mi">81</span><span class="o">,</span> <span class="mi">42</span><span class="o">};</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">item</span> <span class="o">:</span> <span class="n">scores</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the loop above, the <code class="language-plaintext highlighter-rouge">item</code> variable steps through the <code class="language-plaintext highlighter-rouge">scores</code>  array and updates in each step, stopping when you run out of items.</p>
+
+<p>You can read the loop above as “for each item in scores”.</p>
+
+<p>It’ll print:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>83
+43
+77
+92
+73
+95
+81
+42
+</code></pre></div></div>
+
+<h4 id="the-while-loop">The <code class="language-plaintext highlighter-rouge">while</code> loop</h4>
+
+<p>The “simplest” kind of loop. It simply keeps on running as long as the given condition is <code class="language-plaintext highlighter-rouge">true</code>.</p>
+
+<p>You typically use this loop when you don’t know how many times the loop is going to run beforehand.
+For example, if you are reading lines from a file, and you want to keep reading it line-by-line as long as there are more lines to be read.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while</span> <span class="o">(</span><span class="n">fileStillHasLines</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Get the next line. Assume this function exists for this example.</span>
+    <span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">nextLine</span><span class="o">();</span> 
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">line</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>It’s important to know that the looping condition will <em>eventually</em> be <code class="language-plaintext highlighter-rouge">false</code>, otherwise your code will go into an infinite loop and the program will never progress or end.</p>
+
+<p>This is useful when you want to perform an action 0-to-many times, depending on some condition.</p>
+
+<h4 id="the-do-while-loop">The <code class="language-plaintext highlighter-rouge">do-while</code> loop</h4>
+
+<p>This loop functions just like the <code class="language-plaintext highlighter-rouge">while</code> loop, except for one difference.
+The <code class="language-plaintext highlighter-rouge">while</code> loop checks the looping condition <em>before</em> each iteration.
+The <code class="language-plaintext highlighter-rouge">do-while</code> loop checks the looping condition <em>after</em> each iteration.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">do</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">nextLine</span><span class="o">();</span> <span class="c1">// Suppose, for example, our file is guaranteed to have at least one line.</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">line</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">fileStillHasLines</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>This can be a useful loop to use in cases where you want to perform an action <em>at least once</em>, and then repeat based on some condition.</p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:compiler-test-suite" role="doc-endnote">
+      <p>You can think of the compiler as a type of limited test suite. Instead of checking functional correctness, it checks for syntax and, in statically-typed languages, type-related correctness. <a href="#fnref:compiler-test-suite" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:sameness-answer" role="doc-endnote">
+      <p>The answer is <code class="language-plaintext highlighter-rouge">false</code>, because the <code class="language-plaintext highlighter-rouge">==</code> operator checks <em>sameness</em>, not <em>equality</em>. <a href="#fnref:sameness-answer" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    </article>
+  </main>
+</body>
+</html>

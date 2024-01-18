@@ -299,6 +299,7 @@ footer .address {
 
 code {
   color: #E61726;
+  font-size: 1rem;
 }
 
 .tag {
@@ -318,28 +319,54 @@ code {
   color: #F9CF00;
 }
 
-.course table {
+table {
   margin: 20px auto;
   border-collapse: collapse;
   font-size: 0.9em;
 }
-.course table th {
+table th {
   border-top: 1pt solid;
   border-bottom: 1pt solid;
   background-color: #000000;
   color: #F9CF00;
 }
+table tr {
+  border-bottom: 0.5pt solid;
+}
+table tr > td, table tr > th {
+  padding: 0.5em;
+}
+table tr > td:not(:last-child), table tr > th:not(:last-child) {
+  border-right: 1pt solid;
+}
+
 .course table tr:nth-child(4n), .course table tr:nth-child(4n-1) {
   background: lightgrey;
 }
-.course table tr {
-  border-bottom: 0.5pt solid;
+
+.coursenotes {
+  font-size: 1.2rem;
+  font-family: "EB Garamond", serif;
 }
-.course table tr > td, .course table tr > th {
-  padding: 0.5em;
+
+.callout {
+  border-left: 4px solid;
+  border-radius: 4px;
+  padding: 0.5rem;
 }
-.course table tr > td:not(:last-child), .course table tr > th:not(:last-child) {
-  border-right: 1pt solid;
+.callout::before {
+  display: block;
+  font-weight: bold;
+  font-size: 0.8em;
+  font-family: "Muli", sans-serif;
+}
+.callout.ponder {
+  border-color: #e7af06;
+  background-color: rgba(255, 235, 130, 0.2);
+}
+.callout.ponder::before {
+  content: "PONDER";
+  color: #d3a10b;
 }
 
 blockquote {

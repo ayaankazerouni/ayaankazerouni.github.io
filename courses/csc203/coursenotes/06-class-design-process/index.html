@@ -1,0 +1,126 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>A class design process - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc203/coursenotes/06-class-design-process/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
+  <h1>A class design process</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>(Work in progress)</p>
+
+<p>In this lesson we’ll implement a simple game using an object-oriented (OO) design process.
+The goal is to get a tiny taste of the thought process that goes into designing an OO system with multiple interacting classes.</p>
+
+<h2 id="game-requirements">Game requirements</h2>
+
+<p>We’re going to implement the <a href="https://en.wikipedia.org/wiki/Nim">Game of Nim</a>. Lets start by first understanding the game we’re building. The rules are simple:</p>
+
+<ul>
+  <li>There are two players.</li>
+  <li>There is a pile of sticks. We can let the players decide how many sticks should be in the pile to begin with.</li>
+  <li>The players take turns removing 1–3 sticks from the pile. Each turn <em>must</em> involve at least 1 stick being removed from the pile.</li>
+  <li>The player that removes the last stick from the pile loses.</li>
+</ul>
+
+<p>We’re going to build this as a text-based game. Here is how an example game might go:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Player 1's name? Yaa
+Player 2's name? Michael
+How many sticks? 5
+Yaa, how many sticks do you want to take? 2
+Yaa takes 2 stick(s).
+There are 3 left in the pile.
+Michael, how many sticks do you want to take? 1
+Michael takes 1 stick(s).
+There are 2 left in the pile.
+Yaa, how many sticks do you want to take? 1
+Yaa takes 1 stick(s).
+There are 1 left in the pile.
+Michael, how many sticks do you want to take? 1
+Michael takes 1 stick(s).
+There are 0 left in the pile.
+Yaa is the winner
+</code></pre></div></div>
+
+<h2 id="why-follow-a-principled-design-process">Why follow a principled design process?</h2>
+
+<p>Before we proceed, I want to acknowledge that the requirements, as described above, are fairly simple.
+You could probably write the whole game in a couple hundred lines in a single file.</p>
+
+<p>That is fine: we’re still going to use an OO process to design and implement this game.
+Remember, our goal is to learn to follow a principled design process when we engineer software.
+OO design is one such process to help us write maintainable code.</p>
+
+<p>But it’s worth questioning: <strong>what do we actually mean by that?</strong> When I say we should prioritise <em>maintainability</em>, I’m thinking of the following:</p>
+
+<ul>
+  <li><strong>Requirements change over time.</strong> Software requirements rarely stay the same. Either because the client (the person for whom we’re building the software) refines what they’re asking for, or because new features need to be added, or because we, the developers, are correcting initial misunderstandings about aspects of the requirements, change is a constant in software engineering.
+    <ul>
+      <li>For example, traditional versions of this game can involve <em>multiple piles</em> of sticks, as opposed to just one. Once we’ve built our game, how easy would it be to update it to support multiple piles instead of a single pile?</li>
+      <li>Suppose we wanted to play the game using a <em>graphical</em> interface instead of (or in addition to!) a text-based interface. How much of our codebase needs to be updated to support this addition?</li>
+      <li>Suppose we want to support more than two players, or we want to have “history”, i.e., we want to remember players’ game histories. Where does that data get stored? What parts of our system “know about” that data?</li>
+    </ul>
+  </li>
+  <li><strong>There will be bugs.</strong> It’s likely that you’ll need to debug your program at some point. Decoupling the different modules involved in the overall game implementation will help to quickly isolate issues as well as the changes needed to resolve them.
+    <ul>
+      <li>This is related to the previous point. If you are making changes all over your codebase to support every change to the system, your likelihood of bugs increases significantly. The more interactions there are between the different modules involved, the larger the “search space” grows when you are trying to hunt down a bug.</li>
+    </ul>
+  </li>
+  <li><strong>Testing.</strong> Finally, you want to be able to test the distinct parts of your program to verify that they are working correctly, both individually and together. “<a href="https://en.wikipedia.org/wiki/Spaghetti_code">Spaghetti code</a>” is much harder to test than smaller cohesive modules, in part because it becomes difficult to even tell what a “distinct part” of the program is.</li>
+</ul>
+
+<p>All that to say: it pays to follow a principled software design process.
+That is, we want to write <strong>loosely coupled</strong>, <strong>tightly cohesive</strong> modules (where “modules” can mean functions, classes, packages, etc.; I use “module” as a general term to emphasise that these principles are not unique to OOP).</p>
+
+<ul>
+  <li><strong>Loose coupling</strong>: Modules can work together harmoniously, but are not dependent on each others’ implementation details. If one module needs to change how it works, that should not beget changes in other modules, or at least should minimise them.</li>
+  <li><strong>Tight cohesion</strong>: The above goal can be realised by writing modules that <em>do one thing</em>. What that “one thing” is dependent on the problem at hand. For example, we might have a module whose job it is to manage the user interface for the game (whether it is text-based or graphical) and a module whose job it is to manage the game logic.</li>
+</ul>
+
+<h2 id="designing-the-classes-needed-for-the-game">Designing the classes needed for the game</h2>
+
+<p>I find it useful to ask a series of questions to help me understand what it is I’m building.</p>
+
+<p>What data do we need to keep track of to run this game? To what <em>entities</em> do those pieces of data belong? For what <em>behaviours</em> (functionality) is each entity responsible?</p>
+
+<ul>
+  <li>For starters, we have the <strong>Players</strong>. Based on the recorded game output at the beginning of this lesson, what <em>data</em> do you think a <code class="language-plaintext highlighter-rouge">Player</code> should hold? What <em>behaviours</em> do you think a <code class="language-plaintext highlighter-rouge">Player</code> should be able to perform? For example, the <code class="language-plaintext highlighter-rouge">Player</code> ought to have a <code class="language-plaintext highlighter-rouge">name</code>, since that is what is used in the text-based output. The <code class="language-plaintext highlighter-rouge">Player</code> should also be able to remove a specified number of sticks from the pile. Leading us to…</li>
+  <li><strong>The pile of sticks</strong>. What are the data and behaviours here? The <code class="language-plaintext highlighter-rouge">Pile</code> should, at the very least, be able to keep track of how many <code class="language-plaintext highlighter-rouge">sticks</code> are left in it. It’s also probably a good idea to prevent the removal of <em>too many</em> or <em>too few</em> sticks.[^error-handling]</li>
+  <li>Finally, we have <strong>the game itself</strong>. This is sort of the “controller” of this whole thing. What <em>data</em> does the <code class="language-plaintext highlighter-rouge">Game</code> know about? It needs to know about the <code class="language-plaintext highlighter-rouge">Player</code>s who are playing the game, and the <code class="language-plaintext highlighter-rouge">Pile</code> they are playing with. It also needs to manage the game logic, i.e., setting up the game, letting the players go turn-by-turn, and checking for a winner after each turn.</li>
+</ul>
+
+<p class="callout ponder">In the game rules, a player must remove 1–3 sticks from the pile. This means we must not allow player turns in which the player tries to remove <code class="language-plaintext highlighter-rouge">&lt; 1</code> stick or <code class="language-plaintext highlighter-rouge">&gt; 3</code> sticks. Should this check be done by the <code class="language-plaintext highlighter-rouge">Pile</code> or the <code class="language-plaintext highlighter-rouge">Game</code>? Why?</p>
+
+    </div>
+    
+    </article>
+  </main>
+</body>
+</html>

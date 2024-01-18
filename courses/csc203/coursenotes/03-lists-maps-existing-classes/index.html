@@ -1,0 +1,473 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Objects, lists, and maps - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc203/coursenotes/03-lists-maps-existing-classes/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
+  <h1>Objects, lists, and maps</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>In this lecture we will get a first look at <em>Classes and objects</em> in Java. Following this we’ll look at some classes that are available in the Java standard library, specifically <em>Lists</em> and <em>Maps</em>.</p>
+
+<h2 id="objects-and-classes">Objects and classes</h2>
+
+<p>A <em>class</em> is the blueprint that defines data each object has and what behaviours it can perform.
+You can create many individual objects using the same class.
+These objects are called <em>instances</em> of the class.</p>
+
+<p><em>Objects</em> are “boxes” of related pieces of data and behaviours that use those bits of data.</p>
+
+<p>For example, consider the <a href="https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/lang/String.java"><code class="language-plaintext highlighter-rouge">String</code> class</a> in Java.
+If you follow that link, you’ll see a lot of comments and other things that will look unfamiliar (at least for these first few weeks).
+But fundamentally, the <code class="language-plaintext highlighter-rouge">String</code> class defines the following</p>
+
+<ul>
+  <li>All <code class="language-plaintext highlighter-rouge">String</code>s have an array of characters (data).</li>
+  <li>All <code class="language-plaintext highlighter-rouge">String</code>s have a bunch of actions they can perform using that array of characters (behaviours). For example, they can turn the characters to upper case or lower case, search the array for a specific sub-string of characters, or remove and replace specific characters with other ones.</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">String</code> class, by defining the data and behaviours like the above, allows us to create <code class="language-plaintext highlighter-rouge">String</code> <em>objects</em>, each of which has its own array of characters, and its own behaviours it can perform using its array of characters.</p>
+
+<p>In the figure below, the (super-simplified) <code class="language-plaintext highlighter-rouge">String</code> class defines the data (<code class="language-plaintext highlighter-rouge">value</code>) and behaviours that all <code class="language-plaintext highlighter-rouge">String</code>s should have.
+Then we used that class to create two <em>instances</em> of <code class="language-plaintext highlighter-rouge">String</code>, i.e., two objects.
+Each of those objects have their own bit of data called <code class="language-plaintext highlighter-rouge">value</code> (in this case, an array of characters), and can perform actions using that <code class="language-plaintext highlighter-rouge">value</code>.</p>
+
+<p><img src="class-object.png" alt="A simplified String class and two example instances" /></p>
+
+<p>See the example in code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">firstString</span> <span class="o">=</span> <span class="s">"csc 203"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">secondString</span> <span class="o">=</span> <span class="s">"Object-oriented Programming"</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>The two variables <code class="language-plaintext highlighter-rouge">firstString</code> and <code class="language-plaintext highlighter-rouge">secondString</code> are both made out of the same <code class="language-plaintext highlighter-rouge">String</code> class, but they are two different objects, i.e., two distinct <em>instances</em> of the <code class="language-plaintext highlighter-rouge">String</code> class.</p>
+
+<h3 id="instance-methods">Instance methods</h3>
+
+<p>We can tell the objects to perform certain actions. This can be done by using the <em>dot operator</em> (<code class="language-plaintext highlighter-rouge">.</code>) and saying the name of the action we want to take.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">firstString</span> <span class="o">=</span> <span class="s">"csc 203"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">secondString</span> <span class="o">=</span> <span class="s">"Object-oriented Programming"</span><span class="o">;</span>
+
+<span class="nc">String</span> <span class="n">firstUpperCased</span> <span class="o">=</span> <span class="n">firstString</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>After the code above runs, the <code class="language-plaintext highlighter-rouge">firstUpperCased</code> variable will have the value <code class="language-plaintext highlighter-rouge">"CSC 203"</code>, because the <code class="language-plaintext highlighter-rouge">toUpperCase</code> action gives back the value of the <code class="language-plaintext highlighter-rouge">String</code> with its characters in upper-case.</p>
+
+<p>These actions can each object can perform are called <em>instance methods</em>.
+Instance methods act on particular objects, or <em>instances</em> of the class.
+Notice that the expression <code class="language-plaintext highlighter-rouge">firstString.toUpperCase()</code> is totally unaffected by the value of <code class="language-plaintext highlighter-rouge">secondString</code>.
+Hence the name.</p>
+
+<p><strong>What do you think would be the value of the following expressions?</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">secondString.toUpperCase()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">firstString.toUpperCase().toLowerCase()</code></li>
+</ul>
+
+<h2 id="a-code-example">A code example</h2>
+
+<p>Consider the following class definition. It defines a class that holds data representing a cohort of CS students, and some behaviours that each cohort object can perform using its own data.</p>
+
+<p>Take some time to study the code below and its accompanying annotations.</p>
+
+<object data="CsCohort.html" width="90%" height="100%"></object>
+
+<h3 id="encapsulation-or-information-hiding">Encapsulation, or, information hiding</h3>
+
+<p>Consider the <code class="language-plaintext highlighter-rouge">getYear</code>, <code class="language-plaintext highlighter-rouge">setYear</code>, <code class="language-plaintext highlighter-rouge">getEnrolled</code>, <code class="language-plaintext highlighter-rouge">getRetainedPercent</code>, <code class="language-plaintext highlighter-rouge">setRetainedPercent</code> methods above.
+They don’t do much beyond getting or setting the values of the appropriate variables.
+These are called <em>getter methods</em> (or <em>accessors</em>) and <em>setter methods</em> (or <em>mutators</em>).
+Because they are marked as <code class="language-plaintext highlighter-rouge">public</code> methods, they are visible to other classes, which means other classes can <em>get</em> or <em>set</em> the cohort’s <code class="language-plaintext highlighter-rouge">year</code> and so on.</p>
+
+<p>This should raise the question: why did we make the <code class="language-plaintext highlighter-rouge">year</code> (and other instance variables) <code class="language-plaintext highlighter-rouge">private</code> if we were going to expose access to those variables via <code class="language-plaintext highlighter-rouge">public</code> instance methods?</p>
+
+<p>The answer is <em>encapsulation</em>. When we make our instance variables <code class="language-plaintext highlighter-rouge">private</code>, we hide them from the outside world. We gain the following benefits:</p>
+
+<ul>
+  <li><strong>We can prevent mutations for some variables</strong>. For example, notice that <code class="language-plaintext highlighter-rouge">enrolled</code> does not have a setter method. We simply do not allow other classes to ever modify the <code class="language-plaintext highlighter-rouge">enrolled</code> value, which we could not have done if it was <code class="language-plaintext highlighter-rouge">public</code>.</li>
+  <li><strong>We can control mutations for some variables.</strong> In the <code class="language-plaintext highlighter-rouge">setRetainedPercent</code> method, we are able to perform some validity checks before accepting a new value for the retained percent. Specifically, because this is a percentage, we check that the input value is within the range 0–1.</li>
+  <li><strong>Finally, we <em>decouple</em> our class from other classes.</strong> By hiding these bits of information (as opposed to giving unfettered access to the internals of how our <code class="language-plaintext highlighter-rouge">CsCohort</code> works), we reduce the potential for <em>coupling</em> between our <code class="language-plaintext highlighter-rouge">CsCohort</code> class and other classes in our program.</li>
+</ul>
+
+<p><strong>What’s coupling?</strong> If classes are <em>tightly coupled</em>, they have to change together. Each time one of the classes changes, it will force changes in other classes to accommodate the changes in the first class. When classes are <em>loosely coupled</em>, they are mostly independent. This does not mean they don’t work together to make things happen; it just means that internals of the either of the classes can change without the other ever knowing about it.</p>
+
+<p>Encapsulation helps with this. By defaulting to making our instance variables <code class="language-plaintext highlighter-rouge">private</code>, we get a lot more control over the functionality that <code class="language-plaintext highlighter-rouge">CsCohort</code> presents to other classes.</p>
+
+<h2 id="using-existing-classes-in-java">Using existing classes in Java</h2>
+
+<h3 id="using-the-class-that-we-just-created">Using the class that we just created</h3>
+
+<p>We can create new instances of the <code class="language-plaintext highlighter-rouge">CsCohort</code> class like so:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">CsCohort</span> <span class="n">year1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CsCohort</span><span class="o">(</span><span class="mi">2012</span><span class="o">,</span> <span class="mi">132</span><span class="o">,</span> <span class="o">.</span><span class="mi">932</span><span class="o">);</span>
+<span class="nc">CsCohort</span> <span class="n">year2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CsCohort</span><span class="o">(</span><span class="mi">2013</span><span class="o">,</span> <span class="mi">172</span><span class="o">,</span> <span class="o">.</span><span class="mi">924</span><span class="o">);</span>
+<span class="nc">CsCohort</span> <span class="n">year3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CsCohort</span><span class="o">(</span><span class="mi">2014</span><span class="o">,</span> <span class="mi">157</span><span class="o">,</span> <span class="o">.</span><span class="mi">936</span><span class="o">);</span>
+<span class="nc">CsCohort</span> <span class="n">year4</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CsCohort</span><span class="o">(</span><span class="mi">2015</span><span class="o">,</span> <span class="mi">172</span><span class="o">,</span> <span class="o">.</span><span class="mi">977</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Each of the variables above points to a different object.
+Each object has its own data and its own behaviours that operate on that data.</p>
+
+<p>Remember the Java memory model.
+Each of those <code class="language-plaintext highlighter-rouge">CsCohort</code> variables (<code class="language-plaintext highlighter-rouge">year1</code>, <code class="language-plaintext highlighter-rouge">year2</code>, <code class="language-plaintext highlighter-rouge">year3</code>, <code class="language-plaintext highlighter-rouge">year4</code>) are <em>pointing</em> to the objects sitting somewhere else in memory.</p>
+
+<h3 id="other-existing-classes-in-java">Other existing classes in Java</h3>
+
+<p>Now that we know what <em>classes</em>, <em>objects</em>, and <em>instance methods</em> are, let’s look at some existing classes that are provided by the Java standard library.</p>
+
+<p>We have already seen one super commonly used class: the <code class="language-plaintext highlighter-rouge">String</code> class, which can reasonably be thought of as a <em>data structure</em> whose job it is to store and manipulate sequences of characters.</p>
+
+<p>In the rest of this lesson, we’ll talk about other data structures, specifically <em>lists</em> and <em>maps</em>.</p>
+
+<h4 id="lists">Lists</h4>
+
+<p>To talk about lists, we first need to talk about arrays.</p>
+
+<p>Recall from the first lesson that arrays are the most basic type of collection in Java.
+Its key difference from the <em>lists</em> you might be used to from Python is that arrays have <em>fixed sizes</em> and <em>fixed types</em>.</p>
+
+<p>The <em>fixed type</em> is due to Java’s static type system and fondness for (some degree of) type safety. That won’t change.</p>
+
+<p>However, we often do not know upfront how big we’re going to need a sequence of data to be.
+Arrays can be limiting in that regard.</p>
+
+<p>So the Java standard library provides a couple of <em>list</em> implementations that we can use.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">ArrayLists</code></strong></p>
+
+<p>The <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/ArrayList.html">ArrayList</a> class is provided in the Java Standard library.
+It is, essentially, a resizable array implementation.
+This means you can dynamically grow and shrink the size of the list by adding items to it or removing items from it.</p>
+
+<p>See the <code class="language-plaintext highlighter-rouge">CompareCohorts</code> class above for examples about how to create and use <code class="language-plaintext highlighter-rouge">ArrayLists</code>.</p>
+
+<p><em>Why would we want to use an <code class="language-plaintext highlighter-rouge">ArrayList</code> instead of a regular old array?</em> Easy. Its size can be dynamically changed, which makes it much more flexible.</p>
+
+<p><em>How does it work?</em> An <code class="language-plaintext highlighter-rouge">ArrayList</code> works by keeping track of an array behind the scenes. We call this the <em>backing array</em>. So suppose we declare and initialize an empty <code class="language-plaintext highlighter-rouge">ArrayList</code>.
+According to the documentation, Java by default creates a backing array of size 10, even though we haven’t added anything to the list as yet.</p>
+
+<p>For example, we declare the <code class="language-plaintext highlighter-rouge">ArrayList</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>And this is our backing array to begin with:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Suppose we add ten items to the list.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">:</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Our list’s backing array now looks like this:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>What happens when we add an 11th item?</em> In a regular array, that wouldn’t be possible. But an <code class="language-plaintext highlighter-rouge">ArrayList</code> allows us to do this. Here’s how.</p>
+
+<p>When the backing array becomes full, the <code class="language-plaintext highlighter-rouge">ArrayList</code> does the following:</p>
+
+<ol>
+  <li>It creates a <em>new</em> backing array that’s double the size of the previous one.</li>
+  <li>It transfers all the existing content from the old backing array into the new backing array.</li>
+  <li>It then adds the new item that we tried to add, that triggered this process in the first place.</li>
+</ol>
+
+<p><strong>The backing array is full, and we want to add the number <code class="language-plaintext highlighter-rouge">10</code> to the <code class="language-plaintext highlighter-rouge">ArrayList</code>.</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>We create a new backing array that’s double the size of the old one.</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>We copy the old contents into the new backing array.</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Finally, we add the newest bit of data to the backing array.</strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+      <td>9</td>
+      <td><strong>10</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <code class="language-plaintext highlighter-rouge">ArrayList</code> abstracts away all of these gory details, allowing us to deal with the list as simply a dynamically sizeable linear sequence of data.</p>
+
+<p>Because the backing data structure is an array, the <code class="language-plaintext highlighter-rouge">ArrayList</code> lets us access any arbitrary item in the list in <em>constant time</em> (\(\theta(1)\)), i.e., it takes the same amount of time no matter how large the list is.</p>
+
+<p>However, this comes with a cost: removing or adding items to the list can take <em>linear time</em> (\(\theta(n)\)) in the worst case, because all items in the backing might need to be shifted left (after removals) or right (before additions).</p>
+
+<p><code class="language-plaintext highlighter-rouge">LinkedLists</code></p>
+
+<p>The other type of list that Java provides is the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/LinkedList.html"><code class="language-plaintext highlighter-rouge">LinkedList</code></a>. We won’t belabour the point here, since you likely studied <code class="language-plaintext highlighter-rouge">LinkedLists</code> in the previous class.</p>
+
+<p>Unlike the <code class="language-plaintext highlighter-rouge">ArrayList</code>, the <code class="language-plaintext highlighter-rouge">LinkedList</code> is made up of a sequence of objects connected (“linked”) by pointers.
+Each item points to the next item, forming a chain of items, i.e., the linked list.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">LinkedList</code> is used very similarly:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">LinkedList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>It even has mostly the same methods as the <code class="language-plaintext highlighter-rouge">ArrayList</code>:</p>
+
+<ul>
+  <li>You can append items to the end of the list using <code class="language-plaintext highlighter-rouge">add</code>.</li>
+  <li>You can remove items from specified locations using <code class="language-plaintext highlighter-rouge">remove(i)</code> (where <code class="language-plaintext highlighter-rouge">i</code> is an index number).</li>
+  <li>You can get the <code class="language-plaintext highlighter-rouge">size</code> of the list, i.e., the number of items in the list.</li>
+  <li>You can check if the list contains an item using the <code class="language-plaintext highlighter-rouge">contains</code> method.</li>
+  <li>You can check if the list is empty by using the <code class="language-plaintext highlighter-rouge">isEmpty</code> method.</li>
+</ul>
+
+<p>So when should you use one vs. the other? Each one is better for certain kinds of tasks. The table below shows their time complexities in the worst case for various tasks.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Operation</th>
+      <th><code class="language-plaintext highlighter-rouge">ArrayList</code></th>
+      <th><code class="language-plaintext highlighter-rouge">LinkedList</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Random access</td>
+      <td>\(\theta(1)\)</td>
+      <td>\(\theta(n)\)</td>
+    </tr>
+    <tr>
+      <td>Add to end (append)</td>
+      <td>\(\theta(n)\)</td>
+      <td>\(\theta(1)\)</td>
+    </tr>
+    <tr>
+      <td>Add to arbitrary position</td>
+      <td>\(\theta(n)\)</td>
+      <td>\(\theta(n)\) to get to the position<br />\(\theta(1)\) to add the item</td>
+    </tr>
+    <tr>
+      <td>Remove (from a given position)</td>
+      <td>\(\theta(1)\) to get to the position<br />\(\theta(n)\) to remove the item and shift items in the list as appropriate</td>
+      <td>\(\theta(n)\) to get to the position<br />\(\theta(1)\) to perform the removal</td>
+    </tr>
+    <tr>
+      <td>Contains</td>
+      <td>\(\theta(n)\)</td>
+      <td>\(\theta(n)\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="maps">Maps</h2>
+
+<p>Next, we consider <em>maps</em>.
+A <em>map</em> in Java is an object that maps keys to values.
+Each key can map to at most one value, i.e., each key must be unique.</p>
+
+<p>The map is not unlike the <em>dict</em> structure you may be used to in Python.</p>
+
+<p>The commonly used map implementation in Java is the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/HashMap.html"><code class="language-plaintext highlighter-rouge">HashMap</code></a>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">HashMap</code> creates a pairing from keys to values, and allows fast (constant time) access to values, provided you have the key.
+This is useful when you need to quickly access individual records in a very large dataset.</p>
+
+<p>For example, suppose you have a <code class="language-plaintext highlighter-rouge">HashMap</code> where the <em>keys</em> are social security numbers (<code class="language-plaintext highlighter-rouge">long</code>) and the <em>values</em> are <code class="language-plaintext highlighter-rouge">Person</code> objects (assuming we, at some point, created a <code class="language-plaintext highlighter-rouge">Person</code> class).</p>
+
+<p>You can initialise the map like so:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">,</span> <span class="nc">Person</span><span class="o">&gt;</span> <span class="n">mapOfPeople</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>You add records into a map using the <code class="language-plaintext highlighter-rouge">put</code> method.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">123456789</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Joe"</span><span class="o">,</span> <span class="s">"Bro"</span><span class="o">));</span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">987654321</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Pooja"</span><span class="o">,</span> <span class="s">"Ahuja"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>Assuming you have the <em>key</em>, you can get the <em>value</em> from map using the <code class="language-plaintext highlighter-rouge">get</code> method. If the key does not exist in the map, you will get <code class="language-plaintext highlighter-rouge">null</code> in return.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapOfPeople</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">123456789</span><span class="o">);</span> <span class="c1">// will return Joe Bro</span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">987654321</span><span class="o">);</span> <span class="c1">// will return Pooja Ahuja </span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">192837465</span><span class="o">);</span> <span class="c1">// will return null, </span>
+</code></pre></div></div>
+
+<p>If you try to re-enter the same key, the map will <em>replace</em> whatever was there previously with the new item.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">123456789</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Joe"</span><span class="o">,</span> <span class="s">"Bro"</span><span class="o">));</span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">987654321</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Pooja"</span><span class="o">,</span> <span class="s">"Ahuja"</span><span class="o">));</span>
+
+<span class="c1">// Adding using a duplicate key</span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">123456789</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Cody"</span><span class="o">,</span> <span class="s">"Coderson"</span><span class="o">));</span> <span class="c1">// Joe Bro is now replaced by Cody Coderson</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">HashMap</code> provides the following functionality:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">put(key, value)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">get(key)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">getOrDefault(key, default)</code> — returns the specified <code class="language-plaintext highlighter-rouge">default</code> value instead of <code class="language-plaintext highlighter-rouge">null</code> if the <code class="language-plaintext highlighter-rouge">key</code> is not in the map</li>
+  <li><code class="language-plaintext highlighter-rouge">entrySet()</code> — obtains the entire set of entries from the map; this is useful if you need to do things like loop over all the map entries</li>
+  <li><code class="language-plaintext highlighter-rouge">isEmpty</code> — checks if the map is empty</li>
+  <li><code class="language-plaintext highlighter-rouge">containsKey(key)</code> — checks if the map contains the specified <code class="language-plaintext highlighter-rouge">key</code></li>
+</ul>
+
+<p>All of the concepts in this section are demonstrated in the <code class="language-plaintext highlighter-rouge">CompareCohorts</code> class below:</p>
+
+<object data="CompareCohorts.html" width="100%" height="100%"></object>
+
+    </div>
+    
+    <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    
+    </article>
+  </main>
+</body>
+</html>
