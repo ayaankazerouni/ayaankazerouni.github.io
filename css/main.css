@@ -298,7 +298,8 @@ footer .address {
 }
 
 code {
-  font-size: 1rem;
+  color: #E61726;
+  font-size: 0.9rem;
 }
 
 .tag {
@@ -348,32 +349,38 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
   font-family: "EB Garamond", serif;
 }
 
-.callout {
-  border-left: 4px solid;
+.callout, blockquote {
+  border-left: 4px solid #E61726;
+  background-color: rgba(243, 183, 183, 0.197);
   border-radius: 4px;
   padding: 0.5rem;
 }
-.callout::before {
+.callout::before, blockquote::before {
   display: block;
   font-weight: bold;
   font-size: 0.8em;
   font-family: "Muli", sans-serif;
 }
-.callout.ponder {
+.callout.todo, blockquote.todo {
+  border-color: rgb(148, 2, 206);
+  background-color: rgba(237, 146, 134, 0.2);
+}
+.callout.todo::before, blockquote.todo::before {
+  content: "TODO";
+  color: rgb(148, 2, 206);
+}
+.callout.ponder, blockquote.ponder {
   border-color: #e7af06;
   background-color: rgba(255, 235, 130, 0.2);
 }
-.callout.ponder::before {
+.callout.ponder::before, blockquote.ponder::before {
   content: "PONDER";
   color: #d3a10b;
 }
 
 blockquote {
-  font-style: normal;
-  color: #5e5c5c;
-  margin: 0;
+  background-color: unset;
   padding: 0 5px 0 8px;
-  border-left: 2pt solid #E61726;
 }
 
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
