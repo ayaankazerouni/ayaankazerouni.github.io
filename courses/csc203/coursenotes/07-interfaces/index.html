@@ -130,7 +130,8 @@ I don’t mean lists in any particular programming language—I just mean the <a
 Abstractly, we expect lists to support the following basic operations:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">add(item)</code> We should be able to add an item to the back of the list.</li>
+  <li><code class="language-plaintext highlighter-rouge">get(index): Object</code>: We should be able to get the item at the specified index.</li>
+  <li><code class="language-plaintext highlighter-rouge">add(item)</code>: We should be able to add an item to the back of the list.</li>
   <li><code class="language-plaintext highlighter-rouge">add(index, item)</code>: We should be able to add an item to the specified index in the list.</li>
   <li><code class="language-plaintext highlighter-rouge">remove(item): boolean</code>: We should be able to remove the specified item from the list, and tell the user if something was removed or not.</li>
   <li><code class="language-plaintext highlighter-rouge">remove(index): Object</code>: We should be able to remove an item from a specified index in the list, and return the item that was removed.</li>
@@ -184,6 +185,10 @@ The class <em>must</em> contain implementations for all the abstract methods tha
 <p>For example, here is what the <code class="language-plaintext highlighter-rouge">ArrayList</code> class might look like. It declares that it <code class="language-plaintext highlighter-rouge">implements</code> the <code class="language-plaintext highlighter-rouge">List</code> interface, and once it does so, it <em>must</em> include implementations (i.e., <em>non</em>-abstract, or “concrete” methods) for all the abstract methods that were declared in the interface.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayList</span> <span class="kd">implements</span> <span class="nc">List</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="no">E</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// omitted for brevity</span>
+  <span class="o">}</span>
+
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="no">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// omitted for brevity</span>
   <span class="o">}</span>
@@ -248,7 +253,41 @@ flowchart BT
 
 <p class="callout ponder">What’s the <strong>static type</strong> of the <code class="language-plaintext highlighter-rouge">points</code> variable above? What’s its <strong>dynamic type</strong>? When might we be faced with a situation where its useful or necessary to have these be different?</p>
 
-<p>In the next lesson, we’ll work through an example of creating our own interfaces and get a sense of how they are useful in software design.</p>
+<h2 id="why-is-this-useful">Why is this useful?</h2>
+
+<p>Recall our <a href="../06-class-design-process/">discussion on coupling and cohesion</a>.
+Our goal is to write <em>cohesive</em> classes that are <em>loosely coupled</em> with each other.
+If classes are tightly coupled, they have to change together, because they depend on each other’s implementation details.
+When classes are loosely coupled, they are mostly independent.
+They still work together to enable the system as a whole to function, but it means that a class in a larger system can be modified without other classes noticing, as long as its public interface stays the same.</p>
+
+<p>Usually, we achieve this by making all the data inside a class <code class="language-plaintext highlighter-rouge">private</code>.
+The idea is simple: if we hide internal implementation details (like the instance variables and methods that are only used internally), then other classes <em>can’t</em> depend on those implementation details.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">interface</code> construct in Java codifies this by creating a whole new “type”, just for the public interface.</p>
+
+<p>So for example, suppose you are writing a function in a statistics package that computes a mean from a collection of data.
+You would ideally make your function take a <code class="language-plaintext highlighter-rouge">List</code> as a parameter, instead of the more specific <code class="language-plaintext highlighter-rouge">ArrayList</code> or <code class="language-plaintext highlighter-rouge">LinkedList</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">mean</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="mf">0.0</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">current</span> <span class="o">:</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">current</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="k">return</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Some other module that is using this function is now free to use whatever list implementation it wants — the <code class="language-plaintext highlighter-rouge">ArrayList</code> or the <code class="language-plaintext highlighter-rouge">LinkedList</code>. 
+When that module calls your <code class="language-plaintext highlighter-rouge">mean</code> function, the input will be a <code class="language-plaintext highlighter-rouge">List</code> at compile time, but will be the specific list subtype at run tme.
+Dynamic dispatch will help the runtime figure out whether to call <code class="language-plaintext highlighter-rouge">ArrayList</code> methods or <code class="language-plaintext highlighter-rouge">LinkedList</code> methods while the program runs.</p>
+
+<p>Your <code class="language-plaintext highlighter-rouge">mean</code> function is <em>decoupled</em> from the specifics of how the other module is handling its data. It can use a <code class="language-plaintext highlighter-rouge">LinkedList</code>, an <code class="language-plaintext highlighter-rouge">ArrayList</code>, or some newfangled list type that we haven’t heard of, as long as it exposes a <code class="language-plaintext highlighter-rouge">List</code>-like interface; your function would never know the difference.</p>
 
 <hr />
 <div class="footnotes" role="doc-endnotes">

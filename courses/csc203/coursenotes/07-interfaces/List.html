@@ -355,105 +355,111 @@ table td, table th {
   <div id="casdoc" class="container">
     <div class="col-12" id="preamble-inject"></div>
     <pre class="col-12"><code class="language-java" id="root-content"><span class="codeline" id="line-1">/**</span>
-<span class="codeline" id="line-2"> * A super-simplified version of the Java List interface.</span>
+<span class="codeline" id="line-2"> * A super-simplified version the Java List interface.</span>
 <span class="codeline" id="line-3"> * For the actual interface's source code, see</span>
 <span class="codeline" id="line-4"> * </span>
 <span class="codeline" id="line-5"> * https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/List.java</span>
 <span class="codeline" id="line-6"> */</span>
-<span class="codeline" id="line-7"><span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-0" id="anc-1"><span class="marker custom">public interface List</span></span> {</span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-1" id="anc-4"><div class="marker custom"></div></div><div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-2" id="anc-5"><div class="marker custom"></div></div><span class="codeline" id="line-8">  /**</span>
-<span class="codeline" id="line-9">   * Appends the specified element to the end of the list.</span>
-<span class="codeline" id="line-10">   * @param e element to be appended to this list.</span>
+<span class="codeline" id="line-7"><span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-12" id="anc-13"><span class="marker custom">public interface List</span></span> {</span>
+<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-13" id="anc-16"><div class="marker custom"></div></div><div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-14" id="anc-17"><div class="marker custom"></div></div><span class="codeline" id="line-8">  /**</span>
+<span class="codeline" id="line-9">   * Returns the element at the specified index.</span>
+<span class="codeline" id="line-10">   * @param index the position from which to return an element.</span>
 <span class="codeline" id="line-11">   */</span></div>
-<span class="codeline" id="line-12">  void add(<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-3" id="anc-2"><span class="marker custom">E e</span></span>);</span>
-<span class="codeline" id="line-13"></span></div>
-<span class="codeline" id="line-14"></span>
-<span class="codeline" id="line-15">  /**</span>
-<span class="codeline" id="line-16">   * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any)</span>
-<span class="codeline" id="line-17">   * and any subsequent elements to the right.</span>
-<span class="codeline" id="line-18">   * </span>
-<span class="codeline" id="line-19">   * @param index index at which the specified element is to be inserted.</span>
-<span class="codeline" id="line-20">   * @param e element to be inserted.</span>
-<span class="codeline" id="line-21">   */</span>
-<span class="codeline" id="line-22">  void <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-5" id="anc-3"><span class="marker custom">add</span></span>(int index, E e);</span>
-<span class="codeline" id="line-23"></span>
-<span class="codeline" id="line-24">  /**</span>
-<span class="codeline" id="line-25">   * Removes the first occurrence of the specified element from this list.</span>
-<span class="codeline" id="line-26">   * </span>
-<span class="codeline" id="line-27">   * @param e The element to be removed from this list, if present.</span>
-<span class="codeline" id="line-28">   * @return {@code true} if this list contained the specified element.</span>
-<span class="codeline" id="line-29">   */</span>
-<span class="codeline" id="line-30">  boolean remove(E e);</span>
-<span class="codeline" id="line-31"></span>
-<span class="codeline" id="line-32">  /**</span>
-<span class="codeline" id="line-33">   * Removes the element at the specified position in this list.</span>
-<span class="codeline" id="line-34">   * Shifts any subsequent elements to the left.</span>
-<span class="codeline" id="line-35">   * </span>
-<span class="codeline" id="line-36">   * @param index the index of the element to be removed.</span>
-<span class="codeline" id="line-37">   * @return the element at the previously specified position.</span>
-<span class="codeline" id="line-38">   */</span>
-<span class="codeline" id="line-39">  E remove(int index);</span>
-<span class="codeline" id="line-40"></span>
-<span class="codeline" id="line-41">  /**</span>
-<span class="codeline" id="line-42">   * Returns {@code true} if this list contains the specified element.</span>
-<span class="codeline" id="line-43">   * </span>
-<span class="codeline" id="line-44">   * @param e element whose presence in this list is to be tested.</span>
-<span class="codeline" id="line-45">   * @return {@code true} if this list contains the specified element.</span>
-<span class="codeline" id="line-46">   */</span>
-<span class="codeline" id="line-47">  boolean contains(E e);</span>
-<span class="codeline" id="line-48"></span>
-<span class="codeline" id="line-49">  /**</span>
-<span class="codeline" id="line-50">   * Returns the number of elements in this list. </span>
-<span class="codeline" id="line-51">   * @return the number of elements in this list.</span>
+<span class="codeline" id="line-12">  <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-15" id="anc-14"><span class="marker custom">E</span></span> get(int index);</span></div>
+<span class="codeline" id="line-13"></span>
+<span class="codeline" id="line-14">  /**</span>
+<span class="codeline" id="line-15">   * Appends the specified element to the end of the list.</span>
+<span class="codeline" id="line-16">   * @param e element to be appended to this list.</span>
+<span class="codeline" id="line-17">   */</span>
+<span class="codeline" id="line-18">  void add(E e);</span>
+<span class="codeline" id="line-19"></span>
+<span class="codeline" id="line-20"></span>
+<span class="codeline" id="line-21">  /**</span>
+<span class="codeline" id="line-22">   * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any)</span>
+<span class="codeline" id="line-23">   * and any subsequent elements to the right.</span>
+<span class="codeline" id="line-24">   * </span>
+<span class="codeline" id="line-25">   * @param index index at which the specified element is to be inserted.</span>
+<span class="codeline" id="line-26">   * @param e element to be inserted.</span>
+<span class="codeline" id="line-27">   */</span>
+<span class="codeline" id="line-28">  void <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-17" id="anc-15"><span class="marker custom">add</span></span>(int index, E e);</span>
+<span class="codeline" id="line-29"></span>
+<span class="codeline" id="line-30">  /**</span>
+<span class="codeline" id="line-31">   * Removes the first occurrence of the specified element from this list.</span>
+<span class="codeline" id="line-32">   * </span>
+<span class="codeline" id="line-33">   * @param e The element to be removed from this list, if present.</span>
+<span class="codeline" id="line-34">   * @return {@code true} if this list contained the specified element.</span>
+<span class="codeline" id="line-35">   */</span>
+<span class="codeline" id="line-36">  boolean remove(E e);</span>
+<span class="codeline" id="line-37"></span>
+<span class="codeline" id="line-38">  /**</span>
+<span class="codeline" id="line-39">   * Removes the element at the specified position in this list.</span>
+<span class="codeline" id="line-40">   * Shifts any subsequent elements to the left.</span>
+<span class="codeline" id="line-41">   * </span>
+<span class="codeline" id="line-42">   * @param index the index of the element to be removed.</span>
+<span class="codeline" id="line-43">   * @return the element at the previously specified position.</span>
+<span class="codeline" id="line-44">   */</span>
+<span class="codeline" id="line-45">  E remove(int index);</span>
+<span class="codeline" id="line-46"></span>
+<span class="codeline" id="line-47">  /**</span>
+<span class="codeline" id="line-48">   * Returns {@code true} if this list contains the specified element.</span>
+<span class="codeline" id="line-49">   * </span>
+<span class="codeline" id="line-50">   * @param e element whose presence in this list is to be tested.</span>
+<span class="codeline" id="line-51">   * @return {@code true} if this list contains the specified element.</span>
 <span class="codeline" id="line-52">   */</span>
-<span class="codeline" id="line-53">  int size();</span>
-<span class="codeline" id="line-54">}</span></code></pre>
+<span class="codeline" id="line-53">  boolean contains(E e);</span>
+<span class="codeline" id="line-54"></span>
+<span class="codeline" id="line-55">  /**</span>
+<span class="codeline" id="line-56">   * Returns the number of elements in this list. </span>
+<span class="codeline" id="line-57">   * @return the number of elements in this list.</span>
+<span class="codeline" id="line-58">   */</span>
+<span class="codeline" id="line-59">  int size();</span>
+<span class="codeline" id="line-60">}</span></code></pre>
     <div class="col-12" id="footer-inject"><span>Created with <a href="https://www.cs.mcgill.ca/~martin/casdoc/">Casdoc</a>, a project led by <a href="https://www.cs.mcgill.ca/~mnassif/">Mathieu Nassif</a> and <a href="https://www.cs.mcgill.ca/~martin/">Martin Robillard</a></span></div>
   </div>
-  <div id="annotations"><template class="annotation popover-custom" id="pop-4">
-<span class="ann-title">placeholder</span>
-<div class="ann-short"><div><p>We will talk more about <em>Java generics</em> later this quarter.</p>
-</div></div>
-<div class="ann-long"><div><p>We will talk more about <em>Java generics</em> later this quarter.</p>
-</div></div>
-<span class="ann-backlinks">pop-3</span>
-</template><template class="annotation popover-custom" id="pop-5">
-<span class="ann-title">add</span>
-<div class="ann-short"><div><p>This is an overload of the <code>add</code> method. See the lesson on method dispatch for a review of method overloading.</p>
-</div></div>
-<div class="ann-long"><div><p>This is an overload of the <code>add</code> method. See the lesson on method dispatch for a review of method overloading.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-2">
-<span class="ann-title">Documentation is important!</span>
-<div class="ann-short"><div><p>In addition to the method signature, it's important for interface abstract methods to include Javadoc comments describing the method's purpose. These examples are pared down for simplicity—see the actual Java List interface for the type of detail that might be included in a Javadoc comment.</p>
-</div></div>
-<div class="ann-long"><div><p>In addition to the method signature, it's important for interface abstract methods to include Javadoc comments describing the method's purpose. These examples are pared down for simplicity—see the actual Java List interface for the type of detail that might be included in a Javadoc comment.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-3">
-<span class="ann-title">E e</span>
-<div class="ann-short"><div><p>The parameter type <code>E</code> is a <span class="anchor inline hover-zone popover-anchor" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-4" id="anc-6"><span class="marker custom">placeholder</span></span>. This list might be used as a list of ints or Strings or anything else.</p>
-</div></div>
-<div class="ann-long"><div><p>The parameter type <code>E</code> is a <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-4" id="anc-8"><span class="marker custom">placeholder</span></span>. This list might be used as a list of ints or Strings or anything else.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-0">
-<span class="ann-title">public interface List</span>
-<div class="ann-short"><div><p>Interface declaration. This interface contains only method signatures, and no method implementations. These types of methods are called "abstract methods". They don't do anything—they merely define a contract that all lists must fulfill.</p>
-</div></div>
-<div class="ann-long"><div><p>Interface declaration. This interface contains only method signatures, and no method implementations. These types of methods are called "abstract methods". They don't do anything—they merely define a contract that all lists must fulfill.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-1">
+  <div id="annotations"><template class="annotation popover-custom" id="pop-13">
 <span class="ann-title">Abstract methods</span>
 <div class="ann-short"><div><p>This method only has a method signature, and no body. This is known as an abstract method. Observe that there are no curly braces after the method signature (i.e., no method body). We also don't include an access modifier (like public or private), since all methods in an interface are public by default.</p>
 </div></div>
 <div class="ann-long"><div><p>This method only has a method signature, and no body. This is known as an abstract method. Observe that there are no curly braces after the method signature (i.e., no method body). We also don't include an access modifier (like public or private), since all methods in an interface are public by default.</p>
 </div></div>
 <span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-14">
+<span class="ann-title">Documentation is important!</span>
+<div class="ann-short"><div><p>In addition to the method signature, it's important for interface abstract methods to include Javadoc comments describing the method's purpose. These examples are pared down for simplicity—see the actual Java List interface for the type of detail that might be included in a Javadoc comment.</p>
+</div></div>
+<div class="ann-long"><div><p>In addition to the method signature, it's important for interface abstract methods to include Javadoc comments describing the method's purpose. These examples are pared down for simplicity—see the actual Java List interface for the type of detail that might be included in a Javadoc comment.</p>
+</div></div>
+<span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-12">
+<span class="ann-title">public interface List</span>
+<div class="ann-short"><div><p>Interface declaration. This interface contains only method signatures, and no method implementations. These types of methods are called "abstract methods". They don't do anything—they merely define a contract that all lists must fulfill.</p>
+</div></div>
+<div class="ann-long"><div><p>Interface declaration. This interface contains only method signatures, and no method implementations. These types of methods are called "abstract methods". They don't do anything—they merely define a contract that all lists must fulfill.</p>
+</div></div>
+<span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-17">
+<span class="ann-title">add</span>
+<div class="ann-short"><div><p>This is an overload of the <code>add</code> method. See the lesson on method dispatch for a review of method overloading.</p>
+</div></div>
+<div class="ann-long"><div><p>This is an overload of the <code>add</code> method. See the lesson on method dispatch for a review of method overloading.</p>
+</div></div>
+<span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-15">
+<span class="ann-title">E</span>
+<div class="ann-short"><div><p>This return type <code>E</code> is a <span class="anchor inline hover-zone popover-anchor" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-16" id="anc-18"><span class="marker custom">placeholder</span></span>. This list might be used as a list of ints or Strings or anything else.</p>
+</div></div>
+<div class="ann-long"><div><p>This return type <code>E</code> is a <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-16" id="anc-20"><span class="marker custom">placeholder</span></span>. This list might be used as a list of ints or Strings or anything else.</p>
+</div></div>
+<span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-16">
+<span class="ann-title">placeholder</span>
+<div class="ann-short"><div><p>We will talk more about <em>Java generics</em> later this quarter.</p>
+</div></div>
+<div class="ann-long"><div><p>We will talk more about <em>Java generics</em> later this quarter.</p>
+</div></div>
+<span class="ann-backlinks">pop-15</span>
 </template></div>
-  <div id="sequence"><span class="sequence" annotation-ids="pop-0,pop-1,pop-2"></span></div>
+  <div id="sequence"><span class="sequence" annotation-ids="pop-12,pop-13,pop-14,pop-15,pop-17"></span></div>
 
 
 </body></html>
