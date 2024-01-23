@@ -364,76 +364,80 @@ table td, table th {
 <span class="codeline" id="line-8"> * class.</span>
 <span class="codeline" id="line-9"> */</span>
 <span class="codeline" id="line-10">public class Game {</span>
-<span class="codeline" id="line-11">   public static void main(<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-3" id="anc-1"><span class="marker javadoc">String</span></span>[] args) {</span>
-<span class="codeline" id="line-12">      <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popc-1" id="anc-2"><span class="marker javadoc custom">Scanner in = new Scanner(System.in);</span></span></span>
+<span class="codeline" id="line-11">   public static void main(<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-127"><span class="marker javadoc">String</span></span>[] args) {</span>
+<span class="codeline" id="line-12">      <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popc-7" id="anc-128"><span class="marker javadoc custom">Scanner in = new Scanner(System.in);</span></span></span>
 <span class="codeline" id="line-13"></span>
-<span class="codeline" id="line-14">      <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-3" id="anc-4"><span class="marker javadoc">String</span></span> <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-1" id="anc-3"><span class="marker custom">name</span></span>;</span>
+<span class="codeline" id="line-14">      <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-130"><span class="marker javadoc">String</span></span> <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-85" id="anc-129"><span class="marker custom">name</span></span>;</span>
 <span class="codeline" id="line-15"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-2" id="anc-23"><div class="marker custom"></div></div><span class="codeline" id="line-16">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-6"><span class="marker javadoc">out</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-5" id="anc-5"><span class="marker javadoc">print</span></span>("Player 1's name? ");</span>
-<span class="codeline" id="line-17">      name = <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popc-2" id="anc-7"><span class="marker javadoc custom">in.next()</span></span>;</span>
+<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-86" id="anc-149"><div class="marker custom"></div></div><span class="codeline" id="line-16">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-132"><span class="marker javadoc">out</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-9" id="anc-131"><span class="marker javadoc">print</span></span>("Player 1's name? ");</span>
+<span class="codeline" id="line-17">      name = <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popc-8" id="anc-133"><span class="marker javadoc custom">in.next()</span></span>;</span>
 <span class="codeline" id="line-18">      Player p1 = new Player(name);</span>
 <span class="codeline" id="line-19"></span>
-<span class="codeline" id="line-20">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-9"><span class="marker javadoc">out</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-5" id="anc-8"><span class="marker javadoc">print</span></span>("Player 2's name? ");</span>
-<span class="codeline" id="line-21">      name = in.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-6" id="anc-10"><span class="marker javadoc">next</span></span>();</span>
-<span class="codeline" id="line-22">      Player p2 = new Player(name);</span>
-<span class="codeline" id="line-23"></span></div>
-<span class="codeline" id="line-24">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-12"><span class="marker javadoc">out</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-5" id="anc-11"><span class="marker javadoc">print</span></span>("How many sticks? ");</span>
-<span class="codeline" id="line-25">      int numSticks = <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popc-3" id="anc-13"><span class="marker javadoc custom">in.nextInt()</span></span>;</span>
-<span class="codeline" id="line-26">      Pile pile = new Pile(numSticks);</span>
+<span class="codeline" id="line-20">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-135"><span class="marker javadoc">out</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-9" id="anc-134"><span class="marker javadoc">print</span></span>("Player 2's name? ");</span>
+<span class="codeline" id="line-21">      name = in.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-10" id="anc-136"><span class="marker javadoc">next</span></span>();</span>
+<span class="codeline" id="line-22">      Player p2 = new Player(name);</span></div>
+<span class="codeline" id="line-23"></span>
+<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-88" id="anc-150"><div class="marker custom"></div></div><span class="codeline" id="line-24">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-138"><span class="marker javadoc">out</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-9" id="anc-137"><span class="marker javadoc">print</span></span>("How many sticks? ");</span>
+<span class="codeline" id="line-25">      int numSticks = <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popc-9" id="anc-139"><span class="marker javadoc custom">in.nextInt()</span></span>;</span>
+<span class="codeline" id="line-26">      Pile pile = new Pile(numSticks);</span></div>
 <span class="codeline" id="line-27"></span>
 <span class="codeline" id="line-28">      boolean done = false; // This is our flag to check if the game is over or not.</span>
 <span class="codeline" id="line-29"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-6" id="anc-24"><div class="marker custom"></div></div><span class="codeline" id="line-30">      while (!done) {</span>
-<span class="codeline" id="line-31">         System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-14"><span class="marker javadoc">out</span></span>.print(p1.getName() + ", how many sticks do you want to take? ");</span>
-<span class="codeline" id="line-32">         int sticksToRemove = in.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-7" id="anc-15"><span class="marker javadoc">nextInt</span></span>();</span>
+<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-90" id="anc-151"><div class="marker custom"></div></div><span class="codeline" id="line-30">      while (!done) {</span>
+<span class="codeline" id="line-31">         System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-140"><span class="marker javadoc">out</span></span>.print(p1.getName() + ", how many sticks do you want to take? ");</span>
+<span class="codeline" id="line-32">         int sticksToRemove = in.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-11" id="anc-141"><span class="marker javadoc">nextInt</span></span>();</span>
 <span class="codeline" id="line-33"></span>
 <span class="codeline" id="line-34">         p1.takeTurn(pile, sticksToRemove);</span>
-<span class="codeline" id="line-35">         System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-16"><span class="marker javadoc">out</span></span>.println(p1 + " takes " + sticksToRemove + " stick(s).\n" +</span>
+<span class="codeline" id="line-35">         System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-142"><span class="marker javadoc">out</span></span>.println(p1 + " takes " + sticksToRemove + " stick(s).\n" +</span>
 <span class="codeline" id="line-36">               "There are " + pile.getSticks() + " left in the pile.");</span>
 <span class="codeline" id="line-37"></span>
 <span class="codeline" id="line-38">         if (pile.getSticks() &lt;= 0) {</span>
 <span class="codeline" id="line-39">            done = true;</span>
-<span class="codeline" id="line-40">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-17"><span class="marker javadoc">out</span></span>.println(p2 + " is the winner");</span>
+<span class="codeline" id="line-40">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-143"><span class="marker javadoc">out</span></span>.println(p2 + " is the winner");</span>
 <span class="codeline" id="line-41">         } else {</span>
-<span class="codeline" id="line-42">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-18"><span class="marker javadoc">out</span></span>.print(p2.getName() + ", how many sticks do you want to take? ");</span>
-<span class="codeline" id="line-43">            sticksToRemove = in.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-7" id="anc-19"><span class="marker javadoc">nextInt</span></span>();</span>
+<span class="codeline" id="line-42">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-144"><span class="marker javadoc">out</span></span>.print(p2.getName() + ", how many sticks do you want to take? ");</span>
+<span class="codeline" id="line-43">            sticksToRemove = in.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-11" id="anc-145"><span class="marker javadoc">nextInt</span></span>();</span>
 <span class="codeline" id="line-44">            p2.takeTurn(pile, sticksToRemove);</span>
-<span class="codeline" id="line-45">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-20"><span class="marker javadoc">out</span></span>.println(p2 + " takes " + sticksToRemove + " stick(s).\n" +</span>
+<span class="codeline" id="line-45">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-146"><span class="marker javadoc">out</span></span>.println(p2 + " takes " + sticksToRemove + " stick(s).\n" +</span>
 <span class="codeline" id="line-46">                  "There are " + pile.getSticks() + " left in the pile.");</span>
 <span class="codeline" id="line-47"></span>
 <span class="codeline" id="line-48">            if (pile.getSticks() &lt;= 0) {</span>
 <span class="codeline" id="line-49">               done = true;</span>
-<span class="codeline" id="line-50">               System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-21"><span class="marker javadoc">out</span></span>.println(p1 + " is the winner");</span>
+<span class="codeline" id="line-50">               System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-147"><span class="marker javadoc">out</span></span>.println(p1 + " is the winner");</span>
 <span class="codeline" id="line-51">            }</span>
 <span class="codeline" id="line-52">         }</span>
 <span class="codeline" id="line-53">      }</span></div>
 <span class="codeline" id="line-54"></span>
-<span class="codeline" id="line-55">      in.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-8" id="anc-22"><span class="marker javadoc">close</span></span>();</span>
+<span class="codeline" id="line-55">      in.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-12" id="anc-148"><span class="marker javadoc">close</span></span>();</span>
 <span class="codeline" id="line-56">   }</span>
 <span class="codeline" id="line-57">}</span></code></pre>
     <div class="col-12" id="footer-inject"><span>Created with <a href="https://www.cs.mcgill.ca/~martin/casdoc/">Casdoc</a>, a project led by <a href="https://www.cs.mcgill.ca/~mnassif/">Mathieu Nassif</a> and <a href="https://www.cs.mcgill.ca/~martin/">Martin Robillard</a></span></div>
   </div>
-  <div id="annotations"><template class="annotation popover-custom" id="pop-6">
-<span class="ann-title">Playing the game</span>
-<div class="ann-short"><div><p>We will play the game until the pile is empty.</p>
-<p>Can you think of design or code style improvements you can make to this
-code?</p>
-</div></div>
-<div class="ann-long"><div><p>We will play the game until the pile is empty.</p>
-<p>Can you think of design or code style improvements you can make to this
-code?</p>
-</div></div>
+  <div id="annotations"><template class="annotation popover-javadoc" id="popj-9">
+<span class="ann-title">print(String)</span>
+<div class="ann-short"><div>Prints a string.  If the argument is <code>null</code> then the string
+ <code>"null"</code> is printed.  Otherwise, the string's characters are
+ converted into bytes according to the character encoding given to the
+ constructor, or the default charset if none
+ specified. These bytes are written in exactly the manner of the
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#write(int)" target="_blank"><code>write(int)</code></a> method.</div></div>
+<div class="ann-long"><div><div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">print</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&nbsp;s)</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#print(java.lang.String)"></a></div><div class="block">Prints a string.  If the argument is <code>null</code> then the string
+ <code>"null"</code> is printed.  Otherwise, the string's characters are
+ converted into bytes according to the character encoding given to the
+ constructor, or the default charset if none
+ specified. These bytes are written in exactly the manner of the
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#write(int)" target="_blank"><code>write(int)</code></a> method.</div><dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>s</code> - The <code>String</code> to be printed</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/nio/charset/Charset.html#defaultCharset()" target="_blank"><code>Charset.defaultCharset()</code></a></li>
+</ul>
+</dd>
+</dl></div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-2">
-<span class="ann-title">Constructing the players</span>
-<div class="ann-short"><div><p>We will construct two <code>Player</code> objects, one for each player, using
-the names that are provided.</p>
-</div></div>
-<div class="ann-long"><div><p>We will construct two <code>Player</code> objects, one for each player, using
-the names that are provided.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-8">
+</template><template class="annotation popover-javadoc" id="popj-12">
 <span class="ann-title">close()</span>
 <div class="ann-short"><div>Closes this scanner.
 
@@ -453,18 +457,7 @@ the names that are provided.</p>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Closeable.html#close()" target="_blank">close</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Closeable.html" title="interface in java.io" target="_blank">Closeable</a></code></dd>
 </dl></div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-1">
-<span class="ann-title">name</span>
-<div class="ann-short"><div><p>A local variable to temporarily hold each player's name (we will ask for them
-one-by-one). Each name will be used to construct a new <code>Player</code>
-object.</p>
-</div></div>
-<div class="ann-long"><div><p>A local variable to temporarily hold each player's name (we will ask for them
-one-by-one). Each name will be used to construct a new <code>Player</code>
-object.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-7">
+</template><template class="annotation popover-javadoc" id="popj-11">
 <span class="ann-title">nextInt()</span>
 <div class="ann-short"><div>Scans the next token of the input as an <code>int</code>.
 
@@ -484,7 +477,7 @@ object.</p>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/IllegalStateException.html" title="class in java.lang" target="_blank">IllegalStateException</a></code> - if this scanner is closed</dd>
 </dl></div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-6">
+</template><template class="annotation popover-javadoc" id="popj-10">
 <span class="ann-title">next()</span>
 <div class="ann-short"><div>Finds and returns the next complete token from this scanner.
  A complete token is preceded and followed by input that matches
@@ -511,74 +504,7 @@ object.</p>
 </dd>
 </dl></div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-5">
-<span class="ann-title">print(String)</span>
-<div class="ann-short"><div>Prints a string.  If the argument is <code>null</code> then the string
- <code>"null"</code> is printed.  Otherwise, the string's characters are
- converted into bytes according to the character encoding given to the
- constructor, or the default charset if none
- specified. These bytes are written in exactly the manner of the
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#write(int)" target="_blank"><code>write(int)</code></a> method.</div></div>
-<div class="ann-long"><div><div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">print</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&nbsp;s)</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#print(java.lang.String)"></a></div><div class="block">Prints a string.  If the argument is <code>null</code> then the string
- <code>"null"</code> is printed.  Otherwise, the string's characters are
- converted into bytes according to the character encoding given to the
- constructor, or the default charset if none
- specified. These bytes are written in exactly the manner of the
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#write(int)" target="_blank"><code>write(int)</code></a> method.</div><dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>s</code> - The <code>String</code> to be printed</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/nio/charset/Charset.html#defaultCharset()" target="_blank"><code>Charset.defaultCharset()</code></a></li>
-</ul>
-</dd>
-</dl></div></div>
-<span class="ann-backlinks"></span>
 </template><template class="annotation popover-javadoc" id="popj-4">
-<span class="ann-title">out</span>
-<div class="ann-short"><div>The "standard" output stream. This stream is already
- open and ready to accept output data. Typically this stream
- corresponds to display output or another output destination
- specified by the host environment or user. The encoding used
- in the conversion from characters to bytes is equivalent to
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a> if the <code>Console</code> exists,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a> otherwise.
- </div></div>
-<div class="ann-long"><div><div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html" title="class in java.io" target="_blank">PrintStream</a></span>&nbsp;<span class="element-name">out</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#out"></a></div><div class="block">The "standard" output stream. This stream is already
- open and ready to accept output data. Typically this stream
- corresponds to display output or another output destination
- specified by the host environment or user. The encoding used
- in the conversion from characters to bytes is equivalent to
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a> if the <code>Console</code> exists,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a> otherwise.
- <p>
- For simple stand-alone Java applications, a typical way to write
- a line of output data is:
- </p><blockquote><pre>     System.out.println(data)
- </pre></blockquote>
- <p></p><p>
- See the <code>println</code> methods in class <code>PrintStream</code>.</p></div><dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list-long">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>PrintStream.println()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(boolean)" target="_blank"><code>PrintStream.println(boolean)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(char)" target="_blank"><code>PrintStream.println(char)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(char%5B%5D)" target="_blank"><code>PrintStream.println(char[])</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(double)" target="_blank"><code>PrintStream.println(double)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(float)" target="_blank"><code>PrintStream.println(float)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(int)" target="_blank"><code>PrintStream.println(int)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(long)" target="_blank"><code>PrintStream.println(long)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.Object)" target="_blank"><code>PrintStream.println(java.lang.Object)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.String)" target="_blank"><code>PrintStream.println(java.lang.String)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a></li>
-</ul>
-</dd>
-</dl></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-3">
 <span class="ann-title">java.lang.String</span>
 <div class="ann-short"><div>The <code>String</code> class represents character strings. All
  string literals in Java programs, such as <code>"abc"</code>, are
@@ -662,7 +588,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base
 </dd>
 </dl></div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc popover-custom" id="popc-3">
+</template><template class="annotation popover-javadoc popover-custom" id="popc-9">
 <span class="ann-title">in.nextInt() | nextInt()</span>
 <div class="ann-short"><div><strong class="small-pop-header">in.nextInt()</strong><div><div><p>The Scanner's <code>nextInt</code> instance method waits for the user to type some text
 and then hit "Enter". It parses the text into an integer, and returns an int.</p>
@@ -688,7 +614,14 @@ and then hit "Enter". It parses the text into an integer, and returns an int.</p
 <dd><code><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/IllegalStateException.html" title="class in java.lang" target="_blank">IllegalStateException</a></code> - if this scanner is closed</dd>
 </dl></div></div></div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc popover-custom" id="popc-2">
+</template><template class="annotation popover-custom" id="pop-88">
+<span class="ann-title">Constructing the Pile of sticks</span>
+<div class="ann-short"><div><p>We ask the user how many sticks they want to use in the game, and then construct a new <code>Pile</code> object with that many sticks.</p>
+</div></div>
+<div class="ann-long"><div><p>We ask the user how many sticks they want to use in the game, and then construct a new <code>Pile</code> object with that many sticks.</p>
+</div></div>
+<span class="ann-backlinks"></span>
+</template><template class="annotation popover-javadoc popover-custom" id="popc-8">
 <span class="ann-title">in.next() | next()</span>
 <div class="ann-short"><div><strong class="small-pop-header">in.next()</strong><div><div><p>The Scanner's <code>next</code> instance method waits for the user to type some text
 and then hit "Enter". It returns whatever the user typed.</p>
@@ -719,7 +652,50 @@ and then hit "Enter". It returns whatever the user typed.</p>
 </dd>
 </dl></div></div></div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc popover-custom" id="popc-1">
+</template><template class="annotation popover-javadoc" id="popj-0">
+<span class="ann-title">out</span>
+<div class="ann-short"><div>The "standard" output stream. This stream is already
+ open and ready to accept output data. Typically this stream
+ corresponds to display output or another output destination
+ specified by the host environment or user. The encoding used
+ in the conversion from characters to bytes is equivalent to
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a> if the <code>Console</code> exists,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a> otherwise.
+ </div></div>
+<div class="ann-long"><div><div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html" title="class in java.io" target="_blank">PrintStream</a></span>&nbsp;<span class="element-name">out</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#out"></a></div><div class="block">The "standard" output stream. This stream is already
+ open and ready to accept output data. Typically this stream
+ corresponds to display output or another output destination
+ specified by the host environment or user. The encoding used
+ in the conversion from characters to bytes is equivalent to
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a> if the <code>Console</code> exists,
+ <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a> otherwise.
+ <p>
+ For simple stand-alone Java applications, a typical way to write
+ a line of output data is:
+ </p><blockquote><pre>     System.out.println(data)
+ </pre></blockquote>
+ <p></p><p>
+ See the <code>println</code> methods in class <code>PrintStream</code>.</p></div><dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list-long">
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>PrintStream.println()</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(boolean)" target="_blank"><code>PrintStream.println(boolean)</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(char)" target="_blank"><code>PrintStream.println(char)</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(char%5B%5D)" target="_blank"><code>PrintStream.println(char[])</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(double)" target="_blank"><code>PrintStream.println(double)</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(float)" target="_blank"><code>PrintStream.println(float)</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(int)" target="_blank"><code>PrintStream.println(int)</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(long)" target="_blank"><code>PrintStream.println(long)</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.Object)" target="_blank"><code>PrintStream.println(java.lang.Object)</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.String)" target="_blank"><code>PrintStream.println(java.lang.String)</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a></li>
+<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a></li>
+</ul>
+</dd>
+</dl></div></div>
+<span class="ann-backlinks"></span>
+</template><template class="annotation popover-javadoc popover-custom" id="popc-7">
 <span class="ann-title">Scanner in = new Scanner(System.in); | in | ...</span>
 <div class="ann-short"><div><strong class="small-pop-header">Scanner in = new Scanner(System.in);</strong><div><div><p>The <code>Scanner</code> class is used to get string input from various
 sources.
@@ -1287,8 +1263,39 @@ implements <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base
 <dd>1.5</dd>
 </dl></div></div></div></div>
 <span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-86">
+<span class="ann-title">Constructing the players</span>
+<div class="ann-short"><div><p>We will construct two <code>Player</code> objects, one for each player, using
+the names that are provided.</p>
+</div></div>
+<div class="ann-long"><div><p>We will construct two <code>Player</code> objects, one for each player, using
+the names that are provided.</p>
+</div></div>
+<span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-85">
+<span class="ann-title">name</span>
+<div class="ann-short"><div><p>A local variable to temporarily hold each player's name (we will ask for them
+one-by-one). Each name will be used to construct a new <code>Player</code>
+object.</p>
+</div></div>
+<div class="ann-long"><div><p>A local variable to temporarily hold each player's name (we will ask for them
+one-by-one). Each name will be used to construct a new <code>Player</code>
+object.</p>
+</div></div>
+<span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-90">
+<span class="ann-title">Playing the game</span>
+<div class="ann-short"><div><p>We will play the game until the pile is empty.</p>
+<p>Can you think of design or code style improvements you can make to this
+code?</p>
+</div></div>
+<div class="ann-long"><div><p>We will play the game until the pile is empty.</p>
+<p>Can you think of design or code style improvements you can make to this
+code?</p>
+</div></div>
+<span class="ann-backlinks"></span>
 </template></div>
-  <div id="sequence"></div>
+  <div id="sequence"><span class="sequence" annotation-ids="popc-7,pop-85,pop-86,popc-8,pop-88,popc-9,pop-90"></span></div>
 
 
 </body></html>
