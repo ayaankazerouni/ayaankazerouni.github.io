@@ -96,7 +96,7 @@ The <code class="language-plaintext highlighter-rouge">Game</code> will still in
 
 <p>First, we can start by defining a <code class="language-plaintext highlighter-rouge">Player</code> interface with two abstract methods.</p>
 
-<p class="callout ponder">We know that interfaces can’t have instance variables, so what’s the use of the <code class="language-plaintext highlighter-rouge">getName</code> abstract method defined below?</p>
+<p class="callout ponder">Notice a change from our previous implementation. Previously, our <code class="language-plaintext highlighter-rouge">Player</code>’s <code class="language-plaintext highlighter-rouge">takeTurn</code> method expected as a parameter the number of sticks to remove from the pile. Now, we let each <code class="language-plaintext highlighter-rouge">Player</code> compute the number of sticks to remove, and we give that information back to the <code class="language-plaintext highlighter-rouge">Game</code>. <strong>Can you think of why we’ve made this change?</strong> We will discuss this in the <a href="#implementation">Implementation</a> section.</p>
 
 <pre class="mermaid">
 classDiagram
@@ -120,7 +120,7 @@ As far as the <code class="language-plaintext highlighter-rouge">Game</code> is 
 
 <h2 id="implementation">Implementation</h2>
 
-<p><strong><code class="language-plaintext highlighter-rouge">Player.java</code></strong></p>
+<h3 id="the-player-interface">The Player interface</h3>
 
 <p>Here is our <code class="language-plaintext highlighter-rouge">Player</code> interface.</p>
 
@@ -130,9 +130,7 @@ As far as the <code class="language-plaintext highlighter-rouge">Game</code> is 
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p class="callout ponder">Notice a change from our previous implementation. Previously, our <code class="language-plaintext highlighter-rouge">Player</code>’s <code class="language-plaintext highlighter-rouge">takeTurn</code> method expected as a parameter the number of sticks to remove from the pile. Now, we let each <code class="language-plaintext highlighter-rouge">Player</code> compute the number of sticks to remove, and we give that information back to the <strong><code class="language-plaintext highlighter-rouge">Game</code>. Can you think of why we’ve made this change?</strong></p>
-
-<h4 id="the-timid-player">The Timid Player</h4>
+<h3 id="the-timid-player">The Timid Player</h3>
 
 <p>The <code class="language-plaintext highlighter-rouge">TimidPlayer</code> always removes one stick from the pile of sticks.</p>
 
@@ -156,7 +154,7 @@ As far as the <code class="language-plaintext highlighter-rouge">Game</code> is 
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h4 id="the-greedy-player">The Greedy Player</h4>
+<h3 id="the-greedy-player">The Greedy Player</h3>
 
 <p>Recall that implementing subclasses of the same interface don’t <em>have to</em> have all the same instance variables.</p>
 
@@ -186,7 +184,7 @@ The <code class="language-plaintext highlighter-rouge">GreedyPlayer</code> is no
   <span class="o">}</span>
 
   <span class="nd">@Override</span>  
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">takeTurn</span><span class="o">(</span><span class="nc">Pile</span> <span class="n">pile</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">takeTurn</span><span class="o">(</span><span class="nc">Pile</span> <span class="n">pile</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">toRemove</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">pile</span><span class="o">.</span><span class="na">getSticks</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
       <span class="n">toRemove</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
