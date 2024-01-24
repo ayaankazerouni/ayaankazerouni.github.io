@@ -51,7 +51,7 @@ In this lesson,  we’ll walk through an example of creating and using interface
 <h2 id="updating-the-nim-game">Updating the Nim Game</h2>
 
 <p>Will work with the Nim game example that we talked about in the lesson on <a href="../06-class-design-process/">a class design process</a>.
-So far, we have a game that only supports human players, i.e., at each turn our <code class="language-plaintext highlighter-rouge">Game</code> class will pause and wait for a <code class="language-plaintext highlighter-rouge">Player</code> to manually enter the number of sticks they want to pick up at each turn.</p>
+So far, we have a game that only supports human players, i.e., at each turn our <code class="language-plaintext highlighter-rouge">Game</code> class will pause and wait for a <code class="language-plaintext highlighter-rouge">Player</code> to manually enter the number of sticks they want to pick up.</p>
 
 <p>In this lesson we’ll add support for more kinds of automated players, i.e., bots that the human player can play with.</p>
 
@@ -96,8 +96,6 @@ The <code class="language-plaintext highlighter-rouge">Game</code> will still in
 
 <p>First, we can start by defining a <code class="language-plaintext highlighter-rouge">Player</code> interface with two abstract methods.</p>
 
-<p class="callout ponder">Notice a change from our previous implementation. Previously, our <code class="language-plaintext highlighter-rouge">Player</code>’s <code class="language-plaintext highlighter-rouge">takeTurn</code> method expected as a parameter the number of sticks to remove from the pile. Now, we let each <code class="language-plaintext highlighter-rouge">Player</code> compute the number of sticks to remove, and we give that information back to the <code class="language-plaintext highlighter-rouge">Game</code>. <strong>Can you think of why we’ve made this change?</strong> We will discuss this in the <a href="#implementation">Implementation</a> section.</p>
-
 <pre class="mermaid">
 classDiagram
   note for `interface Player` "Italicised methods are abstract."
@@ -130,6 +128,8 @@ As far as the <code class="language-plaintext highlighter-rouge">Game</code> is 
 <span class="o">}</span>
 </code></pre></div></div>
 
+<p class="callout ponder">Notice a change from our previous implementation. Previously, our <code class="language-plaintext highlighter-rouge">Player</code>’s <code class="language-plaintext highlighter-rouge">takeTurn</code> method expected as a parameter the number of sticks to remove from the pile. Now, we let each <code class="language-plaintext highlighter-rouge">Player</code> compute the number of sticks to remove, and we give that information back to the <code class="language-plaintext highlighter-rouge">Game</code>. <strong>Can you think of why we’ve made this change?</strong> We will discuss this further below.</p>
+
 <h3 id="the-timid-player">The Timid Player</h3>
 
 <p>The <code class="language-plaintext highlighter-rouge">TimidPlayer</code> always removes one stick from the pile of sticks.</p>
@@ -158,7 +158,7 @@ As far as the <code class="language-plaintext highlighter-rouge">Game</code> is 
 
 <p>Recall that implementing subclasses of the same interface don’t <em>have to</em> have all the same instance variables.</p>
 
-<p>The interface defines a “lower bound” on what the class must implement. The class the <em>must</em> implement the methods declared in the interface, but it <em>can</em> also implement additional behaviours.</p>
+<p>The interface defines a “lower bound” on what the class must implement. The class <em>must</em> implement the methods declared in the interface, but it <em>can</em> also implement additional behaviours.</p>
 
 <p>Our <code class="language-plaintext highlighter-rouge">GreedyPlayer</code> has one additional behaviour in addition to what is required by the <code class="language-plaintext highlighter-rouge">Player</code> interface.
 The <code class="language-plaintext highlighter-rouge">GreedyPlayer</code> is not the sharpest tool in the shed, and in addition to its less-than-optimal gmae play strategy, it also likes to antagonise its opponent.</p>
@@ -220,7 +220,6 @@ The <code class="language-plaintext highlighter-rouge">GreedyPlayer</code> is no
   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">takeTurn</span><span class="o">(</span><span class="nc">Pile</span> <span class="n">pile</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">toRemove</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
 
-    <span class="c1">// Keep trying to generate a number until you get a valid one.</span>
     <span class="k">do</span> <span class="o">{</span>
       <span class="n">toRemove</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">pile</span><span class="o">.</span><span class="na">getSticks</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
     <span class="o">}</span> <span class="k">while</span><span class="o">(</span><span class="n">toRemove</span> <span class="o">&gt;</span> <span class="n">pile</span><span class="o">.</span><span class="na">getSticks</span><span class="o">());</span>
@@ -263,7 +262,7 @@ However, that meant that the <code class="language-plaintext highlighter-rouge">
 <p>In our current implementation, we’ve introduced a degree of separation between <code class="language-plaintext highlighter-rouge">Game</code> logic and <code class="language-plaintext highlighter-rouge">Player</code> logic, setting things up so the <code class="language-plaintext highlighter-rouge">Game</code> can be totally unaware of how the <code class="language-plaintext highlighter-rouge">Player</code> takes their turn.
 This allowed us to incorporate three different types of <code class="language-plaintext highlighter-rouge">Players</code>, each with their own turn taking strategies.</p>
 
-<p class="callout todo"><strong>Discuss this in class or with your peers.</strong> How do we incorporate the <code class="language-plaintext highlighter-rouge">HumanPlayer</code> into this class structure?</p>
+<p class="callout todo">How do we incorporate the <code class="language-plaintext highlighter-rouge">HumanPlayer</code> into this class structure? <strong>Discuss this in class.</strong></p>
 
 <p>Here are some hints to keep in mind as you think through this (click to expand).</p>
 
@@ -348,7 +347,7 @@ The <code class="language-plaintext highlighter-rouge">Game</code> interacts wit
 Those objects may, at run time, be any one of several possible <code class="language-plaintext highlighter-rouge">Player</code> subtypes.
 The <code class="language-plaintext highlighter-rouge">Game</code> doesn’t know or care about this, since it only knows about the <code class="language-plaintext highlighter-rouge">Player</code> interface.</p>
 
-<p>The diagram below shows the entire system using a rather somewhat informal flowchart notation.
+<p>The diagram below shows the entire system using a somewhat informal flowchart notation.
 Note that the diagram is showing both <em>has-a</em> relationships (wherein one class has instances of another class as instance variables), and <em>is-a</em> relationships (wherein one or more classes are subclasses of another class or interface).</p>
 
 <pre class="mermaid">
