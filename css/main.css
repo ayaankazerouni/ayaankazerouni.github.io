@@ -384,6 +384,10 @@ blockquote {
   padding: 0 5px 0 8px;
 }
 
+.footnotes :target {
+  background-color: rgb(255, 247, 0);
+}
+
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   main {
     max-width: 80%;
