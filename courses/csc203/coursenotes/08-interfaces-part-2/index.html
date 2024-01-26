@@ -36,7 +36,7 @@
         <h2 id="overview">Overview</h2>
 
 <p>In the previous lesson, we learned about <em>interfaces</em> — both the general concept as well as the program construct in Java.
-In this lesson,  we’ll walk through an example of creating and using interfaces in a program design process.</p>
+In this lesson, we’ll walk through an example of creating and using interfaces in a program design process.</p>
 
 <h2 id="objectives">Objectives</h2>
 
@@ -123,8 +123,8 @@ As far as the <code class="language-plaintext highlighter-rouge">Game</code> is 
 <p>Here is our <code class="language-plaintext highlighter-rouge">Player</code> interface.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Player</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">();</span>
-  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">takeTurn</span><span class="o">(</span><span class="nc">Pile</span> <span class="n">pile</span><span class="o">);</span>
+  <span class="nc">String</span> <span class="nf">getName</span><span class="o">();</span>
+  <span class="kt">int</span> <span class="nf">takeTurn</span><span class="o">(</span><span class="nc">Pile</span> <span class="n">pile</span><span class="o">);</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
@@ -174,8 +174,8 @@ The <code class="language-plaintext highlighter-rouge">GreedyPlayer</code> is no
     <span class="k">this</span><span class="o">.</span><span class="na">jeer</span> <span class="o">=</span> <span class="n">jeer</span><span class="o">;</span>
   <span class="o">}</span>
 
-  <span class="kd">public</span> <span class="nc">String</span> <span class="nf">jeer</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">jeer</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">jeer</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">jeer</span><span class="o">);</span>
   <span class="o">}</span>
 
   <span class="nd">@Override</span>
@@ -344,8 +344,11 @@ So since we want this behaviour to take place each time the <code class="languag
 
 <p>By using interfaces, we have introduced a degree of separation of concerns between the <code class="language-plaintext highlighter-rouge">Game</code> and the <code class="language-plaintext highlighter-rouge">Player</code>.
 The <code class="language-plaintext highlighter-rouge">Game</code> interacts with two <code class="language-plaintext highlighter-rouge">Player</code> objects.
-Those objects may, at run time, be any one of several possible <code class="language-plaintext highlighter-rouge">Player</code> subtypes.
-The <code class="language-plaintext highlighter-rouge">Game</code> doesn’t know or care about this, since it only knows about the <code class="language-plaintext highlighter-rouge">Player</code> interface.</p>
+Those objects may, at run time, be any one of several possible <code class="language-plaintext highlighter-rouge">Player</code> subtypes.</p>
+
+<p class="callout ponder">Do you remember what the ability of a variable to be take many possible forms at run time is called?</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Game</code> doesn’t know or care about this, since it only knows about the <code class="language-plaintext highlighter-rouge">Player</code> interface.</p>
 
 <p>The diagram below shows the entire system using a somewhat informal flowchart notation.
 Note that the diagram is showing both <em>has-a</em> relationships (wherein one class has instances of another class as instance variables), and <em>is-a</em> relationships (wherein one or more classes are subclasses of another class or interface).</p>
@@ -377,7 +380,7 @@ classDiagram
 
     class GreedyPlayer {
       +String jeer
-      +jeer() String
+      +jeer() void
     }
 
     class RandomPlayer { }

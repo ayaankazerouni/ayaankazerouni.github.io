@@ -358,13 +358,13 @@ table td, table th {
 <span class="codeline" id="line-2">  // Rest of the game class remains the same. Omitting...</span>
 <span class="codeline" id="line-3">  public static boolean play(Player p, Pile pile) {</span>
 <span class="codeline" id="line-4">    int sticksTaken = p.takeTurn(pile);</span>
-<span class="codeline" id="line-5">    System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-25"><span class="marker javadoc">out</span></span>.println("\n" + p.getName() + " takes " + sticksTaken + " sticks.\n" +</span>
+<span class="codeline" id="line-5">    System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-1"><span class="marker javadoc">out</span></span>.println("\n" + p.getName() + " takes " + sticksTaken + " sticks.\n" +</span>
 <span class="codeline" id="line-6">    "There are " + pile.getSticks() + " left in the pile.");</span>
 <span class="codeline" id="line-7"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-12" id="anc-32"><div class="marker custom"></div></div><span class="codeline" id="line-8">    if (p <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-13" id="anc-26"><span class="marker custom">instanceof</span></span> GreedyPlayer) {</span>
-<span class="codeline" id="line-9">      <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-1" id="anc-29"><span class="marker javadoc">String</span></span> jeer = <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-14" id="anc-28"><span class="marker custom">((GreedyPlayer) p)</span></span><span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-15" id="anc-27"><span class="marker custom">.jeer()</span></span>;</span>
-<span class="codeline" id="line-10">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-31"><span class="marker javadoc">out</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-2" id="anc-30"><span class="marker javadoc">println</span></span>(jeer);</span>
-<span class="codeline" id="line-11">    }</span></div>
+<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-0" id="anc-5"><div class="marker custom"></div></div><span class="codeline" id="line-8">    if (p <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-1" id="anc-2"><span class="marker custom">instanceof</span></span> GreedyPlayer) {</span>
+<span class="codeline" id="line-9">      <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-2" id="anc-4"><span class="marker custom">((GreedyPlayer) p)</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-3" id="anc-3"><span class="marker custom">jeer()</span></span>; // Print the GreedyPlayer's message</span>
+<span class="codeline" id="line-10">    }</span></div>
+<span class="codeline" id="line-11"></span>
 <span class="codeline" id="line-12"></span>
 <span class="codeline" id="line-13">    if (pile.getSticks() &lt;= 0) {</span>
 <span class="codeline" id="line-14">      return true;</span>
@@ -375,125 +375,7 @@ table td, table th {
 <span class="codeline" id="line-19">}</span></code></pre>
     <div class="col-12" id="footer-inject"><span>Created with <a href="https://www.cs.mcgill.ca/~martin/casdoc/">Casdoc</a>, a project led by <a href="https://www.cs.mcgill.ca/~mnassif/">Mathieu Nassif</a> and <a href="https://www.cs.mcgill.ca/~martin/">Martin Robillard</a></span></div>
   </div>
-  <div id="annotations"><template class="annotation popover-custom" id="pop-13">
-<span class="ann-title">instanceof</span>
-<div class="ann-short"><div><p>The <code>instanceof</code> keyword checks if the operand on the left (some expression that evaluates to an object of some type)
-is an instance of the operand on the right (some reference type). By "instance of" we mean: is the data type of the
-left-hand side a child type of the right-hand-side?</p>
-</div></div>
-<div class="ann-long"><div><p>The <code>instanceof</code> keyword checks if the operand on the left (some expression that evaluates to an object of some type)
-is an instance of the operand on the right (some reference type). By "instance of" we mean: is the data type of the
-left-hand side a child type of the right-hand-side?</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-2">
-<span class="ann-title">println(String)</span>
-<div class="ann-short"><div>Prints a String and then terminates the line.  This method behaves as
- though it invokes <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#print(java.lang.String)" target="_blank"><code>print(String)</code></a> and then
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>println()</code></a>.</div></div>
-<div class="ann-long"><div><div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">println</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&nbsp;x)</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.String)"></a></div><div class="block">Prints a String and then terminates the line.  This method behaves as
- though it invokes <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#print(java.lang.String)" target="_blank"><code>print(String)</code></a> and then
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>println()</code></a>.</div><dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>x</code> - The <code>String</code> to be printed.</dd>
-</dl></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-14">
-<span class="ann-title">((GreedyPlayer) p)</span>
-<div class="ann-short"><div><p>Since the <em>static type</em> of <code>p</code> is still <code>Player</code>, we first do a type-cast
-to obtain a reference to it as a <code>GreedyPlayer</code>. We know that this is "safe"
-because we just passed the <code>instanceof</code> check on the previous line.</p>
-</div></div>
-<div class="ann-long"><div><p>Since the <em>static type</em> of <code>p</code> is still <code>Player</code>, we first do a type-cast
-to obtain a reference to it as a <code>GreedyPlayer</code>. We know that this is "safe"
-because we just passed the <code>instanceof</code> check on the previous line.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-1">
-<span class="ann-title">java.lang.String</span>
-<div class="ann-short"><div>The <code>String</code> class represents character strings. All
- string literals in Java programs, such as <code>"abc"</code>, are
- implemented as instances of this class.
- </div></div>
-<div class="ann-long"><div><div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">String</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class in java.lang" target="_blank">Object</a>
-implements <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Serializable.html" title="interface in java.io" target="_blank">Serializable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Comparable.html" title="interface in java.lang" target="_blank">Comparable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&gt;, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/CharSequence.html" title="interface in java.lang" target="_blank">CharSequence</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/Constable.html" title="interface in java.lang.constant" target="_blank">Constable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/ConstantDesc.html" title="interface in java.lang.constant" target="_blank">ConstantDesc</a></span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html#class-description"></a></div><div class="block">The <code>String</code> class represents character strings. All
- string literals in Java programs, such as <code>"abc"</code>, are
- implemented as instances of this class.
- <p>
- Strings are constant; their values cannot be changed after they
- are created. String buffers support mutable strings.
- Because String objects are immutable they can be shared. For example:
- </p><blockquote><pre>     String str = "abc";
- </pre></blockquote><p></p><p>
- is equivalent to:
- </p><blockquote><pre>     char data[] = {'a', 'b', 'c'};
-     String str = new String(data);
- </pre></blockquote><p></p><p>
- Here are some more examples of how strings can be used:
- </p><blockquote><pre>     System.out.println("abc");
-     String cde = "cde";
-     System.out.println("abc" + cde);
-     String c = "abc".substring(2, 3);
-     String d = cde.substring(1, 2);
- </pre></blockquote>
- <p></p><p>
- The class <code>String</code> includes methods for examining
- individual characters of the sequence, for comparing strings, for
- searching strings, for extracting substrings, and for creating a
- copy of a string with all characters translated to uppercase or to
- lowercase. Case mapping is based on the Unicode Standard version
- specified by the <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html" title="class in java.lang" target="_blank"><code>Character</code></a> class.
- </p><p>
- The Java language provides special support for the string
- concatenation operator (&nbsp;+&nbsp;), and for conversion of
- other objects to strings. For additional information on string
- concatenation and conversion, see <i>The Java Language Specification</i>.
-
- </p><p> Unless otherwise noted, passing a <code>null</code> argument to a constructor
- or method in this class will cause a <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/NullPointerException.html" title="class in java.lang" target="_blank"><code>NullPointerException</code></a> to be
- thrown.
-
- </p><p>A <code>String</code> represents a string in the UTF-16 format
- in which <em>supplementary characters</em> are represented by <em>surrogate
- pairs</em> (see the section <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html#unicode" target="_blank">Unicode
- Character Representations</a> in the <code>Character</code> class for
- more information).
- Index values refer to <code>char</code> code units, so a supplementary
- character uses two positions in a <code>String</code>.
- </p><p>The <code>String</code> class provides methods for dealing with
- Unicode code points (i.e., characters), in addition to those for
- dealing with Unicode code units (i.e., <code>char</code> values).
-
- </p><p>Unless otherwise noted, methods for comparing Strings do not take locale
- into account.  The <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/text/Collator.html" title="class in java.text" target="_blank"><code>Collator</code></a> class provides methods for
- finer-grain, locale-sensitive String comparison.</p></div><dl class="notes">
-<dt>Implementation Note:</dt>
-<dd>The implementation of the string concatenation operator is left to
- the discretion of a Java compiler, as long as the compiler ultimately conforms
- to <i>The Java Language Specification</i>. For example, the <code>javac</code> compiler
- may implement the operator with <code>StringBuffer</code>, <code>StringBuilder</code>,
- or <code>java.lang.invoke.StringConcatFactory</code> depending on the JDK version. The
- implementation of string conversion is typically through the method <code>toString</code>,
- defined by <code>Object</code> and inherited by all classes in Java.</dd>
-<dt>See <i>Java Language Specification</i>:</dt>
-<dd>
-<a href="https://docs.oracle.com/javase/specs/jls/se20/html/jls-15.html#jls-15.18.1" target="_blank">15.18.1 String Concatenation Operator +</a><br></dd>
-<dt>Since:</dt>
-<dd>1.0</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" target="_blank"><code>Object.toString()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuffer.html" title="class in java.lang" target="_blank"><code>StringBuffer</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuilder.html" title="class in java.lang" target="_blank"><code>StringBuilder</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/nio/charset/Charset.html" title="class in java.nio.charset" target="_blank"><code>Charset</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/serialized-form.html#java.lang.String" target="_blank">Serialized Form</a></li>
-</ul>
-</dd>
-</dl></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-0">
+  <div id="annotations"><template class="annotation popover-javadoc" id="popj-0">
 <span class="ann-title">out</span>
 <div class="ann-short"><div>The "standard" output stream. This stream is already
  open and ready to accept output data. Typically this stream
@@ -536,17 +418,21 @@ implements <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base
 </dd>
 </dl></div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-12">
-<span class="ann-title">Adding specific behaviour for the `GreedyPlayer`</span>
-<div class="ann-short"><div><p>This added block of code prints out the <code>GreedyPlayer</code>'s <code>jeer</code>
-each time they take a turn.</p>
+</template><template class="annotation popover-custom" id="pop-2">
+<span class="ann-title">((GreedyPlayer) p)</span>
+<div class="ann-short"><div><p>Since the <em>static type</em> of <code>p</code> is still <code>Player</code>, we first do a
+type-cast to obtain a different "view" of the object that <code>p</code>
+points to. We want to look at it as a <code>GreedyPlayer</code>.
+We know this is safe because we just passed the <code>instanceof</code> check on the previous line.</p>
 </div></div>
-<div class="ann-long"><div><p>This added block of code prints out the <code>GreedyPlayer</code>'s <code>jeer</code>
-each time they take a turn.</p>
+<div class="ann-long"><div><p>Since the <em>static type</em> of <code>p</code> is still <code>Player</code>, we first do a
+type-cast to obtain a different "view" of the object that <code>p</code>
+points to. We want to look at it as a <code>GreedyPlayer</code>.
+We know this is safe because we just passed the <code>instanceof</code> check on the previous line.</p>
 </div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-15">
-<span class="ann-title">.jeer()</span>
+</template><template class="annotation popover-custom" id="pop-3">
+<span class="ann-title">jeer()</span>
 <div class="ann-short"><div><p>Having obtained a reference of type <code>GreedyPlayer</code>, we are now able to invoke
 <code>GreedyPlayer</code>-specific behaviours, like <code>jeer</code>.</p>
 </div></div>
@@ -554,8 +440,28 @@ each time they take a turn.</p>
 <code>GreedyPlayer</code>-specific behaviours, like <code>jeer</code>.</p>
 </div></div>
 <span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-0">
+<span class="ann-title">Adding specific behaviour for the GreedyPlayer</span>
+<div class="ann-short"><div><p>This added block of code prints out the <code>GreedyPlayer</code>'s <code>jeer</code> each time they take a turn.</p>
+</div></div>
+<div class="ann-long"><div><p>This added block of code prints out the <code>GreedyPlayer</code>'s <code>jeer</code> each time they take a turn.</p>
+</div></div>
+<span class="ann-backlinks"></span>
+</template><template class="annotation popover-custom" id="pop-1">
+<span class="ann-title">instanceof</span>
+<div class="ann-short"><div><p>The <code>instanceof</code> keyword checks if the operand on the left (some expression that evaluates to
+an object of some type) is an instance of the operand on the right (some reference type).
+By "instance of" we mean: is the data type of the left-hand side an exact match of child
+type of the right-hand-side?</p>
+</div></div>
+<div class="ann-long"><div><p>The <code>instanceof</code> keyword checks if the operand on the left (some expression that evaluates to
+an object of some type) is an instance of the operand on the right (some reference type).
+By "instance of" we mean: is the data type of the left-hand side an exact match of child
+type of the right-hand-side?</p>
+</div></div>
+<span class="ann-backlinks"></span>
 </template></div>
-  <div id="sequence"><span class="sequence" annotation-ids="pop-12,pop-13,pop-14,pop-15"></span></div>
+  <div id="sequence"><span class="sequence" annotation-ids="pop-0,pop-1,pop-2,pop-3"></span></div>
 
 
 </body></html>

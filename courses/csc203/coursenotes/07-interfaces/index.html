@@ -33,7 +33,16 @@
     <div class="content-box" style="border: none;">
       <div class="content">
         
-        <h2 id="what-is-an-interface">What is an interface?</h2>
+        <p>In this lesson, you will learn:</p>
+
+<ul>
+  <li>About interfaces, the general concept.</li>
+  <li>About <code class="language-plaintext highlighter-rouge">interface</code>s, embodiment of that concept in the Java language.</li>
+  <li>About how they are useful, using lists as an example.</li>
+  <li>About the meaning of <strong>polymorphism</strong>.</li>
+</ul>
+
+<h2 id="what-is-an-interface">What is an interface?</h2>
 
 <p class="callout ponder">What does the word “interface” mean to you?</p>
 
@@ -286,6 +295,8 @@ You would ideally make your function take a <code class="language-plaintext high
 <p>Some other module that is using this function is now free to use whatever list implementation it wants — the <code class="language-plaintext highlighter-rouge">ArrayList</code> or the <code class="language-plaintext highlighter-rouge">LinkedList</code>. 
 When that module calls your <code class="language-plaintext highlighter-rouge">mean</code> function, the input will be a <code class="language-plaintext highlighter-rouge">List</code> at compile time, but will be the specific list subtype at run tme.
 Dynamic dispatch will help the runtime figure out whether to call <code class="language-plaintext highlighter-rouge">ArrayList</code> methods or <code class="language-plaintext highlighter-rouge">LinkedList</code> methods while the program runs.</p>
+
+<p>This is an example of <strong>polymporphism</strong>. Polymorphism literally means “many forms” — the <code class="language-plaintext highlighter-rouge">data</code> variable in the function above can take (one of) many forms at run time.</p>
 
 <p>Your <code class="language-plaintext highlighter-rouge">mean</code> function is <em>decoupled</em> from the specifics of how the other module is handling its data. It can use a <code class="language-plaintext highlighter-rouge">LinkedList</code>, an <code class="language-plaintext highlighter-rouge">ArrayList</code>, or some newfangled list type that we haven’t heard of, as long as it exposes a <code class="language-plaintext highlighter-rouge">List</code>-like interface; your function would never know the difference.</p>
 
