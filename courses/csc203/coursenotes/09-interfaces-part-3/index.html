@@ -455,6 +455,21 @@ And <code class="language-plaintext highlighter-rouge">default</code> methods al
 This “straightline” flow of inherited behaviours can often be a blessing in a large, complex class structure.
 If you know you’re not likely to add new classes that support some behaviours but not others, it may be worthwhile to commit to a tree-like structure using <code class="language-plaintext highlighter-rouge">extends</code> for the time being.</p>
 
+<h2 id="summary">Summary</h2>
+
+<p>To sum up, here are some facts about interfaces:</p>
+
+<ul>
+  <li>Interfaces can have abstract methods. These only have method signatures, but not method bodies. There is no special keyword for abstract methods in interfaces.</li>
+  <li>A class that <code class="language-plaintext highlighter-rouge">implements</code> an interface <em>must</em> include implementations for all abstract methods in a parent interface.</li>
+  <li>Interfaces can also have methods that <em>do</em> have implementations. These are created using the <code class="language-plaintext highlighter-rouge">default</code> keyword.</li>
+  <li>Implementing subclasses <em>can</em> include implementations for the <code class="language-plaintext highlighter-rouge">default</code> methods from the parent interface; this will override the interface’s <code class="language-plaintext highlighter-rouge">default</code> behaviour for that method.</li>
+  <li>Interfaces can have <code class="language-plaintext highlighter-rouge">static</code> variables and <code class="language-plaintext highlighter-rouge">static</code> methods.</li>
+  <li>Interfaces <strong>cannot</strong> have instance variables.</li>
+  <li>Interfaces can extend other interfaces using the <code class="language-plaintext highlighter-rouge">extends</code> keyword. If a class declares that it <code class="language-plaintext highlighter-rouge">implements</code> an interface, and that interface has “parent” interfaces, the class must implement all abstract methods from the immediate parent as well as all the “grand parent” interfaces.</li>
+  <li>Classes can implement more than one interface.</li>
+</ul>
+
 <hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>

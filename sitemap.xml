@@ -61,6 +61,9 @@
 <loc>https://ayaankazerouni.org/how-long</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/10-abstract-classes/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/07-interfaces/</loc>
 </url>
 <url>
@@ -73,7 +76,7 @@
 <loc>https://ayaankazerouni.org/courses/csc305/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/04-oop-and-procedural/</loc>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/06-class-design-process/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/coursenotes/metacognitive-awareness-problem-comprehension/</loc>
@@ -100,7 +103,7 @@
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/03-lists-maps-existing-classes/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/06-class-design-process/</loc>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/04-oop-and-procedural/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/01-intro-java/</loc>
@@ -194,6 +197,14 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/08-interfaces-part-2/play-method.html</loc>
-<lastmod>2024-01-25T13:49:09-08:00</lastmod>
+<lastmod>2024-01-30T13:24:36-08:00</lastmod>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/10-abstract-classes/Shape.html</loc>
+<lastmod>2024-01-30T14:19:05-08:00</lastmod>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/10-abstract-classes/Triangle.html</loc>
+<lastmod>2024-01-30T15:03:01-08:00</lastmod>
 </url>
 </urlset>

@@ -1,0 +1,305 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Abstract classes - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc203/coursenotes/10-abstract-classes/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
+  <h1>Abstract classes</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>We learned about interfaces in Java in the previous lessons.
+For a recap, please take a look at the <a href="../09-interfaces-part-3#summary">Summary</a> from the previous lesson.</p>
+
+<p>Interfaces come with numerous benefits:</p>
+
+<ol>
+  <li>They let us introduce a degree of separation between implementation details of different classes in a larger Object-oriented system.</li>
+  <li><code class="language-plaintext highlighter-rouge">default</code> methods in interfaces let us “pull up” common method implementations into the interface, allowing implementing subclasses to inherit those methods. This saves us from having to duplicate code.</li>
+</ol>
+
+<p>However, interfaces are just one way to achieve <em>polymorphism</em> in Java. In this lesson, we will learn about a related Java construct called <em>abstract classes</em>.
+Abstract classes are just like regular classes in Java, except they can have <em>abstract methods.</em> There are a few similarities and differences between abstract classes and interfaces in Java.</p>
+
+<p><strong>Differences</strong></p>
+
+<ul>
+  <li>Abstract methods in abstract classes must be marked using the <code class="language-plaintext highlighter-rouge">abstract</code> keyword. (In interfaces, there is no keyword used for abstract methods.)</li>
+  <li>Abstract classes <em>can</em> have instance variables, while interfaces cannot.</li>
+  <li>A class <code class="language-plaintext highlighter-rouge">extends</code> an abstract class, while it <code class="language-plaintext highlighter-rouge">implements</code> an interface.</li>
+  <li>Classes can extend <em>at most one</em> abstract class, but it can implement more than one interface.</li>
+</ul>
+
+<p><strong>Similarities</strong></p>
+
+<ul>
+  <li>Both abstract classes and interfaces are forms of polymorphism in Java.</li>
+  <li>Like an interface, an abstract class can have both abstract and concrete methods.</li>
+  <li>Concrete methods in interfaces must be marked using the <code class="language-plaintext highlighter-rouge">default</code> keyword. (In abstract classes, there is no keyword used for concrete methods.)</li>
+  <li>Just like an interface, you <em>cannot</em> use an abstract class to initialise an object. The abstract class might have abstract methods, so this makes sense. (We don’t want to create objects with “gaps” in their functionality.)</li>
+</ul>
+
+<p>We’ll motivate the use of abstract classes by first looking at a disadvantage of using interfaces.</p>
+
+<h2 id="a-disadvantage-of-using-interfaces">A disadvantage of using interfaces</h2>
+
+<p>Consider the following interface-based type hierarchy.</p>
+
+<p>In the <code class="language-plaintext highlighter-rouge">Shape</code> interface below, we have five abstract methods, each of which needs to be implemented by the four subtypes.</p>
+
+<pre class="mermaid">
+classDiagram
+  direction TD
+  `interface Shape` &lt;|-- Square : implements
+  `interface Shape` &lt;|-- Rectangle : implements
+  `interface Shape` &lt;|-- Circle : implements
+  `interface Shape` &lt;|-- Triangle : implements
+
+  class `interface Shape` {
+    getColor() Color*
+    setColor(Color newColor) Color*
+    getArea() double*
+    getPerimeter() double*
+    translate(Point point) void*
+  }
+
+  class Square {
+    -double sideLength
+    -Point center
+    -Color color
+
+    getColor() Color
+    setColor(Color newColor) Color
+    getArea() double
+    getPerimeter() double
+    translate(Point point) void
+  }
+
+  class Rectangle {
+    -double width
+    -double height
+    -Point center
+    -Color color
+    getColor() Color
+    setColor(Color newColor) Color
+    getArea() double
+    getPerimeter() double
+    translate(Point point) void
+  }
+
+  class Circle {
+    -double radius
+    -Point center
+    -Color color
+    getColor() Color
+    setColor(Color newColor) Color
+    getArea() double
+    getPerimeter() double
+    translate(Point point) void
+  }
+
+  class Triangle {
+    -Point a 
+    -Point b 
+    -Point c 
+    -Color color
+    getColor() Color
+    setColor(Color newColor) Color
+    getArea() double
+    getPerimeter() double
+    translate(Point point) void
+  }
+</pre>
+
+<p>Implementations for <code class="language-plaintext highlighter-rouge">getArea</code>, <code class="language-plaintext highlighter-rouge">getPerimeter</code>, and <code class="language-plaintext highlighter-rouge">translate</code> would likely be different for each subclass, and need to implemented on a per-class basis.
+For example, calculating the area for a square is different from that of a circle, which is different from that of a triangle, etc.</p>
+
+<p>However, implementations for <code class="language-plaintext highlighter-rouge">getColor</code> and <code class="language-plaintext highlighter-rouge">setColor</code> are likely be <em>identical</em> for all the subclasses—chances are they have a <code class="language-plaintext highlighter-rouge">private Color color</code> instance variable, and they are pretty standard getters and setters.</p>
+
+<p class="callout">Because interfaces cannot have instance variables, any code that directly touches those instance variables <em>must</em> be written in the implementing subclasses, even if is the same for all subclasses.</p>
+
+<h2 id="abstract-classes">Abstract classes</h2>
+
+<p>Abstract classes can help us in these types of situations.
+Specifically, they are useful when:</p>
+
+<ul>
+  <li>We want a set of classes to adhere to a common public interface.</li>
+  <li>The implementing classes share both data and behaviour. That is, they have shared methods and instance variables.</li>
+</ul>
+
+<p>Right now, the <code class="language-plaintext highlighter-rouge">color</code> instance variable and its getter and setter methods are all being duplicated in the four child classes.
+If we instead write <code class="language-plaintext highlighter-rouge">Shape</code> as an abstract class, we can “pull up” that data and behaviour into a common parent, thereby allowing all the subclasses to re-use that code.</p>
+
+<p>In the new hierarchy below, which uses an abstract class, we can see that the subclasses have reduced in size because they now do not duplicate the shared behaviour.</p>
+
+<pre class="mermaid">
+classDiagram
+  direction TD
+  `abstract Shape` &lt;|-- Square : extends 
+  `abstract Shape` &lt;|-- Rectangle : extends
+  `abstract Shape` &lt;|-- Circle : extends
+  `abstract Shape` &lt;|-- Triangle : extends
+
+  class `abstract Shape` {
+    +Color color
+    getColor() Color
+    setColor(Color newColor) Color
+    
+    getArea() double*
+    getPerimeter() double*
+    translate(Point point) void*
+  }
+
+  class Square {
+    -double sideLength
+    -Point center
+    getArea() double
+    getPerimeter() double
+    translate(Point point) void
+  }
+
+  class Rectangle {
+    -double width
+    -double height
+    -Point center
+    getArea() double
+    getPerimeter() double
+    translate(Point point) void
+  }
+
+  class Circle {
+    -double radius
+    -Point center
+    getArea() double
+    getPerimeter() double
+    translate(Point point) void
+  }
+
+  class Triangle {
+    -Point a 
+    -Point b 
+    -Point c
+    getArea() double
+    getPerimeter() double
+    translate(Point point) void
+  }
+</pre>
+
+<p class="callout todo">Do you see further opportunities for improvement to the structure above? Is there any other duplicated data that can be “moved upward” to reduce code duplication?</p>
+
+<h3 id="code-for-the-example-above">Code for the example above</h3>
+
+<h4 id="the-shape-abstract-class">The Shape abstract class</h4>
+
+<p>See the <code class="language-plaintext highlighter-rouge">Shape</code> abstract class below. Please use the “Walkthrough” button to see notes about important parts of the code below.
+In particular, there are two new keywords introduced in the code below: <code class="language-plaintext highlighter-rouge">abstract</code> and <code class="language-plaintext highlighter-rouge">protected</code>.</p>
+
+<p>
+<div style="width: 100%; margin: auto;">
+  <a href="Shape.html" target="_blank">
+    <small>
+      View in new tab
+    </small>
+  </a>
+  <br />
+  <object data="Shape.html" width="100%" height="800px"></object>
+</div>
+</p>
+
+<p>Since the <code class="language-plaintext highlighter-rouge">Shape</code> is abstract, you can’t do this:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// This code won't compile</span>
+<span class="nc">Shape</span> <span class="n">myShape</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Shape</span><span class="o">(</span><span class="k">new</span> <span class="nc">Color</span><span class="o">(</span><span class="mi">255</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">));</span> <span class="c1">// A red....shape? </span>
+</code></pre></div></div>
+
+<p>Just like an interface, an abstract class is a skeleton for its subclasses — it can’t be used to create objects. It’s a convenient construct for placing common code in one place so that subclasses don’t have to duplicate it.</p>
+
+<h4 id="the-triangle-class">The Triangle class</h4>
+
+<p>Code for the <code class="language-plaintext highlighter-rouge">Triangle</code> class is below. Please use the “Walkthrough” button to step through the accompanying notes. Here are some key features to note:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">extends</code></strong>: We use the <code class="language-plaintext highlighter-rouge">extends</code> keyword to extend an abstract class. A class can extend <em>at most one</em> abstract class. But it can implement as many interfaces as needed.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">super</code></strong>: In the <code class="language-plaintext highlighter-rouge">Triangle</code> constructor, we use the <code class="language-plaintext highlighter-rouge">super</code> keyword to invoke the “super constructor”. This is used to initialise the parent class’s instance variables. In this case, when the <code class="language-plaintext highlighter-rouge">Triangle</code> is created using the <code class="language-plaintext highlighter-rouge">Triangle</code> constructor, it needs to tell the parent class (<code class="language-plaintext highlighter-rouge">Shape</code>) to also initialise <em>its</em> instance variables.</li>
+</ul>
+
+<p>
+<div style="width: 100%; margin: auto;">
+  <a href="Triangle.html" target="_blank">
+    <small>
+      View in new tab
+    </small>
+  </a>
+  <br />
+  <object data="Triangle.html" width="100%" height="1500px"></object>
+</div>
+</p>
+
+<h2 id="interfaces-or-abstract-classes">Interfaces or abstract classes?</h2>
+
+<p>So, which do you prefer? Abstract classes or interfaces?<sup id="fnref:none" role="doc-noteref"><a href="#fn:none" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>The key consideration here is that a class can implement <em>at most one</em> abstract class.
+If your class hierarchy is designed using only abstract classes, you are necessarily going to end up with a tree-like structure, where very child type has exactly one parent type.
+Sometimes this simplicity is desirable, and sometimes it is too restrictive.</p>
+
+<p>On the other hand, if you create a class hierarchy only interfaces, you end up with a “flatter” hierarchy that is much more flexible, since classes and implement multiple interfaces.
+This allows you to “mix in” different parent types for individual subclasses, as needed.
+This flexibility can be a blessing, but can also become difficult to reason about as your project grows.</p>
+
+<p>Or, more likely, you will use some combination of abstract classes and interfaces.</p>
+
+<p>Suppose you have a bunch of interfaces <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code>, <code class="language-plaintext highlighter-rouge">C</code>, and <code class="language-plaintext highlighter-rouge">D</code>.
+You have created a number of subclasses that implement various combinations of these interfaces, but you find yourself creating some combinations more often than others.
+For example, you find yourself creating many classes that implement both <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code>, and end up duplicating instance variables and methods in those classes.
+In this case, it may make sense to create an abstract class that <code class="language-plaintext highlighter-rouge">implements B, C</code>, and root all of that common data and behaviour in the abstract class.</p>
+
+<p>Like many problems in software design, there is no “silver bullet” that solves all your problems.
+You will face tradeoffs and make choices about how to design your systems.</p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:none" role="doc-endnote">
+      <p>Or none? Sometimes too much polymorphism can be a bad thing. If it’s a simple function and you only do it once, perhaps you don’t need to create a whole type hierarchy to do what you could have done with a “type” variable and an <code class="language-plaintext highlighter-rouge">if</code> condition. On the other hand, if find yourself frequently checking this “type” variable before performing tasks, that’s a good sign that you could use polymorphism. <a href="#fnref:none" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    </script>
+    
+    </article>
+  </main>
+</body>
+</html>
