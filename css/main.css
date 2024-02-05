@@ -302,6 +302,9 @@ code {
   color: #E61726;
   font-size: 0.9rem;
 }
+h1 > code, h2 > code, h3 > code {
+  font-size: inherit;
+}
 
 .tag {
   font-size: 0.8em;
