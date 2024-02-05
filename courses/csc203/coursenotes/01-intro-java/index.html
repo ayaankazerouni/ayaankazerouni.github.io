@@ -180,11 +180,11 @@ They are built using primitive types or other reference types as building blocks
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">course</span> <span class="o">=</span> <span class="s">"CSC 203"</span><span class="o">;</span> 
 </code></pre></div></div>
 
-<h3 id="reference-types-and-equality">Reference types and equality</h3>
-
-<p>The value of a variable that is declared as a reference type is a <em>reference</em> to the data stored somewhere in memory.
+<p>The “value” of a variable that is declared as a reference type is a <em>reference</em> to the data stored somewhere in memory.
 Hence the name.
 You can have multiple references to the same data.</p>
+
+<h3 id="reference-types-and-equality">Reference types and equality</h3>
 
 <p>There are implications to this.</p>
 
@@ -268,7 +268,7 @@ Each additional <code class="language-plaintext highlighter-rouge">String</code>
 <p>However, this is a compiler optimisation, and you should not rely upon it.
 You can’t predict when <code class="language-plaintext highlighter-rouge">==</code> and <code class="language-plaintext highlighter-rouge">equals</code> will behave the same for <code class="language-plaintext highlighter-rouge">String</code>s, so you should still use <code class="language-plaintext highlighter-rouge">equals</code> to compare <code class="language-plaintext highlighter-rouge">String</code>s for equality.</p>
 
-<h3 id="arrays">Arrays</h3>
+<h2 id="arrays">Arrays</h2>
 
 <p>To store a collection of items in Java, the simplest collection you can use is an <em>array</em>.
 Two things are important to know about arrays:</p>
@@ -544,6 +544,10 @@ The <code class="language-plaintext highlighter-rouge">do-while</code> loop chec
     
     <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
     
+    
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    </script>
     
     </article>
   </main>

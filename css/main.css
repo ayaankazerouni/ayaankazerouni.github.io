@@ -24,6 +24,7 @@ h4,
   color: #425469;
   font-family: "Muli", sans-serif;
   margin: auto;
+  padding-top: 5px;
 }
 
 h1 {
@@ -33,10 +34,6 @@ h1 {
 h1 a,
 h1 a:visited {
   text-decoration: none;
-}
-
-h3 {
-  padding-top: 5px;
 }
 
 a,
@@ -193,9 +190,6 @@ figure figcaption {
   color: #727375;
   font-family: Avenir;
 }
-figure img, figure figcaption {
-  max-width: 40vw;
-}
 figure.wide {
   display: table;
   position: relative;
@@ -206,6 +200,10 @@ figure.wide img, figure.wide figcaption {
   display: table-row;
   position: relative;
   max-width: 70vw;
+}
+
+img, figcaption {
+  max-width: 40vw;
 }
 
 ul {
@@ -276,7 +274,6 @@ footer .address {
 .artifact-list details > summary {
   outline: none;
   margin-bottom: 5px;
-  cursor: pointer;
 }
 .artifact-list details p {
   padding: 5px;
@@ -284,6 +281,10 @@ footer .address {
   border-radius: 5px;
   color: black;
   list-style-type: none;
+}
+
+details > summary {
+  cursor: pointer;
 }
 
 .banner {
@@ -300,6 +301,9 @@ footer .address {
 code {
   color: #E61726;
   font-size: 0.9rem;
+}
+h1 > code, h2 > code, h3 > code {
+  font-size: inherit;
 }
 
 .tag {
@@ -383,6 +387,10 @@ blockquote {
   padding: 0 5px 0 8px;
 }
 
+.footnotes :target {
+  background-color: rgb(255, 247, 0);
+}
+
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   main {
     max-width: 80%;
@@ -398,8 +406,8 @@ blockquote {
   header > * {
     margin: 10px;
   }
-  figure .panda-bag {
-    width: 60vw;
+  img, figcaption {
+    max-width: 95vw;
   }
   .blurb {
     padding: 0 3px;
@@ -453,9 +461,11 @@ blockquote {
     width: 30vw;
     height: auto;
   }
-  figure .panda-bag {
-    width: 60vw;
-    height: auto;
+  h1 {
+    font-size: 1.5em;
+  }
+  ul, ol {
+    padding-left: 0.8em;
   }
   .blurb {
     min-width: 100%;
@@ -475,8 +485,8 @@ blockquote {
     float: none;
     width: inherit;
   }
-  .post article {
-    width: 100%;
+  img, figcaption {
+    max-width: 95vw;
   }
   img {
     width: 100%;
