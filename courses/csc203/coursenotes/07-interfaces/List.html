@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="nofollow">
-  <title>Casdoc - CompareCohorts</title>
+  <title>Casdoc - List</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -354,711 +354,112 @@ table td, table th {
   </nav>
   <div id="casdoc" class="container">
     <div class="col-12" id="preamble-inject"></div>
-    <pre class="col-12"><code class="language-java" id="root-content"><span class="codeline" id="line-1">import java.util.HashMap;</span>
-<span class="codeline" id="line-2">import java.util.Map;</span>
-<span class="codeline" id="line-3"></span>
-<span class="codeline" id="line-4"><span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-72" id="anc-101"><span class="marker custom">public class CompareCohorts</span></span> {</span>
-<span class="codeline" id="line-5">   <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popc-4" id="anc-102"><span class="marker javadoc custom">public static void main(String[] args)</span></span> {</span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-75" id="anc-117"><div class="marker custom"></div></div><span class="codeline" id="line-6">      CsCohort year1 = <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-76" id="anc-103"><span class="marker custom">new</span></span> CsCohort(2012, 132, .932);</span>
-<span class="codeline" id="line-7">      CsCohort year2 = new CsCohort(2013, 172, .924);</span>
-<span class="codeline" id="line-8">      CsCohort year3 = new CsCohort(2014, 157, .936);</span>
-<span class="codeline" id="line-9">      CsCohort year4 = new CsCohort(2015, 172, .977);</span></div>
-<span class="codeline" id="line-10"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-77" id="anc-118"><div class="marker custom"></div></div><span class="codeline" id="line-11">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-104"><span class="marker javadoc">out</span></span>.println("The number of students still enrolled after one"</span>
-<span class="codeline" id="line-12">          + " year: " +  year1.retained() + " in " + year1.getYear());</span>
-<span class="codeline" id="line-13">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-105"><span class="marker javadoc">out</span></span>.println("The number of students still enrolled after one"</span>
-<span class="codeline" id="line-14">          + " year: " +  year2.retained() + " in " + year2.getYear());</span>
-<span class="codeline" id="line-15">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-106"><span class="marker javadoc">out</span></span>.println("The number of students still enrolled after one"</span>
-<span class="codeline" id="line-16">          + " year: " +  year3.retained() + " in " + year3.getYear());</span>
-<span class="codeline" id="line-17">      System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-107"><span class="marker javadoc">out</span></span>.println("The number of students still enrolled after one"</span>
-<span class="codeline" id="line-18">          + " year: " +  year4.retained() + " in " + year4.getYear());</span></div>
+    <pre class="col-12"><code class="language-java" id="root-content"><span class="codeline" id="line-1">/**</span>
+<span class="codeline" id="line-2"> * A super-simplified version the Java List interface.</span>
+<span class="codeline" id="line-3"> * For the actual interface's source code, see</span>
+<span class="codeline" id="line-4"> * </span>
+<span class="codeline" id="line-5"> * https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/List.java</span>
+<span class="codeline" id="line-6"> */</span>
+<span class="codeline" id="line-7"><span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-12" id="anc-13"><span class="marker custom">public interface List</span></span> {</span>
+<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-13" id="anc-16"><div class="marker custom"></div></div><div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-14" id="anc-17"><div class="marker custom"></div></div><span class="codeline" id="line-8">  /**</span>
+<span class="codeline" id="line-9">   * Returns the element at the specified index.</span>
+<span class="codeline" id="line-10">   * @param index the position from which to return an element.</span>
+<span class="codeline" id="line-11">   */</span></div>
+<span class="codeline" id="line-12">  <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-15" id="anc-14"><span class="marker custom">E</span></span> get(int index);</span></div>
+<span class="codeline" id="line-13"></span>
+<span class="codeline" id="line-14">  /**</span>
+<span class="codeline" id="line-15">   * Appends the specified element to the end of the list.</span>
+<span class="codeline" id="line-16">   * @param e element to be appended to this list.</span>
+<span class="codeline" id="line-17">   */</span>
+<span class="codeline" id="line-18">  void add(E e);</span>
 <span class="codeline" id="line-19"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-78" id="anc-119"><div class="marker custom"></div></div><span class="codeline" id="line-20">      year1.setRetainedPercent(0.95);</span></div>
-<span class="codeline" id="line-21"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-79" id="anc-120"><div class="marker custom"></div></div><span class="codeline" id="line-22">      Map&lt;<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-109"><span class="marker javadoc">String</span></span>, CsCohort&gt; theCohorts = new <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popc-3" id="anc-108"><span class="marker javadoc">HashMap</span></span>&lt;&gt;();</span></div>
-<span class="codeline" id="line-23"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-80" id="anc-121"><div class="marker custom"></div></div><span class="codeline" id="line-24">      theCohorts.put("year1", year1); </span>
-<span class="codeline" id="line-25">      theCohorts.put("year2", year2); </span>
-<span class="codeline" id="line-26">      theCohorts.put("year3", year3); </span>
-<span class="codeline" id="line-27">      theCohorts.put("year4", year4); </span></div>
-<span class="codeline" id="line-28"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-81" id="anc-122"><div class="marker custom"></div></div><span class="codeline" id="line-29">      for (<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popc-5" id="anc-110"><span class="marker javadoc custom">Map.Entry&lt;String, CsCohort&gt;</span></span> entry : theCohorts.entrySet() ) {</span>
-<span class="codeline" id="line-30">         if (entry.getValue().retained() &gt; 150) {</span>
-<span class="codeline" id="line-31">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-111"><span class="marker javadoc">out</span></span>.println("More than 150 students for: " + entry.getKey());</span>
-<span class="codeline" id="line-32">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-112"><span class="marker javadoc">out</span></span>.println("which is: " + entry.getValue().getYear());</span>
-<span class="codeline" id="line-33">         }</span></div>
-<span class="codeline" id="line-34">      }  </span>
-<span class="codeline" id="line-35"></span>
-<div class="anchor block"><div class="hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-83" id="anc-123"><div class="marker custom"></div></div><span class="codeline" id="line-36">      for (<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-4" id="anc-113"><span class="marker javadoc">String</span></span> key : theCohorts.keySet()) {</span>
-<span class="codeline" id="line-37">         if (theCohorts.get(key).retained() &gt; 150) {</span>
-<span class="codeline" id="line-38">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-115"><span class="marker javadoc">out</span></span>.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-1" id="anc-114"><span class="marker javadoc">println</span></span>("More than 150 students for: " + key);</span>
-<span class="codeline" id="line-39">            System.<span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="popj-0" id="anc-116"><span class="marker javadoc">out</span></span>.println("which is: " + theCohorts.get(key).getYear());</span>
-<span class="codeline" id="line-40">         }</span>
-<span class="codeline" id="line-41">      }</span></div>
-<span class="codeline" id="line-42">   }</span>
-<span class="codeline" id="line-43">}</span></code></pre>
+<span class="codeline" id="line-20"></span>
+<span class="codeline" id="line-21">  /**</span>
+<span class="codeline" id="line-22">   * Inserts the specified element at the specified position in this list. Shifts the element currently at that position (if any)</span>
+<span class="codeline" id="line-23">   * and any subsequent elements to the right.</span>
+<span class="codeline" id="line-24">   * </span>
+<span class="codeline" id="line-25">   * @param index index at which the specified element is to be inserted.</span>
+<span class="codeline" id="line-26">   * @param e element to be inserted.</span>
+<span class="codeline" id="line-27">   */</span>
+<span class="codeline" id="line-28">  void <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-17" id="anc-15"><span class="marker custom">add</span></span>(int index, E e);</span>
+<span class="codeline" id="line-29"></span>
+<span class="codeline" id="line-30">  /**</span>
+<span class="codeline" id="line-31">   * Removes the first occurrence of the specified element from this list.</span>
+<span class="codeline" id="line-32">   * </span>
+<span class="codeline" id="line-33">   * @param e The element to be removed from this list, if present.</span>
+<span class="codeline" id="line-34">   * @return {@code true} if this list contained the specified element.</span>
+<span class="codeline" id="line-35">   */</span>
+<span class="codeline" id="line-36">  boolean remove(E e);</span>
+<span class="codeline" id="line-37"></span>
+<span class="codeline" id="line-38">  /**</span>
+<span class="codeline" id="line-39">   * Removes the element at the specified position in this list.</span>
+<span class="codeline" id="line-40">   * Shifts any subsequent elements to the left.</span>
+<span class="codeline" id="line-41">   * </span>
+<span class="codeline" id="line-42">   * @param index the index of the element to be removed.</span>
+<span class="codeline" id="line-43">   * @return the element at the previously specified position.</span>
+<span class="codeline" id="line-44">   */</span>
+<span class="codeline" id="line-45">  E remove(int index);</span>
+<span class="codeline" id="line-46"></span>
+<span class="codeline" id="line-47">  /**</span>
+<span class="codeline" id="line-48">   * Returns {@code true} if this list contains the specified element.</span>
+<span class="codeline" id="line-49">   * </span>
+<span class="codeline" id="line-50">   * @param e element whose presence in this list is to be tested.</span>
+<span class="codeline" id="line-51">   * @return {@code true} if this list contains the specified element.</span>
+<span class="codeline" id="line-52">   */</span>
+<span class="codeline" id="line-53">  boolean contains(E e);</span>
+<span class="codeline" id="line-54"></span>
+<span class="codeline" id="line-55">  /**</span>
+<span class="codeline" id="line-56">   * Returns the number of elements in this list. </span>
+<span class="codeline" id="line-57">   * @return the number of elements in this list.</span>
+<span class="codeline" id="line-58">   */</span>
+<span class="codeline" id="line-59">  int size();</span>
+<span class="codeline" id="line-60">}</span></code></pre>
     <div class="col-12" id="footer-inject"><span>Created with <a href="https://www.cs.mcgill.ca/~martin/casdoc/">Casdoc</a>, a project led by <a href="https://www.cs.mcgill.ca/~mnassif/">Mathieu Nassif</a> and <a href="https://www.cs.mcgill.ca/~martin/">Martin Robillard</a></span></div>
   </div>
-  <div id="annotations"><template class="annotation popover-javadoc" id="popj-4">
-<span class="ann-title">java.lang.String</span>
-<div class="ann-short"><div>The <code>String</code> class represents character strings. All
- string literals in Java programs, such as <code>"abc"</code>, are
- implemented as instances of this class.
- </div></div>
-<div class="ann-long"><div><div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">String</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class in java.lang" target="_blank">Object</a>
-implements <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Serializable.html" title="interface in java.io" target="_blank">Serializable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Comparable.html" title="interface in java.lang" target="_blank">Comparable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&gt;, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/CharSequence.html" title="interface in java.lang" target="_blank">CharSequence</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/Constable.html" title="interface in java.lang.constant" target="_blank">Constable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/ConstantDesc.html" title="interface in java.lang.constant" target="_blank">ConstantDesc</a></span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html#class-description"></a></div><div class="block">The <code>String</code> class represents character strings. All
- string literals in Java programs, such as <code>"abc"</code>, are
- implemented as instances of this class.
- <p>
- Strings are constant; their values cannot be changed after they
- are created. String buffers support mutable strings.
- Because String objects are immutable they can be shared. For example:
- </p><blockquote><pre>     String str = "abc";
- </pre></blockquote><p></p><p>
- is equivalent to:
- </p><blockquote><pre>     char data[] = {'a', 'b', 'c'};
-     String str = new String(data);
- </pre></blockquote><p></p><p>
- Here are some more examples of how strings can be used:
- </p><blockquote><pre>     System.out.println("abc");
-     String cde = "cde";
-     System.out.println("abc" + cde);
-     String c = "abc".substring(2, 3);
-     String d = cde.substring(1, 2);
- </pre></blockquote>
- <p></p><p>
- The class <code>String</code> includes methods for examining
- individual characters of the sequence, for comparing strings, for
- searching strings, for extracting substrings, and for creating a
- copy of a string with all characters translated to uppercase or to
- lowercase. Case mapping is based on the Unicode Standard version
- specified by the <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html" title="class in java.lang" target="_blank"><code>Character</code></a> class.
- </p><p>
- The Java language provides special support for the string
- concatenation operator (&nbsp;+&nbsp;), and for conversion of
- other objects to strings. For additional information on string
- concatenation and conversion, see <i>The Java Language Specification</i>.
-
- </p><p> Unless otherwise noted, passing a <code>null</code> argument to a constructor
- or method in this class will cause a <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/NullPointerException.html" title="class in java.lang" target="_blank"><code>NullPointerException</code></a> to be
- thrown.
-
- </p><p>A <code>String</code> represents a string in the UTF-16 format
- in which <em>supplementary characters</em> are represented by <em>surrogate
- pairs</em> (see the section <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html#unicode" target="_blank">Unicode
- Character Representations</a> in the <code>Character</code> class for
- more information).
- Index values refer to <code>char</code> code units, so a supplementary
- character uses two positions in a <code>String</code>.
- </p><p>The <code>String</code> class provides methods for dealing with
- Unicode code points (i.e., characters), in addition to those for
- dealing with Unicode code units (i.e., <code>char</code> values).
-
- </p><p>Unless otherwise noted, methods for comparing Strings do not take locale
- into account.  The <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/text/Collator.html" title="class in java.text" target="_blank"><code>Collator</code></a> class provides methods for
- finer-grain, locale-sensitive String comparison.</p></div><dl class="notes">
-<dt>Implementation Note:</dt>
-<dd>The implementation of the string concatenation operator is left to
- the discretion of a Java compiler, as long as the compiler ultimately conforms
- to <i>The Java Language Specification</i>. For example, the <code>javac</code> compiler
- may implement the operator with <code>StringBuffer</code>, <code>StringBuilder</code>,
- or <code>java.lang.invoke.StringConcatFactory</code> depending on the JDK version. The
- implementation of string conversion is typically through the method <code>toString</code>,
- defined by <code>Object</code> and inherited by all classes in Java.</dd>
-<dt>See <i>Java Language Specification</i>:</dt>
-<dd>
-<a href="https://docs.oracle.com/javase/specs/jls/se20/html/jls-15.html#jls-15.18.1" target="_blank">15.18.1 String Concatenation Operator +</a><br></dd>
-<dt>Since:</dt>
-<dd>1.0</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" target="_blank"><code>Object.toString()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuffer.html" title="class in java.lang" target="_blank"><code>StringBuffer</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuilder.html" title="class in java.lang" target="_blank"><code>StringBuilder</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/nio/charset/Charset.html" title="class in java.nio.charset" target="_blank"><code>Charset</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/serialized-form.html#java.lang.String" target="_blank">Serialized Form</a></li>
-</ul>
-</dd>
-</dl></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-79">
-<span class="ann-title">HashMap</span>
-<div class="ann-short"><div><p>We declare and initialise a HashMap here.
-Notice that the left-hand side of the declaration
-uses the <code>Map</code> type, while the right-hand side uses the <code>HashMap</code> type. We will talk about this when we talk about <a href="../07-interfaces/" target="_blank">interfaces</a>.</p>
+  <div id="annotations"><template class="annotation popover-custom" id="pop-13">
+<span class="ann-title">Abstract methods</span>
+<div class="ann-short"><div><p>This method only has a method signature, and no body. This is known as an abstract method. Observe that there are no curly braces after the method signature (i.e., no method body). We also don't include an access modifier (like public or private), since all methods in an interface are public by default.</p>
 </div></div>
-<div class="ann-long"><div><p>We declare and initialise a HashMap here.
-Notice that the left-hand side of the declaration
-uses the <code>Map</code> type, while the right-hand side uses the <code>HashMap</code> type. We will talk about this when we talk about <a href="../07-interfaces/" target="_blank">interfaces</a>.</p>
+<div class="ann-long"><div><p>This method only has a method signature, and no body. This is known as an abstract method. Observe that there are no curly braces after the method signature (i.e., no method body). We also don't include an access modifier (like public or private), since all methods in an interface are public by default.</p>
 </div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-77">
-<span class="ann-title">Accessing data</span>
-<div class="ann-short"><div><p>We can access data stored within each object by calling its instance methods that expose that data.</p>
-<p>In the code below, if we try to directly access data from the object, e.g., by writing <code>year1.year</code>, our code would not compile. The <code>year</code> variable is marked as <code>private</code> in the <code>CsCohort</code> class, so it is not visible here except through the public <code>getYear</code> method.</p>
+</template><template class="annotation popover-custom" id="pop-14">
+<span class="ann-title">Documentation is important!</span>
+<div class="ann-short"><div><p>In addition to the method signature, it's important for interface abstract methods to include Javadoc comments describing the method's purpose. These examples are pared down for simplicity—see the actual Java List interface for the type of detail that might be included in a Javadoc comment.</p>
 </div></div>
-<div class="ann-long"><div><p>We can access data stored within each object by calling its instance methods that expose that data.</p>
-<p>In the code below, if we try to directly access data from the object, e.g., by writing <code>year1.year</code>, our code would not compile. The <code>year</code> variable is marked as <code>private</code> in the <code>CsCohort</code> class, so it is not visible here except through the public <code>getYear</code> method.</p>
+<div class="ann-long"><div><p>In addition to the method signature, it's important for interface abstract methods to include Javadoc comments describing the method's purpose. These examples are pared down for simplicity—see the actual Java List interface for the type of detail that might be included in a Javadoc comment.</p>
 </div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-1">
-<span class="ann-title">println(String)</span>
-<div class="ann-short"><div>Prints a String and then terminates the line.  This method behaves as
- though it invokes <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#print(java.lang.String)" target="_blank"><code>print(String)</code></a> and then
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>println()</code></a>.</div></div>
-<div class="ann-long"><div><div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">println</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&nbsp;x)</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.String)"></a></div><div class="block">Prints a String and then terminates the line.  This method behaves as
- though it invokes <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#print(java.lang.String)" target="_blank"><code>print(String)</code></a> and then
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>println()</code></a>.</div><dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>x</code> - The <code>String</code> to be printed.</dd>
-</dl></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-78">
-<span class="ann-title">Mutating data</span>
-<div class="ann-short"><div><p>We can use the setter method to change the value of the <code>year1</code> object's <code>retainedPercent</code> field.</p>
+</template><template class="annotation popover-custom" id="pop-12">
+<span class="ann-title">public interface List</span>
+<div class="ann-short"><div><p>Interface declaration. This interface contains only method signatures, and no method implementations. These types of methods are called "abstract methods". They don't do anything—they merely define a contract that all lists must fulfill.</p>
 </div></div>
-<div class="ann-long"><div><p>We can use the setter method to change the value of the <code>year1</code> object's <code>retainedPercent</code> field.</p>
+<div class="ann-long"><div><p>Interface declaration. This interface contains only method signatures, and no method implementations. These types of methods are called "abstract methods". They don't do anything—they merely define a contract that all lists must fulfill.</p>
 </div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc" id="popj-0">
-<span class="ann-title">out</span>
-<div class="ann-short"><div>The "standard" output stream. This stream is already
- open and ready to accept output data. Typically this stream
- corresponds to display output or another output destination
- specified by the host environment or user. The encoding used
- in the conversion from characters to bytes is equivalent to
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a> if the <code>Console</code> exists,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a> otherwise.
- </div></div>
-<div class="ann-long"><div><div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html" title="class in java.io" target="_blank">PrintStream</a></span>&nbsp;<span class="element-name">out</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#out"></a></div><div class="block">The "standard" output stream. This stream is already
- open and ready to accept output data. Typically this stream
- corresponds to display output or another output destination
- specified by the host environment or user. The encoding used
- in the conversion from characters to bytes is equivalent to
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a> if the <code>Console</code> exists,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a> otherwise.
- <p>
- For simple stand-alone Java applications, a typical way to write
- a line of output data is:
- </p><blockquote><pre>     System.out.println(data)
- </pre></blockquote>
- <p></p><p>
- See the <code>println</code> methods in class <code>PrintStream</code>.</p></div><dl class="notes">
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list-long">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println()" target="_blank"><code>PrintStream.println()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(boolean)" target="_blank"><code>PrintStream.println(boolean)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(char)" target="_blank"><code>PrintStream.println(char)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(char%5B%5D)" target="_blank"><code>PrintStream.println(char[])</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(double)" target="_blank"><code>PrintStream.println(double)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(float)" target="_blank"><code>PrintStream.println(float)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(int)" target="_blank"><code>PrintStream.println(int)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(long)" target="_blank"><code>PrintStream.println(long)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.Object)" target="_blank"><code>PrintStream.println(java.lang.Object)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/PrintStream.html#println(java.lang.String)" target="_blank"><code>PrintStream.println(java.lang.String)</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Console.html#charset()" target="_blank"><code>Console.charset()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/System.html#stdout.encoding" target="_blank">stdout.encoding</a></li>
-</ul>
-</dd>
-</dl></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-75">
-<span class="ann-title">Creating objects</span>
-<div class="ann-short"><div><p>Here, we use the constructor from the <code>CsCohort</code> class to create four
-objects.  Each object represents a cohort of students that entered the CS program.</p>
+</template><template class="annotation popover-custom" id="pop-17">
+<span class="ann-title">add</span>
+<div class="ann-short"><div><p>This is an overload of the <code>add</code> method. See the lesson on method dispatch for a review of method overloading.</p>
 </div></div>
-<div class="ann-long"><div><p>Here, we use the constructor from the <code>CsCohort</code> class to create four
-objects.  Each object represents a cohort of students that entered the CS program.</p>
+<div class="ann-long"><div><p>This is an overload of the <code>add</code> method. See the lesson on method dispatch for a review of method overloading.</p>
 </div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-76">
-<span class="ann-title">new</span>
-<div class="ann-short"><div><p>The <code>new</code> keyword is used in Java to create new objects.</p>
+</template><template class="annotation popover-custom" id="pop-15">
+<span class="ann-title">E</span>
+<div class="ann-short"><div><p>This return type <code>E</code> is a <span class="anchor inline hover-zone popover-anchor" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-16" id="anc-18"><span class="marker custom">placeholder</span></span>. This list might be used as a list of ints or Strings or anything else.</p>
 </div></div>
-<div class="ann-long"><div><p>The <code>new</code> keyword is used in Java to create new objects.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc popover-custom" id="popc-5">
-<span class="ann-title">Map.Entry&lt;String, CsCohort&gt; | java.util.Map | ...</span>
-<div class="ann-short"><div><strong class="small-pop-header">Map.Entry&lt;String, CsCohort&gt;</strong><div><div><p>This is the <em>data type</em> of each element in the entry set. It looks a little
-wonky, so here's what each part is saying. The <code>Map.Entry</code> part says that
-<code>Entry</code> is an internal class within the <code>Map</code> class (i.e., a class within a class; sometimes this is okay). The
-<code>&lt;String, CsCohort&gt;</code> part says that each map entry, like the map itself,
-has a key of type <code>String</code> and a value of type <code>CsCohort</code>.</p>
-</div></div><hr class="small-sep"><strong class="small-pop-header">java.util.Map</strong><div><div>An object that maps keys to values.  A map cannot contain duplicate keys;
- each key can map to at most one value.
-
- </div></div><hr class="small-sep"><strong class="small-pop-header">java.lang.String</strong><div><div>The <code>String</code> class represents character strings. All
- string literals in Java programs, such as <code>"abc"</code>, are
- implemented as instances of this class.
- </div></div></div></div>
-<div class="ann-long"><div><h5 class="pop-header">Map.Entry&lt;String, CsCohort&gt;</h5><div><div><p>This is the <em>data type</em> of each element in the entry set. It looks a little
-wonky, so here's what each part is saying. The <code>Map.Entry</code> part says that
-<code>Entry</code> is an internal class within the <code>Map</code> class (i.e., a class within a class; sometimes this is okay). The
-<code>&lt;String, CsCohort&gt;</code> part says that each map entry, like the map itself,
-has a key of type <code>String</code> and a value of type <code>CsCohort</code>.</p>
-</div></div><hr class="big-sep"><h5 class="pop-header">java.util.Map</h5><div><div><div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">Map&lt;K,<wbr>V&gt;</span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html#class-description"></a></div><div class="block">An object that maps keys to values.  A map cannot contain duplicate keys;
- each key can map to at most one value.
-
- <p>This interface takes the place of the <code>Dictionary</code> class, which
- was a totally abstract class rather than an interface.
-
- </p><p>The <code>Map</code> interface provides three <i>collection views</i>, which
- allow a map's contents to be viewed as a set of keys, collection of values,
- or set of key-value mappings.  The <i>order</i> of a map is defined as
- the order in which the iterators on the map's collection views return their
- elements.  Some map implementations, like the <code>TreeMap</code> class, make
- specific guarantees as to their order; others, like the <code>HashMap</code>
- class, do not.
-
- </p><p>Note: great care must be exercised if mutable objects are used as map
- keys.  The behavior of a map is not specified if the value of an object is
- changed in a manner that affects <code>equals</code> comparisons while the
- object is a key in the map.  A special case of this prohibition is that it
- is not permissible for a map to contain itself as a key.  While it is
- permissible for a map to contain itself as a value, extreme caution is
- advised: the <code>equals</code> and <code>hashCode</code> methods are no longer
- well defined on such a map.
-
- </p><p>All general-purpose map implementation classes should provide two
- "standard" constructors: a void (no arguments) constructor which creates an
- empty map, and a constructor with a single argument of type <code>Map</code>,
- which creates a new map with the same key-value mappings as its argument.
- In effect, the latter constructor allows the user to copy any map,
- producing an equivalent map of the desired class.  There is no way to
- enforce this recommendation (as interfaces cannot contain constructors) but
- all of the general-purpose map implementations in the JDK comply.
-
- </p><p>The "destructive" methods contained in this interface, that is, the
- methods that modify the map on which they operate, are specified to throw
- <code>UnsupportedOperationException</code> if this map does not support the
- operation.  If this is the case, these methods may, but are not required
- to, throw an <code>UnsupportedOperationException</code> if the invocation would
- have no effect on the map.  For example, invoking the <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html#putAll(java.util.Map)" target="_blank"><code>putAll(Map)</code></a>
- method on an unmodifiable map may, but is not required to, throw the
- exception if the map whose mappings are to be "superimposed" is empty.
-
- </p><p>Some map implementations have restrictions on the keys and values they
- may contain.  For example, some implementations prohibit null keys and
- values, and some have restrictions on the types of their keys.  Attempting
- to insert an ineligible key or value throws an unchecked exception,
- typically <code>NullPointerException</code> or <code>ClassCastException</code>.
- Attempting to query the presence of an ineligible key or value may throw an
- exception, or it may simply return false; some implementations will exhibit
- the former behavior and some will exhibit the latter.  More generally,
- attempting an operation on an ineligible key or value whose completion
- would not result in the insertion of an ineligible element into the map may
- throw an exception or it may succeed, at the option of the implementation.
- Such exceptions are marked as "optional" in the specification for this
- interface.
-
- </p><p>Many methods in Collections Framework interfaces are defined
- in terms of the <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" target="_blank"><code>equals</code></a> method.  For
- example, the specification for the <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html#containsKey(java.lang.Object)" target="_blank"><code>containsKey(Object key)</code></a> method says: "returns <code>true</code> if and
- only if this map contains a mapping for a key <code>k</code> such that
- <code>(key==null ? k==null : key.equals(k))</code>." This specification should
- <i>not</i> be construed to imply that invoking <code>Map.containsKey</code>
- with a non-null argument <code>key</code> will cause <code>key.equals(k)</code> to
- be invoked for any key <code>k</code>.  Implementations are free to
- implement optimizations whereby the <code>equals</code> invocation is avoided,
- for example, by first comparing the hash codes of the two keys.  (The
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" target="_blank"><code>Object.hashCode()</code></a> specification guarantees that two objects with
- unequal hash codes cannot be equal.)  More generally, implementations of
- the various Collections Framework interfaces are free to take advantage of
- the specified behavior of underlying <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class in java.lang" target="_blank"><code>Object</code></a> methods wherever the
- implementor deems it appropriate.
-
- </p><p>Some map operations which perform recursive traversal of the map may fail
- with an exception for self-referential instances where the map directly or
- indirectly contains itself. This includes the <code>clone()</code>,
- <code>equals()</code>, <code>hashCode()</code> and <code>toString()</code> methods.
- Implementations may optionally handle the self-referential scenario, however
- most current implementations do not do so.
-
- </p><h2><a id="unmodifiable">Unmodifiable Maps</a></h2>
- <p>The <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html#of()" target="_blank"><code>Map.of</code></a>,
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html#ofEntries(java.util.Map.Entry...)" target="_blank"><code>Map.ofEntries</code></a>, and
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html#copyOf(java.util.Map)" target="_blank"><code>Map.copyOf</code></a>
- static factory methods provide a convenient way to create unmodifiable maps.
- The <code>Map</code>
- instances created by these methods have the following characteristics:
-
- </p><ul>
- <li>They are <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Collection.html#unmodifiable" target="_blank"><i>unmodifiable</i></a>. Keys and values
- cannot be added, removed, or updated. Calling any mutator method on the Map
- will always cause <code>UnsupportedOperationException</code> to be thrown.
- However, if the contained keys or values are themselves mutable, this may cause the
- Map to behave inconsistently or its contents to appear to change.
- </li><li>They disallow <code>null</code> keys and values. Attempts to create them with
- <code>null</code> keys or values result in <code>NullPointerException</code>.
- </li><li>They are serializable if all keys and values are serializable.
- </li><li>They reject duplicate keys at creation time. Duplicate keys
- passed to a static factory method result in <code>IllegalArgumentException</code>.
- </li><li>The iteration order of mappings is unspecified and is subject to change.
- </li><li>They are <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/doc-files/ValueBased.html" target="_blank">value-based</a>.
- Programmers should treat instances that are <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html#equals(java.lang.Object)" target="_blank">equal</a>
- as interchangeable and should not use them for synchronization, or
- unpredictable behavior may occur. For example, in a future release,
- synchronization may fail. Callers should make no assumptions
- about the identity of the returned instances. Factories are free to
- create new instances or reuse existing ones.
- </li><li>They are serialized as specified on the
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/serialized-form.html#java.util.CollSer" target="_blank">Serialized Form</a>
- page.
- </li></ul>
-
- <p></p><p>This interface is a member of the
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/package-summary.html#CollectionsFramework" target="_blank">
- Java Collections Framework</a>.</p></div><dl class="notes">
-<dt>Since:</dt>
-<dd>1.2</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/HashMap.html" title="class in java.util" target="_blank"><code>HashMap</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/TreeMap.html" title="class in java.util" target="_blank"><code>TreeMap</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Hashtable.html" title="class in java.util" target="_blank"><code>Hashtable</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/SortedMap.html" title="interface in java.util" target="_blank"><code>SortedMap</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Collection.html" title="interface in java.util" target="_blank"><code>Collection</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Set.html" title="interface in java.util" target="_blank"><code>Set</code></a></li>
-</ul>
-</dd>
-</dl></div></div><hr class="big-sep"><h5 class="pop-header">java.lang.String</h5><div><div><div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">String</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class in java.lang" target="_blank">Object</a>
-implements <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Serializable.html" title="interface in java.io" target="_blank">Serializable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Comparable.html" title="interface in java.lang" target="_blank">Comparable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&gt;, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/CharSequence.html" title="interface in java.lang" target="_blank">CharSequence</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/Constable.html" title="interface in java.lang.constant" target="_blank">Constable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/ConstantDesc.html" title="interface in java.lang.constant" target="_blank">ConstantDesc</a></span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html#class-description"></a></div><div class="block">The <code>String</code> class represents character strings. All
- string literals in Java programs, such as <code>"abc"</code>, are
- implemented as instances of this class.
- <p>
- Strings are constant; their values cannot be changed after they
- are created. String buffers support mutable strings.
- Because String objects are immutable they can be shared. For example:
- </p><blockquote><pre>     String str = "abc";
- </pre></blockquote><p></p><p>
- is equivalent to:
- </p><blockquote><pre>     char data[] = {'a', 'b', 'c'};
-     String str = new String(data);
- </pre></blockquote><p></p><p>
- Here are some more examples of how strings can be used:
- </p><blockquote><pre>     System.out.println("abc");
-     String cde = "cde";
-     System.out.println("abc" + cde);
-     String c = "abc".substring(2, 3);
-     String d = cde.substring(1, 2);
- </pre></blockquote>
- <p></p><p>
- The class <code>String</code> includes methods for examining
- individual characters of the sequence, for comparing strings, for
- searching strings, for extracting substrings, and for creating a
- copy of a string with all characters translated to uppercase or to
- lowercase. Case mapping is based on the Unicode Standard version
- specified by the <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html" title="class in java.lang" target="_blank"><code>Character</code></a> class.
- </p><p>
- The Java language provides special support for the string
- concatenation operator (&nbsp;+&nbsp;), and for conversion of
- other objects to strings. For additional information on string
- concatenation and conversion, see <i>The Java Language Specification</i>.
-
- </p><p> Unless otherwise noted, passing a <code>null</code> argument to a constructor
- or method in this class will cause a <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/NullPointerException.html" title="class in java.lang" target="_blank"><code>NullPointerException</code></a> to be
- thrown.
-
- </p><p>A <code>String</code> represents a string in the UTF-16 format
- in which <em>supplementary characters</em> are represented by <em>surrogate
- pairs</em> (see the section <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html#unicode" target="_blank">Unicode
- Character Representations</a> in the <code>Character</code> class for
- more information).
- Index values refer to <code>char</code> code units, so a supplementary
- character uses two positions in a <code>String</code>.
- </p><p>The <code>String</code> class provides methods for dealing with
- Unicode code points (i.e., characters), in addition to those for
- dealing with Unicode code units (i.e., <code>char</code> values).
-
- </p><p>Unless otherwise noted, methods for comparing Strings do not take locale
- into account.  The <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/text/Collator.html" title="class in java.text" target="_blank"><code>Collator</code></a> class provides methods for
- finer-grain, locale-sensitive String comparison.</p></div><dl class="notes">
-<dt>Implementation Note:</dt>
-<dd>The implementation of the string concatenation operator is left to
- the discretion of a Java compiler, as long as the compiler ultimately conforms
- to <i>The Java Language Specification</i>. For example, the <code>javac</code> compiler
- may implement the operator with <code>StringBuffer</code>, <code>StringBuilder</code>,
- or <code>java.lang.invoke.StringConcatFactory</code> depending on the JDK version. The
- implementation of string conversion is typically through the method <code>toString</code>,
- defined by <code>Object</code> and inherited by all classes in Java.</dd>
-<dt>See <i>Java Language Specification</i>:</dt>
-<dd>
-<a href="https://docs.oracle.com/javase/specs/jls/se20/html/jls-15.html#jls-15.18.1" target="_blank">15.18.1 String Concatenation Operator +</a><br></dd>
-<dt>Since:</dt>
-<dd>1.0</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" target="_blank"><code>Object.toString()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuffer.html" title="class in java.lang" target="_blank"><code>StringBuffer</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuilder.html" title="class in java.lang" target="_blank"><code>StringBuilder</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/nio/charset/Charset.html" title="class in java.nio.charset" target="_blank"><code>Charset</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/serialized-form.html#java.lang.String" target="_blank">Serialized Form</a></li>
-</ul>
-</dd>
-</dl></div></div></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-javadoc popover-custom" id="popc-4">
-<span class="ann-title">public static void main(String[] args) | ...</span>
-<div class="ann-short"><div><strong class="small-pop-header">public static void main(String[] args)</strong><div><div><p>The main method is the entry point for our program.  It is the method that is called when we run the <code>CompareCohorts</code> class.
-It is important for all parts of this <span class="anchor inline hover-zone popover-anchor" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-74" id="anc-124"><span class="marker custom">method signature</span></span> to be present, otherwise it will not be treated as the entry point.</p>
-<p>We will talk about the meaning of <code>static</code> in the next lesson.</p>
-</div></div><hr class="small-sep"><strong class="small-pop-header">java.lang.String</strong><div><div>The <code>String</code> class represents character strings. All
- string literals in Java programs, such as <code>"abc"</code>, are
- implemented as instances of this class.
- </div></div></div></div>
-<div class="ann-long"><div><h5 class="pop-header">public static void main(String[] args)</h5><div><div><p>The main method is the entry point for our program.  It is the method that is called when we run the <code>CompareCohorts</code> class.
-It is important for all parts of this <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-74" id="anc-126"><span class="marker custom">method signature</span></span> to be present, otherwise it will not be treated as the entry point.</p>
-<p>We will talk about the meaning of <code>static</code> in the next lesson.</p>
-</div></div><hr class="big-sep"><h5 class="pop-header">java.lang.String</h5><div><div><div class="type-signature"><span class="modifiers">public final class </span><span class="element-name type-name-label">String</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html" title="class in java.lang" target="_blank">Object</a>
-implements <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Serializable.html" title="interface in java.io" target="_blank">Serializable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Comparable.html" title="interface in java.lang" target="_blank">Comparable</a>&lt;<a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html" title="class in java.lang" target="_blank">String</a>&gt;, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/CharSequence.html" title="interface in java.lang" target="_blank">CharSequence</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/Constable.html" title="interface in java.lang.constant" target="_blank">Constable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/constant/ConstantDesc.html" title="interface in java.lang.constant" target="_blank">ConstantDesc</a></span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/String.html#class-description"></a></div><div class="block">The <code>String</code> class represents character strings. All
- string literals in Java programs, such as <code>"abc"</code>, are
- implemented as instances of this class.
- <p>
- Strings are constant; their values cannot be changed after they
- are created. String buffers support mutable strings.
- Because String objects are immutable they can be shared. For example:
- </p><blockquote><pre>     String str = "abc";
- </pre></blockquote><p></p><p>
- is equivalent to:
- </p><blockquote><pre>     char data[] = {'a', 'b', 'c'};
-     String str = new String(data);
- </pre></blockquote><p></p><p>
- Here are some more examples of how strings can be used:
- </p><blockquote><pre>     System.out.println("abc");
-     String cde = "cde";
-     System.out.println("abc" + cde);
-     String c = "abc".substring(2, 3);
-     String d = cde.substring(1, 2);
- </pre></blockquote>
- <p></p><p>
- The class <code>String</code> includes methods for examining
- individual characters of the sequence, for comparing strings, for
- searching strings, for extracting substrings, and for creating a
- copy of a string with all characters translated to uppercase or to
- lowercase. Case mapping is based on the Unicode Standard version
- specified by the <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html" title="class in java.lang" target="_blank"><code>Character</code></a> class.
- </p><p>
- The Java language provides special support for the string
- concatenation operator (&nbsp;+&nbsp;), and for conversion of
- other objects to strings. For additional information on string
- concatenation and conversion, see <i>The Java Language Specification</i>.
-
- </p><p> Unless otherwise noted, passing a <code>null</code> argument to a constructor
- or method in this class will cause a <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/NullPointerException.html" title="class in java.lang" target="_blank"><code>NullPointerException</code></a> to be
- thrown.
-
- </p><p>A <code>String</code> represents a string in the UTF-16 format
- in which <em>supplementary characters</em> are represented by <em>surrogate
- pairs</em> (see the section <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Character.html#unicode" target="_blank">Unicode
- Character Representations</a> in the <code>Character</code> class for
- more information).
- Index values refer to <code>char</code> code units, so a supplementary
- character uses two positions in a <code>String</code>.
- </p><p>The <code>String</code> class provides methods for dealing with
- Unicode code points (i.e., characters), in addition to those for
- dealing with Unicode code units (i.e., <code>char</code> values).
-
- </p><p>Unless otherwise noted, methods for comparing Strings do not take locale
- into account.  The <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/text/Collator.html" title="class in java.text" target="_blank"><code>Collator</code></a> class provides methods for
- finer-grain, locale-sensitive String comparison.</p></div><dl class="notes">
-<dt>Implementation Note:</dt>
-<dd>The implementation of the string concatenation operator is left to
- the discretion of a Java compiler, as long as the compiler ultimately conforms
- to <i>The Java Language Specification</i>. For example, the <code>javac</code> compiler
- may implement the operator with <code>StringBuffer</code>, <code>StringBuilder</code>,
- or <code>java.lang.invoke.StringConcatFactory</code> depending on the JDK version. The
- implementation of string conversion is typically through the method <code>toString</code>,
- defined by <code>Object</code> and inherited by all classes in Java.</dd>
-<dt>See <i>Java Language Specification</i>:</dt>
-<dd>
-<a href="https://docs.oracle.com/javase/specs/jls/se20/html/jls-15.html#jls-15.18.1" target="_blank">15.18.1 String Concatenation Operator +</a><br></dd>
-<dt>Since:</dt>
-<dd>1.0</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#toString()" target="_blank"><code>Object.toString()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuffer.html" title="class in java.lang" target="_blank"><code>StringBuffer</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/StringBuilder.html" title="class in java.lang" target="_blank"><code>StringBuilder</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/nio/charset/Charset.html" title="class in java.nio.charset" target="_blank"><code>Charset</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/serialized-form.html#java.lang.String" target="_blank">Serialized Form</a></li>
-</ul>
-</dd>
-</dl></div></div></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-74">
-<span class="ann-title">method signature</span>
-<div class="ann-short"><div><p>The <em>signature</em> of a method is composed of its <strong>name</strong>, <strong>parameter list</strong>, <strong>return type</strong>, and any modifiers like <code>public</code> and <code>static</code>. The first two components (name and parameter list)together will uniquely identify a method within a class. I.e., there can never exist multiple methods in one class with the same name and parameter types.</p>
-</div></div>
-<div class="ann-long"><div><p>The <em>signature</em> of a method is composed of its <strong>name</strong>, <strong>parameter list</strong>, <strong>return type</strong>, and any modifiers like <code>public</code> and <code>static</code>. The first two components (name and parameter list)together will uniquely identify a method within a class. I.e., there can never exist multiple methods in one class with the same name and parameter types.</p>
-</div></div>
-<span class="ann-backlinks">popc-4</span>
-</template><template class="annotation popover-javadoc" id="popc-3">
-<span class="ann-title">HashMap() | java.util.HashMap</span>
-<div class="ann-short"><div><strong class="small-pop-header">HashMap()</strong><div><div>Constructs an empty <code>HashMap</code> with the default initial capacity
- (16) and the default load factor (0.75).</div></div><hr class="small-sep"><strong class="small-pop-header">java.util.HashMap</strong><div><div>Hash table based implementation of the <code>Map</code> interface.  This
- implementation provides all of the optional map operations, and permits
- <code>null</code> values and the <code>null</code> key.  (The <code>HashMap</code>
- class is roughly equivalent to <code>Hashtable</code>, except that it is
- unsynchronized and permits nulls.)  This class makes no guarantees as to
- the order of the map; in particular, it does not guarantee that the order
- will remain constant over time.
-
- </div></div></div></div>
-<div class="ann-long"><div><h5 class="pop-header">HashMap()</h5><div><div><div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">HashMap</span>()</div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/HashMap.html#<init>()"></a></div><div class="block">Constructs an empty <code>HashMap</code> with the default initial capacity
- (16) and the default load factor (0.75).</div></div></div><hr class="big-sep"><h5 class="pop-header">java.util.HashMap</h5><div><div><div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">HashMap&lt;K,<wbr>V&gt;</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/AbstractMap.html" title="class in java.util" target="_blank">AbstractMap</a>&lt;K,<wbr>V&gt;
-implements <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html" title="interface in java.util" target="_blank">Map</a>&lt;K,<wbr>V&gt;, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Cloneable.html" title="interface in java.lang" target="_blank">Cloneable</a>, <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/Serializable.html" title="interface in java.io" target="_blank">Serializable</a></span></div><div class="references"><a target="_blank" class="external-reference" title="Official API Reference" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/HashMap.html#class-description"></a></div><div class="block">Hash table based implementation of the <code>Map</code> interface.  This
- implementation provides all of the optional map operations, and permits
- <code>null</code> values and the <code>null</code> key.  (The <code>HashMap</code>
- class is roughly equivalent to <code>Hashtable</code>, except that it is
- unsynchronized and permits nulls.)  This class makes no guarantees as to
- the order of the map; in particular, it does not guarantee that the order
- will remain constant over time.
-
- <p>This implementation provides constant-time performance for the basic
- operations (<code>get</code> and <code>put</code>), assuming the hash function
- disperses the elements properly among the buckets.  Iteration over
- collection views requires time proportional to the "capacity" of the
- <code>HashMap</code> instance (the number of buckets) plus its size (the number
- of key-value mappings).  Thus, it's very important not to set the initial
- capacity too high (or the load factor too low) if iteration performance is
- important.
-
- </p><p>An instance of <code>HashMap</code> has two parameters that affect its
- performance: <i>initial capacity</i> and <i>load factor</i>.  The
- <i>capacity</i> is the number of buckets in the hash table, and the initial
- capacity is simply the capacity at the time the hash table is created.  The
- <i>load factor</i> is a measure of how full the hash table is allowed to
- get before its capacity is automatically increased.  When the number of
- entries in the hash table exceeds the product of the load factor and the
- current capacity, the hash table is <i>rehashed</i> (that is, internal data
- structures are rebuilt) so that the hash table has approximately twice the
- number of buckets.
-
- </p><p>As a general rule, the default load factor (.75) offers a good
- tradeoff between time and space costs.  Higher values decrease the
- space overhead but increase the lookup cost (reflected in most of
- the operations of the <code>HashMap</code> class, including
- <code>get</code> and <code>put</code>).  The expected number of entries in
- the map and its load factor should be taken into account when
- setting its initial capacity, so as to minimize the number of
- rehash operations.  If the initial capacity is greater than the
- maximum number of entries divided by the load factor, no rehash
- operations will ever occur.
-
- </p><p>If many mappings are to be stored in a <code>HashMap</code>
- instance, creating it with a sufficiently large capacity will allow
- the mappings to be stored more efficiently than letting it perform
- automatic rehashing as needed to grow the table.  Note that using
- many keys with the same <code>hashCode()</code> is a sure way to slow
- down performance of any hash table. To ameliorate impact, when keys
- are <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Comparable.html" title="interface in java.lang" target="_blank"><code>Comparable</code></a>, this class may use comparison order among
- keys to help break ties.
-
- </p><p><strong>Note that this implementation is not synchronized.</strong>
- If multiple threads access a hash map concurrently, and at least one of
- the threads modifies the map structurally, it <i>must</i> be
- synchronized externally.  (A structural modification is any operation
- that adds or deletes one or more mappings; merely changing the value
- associated with a key that an instance already contains is not a
- structural modification.)  This is typically accomplished by
- synchronizing on some object that naturally encapsulates the map.
-
- If no such object exists, the map should be "wrapped" using the
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Collections.html#synchronizedMap(java.util.Map)" target="_blank"><code>Collections.synchronizedMap</code></a>
- method.  This is best done at creation time, to prevent accidental
- unsynchronized access to the map:</p><pre>   Map m = Collections.synchronizedMap(new HashMap(...));</pre>
-
- <p></p><p>The iterators returned by all of this class's "collection view methods"
- are <i>fail-fast</i>: if the map is structurally modified at any time after
- the iterator is created, in any way except through the iterator's own
- <code>remove</code> method, the iterator will throw a
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/ConcurrentModificationException.html" title="class in java.util" target="_blank"><code>ConcurrentModificationException</code></a>.  Thus, in the face of concurrent
- modification, the iterator fails quickly and cleanly, rather than risking
- arbitrary, non-deterministic behavior at an undetermined time in the
- future.
-
- </p><p>Note that the fail-fast behavior of an iterator cannot be guaranteed
- as it is, generally speaking, impossible to make any hard guarantees in the
- presence of unsynchronized concurrent modification.  Fail-fast iterators
- throw <code>ConcurrentModificationException</code> on a best-effort basis.
- Therefore, it would be wrong to write a program that depended on this
- exception for its correctness: <i>the fail-fast behavior of iterators
- should be used only to detect bugs.</i>
-
- </p><p>This class is a member of the
- <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/package-summary.html#CollectionsFramework" target="_blank">
- Java Collections Framework</a>.</p></div><dl class="notes">
-<dt>Since:</dt>
-<dd>1.2</dd>
-<dt>See Also:</dt>
-<dd>
-<ul class="tag-list">
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/Object.html#hashCode()" target="_blank"><code>Object.hashCode()</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Collection.html" title="interface in java.util" target="_blank"><code>Collection</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Map.html" title="interface in java.util" target="_blank"><code>Map</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/TreeMap.html" title="class in java.util" target="_blank"><code>TreeMap</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/Hashtable.html" title="class in java.util" target="_blank"><code>Hashtable</code></a></li>
-<li><a href="https://docs.oracle.com/en/java/javase/20/docs/api/serialized-form.html#java.util.HashMap" target="_blank">Serialized Form</a></li>
-</ul>
-</dd>
-</dl></div></div></div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-72">
-<span class="ann-title">public class CompareCohorts</span>
-<div class="ann-short"><div><p>We use this class as our "driver", i.e., it contains the entry point for our overall program.
-This class is responsible for creating the objects that we will use to store our data.</p>
-<p>Although we don't intend to create <em>instances</em> of the <code>CompareCohorts</code> class, we still need to wrap this code inside a class, because all Java code must be run inside a class. So it goes.</p>
-</div></div>
-<div class="ann-long"><div><p>We use this class as our "driver", i.e., it contains the entry point for our overall program.
-This class is responsible for creating the objects that we will use to store our data.</p>
-<p>Although we don't intend to create <em>instances</em> of the <code>CompareCohorts</code> class, we still need to wrap this code inside a class, because all Java code must be run inside a class. So it goes.</p>
+<div class="ann-long"><div><p>This return type <code>E</code> is a <span class="anchor inline hover-zone" data-bs-toggle="popover" data-bs-trigger="manual" data-bs-html="true" data-casdoc-target="pop-16" id="anc-20"><span class="marker custom">placeholder</span></span>. This list might be used as a list of ints or Strings or anything else.</p>
 </div></div>
 <span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-83">
-<span class="ann-title">Iterating over the map</span>
-<div class="ann-short"><div><p>We can also iterate over the map using the <code>keySet</code> method.
-This method returns a set of all the keys in the map.
-By looping over the set of keys, we can obtain all the values one at a time.</p>
+</template><template class="annotation popover-custom" id="pop-16">
+<span class="ann-title">placeholder</span>
+<div class="ann-short"><div><p>We will talk more about <em>Java generics</em> later this quarter.</p>
 </div></div>
-<div class="ann-long"><div><p>We can also iterate over the map using the <code>keySet</code> method.
-This method returns a set of all the keys in the map.
-By looping over the set of keys, we can obtain all the values one at a time.</p>
+<div class="ann-long"><div><p>We will talk more about <em>Java generics</em> later this quarter.</p>
 </div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-80">
-<span class="ann-title">Adding objects to the map</span>
-<div class="ann-short"><div><p>We use the <code>put</code> method to add data to the map.
-The first argument is the <em>key</em>, and the second argument is the <em>value</em>.
-Duplicate keys are not allowed; if you add an object using a key that already
-exists in the map, the old value will be overwritten with the new value.</p>
-</div></div>
-<div class="ann-long"><div><p>We use the <code>put</code> method to add data to the map.
-The first argument is the <em>key</em>, and the second argument is the <em>value</em>.
-Duplicate keys are not allowed; if you add an object using a key that already
-exists in the map, the old value will be overwritten with the new value.</p>
-</div></div>
-<span class="ann-backlinks"></span>
-</template><template class="annotation popover-custom" id="pop-81">
-<span class="ann-title">Iterating over the map</span>
-<div class="ann-short"><div><p>We use the <code>entrySet</code> method to get a set of all the key-value pairs
-in the map. We can then iterate over the set using a for-each loop.</p>
-</div></div>
-<div class="ann-long"><div><p>We use the <code>entrySet</code> method to get a set of all the key-value pairs
-in the map. We can then iterate over the set using a for-each loop.</p>
-</div></div>
-<span class="ann-backlinks"></span>
+<span class="ann-backlinks">pop-15</span>
 </template></div>
-  <div id="sequence"><span class="sequence" annotation-ids="pop-72,popc-4,pop-75,pop-76,pop-77,pop-78,pop-79,pop-80,pop-81,popc-5,pop-83"></span></div>
+  <div id="sequence"><span class="sequence" annotation-ids="pop-12,pop-13,pop-14,pop-15,pop-17"></span></div>
 
 
 </body></html>

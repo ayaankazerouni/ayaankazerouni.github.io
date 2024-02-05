@@ -49,8 +49,8 @@
 <p><strong><em>Method overloading</em></strong> allows us to perform the same task (call the same function) in multiple different ways, depending on the inputs that are given (the arguments that are given to the function).</p>
 
 <p>More concretely, it allows the same class to define several methods that have the <em>same name</em> but different <em>parameter</em> lists.
-In Java, a method’s <em>signature</em> is its <em>name</em> and <em>parameter list</em>.
-Those two pieces together uniquely identify a method within a class.
+In Java, a method’s <em>signature</em> is its <em>name</em>, its <em>parameter list</em>, and any modifiers applied to it, like <code class="language-plaintext highlighter-rouge">public</code> or <code class="language-plaintext highlighter-rouge">static</code>.
+Those first two pieces—the method name and parameter list—together uniquely identify a method within a class.
 Within the same class, there can never be more than one method with a given name and parameter list.</p>
 
 <p>However, we <em>can</em> have several methods with the same name, but different parameter lists.</p>
@@ -63,11 +63,13 @@ Within the same class, there can never be more than one method with a given name
 
 <object data="Reporter.html" width="100%" height="600px"></object>
 
-<p>The <code class="language-plaintext highlighter-rouge">Reporter</code> class above contains three <code class="language-plaintext highlighter-rouge">static</code> methods called <code class="language-plaintext highlighter-rouge">report</code>.<sup id="fnref:static" role="doc-noteref"><a href="#fn:static" class="footnote" rel="footnote">1</a></sup>
+<p>The <code class="language-plaintext highlighter-rouge">Reporter</code> class above contains three <code class="language-plaintext highlighter-rouge">static</code> methods called <code class="language-plaintext highlighter-rouge">report</code>.[^static]
 Each one takes a different list of parameter types.</p>
 
 <p>When we write code to call one of the methods, our toolchain needs to decide <em>which</em> method should get called.
 This process is called <em>method dispatch</em>.</p>
+
+<p class="callout ponder">Why do you think they are <code class="language-plaintext highlighter-rouge">static</code> methods?<sup id="fnref:why-static" role="doc-noteref"><a href="#fn:why-static" class="footnote" rel="footnote">1</a></sup></p>
 
 <p>So, for example, if we were to make the following function call:</p>
 
@@ -130,6 +132,8 @@ That is, every reference type in Java <em>is an</em> <code class="language-plain
 <p>This is due to <strong><em>inheritance</em></strong>. All objects in Java inherit certain behaviours from the <code class="language-plaintext highlighter-rouge">Object</code> class, whether or not you, the programmer, explicitly told them to.</p>
 
 <p>So, a <code class="language-plaintext highlighter-rouge">String</code> is an <code class="language-plaintext highlighter-rouge">Object</code>. A <code class="language-plaintext highlighter-rouge">Point</code> is an <code class="language-plaintext highlighter-rouge">Object</code>. The <code class="language-plaintext highlighter-rouge">CsCohort</code> and <code class="language-plaintext highlighter-rouge">Pitcher</code> classes that we created in previous lessons are <code class="language-plaintext highlighter-rouge">Object</code>s, even though we didn’t explicitly mark them as such.</p>
+
+<p>With that in mind, consider the following assignment statement:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Object</span> <span class="n">whatAmI</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circle</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span>
 </code></pre></div></div>
@@ -273,7 +277,10 @@ So the example above would compile, and it would print out <code class="language
 
 <p>Closely related to method overloading is the confusingly similarly named <strong><em>method overriding</em></strong>.</p>
 
-<p><em>Method overriding</em> is when we write a method in a <em>subclass</em> (or child class) that has the same method signature—the same method name and parameter list—as a method in the <em>superclass</em> (or parent class), thus replacing the default behaviour that would otherwise be inherited.</p>
+<p>When a <em>superclass</em> (parent class) defines a behaviour and the <em>subclass</em> (child class) does not, the subclass inherits that behaviour from the superclass.
+For example, if we did not write a <code class="language-plaintext highlighter-rouge">toString</code> method in our <code class="language-plaintext highlighter-rouge">Circle</code> class, it would have inherited the <code class="language-plaintext highlighter-rouge">Object</code> <code class="language-plaintext highlighter-rouge">toString</code> behaviour instead.</p>
+
+<p><em>Method overriding</em> is when a method in a subclass has the same name and parameter list as a method in the superclass. The effect of this is that the subclass’s method <em>overrides</em> the superclass’s method, thus replacing the superclass’s behaviour that the subclass would otherwise inherit.</p>
 
 <h3 id="example-5">Example 5</h3>
 
@@ -305,6 +312,8 @@ For this example, <code class="language-plaintext highlighter-rouge">Circle</cod
     <span class="kd">public</span> <span class="nf">Circle</span><span class="o">(</span><span class="kt">double</span> <span class="n">radius</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">radius</span> <span class="o">=</span> <span class="n">radius</span><span class="o">;</span>
     <span class="o">}</span>
+
+    <span class="c1">// This time with no toString method</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
@@ -351,8 +360,8 @@ Resolution done at compile time (based on static type)
 <hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:static" role="doc-endnote">
-      <p>Why are they <code class="language-plaintext highlighter-rouge">static</code> methods? Since there is no <em>instance data</em>, we don’t really have a notion of individual <code class="language-plaintext highlighter-rouge">Reporter</code> objects. So we <em>could</em> make them instance methods, but that’s not really useful right now. <a href="#fnref:static" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    <li id="fn:why-static" role="doc-endnote">
+      <p>Since there is no <em>instance data</em>, we don’t really have a notion of individual <code class="language-plaintext highlighter-rouge">Reporter</code> objects. So we <em>could</em> make them instance methods, but that’s not really useful right now. <a href="#fnref:why-static" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:runtime" role="doc-endnote">
       <p>You will see me write both “run time” (as two words), and “runtime” (as one word). When I write “run time” (as two words), I mean it as <em>at run time</em>, as in “while the program is running”. When I write “runtime” (as one word), I mean <em>the program execution environment</em>. In most cases these are closely related. <a href="#fnref:runtime" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
@@ -364,6 +373,7 @@ Resolution done at compile time (based on static type)
 </div>
 
     </div>
+    
     
     </article>
   </main>

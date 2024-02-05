@@ -33,9 +33,7 @@
     <div class="content-box" style="border: none;">
       <div class="content">
         
-        <p>(Work in progress)</p>
-
-<p>In this lesson we’ll implement a simple game using an object-oriented (OO) design process.
+        <p>In this lesson we’ll implement a simple game using an object-oriented (OO) design process.
 The goal is to get a tiny taste of the thought process that goes into designing an OO system with multiple interacting classes.</p>
 
 <h2 id="game-requirements">Game requirements</h2>
@@ -81,12 +79,8 @@ OO design is one such process to help us write maintainable code.</p>
 <p>But it’s worth questioning: <strong>what do we actually mean by that?</strong> When I say we should prioritise <em>maintainability</em>, I’m thinking of the following:</p>
 
 <ul>
-  <li><strong>Requirements change over time.</strong> Software requirements rarely stay the same. Either because the client (the person for whom we’re building the software) refines what they’re asking for, or because new features need to be added, or because we, the developers, are correcting initial misunderstandings about aspects of the requirements, change is a constant in software engineering.
-    <ul>
-      <li>For example, traditional versions of this game can involve <em>multiple piles</em> of sticks, as opposed to just one. Once we’ve built our game, how easy would it be to update it to support multiple piles instead of a single pile?</li>
-      <li>Suppose we wanted to play the game using a <em>graphical</em> interface instead of (or in addition to!) a text-based interface. How much of our codebase needs to be updated to support this addition?</li>
-      <li>Suppose we want to support more than two players, or we want to have “history”, i.e., we want to remember players’ game histories. Where does that data get stored? What parts of our system “know about” that data?</li>
-    </ul>
+  <li>
+    <p><strong>Requirements change over time.</strong> Software requirements rarely stay the same. Either because the client (the person for whom we’re building the software) refines what they’re asking for, or because new features need to be added, or because we, the developers, are correcting initial misunderstandings about aspects of the requirements, change is a constant in software engineering.</p>
   </li>
   <li><strong>There will be bugs.</strong> It’s likely that you’ll need to debug your program at some point. Decoupling the different modules involved in the overall game implementation will help to quickly isolate issues as well as the changes needed to resolve them.
     <ul>
@@ -116,9 +110,93 @@ That is, we want to write <strong>loosely coupled</strong>, <strong>tightly cohe
   <li>Finally, we have <strong>the game itself</strong>. This is sort of the “controller” of this whole thing. What <em>data</em> does the <code class="language-plaintext highlighter-rouge">Game</code> know about? It needs to know about the <code class="language-plaintext highlighter-rouge">Player</code>s who are playing the game, and the <code class="language-plaintext highlighter-rouge">Pile</code> they are playing with. It also needs to manage the game logic, i.e., setting up the game, letting the players go turn-by-turn, and checking for a winner after each turn.</li>
 </ul>
 
-<p class="callout ponder">In the game rules, a player must remove 1–3 sticks from the pile. This means we must not allow player turns in which the player tries to remove <code class="language-plaintext highlighter-rouge">&lt; 1</code> stick or <code class="language-plaintext highlighter-rouge">&gt; 3</code> sticks. Should this check be done by the <code class="language-plaintext highlighter-rouge">Pile</code> or the <code class="language-plaintext highlighter-rouge">Game</code>? Why?</p>
+<p class="callout ponder">In the game rules, a player must remove 1–3 sticks from the pile. This means we must not allow player turns in which the player tries to remove <code class="language-plaintext highlighter-rouge">&lt; 1</code> stick or <code class="language-plaintext highlighter-rouge">&gt; 3</code> sticks. Should this check be done by the <code class="language-plaintext highlighter-rouge">Pile</code>, the <code class="language-plaintext highlighter-rouge">Player</code>, or the <code class="language-plaintext highlighter-rouge">Game</code>? Why?<br /><br />
+In this text based game, the <code class="language-plaintext highlighter-rouge">Player</code> might enter text that cannot be parsed into an <code class="language-plaintext highlighter-rouge">int</code> while choosing the number of sticks they want to pick up. How should this be handled? Whose job is it to handle it?</p>
+
+<p>We will discuss the above together as a class.
+That discussion should ideally give us an idea of what classes should exist in our system, and roughly what each of them should be responsible for.</p>
+
+<p>Here is <em>one possible</em> implementation of the game — we may come up with something different in class, or you may come up with something different on your own.
+That is fine.</p>
+
+<h3 id="the-player-class">The Player class</h3>
+
+<p>
+<div style="width: 100%; margin: auto;">
+  <a href="Player.html" target="_blank">
+    <small>
+      View in new tab
+    </small>
+  </a>
+  <br />
+  <object data="Player.html" width="100%" height="700px"></object>
+</div>
+</p>
+
+<h3 id="the-pile-class">The Pile class</h3>
+
+<p>
+<div style="width: 100%; margin: auto;">
+  <a href="Pile.html" target="_blank">
+    <small>
+      View in new tab
+    </small>
+  </a>
+  <br />
+  <object data="Pile.html" width="100%" height="600px"></object>
+</div>
+</p>
+
+<h3 id="the-game-class">The Game class</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">Game</code> class is our “controller” — it sits above and in-between the <code class="language-plaintext highlighter-rouge">Player</code> and <code class="language-plaintext highlighter-rouge">Pile</code> classes, managing and mediating those classes’ communications with each other.</p>
+
+<p>That is, the <code class="language-plaintext highlighter-rouge">Game</code> prompts the <code class="language-plaintext highlighter-rouge">Player</code> to see how many sticks they want to pick up, and sends that input to the <code class="language-plaintext highlighter-rouge">Pile</code>. The <code class="language-plaintext highlighter-rouge">Pile</code> acts on this information, updating its number of sticks accordingly. The <code class="language-plaintext highlighter-rouge">Game</code> then inspects the <code class="language-plaintext highlighter-rouge">Pile</code> to see if the game is over or not (by using the <code class="language-plaintext highlighter-rouge">Pile</code>’s getter method).</p>
+
+<p>
+<div style="width: 100%; margin: auto;">
+  <a href="Game.html" target="_blank">
+    <small>
+      View in new tab
+    </small>
+  </a>
+  <br />
+  <object data="Game.html" width="100%" height="100%"></object>
+</div>
+</p>
+
+<h2 id="supporting-additional-features">Supporting additional features</h2>
+
+<p>As we’ve said before, a central theme in software engineering is that your requirements can change.
+For example, as you think about designing the game <em>as described above</em>, think about how easy to difficult it would be to support features like the following.
+How much of our code would need to change to allow these features?</p>
+
+<ul>
+  <li><strong>Multiple piles instead of a single pile.</strong> Traditional versions of this game can involve <em>multiple piles</em> of sticks, as opposed to just one. Users pick up sticks from one pile at a time, but the game ends when <em>all</em> piles are empty.</li>
+  <li><strong>Supporting a graphical user interface.</strong> How much of our codebase needs to change to support a graphical user interface instead of (or in addition to!) a text-based interface?</li>
+  <li><strong>Game history.</strong> Suppose we want to be able to show a history of games that have been played, in the system as a whole and/or for individual players. How would our classes change?</li>
+</ul>
+
+<p>You will find that there is a balance to be achieved between two extremes.
+On one end, you can put in huge amounts of design effort upfront, and try to prepare your code to easily handle <em>any</em> updates to the requirements, i.e., by strictly adhering to principles like information hiding and creating new abstractions (e.g., classes) to support most key features.
+The downside is that you often don’t need all of those abstractions—that design and preparatory implementation work can go to waste<sup id="fnref:yagni" role="doc-noteref"><a href="#fn:yagni" class="footnote" rel="footnote">1</a></sup>, and worse, it can make your code harder to read and understand for someone who is not already familiar with the codebase.</p>
+
+<p>On the other extreme, you can eschew this upfront design work, and when changes to requirements inevitably <em>do</em> crop up, you can pay the piper then. Though by that time you may have accrued a fair amount of <em>technical debt</em>.<sup id="fnref:td" role="doc-noteref"><a href="#fn:td" class="footnote" rel="footnote">2</a></sup></p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:yagni" role="doc-endnote">
+      <p>Many pithy acronyms for engineering principles hint at this, like <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a> (you aren’t gonna need it) and <a href="https://en.wikipedia.org/wiki/KISS_principle">KISS</a> (keep it simple, stupid!) <a href="#fnref:yagni" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:td" role="doc-endnote">
+      <p><em>Technical debt</em> is a metaphor describing the situation in which developers sacrifice some software maintenance tasks (like software design, testing, documentation, refactoring) in favour of speedy implementations and deployments. Sometimes this is fine, as long as that “debt” is repaid soon. <em><a href="https://www.agilealliance.org/wp-content/uploads/2016/05/IntroductiontotheTechnicalDebtConcept-V-02.pdf">A little debt speeds development so long as it is paid back promptly with refactoring.</a></em> <a href="#fnref:td" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
     </div>
+    
     
     </article>
   </main>

@@ -406,6 +406,45 @@ Each item points to the next item, forming a chain of items, i.e., the linked li
   </tbody>
 </table>
 
+<h3 id="a-note-about-boxed-primitive-types">A note about “boxed” primitive types</h3>
+
+<p>Creating an <code class="language-plaintext highlighter-rouge">ArrayList</code> of integers or floating point values looks like this:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>What’s up the the <code class="language-plaintext highlighter-rouge">Integer</code> in the code above? Wasn’t the primitive integer type in Java called <code class="language-plaintext highlighter-rouge">int</code>?</p>
+
+<p>In Java, all the primitive types have “boxed” versions of those types.
+I.e., versions in which they masquerade as reference types.
+That is, you will sometimes see:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">short</code> referred to as <code class="language-plaintext highlighter-rouge">Short</code></li>
+  <li><code class="language-plaintext highlighter-rouge">int</code> referred to as <code class="language-plaintext highlighter-rouge">Integer</code></li>
+  <li><code class="language-plaintext highlighter-rouge">long</code> referred to as <code class="language-plaintext highlighter-rouge">Long</code></li>
+  <li><code class="language-plaintext highlighter-rouge">double</code> referred to as <code class="language-plaintext highlighter-rouge">Double</code></li>
+  <li><code class="language-plaintext highlighter-rouge">float</code> referred to as <code class="language-plaintext highlighter-rouge">Float</code></li>
+  <li><code class="language-plaintext highlighter-rouge">char</code> referred to as <code class="language-plaintext highlighter-rouge">Character</code></li>
+  <li><code class="language-plaintext highlighter-rouge">boolean</code> referred to as <code class="language-plaintext highlighter-rouge">Boolean</code></li>
+  <li><code class="language-plaintext highlighter-rouge">byte</code> referred to as <code class="language-plaintext highlighter-rouge">Byte</code></li>
+</ul>
+
+<p>Virtually the <em>only</em> use of these “boxed” type names is in data structures like the <code class="language-plaintext highlighter-rouge">ArrayList</code> or <code class="language-plaintext highlighter-rouge">LinkedList</code>.<sup id="fnref:generics" role="doc-noteref"><a href="#fn:generics" class="footnote" rel="footnote">1</a></sup>
+But, since they exist, they also hold some useful utility functions for doing things like parsing <code class="language-plaintext highlighter-rouge">String</code>s into <code class="language-plaintext highlighter-rouge">int</code>s, etc.
+For example, see some of these on the documentation page for <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Integer.html"><code class="language-plaintext highlighter-rouge">Integer</code></a>.</p>
+
+<p>So, while code like the following will compile successfully, you will get warnings telling you to use the primitive versions of those type names.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Do this</span>
+<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">23</span><span class="o">;</span>
+
+<span class="c1">// Not these</span>
+<span class="kt">int</span> <span class="n">num1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">23</span><span class="o">);</span>
+<span class="nc">Integer</span> <span class="n">num2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Integer</span><span class="o">(</span><span class="mi">23</span><span class="o">);</span>
+<span class="nc">Integer</span> <span class="n">num3</span> <span class="o">=</span> <span class="mi">23</span><span class="o">;</span>
+</code></pre></div></div>
+
 <h2 id="maps">Maps</h2>
 
 <p>Next, we consider <em>maps</em>.
@@ -421,7 +460,7 @@ This is useful when you need to quickly access individual records in a very larg
 
 <p>For example, suppose you have a <code class="language-plaintext highlighter-rouge">HashMap</code> where the <em>keys</em> are social security numbers (<code class="language-plaintext highlighter-rouge">long</code>) and the <em>values</em> are <code class="language-plaintext highlighter-rouge">Person</code> objects (assuming we, at some point, created a <code class="language-plaintext highlighter-rouge">Person</code> class).</p>
 
-<p>You can initialise the map like so:</p>
+<p>You can initialise the map like so (notice the use of the “boxed” form of <code class="language-plaintext highlighter-rouge">Long</code> below):</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">,</span> <span class="nc">Person</span><span class="o">&gt;</span> <span class="n">mapOfPeople</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
 </code></pre></div></div>
@@ -462,10 +501,18 @@ This is useful when you need to quickly access individual records in a very larg
 <p>All of the concepts in this section are demonstrated in the <code class="language-plaintext highlighter-rouge">CompareCohorts</code> class below:</p>
 
 <object data="CompareCohorts.html" width="100%" height="100%"></object>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:generics" role="doc-endnote">
+      <p>Or, more generally, in Generic types, which we will get to later this quarter. That is also when we’ll talk about <em>why</em> these exist. <a href="#fnref:generics" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
     </div>
     
     <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    
     
     </article>
   </main>

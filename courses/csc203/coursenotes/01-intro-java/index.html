@@ -67,7 +67,7 @@ By the end of the quarter, there won’t be keywords we see in class that I’ll
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">"foobar"</span> <span class="o">/</span> <span class="mi">10</span>
 </code></pre></div></div>
 
-<p>It attempts to divide the text <code class="language-plaintext highlighter-rouge">"foobar''</code> by the number <code class="language-plaintext highlighter-rouge">10</code>, which is a meaningless operation.
+<p>It attempts to divide the text <code class="language-plaintext highlighter-rouge">"foobar"</code> by the number <code class="language-plaintext highlighter-rouge">10</code>, which is a meaningless operation.
 The above expression would result in errors in <em>statically-typed</em> languages (like Java) as well as in <em>dynamically-typed</em> languages (like Python).
 But exactly <em>when</em> those errors occur is different between the two languages.</p>
 
@@ -139,12 +139,12 @@ We can’t do things like turn it to “upper case”, because that doesn’t ma
     <tr>
       <td><code class="language-plaintext highlighter-rouge">int</code></td>
       <td>A 4-byte integer.<br />Simply using an integer value (e.g., <code class="language-plaintext highlighter-rouge">12</code> or <code class="language-plaintext highlighter-rouge">4305</code>) will default to using the <code class="language-plaintext highlighter-rouge">int</code> type.</td>
-      <td>$-2^{31}$ to $2^{31}-1$ (inclusive)</td>
+      <td>\(-2^{31}\) to \(2^{31}-1\) (inclusive)</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">long</code></td>
       <td>An 8-byte integer.<br />Use this when you need larger numbers than <code class="language-plaintext highlighter-rouge">int</code> provides.<br />An an <code class="language-plaintext highlighter-rouge">L</code> after a number to indicate that you mean for it to be a <code class="language-plaintext highlighter-rouge">long</code>, i.e., <code class="language-plaintext highlighter-rouge">256L</code> will be a <code class="language-plaintext highlighter-rouge">long</code> value and not an <code class="language-plaintext highlighter-rouge">int</code> value.</td>
-      <td>$-2^{63}$ to $2^{63}-1$ (inclusive)</td>
+      <td>\(-2^{63}\) to \(2^{63}-1\) (inclusive)</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">float</code></td>
@@ -180,11 +180,11 @@ They are built using primitive types or other reference types as building blocks
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">course</span> <span class="o">=</span> <span class="s">"CSC 203"</span><span class="o">;</span> 
 </code></pre></div></div>
 
-<h3 id="reference-types-and-equality">Reference types and equality</h3>
-
-<p>The value of a variable that is declared as a reference type is a <em>reference</em> to the data stored somewhere in memory.
+<p>The “value” of a variable that is declared as a reference type is a <em>reference</em> to the data stored somewhere in memory.
 Hence the name.
 You can have multiple references to the same data.</p>
+
+<h3 id="reference-types-and-equality">Reference types and equality</h3>
 
 <p>There are implications to this.</p>
 
@@ -268,7 +268,7 @@ Each additional <code class="language-plaintext highlighter-rouge">String</code>
 <p>However, this is a compiler optimisation, and you should not rely upon it.
 You can’t predict when <code class="language-plaintext highlighter-rouge">==</code> and <code class="language-plaintext highlighter-rouge">equals</code> will behave the same for <code class="language-plaintext highlighter-rouge">String</code>s, so you should still use <code class="language-plaintext highlighter-rouge">equals</code> to compare <code class="language-plaintext highlighter-rouge">String</code>s for equality.</p>
 
-<h3 id="arrays">Arrays</h3>
+<h2 id="arrays">Arrays</h2>
 
 <p>To store a collection of items in Java, the simplest collection you can use is an <em>array</em>.
 Two things are important to know about arrays:</p>
@@ -541,6 +541,13 @@ The <code class="language-plaintext highlighter-rouge">do-while</code> loop chec
 </div>
 
     </div>
+    
+    <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    
+    
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    </script>
     
     </article>
   </main>

@@ -24,6 +24,7 @@ h4,
   color: #425469;
   font-family: "Muli", sans-serif;
   margin: auto;
+  padding-top: 5px;
 }
 
 h1 {
@@ -33,10 +34,6 @@ h1 {
 h1 a,
 h1 a:visited {
   text-decoration: none;
-}
-
-h3 {
-  padding-top: 5px;
 }
 
 a,
@@ -193,9 +190,6 @@ figure figcaption {
   color: #727375;
   font-family: Avenir;
 }
-figure img, figure figcaption {
-  max-width: 40vw;
-}
 figure.wide {
   display: table;
   position: relative;
@@ -206,6 +200,10 @@ figure.wide img, figure.wide figcaption {
   display: table-row;
   position: relative;
   max-width: 70vw;
+}
+
+img, figcaption {
+  max-width: 40vw;
 }
 
 ul {
@@ -276,7 +274,6 @@ footer .address {
 .artifact-list details > summary {
   outline: none;
   margin-bottom: 5px;
-  cursor: pointer;
 }
 .artifact-list details p {
   padding: 5px;
@@ -284,6 +281,10 @@ footer .address {
   border-radius: 5px;
   color: black;
   list-style-type: none;
+}
+
+details > summary {
+  cursor: pointer;
 }
 
 .banner {
@@ -299,7 +300,10 @@ footer .address {
 
 code {
   color: #E61726;
-  font-size: 1rem;
+  font-size: 0.9rem;
+}
+h1 > code, h2 > code, h3 > code {
+  font-size: inherit;
 }
 
 .tag {
@@ -349,32 +353,42 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
   font-family: "EB Garamond", serif;
 }
 
-.callout {
-  border-left: 4px solid;
+.callout, blockquote {
+  border-left: 4px solid #E61726;
+  background-color: rgba(243, 183, 183, 0.197);
   border-radius: 4px;
   padding: 0.5rem;
 }
-.callout::before {
+.callout::before, blockquote::before {
   display: block;
   font-weight: bold;
   font-size: 0.8em;
   font-family: "Muli", sans-serif;
 }
-.callout.ponder {
+.callout.todo, blockquote.todo {
+  border-color: rgb(148, 2, 206);
+  background-color: rgba(237, 146, 134, 0.2);
+}
+.callout.todo::before, blockquote.todo::before {
+  content: "TODO";
+  color: rgb(148, 2, 206);
+}
+.callout.ponder, blockquote.ponder {
   border-color: #e7af06;
   background-color: rgba(255, 235, 130, 0.2);
 }
-.callout.ponder::before {
+.callout.ponder::before, blockquote.ponder::before {
   content: "PONDER";
   color: #d3a10b;
 }
 
 blockquote {
-  font-style: normal;
-  color: #5e5c5c;
-  margin: 0;
+  background-color: unset;
   padding: 0 5px 0 8px;
-  border-left: 2pt solid #E61726;
+}
+
+.footnotes :target {
+  background-color: rgb(255, 247, 0);
 }
 
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
@@ -392,8 +406,8 @@ blockquote {
   header > * {
     margin: 10px;
   }
-  figure .panda-bag {
-    width: 60vw;
+  img, figcaption {
+    max-width: 95vw;
   }
   .blurb {
     padding: 0 3px;
@@ -447,9 +461,11 @@ blockquote {
     width: 30vw;
     height: auto;
   }
-  figure .panda-bag {
-    width: 60vw;
-    height: auto;
+  h1 {
+    font-size: 1.5em;
+  }
+  ul, ol {
+    padding-left: 0.8em;
   }
   .blurb {
     min-width: 100%;
@@ -469,8 +485,8 @@ blockquote {
     float: none;
     width: inherit;
   }
-  .post article {
-    width: 100%;
+  img, figcaption {
+    max-width: 95vw;
   }
   img {
     width: 100%;
