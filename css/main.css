@@ -300,7 +300,7 @@ details > summary {
 
 code {
   color: #E61726;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
