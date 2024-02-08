@@ -61,13 +61,16 @@
 <loc>https://ayaankazerouni.org/how-long</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/12-hashcode/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/06-class-design-process/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/01-intro-java/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/05-method-dispatch/</loc>
-</url>
-<url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/10-abstract-classes/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/07-interfaces/</loc>
@@ -82,7 +85,7 @@
 <loc>https://ayaankazerouni.org/courses/csc305/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/12-hashcode/</loc>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/10-abstract-classes/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/coursenotes/metacognitive-awareness-problem-comprehension/</loc>
@@ -115,7 +118,7 @@
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/04-oop-and-procedural/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/06-class-design-process/</loc>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/13-comparable-comparator/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/theses</loc>
@@ -216,5 +219,9 @@
 <url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/11-inheritance-equality/Person.html</loc>
 <lastmod>2024-02-05T10:43:15-08:00</lastmod>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/13-comparable-comparator/Album.html</loc>
+<lastmod>2024-02-08T13:37:51-08:00</lastmod>
 </url>
 </urlset>

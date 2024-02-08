@@ -305,6 +305,9 @@ code {
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
 }
+pre > code {
+  color: inherit;
+}
 
 .tag {
   font-size: 0.8em;
