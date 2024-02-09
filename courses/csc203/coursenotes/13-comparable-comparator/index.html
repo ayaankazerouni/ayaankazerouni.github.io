@@ -60,7 +60,6 @@ But again, the meaning is often clear: we mean to sort the list in alphabetical 
   <li><code class="language-plaintext highlighter-rouge">String artist</code></li>
   <li><code class="language-plaintext highlighter-rouge">int year</code></li>
   <li><code class="language-plaintext highlighter-rouge">double price</code></li>
-  <li><code class="language-plaintext highlighter-rouge">int unitsSold</code></li>
 </ul>
 
 <p>How should a list of <code class="language-plaintext highlighter-rouge">Album</code>s be sorted? By <code class="language-plaintext highlighter-rouge">title</code>, <code class="language-plaintext highlighter-rouge">artist</code>, <code class="language-plaintext highlighter-rouge">year</code>? Some combination of fields?</p>
@@ -182,7 +181,7 @@ The <code class="language-plaintext highlighter-rouge">Collections</code> class 
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="n">albums</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
   <span class="k">new</span> <span class="nf">Album</span><span class="o">(</span><span class="s">"Rubber Soul"</span><span class="o">,</span> <span class="s">"The Beatles"</span><span class="o">,</span> <span class="mi">1965</span><span class="o">,</span> <span class="mf">18.99</span><span class="o">),</span>
-  <span class="k">new</span> <span class="nf">Album</span><span class="o">(</span><span class="s">"1989 (Taylor's Version"</span><span class="o">,</span> <span class="s">"Taylor Swift"</span><span class="o">,</span> <span class="mi">2023</span><span class="o">,</span> <span class="mf">18.99</span><span class="o">),</span>
+  <span class="k">new</span> <span class="nf">Album</span><span class="o">(</span><span class="s">"1989 (Taylor's Version)"</span><span class="o">,</span> <span class="s">"Taylor Swift"</span><span class="o">,</span> <span class="mi">2023</span><span class="o">,</span> <span class="mf">18.99</span><span class="o">),</span>
   <span class="k">new</span> <span class="nf">Album</span><span class="o">(</span><span class="s">"1989"</span><span class="o">,</span> <span class="s">"Taylor Swift"</span><span class="o">,</span> <span class="mi">2014</span><span class="o">,</span> <span class="mf">18.99</span><span class="o">),</span>
   <span class="k">new</span> <span class="nf">Album</span><span class="o">(</span><span class="s">"Leaving Eden"</span><span class="o">,</span> <span class="s">"The Carolina Chocolate Drops"</span><span class="o">,</span> <span class="mi">2012</span><span class="o">,</span> <span class="mf">18.99</span><span class="o">)</span>
 <span class="o">);</span>
