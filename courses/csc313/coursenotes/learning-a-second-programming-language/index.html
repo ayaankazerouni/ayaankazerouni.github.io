@@ -20,39 +20,18 @@
 
 
 <body>
-  <aside>
-    <nav>
-        <ul>
-        
-            
-            <li><a href="/#" class="nav-link">Home</a></li>
-        
-            
-            <li><a href="/teaching" class="nav-link">Teaching</a></li>
-        
-            
-            <li><a href="/projects" class="nav-link">Projects</a></li>
-        
-            
-            <li><a href="/publications" class="nav-link">Publications</a></li>
-        
-            
-            <li><a href="/posts" class="nav-link">Posts</a></li>
-        
-            
-            <li><a href="/about" class="nav-link">About Me</a></li>
-        
-        </ul>
-    </nav>
-</aside>
-
-
   <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc313">CSC 313 Teaching Computing</a>)
+  </p>
+  
   <h1>Learning a Second Programming Language</h1>
     <div class="content-box" style="border: none;">
       <div class="content">
-        
-          (Coursenotes for <a href="/courses/csc313">CSC 313 Teaching Computing)</a>
         
         <p><strong>📖 Readings</strong></p>
 
@@ -101,7 +80,9 @@
 <figure>
 
   <a href="model.png" target="_blank">
+    
     <img src="model.png" alt="" />
+    
   </a>
   <figcaption>A model of PL transfer (reproduced from [1]).</figcaption>
 </figure>
@@ -113,19 +94,17 @@
 <ul>
   <li><em>True carryover construct (TCC):</em> Similar syntax and same underlying semantics in PL1 and PL2. (E.g., a <code class="language-plaintext highlighter-rouge">while</code> loop in Python and Java)</li>
   <li><em>False carryover construct (FCC):</em> Similar syntax, but different semantics. Negative transfer! (E.g., integer division in Python and Java).</li>
-  <li><em>Abstract true carryover construct (ATCC):</em> different syntax by same semantics. (E.g., objects in Java are kind of like <code class="language-plaintext highlighter-rouge">dict</code> in Python).</li>
+  <li><em>Abstract true carryover construct (ATCC):</em> different syntax by same semantics. (E.g., objects in Java are kind of like <code class="language-plaintext highlighter-rouge">dict</code> in Python).<sup id="fnref:map" role="doc-noteref"><a href="#fn:map" class="footnote" rel="footnote">1</a></sup></li>
 </ul>
 
 <p>Totally new (conceptually, semantically, and syntactically novel) constructs in the second PL will appear as brand new strands, unrelated to any known concepts.</p>
 
-<blockquote>
-  <p>💡 I’m a bit skeptical of the example for ATCC above. But maybe with the introduction of Records in Java, this example holds a bit better. A better example might be semantics for <code class="language-plaintext highlighter-rouge">map</code> in, say, JavaScript, and list comprehensions in Python.</p>
-</blockquote>
-
 <figure>
 
   <a href="transfer.png" target="_blank">
+    
     <img src="transfer.png" alt="" />
+    
   </a>
   <figcaption>An example of knowledge transfer between PL1 and PL2 (reproduced from [1]).</figcaption>
 </figure>
@@ -140,9 +119,7 @@
   <li>When an ATCC is encountered (i.e., a concept with similar semantics but <em>different syntax</em> in PL1 and PL2), the differing syntax between PL1 and PL2 masks the concept’s similar semantics from the learner, and they fail to transfer that understanding from PL1 to PL2. They therefore perceive the ATCC as a totally new concept. No knowledge transfer takes place.</li>
 </ol>
 
-<blockquote>
-  <p>❓ Think about the first two programming languages you learned. For many of you, this will have been two quarters of Python followed by Java. What aspects of this model hold for you? What doesn’t hold?</p>
-</blockquote>
+<p class="callout ponder">Think about the first two programming languages you learned. For many of you, this will have been two quarters of Python followed by Java. What aspects of this model hold for you? What doesn’t hold?</p>
 
 <h3 id="how-does-this-theory-hold-up">How does this theory hold up?</h3>
 
@@ -161,7 +138,9 @@
 <figure>
 
   <a href="study1.png" target="_blank">
+    
     <img src="study1.png" alt="" />
+    
   </a>
   <figcaption>Predictions largely held up in study 1. (Reproduced from [1])</figcaption>
 </figure>
@@ -183,55 +162,28 @@
 <figure>
 
   <a href="study2.png" target="_blank">
+    
     <img src="study2.png" alt="" />
+    
   </a>
   <figcaption>Predictions kind of held up in study 2, but not as strongly as in 1. (Reproduced from [1].)</figcaption>
 </figure>
 
-<blockquote>
-  <p>❓ It appears that transfer from Java to Python was easier than transfer from Python to Java. Why do you suppose this is?</p>
-</blockquote>
+<p class="callout ponder">It appears that transfer from Java to Python was easier than transfer from Python to Java. Why do you suppose this is?</p>
 
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:map" role="doc-endnote">
+      <p>I’m a bit skeptical of this example for ATCC. But maybe with the introduction of Records in Java, this example holds a bit better. A better example might be the <code class="language-plaintext highlighter-rouge">map</code> function in, say, JavaScript, and list comprehensions in Python. <a href="#fnref:map" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
     </div>
     
+    
     </article>
-		<footer>
-  <div class='get-in-touch'>Contact<br></div>
-  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
-  <!--<div class='address'></div> -->
-  <div class='contact'>
-    <!-- <a href='https://twitter.com/ayaankazerouni'>
-      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
-      <span class='visible-hidden'>Twitter profile</span>
-    </a> -->
-    <a rel="me" href='https://hci.social/@ayaankazerouni'>
-      <i class='fab fa-mastodon' aria-label="Mastodon" title="Mastodon" target="_blank"></i>
-      <span class='visible-hidden'>Mastodon profile</span>
-    </a>
-    <a href='https://github.com/ayaankazerouni'>
-      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
-      <span class='visible-hidden'>GitHub profile</span>
-    </a>
-    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
-      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
-      <span class='visible-hidden'>LinkedIn profile</span>
-    </a> -->
-    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
-      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
-      <span class='visible-hidden'>Google Scholar profile</span>
-    </a>
-    <a href='https://dblp.org/pid/202/1256.html'>
-      <i class='ai ai-dblp-square' aria-label="DBLP" title="DBLP"></i>
-      <span class='visible-hidden'>DBLP page</span>
-    </a>
-    <!-- <a href='https://orcid.org/0000-0002-6574-1278'>
-      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
-      <span class='visible-hidden'>OrcID profile</span>
-    </a> -->
-  </div>
-</footer>
-
   </main>
 </body>
 </html>

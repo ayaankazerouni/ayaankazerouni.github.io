@@ -24,6 +24,7 @@ h4,
   color: #425469;
   font-family: "Muli", sans-serif;
   margin: auto;
+  padding-top: 5px;
 }
 
 h1 {
@@ -33,16 +34,6 @@ h1 {
 h1 a,
 h1 a:visited {
   text-decoration: none;
-}
-
-h2 {
-  color: #000000;
-  padding-top: 1vw;
-  margin-bottom: 0px;
-}
-
-h3 {
-  padding-top: 5px;
 }
 
 a,
@@ -99,8 +90,14 @@ main {
   margin: 0 auto;
 }
 main.post {
-  font-size: 1.2em;
   max-width: 60em;
+  font-family: "EB Garamond", serif;
+}
+main.post .post-details {
+  padding-bottom: 10px;
+}
+main.post article {
+  font-size: 1.2em;
 }
 
 /* Aside */
@@ -183,18 +180,15 @@ aside nav:after {
 }
 
 figure {
-  margin: 20px auto;
+  margin: 25px auto;
   display: grid;
   justify-content: center;
 }
 figure figcaption {
-  font-size: 0.9em;
+  font-size: 0.8em;
   padding: 0;
   color: #727375;
   font-family: Avenir;
-}
-figure img, figure figcaption {
-  max-width: 40vw;
 }
 figure.wide {
   display: table;
@@ -206,6 +200,10 @@ figure.wide img, figure.wide figcaption {
   display: table-row;
   position: relative;
   max-width: 70vw;
+}
+
+img, figcaption {
+  max-width: 40vw;
 }
 
 ul {
@@ -276,7 +274,6 @@ footer .address {
 .artifact-list details > summary {
   outline: none;
   margin-bottom: 5px;
-  cursor: pointer;
 }
 .artifact-list details p {
   padding: 5px;
@@ -284,6 +281,10 @@ footer .address {
   border-radius: 5px;
   color: black;
   list-style-type: none;
+}
+
+details > summary {
+  cursor: pointer;
 }
 
 .banner {
@@ -299,6 +300,13 @@ footer .address {
 
 code {
   color: #E61726;
+  font-size: 1rem;
+}
+h1 > code, h2 > code, h3 > code {
+  font-size: inherit;
+}
+pre > code {
+  color: inherit;
 }
 
 .tag {
@@ -318,36 +326,72 @@ code {
   color: #F9CF00;
 }
 
-.course table {
+table {
   margin: 20px auto;
   border-collapse: collapse;
   font-size: 0.9em;
 }
-.course table th {
+table th {
   border-top: 1pt solid;
   border-bottom: 1pt solid;
   background-color: #000000;
   color: #F9CF00;
 }
-.course table tr:nth-child(4n), .course table tr:nth-child(4n-1) {
-  background: lightgrey;
-}
-.course table tr {
+table tr {
   border-bottom: 0.5pt solid;
 }
-.course table tr > td, .course table tr > th {
+table tr > td, table tr > th {
   padding: 0.5em;
 }
-.course table tr > td:not(:last-child), .course table tr > th:not(:last-child) {
+table tr > td:not(:last-child), table tr > th:not(:last-child) {
   border-right: 1pt solid;
 }
 
+.course table tr:nth-child(4n), .course table tr:nth-child(4n-1) {
+  background: lightgrey;
+}
+
+.coursenotes {
+  font-size: 1.2rem;
+  font-family: "EB Garamond", serif;
+}
+
+.callout, blockquote {
+  border-left: 4px solid #E61726;
+  background-color: rgba(243, 183, 183, 0.197);
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+.callout::before, blockquote::before {
+  display: block;
+  font-weight: bold;
+  font-size: 0.8em;
+  font-family: "Muli", sans-serif;
+}
+.callout.todo, blockquote.todo {
+  border-color: rgb(148, 2, 206);
+  background-color: rgba(237, 146, 134, 0.2);
+}
+.callout.todo::before, blockquote.todo::before {
+  content: "TODO";
+  color: rgb(148, 2, 206);
+}
+.callout.ponder, blockquote.ponder {
+  border-color: #e7af06;
+  background-color: rgba(255, 235, 130, 0.2);
+}
+.callout.ponder::before, blockquote.ponder::before {
+  content: "PONDER";
+  color: #d3a10b;
+}
+
 blockquote {
-  font-style: normal;
-  color: #5e5c5c;
-  margin: 0;
+  background-color: unset;
   padding: 0 5px 0 8px;
-  border-left: 2pt solid #E61726;
+}
+
+.footnotes :target {
+  background-color: rgb(255, 247, 0);
 }
 
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
@@ -365,8 +409,8 @@ blockquote {
   header > * {
     margin: 10px;
   }
-  figure .panda-bag {
-    width: 60vw;
+  img, figcaption {
+    max-width: 95vw;
   }
   .blurb {
     padding: 0 3px;
@@ -420,9 +464,11 @@ blockquote {
     width: 30vw;
     height: auto;
   }
-  figure .panda-bag {
-    width: 60vw;
-    height: auto;
+  h1 {
+    font-size: 1.5em;
+  }
+  ul, ol {
+    padding-left: 0.8em;
   }
   .blurb {
     min-width: 100%;
@@ -442,8 +488,8 @@ blockquote {
     float: none;
     width: inherit;
   }
-  .post article {
-    width: 100%;
+  img, figcaption {
+    max-width: 95vw;
   }
   img {
     width: 100%;
