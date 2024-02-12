@@ -99,7 +99,7 @@ We create a new instance of the comparator object, and pass that object as a sec
 </code></pre></div></div>
 
 <p>This version of the <code class="language-plaintext highlighter-rouge">sort</code> function will now use the specified comparator for the pairwise comparisons during the sorting process.
-As a result, the list of albums will be sorted by the artist name, and for albums with the same artist, they will be sorted by the title.</p>
+As a result, the list of albums will be sorted by the title name in ascending order.</p>
 
 <p>In essence, we have <em>parameterised</em> the comparison procedure in the <code class="language-plaintext highlighter-rouge">sort</code> function, thereby making the <code class="language-plaintext highlighter-rouge">sort</code> function more generally usable.
 Because we tell it what comparator to use, the same <code class="language-plaintext highlighter-rouge">sort</code> function can be used to sort objects using <em>any ordering we define</em>.
