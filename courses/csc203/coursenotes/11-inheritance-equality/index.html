@@ -33,9 +33,7 @@
     <div class="content-box" style="border: none;">
       <div class="content">
         
-        <p>(Work in progress)</p>
-
-<h2 id="plain-old-inheritance">Plain old inheritance</h2>
+        <h2 id="plain-old-inheritance">Plain old inheritance</h2>
 
 <p>So far, we have seen two ways of using polymorphism in Java: interfaces and abstract classes.
 In this lesson we will (briefly) talk about “plain old inheritance”.</p>
@@ -209,14 +207,14 @@ That is, it checks if they both point to the same object.</p>
 </ol>
 
 <p>The <code class="language-plaintext highlighter-rouge">equals</code> method is a regrettably clunky bit of tedium baked into the Java language.
-Arguably, only step 4 in the steps above is germane to the task of deciding whether two objects are equal — all the other steps are just us fighting with the type and inheritance systems to be able to actually compare the data we want to compare.
+Arguably, only step 4 above is germane to the task of deciding whether two objects are equal — all the other steps are just us fighting with the type and inheritance systems to be able to actually compare the data we want to compare.
 Unfortunately, as described above, all the steps are necessary or we risk runtime exceptions.
 So it goes.</p>
 
 <p>Luckily, most IDEs can generate an equals method for you if you have a class that contains instance variables.</p>
 
 <p>See the <code class="language-plaintext highlighter-rouge">Person</code> class below for an example.
-It contains two instance variables: <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">age</code>. It considers two <code class="language-plaintext highlighter-rouge">Person</code> objects “equal” if they have equal names and equal ages.</p>
+It contains two instance variables: <code class="language-plaintext highlighter-rouge">name</code> and <code class="language-plaintext highlighter-rouge">age</code>, and an <code class="language-plaintext highlighter-rouge">equals</code> method that considers two <code class="language-plaintext highlighter-rouge">Person</code> objects “equal” if they have equal names and equal ages.</p>
 
 <p>Use the “Walkthrough” button to see how each check that was described above is carried out.</p>
 
@@ -232,11 +230,226 @@ It contains two instance variables: <code class="language-plaintext highlighter-
 </div>
 </p>
 
-<h3 id="inheritance-and-equality">Inheritance and equality</h3>
+<p><strong>You should always write an <code class="language-plaintext highlighter-rouge">equals</code> method for any class that you create.</strong>
+Like the <code class="language-plaintext highlighter-rouge">toString</code> method, this buys you into a larger set of libraries.
+For example:</p>
+
+<ul>
+  <li>The JUnit <code class="language-plaintext highlighter-rouge">assertEquals</code> method uses the <code class="language-plaintext highlighter-rouge">equals</code> method to check if its two arguments are equal.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Point</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+<span class="nc">Point</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+
+<span class="n">assertEquals</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">assertEquals</code> above is equivalent to doing <code class="language-plaintext highlighter-rouge">assertTrue(a.equals(b))</code>.
+That is, <code class="language-plaintext highlighter-rouge">assertEquals</code> calls the <code class="language-plaintext highlighter-rouge">equals</code> method of the first argument, using the second argument as the input.
+If you do <em>not</em> write an <code class="language-plaintext highlighter-rouge">equals</code> method, the test above will fail, because it will be checking <em>sameness</em>, not equality.</p>
+
+<ul>
+  <li>Java collections use the <code class="language-plaintext highlighter-rouge">equals</code> method for things like checking if a list contains an object, etc.</li>
+</ul>
+
+<p>Suppose you had the following <code class="language-plaintext highlighter-rouge">List&lt;Person&gt;</code>, and it contained some <code class="language-plaintext highlighter-rouge">Person</code> objects.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+   <span class="k">new</span> <span class="nf">Person</span><span class="o">(</span><span class="s">"Joe Bro"</span><span class="o">,</span> <span class="mi">29</span><span class="o">),</span>
+   <span class="k">new</span> <span class="nf">Person</span><span class="o">(</span><span class="s">"Pooja Ahuja"</span><span class="o">,</span> <span class="mi">31</span><span class="o">)</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>Then, suppose in another function, you need to check if <code class="language-plaintext highlighter-rouge">"Pooja Ahuja"</code> exists in this list.
+You would use the list’s <code class="language-plaintext highlighter-rouge">contains</code> function to do this check.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Person</span> <span class="n">pa</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Pooja Ahuja"</span><span class="o">,</span> <span class="mi">31</span><span class="o">);</span>
+<span class="n">assertTrue</span><span class="o">(</span><span class="n">people</span><span class="o">.</span><span class="na">list</span><span class="o">(</span><span class="n">contains</span><span class="o">(</span><span class="n">pa</span><span class="o">)));</span> <span class="c1">// Will this test pass or fail?</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">contains</code> method loops over the items in the <code class="language-plaintext highlighter-rouge">people</code> list, and checks if each one <code class="language-plaintext highlighter-rouge">equals</code> the <code class="language-plaintext highlighter-rouge">pa</code> object.
+If you do <em>not</em> give <code class="language-plaintext highlighter-rouge">Person</code> an <code class="language-plaintext highlighter-rouge">equals</code> method, it will default to inherited <code class="language-plaintext highlighter-rouge">equals</code> behaviour, i.e., it will check whether any item in the list is the <em>same</em> object as the one that <code class="language-plaintext highlighter-rouge">pa</code> points to.
+This means the test above will fail.</p>
+
+<p>If you <em>do</em> write an <code class="language-plaintext highlighter-rouge">equals</code> method for <code class="language-plaintext highlighter-rouge">Person</code>, the <code class="language-plaintext highlighter-rouge">contains</code> method does a much more logical check for equality—it checks each person in the <code class="language-plaintext highlighter-rouge">people</code> list and returns <code class="language-plaintext highlighter-rouge">true</code> if it finds a <code class="language-plaintext highlighter-rouge">Person</code> with the same name and age as <code class="language-plaintext highlighter-rouge">pa</code>.</p>
+
+<h2 id="inheritance-and-equality">Inheritance and equality</h2>
 
 <p>…or, why we don’t use <code class="language-plaintext highlighter-rouge">instanceof</code> in the type check of an <code class="language-plaintext highlighter-rouge">equals</code> method.</p>
 
-<p class="callout todo">Write this section</p>
+<p>Notice that in the <code class="language-plaintext highlighter-rouge">equals</code> method above, we are doing the type check using <code class="language-plaintext highlighter-rouge">this.getClass().equals(other.getClass())</code> and not <code class="language-plaintext highlighter-rouge">other instanceof Person</code>.
+The <code class="language-plaintext highlighter-rouge">getClass</code> method is inherited from <code class="language-plaintext highlighter-rouge">Object</code>, and returns the dynamic type of the calling object.</p>
+
+<p class="callout">Comparing the <em>class</em> of two objects lets you do an <em>exact match</em> comparison.
+So if <code class="language-plaintext highlighter-rouge">this</code> is a <code class="language-plaintext highlighter-rouge">Person</code> object, the boolean expression <code class="language-plaintext highlighter-rouge">this.getClass().equals(other.getClass())</code> will be <code class="language-plaintext highlighter-rouge">true</code> if and only if <code class="language-plaintext highlighter-rouge">other</code> is also a <code class="language-plaintext highlighter-rouge">Person</code> object.
+On the other hand, the boolean expression <code class="language-plaintext highlighter-rouge">other instanceof Person</code> will be <code class="language-plaintext highlighter-rouge">true</code> if <code class="language-plaintext highlighter-rouge">other</code> is a <code class="language-plaintext highlighter-rouge">Person</code> object or if it is some subtype of <code class="language-plaintext highlighter-rouge">Person</code>.</p>
+
+<p>Let’s see an example of how this can go wrong.</p>
+
+<p>Consider the following type hierarchy.</p>
+
+<ul>
+  <li>We have a <code class="language-plaintext highlighter-rouge">ClosedFigure</code> that has a <code class="language-plaintext highlighter-rouge">location</code>, a getter and setter method for it, and an <code class="language-plaintext highlighter-rouge">equals</code> method (two <code class="language-plaintext highlighter-rouge">ClosedFigure</code>s are considered equal if they have equal locations).</li>
+  <li>We have a <code class="language-plaintext highlighter-rouge">Circle</code> that extends <code class="language-plaintext highlighter-rouge">ClosedFigure</code> and additionally has a <code class="language-plaintext highlighter-rouge">radius</code>. Two <code class="language-plaintext highlighter-rouge">Circle</code>s are considered equal if they have equal radii <em>and</em> locations.</li>
+  <li>We have a <code class="language-plaintext highlighter-rouge">Square</code> that extends <code class="language-plaintext highlighter-rouge">ClosedFigure</code> and additionally has a <code class="language-plaintext highlighter-rouge">side</code> length. Two <code class="language-plaintext highlighter-rouge">Square</code>s are considered equal if they have equal side lengths <em>and</em> locations.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Circle</code> and <code class="language-plaintext highlighter-rouge">Square</code> each have their own override of <code class="language-plaintext highlighter-rouge">ClosedFigure</code>’s <code class="language-plaintext highlighter-rouge">equals</code> method.
+None of these classes are abstract.</p>
+
+<pre class="mermaid">
+classDiagram
+   direction LR
+
+   ClosedFigure &lt;-- Circle : extends
+   ClosedFigure &lt;-- Square : extends
+
+   class ClosedFigure {
+      -Point location
+      location() Point
+      moveTo(Point) void
+      toString() String
+      equals(Object) boolean
+   }
+
+   class Circle {
+      -int radius
+      radius() int
+      equals(Object) boolean
+   }
+
+   class Square {
+      -int side
+      side() int
+      equals(Object) boolean
+   }
+</pre>
+
+<p>Let’s take a look at the <code class="language-plaintext highlighter-rouge">equals</code> methods for these three classes.</p>
+
+<h3 id="closedfigure-equals"><code class="language-plaintext highlighter-rouge">ClosedFigure</code> <code class="language-plaintext highlighter-rouge">equals</code></h3>
+
+<p>The code below shows an <code class="language-plaintext highlighter-rouge">equals</code> method for the <code class="language-plaintext highlighter-rouge">ClosedFigure</code> class.
+Two <code class="language-plaintext highlighter-rouge">ClosedFigure</code>s are considered equal if they have the same location.</p>
+
+<p>This is pretty standard, just like we saw for the <code class="language-plaintext highlighter-rouge">Person</code> example above.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
+   <span class="k">if</span> <span class="o">(</span><span class="n">other</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="k">if</span> <span class="o">(</span><span class="n">getClass</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">other</span><span class="o">.</span><span class="na">getClass</span><span class="o">()))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+   <span class="o">}</span>
+      
+   <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">location</span><span class="o">.</span><span class="na">equals</span><span class="o">(((</span><span class="nc">ClosedFigure</span><span class="o">)</span> <span class="n">other</span><span class="o">).</span><span class="na">location</span><span class="o">);</span> 
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="circle-equals"><code class="language-plaintext highlighter-rouge">Circle</code> <code class="language-plaintext highlighter-rouge">equals</code></h3>
+
+<p>Two <code class="language-plaintext highlighter-rouge">Circle</code>s are considered equal if they have the same radii <em>and</em> they have the same location.
+Now, we could easily copy the <code class="language-plaintext highlighter-rouge">equals</code> method from above and just add an <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> to that last return statement to also check the radii of the circles.
+But that would be code duplication, and we don’t want that.</p>
+
+<p>Instead, since <code class="language-plaintext highlighter-rouge">Circle extends ClosedFigure</code>, we can use that inheritance relationship so re-use <code class="language-plaintext highlighter-rouge">ClosedFigure</code>’s equals method for the location check (and really, all the other checks except the radius check).</p>
+
+<p>In the code below, there is no null check or type check—those checks are already being taken care of by the <code class="language-plaintext highlighter-rouge">ClosedFigure</code> class.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">other</span><span class="o">){</span>
+   <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">other</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="na">radius</span> <span class="o">==</span> <span class="o">((</span><span class="nc">Circle</span><span class="o">)</span> <span class="n">other</span><span class="o">).</span><span class="na">radius</span><span class="o">;</span>      
+<span class="o">}</span>  
+</code></pre></div></div>
+
+<p>The compound boolean expression in the return statement above will “short circuit” if the first condition is <code class="language-plaintext highlighter-rouge">false</code>.
+That is, if <code class="language-plaintext highlighter-rouge">super.equals(other)</code> is <code class="language-plaintext highlighter-rouge">false</code>, the rest of the condition doesn’t matter, so it just won’t be checked.</p>
+
+<h3 id="square-equals"><code class="language-plaintext highlighter-rouge">Square</code> <code class="language-plaintext highlighter-rouge">equals</code></h3>
+
+<p>Similarly, the <code class="language-plaintext highlighter-rouge">Square</code>’s equals method can be simplified by re-using the <code class="language-plaintext highlighter-rouge">equals</code> method from the parent class.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">other</span><span class="o">){</span>
+   <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">other</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="o">.</span><span class="na">side</span> <span class="o">==</span> <span class="o">((</span><span class="nc">Square</span><span class="o">)</span> <span class="n">other</span><span class="o">).</span><span class="na">side</span><span class="o">;</span>      
+<span class="o">}</span>  
+</code></pre></div></div>
+
+<h3 id="some-examples-to-ponder-in-the-examples-above">Some examples to ponder in the examples above</h3>
+
+<p>Because the <code class="language-plaintext highlighter-rouge">ClosedFigure</code> equals method uses <code class="language-plaintext highlighter-rouge">getClass</code> for the type check, <a href="../05-method-dispatch/">dynamic dispatch</a> takes care of getting the right class name at run time.</p>
+
+<p>So even if you created an object like so:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Create a circle with location and radius</span>
+<span class="nc">ClosedFigure</span> <span class="n">fig</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circle</span><span class="o">(</span><span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="mi">10</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>If you called <code class="language-plaintext highlighter-rouge">fig.getClass()</code>, you would <code class="language-plaintext highlighter-rouge">Circle</code> in return, not <code class="language-plaintext highlighter-rouge">ClosedFigure</code>.</p>
+
+<h4 id="example-1">Example 1</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ClosedFigure</span> <span class="n">fig</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circle</span><span class="o">(</span><span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="mi">10</span><span class="o">);</span>
+<span class="nc">Circle</span> <span class="n">fig2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circle</span><span class="o">(</span><span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="mi">10</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p class="callout ponder">What would <code class="language-plaintext highlighter-rouge">fig.equals(fig2)</code> return in the code above?</p>
+
+<p>Here is what happens:</p>
+
+<ol>
+  <li>In the code above, dynamic dispatch would call <code class="language-plaintext highlighter-rouge">Circle'</code>s equals method, with <code class="language-plaintext highlighter-rouge">fig</code> as the calling object (i.e., <code class="language-plaintext highlighter-rouge">this</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">Circle</code>’s equals method will in turn call <code class="language-plaintext highlighter-rouge">ClosedFigure</code>’s equals method.</li>
+  <li>In <code class="language-plaintext highlighter-rouge">ClosedFigure</code>’s equals method, we move past the <code class="language-plaintext highlighter-rouge">null</code> check, since <code class="language-plaintext highlighter-rouge">fig2</code> is not null.</li>
+  <li>We also move past the type check, because <code class="language-plaintext highlighter-rouge">this.getClass()</code> returns <code class="language-plaintext highlighter-rouge">Circle</code>, and <code class="language-plaintext highlighter-rouge">other.getClass()</code> also returns <code class="language-plaintext highlighter-rouge">Circle</code>, because of dynamic dispatch. Even though we are tracing code in the <code class="language-plaintext highlighter-rouge">ClosedFigure</code> class, the <em>calling object</em> is a <code class="language-plaintext highlighter-rouge">Circle</code> at run time.</li>
+  <li>Since the type check passed, we cast <code class="language-plaintext highlighter-rouge">other</code> to a <code class="language-plaintext highlighter-rouge">ClosedFigure</code> and check its location. That check will pass, since both locations are <code class="language-plaintext highlighter-rouge">(2, 2)</code>.</li>
+  <li>Finally, we come back to the <code class="language-plaintext highlighter-rouge">Circle</code> class, cast <code class="language-plaintext highlighter-rouge">other</code> to a <code class="language-plaintext highlighter-rouge">Circle</code> and compare radii.</li>
+</ol>
+
+<h4 id="example-2">Example 2</h4>
+
+<p>Suppose in our <code class="language-plaintext highlighter-rouge">ClosedFigure</code> class, we had used <code class="language-plaintext highlighter-rouge">instanceof</code> instead of <code class="language-plaintext highlighter-rouge">getClass</code>. That is, the type check was carried out using <code class="language-plaintext highlighter-rouge">other instanceof ClosedFigure</code>.</p>
+
+<p class="callout ponder">Looking at the same example as above, what would the outcome of <code class="language-plaintext highlighter-rouge">fig.equals(fig2)</code> be?</p>
+
+<p><strong>There would be no change</strong>. At the moment of the type check, we would check if <code class="language-plaintext highlighter-rouge">other instanceof ClosedFigure</code>. <code class="language-plaintext highlighter-rouge">other</code> is a <code class="language-plaintext highlighter-rouge">Circle</code>, which <em>is a</em> <code class="language-plaintext highlighter-rouge">ClosedFigure</code>. So everything is okay, and our type casts go through without a problem.</p>
+
+<h4 id="example-3">Example 3</h4>
+
+<p>Finally, think about the following example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Circle</span> <span class="n">circle</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circle</span><span class="o">(</span><span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="mi">10</span><span class="o">);</span>
+<span class="nc">Square</span> <span class="n">square</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Square</span><span class="o">(</span><span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="mi">23</span><span class="o">);</span>
+
+<span class="n">assertTrue</span><span class="o">(</span><span class="n">circle</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">square</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p class="callout ponder">What would outcome of <code class="language-plaintext highlighter-rouge">fig.equals(fig2)</code> be? Would it be different using <code class="language-plaintext highlighter-rouge">getClass</code> vs. <code class="language-plaintext highlighter-rouge">instanceof</code> in the <code class="language-plaintext highlighter-rouge">ClosedFigure</code> type check?</p>
+
+<p>Let’s trace the call <code class="language-plaintext highlighter-rouge">circle.equals(square)</code>.</p>
+
+<ol>
+  <li>First, we call the <code class="language-plaintext highlighter-rouge">Circle</code> <code class="language-plaintext highlighter-rouge">equals</code> method. That immediately calls the superclass’s <code class="language-plaintext highlighter-rouge">equals</code> method.</li>
+  <li>In the superclass equals method (<code class="language-plaintext highlighter-rouge">ClosedFigure::equals</code>), we first check if the argument is <code class="language-plaintext highlighter-rouge">null</code>. It is not (<code class="language-plaintext highlighter-rouge">square</code> was initialised in this example), so we move on.</li>
+  <li>Next, we check the type. Let’s think about what happens if we use <code class="language-plaintext highlighter-rouge">instanceof</code> here vs. <code class="language-plaintext highlighter-rouge">getClass</code>. If the check was <code class="language-plaintext highlighter-rouge">other instanceof ClosedFigure</code>: yes, <code class="language-plaintext highlighter-rouge">square</code> is an instance of <code class="language-plaintext highlighter-rouge">ClosedFigure</code>, because of the inheritance relationship between <code class="language-plaintext highlighter-rouge">Square</code> and <code class="language-plaintext highlighter-rouge">ClosedFigure</code>. So move past this check.</li>
+  <li>Because the type check was good, we do the type-cast. This is also fine.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">location</code> check also passes, because <code class="language-plaintext highlighter-rouge">circle</code> and <code class="language-plaintext highlighter-rouge">square</code> are both at the location <code class="language-plaintext highlighter-rouge">(2, 2)</code> in this example.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">ClosedFigure</code> <code class="language-plaintext highlighter-rouge">equals</code> method returns <code class="language-plaintext highlighter-rouge">true</code>, because all the <code class="language-plaintext highlighter-rouge">ClosedFigure</code> stuff was equal! We bounce back to the rest of the <code class="language-plaintext highlighter-rouge">Circle</code> <code class="language-plaintext highlighter-rouge">equals</code> method.</li>
+  <li>Because the <code class="language-plaintext highlighter-rouge">super.equals(other)</code> part passed, we check the right-hand-side of the compound <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> expression.</li>
+  <li><strong>At this point, our code will crash</strong>. We attempt to cast <code class="language-plaintext highlighter-rouge">other</code> to a <code class="language-plaintext highlighter-rouge">Circle</code>, but <code class="language-plaintext highlighter-rouge">other</code> is a <code class="language-plaintext highlighter-rouge">Square</code>!</li>
+</ol>
+
+<p>This mismatch only occurs if in the <code class="language-plaintext highlighter-rouge">ClosedFigure</code> equals method, we use <code class="language-plaintext highlighter-rouge">instanceof</code> to check the type. The <code class="language-plaintext highlighter-rouge">Square</code> <em>is</em> an instance of <code class="language-plaintext highlighter-rouge">ClosedFigure</code>, so even though the two objects are of different types, our equality check doesn’t quit at that line.
+This is why we use <code class="language-plaintext highlighter-rouge">getClass</code> to perform the type check in an <code class="language-plaintext highlighter-rouge">equals</code> method.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>In 99% of cases, you should use <code class="language-plaintext highlighter-rouge">instanceof</code> for type-checking in Java (though if you are doing a lot of type-checking yourself, you should step back and consider your object-oriented design). In <code class="language-plaintext highlighter-rouge">equals</code> methods, where we need an <em>exact accounting</em> of the differences between two objects, we need to use <code class="language-plaintext highlighter-rouge">getClass</code> if we want two objects with the same parent equals method to be treated differently. \ <br />
+Of course, our other option is to perform the type checks in each subclass in addition to the superclass — if you do that, you can use <code class="language-plaintext highlighter-rouge">instanceof</code> as usual, because the equals method will appropriately fail at the subclass’s type check.</p>
+
+<p>You might say that this code duplication is tiresome, but…so is the <code class="language-plaintext highlighter-rouge">equals</code> method.</p>
 
 <hr />
 
@@ -250,6 +463,10 @@ It contains two instance variables: <code class="language-plaintext highlighter-
 
     </div>
     
+    
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    </script>
     
     </article>
   </main>
