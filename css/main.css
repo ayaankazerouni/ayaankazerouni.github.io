@@ -309,6 +309,13 @@ pre > code {
   color: inherit;
 }
 
+pre:not(.mermaid) {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1pt solid #425469;
+  line-height: 1.5;
+}
+
 .tag {
   font-size: 0.8em;
   font-family: "Quicksand", "Helvetica", sans-serif;
@@ -377,7 +384,7 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
   color: rgb(148, 2, 206);
 }
 .callout.ponder, blockquote.ponder {
-  border-color: #e7af06;
+  border-color: #d3a10b;
   background-color: rgba(255, 235, 130, 0.2);
 }
 .callout.ponder::before, blockquote.ponder::before {
@@ -391,7 +398,7 @@ blockquote {
 }
 
 .footnotes :target {
-  background-color: rgb(255, 247, 0);
+  background-color: #F9CF00;
 }
 
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
