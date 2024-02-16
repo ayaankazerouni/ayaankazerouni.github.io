@@ -1,0 +1,307 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Comparables and Comparators - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc203/coursenotes/13-comparable-comparator/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
+  <h1>Comparables and Comparators</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>In this lesson, we’re going to learn about the <code class="language-plaintext highlighter-rouge">Comparable</code> and <code class="language-plaintext highlighter-rouge">Comparator</code> interfaces in Java.
+These interfaces help us to, well, <em>compare</em> pairs of objects to determine and order between them.</p>
+
+<h2 id="the-sorting-problem">The sorting problem</h2>
+
+<p>Consider the problem of sorting a list of objects, any objects.
+You’ve probably studied a number of sorting algorithms like insertion sort, merge sort, quick sort, etc.
+They all work slightly differently, but ultimately the outcome is the same: applying a sort function to a collection of data should give you back that same collection, with the items arranged in order.</p>
+
+<p class="callout">The <strong>“in order”</strong> in the sentence above is actually doing a lot of work.</p>
+
+<p>Every sort function needs to, at some point, do a pairwise comparisons of objects in the collection that’s being sorted.
+All other parts of the sort function could stay the same, but we need some way to define how that pairwise comparison is carried out.</p>
+
+<p>When we think about sorting a list of numbers, its meaning is often clear: we often mean to order the numbers in ascending order, i.e., smallest-to-largest.
+That is, for any pair of numbers, we know the smaller one should come before the larger one.
+Suppose, instead, you have a list of strings.
+Slightly more complicated, sure.
+But again, the meaning is often clear: we mean to sort the list in alphabetical order.</p>
+
+<p>Now consider more complex objects, say, an <code class="language-plaintext highlighter-rouge">Album</code> object that contains a number of fields (or instance variables):</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">String title</code></li>
+  <li><code class="language-plaintext highlighter-rouge">String artist</code></li>
+  <li><code class="language-plaintext highlighter-rouge">int year</code></li>
+  <li><code class="language-plaintext highlighter-rouge">double price</code></li>
+</ul>
+
+<p>How should a list of <code class="language-plaintext highlighter-rouge">Album</code>s be sorted? By <code class="language-plaintext highlighter-rouge">title</code>, <code class="language-plaintext highlighter-rouge">artist</code>, <code class="language-plaintext highlighter-rouge">year</code>? Some combination of fields?</p>
+
+<p>Consider the following <code class="language-plaintext highlighter-rouge">sort</code> function that implements <a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/InsertionSort.html">insertion sort</a>.<sup id="fnref:opendsa" role="doc-noteref"><a href="#fn:opendsa" class="footnote" rel="footnote">1</a></sup>
+How we perform that pairwise comparison is going to depend on <em>what</em> is being sorted.
+That is, we don’t want to have to re-write this function for different types of data.</p>
+
+<p>The blank in the <code class="language-plaintext highlighter-rouge">if</code> statement is where the comparison should take place.
+That is, we need to check if <code class="language-plaintext highlighter-rouge">arr[j]</code> is “less than” <code class="language-plaintext highlighter-rouge">arr[j - 1]</code>, whatever that means for the particular data being sorted.
+How should that comparison take place?</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="nc">Album</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">______________________</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Compare arr[j] and arr[j - 1]</span>
+        <span class="c1">// Swap arr[j] and arr[j-1]</span>
+        <span class="nc">Album</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>How should we compare <code class="language-plaintext highlighter-rouge">Album</code>s? We can write custom code to compare any two <code class="language-plaintext highlighter-rouge">Album</code>s using whatever criterion we think is a good “natural ordering” for <code class="language-plaintext highlighter-rouge">Album</code>s.</p>
+
+<p>Observe that, no matter what type of data we’re sorting, the rest of that <code class="language-plaintext highlighter-rouge">sort</code> function will stay the same.
+The <em>only</em> part of the function that needs to change is the comparison in the <code class="language-plaintext highlighter-rouge">if</code> statement.</p>
+
+<p>Can we abstract out that comparison so that the <code class="language-plaintext highlighter-rouge">sort</code> doesn’t need to know how it’s being done?</p>
+
+<h2 id="comparable"><code class="language-plaintext highlighter-rouge">Comparable</code></h2>
+
+<p>That’s where the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html"><code class="language-plaintext highlighter-rouge">Comparable</code> interface</a> comes in.
+It is used when we create a class and we want to define a “natural” ordering between any pair of objects created from that class.
+The <code class="language-plaintext highlighter-rouge">Comparable</code> interface contains a single abstract method that must be implemented by implementing subclasses:</p>
+
+<p><code class="language-plaintext highlighter-rouge">public int compareTo(T o)</code></p>
+
+<p>Two things are worth discussing about the method signature above.</p>
+
+<ol>
+  <li>The parameter <code class="language-plaintext highlighter-rouge">T o</code>: The <code class="language-plaintext highlighter-rouge">T</code> here is a placeholder type. The <code class="language-plaintext highlighter-rouge">Comparable</code> interface doesn’t know what type of data is going to be compared, and doesn’t care.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">int</code> return type.</li>
+</ol>
+
+<p>The <code class="language-plaintext highlighter-rouge">compareTo</code> function’s job is to compare <strong><code class="language-plaintext highlighter-rouge">this</code></strong> object (the calling object) with the parameter object (<code class="language-plaintext highlighter-rouge">o</code>), to decide their ordering relative to each other.
+This is not a binary decision: there are three possible outcomes.
+So we cannot use a <code class="language-plaintext highlighter-rouge">boolean</code> as the return type.</p>
+
+<p id="contract">The “contract” for the <code class="language-plaintext highlighter-rouge">compareTo</code> function is:</p>
+
+<ul>
+  <li>If <code class="language-plaintext highlighter-rouge">this</code> is “less than” <code class="language-plaintext highlighter-rouge">o</code>, i.e., it should come before <code class="language-plaintext highlighter-rouge">o</code>, return a negative number.</li>
+  <li>If <code class="language-plaintext highlighter-rouge">this</code> is “greater than” <code class="language-plaintext highlighter-rouge">o</code>, i.e., should come after <code class="language-plaintext highlighter-rouge">o</code>, return a positive number.</li>
+  <li>If <code class="language-plaintext highlighter-rouge">this</code> and <code class="language-plaintext highlighter-rouge">o</code> are equal, return <code class="language-plaintext highlighter-rouge">0</code>. In general, it’s recommended that if <code class="language-plaintext highlighter-rouge">this.equals(o)</code> is <code class="language-plaintext highlighter-rouge">true</code>, then <code class="language-plaintext highlighter-rouge">this.compareTo(o)</code> should return <code class="language-plaintext highlighter-rouge">0</code>.</li>
+</ul>
+
+<p>Consider the code below.
+We have an <code class="language-plaintext highlighter-rouge">Album</code> class that is declared to be <code class="language-plaintext highlighter-rouge">Comparable</code>.
+We are saying <code class="language-plaintext highlighter-rouge">Album</code> objects are comparable to other <code class="language-plaintext highlighter-rouge">Album</code> objects.
+This means the <code class="language-plaintext highlighter-rouge">Album</code> must define a <code class="language-plaintext highlighter-rouge">compareTo</code> method.</p>
+
+<p>In the example below, we are saying that, by default, <code class="language-plaintext highlighter-rouge">Album</code>s are compared using their <code class="language-plaintext highlighter-rouge">title</code>s.
+Notice that we are not ourselves writing a lexicographic comparison of <code class="language-plaintext highlighter-rouge">this.title</code> and <code class="language-plaintext highlighter-rouge">o.title</code>: <code class="language-plaintext highlighter-rouge">title</code> is a <code class="language-plaintext highlighter-rouge">String</code>, which itself implements the <code class="language-plaintext highlighter-rouge">Comparable</code> interface.
+We can use that.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Album</span> <span class="kd">implements</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">title</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">artist</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">year</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">double</span> <span class="n">price</span><span class="o">;</span>
+
+  <span class="c1">// ... Assume we have written a constructor, getters, setters etc.</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">Album</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">title</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">title</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="what-does-this-get-us">What does this get us?</h3>
+
+<p>Consider our <code class="language-plaintext highlighter-rouge">sort</code> function example from above.
+If, instead of using <code class="language-plaintext highlighter-rouge">Album[]</code> as our parameter type, we used a <code class="language-plaintext highlighter-rouge">Comparable[]</code> as our parameter type, we can now use the same <code class="language-plaintext highlighter-rouge">sort</code> function for <em>any</em> data type, as long as that data type implements the <code class="language-plaintext highlighter-rouge">Comparable</code> interface.</p>
+
+<p>See the <code class="language-plaintext highlighter-rouge">if</code> statement in the updated <code class="language-plaintext highlighter-rouge">sort</code> function below.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="nc">Comparable</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span><span class="o">--)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">].</span><span class="na">compareTo</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">])</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// If arr[j] is "less than" arr[j - 1]</span>
+        <span class="c1">// Swap arr[j] and arr[j-1]</span>
+        <span class="nc">Album</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This is an example of using <em>abstraction</em> — we are ignoring or abstracting away the details of the specific object being sorted, and only focusing on the salient detail, i.e., the fact that it can be compared to other objects of its own type.
+Because we can use <code class="language-plaintext highlighter-rouge">compareTo</code>, we don’t need to know or care what specific type of object is stored in <code class="language-plaintext highlighter-rouge">arr</code>.</p>
+
+<p>And this is exactly what is done in sort functions already available in the Java standard library.
+The <code class="language-plaintext highlighter-rouge">Collections</code> class provides a number of helpful static functions; among them is <code class="language-plaintext highlighter-rouge">Collections.sort</code>.</p>
+
+<p>If you have a list of objects, and those objects are <code class="language-plaintext highlighter-rouge">Comparable</code>, you can call <code class="language-plaintext highlighter-rouge">Collections.sort</code> on that list to sort it according to the object’s “natural ordering”, i.e., according to its <code class="language-plaintext highlighter-rouge">compareTo</code> method.</p>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">Collections.sort</code> sorts the list <em>in place</em>, meaning it mutates the underlying list, instead of returning a new sorted list.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="n">albums</span> <span class="o">=</span> <span class="nc">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+  <span class="k">new</span> <span class="nf">Album</span><span class="o">(</span><span class="s">"Rubber Soul"</span><span class="o">,</span> <span class="s">"The Beatles"</span><span class="o">,</span> <span class="mi">1965</span><span class="o">,</span> <span class="mf">18.99</span><span class="o">),</span>
+  <span class="k">new</span> <span class="nf">Album</span><span class="o">(</span><span class="s">"1989 (Taylor's Version)"</span><span class="o">,</span> <span class="s">"Taylor Swift"</span><span class="o">,</span> <span class="mi">2023</span><span class="o">,</span> <span class="mf">18.99</span><span class="o">),</span>
+  <span class="k">new</span> <span class="nf">Album</span><span class="o">(</span><span class="s">"1989"</span><span class="o">,</span> <span class="s">"Taylor Swift"</span><span class="o">,</span> <span class="mi">2014</span><span class="o">,</span> <span class="mf">18.99</span><span class="o">),</span>
+  <span class="k">new</span> <span class="nf">Album</span><span class="o">(</span><span class="s">"Leaving Eden"</span><span class="o">,</span> <span class="s">"The Carolina Chocolate Drops"</span><span class="o">,</span> <span class="mi">2012</span><span class="o">,</span> <span class="mf">18.99</span><span class="o">)</span>
+<span class="o">);</span>
+
+<span class="c1">// If Album does not implement Comparable, this line won't compile.</span>
+<span class="nc">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">albums</span><span class="o">);</span>
+
+<span class="k">for</span> <span class="o">(</span><span class="nc">Album</span> <span class="n">current</span> <span class="o">:</span> <span class="n">albums</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The code above would print:</p>
+
+<pre><code class="language-txt">1989
+1989 (Taylor's Version)
+Leaving Eden
+Rubber Soul
+</code></pre>
+
+<p class="callout ponder">Suppose you were asked to handle tie-breakers. E.g., for albums with the same title, break ties by artist name.
+How would you handle this in the <code class="language-plaintext highlighter-rouge">compareTo</code> function?</p>
+
+<p class="callout ponder">Can you change <code class="language-plaintext highlighter-rouge">Album</code>’s <code class="language-plaintext highlighter-rouge">compareTo</code> to induce a reversed ordering, i.e., in descending order?</p>
+
+<h2 id="comparator"><code class="language-plaintext highlighter-rouge">Comparator</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">ComparABLE</code> interface is used to define a “natural ordering” for an object.
+What exactly does that mean?</p>
+
+<p>You should use <code class="language-plaintext highlighter-rouge">Comparable</code> when there is an argument to made that there is an <em>obvious</em> way to compare two objects of a given type.
+For example, the <code class="language-plaintext highlighter-rouge">String</code> class in Java implements the <code class="language-plaintext highlighter-rouge">Comparable</code> interface.
+It defines what many would <em>naturally</em> expect when they compare two <code class="language-plaintext highlighter-rouge">String</code> objects, say, for the purpose of sorting.
+It compares <code class="language-plaintext highlighter-rouge">String</code>s using their lexicographic ordering, i.e., their alphabetic order.</p>
+
+<p>However, sometimes you need to order a collection of objects using something other than its natural order.
+Or you need to order a collection of objects that cannot be reasonably considered to have a “natural” ordering for all circumstances.
+These are cases in which you need to define, on an as-needed basis, a custom comparison between two objects.</p>
+
+<p>That’s where the <code class="language-plaintext highlighter-rouge">ComparATOR</code> interface comes in.
+These two interfaces are annoyingly similarly named, I know.</p>
+
+<h3 id="comparing-albums-by-their-price">Comparing albums by their price</h3>
+
+<p>So, for example, suppose we need to compare albums by their <code class="language-plaintext highlighter-rouge">price</code>, and not by their “natural” ordering based on <code class="language-plaintext highlighter-rouge">title</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Comparator</code> interface defines one abstract method that must be implemented by subclasses:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="no">T</span> <span class="n">o1</span><span class="o">,</span> <span class="no">T</span> <span class="n">o2</span><span class="o">)</span>
+</code></pre></div></div>
+
+<p>This is very similar to the <code class="language-plaintext highlighter-rouge">compareTo</code> method for the <code class="language-plaintext highlighter-rouge">Comparable</code>. The only difference is now we take two parameters instead of one, because <em>both</em> items to be compared are being passed to the method.
+That is, the “calling object” is not the one being compared, so <code class="language-plaintext highlighter-rouge">this</code> is not really relevant here.</p>
+
+<p>To compare <code class="language-plaintext highlighter-rouge">Album</code>s by <code class="language-plaintext highlighter-rouge">price</code>, we would create a new class that implements the <code class="language-plaintext highlighter-rouge">Comparator</code> interface, and implement the required <code class="language-plaintext highlighter-rouge">compare</code> function in that class.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AlbumPriceComparator</span> <span class="kd">implements</span> <span class="nc">Comparator</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="nc">Album</span> <span class="n">o1</span><span class="o">,</span> <span class="nc">Album</span> <span class="n">o2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">getPrice</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">o2</span><span class="o">.</span><span class="na">getPrice</span><span class="o">())</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// Can return any positive integer</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">getPrice</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">o2</span><span class="o">.</span><span class="na">getPrice</span><span class="o">())</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="c1">// Can return any negative integer</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This comparator object can then be used to impose “custom” orderings on <code class="language-plaintext highlighter-rouge">Album</code>s.</p>
+
+<p><strong>How does this help us?</strong> The <code class="language-plaintext highlighter-rouge">Collections.sort</code> function has an overloaded version that takes two parameters:</p>
+
+<ul>
+  <li>A collection of objects</li>
+  <li>A comparator to use for pairwise comparisons</li>
+</ul>
+
+<p>If you use this version of the <code class="language-plaintext highlighter-rouge">Collections.sort</code> function, you <em>don’t</em> need the objects being sorted to be <code class="language-plaintext highlighter-rouge">ComparABLE</code>. This is because the second parameter, the <code class="language-plaintext highlighter-rouge">ComparATOR</code>, knows how to compare those objects.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="n">albums</span> <span class="o">=</span> <span class="o">...;</span> <span class="c1">// Same list as before</span>
+<span class="nc">Comparator</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="n">priceComp</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">AlbumPriceComparator</span><span class="o">();</span>
+
+<span class="c1">// Sort the albums in ascending order of price </span>
+<span class="c1">// Doesn't matter here whether or not Album implements Comparable</span>
+<span class="nc">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">albums</span><span class="o">,</span> <span class="n">priceComp</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h2 id="in-the-next-lesson">In the next lesson…</h2>
+
+<p><strong>We can also dynamically create <code class="language-plaintext highlighter-rouge">Comparator</code>s on an as-needed basis.</strong>
+Comparators are useful when you don’t know upfront how a collection of objects is going to be compared or sorted.</p>
+
+<p>Continuing with the Album example, consider your music library in whatever application you use to manage and listen to your music.
+Chances are you’ve seen a “table view” that lists all the songs in your library, and you can click on the columns in that table to change how the songs are sorted.
+E.g., if you click on “Title” the songs will be sorted by title. If you click on “Artist” the order will change. If you click again, it’ll reverse it.</p>
+
+<p>These are <em>dynamic</em> changes in the current sort order, i.e., they are happening while the program (the application, Spotify or whatever) is running.
+Can we programmatically spin up new <code class="language-plaintext highlighter-rouge">Comparator</code>s to support these changes in desired sort orders?</p>
+
+<p><strong>Doesn’t this seem like a lot of work to just write one <code class="language-plaintext highlighter-rouge">compare</code> function?</strong>
+All we really care about is that <code class="language-plaintext highlighter-rouge">compare</code> function, but because we need to “pass” the <code class="language-plaintext highlighter-rouge">compare</code> function to the <code class="language-plaintext highlighter-rouge">sort</code> function, we went through the rigmarole of wrapping it in a class and creating an object.</p>
+
+<p>In the next lesson, we’ll learn about using <em>lambdas</em> in Java to concisely create new <code class="language-plaintext highlighter-rouge">Comparator</code>s.
+Lambdas allow us to treat functions as <em>values</em> that can be stored and passed around, e.g., as parameters to other functions.
+We’ll use that as a springboard to learn about lambdas and functional programming more generally.</p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:opendsa" role="doc-endnote">
+      <p>From the <a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/InsertionSort.html">OpenDSA chapter on Insertion Sort</a>. <a href="#fnref:opendsa" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

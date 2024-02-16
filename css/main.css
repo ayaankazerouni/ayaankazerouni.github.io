@@ -300,10 +300,20 @@ details > summary {
 
 code {
   color: #E61726;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
+}
+pre > code {
+  color: inherit;
+}
+
+pre:not(.mermaid) {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1pt solid #425469;
+  line-height: 1.5;
 }
 
 .tag {
@@ -374,7 +384,7 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
   color: rgb(148, 2, 206);
 }
 .callout.ponder, blockquote.ponder {
-  border-color: #e7af06;
+  border-color: #d3a10b;
   background-color: rgba(255, 235, 130, 0.2);
 }
 .callout.ponder::before, blockquote.ponder::before {
@@ -388,7 +398,7 @@ blockquote {
 }
 
 .footnotes :target {
-  background-color: rgb(255, 247, 0);
+  background-color: #F9CF00;
 }
 
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {

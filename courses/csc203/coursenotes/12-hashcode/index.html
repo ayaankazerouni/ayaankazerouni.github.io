@@ -1,0 +1,196 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>The hashCode function - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc203/coursenotes/12-hashcode/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
+  <h1>The hashCode function</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>This brief lesson is about the <code class="language-plaintext highlighter-rouge">hashCode</code> function in the <code class="language-plaintext highlighter-rouge">Object</code> class.
+Like <code class="language-plaintext highlighter-rouge">toString</code> and <code class="language-plaintext highlighter-rouge">equals</code>, all classes inherit (or can override) the <code class="language-plaintext highlighter-rouge">Object</code>’s <code class="language-plaintext highlighter-rouge">hashCode</code> function.
+Like <code class="language-plaintext highlighter-rouge">toString</code> and <code class="language-plaintext highlighter-rouge">equals</code>, you should write a <code class="language-plaintext highlighter-rouge">hashCode</code> for new classes that you create.</p>
+
+<p>The purpose of the <code class="language-plaintext highlighter-rouge">hashCode</code> function is to generate an as-far-as-possible unique integer for distinct objects. 
+The produced integer should be consistent for the object.
+That is, the produced integer should not change unless the object itself is changed in some way.</p>
+
+<h2 id="whats-hashcode-used-for">What’s <code class="language-plaintext highlighter-rouge">hashCode</code> used for?</h2>
+
+<p>Think about the <code class="language-plaintext highlighter-rouge">HashMap</code> data structure, discussed <a href="../03-lists-maps-existing-classes/">in a previous lesson</a>.
+The <code class="language-plaintext highlighter-rouge">HashMap</code> supports these fundamental operations:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">put</code> entries (key-value pairs) into the map</li>
+  <li><code class="language-plaintext highlighter-rouge">get</code> values from the map quickly, using a key</li>
+</ul>
+
+<p>The operations above can, for the most part, be done in constant time.
+This is possible because of the “hash” part of the data structure.</p>
+
+<p>Suppose you are trying to use a given key <code class="language-plaintext highlighter-rouge">k</code> to put some value <code class="language-plaintext highlighter-rouge">v</code> into the map.
+The <code class="language-plaintext highlighter-rouge">HashMap</code> uses the key’s <code class="language-plaintext highlighter-rouge">hashCode</code> value to “find a place” for <code class="language-plaintext highlighter-rouge">v</code>.
+That is, you can imagine that it calls <code class="language-plaintext highlighter-rouge">k.hashCode()</code> to produce some unique integer, and uses that integer to choose a position in which to store <code class="language-plaintext highlighter-rouge">v</code>.</p>
+
+<p>The same thing is done when we try to retrieve <code class="language-plaintext highlighter-rouge">v</code> from the map, using the key <code class="language-plaintext highlighter-rouge">k</code>.
+That is, the map will call <code class="language-plaintext highlighter-rouge">k.hashCode()</code> again, come up with the <em>same integer</em> as before, and find the value <code class="language-plaintext highlighter-rouge">v</code>.
+If done well, this can happen without searching the entire set of entries — so no matter how many records are in the map, we do the same amount of work to look up a value using its key.</p>
+
+<h3 id="a-hashcode-is-an-integer">A <code class="language-plaintext highlighter-rouge">hashCode</code> is an integer</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">hashCode</code> function has the following signature in the <code class="language-plaintext highlighter-rouge">Object</code> class:</p>
+
+<p><code class="language-plaintext highlighter-rouge">public int hashCode()</code></p>
+
+<p>So any override in a class you create must also have the same signature, otherwise it will not actually override the <code class="language-plaintext highlighter-rouge">hashCode</code> function, and won’t be used by data structures like the <code class="language-plaintext highlighter-rouge">HashMap</code> or <code class="language-plaintext highlighter-rouge">HashSet</code>.</p>
+
+<p>Ok, fine, it’s a method that returns an <code class="language-plaintext highlighter-rouge">int</code>. That’s easy enough! But you can’t return any old integer. It’s important to, as far as possible, return a <em>unique</em> integer for any given object, and to have that integer be consistent across multiple calls to <code class="language-plaintext highlighter-rouge">hashCode</code> unless the object changes.</p>
+
+<p>When distinct objects have distinct <code class="language-plaintext highlighter-rouge">hashCode</code>s, this ensures that the objects are appropriately “spread out” in a map or set.
+On the other hand, if many distinct keys produce the same <code class="language-plaintext highlighter-rouge">hashCode</code>, then those keys would “collide” in the map or set.
+Maps and sets are able to handle these collisions (e.g., a simple way is to “stack up” all the keys that have the same <code class="language-plaintext highlighter-rouge">hashCode</code>).
+But the more collisions you have, the more your map’s performance degrades.
+That is, if many collisions occur, then the bigger your map gets, the more time it takes to add to retrieve items from it.</p>
+
+<p class="callout">Having distinct hash codes for distinct objects ensures that the performance of the <code class="language-plaintext highlighter-rouge">get</code>, <code class="language-plaintext highlighter-rouge">put</code>, and <code class="language-plaintext highlighter-rouge">contains</code> operations for maps and sets remain as close to constant time as possible.</p>
+
+<h3 id="equals-and-hashcode-go-hand-in-hand"><code class="language-plaintext highlighter-rouge">equals</code> and <code class="language-plaintext highlighter-rouge">hashCode</code> go hand-in-hand</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">equals</code> and <code class="language-plaintext highlighter-rouge">hashCode</code> methods <em>must</em> go hand-in-hand.</p>
+
+<p>When you try to <code class="language-plaintext highlighter-rouge">get</code> an item from a map using a key, the following steps take place (a simplified overview):</p>
+
+<ol>
+  <li>Use the key’s <code class="language-plaintext highlighter-rouge">hashCode</code> to “find” the data in the map.</li>
+  <li>When you reach the computed position, check if the provided key <code class="language-plaintext highlighter-rouge">equals</code> the key in the map entry.</li>
+  <li>If the two keys are <code class="language-plaintext highlighter-rouge">equal</code>, return the value from the map entry.</li>
+  <li>If the two keys are <em>not</em> <code class="language-plaintext highlighter-rouge">equal</code>, follow the map’s collision resolution policy to check the next possible location, or return <code class="language-plaintext highlighter-rouge">null</code>.</li>
+</ol>
+
+<p><strong>This suggests that <code class="language-plaintext highlighter-rouge">hashCode</code> and <code class="language-plaintext highlighter-rouge">equals</code> should always take the same information into account, and should always “agree” with each other.</strong>
+Not doing this will result in strange and incorrect behaviour in your <code class="language-plaintext highlighter-rouge">HashMap</code>s and <code class="language-plaintext highlighter-rouge">HashSet</code>s.</p>
+
+<p>These leads us to the following “contract” for the <code class="language-plaintext highlighter-rouge">hashCode</code> and <code class="language-plaintext highlighter-rouge">equals</code> methods in any class<sup id="fnref:javadoc" role="doc-noteref"><a href="#fn:javadoc" class="footnote" rel="footnote">1</a></sup>:</p>
+
+<ul>
+  <li>When <code class="language-plaintext highlighter-rouge">hashCode</code> is called more than once on the same object, it should consistently return the same integer, provided that no fields that are used in the <code class="language-plaintext highlighter-rouge">equals</code> method have been modified.</li>
+  <li>If two objects are “equal” according to the <code class="language-plaintext highlighter-rouge">equals</code> method, then calling <code class="language-plaintext highlighter-rouge">hashCode</code> on them <em>must</em> produce the same integer.</li>
+  <li>If two objects are <em>not</em> “equal” according to the <code class="language-plaintext highlighter-rouge">equals</code> method, it’s difficult to guarantee that they return distinct integer results. But doing this as far as possible will improve <code class="language-plaintext highlighter-rouge">HashMap</code> and <code class="language-plaintext highlighter-rouge">HashSet</code> performance.</li>
+</ul>
+
+<h2 id="writing-a-hashcode-function">Writing a <code class="language-plaintext highlighter-rouge">hashCode</code> function</h2>
+
+<p>So, how to write a good <code class="language-plaintext highlighter-rouge">hashCode</code>?
+That’s…out of scope for this class, and is an important research problem in its own right.
+The <a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/HashIntro.html">OpenDSA Chapter on Hashing</a> is a really good overview.</p>
+
+<p>In this example, we’ll look at two examples of <code class="language-plaintext highlighter-rouge">hashCode</code> functions.</p>
+
+<p>Suppose we have a simple <code class="language-plaintext highlighter-rouge">Person</code> class (the same one we used in <a href="../11-inheritance-equality/">the previous lesson</a>). Each <code class="language-plaintext highlighter-rouge">Person</code> has two properties:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">int age</code></li>
+  <li><code class="language-plaintext highlighter-rouge">String name</code></li>
+</ul>
+
+<p>And two <code class="language-plaintext highlighter-rouge">Person</code>s are considered <code class="language-plaintext highlighter-rouge">equal</code> to each other if they have equal names and ages.
+This means that:</p>
+
+<ol>
+  <li>Two <code class="language-plaintext highlighter-rouge">Person</code>s with equal names and ages should produce the same hash code.</li>
+  <li>If two <code class="language-plaintext highlighter-rouge">Person</code>s differ in name or age or both, they should produce different hash codes, as far as possible.</li>
+</ol>
+
+<p>We’ll look at two ways of writing the <code class="language-plaintext highlighter-rouge">hashCode</code> function.</p>
+
+<h3 id="rolling-our-own">Rolling our own</h3>
+
+<p>One option is to compute an integer ourselves.
+We should make use of all instance variables that factor into the <code class="language-plaintext highlighter-rouge">equals</code> decision in order to meet the “contract” we talked about earlier, and we need to make it so that differences in the values of those instance variables will result in differences in our final integer.</p>
+
+<p>Here’s an example.</p>
+
+<ul>
+  <li>In the code below, we start with the number <code class="language-plaintext highlighter-rouge">1</code>.</li>
+  <li>Then we multiply by <code class="language-plaintext highlighter-rouge">37</code> — multiplying by a prime number like <code class="language-plaintext highlighter-rouge">37</code> makes it more likely for us to produce a number that other objects <em>won’t</em> produce. You can use any prime number you want.</li>
+  <li>Then we add the <code class="language-plaintext highlighter-rouge">name</code>’s <code class="language-plaintext highlighter-rouge">hashCode</code> value. The <code class="language-plaintext highlighter-rouge">String</code> class already has a <code class="language-plaintext highlighter-rouge">hashCode</code> function, so we don’t need to re-invent that. Note that we are assuming here that the <code class="language-plaintext highlighter-rouge">name</code> is not <code class="language-plaintext highlighter-rouge">null</code>! We can do this because we <a href="../11-inheritance-equality#equals">included code to guarantee this in the previous lesson</a> If it’s possible for <code class="language-plaintext highlighter-rouge">name</code> to be <code class="language-plaintext highlighter-rouge">null</code>, then you need to check that first.</li>
+  <li>We multiply this result again by <code class="language-plaintext highlighter-rouge">37</code>, then add the <code class="language-plaintext highlighter-rouge">age</code>.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+
+  <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">37</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">hashCode</span><span class="o">();</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">37</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="using-existing-methods">Using existing methods</h3>
+
+<p>A lot has been said or written about generating good hash values for different primitive data types (which in turn can be used as building blocks for generating hash values for reference types).
+Many of these ideas have been implemented already.
+In many cases it’s better to use existing implementations instead of re-inventing the wheel.</p>
+
+<p>The <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Objects.html"><code class="language-plaintext highlighter-rouge">Objects</code></a><sup id="fnref:s" role="doc-noteref"><a href="#fn:s" class="footnote" rel="footnote">2</a></sup> class in Java contains number of useful static methods, among them utilities for generating a hash code based on a given set of fields.</p>
+
+<p>The <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Objects.html#hash(java.lang.Object...)"><code class="language-plaintext highlighter-rouge">hash</code></a> static function takes in a list of parameters, and generates a hash code based on those values.
+So we could rewrite the <code class="language-plaintext highlighter-rouge">hashCode</code> for our <code class="language-plaintext highlighter-rouge">Person</code> class as:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">hash</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="objectsequals"><code class="language-plaintext highlighter-rouge">Objects.equals</code></h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">Objects</code> class also provides the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Objects.html#equals(java.lang.Object,java.lang.Object)"><code class="language-plaintext highlighter-rouge">Objects.equals</code></a> function. You can use <code class="language-plaintext highlighter-rouge">Objects.equals(a, b)</code> instead of <code class="language-plaintext highlighter-rouge">a.equals(b)</code>.
+This is useful in cases you are not sure if <code class="language-plaintext highlighter-rouge">a</code> is null or not — <code class="language-plaintext highlighter-rouge">a.equals(b)</code> would crash with a <code class="language-plaintext highlighter-rouge">NullPointerException</code> if <code class="language-plaintext highlighter-rouge">a</code> was null, whereas <code class="language-plaintext highlighter-rouge">Objects.equals</code> checks that for you, or you could check it yourself.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:javadoc" role="doc-endnote">
+      <p>Paraphrased from the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()">Object documentation</a>. <a href="#fnref:javadoc" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:s" role="doc-endnote">
+      <p>Notice the “s” in Objects. <a href="#fnref:s" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

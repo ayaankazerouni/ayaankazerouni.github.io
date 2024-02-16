@@ -1,0 +1,226 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Streams - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc203/coursenotes/16-streams/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
+  <h1>Streams</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <h2 id="overview">Overview</h2>
+
+<p>Having learned about lambdas in <a href="../15-lambdas/">the previous lesson</a>, we will learn about a related construct in Java called <strong>streams</strong>.
+Lambdas and streams are often used together.</p>
+
+<p>Streams allow us to take a series of computations to be performed on a collection of data, and compose them into a “pipeline”.</p>
+
+<p>In this lesson, we’ll start with concrete examples of using the Streams API, since on the surface there is very little new or unfamiliar happening here.
+At the end, there is a brief discussion about what exactly is meant by “streaming”, and some of the underlying properties of streams in Java that are important to know.</p>
+
+<h2 id="an-example-problem">An example problem</h2>
+
+<p>Before we start, let’s recall the <strong>map</strong> and <strong>filter</strong> patterns that we talked about in the previous lesson.</p>
+
+<ul>
+  <li>In the <strong>map</strong> pattern, we define, as a function, a computation we want to perform on each item in a collection. The <strong>map</strong> applies that computation on each item and returns a list containing the results of that item.</li>
+  <li>In the <strong>filter</strong> pattern, we define, as a predicate, a condition we would like to check for each item in a collection. The <strong>filter</strong> tests each item against that condition, and returns a list containing the items that “pass” or “satisfy” the predicate.</li>
+</ul>
+
+<p>Continuing with our examples of <code class="language-plaintext highlighter-rouge">Album</code> objects, let’s suppose we have a list of <code class="language-plaintext highlighter-rouge">Album</code>s that we are working with.</p>
+
+<p>For the purposes of this example, let’s assume <code class="language-plaintext highlighter-rouge">Album</code> objects have the following fields:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">String title</code></li>
+  <li><code class="language-plaintext highlighter-rouge">String artist</code></li>
+  <li><code class="language-plaintext highlighter-rouge">int year</code></li>
+  <li><code class="language-plaintext highlighter-rouge">long unitsSold</code></li>
+  <li><code class="language-plaintext highlighter-rouge">double price</code></li>
+</ul>
+
+<p>We are given the following problem prompt:</p>
+
+<blockquote>
+  <p>Write a program that consumes a list of <code class="language-plaintext highlighter-rouge">Album</code> objects, and, for the <code class="language-plaintext highlighter-rouge">Album</code>s released after the year 2000, computes the average number of units they have sold.</p>
+</blockquote>
+
+<h3 id="a-for-loop-solution">A <code class="language-plaintext highlighter-rouge">for</code> loop solution</h3>
+
+<p>As you read the code below, try to identify usage of the <strong>map</strong> or <strong>filter</strong> patterns.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">averageSalesAfter2000</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="n">albums</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+  <span class="k">for</span> <span class="o">(</span><span class="nc">Album</span> <span class="n">current</span> <span class="o">:</span> <span class="n">albums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">album</span><span class="o">.</span><span class="na">getYear</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kt">long</span> <span class="n">sales</span> <span class="o">=</span> <span class="n">album</span><span class="o">.</span><span class="na">getSales</span><span class="o">();</span>
+      <span class="n">sum</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">sales</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="k">if</span> <span class="o">(</span><span class="n">sum</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">albums</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="a-streams-solution">A streams solution</h3>
+
+<p>The same problem can be solved using streams.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">double</span> <span class="nf">averageSalesAfter2000</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="n">albums</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">OptionalDouble</span> <span class="n">result</span> <span class="o">=</span>  <span class="n">albums</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span> <span class="c1">// Stream&lt;Album&gt;</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">getYear</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="o">)</span> <span class="c1">// Stream&lt;Album&gt;</span>
+    <span class="o">.</span><span class="na">mapToLong</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">getUnitsSold</span><span class="o">())</span> <span class="c1">// Stream&lt;Long&gt;</span>
+    <span class="o">.</span><span class="na">average</span><span class="o">();</span> <span class="c1">// OptionalDouble</span>
+
+  <span class="c1">// The list might be empty, in which case we can't divide by 0.</span>
+  <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the code above, we have organised a series of computations into a <em>stream pipeline</em>.</p>
+
+<ul>
+  <li>We first call <code class="language-plaintext highlighter-rouge">stream</code> on the list of albums, to turn it into a stream of albums (<code class="language-plaintext highlighter-rouge">Stream&lt;Album&gt;</code>). This step is necessary to be able to call the other stream operations.</li>
+  <li>Then, we use <code class="language-plaintext highlighter-rouge">filter</code> to filter down to albums released after the year 2000. We define the condition as a lambda (a <code class="language-plaintext highlighter-rouge">Predicate</code>), passed as a parameter to <code class="language-plaintext highlighter-rouge">filter</code>.</li>
+  <li>Then, we use <code class="language-plaintext highlighter-rouge">mapToLong</code> to go from collection of <code class="language-plaintext highlighter-rouge">Album</code> objects to a collection of <code class="language-plaintext highlighter-rouge">Long</code> values. We could’ve used <code class="language-plaintext highlighter-rouge">map</code> here instead of <code class="language-plaintext highlighter-rouge">mapToLong</code>, but using <code class="language-plaintext highlighter-rouge">mapToLong</code> now tells the type system that this is now a stream of numerical values (i.e., <code class="language-plaintext highlighter-rouge">Stream&lt;Long&gt;</code> or <code class="language-plaintext highlighter-rouge">LongStream</code>).</li>
+  <li>The <code class="language-plaintext highlighter-rouge">LongStream</code> provides an <code class="language-plaintext highlighter-rouge">average</code> method, which we can use to compute the average of the items remaining in the stream. This gives us an <code class="language-plaintext highlighter-rouge">OptionalDouble</code> (a class in Java representing a <code class="language-plaintext highlighter-rouge">double</code> which may or may not exist).
+    <ul>
+      <li>The reason this double may not exist is that, if the list is empty, we can’t compute an average, because you can’t divide by 0.</li>
+    </ul>
+  </li>
+  <li>We get the computed average from the <code class="language-plaintext highlighter-rouge">OptionalDouble</code> object and return the value.
+    <ul>
+      <li>The <code class="language-plaintext highlighter-rouge">orElse</code> method on the <code class="language-plaintext highlighter-rouge">OptionalDouble</code> gets us the computed value if it exists, or it gives us a specified “backup” value otherwise.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The streams API provides a whole host of operations that can performed on streams of data.
+<code class="language-plaintext highlighter-rouge">filter</code>, <code class="language-plaintext highlighter-rouge">map</code>, or specialised maps like <code class="language-plaintext highlighter-rouge">mapToLong</code> are just the tip of the iceberg.
+You can explore the streams API at the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/package-summary.html"><code class="language-plaintext highlighter-rouge">Stream</code> JavaDoc page</a>.</p>
+
+<h2 id="streams-are-not-data-structures">Streams are not data structures</h2>
+
+<p><strong>A stream, by itself, does not store data, and is technically not a data structure.</strong>
+Streams are wrappers around a data source.
+They allow us to define a series of operations that should be performed on that data source, and they make bulk processing of data convenient and fast.</p>
+
+<p>The “data source” for a stream can be anything—an array or list, a file stored on disk, a stream of data coming from some external service, etc.
+In this class, we will only deal with streams based on lists or arrays.
+So for the purposes of our discussion, streams are little more than a convenient library and syntax for defining operations to be performed on lists.<sup id="fnref:more-on-streams" role="doc-noteref"><a href="#fn:more-on-streams" class="footnote" rel="footnote">1</a></sup></p>
+
+<p><strong>A stream never modifies its underlying data source.</strong>
+For example, you cannot use stream operations on a list to remove items from or add items to the list.
+Just like you can’t add or remove items from a list while looping over it using a <code class="language-plaintext highlighter-rouge">for-each</code> loop.</p>
+
+<p><strong>In general, a stream pipeline consists of</strong>:</p>
+
+<ul>
+  <li><strong>A source</strong>, which can be an array, a collection, a generator function, a file, etc. We talked about this above.</li>
+  <li><strong>Zero or more intermediate operations</strong>, which transform the stream into another stream. Because these intermediate operations return streams themselves, they can be chained together to perform a number of operations.</li>
+  <li><strong>Exactly one terminal operation</strong>, which produces a result or a side effect. Since the terminal operation “exits” the pipeline, no further stream operations can be added to the pipeline.</li>
+</ul>
+
+<p>In our example above,</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">albums</code> was the <strong>source</strong> of the stream</li>
+  <li><code class="language-plaintext highlighter-rouge">filter</code> and <code class="language-plaintext highlighter-rouge">mapToLong</code> were <strong>intermediate operations</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">average</code> was a <strong>terminal operation</strong></li>
+</ul>
+
+<p><strong>Stream pipelines are lazy.</strong>
+They will not run until they absolutely have to.
+Specifically, the stream processing won’t be “kicked off” until a terminal operation is called.</p>
+
+<p>For example, if we had only called <code class="language-plaintext highlighter-rouge">filter</code> and <code class="language-plaintext highlighter-rouge">mapToLong</code> above, we would still be left with a <code class="language-plaintext highlighter-rouge">LongStream</code>, i.e., a stream of longs.
+No processing take place unless some terminal operation is added to the pipeline.</p>
+
+<p>Some examples of terminal operations are:</p>
+
+<ul>
+  <li>Collecting the result of the Stream into a list (<code class="language-plaintext highlighter-rouge">.toList()</code>).</li>
+  <li>Counting the elements left in the stream after the intermediate operations have been performed (<code class="language-plaintext highlighter-rouge">count()</code>)</li>
+  <li>Looping over the elements in the stream and operating on them, i.e., applying a <code class="language-plaintext highlighter-rouge">Consumer</code> to each item (<code class="language-plaintext highlighter-rouge">.forEach(Consumer)</code>)</li>
+  <li>In the case of primitive streams like <code class="language-plaintext highlighter-rouge">IntStream</code>, <code class="language-plaintext highlighter-rouge">DoubleStream</code>, <code class="language-plaintext highlighter-rouge">LongStream</code>, you can perform numerical aggregations (<code class="language-plaintext highlighter-rouge">.sum()</code>, <code class="language-plaintext highlighter-rouge">.average()</code>, etc.)</li>
+</ul>
+
+<h2 id="what-is-streaming">What is “streaming”?</h2>
+
+<p>You likely already know the meaning of the word “streaming”.
+For example, you’ve heard of “streaming music” or “streaming a video” over the internet.
+To simplify it greatly, it means to <em>process data while it loads</em>, rather than to load all the data before beginning to process it.</p>
+
+<p>For example, when you’re streaming a movie on Netflix, you’re not actually downloading the whole movie to your machine and then watching it.
+Rather, chunks of the movie are being sent to your computer and played in your browser as they arrive.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Stream</code>s in Java are a similar idea.</p>
+
+<p>Let’s imagine you need to read and process data from a HUGE file on your hard disk: <code class="language-plaintext highlighter-rouge">MyGiantFile.txt</code>
+The file is too large for you read the entire thing into, say, a list of strings or one giant string.</p>
+
+<p>One way you could do this is to use a <code class="language-plaintext highlighter-rouge">Scanner</code> to read the file and process it line by line, like we have done in a project and a couple of labs this term.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Scanner</span> <span class="n">scanner</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"MyGiantFile.txt"</span><span class="o">));</span>
+<span class="k">while</span> <span class="o">(</span><span class="n">scanner</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+  <span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+  
+  <span class="c1">// Assume we do some work with the line here</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>With the streams API, we can now concisely define operations like the above using lambdas and all the benefits they bring.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Files.lines</code> static method creates a stream of strings, allowing us to define a pipeline of operations that will apply to each line in <code class="language-plaintext highlighter-rouge">MyGiantFile.txt</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="nc">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"MyGiantFile.txt"</span><span class="o">))</span>
+  <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="o">.....)</span>
+  <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="o">........)</span>
+  <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="o">.......);</span>
+</code></pre></div></div>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:more-on-streams" role="doc-endnote">
+      <p>There is a lot more to be said about streams, and they are a powerful and commonly used feature in Java applications that process large amounts of data. For more info, see the excellent <a href="https://github.com/ayaankazerouni/csc305-lectures/tree/main/16-streams">Java Steams documentation</a> or my notes for <a href="https://github.com/ayaankazerouni/csc305-lectures/tree/main/16-streams">CSC 305 at Cal Poly</a>. <a href="#fnref:more-on-streams" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>
