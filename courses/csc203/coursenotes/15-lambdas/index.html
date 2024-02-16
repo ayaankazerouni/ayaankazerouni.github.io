@@ -7,7 +7,7 @@
 
 	<title>Lambdas and functional interfaces - Ayaan M. Kazerouni</title>
 
-	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
   <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -172,7 +172,7 @@ We can take in a function as a parameter to this* function, allowing this <code 
 Please take some time to read the code and its accompanying comments.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// T and R are declared as "type parameters"</span>
-<span class="kd">public</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">R</span><span class="o">&gt;</span> <span class="kd">static</span> <span class="nc">List</span><span class="o">&lt;</span><span class="no">R</span><span class="o">&gt;</span> <span class="nf">map</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">inputList</span><span class="o">,</span> <span class="nc">Function</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">R</span><span class="o">&gt;</span> <span class="n">func</span><span class="o">)</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">R</span><span class="o">&gt;</span> <span class="nc">List</span><span class="o">&lt;</span><span class="no">R</span><span class="o">&gt;</span> <span class="nf">map</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">inputList</span><span class="o">,</span> <span class="nc">Function</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">R</span><span class="o">&gt;</span> <span class="n">func</span><span class="o">)</span> <span class="o">{</span>
   <span class="c1">// The type of this list should match the output type of the Function parameter</span>
   <span class="nc">List</span><span class="o">&lt;</span><span class="no">R</span><span class="o">&gt;</span> <span class="n">outputList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
 
@@ -293,7 +293,7 @@ For example, we have parameterised the data type of the input and output lists, 
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// T is declared as a "type parameter". We don't need to declare an output</span>
 <span class="c1">// type because it is the same as the input type.</span>
-<span class="kd">public</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kd">static</span> <span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">filter</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">inputList</span><span class="o">,</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">pred</span><span class="o">)</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">filter</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">inputList</span><span class="o">,</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">pred</span><span class="o">)</span> <span class="o">{</span>
   <span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">outputList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
 
   <span class="k">for</span> <span class="o">(</span><span class="no">T</span> <span class="n">current</span> <span class="o">:</span> <span class="n">inputList</span><span class="o">)</span> <span class="o">{</span>
@@ -352,7 +352,7 @@ And you’re already familiar with this!</p>
 
 <p>We could also write a <code class="language-plaintext highlighter-rouge">forEach</code> function that accomplishes this.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">forEach</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">inputList</span><span class="o">,</span> <span class="nc">Consumer</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">consumer</span><span class="o">)</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">forEach</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">inputList</span><span class="o">,</span> <span class="nc">Consumer</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">consumer</span><span class="o">)</span> <span class="o">{</span>
   <span class="k">for</span> <span class="o">(</span><span class="no">T</span> <span class="n">current</span> <span class="o">:</span> <span class="n">inputList</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">consumer</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
   <span class="o">}</span>
