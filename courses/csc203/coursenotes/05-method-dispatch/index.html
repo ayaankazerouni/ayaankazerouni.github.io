@@ -63,13 +63,13 @@ Within the same class, there can never be more than one method with a given name
 
 <object data="Reporter.html" width="100%" height="600px"></object>
 
-<p>The <code class="language-plaintext highlighter-rouge">Reporter</code> class above contains three <code class="language-plaintext highlighter-rouge">static</code> methods called <code class="language-plaintext highlighter-rouge">report</code>.[^static]
+<p>The <code class="language-plaintext highlighter-rouge">Reporter</code> class above contains three <code class="language-plaintext highlighter-rouge">static</code> methods called <code class="language-plaintext highlighter-rouge">report</code>.<sup id="fnref:why-static" role="doc-noteref"><a href="#fn:why-static" class="footnote" rel="footnote">1</a></sup>
 Each one takes a different list of parameter types.</p>
 
 <p>When we write code to call one of the methods, our toolchain needs to decide <em>which</em> method should get called.
 This process is called <em>method dispatch</em>.</p>
 
-<p class="callout ponder">Why do you think they are <code class="language-plaintext highlighter-rouge">static</code> methods?<sup id="fnref:why-static" role="doc-noteref"><a href="#fn:why-static" class="footnote" rel="footnote">1</a></sup></p>
+<p class="callout ponder">Why do you think they are <code class="language-plaintext highlighter-rouge">static</code> methods?<sup id="fnref:why-static:1" role="doc-noteref"><a href="#fn:why-static" class="footnote" rel="footnote">1</a></sup></p>
 
 <p>So, for example, if we were to make the following function call:</p>
 
@@ -361,7 +361,7 @@ Resolution done at compile time (based on static type)
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:why-static" role="doc-endnote">
-      <p>Since there is no <em>instance data</em>, we don’t really have a notion of individual <code class="language-plaintext highlighter-rouge">Reporter</code> objects. So we <em>could</em> make them instance methods, but that’s not really useful right now. <a href="#fnref:why-static" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>Since there is no <em>instance data</em>, we don’t really have a notion of individual <code class="language-plaintext highlighter-rouge">Reporter</code> objects. So we <em>could</em> make them instance methods, but that’s not really useful right now. <a href="#fnref:why-static" class="reversefootnote" role="doc-backlink">&#8617;</a> <a href="#fnref:why-static:1" class="reversefootnote" role="doc-backlink">&#8617;<sup>2</sup></a></p>
     </li>
     <li id="fn:runtime" role="doc-endnote">
       <p>You will see me write both “run time” (as two words), and “runtime” (as one word). When I write “run time” (as two words), I mean it as <em>at run time</em>, as in “while the program is running”. When I write “runtime” (as one word), I mean <em>the program execution environment</em>. In most cases these are closely related. <a href="#fnref:runtime" class="reversefootnote" role="doc-backlink">&#8617;</a></p>

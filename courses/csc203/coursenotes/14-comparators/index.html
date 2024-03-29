@@ -99,7 +99,7 @@ We create a new instance of the comparator object, and pass that object as a sec
 </code></pre></div></div>
 
 <p>This version of the <code class="language-plaintext highlighter-rouge">sort</code> function will now use the specified comparator for the pairwise comparisons during the sorting process.
-As a result, the list of albums will be sorted by the artist name, and for albums with the same artist, they will be sorted by the title.</p>
+As a result, the list of albums will be sorted by the title name in ascending order.</p>
 
 <p>In essence, we have <em>parameterised</em> the comparison procedure in the <code class="language-plaintext highlighter-rouge">sort</code> function, thereby making the <code class="language-plaintext highlighter-rouge">sort</code> function more generally usable.
 Because we tell it what comparator to use, the same <code class="language-plaintext highlighter-rouge">sort</code> function can be used to sort objects using <em>any ordering we define</em>.
@@ -243,11 +243,12 @@ Similarly, other primitive types provide similar static functions, e.g., <code c
 
 <p>Finally, we can use the <em>method reference</em> or <em>key extractor</em> syntax.</p>
 
-<p>You already what <em>methods</em> are in Java.
+<p>You already know what <em>methods</em> are in Java.
 You can <em>call</em> or <em>invoke</em> or <em>apply</em> methods on objects.
-For example, <code class="language-plaintext highlighter-rouge">obj.someMethod()</code> will call the method <code class="language-plaintext highlighter-rouge">someMethod()</code> on the <code class="language-plaintext highlighter-rouge">obj</code> object.</p>
+For example, <code class="language-plaintext highlighter-rouge">obj.someMethod()</code> will call <code class="language-plaintext highlighter-rouge">someMethod()</code> on the <code class="language-plaintext highlighter-rouge">obj</code> object.</p>
 
-<p>However, it is also possible to simply “refer to” instance methods in Java, <em>without</em> calling them.</p>
+<p>However, it is also possible to simply “refer to” instance methods in Java, <em>without</em> calling them.
+We do this using the method reference or “key extractor” syntax.</p>
 
 <p>For example,</p>
 
@@ -257,7 +258,7 @@ For example, <code class="language-plaintext highlighter-rouge">obj.someMethod()
 </ul>
 
 <p>These are useful because sometimes you end up creating lambdas that do nothing but call an existing method on an object.
-In these cases, it’s easier and simpler to simply “point to” the method you want the lambda to call.</p>
+In these cases, it’s easier and simpler to simply “point to” the method you want to call instead of creating a lambda that takes a parameter and calls an existing named method on that parameter.</p>
 
 <h3 id="creating-a-comparator-using-a-method-reference">Creating a comparator using a method reference</h3>
 
@@ -277,19 +278,18 @@ You are more-or-less doing what we’ve already done above.</p>
 <p>A few things to notice about the code above:</p>
 
 <ul>
-  <li>There are no parentheses (<code class="language-plaintext highlighter-rouge">()</code>) after the <code class="language-plaintext highlighter-rouge">getTitle</code>, because we are not <em>calling</em> the method; we only referring to it.</li>
-  <li>We refer to the method using the class name <code class="language-plaintext highlighter-rouge">Album</code>. The <code class="language-plaintext highlighter-rouge">Comparator.comparing</code> function is creating a comparator behind the scenes, and that comparator has a <code class="language-plaintext highlighter-rouge">compare</code> function. In this code, we are saying that we want that underlying <code class="language-plaintext highlighter-rouge">compare</code> function to use the <code class="language-plaintext highlighter-rouge">getTitle</code> method on each of the parameters being compared.</li>
+  <li>There are no parentheses (<code class="language-plaintext highlighter-rouge">()</code>) after the <code class="language-plaintext highlighter-rouge">getTitle</code>, because we are not <em>calling</em> the method; we are only referring to it.</li>
+  <li>We use the key extractor to tell the <code class="language-plaintext highlighter-rouge">Comparator.comparing</code> method to create a new <code class="language-plaintext highlighter-rouge">Comparator</code> that calls <code class="language-plaintext highlighter-rouge">getTitle</code> on each of its parameters, and compares the results.</li>
   <li>It’s important that our method reference refers to a method that returns a <code class="language-plaintext highlighter-rouge">ComparABLE</code> value (e.g., a <code class="language-plaintext highlighter-rouge">String</code>, a primitive type, any class you create that implements <code class="language-plaintext highlighter-rouge">Comparable</code>). If the method we refer to returns some type that cannot be compared, then we can’t rely on this shorthand, because Java won’t know how to compare them.</li>
 </ul>
 
 <h2 id="chaining-comparators">Chaining comparators</h2>
 
-<p>Remember <code class="language-plaintext highlighter-rouge">default</code> methods?</p>
+<p>Remember <code class="language-plaintext highlighter-rouge">default</code> methods?
+The <code class="language-plaintext highlighter-rouge">Comparator</code> defines a bunch of really useful <code class="language-plaintext highlighter-rouge">default</code> methods.
+These methods are instance methods that exist on all <code class="language-plaintext highlighter-rouge">Comparator</code> objects (just like you’ve learned about <code class="language-plaintext highlighter-rouge">default</code> methods).</p>
 
 <p>We know that the <code class="language-plaintext highlighter-rouge">Comparator</code> interface only defines one abstract method: <code class="language-plaintext highlighter-rouge">compare</code>.</p>
-
-<p>However, it also defines a bunch of really useful <code class="language-plaintext highlighter-rouge">default</code> methods.
-These methods are instance methods that exist on all <code class="language-plaintext highlighter-rouge">Comparator</code> objects (just like you’ve learned about <code class="language-plaintext highlighter-rouge">default</code> methods).</p>
 
 <h3 id="thencomparing"><code class="language-plaintext highlighter-rouge">thenComparing</code></h3>
 

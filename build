@@ -6,6 +6,6 @@ JEKYLL_ENV=production bundle exec jekyll build -d ../ayaankazerouni.github.io/
 echo "Deploying site..."
 cd ../ayaankazerouni.github.io
 git add --all
-git commit -m "Build."
+git commit --amend -m "Build."
 git push -f origin master
 cd -

@@ -297,6 +297,17 @@ You will face tradeoffs and make choices about how to design your systems.</p>
     
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+      const mql = window.matchMedia('(prefers-color-scheme: dark)');
+      if (mql.matches) {
+        mermaid.initialize({
+          theme: 'dark'
+        });
+      } else {
+        mermaid.initialize({
+          theme: 'default'
+        });
+      }
     </script>
     
     </article>
