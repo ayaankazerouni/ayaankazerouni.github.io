@@ -309,10 +309,11 @@ pre > code {
   color: inherit;
 }
 
-pre {
+pre:not(.mermaid) {
   padding: 10px;
   border-radius: 5px;
   border: 1pt solid #425469;
+  line-height: 1.5;
 }
 
 .tag {

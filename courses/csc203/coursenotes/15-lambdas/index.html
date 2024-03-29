@@ -1,0 +1,421 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Lambdas and functional interfaces - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc203/coursenotes/15-lambdas/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+  </p>
+  
+  <h1>Lambdas and functional interfaces</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>In the previous lesson, we learned about expressing <code class="language-plaintext highlighter-rouge">Comparator</code>s more concisely using the lambda syntax.
+This is possible because <code class="language-plaintext highlighter-rouge">Comparator</code> is a <em>functional interface</em>.</p>
+
+<p class="callout">A functional interface is an interface in Java with exactly one abstract method.</p>
+
+<p>Because <code class="language-plaintext highlighter-rouge">Comparator</code> only has one abstract method (<code class="language-plaintext highlighter-rouge">compare</code>), we can concisely initialise <code class="language-plaintext highlighter-rouge">Comparator</code>s like so:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Comparator</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="n">comp</span> <span class="o">=</span> <span class="o">(</span><span class="n">a1</span><span class="o">,</span> <span class="n">a2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a1</span><span class="o">.</span><span class="na">getTitle</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">a2</span><span class="o">.</span><span class="na">getTitle</span><span class="o">());</span>
+</code></pre></div></div>
+
+<p>The lambda above defines a function, and because there is only one abstract method in <code class="language-plaintext highlighter-rouge">Comparator</code>, there is no ambiguity about what that function is.
+It’s the <code class="language-plaintext highlighter-rouge">compare</code> function!
+This means the compiler is able to infer things like the parameter types of <code class="language-plaintext highlighter-rouge">a1</code> and <code class="language-plaintext highlighter-rouge">a2</code>, and check that the function returns an <code class="language-plaintext highlighter-rouge">int</code> as is required by the <code class="language-plaintext highlighter-rouge">compare</code> function.</p>
+
+<p>There are a whole bunch of other lambdas available in Java — too many to describe here!
+So in this lesson, we’ll focus our discussion on three useful types of lambdas available in Java:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt;</code>: This is the most generally-useful type of lambda. It represents a function that takes in one input and produces an output. The <code class="language-plaintext highlighter-rouge">T</code> is a placeholder for the input type, and the <code class="language-plaintext highlighter-rouge">R</code> is a placeholder for the result type.</li>
+  <li><code class="language-plaintext highlighter-rouge">Predicate&lt;T&gt;</code>: A predicate is essentially a function that returns a boolean. The <code class="language-plaintext highlighter-rouge">T</code> is a placeholder for the input type. There is no placeholder for the output type because the output is a <code class="language-plaintext highlighter-rouge">Boolean</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Consumer&lt;T&gt;</code>: A consumer is an operation that takes in a single input and returns no result. Sort of like a lambda version of a <code class="language-plaintext highlighter-rouge">void</code> method. The <code class="language-plaintext highlighter-rouge">T</code> is a placeholder for the input type. There is no placeholder for the output type because there <em>is</em> no output.</li>
+</ul>
+
+<p>All of the above are <em>functional interfaces</em>, meaning they are all interfaces that contain exactly one abstract method each.
+The three functional interfaces above are rather more generally useful than the <code class="language-plaintext highlighter-rouge">Comparator</code> interface.
+While the <code class="language-plaintext highlighter-rouge">Comparator</code> interface defines a function for a very specific purpose (taking in two objects and returning an <code class="language-plaintext highlighter-rouge">int</code> based on their comparison), the lambdas above can be used in a wide variety of problems.</p>
+
+<p>Let’s talk about them.</p>
+
+<h2 id="function">Function</h2>
+
+<p>A <code class="language-plaintext highlighter-rouge">Function</code> is exactly what you think it is: it’s a procedure that takes in some input value and produces some output.</p>
+
+<p>When you use a <code class="language-plaintext highlighter-rouge">Function</code>, you must also declare its input and output types.
+Here are several examples of <code class="language-plaintext highlighter-rouge">Function</code>s written as lambdas:</p>
+
+<p><strong>A function that takes in a number and returns its square:</strong></p>
+
+<p>This function is expected to take in an integer as its input and return an integer as output.
+Therefore, we declare the function using <code class="language-plaintext highlighter-rouge">Function&lt;Integer, Integer&gt;</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Function</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">square</span> <span class="o">=</span> <span class="n">num</span> <span class="o">-&gt;</span> <span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>Because the function above takes a single parameter, we can omit the parentheses around the parameter <code class="language-plaintext highlighter-rouge">num</code>.
+We also don’t need to specify the type of <code class="language-plaintext highlighter-rouge">num</code>, because we’ve already declared that the function is a <code class="language-plaintext highlighter-rouge">Function&lt;Integer, Integer&gt;</code>, i.e., its input type is an <code class="language-plaintext highlighter-rouge">Integer</code> and its output type is <code class="language-plaintext highlighter-rouge">Integer</code>.</p>
+
+<p><strong>A function that takes in a String and returns its length:</strong></p>
+
+<p>This function is expected to take in a string and return an integer.
+So we declare it using <code class="language-plaintext highlighter-rouge">Function&lt;String, Integer&gt;</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Function</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">stringLength</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p class="callout todo">The above function is using a lambda only to call an existing method on the input. This is the exact use case for using method references. How would you re-write the above function using a method reference? <strong>Try to answer this yourself before expanding the answer below.</strong></p>
+
+<details>
+  <summary>Click to see answer</summary>
+  <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Function</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">stringLength</span> <span class="o">=</span> <span class="nl">String:</span><span class="o">:</span><span class="n">length</span><span class="o">;</span>
+</code></pre></div>  </div>
+</details>
+
+<p><strong>A function that takes in an Album and returns a String describing it:</strong> (e.g., <code class="language-plaintext highlighter-rouge">"Rubber Soul by The Beatles"</code>)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Function</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">stringDesc</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">getTitle</span><span class="o">()</span> <span class="o">+</span> <span class="s">" by "</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="na">getArtist</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p><strong>The <code class="language-plaintext highlighter-rouge">Function</code> interface has one abstract method: the <code class="language-plaintext highlighter-rouge">apply</code> method.</strong>
+The method takes in one parameter and returns one value.
+The types for the parameter and the returned value are decided when the <code class="language-plaintext highlighter-rouge">Function</code> is first created, as you can see in the examples above.
+This <code class="language-plaintext highlighter-rouge">apply</code> method is what you are defining when you write a lambda.</p>
+
+<h3 id="a-motivating-example">A motivating example</h3>
+
+<p>A common task in programming problems is to apply some operation to all the items in a list, and produce a list of results.
+This is commonly referred to as a <strong>map</strong> operation, i.e., you are <em>mapping</em> some input value to some output value.
+You will be surprised at how often this pattern appears in your programs.</p>
+
+<p>In a <strong>map</strong> operation:</p>
+
+<ul>
+  <li>The <strong>input</strong> is a list of some type (e.g., <code class="language-plaintext highlighter-rouge">List&lt;T&gt;</code>).</li>
+  <li>The <strong>output</strong> is a list of some type (e.g., <code class="language-plaintext highlighter-rouge">List&lt;R&gt;</code>), where <code class="language-plaintext highlighter-rouge">R</code> can be the same as or different from <code class="language-plaintext highlighter-rouge">T</code>.</li>
+  <li>The input and output lists are the same length, because the output is obtained by applying a function to each item in the input.</li>
+</ul>
+
+<p>For example, suppose you are a teacher and your students have just taken an exam.</p>
+
+<p>Suppose you realise that the class as a whole performed poorly on a particular question that was not clearly worded.
+As a result, you need to add 2 points to everyone’s exam scores.</p>
+
+<p>First, let’s acknowledge that you could easily write this using a <code class="language-plaintext highlighter-rouge">for</code> loop.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">mapToAdjustedScores</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">examScores</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+  
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">current</span> <span class="o">:</span> <span class="n">examScores</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">adjusted</span> <span class="o">=</span> <span class="n">current</span> <span class="o">+</span> <span class="mi">2</span><span class="o">;</span> <span class="c1">// This is the "map" operation</span>
+    <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">percent</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>As another example, the maximum possible score is 44 points, so your students have scores like <code class="language-plaintext highlighter-rouge">42</code>, <code class="language-plaintext highlighter-rouge">44</code>, <code class="language-plaintext highlighter-rouge">40</code>, <code class="language-plaintext highlighter-rouge">39</code>, etc.
+You would like to turn all of these scores into percentages, i.e., by dividing each of them by <code class="language-plaintext highlighter-rouge">44</code> and multiplying by <code class="language-plaintext highlighter-rouge">100</code>.</p>
+
+<p>Again, easily doable using a <code class="language-plaintext highlighter-rouge">for</code> loop.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="nf">mapToPercentages</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">examScores</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+  
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">current</span> <span class="o">:</span> <span class="n">examScores</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">double</span> <span class="n">percent</span> <span class="o">=</span> <span class="o">((</span><span class="kt">double</span><span class="o">)</span> <span class="n">current</span> <span class="o">/</span> <span class="mi">44</span><span class="o">)</span> <span class="o">*</span> <span class="mi">100</span><span class="o">;</span> <span class="c1">// This is the "map" operation</span>
+    <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">percent</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p class="callout ponder">What do you notice about the two functions above?</p>
+
+<p>Observe that the two functions are nearly identical, except for one thing: they differ in the operation performed on each list item within the for loop (and consequently, the data type of the resulting lists).
+This is because both functions are versions of the <strong>map</strong> pattern in action. Can we abstract out the common parts so that only the differing parts (the insides of the for loops) need to be specified each time?</p>
+
+<p>In other words, can we <em>parameterise</em> the map operation so that the nearly-identical functions don’t need to be written multiple times?</p>
+
+<h3 id="parameterising-our-mapper">Parameterising our mapper</h3>
+
+<p>Instead of the two functions above, consider the following generalised <code class="language-plaintext highlighter-rouge">map</code> function.
+We can take in a function as a parameter to this* function, allowing this <code class="language-plaintext highlighter-rouge">map</code> function to be more generally useful.</p>
+
+<p>There is some new notation in this code, which I will explain below.
+Please take some time to read the code and its accompanying comments.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// T and R are declared as "type parameters"</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">R</span><span class="o">&gt;</span> <span class="nc">List</span><span class="o">&lt;</span><span class="no">R</span><span class="o">&gt;</span> <span class="nf">map</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">inputList</span><span class="o">,</span> <span class="nc">Function</span><span class="o">&lt;</span><span class="no">T</span><span class="o">,</span> <span class="no">R</span><span class="o">&gt;</span> <span class="n">func</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// The type of this list should match the output type of the Function parameter</span>
+  <span class="nc">List</span><span class="o">&lt;</span><span class="no">R</span><span class="o">&gt;</span> <span class="n">outputList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+  <span class="c1">// The type in this for loop should match the type of the input list</span>
+  <span class="k">for</span> <span class="o">(</span><span class="no">T</span> <span class="n">current</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// Recall that "apply" is the name of the abstract method in the Function interface.</span>
+    <span class="c1">// We call "func" on the current item and save the result in a variable.</span>
+    <span class="no">R</span> <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
+
+    <span class="c1">// Store the result in the output list.</span>
+    <span class="n">outputList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="k">return</span> <span class="n">outputList</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Some key things to note about the code above:</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">&lt;T, R&gt;</code></strong> — <code class="language-plaintext highlighter-rouge">T</code> and <code class="language-plaintext highlighter-rouge">R</code> are <strong>type parameters</strong> in this function. We don’t yet know what those types will be, so for now we declare them as parameters, similar to how <code class="language-plaintext highlighter-rouge">inputList</code> and <code class="language-plaintext highlighter-rouge">func</code> are “value parameters”.<sup id="fnref:generics" role="doc-noteref"><a href="#fn:generics" class="footnote" rel="footnote">1</a></sup></li>
+  <li><strong><code class="language-plaintext highlighter-rouge">Function&lt;T, R&gt; func</code></strong> — Notice this <code class="language-plaintext highlighter-rouge">Function</code>’s input and output types. The input type, <code class="language-plaintext highlighter-rouge">T</code>, matches the type of each item in the <code class="language-plaintext highlighter-rouge">inputList</code>. The output type, <code class="language-plaintext highlighter-rouge">R</code>, matches the type of each item in the returned list, i.e., <code class="language-plaintext highlighter-rouge">List&lt;R&gt;</code>. At this point we don’t know what the actual types for <code class="language-plaintext highlighter-rouge">T</code> and <code class="language-plaintext highlighter-rouge">R</code> are.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">func.apply(current)</code></strong> — Inside the <code class="language-plaintext highlighter-rouge">for</code> loop, we apply or call our mapper function on each item in the input list. Remember that at the end of the day <code class="language-plaintext highlighter-rouge">Function</code> is just an interface. It contains a single abstract method called <code class="language-plaintext highlighter-rouge">apply</code>. In this line, we call that <code class="language-plaintext highlighter-rouge">apply</code> function, giving it the current item in the list as an input.
+    <ul>
+      <li>Because we’ve declared the output type of our function to be <code class="language-plaintext highlighter-rouge">R</code>, we can use <code class="language-plaintext highlighter-rouge">R</code> as the data type when we store the result in a variable.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="usage-examples">Usage examples</h4>
+
+<p>We can now use our <code class="language-plaintext highlighter-rouge">map</code> function to accomplish both tasks above, by only writing the code that does the mapping, and not having to re-write the rest of the function each time.
+We can express those operations as lambdas, given as parameters to our <code class="language-plaintext highlighter-rouge">map</code> function.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">42</span><span class="o">,</span> <span class="mi">39</span><span class="o">,</span> <span class="mi">43</span><span class="o">,</span> <span class="mi">44</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">37</span><span class="o">,</span> <span class="mi">35</span><span class="o">);</span>
+
+<span class="c1">// Bump all scores by 2 using our map function</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">bumpedScores</span> <span class="o">=</span> <span class="n">map</span><span class="o">(</span><span class="n">scores</span><span class="o">,</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">2</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>When we call <code class="language-plaintext highlighter-rouge">map</code> in the code above, the type parameters <code class="language-plaintext highlighter-rouge">T</code> and <code class="language-plaintext highlighter-rouge">R</code> are now resolved to actual types. <code class="language-plaintext highlighter-rouge">T</code> is now <code class="language-plaintext highlighter-rouge">Integer</code>, because the input list is a list of integers, and <code class="language-plaintext highlighter-rouge">R</code> is also <code class="language-plaintext highlighter-rouge">Integer</code> in this case, because our lambda’s return type is integer.</p>
+
+<p>We can also turn all scores into percentages.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Turn scores into percentages</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">percentages</span> <span class="o">=</span> <span class="n">map</span><span class="o">(</span><span class="n">scores</span><span class="o">,</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="o">((</span><span class="kt">double</span><span class="o">)</span> <span class="n">s</span> <span class="o">/</span> <span class="mi">44</span><span class="o">)</span> <span class="o">*</span> <span class="mi">100</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>In the call above, <code class="language-plaintext highlighter-rouge">T</code> is <code class="language-plaintext highlighter-rouge">Integer</code>, and <code class="language-plaintext highlighter-rouge">R</code> is <code class="language-plaintext highlighter-rouge">Double</code>.</p>
+
+<p>The <strong>map pattern</strong> is an extremely common programming pattern.
+Virtually every mainstream programming language provides <code class="language-plaintext highlighter-rouge">map</code> as an operation that can be performed on collections of objects, and Java is no exception.
+We will see how to use this in the next lesson on Streams.</p>
+
+<p>For now, let’s continue talking about different types of lambdas available in Java, and move on to the <code class="language-plaintext highlighter-rouge">Predicate</code>.</p>
+
+<h2 id="predicate">Predicate</h2>
+
+<p>A <code class="language-plaintext highlighter-rouge">Predicate</code> is a function that returns a Boolean value.
+Unlike a <code class="language-plaintext highlighter-rouge">Function</code>, you only need to specify an input type for a <code class="language-plaintext highlighter-rouge">Predicate</code>, because the output type is always <code class="language-plaintext highlighter-rouge">Boolean</code>.</p>
+
+<p>Here are several examples of <code class="language-plaintext highlighter-rouge">Predicate</code>s written as lambdas.</p>
+
+<p><strong>A predicate that takes in an integer and check if it is even.</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Predicate</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">isEven</span> <span class="o">=</span> <span class="n">num</span> <span class="o">-&gt;</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p><strong>A predicate that takes in an Album and checks if it was released in this millenium.</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Predicate</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="n">inThisMillenium</span> <span class="o">=</span> <span class="n">album</span> <span class="o">-&gt;</span> <span class="n">album</span><span class="o">.</span><span class="na">getYear</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p class="callout">Both of the above can also be declared as <code class="language-plaintext highlighter-rouge">Function</code>s, i.e., as <code class="language-plaintext highlighter-rouge">Function&lt;Integer, Boolean&gt;</code> and <code class="language-plaintext highlighter-rouge">Function&lt;Album, Boolean&gt;</code>. The <code class="language-plaintext highlighter-rouge">Predicate</code> exists as a useful abstraction because creating boolean functions is a common use case in programming, as we will see. <strong><code class="language-plaintext highlighter-rouge">Predicate</code>s are, in essence, a way to parameterise boolean conditions.</strong></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Predicate</code> interface has one abstract method: the <code class="language-plaintext highlighter-rouge">test</code> method.
+The <code class="language-plaintext highlighter-rouge">test</code> method takes in one input and returns a <code class="language-plaintext highlighter-rouge">boolean</code>.
+That <code class="language-plaintext highlighter-rouge">test</code> method is what you are implementing when you express a <code class="language-plaintext highlighter-rouge">Predicate</code> as a lambda.</p>
+
+<h3 id="a-motivating-example-1">A motivating example</h3>
+
+<p>Another common task in programming problems is to <strong>filter</strong> a collection of items based on some condition.
+Like <code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">filter</code> is an extremely common sub-step in solving programming problems.</p>
+
+<p>In a <strong>filter</strong> operation:</p>
+
+<ul>
+  <li>The <strong>input</strong> is a list of some type (e.g., <code class="language-plaintext highlighter-rouge">List&lt;T&gt;</code>).</li>
+  <li>The <strong>output</strong> is a list of the <em>same</em> type (<code class="language-plaintext highlighter-rouge">List&lt;T&gt;</code>).</li>
+  <li>The output is a subset of the input, because the output is obtained by filtering the input based on some condition.</li>
+</ul>
+
+<p>For example, continuing with the teacher example above, let’s say you want to find out which students scored below a 70% on the exam (i.e., scores that are less than 31).
+The first thing you need to do is filter out the scores that are greater than 31.</p>
+
+<p>We could do this easily using a for loop.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">filterLessThan70</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">scores</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">current</span> <span class="o">:</span> <span class="n">scores</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="o">&lt;</span> <span class="o">(</span><span class="mf">0.7</span> <span class="o">*</span> <span class="mi">44</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// This is the filter condition </span>
+      <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="parameterising-our-filter">Parameterising our filter</h3>
+
+<p>Like we did with the <code class="language-plaintext highlighter-rouge">map</code> function we can make our <code class="language-plaintext highlighter-rouge">filter</code> more generally usable by parameterising the condition on which the list is filtered.</p>
+
+<p>Consider the code below. We have re-written our <code class="language-plaintext highlighter-rouge">filter</code> function to only include the common elements of a typical <code class="language-plaintext highlighter-rouge">filter</code> operation, and parameterised things that might change from one instance to another.
+For example, we have parameterised the data type of the input and output lists, and we have parameterised the predicate used to test whether a given item should be kept or filtered out.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// T is declared as a "type parameter". We don't need to declare an output</span>
+<span class="c1">// type because it is the same as the input type.</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">filter</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">inputList</span><span class="o">,</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">pred</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">outputList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+
+  <span class="k">for</span> <span class="o">(</span><span class="no">T</span> <span class="n">current</span> <span class="o">:</span> <span class="n">inputList</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">pred</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">current</span><span class="o">))</span> <span class="o">{</span> <span class="c1">// Use predicate to check the condition</span>
+      <span class="c1">// If the predicate passes, save the current item</span>
+      <span class="n">outputList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="k">return</span> <span class="n">outputList</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the code above, we use the <code class="language-plaintext highlighter-rouge">Predicate</code>’s <code class="language-plaintext highlighter-rouge">test</code> method to invoke the boolean function. If the <code class="language-plaintext highlighter-rouge">test</code> passes (i.e., it returns <code class="language-plaintext highlighter-rouge">true</code>), we save that list item to be returned in the output list.</p>
+
+<h4 id="usage-examples-1">Usage examples</h4>
+
+<p>We can use our <code class="language-plaintext highlighter-rouge">filter</code> function to accomplish filter tasks like the example above.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">42</span><span class="o">,</span> <span class="mi">39</span><span class="o">,</span> <span class="mi">43</span><span class="o">,</span> <span class="mi">44</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">37</span><span class="o">,</span> <span class="mi">35</span><span class="o">);</span>
+
+<span class="c1">// Filter down to scores less than 70% of 44</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">lessThan70Percent</span> <span class="o">=</span> <span class="n">filter</span><span class="o">(</span><span class="n">scores</span><span class="o">,</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">&lt;</span> <span class="o">(</span><span class="mf">0.7</span> <span class="o">*</span> <span class="mi">44</span><span class="o">));</span>
+
+<span class="c1">// Filter down to "A" scores (e.g., greater than 90%)</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">aScores</span> <span class="o">=</span> <span class="n">filter</span><span class="o">(</span><span class="n">scores</span><span class="o">,</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">&gt;</span> <span class="o">(</span><span class="mf">0.9</span> <span class="o">*</span> <span class="mi">44</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>The <strong>filter</strong> pattern is also an extremely common programming pattern, available “ready to use” on collections of data in most programming languages.</p>
+
+<h2 id="consumer">Consumer</h2>
+
+<p>Finally, we will talk about the <code class="language-plaintext highlighter-rouge">Consumer</code>.
+The <code class="language-plaintext highlighter-rouge">Consumer</code> is a functional interface used to define operations that have no outputs.</p>
+
+<p>It defines one abstract method: <code class="language-plaintext highlighter-rouge">accept</code>. The method takes in one input and returns nothing, i.e., its return type is <code class="language-plaintext highlighter-rouge">void</code>.</p>
+
+<p>Here are several examples of consumers:</p>
+
+<p><strong>A consumer that takes in an album and cuts their prices by 10% (heck yeah, sale!).</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Consumer</span><span class="o">&lt;</span><span class="nc">Album</span><span class="o">&gt;</span> <span class="n">discount</span> <span class="o">=</span> <span class="n">album</span> <span class="o">-&gt;</span> <span class="n">album</span><span class="o">.</span><span class="na">setPrice</span><span class="o">(</span><span class="n">album</span><span class="o">.</span><span class="na">getPrice</span><span class="o">()</span> <span class="o">*</span> <span class="mf">0.9</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>A consumer that takes in a Student and increases the number of units they have completed by 12.</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Consumer</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">increaseUnits</span> <span class="o">=</span> <span class="n">student</span> <span class="o">-&gt;</span> <span class="n">student</span><span class="o">.</span><span class="na">setUnits</span><span class="o">(</span><span class="n">student</span><span class="o">.</span><span class="na">getUnits</span><span class="o">()</span> <span class="o">+</span> <span class="mi">12</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="a-motivating-example-2">A motivating example</h3>
+
+<p>Just like <code class="language-plaintext highlighter-rouge">map</code> and <code class="language-plaintext highlighter-rouge">filter</code> are patterns for performing different types of operations on lists of data, a third pattern is also extremely common in programming.
+And you’re already familiar with this!</p>
+
+<p>Consider the <code class="language-plaintext highlighter-rouge">for-each</code> loop — it loops over a collection of data, and performs some operation on each item in the list.</p>
+
+<p>We could also write a <code class="language-plaintext highlighter-rouge">forEach</code> function that accomplishes this.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">forEach</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">inputList</span><span class="o">,</span> <span class="nc">Consumer</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">consumer</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">for</span> <span class="o">(</span><span class="no">T</span> <span class="n">current</span> <span class="o">:</span> <span class="n">inputList</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">consumer</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>We now have a function version of the <code class="language-plaintext highlighter-rouge">for-each</code> loop!</p>
+
+<h2 id="other-functional-interfaces">Other functional interfaces</h2>
+
+<p>The <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/package-summary.html"><code class="language-plaintext highlighter-rouge">java.util.function</code> package</a> lists a number of functional interfaces, of which we have learned about 3 so far.</p>
+
+<p>A key limiting factor in the <code class="language-plaintext highlighter-rouge">Function</code>, <code class="language-plaintext highlighter-rouge">Predicate</code>, and <code class="language-plaintext highlighter-rouge">Consumer</code> is that all of those lambdas can only take a single input.
+We often need to write functions (or lambdas) that operate on multiple parameters.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Comparator</code> interface comes to mind — its <code class="language-plaintext highlighter-rouge">compare</code> function takes in two objects, the two objects being compared.</p>
+
+<p>Among the other functions available in <code class="language-plaintext highlighter-rouge">java.util.function</code> are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">BiFunction&lt;T, U, R&gt;</code> — A function that accepts two arguments and produces a result.</li>
+  <li><code class="language-plaintext highlighter-rouge">BiPredicate&lt;T, U&gt;</code> — A function that accepts two arguments and produces a boolean (or a predicate that accepts two arguments).</li>
+  <li><code class="language-plaintext highlighter-rouge">BiConsumer&lt;T, U&gt;</code> — An operation that accepts two input arguments and returns no result.</li>
+  <li><code class="language-plaintext highlighter-rouge">BinaryOperator&lt;T&gt;</code> — An operation upon two operands of the same type, producing a result of the same type as the operands. For example, arithmetic expressions like plus or minus, or boolean expressions like <strong>and</strong> and <strong>or</strong> are examples of binary operators.</li>
+</ul>
+
+<p>In many ways, the exact names of all the functional interfaces isn’t what’s most important.
+In the next lesson, we will learn about <em>streams</em>, which allow us to express a series of operations to be performed on lists of data by chaining together calls to functions like <code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">filter</code>, and <code class="language-plaintext highlighter-rouge">forEach</code>.
+In these cases, lambdas are written inline as arguments to those functions themselves, and you rarely have to declare that a lambda is a <code class="language-plaintext highlighter-rouge">Function</code>, <code class="language-plaintext highlighter-rouge">BiFunction</code>, <code class="language-plaintext highlighter-rouge">Predicate</code>, etc.</p>
+
+<p>For example, if you had a list of exam scores, and you wanted to:</p>
+
+<ul>
+  <li>turn each score into a percentage</li>
+  <li>bump up each percentage by 5</li>
+  <li>filter down to the “A” scores</li>
+  <li>round each percentage to the nearest whole number</li>
+</ul>
+
+<p>You <em>could</em> do all of that in a for loop, or you could use lambdas and streams:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">42</span><span class="o">,</span> <span class="mi">39</span><span class="o">,</span> <span class="mi">43</span><span class="o">,</span> <span class="mi">44</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">37</span><span class="o">,</span> <span class="mi">35</span><span class="o">);</span>
+
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">scoresUpdated</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+                                   <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="o">((</span><span class="kt">double</span><span class="o">)</span> <span class="n">s</span> <span class="o">/</span> <span class="mi">44</span><span class="o">)</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span> <span class="c1">// percentages</span>
+                                   <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">5</span><span class="o">)</span> <span class="c1">// bump up</span>
+                                   <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="o">)</span> <span class="c1">// filter to "A" scores</span>
+                                   <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Math:</span><span class="o">:</span><span class="n">round</span><span class="o">);</span> <span class="c1">// round the scores.</span>
+</code></pre></div></div>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:generics" role="doc-endnote">
+      <p>This is an example of using <strong>Java generics</strong>. Generics allow you to declare <em>type parameters</em>, i.e, you can use placeholder names for data types, with the understanding that the placeholder will be replaced with an actual type when the code is invoked. This is identical to how you use “normal” parameters for methods and functions: you declare a variable name in the method signature, and when you call the function, that’s when the variable actually gets a value. <a href="#fnref:generics" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

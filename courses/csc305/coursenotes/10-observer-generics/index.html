@@ -1,0 +1,402 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Java generics - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/10-observer-generics/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Java generics</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>We’ve all written this line of code before, which creates a new empty list of <code class="language-plaintext highlighter-rouge">String</code>s.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>We know that <code class="language-plaintext highlighter-rouge">list</code> is now a list of strings, and if we tried to add anything else to the list, our code wouldn’t compile. But what do all those angle brackets mean? How come the same List and ArrayList types can be used and re-used for lists of different types like Integers and Strings?</p>
+
+<p>That’s what we’ll find out in this lecture. But first, a bit of a detour.</p>
+
+<h2 id="parameterisation">Parameterisation</h2>
+
+<p>Consider the following function:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">sum</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">10</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Is <code class="language-plaintext highlighter-rouge">sum</code> a useful function? Your first reaction is probably “No, of course not!”. And, well…yeah, it doesn’t do much. But it’s useful for a <em>really specific</em> purpose: adding <code class="language-plaintext highlighter-rouge">3</code> and <code class="language-plaintext highlighter-rouge">10</code>. If we wanted to sum up any other numbers, we’d need to write more functions like <code class="language-plaintext highlighter-rouge">sum1and2, sum10and20</code>, etc. Obviously nobody programs like that. Instead, we write functions so that they can be more generally useful (i.e., usable for a wider class of inputs than two specific numbers).</p>
+
+<p>To make <code class="language-plaintext highlighter-rouge">sum</code> more generally useful, we would <em>parameterise</em> the two values that are being summed up. That is:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">sum</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Our <code class="language-plaintext highlighter-rouge">sum</code> function is now usable for <em>any</em> two integers. Much more generally useful than the <code class="language-plaintext highlighter-rouge">sum</code> of old. This is quite a simple idea, something we learned when we first learn about functions, so this whole example may seem really obvious. But it’s worth spelling out.</p>
+
+<p>We realise that the functionality offered by <code class="language-plaintext highlighter-rouge">sum</code> doesn’t really depend on <em>which</em> two numbers are being summed. Whatever they are (as long as they’re <code class="language-plaintext highlighter-rouge">int</code>s here), the rest of the function remains the same. We don’t actually care that the values are <code class="language-plaintext highlighter-rouge">10</code> and <code class="language-plaintext highlighter-rouge">3</code>. So we can instead use the names <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> to refer to two numbers that will have values <em>at runtime</em>, i.e., when the <code class="language-plaintext highlighter-rouge">sum</code> function is invoked.</p>
+
+<p>This process—parameterisation—is useful in other contexts as well.</p>
+
+<p>Consider the following example: we have a list of integers (<code class="language-plaintext highlighter-rouge">List&lt;Integer&gt;</code>), and we want to filter it so that it only contains the even numbers.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">filter</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">current</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Our <code class="language-plaintext highlighter-rouge">filter</code> function achieves this task admirably. If we called <code class="language-plaintext highlighter-rouge">filter(List.of(4, 1, 3, 6, 19))</code>, we would get the list <code class="language-plaintext highlighter-rouge">List.of(4, 6)</code> in return as expected.
+But the <code class="language-plaintext highlighter-rouge">filter</code> function suffers from the same lack of generality that our original <code class="language-plaintext highlighter-rouge">sum</code> displayed.
+Specifically, <code class="language-plaintext highlighter-rouge">filter</code> will <em>only</em> work for filtering out odd numbers from a list. If we wanted to, say filter out all negative numbers, or all non-prime numbers, we would need to write separate filter functions for each of these.</p>
+
+<p>Or, we can parameterise the condition on which the list is being filtered.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">filter</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">condition</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">current</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">condition</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">current</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>Our <code class="language-plaintext highlighter-rouge">filter</code> now accepts an additional parameter, <code class="language-plaintext highlighter-rouge">condition</code>. <code class="language-plaintext highlighter-rouge">condition</code> is a <em>predicate</em> (a function that returns a boolean value). The <code class="language-plaintext highlighter-rouge">filter</code> function now simply tests the predicate against each item in the input list, and collects all the ones that satisfy the predicate (i.e., the ones for which the predicate returns true).
+This is possible because of the same observation that we made in the original <code class="language-plaintext highlighter-rouge">sum</code> function. The <code class="language-plaintext highlighter-rouge">filter</code> functionality doesn’t really change except for the condition that is checked for each item. We can parameterise that, and our <code class="language-plaintext highlighter-rouge">filter</code> is suddenly more generally useful.</p>
+
+<blockquote>
+  <p>Recalling what we talked about in the previous lecture, this is one of the reasons that treating functions as values like any other is a huge benefit to a language. The types of <em>parameterisations</em> you do can take on new levels of abstraction (e.g., instead of simply parameterising integers like the <code class="language-plaintext highlighter-rouge">10</code> and <code class="language-plaintext highlighter-rouge">3</code>, we can parameterise entire chunks of code like the condition in the original <code class="language-plaintext highlighter-rouge">filter</code>’s <code class="language-plaintext highlighter-rouge">if</code> condition).</p>
+</blockquote>
+
+<h2 id="so-what-does-this-have-to-do-with-generics-in-java">So what does this have to do with Generics in Java?</h2>
+
+<p>Just like we parameterised the values for <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> and the code for <code class="language-plaintext highlighter-rouge">condition</code> in the previous two examples, we can also parameterise <em>types</em> in situations where that is needed.</p>
+
+<p>For example, we can create lists of different types of elements.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">stringList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+</code></pre></div></div>
+
+<p>There aren’t different list implementations for different content types. We’re using the same list implementation to support lists with different contents.
+This is a common way of declaring and initialising various data structures (lists, maps, sets, stacks, queues, etc.).</p>
+
+<p>You might say, well I can do that without specifying the type at all:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"some string"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>However, the <code class="language-plaintext highlighter-rouge">list</code> above is now a list of <code class="language-plaintext highlighter-rouge">Object</code>s. Because we didn’t specify a type, the list defaulted to <code class="language-plaintext highlighter-rouge">Object</code> as a “catch all” since <code class="language-plaintext highlighter-rouge">Object</code> is the root of the type hierarchy. Remember, Java is statically typed. Everything <em>must</em> have a type at compile time.</p>
+
+<p>This leads us to issues like the following:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"some string"</span><span class="o">);</span>
+
+<span class="nc">String</span> <span class="n">first</span> <span class="o">=</span> <span class="o">(</span><span class="nc">String</span><span class="o">)</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Because contents of <code class="language-plaintext highlighter-rouge">list</code> are <code class="language-plaintext highlighter-rouge">Object</code>s at compile time, we need to cast the item to a <code class="language-plaintext highlighter-rouge">String</code> if we know it’s a string and we want to do string things to it. This is bad. Type-casting is like us telling the compiler “This is String. Trust me, I know what I’m doing”. This is a bad sign.</p>
+
+<p>Whereas with generics:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+<span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"some string"</span><span class="o">);</span>
+
+<span class="nc">String</span> <span class="n">first</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span> <span class="c1">// no type-casting needed</span>
+</code></pre></div></div>
+
+<p>So that weird angle bracket syntax (<code class="language-plaintext highlighter-rouge">&lt;String&gt;</code>) allows us to specify that it is a list of strings (or integers, or whatever we want). The List’s content type is <em>parameterised</em>, but we also don’t lose any of the goodness of compile-time type safety.</p>
+
+<h2 id="writing-our-own-generic-classes">Writing our own generic classes</h2>
+
+<p>I went over the examples below in class. Below are several examples of generic class implementations, from the excellent <a href="https://docs.oracle.com/javase/tutorial/java/generics/index.html">Java tutorials from Oracle</a><sup id="fnref:tutorials" role="doc-noteref"><a href="#fn:tutorials" class="footnote" rel="footnote">1</a></sup>.</p>
+
+<h3 id="boxjava"><code class="language-plaintext highlighter-rouge">Box.java</code></h3>
+
+<p>In the example below, <code class="language-plaintext highlighter-rouge">T</code> is a type parameter. You can name the type parameter whatever you want, but the convention in most Java codebases is that type parameters are denoted by one capital letter. I don’t know why this is the convention.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * A simple object representing a box around a value.
+ *
+ * T is a generic type. We don't know what it is till someone
+ * creates a new Box object.
+ *
+ * Inside this class, we can only do Object things with T,
+ * because the only thing we know about T is that it is an
+ * Object or inherits from Object.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Box</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span> 
+                     
+    <span class="kd">private</span> <span class="no">T</span> <span class="n">value</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Box</span><span class="o">(</span><span class="no">T</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="no">T</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="o">(</span><span class="no">T</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="pairjava"><code class="language-plaintext highlighter-rouge">Pair.java</code></h3>
+
+<p>You can also create classes with multiple type parameters. What each type parameter means is totally up to the class and what it’s supposed to do.
+For example:</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">Function</code> interface has two type parameters. The first one represents the input to the function, and the second one represents the output from the function.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Predicate</code> interface has only one type parameter, representing the input to the predicate. The output type of all predicates is <code class="language-plaintext highlighter-rouge">boolean</code>.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Consumer</code> interface takes only one type parameter, representing the input to the consumer. Consumers do not return any values.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * A pair of values.
+ *
+ * K and V are type parameters representing a key and value
+ * for this pair. A class can have as many type parameters
+ * as it needs. What each type parameter means is totally up
+ * to the needs of the class.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pair</span><span class="o">&lt;</span><span class="no">K</span><span class="o">,</span> <span class="no">V</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="no">K</span> <span class="n">key</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="no">V</span> <span class="n">value</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Pair</span><span class="o">(</span><span class="no">K</span> <span class="n">key</span><span class="o">,</span> <span class="no">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="no">K</span> <span class="nf">getKey</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">key</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setKey</span><span class="o">(</span><span class="no">K</span> <span class="n">key</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="no">V</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="o">(</span><span class="no">V</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="bounded-generics-binarysearchnodejava">Bounded generics: <code class="language-plaintext highlighter-rouge">BinarySearchNode.java</code></h3>
+
+<p>In the above two examples, the type parameters by themselves are good enough, because the <code class="language-plaintext highlighter-rouge">Box</code> and <code class="language-plaintext highlighter-rouge">Pair</code> classes don’t really need to know anything about the types they hold in order to function.
+But sometimes we need to add some constraints to our type parameters. For example, consider a binary search tree.
+The data structure relies on a <em>total ordering property</em> of its contents. Usually, the property is as follows:</p>
+
+<p class="callout">For each subtree in the BST, the value held by the root node is greater than or equal to the values in the left subtree, and less than the values in the right subtree.</p>
+
+<p>This means that, when items are being added to the binary search tree, the value of the node to be added must be compared to various nodes in the binary search tree, so that we can determine whether we should go left or right as we traverse down the BST.</p>
+
+<p>But if our BST is generic and the content type will be specified at runtime, how do we write the insertion operation?</p>
+
+<p>In this case, we need to add an “upper bound” on how general the generic type can be.
+That is, we need to specify that even if we don’t care exactly what type of data is stored in this BST, we <em>do</em> care that it can be compared (i.e., there’s some notion of “less than” or “greater than” for the type).</p>
+
+<p>See the example below. There’s some interesting things going on, so please be sure to read the comments.</p>
+
+<ul>
+  <li>The type parameter <code class="language-plaintext highlighter-rouge">T</code> is declared to be <code class="language-plaintext highlighter-rouge">Comparable</code>. See <a href="../../../csc203/coursenotes/13-comparable-comparator/">notes from CSC 203</a> to remind yourself of what this means.</li>
+  <li>The function <code class="language-plaintext highlighter-rouge">buildTree</code> at the bottom of the code below shows an example of using generics in a <code class="language-plaintext highlighter-rouge">static</code> function, where things differ subtly from generics in instance methods.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Objects</span><span class="o">;</span>
+
+<span class="cm">/**
+ * A node in a binary search tree. A binary search node has a value
+ * and two children (left and right), each of which are also binary
+ * search nodes.
+ * 
+ * We declare the type parameter T as being Comparable.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span> <span class="kd">extends</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="no">T</span> <span class="n">value</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">left</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">right</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">BinarySearchNode</span><span class="o">(</span><span class="no">T</span> <span class="n">value</span><span class="o">,</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">left</span><span class="o">,</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">left</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">right</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="no">T</span> <span class="nf">getValue</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">getLeft</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">left</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">getRight</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">right</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="nc">StringBuilder</span> <span class="nf">stringRep</span><span class="o">(</span><span class="kt">int</span> <span class="n">level</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="o">(</span><span class="s">"_"</span><span class="o">.</span><span class="na">repeat</span><span class="o">(</span><span class="n">level</span><span class="o">)</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">+</span> <span class="s">"\n"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span>
+                        <span class="s">"_"</span><span class="o">.</span><span class="na">repeat</span><span class="o">(</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"\n"</span> <span class="o">:</span>
+                        <span class="k">this</span><span class="o">.</span><span class="na">left</span><span class="o">.</span><span class="na">stringRep</span><span class="o">(</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span>
+                        <span class="s">"_"</span><span class="o">.</span><span class="na">repeat</span><span class="o">(</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">)</span> <span class="o">+</span> <span class="s">"\n"</span> <span class="o">:</span>
+                        <span class="k">this</span><span class="o">.</span><span class="na">right</span><span class="o">.</span><span class="na">stringRep</span><span class="o">(</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">stringRep</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="nc">Object</span> <span class="n">other</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">other</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// Since other is an Object, we cannot cast the other object to</span>
+        <span class="c1">// BinarySearchNode&lt;T&gt;. So we use the &lt;?&gt; wildcard type parameter</span>
+        <span class="c1">// instead. &lt;?&gt; means "this can be anything".</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">other</span> <span class="k">instanceof</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;?&gt;</span> <span class="n">otherNode</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">otherNode</span><span class="o">.</span><span class="na">value</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">otherNode</span><span class="o">.</span><span class="na">getValue</span><span class="o">())</span>
+                    <span class="o">&amp;&amp;</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">otherNode</span><span class="o">.</span><span class="na">getLeft</span><span class="o">())</span>
+                    <span class="o">&amp;&amp;</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">otherNode</span><span class="o">.</span><span class="na">getRight</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">hashCode</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nc">Objects</span><span class="o">.</span><span class="na">hash</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">value</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Insert the given node into the subtree rooted
+     * by this BinarySearchNode&lt;T&gt;.
+     *
+     * @param node The node to be inserted
+     * @return The subtree resulting from this insert operation
+     */</span>
+    <span class="kd">public</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">insert</span><span class="o">(</span><span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">value</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">value</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span>
+                    <span class="n">node</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">left</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span>
+                    <span class="n">node</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">right</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">node</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">BinarySearchNode</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">values</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">values</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">values</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+            <span class="nc">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">values</span><span class="o">);</span>
+            <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">constructed</span> <span class="o">=</span> <span class="n">buildTree</span><span class="o">(</span><span class="n">values</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">values</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">constructed</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">constructed</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">constructed</span><span class="o">.</span><span class="na">left</span><span class="o">;</span>
+                <span class="k">this</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">constructed</span><span class="o">.</span><span class="na">right</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/*
+     * Static methods have slightly different rules about generic type parameters. For generic classes,
+     * the type parameter is "resolved" when an object of the class is instantiated. But we don't need
+     * to create an object to call static methods. So the generic type parameters of the class
+     * don't really apply to static methods.
+     *
+     * Notice that we're using &lt;U&gt; here instead of &lt;T&gt;. We could have used any letter we wanted (including
+     * &lt;T&gt; again if we so choose). This type parameter is not the same as the type parameter &lt;T&gt; that is used
+     * by instances of this class.
+     *
+     * This method can be invoked as follows (e.g., for a list of integers):
+     *      List&lt;Integer&gt; someList = Arrays.asList(4, 3, 6, 7, 12);
+     *      BinarySearchNode.&lt;Integer&gt;buildTree(someList, 0, someList.size());
+     */</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="no">U</span> <span class="kd">extends</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="no">U</span><span class="o">&gt;&gt;</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">U</span><span class="o">&gt;</span> <span class="nf">buildTree</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="no">U</span><span class="o">&gt;</span> <span class="n">values</span><span class="o">,</span> <span class="kt">int</span> <span class="n">low</span><span class="o">,</span> <span class="kt">int</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">low</span> <span class="o">&gt;=</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+
+        <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">U</span><span class="o">&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="n">buildTree</span><span class="o">(</span><span class="n">values</span><span class="o">,</span> <span class="n">low</span><span class="o">,</span> <span class="n">mid</span><span class="o">);</span>
+        <span class="nc">BinarySearchNode</span><span class="o">&lt;</span><span class="no">U</span><span class="o">&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">buildTree</span><span class="o">(</span><span class="n">values</span><span class="o">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">high</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">BinarySearchNode</span><span class="o">&lt;&gt;(</span><span class="n">values</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">mid</span><span class="o">),</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:tutorials" role="doc-endnote">
+      <p>Only up to Java 8, so no tutorials about goodies introduced in newer Java versions. <a href="#fnref:tutorials" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

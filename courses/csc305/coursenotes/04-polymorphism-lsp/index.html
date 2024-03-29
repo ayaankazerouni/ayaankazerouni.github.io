@@ -1,0 +1,263 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Polymorphism + More SOLID principles - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/04-polymorphism-lsp/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Polymorphism + More SOLID principles</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <h2 id="reminders">Reminders</h2>
+
+<p>First quiz on Thursday taken in lab.</p>
+
+<h2 id="what-weve-talked-about-so-far">What we’ve talked about so far</h2>
+
+<p>So far, we’ve talked about the following principles for good program design:</p>
+
+<ul>
+  <li>Minimise the scope of local variables</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">StringBuilder</code></li>
+  <li>Use the appropriate looping construct</li>
+  <li>Know and use standard libraries</li>
+  <li>Design and build loosely coupled modules</li>
+  <li>Use strategies like encapsulation, interfaces, and dependency injection</li>
+  <li>Design immutable classes wherever possible</li>
+  <li>Increase cohesion of individual classes</li>
+</ul>
+
+<p>We’ve also started talking about the so-called “SOLID” principles of object-oriented design. We started by talking about the Single Responsibility Principle (the S in SOLID), which is the principle that guides our desire for LOOSE COUPLING between classes and TIGHT COHESION within classes.</p>
+
+<h2 id="openclosed-principle">Open/Closed Principle</h2>
+
+<p>The Open/Closed Principle states that software entities should be open to extension, but closed to modification.</p>
+
+<p>“Open to extension”</p>
+
+<ul>
+  <li>Software design will change over time</li>
+  <li>We should leave our code open to extensions due to changes in underlying requirements</li>
+</ul>
+
+<p>“Closed to modification”</p>
+
+<ul>
+  <li>Every entity or module should know how to do what it is designed to do</li>
+  <li>If the behaviour changes, we should not change how the entity works, we should instead extend it</li>
+</ul>
+
+<p>A good example is the regular expression example we saw last week. The <code class="language-plaintext highlighter-rouge">usePattern</code> function is closed to modification (i.e., we won’t make changes to the function), but is open to extension (i.e., it can be extended to work with any regular expression parser, as long as it adheres to the <code class="language-plaintext highlighter-rouge">RegExp</code> interface).</p>
+
+<h2 id="polymorphism">Polymorphism</h2>
+
+<p class="callout">Do you remember what Polymorphism is? Why is it useful?</p>
+
+<p>Polymorphism is an important pillar of object-oriented programming. The word “polymorph” means “many forms”. Polymorphism allows us to treat objects as having one of multiple “forms”, and we don’t necessarily know until runtime what that form might be. (This should remind you of interfaces!)</p>
+
+<p class="callout">What different kinds of polymorphism are available to us in Java?</p>
+
+<ul>
+  <li>Interfaces
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">default</code> methods allow us to add shared method implementations to interfaces. These methods are inherited by any implementing subclasses that don’t implement their own versions; if <code class="language-plaintext highlighter-rouge">default</code> methods are added to interfaces that have been in use by many clients, this can lead to subtle issues at runtime, even if the client’s code compiles successfully.</li>
+    </ul>
+  </li>
+  <li>Extending a concrete class: a class extends another concrete class. Both the super-class <em>and</em> the sub-class are concrete, initialisable classes. The subclass may inherit the superclass’s behaviour, modify it, or add to it.</li>
+  <li>Abstract classes: An abstract class can define concrete methods as well as abstract methods that <em>must</em> be implemented by a subclass.</li>
+</ul>
+
+<p><strong>EJ20: Prefer interfaces to abstract classes.</strong></p>
+
+<p>It used to be that interfaces were quite limited in what they could do, compared to abstract classes. Interfaces could <em>only</em> define abstract methods that all implementing subclasses had to implement. We’ve already talked about the benefits of this (see lecture notes on coupling and cohesion).</p>
+
+<p>But this led to difficulties when, for example, an interface that was in use by many classes needed to be extended in some way. Any additions of abstract methods to the interface would require <em>all</em> implementing subclasses to also need implementations of the new abstract methods, <em>even if the implementation was to be identical for all subclasses</em>.</p>
+
+<p>Compare this to abstract classes, which allow a mix of fully implemented methods as well as abstract methods. All subclasses <em>must</em> implement their own versions of abstract methods, but have the option to inherit the methods that are already implemented in the superclass.</p>
+
+<p>Clearly, they seem more useful than interfaces!</p>
+
+<p><strong>Enter <code class="language-plaintext highlighter-rouge">default</code> methods</strong></p>
+
+<p>All of this changed with the introduction of <code class="language-plaintext highlighter-rouge">default</code> methods for interfaces. Default methods allow you provide implementations for certain behaviours in the interface itself, so that implementing classes can inherit them or override them.</p>
+
+<p>As a result, using interfaces give you the following benefits:</p>
+
+<ul>
+  <li>
+    <p><strong>Existing classes can easily be retrofitted to implement a new interface.</strong> It’s just a matter of declaring that the class <code class="language-plaintext highlighter-rouge">implements</code> the interface, and adding the required methods. Because classes in Java can implement multiple interfaces, this is not a problem. However, a Java class can <code class="language-plaintext highlighter-rouge">extend</code> at most one class. So it’s not straightforward at all to retrofit an existing class to extend an abstract class.</p>
+  </li>
+  <li>
+    <p><strong>Interfaces let you create non-hierarchical type frameworks.</strong> Not all organisations lend themselves to tree structures. That is, you may want different combinations of types “mixed together” for specific subclasses. To achieve this flexibly with abstract classes, you would end up with a bloated class hierarchy, trying to create a separate type for each combination of functionality you want to support. With interfaces you have infinite flexibility to enhance class behaviours as needed.</p>
+  </li>
+  <li>
+    <p><strong>It’s easy to enhance implementing subclasses behaviours by adding <code class="language-plaintext highlighter-rouge">default</code> methods</strong></p>
+  </li>
+</ul>
+
+<p>For example, consider the <a href="https://github.com/openjdk/jdk20/blob/master/src/java.base/share/classes/java/util/Comparator.java"><code class="language-plaintext highlighter-rouge">Comparable</code></a> interface. In older versions of Java, the interface simply provided an abstract <code class="language-plaintext highlighter-rouge">compare</code> method that compared two objects. Implementing subclasses had to implement those methods. Now, the <code class="language-plaintext highlighter-rouge">Comparator</code> interface provides a number of useful <code class="language-plaintext highlighter-rouge">default</code> methods, which allow you to chain comparators together (using <code class="language-plaintext highlighter-rouge">thenComparing</code>) or to reverse the order of a comparison (using <code class="language-plaintext highlighter-rouge">reversed</code>).</p>
+
+<p>No implementing classes needed to be aware of these additions to be able to benefit from them.</p>
+
+<p>That said, there are risks with <code class="language-plaintext highlighter-rouge">default</code> method implementations. Default methods are “injected” into implementing subclasses without the knowledge or consent of the implementors. It is possible that the default method implementation that is being inherited by some implementor actually violates invariants that the implementor depends upon. good documentation is absolutely essential to communicate this information to implementors.</p>
+
+<p>For example, a library maintainer who updated to Java 9 would suddenly have been saddled with a bunch of inherited behaviour in their classes that implement the <code class="language-plaintext highlighter-rouge">Comparable</code> interface.</p>
+
+<p class="callout">It is simply not possible to write interfaces that maintain all invariants of every conceivable implementation.</p>
+
+<p><strong>EJ21 Design interfaces for posterity</strong></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Collection</code> interface contains the <a href="https://github.com/openjdk/jdk20/blob/master/src/java.base/share/classes/java/util/Collection.java#L571"><code class="language-plaintext highlighter-rouge">removeIf</code></a> method. The method removes an element if it satisfies some boolean condition (a predicate).</p>
+
+<p>Every class that implements the <code class="language-plaintext highlighter-rouge">Collection</code> interface (i.e., <a href="https://download.java.net/java/early_access/jdk20/docs/api/java.base/java/util/Collection.html">a whole ton of classes in the JDK</a>) now inherits this <code class="language-plaintext highlighter-rouge">removeIf</code> method.</p>
+
+<p>Unfortunately, this fails for the <code class="language-plaintext highlighter-rouge">SynchronizedCollection</code>, a collection object from Apache commons which synchronizes the collection based on a locking object. The <code class="language-plaintext highlighter-rouge">default</code> implementation of <code class="language-plaintext highlighter-rouge">removeIf</code> in the <code class="language-plaintext highlighter-rouge">Collection</code> interface doesn’t know about this locking mechanism. And the <code class="language-plaintext highlighter-rouge">SynchronizedCollection</code> cannot override the method and provide its own implementation because that would mutate the underlying collection, breaking its fundamental promise to synchronize on each function call. If a client were to call <code class="language-plaintext highlighter-rouge">removeIf</code> while another thread was modifying the collection, it would lead to a <code class="language-plaintext highlighter-rouge">ConcurrentModificationException</code> or some other undefined behaviour.</p>
+
+<h2 id="liskov-substitution-principle">Liskov substitution principle</h2>
+
+<p>Proposed by <strong>Barbara Liskov</strong>, a pioneer of programming languages, object-oriented programming, and winner of the 2008 Turing award.</p>
+
+<p>The LSP says:</p>
+
+<blockquote>
+  <p>Any class <code class="language-plaintext highlighter-rouge">S</code> can be used to replace a class <code class="language-plaintext highlighter-rouge">B</code> if and only if <code class="language-plaintext highlighter-rouge">S</code> is a subclass of <code class="language-plaintext highlighter-rouge">B</code>.</p>
+</blockquote>
+
+<p>This is a good rule-of-thumb for using <em>polymorphism</em> currently.</p>
+
+<p>The Liskov Substitution Principle says that in an OO program, if we substitute a superclass object reference with an object of any of its subclasses, the program should not break. This is in much the same way that code that uses a <code class="language-plaintext highlighter-rouge">List</code> type can be executed with an <code class="language-plaintext highlighter-rouge">ArrayList</code> or a <code class="language-plaintext highlighter-rouge">LinkedList</code> and everything works just fine.</p>
+
+<p>You can think of the methods defined in a supertype as defining a contract. Every subtype (e.g., everything that claims to be a <code class="language-plaintext highlighter-rouge">List</code>) should stick to the contract.</p>
+
+<p>The LSP helps us to ensure that invariants in the superclass are maintained in subclasses (i.e., preconditions and postconditions are satisfied). This can also help clients rely on extensions to our existing classes without fear of unexpected functional outcomes.</p>
+
+<p>In a language like Java, the <em>existence</em> of the appropriate functions (e.g., methods with the right names, parameter lists, and return type) are more-or-less guaranteed by the language’s type system. For example, if you were you create a new <code class="language-plaintext highlighter-rouge">List</code> implementation, your code would not compile until you had implementations for all of the methods that are required by the <a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html"><code class="language-plaintext highlighter-rouge">List</code> interface</a>.</p>
+
+<p>But the LSP goes beyond simply satisfying the type system. It’s a promise of <em>semantically</em> fulfilling the contract of the supertype. That is, the subtype should behave like the supertype (e.g., no matter what kind of list is being used, the effect of <code class="language-plaintext highlighter-rouge">add</code>ing an item is the same).</p>
+
+<p>For example, subclasses can improve the performance of the superclass:</p>
+
+<ul>
+  <li>a subclass can use a better search algorithm than the base class</li>
+  <li>a subclass can use a better sort algorithm than the base class</li>
+  <li>the expected behaviour and outcome should be the same</li>
+</ul>
+
+<p>Currently, languages do not automatically enforce these properties.</p>
+
+<p><strong>Code Critique</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bird</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fly</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Flying..."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">eat</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Eating..."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Crow</span> <span class="kd">extends</span> <span class="nc">Bird</span> <span class="o">{}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ostrich</span> <span class="kd">extends</span> <span class="nc">Bird</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fly</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBird</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Bird</span><span class="o">&gt;</span> <span class="n">birdList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">birdList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Crow</span><span class="o">());</span>
+        <span class="n">birdList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Ostrich</span><span class="o">());</span>
+        <span class="n">birdList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Crow</span><span class="o">());</span>
+        <span class="n">letTheBirdsFly</span> <span class="o">(</span> <span class="n">birdList</span> <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">letTheBirdsFly</span> <span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Bird</span><span class="o">&gt;</span> <span class="n">birdList</span> <span class="o">){</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Bird</span> <span class="n">b</span> <span class="o">:</span> <span class="n">birdList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">b</span><span class="o">.</span><span class="na">fly</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p class="callout ponder">What’s the problem with the code above?</p>
+
+<details>
+  <summary>Hint</summary>
+  <p>The Ostrich <code class="language-plaintext highlighter-rouge">extends</code> the <code class="language-plaintext highlighter-rouge">Bird</code> superclass, but does not support all of the required behaviours. This is a clear violation of the LSP: the <code class="language-plaintext highlighter-rouge">Ostrich</code> has a more constrained set of functionality than its superclass, <code class="language-plaintext highlighter-rouge">Bird</code>. This happens because the <code class="language-plaintext highlighter-rouge">Bird</code> abstraction has <em>too many responsibilities</em>. It is responsible for too much functionality, so when the time comes to extend the software with the <code class="language-plaintext highlighter-rouge">Ostrich</code> class, we run into trouble.</p>
+</details>
+
+<p class="callout ponder">How would you fix the design?</p>
+
+<h2 id="the-composite-design-pattern">The composite design pattern</h2>
+
+<p>A <strong>design pattern</strong> is a general, re-usable solution to a commonly occurring problem within a given context in software design. They offer templates for how to solve problems that can be used in multiple different solutions.</p>
+
+<p>We’ll do a more general introduction to Design patterns on Tuesday. But for now I would like to introduce the <em>Composite</em> design pattern.</p>
+
+<p>Today, we’re going to talk about the <a href="https://refactoring.guru/design-patterns/composite"><strong>Composite design pattern</strong></a>.</p>
+
+<p>The composite design pattern makes sense when a portion of your application can be structured as a tree.</p>
+
+<p>For example, suppose you need to “read” all the files in a computer. You have a root folder (the root of your directory tree). That root may have many children (files or folders inside of it). Some of those children may in turn have further children.</p>
+
+<p>The Composite pattern involves you treating the entire structure as a tree (much like your file system does). Then each “node” of the tree might have a <code class="language-plaintext highlighter-rouge">read</code> operation. For <code class="language-plaintext highlighter-rouge">FileNode</code>s, the <code class="language-plaintext highlighter-rouge">read</code> operation simply prints out the contents of the file. For <code class="language-plaintext highlighter-rouge">FolderNode</code>s, the <code class="language-plaintext highlighter-rouge">read</code> operation involves further traversing its children and <code class="language-plaintext highlighter-rouge">read</code>ing them. This recursively continues until there are no more files to be read.</p>
+
+<p>Another example that came up in class was reading the Document Object Model (DOM) (i.e., HTML files). An HTML file is made up of an <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> element, which holds child elements like <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code>, and the <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>. The <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> element holds further children (<code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> elements, <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> elements, etc.) that make up the contents you see in the webpage. Each element gets “rendered” in the browser according to certain rules (e.g., the <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> is a “block” element: it takes up the full width available, so that new <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code>s would appear on a new line; whereas the <code class="language-plaintext highlighter-rouge">&lt;span&gt;</code> is an “inline” element: it can appear within another block).</p>
+
+<p><strong>Benefits of this pattern</strong></p>
+
+<ul>
+  <li>Using polymorphism and recursion, you can work with quite complex tree structures. For example, in the file system example each folder doesn’t need to know if its children are files or folders; they can simply be <code class="language-plaintext highlighter-rouge">read</code>, because they both belong to some supertype.</li>
+  <li>You can introduce new types of “nodes” in this tree conveniently, and the rest of the structure doesn’t need to change. For example, consider that our filesystem has a new kind of file (say, that needs to be decrypted before it can be <code class="language-plaintext highlighter-rouge">read</code>). You can simply create a new subclass <code class="language-plaintext highlighter-rouge">EncyrptedFileNode</code> and implement the new <code class="language-plaintext highlighter-rouge">read</code> method so that it gets decrypted as part of the <code class="language-plaintext highlighter-rouge">read</code> operation.</li>
+</ul>
+
+<p><strong>Drawbacks</strong></p>
+
+<ul>
+  <li>A commonly cited drawback of this pattern is:</li>
+</ul>
+
+<blockquote>
+  <p>It might be difficult to provide a common interface for classes whose functionality differs too much. In certain scenarios, you’d need to overgeneralize the component interface, making it harder to comprehend. (<a href="https://refactoring.guru/design-patterns/composite">source</a>)</p>
+</blockquote>
+
+<p>Personally, I think the above would be an indication that you shouldn’t be using the Composite design pattern in the first place.</p>
+
+<hr />
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

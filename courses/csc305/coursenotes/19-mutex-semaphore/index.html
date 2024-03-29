@@ -1,0 +1,105 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Mutexes, semaphores, and thread pools - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/19-mutex-semaphore/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Mutexes, semaphores, and thread pools</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>These notes give a very high-level overview of some additional topics related to concurrency in Java.</p>
+
+<h2 id="mutex">Mutex</h2>
+
+<p>So far, we have talked about using the <code class="language-plaintext highlighter-rouge">synchronized</code> keyword to “lock” access to an Object. Code that is marked as <code class="language-plaintext highlighter-rouge">synchronized</code> (either a <code class="language-plaintext highlighter-rouge">synchronized</code> method or a <code class="language-plaintext highlighter-rouge">synchronized</code> code block) can only be executed by the single thread that currently holds the lock.</p>
+
+<p>This ensures that execution of these critical sections is <em>mutually exclusive</em>. If one thread is executing a critical section, all other threads must wait for the thread to release that lock.</p>
+
+<p>This, in short, describes a “mutual exclusion lock”, commonly known as a <em>mutex</em>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Lock</code> interface in Java, and its implementations like <code class="language-plaintext highlighter-rouge">ReentrantLock</code> enable you to use mutexes at a higher level of abstraction than the <code class="language-plaintext highlighter-rouge">synchronized</code> keyword and the <code class="language-plaintext highlighter-rouge">wait</code>/<code class="language-plaintext highlighter-rouge">notify</code> mechanism.</p>
+
+<h2 id="semaphore">Semaphore</h2>
+
+<p>Another related concurrency concept is the <em>semaphore</em>.</p>
+
+<p>A semaphore is, at the simplest level, an integer. The integer represents the number of “permits” the semaphore has available.
+The semaphore comes with two basic operations:</p>
+
+<ul>
+  <li><em>acquire</em> (or “down”, or “decrement”) — this reduces the integer by 1</li>
+  <li><em>release</em> (or “up”, or “increment”) — this increases the integer by 1</li>
+</ul>
+
+<p>Typically, when a currently running thread calls <code class="language-plaintext highlighter-rouge">acquire</code> on a semaphore, it will either take a permit and return immediately (thus decrementing the number of permits available), or it will “block” or wait until a permit becomes available.
+Similarly, when a thread calls <code class="language-plaintext highlighter-rouge">release</code> on a semaphore, it immediately releases a permit (thus incrementing the number of permits available).</p>
+
+<p>The <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/util/concurrent/Semaphore.html"><code class="language-plaintext highlighter-rouge">Semaphore</code> API</a> in Java is quite simple. It provides the following methods, among others:</p>
+
+<ul>
+  <li>constructor (<code class="language-plaintext highlighter-rouge">Semaphore(int permits)</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">acquire</code></li>
+  <li><code class="language-plaintext highlighter-rouge">boolean tryAcquire()</code> — This method will try to acquire a permit, but if isn’t available, it returns <code class="language-plaintext highlighter-rouge">false</code> instead of waiting for a permit. This can help avoid deadlock situations.</li>
+  <li><code class="language-plaintext highlighter-rouge">release</code></li>
+</ul>
+
+<h3 id="binary-semaphore">Binary semaphore</h3>
+
+<p>A <em>binary semaphore</em> is a semaphore with 1 available permit. In effect, it has two possible states: <code class="language-plaintext highlighter-rouge">available</code> or <code class="language-plaintext highlighter-rouge">unavailable</code>.</p>
+
+<p>A binary semaphore can be used instead of a mutex, and things would more-or-less work the same. I.e., the thread should <code class="language-plaintext highlighter-rouge">acquire</code> the semaphore before beginning execution of the critical section, and <code class="language-plaintext highlighter-rouge">release</code> the semaphore when it’s done.</p>
+
+<p><strong>Difference between binary semaphore and a mutex</strong> An important difference between the binary semaphore and the mutex lock is that there is no notion of “ownership” with a semaphore. It can be “released” by a thread other than the one that currently has the permit. This is certainly true in the Java implementation.</p>
+
+<h3 id="counting-semaphore">Counting semaphore</h3>
+
+<p>The <em>counting semaphore</em> maintains an initial number of “permits” that’s greater than 1. The specified number of threads can <code class="language-plaintext highlighter-rouge">acquire</code> the semaphore, and any threads wanting access after that must wait for a permit to become available (i.e., must wait for a thread to <code class="language-plaintext highlighter-rouge">release</code> a permit). This is useful if you want to allow a fixed number of threads to be able to access a shared resource simultaneously.</p>
+
+<h2 id="thread-pool">Thread pool</h2>
+
+<p>The Java <code class="language-plaintext highlighter-rouge">Executor</code> interfaces provide access to a <em>thread pool</em>.</p>
+
+<ul>
+  <li>A thread pool is a pool of threads that can be “reused” to execute tasks, so that each thread may execute more than one task.</li>
+  <li>A thread pool is an alternative to creating a new thread for each task you need to execute.</li>
+  <li>Creating a new thread comes with a performance overhead compared to reusing a thread that is already created.</li>
+  <li>Additionally, using a thread pool can make it easier to control how many threads are active at a time.</li>
+</ul>
+
+<p>More details <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/exinter.html">here</a>.</p>
+
+<hr />
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Builder design pattern - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/15-builder/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Builder design pattern</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p><strong>References</strong>:</p>
+
+<ul>
+  <li><a href="https://refactoring.guru/design-patterns/builder">Refactoring guru content on the Builder pattern</a> (though, like some of the previous patterns, their suggested structure involves some over-complication)</li>
+  <li><a href="https://howtodoinjava.com/design-patterns/creational/builder-pattern-in-java/">Builder Design Pattern</a> by Lokesh Gupta.</li>
+</ul>
+
+<h2 id="pre-class-stuff">Pre-class stuff</h2>
+
+<ul>
+  <li>When should I use static methods?</li>
+  <li>Project 3 plan activity</li>
+</ul>
+
+<h2 id="creating-complex-objects">Creating complex objects</h2>
+
+<p>Consider the following constructor for a <code class="language-plaintext highlighter-rouge">User</code> class:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nf">User</span> <span class="o">(</span><span class="nc">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">,</span> <span class="nc">String</span> <span class="n">phone</span><span class="o">,</span> <span class="nc">String</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
+	<span class="k">this</span><span class="o">.</span><span class="na">firstName</span> <span class="o">=</span> <span class="n">firstName</span><span class="o">;</span>
+	<span class="k">this</span><span class="o">.</span><span class="na">lastName</span> <span class="o">=</span> <span class="n">lastName</span><span class="o">;</span>
+	<span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+	<span class="k">this</span><span class="o">.</span><span class="na">phone</span> <span class="o">=</span> <span class="n">phone</span><span class="o">;</span>
+	<span class="k">this</span><span class="o">.</span><span class="na">address</span> <span class="o">=</span> <span class="n">address</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Suppose we want all the parameters except <code class="language-plaintext highlighter-rouge">firstName</code> and <code class="language-plaintext highlighter-rouge">lastName</code>to be optional. That means we want to allow creation of a <code class="language-plaintext highlighter-rouge">User</code> without a specified age, phone number, address, or some combination of the those fields.</p>
+
+<p>You can certainly support this using constructor overloading:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nf">User</span> <span class="o">(</span><span class="nc">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">,</span> <span class="nc">String</span> <span class="n">phone</span><span class="o">,</span> <span class="nc">String</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+<span class="kd">public</span> <span class="nf">User</span> <span class="o">(</span><span class="nc">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+<span class="kd">public</span> <span class="nf">User</span> <span class="o">(</span><span class="nc">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">phone</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+<span class="kd">public</span> <span class="nf">User</span> <span class="o">(</span><span class="nc">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">phone</span><span class="o">,</span> <span class="nc">String</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+<span class="kd">public</span> <span class="nf">User</span> <span class="o">(</span><span class="nc">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Hopefully you see that providing this large set of constructors is tedious and can be error-prone. If you add more fields to the <code class="language-plaintext highlighter-rouge">User</code>, like “salary” of “unitsEarned”, things will become even more unmanageable.
+Essentially, you have three options with this constructor approach, and each one has its issues:</p>
+
+<ol>
+  <li>You need to know beforehand what “archetypes” of <code class="language-plaintext highlighter-rouge">User</code> a client is likely to want to create, and provide only those constructors. This information is not always available.</li>
+  <li>Alternatively, you simply provide all possible constructors. This can get out of hand with even a small number of fields.</li>
+  <li>Finally, you could only provide one constructor that takes in <em>all</em> fields, and let the client enter <code class="language-plaintext highlighter-rouge">null</code> values for the fields they don’t care about. This is icky, and also expects the client to know what to do about optional primitive fields. (For example, what’s “null” for an <code class="language-plaintext highlighter-rouge">int</code>?)</li>
+</ol>
+
+<p>If you don’t like the constructor approaches above (and you shouldn’t), another option is to only use the constructor for the required fields (<code class="language-plaintext highlighter-rouge">firstName</code>, <code class="language-plaintext highlighter-rouge">lastName</code>), and user setter (mutator) methods for all the other fields. Then we can create <code class="language-plaintext highlighter-rouge">User</code> objects, and use <code class="language-plaintext highlighter-rouge">setAge</code>, <code class="language-plaintext highlighter-rouge">setPhone</code>, <code class="language-plaintext highlighter-rouge">setAddress</code> etc. to flexibly set the values that we need while creating an object.</p>
+
+<p class="callout ponder">Is there a problem with what we’ve just described? By creating all the setter methods, we avoided the problem of the exploding constructors. But did we create a new problem?</p>
+
+<details>
+  <summary>Hint</summary>
+  <p>By adding all the setter methods, we’ve made our <code class="language-plaintext highlighter-rouge">User</code> class mutable. Even worse, we only added them in order to <em>create</em> the <code class="language-plaintext highlighter-rouge">User</code>, but now there’s all these public methods to mutate it.</p>
+</details>
+
+<h3 id="enter-the-builder-pattern">Enter the Builder pattern</h3>
+
+<p>The goal of the Builder design pattern is to separate the <em>construction</em> of complex objects (like our <code class="language-plaintext highlighter-rouge">User</code>) from their representation.
+This allows us to allow, at runtime, the creation of different “forms” of the same object.
+E.g., a <code class="language-plaintext highlighter-rouge">User</code> with a phone and an address, a <code class="language-plaintext highlighter-rouge">User</code> with an age, but no phone and no address, or a <code class="language-plaintext highlighter-rouge">User</code> with no age, no phone, and no address.</p>
+
+<p>We accomplish this by introducing a new <code class="language-plaintext highlighter-rouge">Builder</code> object.
+The <code class="language-plaintext highlighter-rouge">Builder</code>’s job is, like its name suggests, to build an instance of the object in question.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Builder</code> needs the following pieces:</p>
+
+<ul>
+  <li>Private fields for all the instance variables in the object being built. In our example, that would be <code class="language-plaintext highlighter-rouge">firstName</code>, <code class="language-plaintext highlighter-rouge">lastName</code>, <code class="language-plaintext highlighter-rouge">age</code>, <code class="language-plaintext highlighter-rouge">phone</code>, and <code class="language-plaintext highlighter-rouge">address</code>.</li>
+  <li>A constructor that takes in all the <em>required</em> params for the object to be built. So in our running example, that would be the <code class="language-plaintext highlighter-rouge">firstName</code> and <code class="language-plaintext highlighter-rouge">lastName</code>.</li>
+  <li>Public functions for each of the other fields to be set.</li>
+  <li>A <code class="language-plaintext highlighter-rouge">build</code> function that the client can use to put everything together and create an instance of the object. See the below code as an example.</li>
+</ul>
+
+<p><small>The code below is adapted from <a href="https://howtodoinjava.com/design-patterns/creational/builder-pattern-in-java/">this blog post</a> about the Builder Pattern.</small></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">firstName</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">phone</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">address</span><span class="o">;</span>
+
+    <span class="c1">// Can be package-private or protected if your Builder is in a separate file.</span>
+    <span class="kd">private</span> <span class="nf">User</span><span class="o">(</span><span class="nc">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">,</span> <span class="nc">String</span> <span class="n">phone</span><span class="o">,</span> <span class="nc">String</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Alternatively, the User constructor can just take in a UserBuilder</span>
+    <span class="kd">private</span> <span class="nf">User</span><span class="o">(</span><span class="nc">UserBuilder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">firstName</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">firstName</span><span class="o">;</span>
+        <span class="o">...</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nf">UserBuilder</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">firstName</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="nc">String</span> <span class="n">phone</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="nc">String</span> <span class="n">address</span><span class="o">;</span>
+
+        <span class="c1">// Initialise the required fields.</span>
+        <span class="kd">public</span> <span class="nf">UserBuilder</span><span class="o">(</span><span class="nc">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="nc">String</span> <span class="n">lastName</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">firstName</span> <span class="o">=</span> <span class="n">firstName</span><span class="o">;</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">lastName</span> <span class="o">=</span> <span class="n">lastName</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">public</span> <span class="nc">UserBuilder</span> <span class="nf">age</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kd">public</span> <span class="nc">UserBuilder</span> <span class="nf">phone</span><span class="o">(</span><span class="nc">String</span> <span class="n">phone</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">phone</span> <span class="o">=</span> <span class="n">phone</span><span class="o">;</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kd">public</span> <span class="nc">UserBuilder</span> <span class="nf">address</span><span class="o">(</span><span class="nc">String</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">address</span> <span class="o">=</span> <span class="n">address</span><span class="o">;</span>
+            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="c1">// Return the finally constructed User object</span>
+        <span class="kd">public</span> <span class="nc">User</span> <span class="nf">build</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span>  <span class="k">new</span> <span class="nc">User</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+            <span class="n">validateUserObject</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="kd">private</span> <span class="kt">void</span> <span class="nf">validateUserObject</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">//Do some basic validations to check</span>
+            <span class="c1">//if user object does not break any assumption of system</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Note that the Builder’s methods for age, phone, and address all return the Builder <em>itself</em> after setting each value. This allows the Builder to be used “fluently” by chaining method calls to construct complex objects.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">User</span> <span class="n">u1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserBuilder</span><span class="o">(</span><span class="s">"Frodo"</span><span class="o">,</span> <span class="s">"Baggins"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">age</span><span class="o">(</span><span class="mi">33</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">phone</span><span class="o">(</span><span class="s">"555-1234"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">address</span><span class="o">(</span><span class="s">"Bag End, the Shire, Hobbiton"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="nc">User</span> <span class="n">u2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserBuilder</span><span class="o">(</span><span class="s">"Gandalf"</span><span class="o">,</span> <span class="s">"the White"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">age</span><span class="o">(</span><span class="mi">2000</span><span class="o">)</span>
+  <span class="c1">// no phone</span>
+  <span class="o">.</span><span class="na">address</span><span class="o">(</span><span class="s">"Everywhere"</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="nc">User</span> <span class="n">u3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserBuilder</span><span class="o">(</span><span class="s">"Bugs"</span><span class="o">,</span> <span class="s">"Bunny"</span><span class="o">)</span>
+  <span class="c1">// no age</span>
+  <span class="c1">// no phone</span>
+  <span class="c1">// no address</span>
+  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">UserBuilder</code> allows the creation of users with very different internal states.
+The order in which fields are assigned doesn’t matter.
+This flexibility means users can be variably constructed at runtime, without knowing beforehand what type of <code class="language-plaintext highlighter-rouge">User</code> the client wants to create.</p>
+
+<p>This last point—allowing for different types of objects to be created based on runtime choices—is a fundamental benefit of the builder pattern. We’ve see an example of it being applied when the “different states” of an object come from the object having various values set or unset.
+But it can be applied in other scenarios as well.</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>For example, consider the <a href="https://github.com/openjdk/jdk20/blob/master/src/java.base/share/classes/java/util/Comparator.java"><code class="language-plaintext highlighter-rouge">Comparator</code></a> interface.
+First you can create a Comparator using whatever method you see fit:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Using a lambda</span>
+<span class="nc">Comparator</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="n">ageComp</span> <span class="o">=</span> <span class="o">(</span><span class="n">u1</span><span class="o">,</span> <span class="n">u2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">u1</span><span class="o">.</span><span class="na">age</span> <span class="o">-</span> <span class="n">u2</span><span class="o">.</span><span class="na">age</span><span class="o">;</span>
+
+<span class="c1">// Using helper methods and method references</span>
+<span class="nc">Comparator</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="n">ageComp2</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">User:</span><span class="o">:</span><span class="n">getAge</span><span class="o">);</span>
+
+<span class="c1">// Using an anonymous inner class (don't do this)</span>
+<span class="nc">Comparator</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="n">ageComp3</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Comparator</span><span class="o">&lt;&gt;()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="o">(</span><span class="nc">User</span> <span class="n">u1</span><span class="o">,</span> <span class="nc">User</span> <span class="n">u2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">u1</span> <span class="o">-</span> <span class="n">u2</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>However, a client may want to perform various kinds of comparisons on <code class="language-plaintext highlighter-rouge">User</code> objects, and we have no way of knowing which ones beforehand.
+The <code class="language-plaintext highlighter-rouge">Comparator</code> interface is a good example of the Builder Pattern.
+It provides methods like <code class="language-plaintext highlighter-rouge">thenComparing</code> and <code class="language-plaintext highlighter-rouge">reversed</code> which allow the client to flexibly construct Comparators. Both methods change the behaviour of the Comparator and return it, allowing one to chain calls together to create different Comparators.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Sort the list of users by age in descending order, and break ties</span>
+<span class="c1">// by ordering based on phone number in ascending order.</span>
+<span class="nc">Comparator</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="n">ageComp2</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="nl">User:</span><span class="o">:</span><span class="n">getAge</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">reversed</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">thenComparing</span><span class="o">(</span><span class="nl">User:</span><span class="o">:</span><span class="n">getPhone</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Finally, another example is the <a href="https://github.com/openjdk/jdk20/blob/master/src/java.base/share/classes/java/util/StringBuilder.java"><code class="language-plaintext highlighter-rouge">StringBuilder</code></a> class. It lets you append text to itself to construct the underlying string, and eventually, you call <code class="language-plaintext highlighter-rouge">toString</code> to “terminate” the builder and get the constructed object.</p>
+
+<p>We will see in the next lecture that <strong>Streams</strong> are another example of the Builder pattern in action.</p>
+
+<hr />
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

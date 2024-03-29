@@ -1,0 +1,181 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Serialization, File I/O - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/11-serialization/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Serialization, File I/O</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <h2 id="overview">Overview</h2>
+
+<ul>
+  <li>Understanding File I/O in Java</li>
+  <li>Random access files</li>
+  <li>Serialization</li>
+  <li>The Serializable interface and why we won’t use it</li>
+</ul>
+
+<h2 id="file-io-in-java">File I/O in Java</h2>
+
+<p>So far, we have handled applications that only operatoe on data stored in main memory (RAM).
+Data in RAM is super-fast to access compared to data stored on disk or on other storage devices.
+Differences in data read and write times can be orders or magnitude slower in disk-based applications compared to memory-bound applications.</p>
+
+<p>In previous projects and courses, you’ve had some experience reading from and writing to files.
+Most of the time we use language libraries for this interaction with files without thinking too much about it.
+For example, Java provides the <code class="language-plaintext highlighter-rouge">Scanner</code> API for reading data from files.</p>
+
+<p>You all used the <code class="language-plaintext highlighter-rouge">Scanner</code> API to implement your TUIs in a previous project and lab.
+There were no files involved there, because the “source” of input was <code class="language-plaintext highlighter-rouge">System.in</code>, or the “standard input stream”.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Scanner scan = new Scanner(System.in);
+</code></pre></div></div>
+
+<p>If you wanted to read from a file instead, you would initialise the <code class="language-plaintext highlighter-rouge">Scanner</code> like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// You need to wrap the scanner in a try-catch if you want to read a file
+try (Scanner scan = new Scanner(new File("my text file.txt"))) {
+  // do stuff with the file's contents
+  // the same Scanner API applies: scan.nextLine(), scan.next(), etc.
+} catch (FileNotFoundException e) {
+  // handle the scenario where the file doesn't exist
+}
+</code></pre></div></div>
+
+<p>Similarly, Java provides an API for writing to files:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>try (FileWriter writer = new FileWriter(new File("some text file.txt"))) {
+  // write data to the file
+  // API calls like writer.write("some text..."); 
+} catch (IOException e) {
+  // handle the exception 
+}
+</code></pre></div></div>
+
+<h3 id="random-access">Random access</h3>
+
+<ul>
+  <li><strong>Sector</strong> or <strong>block</strong>: The basic amount of data that will be read or written at one time by disk drive hardware. This is typically 512 bytes.</li>
+  <li><strong>Seek</strong>: Since data is read a block at a time, large pieces of data that cover sequential blocks tend to be faster to read. This is called <em>sequential access</em>. <em>Random access</em> involves accessing data from all over the disk drive (or from anywhere in a file) instead of in sequential blocks (or instead of start-to-finish in a file). So far, most of the file processing you’ve done has likely been sequential access.
+    <ul>
+      <li>The difference between sequential vs. random access is becoming smaller as SSDs and Flash storage devices (compared to traditional hard disk drives) become mainstream.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">Scanner</code> API only allows sequential acccess to a Java file. You can’t start reading from anywhere in the file. You haev to start at the beginning and move to the end, one unit at a time (using methods like <code class="language-plaintext highlighter-rouge">next()</code> (which gets you the next “word”) or <code class="language-plaintext highlighter-rouge">nextLine()</code> (which gets you the next line)).</p>
+
+<p>In addition to being quicker, these methods provide an abstracted view of the file. Instead of a lump of bits and bytes, we look at the file in terms that make sense to us (words, ints, lines, etc.).</p>
+
+<p>However, sometimes we need <em>random</em> access ability to a file.</p>
+
+<p>Java provides the <a href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/io/RandomAccessFile.html">RandomAccessFile</a> API to allow this. Now if you access a file at some random position, there’s no guarantee that you’re getting a nice logically meaningful chunk of data. That’s why this file’s API is in terms of <em>bytes</em>.</p>
+
+<p>I’ll use “RAF” to mean to <code class="language-plaintext highlighter-rouge">RandomAccessFile</code> below.</p>
+
+<p>Some key concepts:</p>
+
+<ul>
+  <li>The RAF keeps track of a <em>file-pointer offset</em> position. That is, the position in the file at which the next read or write will occur.</li>
+  <li>You use the <code class="language-plaintext highlighter-rouge">seek(long pos)</code> method to tell the RAF to move its pointer to the given offset (measured from the beginning of the file).</li>
+  <li>You can use <code class="language-plaintext highlighter-rouge">readByte()</code> to read a single byte from the RAF (starting at wherever its offset currently is).</li>
+  <li>You can use <code class="language-plaintext highlighter-rouge">read(byte[] b, int off, int len)</code> to read <code class="language-plaintext highlighter-rouge">len</code> bytes, starting at <code class="language-plaintext highlighter-rouge">off</code> and place them into the array <code class="language-plaintext highlighter-rouge">b</code>.</li>
+  <li>Similarly, you can use <code class="language-plaintext highlighter-rouge">write</code>, <code class="language-plaintext highlighter-rouge">writeByte</code>, <code class="language-plaintext highlighter-rouge">writeBytes</code> to write to the RAF.</li>
+</ul>
+
+<p>Hurray! You now have the ability read and write to arbitrary locations in the file. But you’re dealing with bytes.</p>
+
+<p>You’ll notice that the RAF also provides methods to <code class="language-plaintext highlighter-rouge">readDouble</code>, <code class="language-plaintext highlighter-rouge">readChar</code>, etc. These methods are kind of doing what the <code class="language-plaintext highlighter-rouge">Scanner</code> does: they read the requisite number of bytes (e.g., 4 bytes for <code class="language-plaintext highlighter-rouge">int</code>, 8 bytes for <code class="language-plaintext highlighter-rouge">double</code>) and treat those bytes as the appropriate data type. It’s up to you to know that, e.g., the next 4 bytes actually contain a meaningful integer.</p>
+
+<h2 id="serialization">Serialization</h2>
+
+<p>This leads us into our next topic.</p>
+
+<p><em>Serialization</em> is the conversion of an object (or some piece of data) to a byte stream. <em>Deserialization</em> is the process of turning a byte stream back into the object (or the original piece of data).</p>
+
+<p>They are sometimes called <em>marshalling</em> and <em>unmarshalling</em>.</p>
+
+<p>There are many reasons why we might want to serialize data:</p>
+
+<ul>
+  <li>To transmit over the wire</li>
+  <li>To enable interoperability between different systems. For example, you might want to “export” a Java object so that it can be “imported” into a Python program</li>
+  <li>To persist data so that it “survives” the termination of a program</li>
+</ul>
+
+<p>Of course, there exist multiple structured data formats for exporting data to files, like JSON, XML, and YAML. Those are certainly much more friendly and human-readable than writing out raw byte streams. However, those exports tend to be much larger, since those formats use plain text to represent the data, and tend to include “extraneous” data (like colons <code class="language-plaintext highlighter-rouge">:</code>, braces <code class="language-plaintext highlighter-rouge">{ } [ ]</code>, whitespace ` `, and plain text as opposed to raw bytes). So data written out in formats like JSON tend to be more human-readable while still being structured enough to be parsed by programs, but they tend to have a larger memory footprint as well.</p>
+
+<p>Hence, we sometimes opt to serialize our data into raw byte streams. For example, suppose we are trying to serialize a <code class="language-plaintext highlighter-rouge">short</code> (an integer data type in Java that takes up two bytes of memory).</p>
+
+<p>First recognise that the short is an <em>abstraction</em>. The computer doesn’t know what an integer or a short is; all it knows is how to read bits and bytes. We (humans) decide that in certain contexts, certain sequences of bits and bytes mean certain human-sensible things (like integers, booleans, or characters).</p>
+
+<p>So to serialise this short, our first task is become “less abstract” — we’re going from the abstract human-friendly representation (the number 31543) to a less abstract representation (a byte array). We can use the <code class="language-plaintext highlighter-rouge">ByteBuffer</code> class to help with this.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>short shortNum = 31543;
+ByteBuffer bb = ByteBuffer.allocate(2);
+bb.putShort(shortNum);
+byte[] asArray = bb.array();
+</code></pre></div></div>
+
+<p>We can now use the <code class="language-plaintext highlighter-rouge">RandomAccessFile</code> to write out this byte array.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// assuming we initialised the RAF
+
+randomAccessFile.write(asArray);
+</code></pre></div></div>
+
+<p>The entire <code class="language-plaintext highlighter-rouge">asArray</code> byte array has been written to the random access file. Note that this moves the pointer forwards two bytes! So any future reads will happen from that point onward. If you wanted to <code class="language-plaintext highlighter-rouge">read</code> the two bytes back into memmory, you would need to move the cursor back first.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// prepare the byte array into which you'll read data
+byte[] fromFile = new byte[2];
+
+// move the pointer back to where you want to start reading
+// in this case, the beginning of the file
+// if you forget to do this, your program will fail silently and subtly
+raf.seek(0);
+
+// read in fromFile.length bytes and place them in the array
+raf.read(fromFile); 
+
+// get the short back
+short num = ByteBuffer,wrap(fromFile).getShort(); 
+
+System.out.println(num); // should print 31543 
+</code></pre></div></div>
+
+<hr />
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

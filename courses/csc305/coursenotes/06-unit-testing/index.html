@@ -1,0 +1,404 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Unit testing and test adequacy - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/06-unit-testing/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Unit testing and test adequacy</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <h2 id="topics-for-today">Topics for today</h2>
+
+<ul>
+  <li>What is software testing</li>
+  <li>Unit testing libraries
+    <ul>
+      <li>JUnit 5, which you may be familiar with from previous classes</li>
+      <li>AssertJ, a popular library for “fluent” assertions (still uses JUnit as a test engine)</li>
+    </ul>
+  </li>
+  <li>Test adequacy criteria</li>
+  <li>If we have time, property-based testing</li>
+</ul>
+
+<h2 id="systematic-software-testing">Systematic software testing</h2>
+
+<p>Software failures can be costly.
+They can cause damage to people, industries, and society.
+As soon-to-be software engineers, it behooves you to be responsible for the quality of the software you create.</p>
+
+<p>The most common way to do this is to test your software as you write it. All software is prone to failures. We want to
+move our discovery of these failures to “our side” of the software delivery. That is, we’d like to discover failures
+before software is shipped to clients.</p>
+
+<p>You can think of software testing as “simulating usage” of the software, and checking that the software did what was
+expected.</p>
+
+<p>An easy way to test your software is to just use it yourself and show that it does what you expect. This may be fine for
+the smallest and simplest of programs—after all, it’s easy to write a few print statements and be satisfied that a program
+is working.</p>
+
+<p>But when the software you’re writing becomes larger, when it becomes complex, and importantly, when it starts to involve
+<em>stakeholders</em> (other modules, users, etc.), this kind of ad-hoc testing is insufficient and irresponsible.</p>
+
+<p>Even the best programmers are prone to cognitive biases. That is, if you’ve just written a piece of code, it’s difficult
+to envision situations in which that code will fail. After all, you just wrote it! If you could think of inputs that would
+cause your program to fail, you would account for those inputs in your program itself.</p>
+
+<p>As our software gets larger and more difficult to reason about (as more and more modules start to interact with each
+other), it becomes more difficult for us to think about possible scenarios in which our code would fail.</p>
+
+<p>That is why we need a <em>systematic approach</em> to testing. We want to systematically “probe” our software until we are
+confident that our software meets its requirements.</p>
+
+<p>For example, for functions that operate on numbers, we might make sure to test with positive numbers, negative numbers, 
+and zero. For programs that operate on lists, we would make sure to test with empty lists, lists of size 1, and perhaps
+<code class="language-plaintext highlighter-rouge">null</code> pointers. Following this systematic approach to choosing test inputs helps us to circumvent our cognitive bias that
+tries to convince us that the code we just wrote <em>must</em> be correct.</p>
+
+<h3 id="a-systematic-approach-to-choosing-test-inputs">A systematic approach to choosing test inputs</h3>
+
+<p>Sources: chapters from <a href="https://www.manning.com/books/effective-software-testing"><em>Effective Software Testing</em></a> by Maurício Aniche.</p>
+
+<ul>
+  <li>Chapter 2 <em>Specification-based testing</em></li>
+  <li>Chapter 3 <em>Structural testing</em></li>
+</ul>
+
+<p>Aniche proposes the following steps for devising test case inputs (roughly).</p>
+
+<h4 id="1-understand-the-requirements-inputs-and-outputs">1. Understand the requirements, inputs, and outputs.</h4>
+
+<p>Read the requirements carefully “Requirements” here may be at
+varying levels of detail. It may be a thorough formal specification, or it may be an email from a client describing what
+it is they want you to build. What should the program do? What should it not do? What are some “simple” inputs you can 
+use to demonstrate to yourself that the program does what you want it to do? (Note that the program doesn’t need to exist
+yet when you perform this step.)</p>
+
+<p>This step is arguably the most important step. You cannot test the program effectively if you don’t have a solid understanding of what it <em>should</em> do.</p>
+
+<h4 id="2-explore-the-program">2. Explore the program</h4>
+
+<p>This is a particularly useful step if you’re testing a program that you haven’t written yourself 
+(or perhaps that you wrote a long time ago). A useful activity in this case is to trace the program yourself with specific
+inputs. Your goal is to explore the program’s current behaviour, and perhaps compare its behaviour with your understanding
+of its requirements. Always remember that the requirements beget the program, not the other way around.</p>
+
+<h4 id="3-judiciously-explore-possible-inputs-and-outputs-and-identify-partitions">3. Judiciously explore possible inputs and outputs, and identify partitions</h4>
+
+<p>What are the <em>classes</em> or <em>partitions</em> of inputs the program is expected to handle?</p>
+
+<p>This includes but goes beyond simply looking at the inputs’ data types. For example, suppose we have a function that’s supposed to compute
+compound interest for a given amount of money, for a given number of years:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>compoundInterest(principleAmount, interestRate, numYears);
+</code></pre></div></div>
+
+<p>Naturally, we’re going to want all three inputs to be numerical values (we have further preconditions that will come soon).
+In a statically typed language like Java, you don’t need to say “this program should only take integers and nothing else”;
+the compiler will handle that for you. In this respect, it’s kind of like a test case itself.</p>
+
+<p>So beyond the data type, what other attributes of the inputs should we think about? What is the range of values each input
+can accept? If it’s numerical, does it allow negative numbers? Floats? Integers greater than 1? For example, in the function
+above, our inputs have the following preconditions and sets of possible inputs:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">principleAmount</code>: whole numbers &gt;= 0
+    <ul>
+      <li>0</li>
+      <li>1</li>
+      <li>whole numbers &gt; 1</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">interestRate</code>: floating point numbers between 0 and 1
+    <ul>
+      <li>0</li>
+      <li>1</li>
+      <li>floating point numbers &gt; 0 and &lt; 1</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">numYears</code>: numbers &gt;= 0 (or &gt;0? check your requirements!)
+    <ul>
+      <li>0</li>
+      <li>1</li>
+      <li>100</li>
+      <li>7.5</li>
+    </ul>
+  </li>
+</ul>
+
+<p>For the <code class="language-plaintext highlighter-rouge">principleAmount</code>, the input values 0 and 1 might produce “interestingly different behaviours”, and perhaps even the
+inputs 1 and 2. But the inputs 2 and 5 and 7 start to produce more-or-less the same logical behaviours. We call these
+<em>equivalence partitions</em>. You are <em>partitioning</em> the input space into subsets of inputs, each of would result in logically distinct 
+behaviours.</p>
+
+<p>This is a notoriously difficult thing to do!</p>
+
+<h4 id="4-identify-the-boundaries">4. Identify the boundaries</h4>
+
+<p>For the partitions you identified in the previous step, identify the <em>boundaries</em>.</p>
+
+<p>With numerical data, for example,  many often make the mistake of simply checking boundaries such as negative numbers, 0,
+and positive numbers. However, what counts as “boundary” for an input is highly dependent on the problem domain.</p>
+
+<p>For example, consider this super simple program:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">hipHooray</span><span class="o">(</span><span class="kt">int</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">input</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"hiphip"</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="s">"hooray"</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the example above, the boundary at which the result is logically different for different inputs is the number 10. Positive
+or negative doesn’t matter here. Don’t fall into the trap of over-prioritising boundary values for the <em>data type</em>, and not
+focusing enough on the <em>problem domain</em>.</p>
+
+<h4 id="5-devise-test-cases">5. Devise test cases</h4>
+
+<p>This was kind of implied throughout, but at this point you should start to note down test cases based on your analysis.</p>
+
+<p>When you’ve identified boundary values, you should attack those boundary points with your tests. Test the “on point” (the last
+point in one partition) and the “off point” (the first point in the next partition). Also test “happy path” inputs: input points
+that are squarely in one partition or another, nowhere near those pesky boundaries. Little victories are important!</p>
+
+<p>Doing this for all combinations of inputs result in a huge number of test cases, not all of which will pay off in the long run. You need to think pragmatically about which types of tests are okay to eliminate (perhaps even at the cost of reduced code coverage). This is a good time to remind you that writing functions with fewer parameters makes your life easier.</p>
+
+<h2 id="automated-software-tests">Automated software tests</h2>
+
+<p>Ok, fine, we agree that we should use a principled approach to choosing test inputs. We’ve gotten a few steps down for
+coming up with useful test inputs. Can’t we just keep using good old print statements to confirm that the code does what
+we want for all these inputs we painstakingly devised?</p>
+
+<p>Why do we need to write <em>test suites</em>? Why do we use libraries like JUnit to write collections of test cases that can all be
+run with a click of a button?</p>
+
+<p>Like the answer to so many questions about software engineering, it’s because software changes. You might manually run
+your program through a rigorous gauntlet of test inputs, but anytime your software changes, you would need to manually
+go through that gauntlet of test inputs again. Isn’t it nicer if you could run through that entire suite of inputs with
+a single button click?</p>
+
+<p>In short, an automated test suite is many good things. But best of all, it’s a <em>safety net</em>. It captures the <em>current</em>
+(presumably) correct functionality offered by the codebase.</p>
+
+<p>This makes it easier and safer to do a number of things in your program:</p>
+
+<ul>
+  <li><strong>Refactoring</strong>: You’ve made a bunch of changes to the structure of your code, but you’re not sure if you accidentally
+changed its behaviour in the process. No matter! Just run the tests.</li>
+  <li><strong>Debugging</strong>: You’ve just spent days tracking down a bug in your code that occurred because you had made an incorrect assumption about the problem you were solving. You need to make sure the bug doesn’t show up again because someone else
+makes the same assumption. Write a test case! If someone makes the same faulty assumption you did, they’ll now have a
+failing test case on their hands.</li>
+  <li><strong>Comprehension</strong>: You’ve been handed a code base and you want to understand what it does in various situations. Instead
+of manually running the program umpteen times with different inputs, write a few tests and check your understanding
+automatically.</li>
+  <li><strong>Adding new features</strong>: You’re working on a large project with many interacting modules. You don’t know if some feature
+you added has had some unintended effects in other parts of the module, or worse, in other modules entirely. Without a test
+suite, you’re kind of out of luck, unless you’re super-good at reasoning about a large codebase. With a test suite, you
+can simply run it and rest assured that nothing broke (or know <em>exactly broke</em> and go about fixing it).</li>
+</ul>
+
+<h2 id="test-adequacy">Test adequacy</h2>
+
+<p>Of course, all the good consequences of having a test suite depend on the tests actually being “good”. What does “good”
+mean here?</p>
+
+<p>This is the notion of “test adequacy”—i.e., how do you measure the goodness of your tests? By now you’re familiar with
+at least one family of test adequacy measurements: code coverage.</p>
+
+<p>Another type of measurements we’ll talk about is called <em>mutation analysis</em>, which is more reliable, but also more costly
+to measure than code coverage.</p>
+
+<p>I won’t dive into too many details about these criteria in these notes: a lot has been said about them already.</p>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Code_coverage">Code coverage</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/Mutation_testing">Mutation analysis</a></li>
+</ul>
+
+<p>We’ll do an in-class demonstration and a brief activity to get the low-down on these criteria.</p>
+
+<h3 id="implementation-based-adequacy-criteria">Implementation-based adequacy criteria</h3>
+
+<p>What I <em>will</em> say about these criteria is that they are NOT the final determination of your code’s quality or reliability.</p>
+
+<p>At the end of the day both code coverage and mutation analysis are measured based entirely on your current implementation.
+If your implementation itself is incorrect (e.g., because you misunderstood the requirements or made some false assumptions), and your tests pass with full coverage, all that means is that your tests are also labouring under the same misunderstanding as your program.</p>
+
+<h2 id="the-third-artefact-the-specification">The third artefact: the specification</h2>
+
+<p>Many developers use coverage criteria as the <em>primary testing goal</em> while writing software tests.
+That is, they are thinking about two artefacts:</p>
+
+<ul>
+  <li>the code that must be tested</li>
+  <li>the test suite that must adequately exercise the code-under-test and make sure it does what is expected</li>
+</ul>
+
+<p>The “what is expected” phrase above is doing a lot of work. It is hiding a <em>third</em> artefact that we don’t often think
+about explicitly: the <em>specification</em>. The specification is the (ideally) unambiguous description of what your working
+program is expected to do. Unless your team uses <a href="https://en.wikipedia.org/wiki/Formal_methods">formal methods</a>, your
+“specification” is usually derived from emails, wikis, notes about conversations between you and your client, etc.
+All of these describe what your software should do.<sup id="fnref:reqs" role="doc-noteref"><a href="#fn:reqs" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>Coverage of this third artefact is the “real” measure of test adequacy that you should hold as your primary goal. Your test suite
+should “cover” all the requirements, and your program should pass your test suite. <em>After this process</em> you can feel free
+to shore up any gaps in the test suite that are revealed by implementation-based criteria like code coverage and mutation
+analysis.</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>We’ll do a couple of in-class activities based on the programs below.</p>
+
+<p><strong>Activity 1</strong>. Write and test a function that searchers a String for substrings delimited by a start and an end tag,
+returning all matching substrings in an array.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">null</code> input String returns <code class="language-plaintext highlighter-rouge">null</code></li>
+  <li><code class="language-plaintext highlighter-rouge">null</code> open/close returns <code class="language-plaintext highlighter-rouge">null</code> (no match).</li>
+  <li>Empty (<code class="language-plaintext highlighter-rouge">""</code>) open/close returns <code class="language-plaintext highlighter-rouge">null</code> (no match).</li>
+</ul>
+
+<p>(<a href="https://github.com/apache/commons-lang/blob/e0b474c0d015f89a52c4cf8866fa157dd89e7d1c/src/main/java/org/apache/commons/lang3/StringUtils.java#L8810">From the Apache commons-lang <code class="language-plaintext highlighter-rouge">StringUtils</code> class.</a></p>
+
+<p><strong>Partitions</strong>:</p>
+
+<p>Each of these are further broken in terms of relationships between <code class="language-plaintext highlighter-rouge">str</code>, <code class="language-plaintext highlighter-rouge">open</code>, and <code class="language-plaintext highlighter-rouge">close</code>.</p>
+
+<ul>
+  <li>Exceptional cases (<code class="language-plaintext highlighter-rouge">null</code>, <code class="language-plaintext highlighter-rouge">empty</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">str</code> length = 1</li>
+  <li><code class="language-plaintext highlighter-rouge">str, open, close</code> length = 1 (mix of inputs where <code class="language-plaintext highlighter-rouge">str</code> contains <code class="language-plaintext highlighter-rouge">open</code>, <code class="language-plaintext highlighter-rouge">close</code>, both, or none)</li>
+  <li><code class="language-plaintext highlighter-rouge">str, open, close</code> length &gt; 1 (mix of inputs where <code class="language-plaintext highlighter-rouge">str</code> contains <code class="language-plaintext highlighter-rouge">open</code>, <code class="language-plaintext highlighter-rouge">close</code>, both, or none)</li>
+  <li><code class="language-plaintext highlighter-rouge">str</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span><span class="o">[]</span> <span class="nf">substringsBetween</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">str</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">open</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">close</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">str</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">open</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">open</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">||</span> <span class="n">close</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">close</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kt">int</span> <span class="n">strLen</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">strLen</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nc">String</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+    <span class="o">}</span>
+
+    <span class="kt">int</span> <span class="n">closeLen</span> <span class="o">=</span> <span class="n">close</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">openLen</span> <span class="o">=</span> <span class="n">open</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+    <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="k">while</span> <span class="o">(</span><span class="n">pos</span> <span class="o">&lt;</span> <span class="n">strLen</span> <span class="o">-</span> <span class="n">closeLen</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">open</span><span class="o">,</span> <span class="n">pos</span><span class="o">);</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">start</span> <span class="o">+=</span> <span class="n">openLen</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">close</span><span class="o">,</span> <span class="n">start</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">end</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">start</span><span class="o">,</span> <span class="n">end</span><span class="o">));</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">end</span> <span class="o">+</span> <span class="n">closeLen</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">list</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="nc">String</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Activity 2</strong>: Use automated tests to check whether the following function is correct. There may or may not be a bug in this code. If the function is correct, say so and
+submit a screenshot of your complete branch or mutation coverage as evidence that I should believe you.
+If it’s not correct, submit the test input, the expected output, and the function’s <em>actual</em> output in Canvas, along with an English description of the bug you uncovered.</p>
+
+<p><strong>Partitions</strong>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">left</code> is 0, <code class="language-plaintext highlighter-rouge">right</code> is 0, both are 0</li>
+  <li><code class="language-plaintext highlighter-rouge">left</code> / <code class="language-plaintext highlighter-rouge">right</code> have single digits with no carryover</li>
+  <li><code class="language-plaintext highlighter-rouge">left</code> / <code class="language-plaintext highlighter-rouge">right</code> have single digits with carryover</li>
+  <li><code class="language-plaintext highlighter-rouge">left</code> has more digits than <code class="language-plaintext highlighter-rouge">right</code></li>
+  <li><code class="language-plaintext highlighter-rouge">right</code> has more digits than <code class="language-plaintext highlighter-rouge">left</code></li>
+  <li>number of digits in result is more than length of max (<code class="language-plaintext highlighter-rouge">left</code>, <code class="language-plaintext highlighter-rouge">right</code>)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="nf">plus</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">left</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>  <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nc">Collections</span><span class="o">.</span><span class="na">reverse</span><span class="o">(</span><span class="n">left</span><span class="o">);</span>
+    <span class="nc">Collections</span><span class="o">.</span><span class="na">reverse</span><span class="o">(</span><span class="n">right</span><span class="o">);</span>
+    <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nc">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">left</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="n">right</span><span class="o">.</span><span class="na">size</span><span class="o">());</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">leftDigit</span> <span class="o">=</span> <span class="n">left</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">i</span> <span class="o">?</span> <span class="n">left</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">:</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">rightDigit</span> <span class="o">=</span> <span class="n">right</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">i</span> <span class="o">?</span> <span class="n">right</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">:</span> <span class="mi">0</span><span class="o">;</span>
+
+        <span class="c1">// Throw an exception if the precondition doesn't hold</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">leftDigit</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">leftDigit</span> <span class="o">&gt;</span> <span class="mi">9</span> <span class="o">||</span> <span class="n">rightDigit</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">rightDigit</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">leftDigit</span> <span class="o">+</span> <span class="n">rightDigit</span> <span class="o">+</span> <span class="n">carry</span><span class="o">;</span>
+
+        <span class="n">result</span><span class="o">.</span><span class="na">addFirst</span><span class="o">(</span><span class="n">sum</span> <span class="o">%</span> <span class="mi">10</span><span class="o">);</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="n">sum</span> <span class="o">/</span> <span class="mi">10</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:reqs" role="doc-endnote">
+      <p>Eliciting those requirements is an undertaking unto itself, which you will learn about explicitly in CSC 307 or CSC 308 and 309. <a href="#fnref:reqs" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

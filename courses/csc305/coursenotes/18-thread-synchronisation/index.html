@@ -1,0 +1,357 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Thread synchronisation - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/18-thread-synchronisation/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Thread synchronisation</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p><strong>Thread interference</strong> occurs when two operations, running in different threads, but acting on the same data, interleave. These types of issues are unpredictable and difficult to predict.</p>
+
+<p>In concurrent programming, concurrent thread accesses to shared data can lead to unexpected or erroneous behaviour.
+The part of the program where the shared data is accessed needs to be protected in ways that avoid concurrent access.</p>
+
+<p>This protected section is the <strong>critical section</strong> or <strong>critical region</strong>.</p>
+
+<p>An <strong>atomic action</strong> is required in a critical section where only one thread can execute its critical section at a time. All the other threads have to wait to access the critical section.</p>
+
+<h2 id="thread-interference-demo">Thread interference demo</h2>
+
+<p>Consider the following class <code class="language-plaintext highlighter-rouge">Counter</code> that simply keeps track of a count that can be incremented and decremented.</p>
+
+<p>For the purposes of illustration, the increment and decrement are done in explicitly separated steps (as opposed to <code class="language-plaintext highlighter-rouge">count++</code> and <code class="language-plaintext highlighter-rouge">count--</code>), and they include some <code class="language-plaintext highlighter-rouge">Thread.sleep</code> calls so that there is a higher possibility of threads interleaving.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Counter</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">increment</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">count</span><span class="o">;</span>
+
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">newVal</span> <span class="o">=</span> <span class="n">val</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="n">newVal</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// no-op</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">decrement</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">count</span><span class="o">;</span>
+
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">newVal</span> <span class="o">=</span> <span class="n">val</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
+
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="n">newVal</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// no-op</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">count</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>As described above, if two threads both run the <code class="language-plaintext highlighter-rouge">increment</code> method on the same object, depending on how the threads get scheduled, there is a possibility of the work of one thread being overwritten by another thread.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Counter</span> <span class="n">counter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Counter</span><span class="o">();</span>
+
+<span class="nc">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">counter</span><span class="o">.</span><span class="na">increment</span><span class="o">());</span>
+<span class="nc">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">counter</span><span class="o">.</span><span class="na">increment</span><span class="o">());</span>
+
+<span class="n">t1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+<span class="n">t2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+
+<span class="n">t1</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+<span class="n">t2</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">counter</span><span class="o">.</span><span class="na">getCount</span><span class="o">());</span>
+</code></pre></div></div>
+
+<p>Suppose Thread <code class="language-plaintext highlighter-rouge">t1</code> runs at about the same time as Thread <code class="language-plaintext highlighter-rouge">t2</code>. If the initial value of <code class="language-plaintext highlighter-rouge">count</code> is 0, this sequence can happen:</p>
+
+<ul>
+  <li>Thread A: Retrieve count.</li>
+  <li>Thread B: Retrieve count.</li>
+  <li>Thread A: Increment retrieved value; result is 1.</li>
+  <li>Thread B: Increment retrieved value; result is 1.</li>
+  <li>Thread A: Store result in count; count is now 1.</li>
+  <li>Thread B: Store result in count; count is now 1.</li>
+</ul>
+
+<p>Thread A’s result is lost, overwritten by Thread B (the program will print <code class="language-plaintext highlighter-rouge">1</code>). Under different circumstances, it might be Thread B’s result that gets lost (program prints <code class="language-plaintext highlighter-rouge">1</code>), or there could be no error at all (program prints <code class="language-plaintext highlighter-rouge">2</code>).</p>
+
+<p>To prevent these kinds of “race conditions” (where the result depends on which thread wins a race), we need some way to “synchronize” the execution of the two threads, such that they access and modify shared data in correct ways.</p>
+
+<h2 id="synchronized-methods-and-statements">Synchronized methods and statements</h2>
+
+<p>Every Object in Java has an internal entity associated with it called its <em>intrinsic lock</em> or <em>monitor lock</em>.
+When a thread needs exclusive access to an object’s fields or methods, it must <em>acquire</em> the object’s intrinsic lock before accessing them, and <em>release</em> the lock after it’s finished with the object.</p>
+
+<p>When one thread has an object’s intrinsic lock, no other thread can acquire the same lock. The other thread will “block” or suspend its execution until the object’s lock becomes available again.</p>
+
+<p>This notion of an Object lock is extremely useful because it lets us synchronize access to data that is shared by multiple threads (e.g., mutable objects).
+The <em>critical section</em> mentioned above is the part of the program that is executed between <em>acquiring</em> and <em>releasing</em> an object’s intrinsic lock.</p>
+
+<p>The Java language provides two basic idioms for synchronising access to critical sections: <strong><code class="language-plaintext highlighter-rouge">synchronized</code></strong> methods and <strong><code class="language-plaintext highlighter-rouge">synchronized</code></strong> statements.</p>
+
+<h3 id="synchronized-methods">Synchronized methods</h3>
+
+<p>To make a method <code class="language-plaintext highlighter-rouge">synchronized</code>, simply add the <code class="language-plaintext highlighter-rouge">synchronized</code> keyword to its declaration.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// rest of the Counter class stays the same</span>
+
+<span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">increment</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// ... method stays the same</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">decrement</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// ... methods stays the same</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>When one thread is executing a <code class="language-plaintext highlighter-rouge">synchronized</code> instance method for an object, all other threads that invoke <code class="language-plaintext highlighter-rouge">synchronized</code> methods for the same object will block (suspend execution) until the first thread is done with the object.</p>
+
+<p>When a thread invokes a <code class="language-plaintext highlighter-rouge">synchronized</code> method, it automatically acquires the intrinsic lock for that method’s object and releases it when the method returns. The lock release occurs even if the return was caused by an uncaught exception.</p>
+
+<p>So in the <code class="language-plaintext highlighter-rouge">Counter</code> example, when Thread <code class="language-plaintext highlighter-rouge">t1</code> is executing on the <code class="language-plaintext highlighter-rouge">counter</code> object, it “owns” the <code class="language-plaintext highlighter-rouge">counter</code> object’s intrinsic lock. So when Thread <code class="language-plaintext highlighter-rouge">t2</code> is kicked off, it requests access to the object, but cannot proceed until Thread <code class="language-plaintext highlighter-rouge">t1</code> releases the lock (i.e., finishes executing the <code class="language-plaintext highlighter-rouge">synchronized</code> method <code class="language-plaintext highlighter-rouge">increment</code>).</p>
+
+<p>In Java synchronization, if a thread wants to enter a <code class="language-plaintext highlighter-rouge">synchronized</code> method it will acquire lock on <em>all</em> <code class="language-plaintext highlighter-rouge">synchronized</code> methods of that object, not just on one <code class="language-plaintext highlighter-rouge">synchronized</code> method that thread is using.</p>
+
+<p>So in the <code class="language-plaintext highlighter-rouge">Counter</code> example, if Thread <code class="language-plaintext highlighter-rouge">t1</code> was calling <code class="language-plaintext highlighter-rouge">increment</code>, and Thread <code class="language-plaintext highlighter-rouge">t2</code> wanted to call <code class="language-plaintext highlighter-rouge">decrement</code>, it still would NOT be able to do so, because it’s a common lock on the <code class="language-plaintext highlighter-rouge">counter</code> object that controls access to <em>all</em> <code class="language-plaintext highlighter-rouge">synchronized</code> methods.</p>
+
+<p><code class="language-plaintext highlighter-rouge">static synchronized</code> methods do not use an intrinsic lock associated with any instance of the class. Instead, they use lock associated to the <code class="language-plaintext highlighter-rouge">Class</code> object loaded by the JVM. So, one lock for the class, and individual locks for individual instances of the class.</p>
+
+<h3 id="synchronized-statements">Synchronized statements</h3>
+
+<p>Deciding which methods to mark as <code class="language-plaintext highlighter-rouge">synchronized</code> or not can be challenging. In general, you need to identify the <strong>critical section</strong>, and that critical section needs to take place as an <strong>atomic action</strong>. That is, it must run through the entire sequence of instructions without another thread being interleaved that accesses the same data.</p>
+
+<p>In many cases, this critical section might be an entire method. However, overly stringent locking can start to erode the benefit you would get from concurrent programming. More often you want finer-grained control over object locking.</p>
+
+<p>Java therefore lets you lock <em>statements</em> or <em>blocks of code</em> instead of entire methods.</p>
+
+<p><code class="language-plaintext highlighter-rouge">synchronized</code> methods inherently have objects on which to lock (the <code class="language-plaintext highlighter-rouge">this</code> object in the case of instance methods, and the <code class="language-plaintext highlighter-rouge">Class</code> object in the case of <code class="language-plaintext highlighter-rouge">static</code> methods). Byt <code class="language-plaintext highlighter-rouge">synchronized</code> statements have no such object.</p>
+
+<p>Therefore, you must manually provide a <code class="language-plaintext highlighter-rouge">synchronized</code> statement an object on which to lock.</p>
+
+<p>The syntax is similar:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">synchronized</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">count</span><span class="o">++;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The code above, instead of locking an entire method, locks only the code within the curly braces. In the example above the synchronization is done on the basis of the <code class="language-plaintext highlighter-rouge">this</code> object, just like <code class="language-plaintext highlighter-rouge">synchronized</code> instance methods.</p>
+
+<p>Any object can be used for the lock. For example, within the same class, you may have multiple bits of shared data (<code class="language-plaintext highlighter-rouge">c1</code> and <code class="language-plaintext highlighter-rouge">c2</code> in the example below) that need to be synchronized across threads.</p>
+
+<p>However, we only care that two threads don’t access <code class="language-plaintext highlighter-rouge">c1</code> at the same time, or <code class="language-plaintext highlighter-rouge">c2</code> at the same time. But we don’t care if one thread accesses <code class="language-plaintext highlighter-rouge">c1</code> while another accesses <code class="language-plaintext highlighter-rouge">c2</code> in parallel.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MsLunch</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">long</span> <span class="n">c1</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">long</span> <span class="n">c2</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Object</span> <span class="n">lock1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">();</span>
+    <span class="kd">private</span> <span class="nc">Object</span> <span class="n">lock2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">inc1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">synchronized</span><span class="o">(</span><span class="n">lock1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">c1</span><span class="o">++;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">inc2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">synchronized</span><span class="o">(</span><span class="n">lock2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">c2</span><span class="o">++;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Use this idiom (of multiple locks) with extreme care. You must be absolutely sure that <code class="language-plaintext highlighter-rouge">c1</code> and <code class="language-plaintext highlighter-rouge">c2</code> are totally separate and don’t need to be synchronized together.</p>
+
+<h2 id="deadlock">Deadlock</h2>
+
+<p>Sometimes you can get into a situation where two threads are both waiting for each other to terminate.
+This results in a situation called <em>deadlock</em>, where neither thread makes any progress.</p>
+
+<p>Consider this example from <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/deadlock.html">the Java tutorials on concurrency</a>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Deadlock</span> <span class="o">{</span>
+  <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Friend</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="kd">final</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+      <span class="kd">public</span> <span class="nf">Friend</span><span class="o">(</span><span class="nc">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+      <span class="o">}</span>
+      <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
+      <span class="o">}</span>
+      <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">bow</span><span class="o">(</span><span class="nc">Friend</span> <span class="n">bower</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%s: %s"</span>
+              <span class="o">+</span> <span class="s">"  has bowed to me!%n"</span><span class="o">,</span> 
+              <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="n">bower</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+          <span class="n">bower</span><span class="o">.</span><span class="na">bowBack</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">bowBack</span><span class="o">(</span><span class="nc">Friend</span> <span class="n">bower</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">"%s: %s"</span>
+              <span class="o">+</span> <span class="s">" has bowed back to me!%n"</span><span class="o">,</span>
+              <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">,</span> <span class="n">bower</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kd">final</span> <span class="nc">Friend</span> <span class="n">alphonse</span> <span class="o">=</span>
+          <span class="k">new</span> <span class="nf">Friend</span><span class="o">(</span><span class="s">"Alphonse"</span><span class="o">);</span>
+      <span class="kd">final</span> <span class="nc">Friend</span> <span class="n">gaston</span> <span class="o">=</span>
+          <span class="k">new</span> <span class="nf">Friend</span><span class="o">(</span><span class="s">"Gaston"</span><span class="o">);</span>
+      <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+          <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> <span class="n">alphonse</span><span class="o">.</span><span class="na">bow</span><span class="o">(</span><span class="n">gaston</span><span class="o">);</span> <span class="o">}</span>
+      <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+      <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+          <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> <span class="n">gaston</span><span class="o">.</span><span class="na">bow</span><span class="o">(</span><span class="n">alphonse</span><span class="o">);</span> <span class="o">}</span>
+      <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Alphonse and Gaston are two super polite friends who bow to each other when they meet. They remain bowed until the other has bowed back to them. In most cases, this works out fine. However, if both Alphonse and Gaston bow to each other at the same time, they can never exit their bow, because they are both waiting for the other one to bow back.</p>
+
+<p>Each <code class="language-plaintext highlighter-rouge">Friend</code> object calls its <code class="language-plaintext highlighter-rouge">synchronized</code> <code class="language-plaintext highlighter-rouge">bow</code> method to bow to the other <code class="language-plaintext highlighter-rouge">Friend</code> object. The <code class="language-plaintext highlighter-rouge">bow</code> method implementation calls another <code class="language-plaintext highlighter-rouge">synchronized</code> method, <code class="language-plaintext highlighter-rouge">bowBack</code> on the object that is passed in.</p>
+
+<p>So when Alphonse bows to Gaston, the lock on Alphonse is acquired by the first thread. When Gaston bows to Alphonse, the lock on Gaston is acquired by the second thread. Now Alphonse’s thread needs access to Gaston’s lock in order to make Gaston <code class="language-plaintext highlighter-rouge">bowBack</code>, and Gaston’s thread needs Alphonse’s lock to make Alphonse <code class="language-plaintext highlighter-rouge">bowBack</code>. Neither can progress. Legend has it they are still bowed to each other and must be fed and changed by passers by.</p>
+
+<p>The lesson here is: <strong>be careful about calling other objects’ <code class="language-plaintext highlighter-rouge">synchronized</code> methods from a <code class="language-plaintext highlighter-rouge">synchronized</code> method.</strong> <code class="language-plaintext highlighter-rouge">synchronized</code> blocks of statements can help you limit which parts of a method must be <code class="language-plaintext highlighter-rouge">synchronized</code> instead of synchronizing the whole method.</p>
+
+<p><strong>Avoiding deadlock</strong></p>
+
+<ul>
+  <li>Avoid Nested Locks – this is the main reason for a deadlock condition.</li>
+  <li>Avoid Unnecessary Locks – The locks should be given to the important threads. Giving locks to unnecessary threads can cause the deadlock condition.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">Lock</code> objects to break deadlocks — The Java <code class="language-plaintext highlighter-rouge">Lock</code> interface represents a concurrent lock which can be used to guard against race conditions inside critical sections. I’ll explain this more after a quick detour.</li>
+</ul>
+
+<h2 id="wait-notify-notifyall">wait, notify, notifyAll</h2>
+
+<p>Sometimes, we need more fine-grained conditional control over how we enter and exit critical sections.</p>
+
+<p>The Object class in Java contains three final methods that allows threads to communicate about the lock status of a resource.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">wait</code> method waits indefinitely for any other thread to call <code class="language-plaintext highlighter-rouge">notify</code> or <code class="language-plaintext highlighter-rouge">notifyAll</code> method on the object to wake up the current thread</li>
+  <li><code class="language-plaintext highlighter-rouge">notify</code> method wakes up only one thread waiting on the object and that thread starts execution. The choice of the thread to wake depends on the OS implementation of thread management.</li>
+  <li><code class="language-plaintext highlighter-rouge">notifyAll</code> method wakes up all the threads waiting on the object, although which one will process first depends on the OS implementation.</li>
+</ul>
+
+<p>The above methods can be called on an object to cause the current thread to pause or to wake up. They are commonly used when you want a thread to conditionally wait or execute some code.</p>
+
+<p>For example, consider the <code class="language-plaintext highlighter-rouge">BlockingQueue</code> data structure. It functions more or less like a regular queue, except that:</p>
+
+<ul>
+  <li>When adding something to the queue, it <em>waits</em> for the queue to be below capacity, so that the new item can be accepted</li>
+  <li>When something is removed from the queue, it <em>waits</em> for there to be at least one item in the queue before removing and returning it</li>
+  <li>When something is removed from the queue, it <em>notifies</em> the object that it’s ready to accept new items (freeing up the <code class="language-plaintext highlighter-rouge">add</code> method from its waiting)</li>
+</ul>
+
+<p>An example add and remove might look like this (some of the surrounding code has been elided):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="no">T</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">while</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">queue</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="n">capacity</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">wait</span><span class="o">();</span> <span class="c1">// while the queue is at capacity, this request will wait</span>
+    <span class="o">}</span>
+
+    <span class="k">this</span><span class="o">.</span><span class="na">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">element</span><span class="o">);</span> <span class="c1">// once the wait is over, add the element</span>
+    <span class="n">notify</span><span class="o">();</span> <span class="c1">// signal to the object; use notifyAll to notify all waiting threads</span>
+<span class="o">}</span>
+
+
+<span class="kd">public</span> <span class="kd">synchronized</span> <span class="no">T</span> <span class="nf">remove</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">while</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">wait</span><span class="o">();</span> <span class="c1">// while the queue is empty, wait</span>
+    <span class="o">}</span>
+
+    <span class="no">T</span> <span class="n">item</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">queue</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span> <span class="c1">// when the wait is over, remove the first item</span>
+    <span class="n">notify</span><span class="o">();</span> <span class="c1">// notifyAll to notify all waiting threads</span>
+    <span class="k">return</span> <span class="n">item</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the <code class="language-plaintext highlighter-rouge">add</code> method, the <code class="language-plaintext highlighter-rouge">wait</code> is waiting for the queue to become below capacity, so something can be added. And the <code class="language-plaintext highlighter-rouge">notify</code> is signalling that there is something in the queue (so the <code class="language-plaintext highlighter-rouge">remove</code> method can do its thing).</p>
+
+<p>In the <code class="language-plaintext highlighter-rouge">remove</code> method, the <code class="language-plaintext highlighter-rouge">wait</code> is waiting for the queue to not be empty, so something can be removed. And the <code class="language-plaintext highlighter-rouge">notify</code> is signalling that something was removed, so that the <code class="language-plaintext highlighter-rouge">add</code> method can do its thing.</p>
+
+<p>So there are TWO “waiting conditions” and TWO signals being sent, but all of it uses the same primitive <code class="language-plaintext highlighter-rouge">wait</code> and <code class="language-plaintext highlighter-rouge">notify</code> mechanism. It’s up to the programmer to manage the different states that need to wait and notify according to various conditions. Using <code class="language-plaintext highlighter-rouge">wait</code> and <code class="language-plaintext highlighter-rouge">notify</code> correctly in a complex module is notoriously difficult for this reason.</p>
+
+<h2 id="java-lock-objects">Java Lock objects</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">synchronized</code> keyword allows a really simple kind of lock, where access to critical sections of an object’s code can be restricted to one thread at a time. And the <code class="language-plaintext highlighter-rouge">wait</code>/<code class="language-plaintext highlighter-rouge">notify</code> mechanism allows conditional locking and unlocking of certain portions of the synchronized object’s code.</p>
+
+<p>More recent Java versions include higher-level abstractions over these constructs in the form of the <a href="https://download.java.net/java/early_access/valhalla/docs/api/java.base/java/util/concurrent/locks/Lock.html"><code class="language-plaintext highlighter-rouge">Lock</code></a> interface. The simplest implementation of this interface (and the one that we’ll talk about) is the <a href="https://download.java.net/java/early_access/valhalla/docs/api/java.base/java/util/concurrent/locks/ReentrantLock.html"><code class="language-plaintext highlighter-rouge">ReentrantLock</code></a>. The <code class="language-plaintext highlighter-rouge">ReentrantLock</code> provides the same basic behaviour as the <code class="language-plaintext highlighter-rouge">synchronized</code> keyword, with some extended capabilities.</p>
+
+<p>Considering the <code class="language-plaintext highlighter-rouge">Counter</code> example above, we can rewrite the <code class="language-plaintext highlighter-rouge">increment</code> method using the <code class="language-plaintext highlighter-rouge">ReentrantLock</code> like below. Notice that we don’t need to declare the method as <code class="language-plaintext highlighter-rouge">synchronized</code>; we’re kind of doing the equivalent of a <code class="language-plaintext highlighter-rouge">synchronized</code> block here.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">increment</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">count</span><span class="o">;</span>
+
+        <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">newVal</span> <span class="o">=</span> <span class="n">val</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+
+        <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">count</span> <span class="o">=</span> <span class="n">newVal</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// no-op</span>
+    <span class="o">}</span>
+    <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Ok, so the <code class="language-plaintext highlighter-rouge">ReentrantLock</code> provides the same functionality as the <code class="language-plaintext highlighter-rouge">synchronized</code> block. What’s the big deal?</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">ReentrantLock</code> also has the <code class="language-plaintext highlighter-rouge">trylock</code> method, which has the following signature: <code class="language-plaintext highlighter-rouge">boolean trylock(long timeout, TimeUnit timeUnit)</code></p>
+
+<p>It attempts to obtain a lock, but gives up after a specified amount of time. It returns a <code class="language-plaintext highlighter-rouge">boolean</code> value telling us if the lock was successfully obtained or not. This ability to “back out” of trying to obtain a lock helps us to avoid deadlock situations.</p>
+
+<p>Go back to our Alphonse and Gaston example, and consider how you would use this newfound ability to break them out of their lifelong bows. (<a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/newlocks.html">Or, read the implemented example here.</a>)</p>
+
+<hr />
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>
