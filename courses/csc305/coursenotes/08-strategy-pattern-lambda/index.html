@@ -1,0 +1,145 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Strategy and command design patterns - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/08-strategy-pattern-lambda/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Strategy and command design patterns</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>Reading:</p>
+
+<ul>
+  <li><a href="https://refactoring.guru/design-patterns/strategy">Strategy design pattern</a></li>
+  <li><a href="https://refactoring.guru/design-patterns/command">Command design pattern</a></li>
+</ul>
+
+<h2 id="strategy-design-pattern">Strategy design pattern</h2>
+
+<h3 id="example-a-routing-application">Example: A routing application</h3>
+
+<p>Suppose you’re working on a maps application (kind of like Google Maps or Apple Maps).
+Your application has a graph that represents geographic locations, and it allows the user to request a <em>driving route</em> from point A to point B.
+So put simply your app can do something like this:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Point</span><span class="o">&gt;</span> <span class="n">path</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">pathfinder</span><span class="o">.</span><span class="na">computePath</span><span class="o">(</span><span class="n">graph</span><span class="o">,</span> <span class="n">source</span><span class="o">,</span> <span class="n">dest</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">computePath</code> function above finds a driving path from <code class="language-plaintext highlighter-rouge">source</code> to <code class="language-plaintext highlighter-rouge">dest</code> and life is good.
+You now get a request that the app should also allow people to request <em>walking</em> paths or <em>biking</em> paths. 
+You could implement these as separate methods, e.g.,</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">this</span><span class="o">.</span><span class="na">pathfinder</span><span class="o">.</span><span class="na">computeWalkingPath</span><span class="o">(...)</span>
+
+<span class="k">this</span><span class="o">.</span><span class="na">pathfinder</span><span class="o">.</span><span class="na">computeBikingPath</span><span class="o">(...)</span>
+</code></pre></div></div>
+
+<p>But this can get unwieldy—your pathfinder object is now supporting three behaviours that are, by definition, distinct from each other.
+This may indicate a lack of cohesion.
+Worse, any clients that rely on this pathfinder would have to now have code added to them that can optionally call the correct path finding algorithm.
+Effectively, each new pathfinding strategy you support will also result in a bunch of additions to other classes that need to consume the pathfinding feature.</p>
+
+<p class="callout ponder">What SOLID principle are we violating? How?
+<!-- _We are violating the open/closed principle_. See previous course notes and try to work out how this violates that principle. --></p>
+
+<p>The <strong>Strategy design pattern</strong> tries to solve this problem. It is useful when you have a class that accomplishes a <em>specific task</em> in a lot of different ways, and extract these different algorithms into their own routines are called <em>strategies</em>.</p>
+
+<p>It requires a few pieces:<sup id="fnref:guru" role="doc-noteref"><a href="#fn:guru" class="footnote" rel="footnote">1</a></sup></p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">Strategy</code> interface: This is the common interface to which all your individual strategies will adhere. In this case you might have a <code class="language-plaintext highlighter-rouge">PathingStrategy</code> interface with a <code class="language-plaintext highlighter-rouge">computePath</code> abstract method.</li>
+  <li>Concrete strategy implementations: You could have several classes implement the <code class="language-plaintext highlighter-rouge">PathingStrategy</code> interface. So for example, <code class="language-plaintext highlighter-rouge">DrivingStrategy</code>, <code class="language-plaintext highlighter-rouge">WalkingStrategy</code>, <code class="language-plaintext highlighter-rouge">PublicTransportStrategy</code> would all have their own <code class="language-plaintext highlighter-rouge">computePath</code> implementations.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Client</code>: This is the consumer of the various strategies. The client initialises a <code class="language-plaintext highlighter-rouge">new</code> concrete strategy and uses their <code class="language-plaintext highlighter-rouge">computePath</code> method to achieve this task. Exactly which strategy object is initialised is based on decisions made at runtime (e.g., the user selects a specific strategy). What’s important is that the client’s code doesn’t change when the chosen strategy changes.</li>
+</ul>
+
+<p>So the strategy pattern helps us go from having a bunch of different methods (<code class="language-plaintext highlighter-rouge">computeDrivingPath</code>, <code class="language-plaintext highlighter-rouge">computeWalkingPath</code>, <code class="language-plaintext highlighter-rouge">computeBikingPath</code>) in the same class to having one method implemented (<code class="language-plaintext highlighter-rouge">computePath</code>) in a few different ways. You might be wondering why the latter way is deemed preferable.</p>
+
+<p>With dependency injection, the <code class="language-plaintext highlighter-rouge">Client</code> is able to be totally decoupled from the specific strategy it is using. Without the common <code class="language-plaintext highlighter-rouge">StrategyInterface</code> binding it all together, each new strategy added in the future would require code added in various points in the <code class="language-plaintext highlighter-rouge">Client</code> (everywhere the strategy was used). This problem becomes compounded when the “strategies” have multiple behaviours (e.g., route finding, but also things like checking tolls or estimating time).</p>
+
+<p>When to use the strategy design pattern:</p>
+
+<ul>
+  <li>When you have multiple ways of accomplishing a task and you want to be able to swap between those ways at runtime.</li>
+  <li>You want to isolate details of how an algorithm works from the client that uses it.</li>
+</ul>
+
+<p>Cons of using this pattern:</p>
+
+<ul>
+  <li>It can be overkill for just a couple of strategies. That’s why in project 2 I’ve suggested that you can simply use a <code class="language-plaintext highlighter-rouge">Function</code> object whose value is determined programmitically, instead of creating a <code class="language-plaintext highlighter-rouge">Parser</code> interface with two separate implementations for prefix and postfix notation.</li>
+  <li>Refactoring guru says that another con is that clients must be aware of the differences between strategies in order to select the right one. I don’t think this is a con. This is just the cost of doing business—we wouldn’t have different strategies if there weren’t some difference between them that is noticeable to <em>someone</em>.</li>
+</ul>
+
+<h2 id="command-design-pattern">Command design pattern</h2>
+
+<p>The <strong>Command design pattern</strong> is used to turn a “request” into a standalone object. I’m not going to talk too much about details here because this pattern mostly tries to bring “functions as values” to languages that don’t have that ability.</p>
+
+<p>The classical Command pattern requires two pieces:</p>
+
+<ul>
+  <li>A <code class="language-plaintext highlighter-rouge">Command</code> interface that has an <code class="language-plaintext highlighter-rouge">execute</code> abstract method.</li>
+  <li>Concrete implementations that implement the <code class="language-plaintext highlighter-rouge">execute</code> method.</li>
+</ul>
+
+<p>Voila! You have a function that can be stored in a variable, given to other functions, etc. This is what lambdas let you do in Java. Just use lambdas.</p>
+
+<p>In fact, this is how lambdas are implemented in Java. Each lambda is really an instance of a <em>functional interface</em>; a Java interface that has only one abstract method (e.g., <code class="language-plaintext highlighter-rouge">Function</code>, <code class="language-plaintext highlighter-rouge">Predicate</code>, <code class="language-plaintext highlighter-rouge">Consumer</code>, <code class="language-plaintext highlighter-rouge">Comparator</code>). The only difference is instead of creating a whole new class that implements the interface, just to implement that one function, you use the lambda syntax to concisely implement just the function (which is usually all you care about anyway).</p>
+
+<h3 id="undo-able-operations">Undo-able operations</h3>
+
+<p>One benefit of using the Command pattern (other than all the benefits of functions as values) is that you can support things like <strong>undo-able operations</strong>. Imagine a function that could be <em>applied</em> as well as <em>reversed</em>. You can do this in two ways.</p>
+
+<p>First, each command simply saves a copy of its input. That way its “undo” operation is to return give back that old version (before the <code class="language-plaintext highlighter-rouge">execute</code> function was applied). This is not always feasible.</p>
+
+<p>Another way is to define the <code class="language-plaintext highlighter-rouge">Command</code> interface with an <code class="language-plaintext highlighter-rouge">execute</code> method and also an <code class="language-plaintext highlighter-rouge">undo</code> method. That way each “command” that you create must also define its reverse operation.</p>
+
+<p>In either case, you wouldn’t just use a lambda, since each “command” requires <em>two</em> functions, not just one.
+This is a common operation for <em>database migrations</em>. A database migration is when some change is made to the schema of a database. For example, suppose we’re maintaining Cal Poly’s student management system, and we want to add a field to the <code class="language-plaintext highlighter-rouge">Student</code> table, indicating whether they first enrolled in Cal Poly on the quarter system or the semester system.</p>
+
+<p>In production databases that are in active use and already have live data, a migration is not as simple as tacking on the new column. You need to define what should be done for existing rows in the table. This is what would be defined in the <code class="language-plaintext highlighter-rouge">execute</code> function. You also need to write a “rollback” operation, because you want this change to be <a href="../03-mutability-cohesion-srp/"><em>atomic</em></a>. Your table has millions of rows; if the <code class="language-plaintext highlighter-rouge">execute</code> function fails for some row in the middle, you don’t want to quit now with your table in two inconsistent states. So your <code class="language-plaintext highlighter-rouge">undo</code> function tells the table how to roll back the change.</p>
+
+<p>Undo-able operations are not always possible to support. For example, the old states might be too large to feasibly save for each command. Or the undo operation might be impossible to implement (e.g., encryptions).</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:guru" role="doc-endnote">
+      <p>Note that the Refactoring Guru page on this pattern includes a fourth piece: the <code class="language-plaintext highlighter-rouge">Context</code>. This sits in between the <code class="language-plaintext highlighter-rouge">Client</code> and the <code class="language-plaintext highlighter-rouge">Strategy</code> interface. I…don’t know why they recommend this. There is such a thing as too much abstraction. In this case, the <code class="language-plaintext highlighter-rouge">Context</code> class adds (what I think is) a needless layer between the <code class="language-plaintext highlighter-rouge">Client</code> and the <code class="language-plaintext highlighter-rouge">Strategy</code> interface, so I recommend ignoring that part. <a href="#fnref:guru" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

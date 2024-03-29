@@ -1,0 +1,183 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Multithreading - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/17-threads-concurrency/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Multithreading</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <h2 id="processes">Processes</h2>
+
+<p>A <strong>program</strong> needs computer resources to run. Allocation of these resources is managed by the operating system.</p>
+
+<p>A <strong>process</strong> is a computer program in execution, i.e., a program that’s actually running. Each process has its own memory space. Communication between different processes is possible through <em>Inter-process communication</em> (IPC) resources like pipes and sockets.</p>
+
+<h3 id="process-control-block-pcb">Process control block (PCB)</h3>
+
+<p>Each process is represented in the OS by a <em>process control block</em> (PCB). The PCB contains some information about the process. This is an incomplete list, but here are some important bits of information the PCB keeps track of.</p>
+
+<p><strong>Process ID (PID)</strong> — Each process has a unique ID.</p>
+
+<p><strong>Process State</strong></p>
+
+<ul>
+  <li><strong>New</strong> — process is being created</li>
+  <li><strong>Ready</strong> — Ready to be assigned to a processor to begin running</li>
+  <li><strong>Running</strong> — It’s running</li>
+  <li><strong>Waiting</strong> – It’s waiting for some event or I/O (e.g., <code class="language-plaintext highlighter-rouge">Scanner</code> waiting for user input, waiting to <code class="language-plaintext highlighter-rouge">poll</code> a blocking queue)</li>
+  <li><strong>Terminated</strong> — The process is ended</li>
+</ul>
+
+<p><strong>CPU Scheduling information</strong></p>
+
+<p>Your CPU has a number of processes that need to be executed. It needs to determine the order in which processes will run, and which ones need priority. Moreoever, since processes may be long-running, processes will be allocated some “running time” before running time is given to some other process. The PCB keeps track of the information needed for the CPU to control scheduling of a process.</p>
+
+<p><strong>Memory</strong> — As mentioned above, each process has its own memory space and limits. If you are working on ths Streams lab, you likely ran into these limits.</p>
+
+<p><strong>I/O information</strong> — What I/O devices is the process accessing?</p>
+
+<h2 id="threads">Threads</h2>
+
+<p>A <strong>thread</strong> is the basic unit of CPU utilisation within a process. A process will typically have a “main thread” that handles its computations, and it may spin up additional threads as needed.</p>
+
+<p>Threads are sometimes called “lightweight processes”. Threads within the same process can share the process’s resources, including memory and open files. This makes for efficient communication between multiple threads, but can potentially lead to errors when multiple threads make conflicting requests to the same resources.</p>
+
+<h3 id="why-multi-threading">Why multi-threading?</h3>
+
+<p>A “traditional” process has just a single thread of control. This means it can perform a single task at a time.</p>
+
+<p>While this certainly simplifies issues around synchronisation of multiple threads, this doesn’t take advantage of the fact that most modern computers have multi-core processors. This means our machines have the ability to run do multiple things “at once”.
+This can increase the <em>throughput</em> of our application (i.e., the amount of data our application can process in a given amount of time).</p>
+
+<p>In addition to just increasing throughput by parallelising processing of some data, some applications are simply too complex to run in a single thread.</p>
+
+<p>For example, your web browser manages many tasks at once — downloading a large file in the background, streaming a YouTube video in one tab, keeping Canvas open in another tab (to say nothing of the invisible requests it makes to various entities paying to place ads in front of you). The browser is, ultimately, a running program (a <em>process</em>). If the browser could handle just one thing at a time, our browsing experience would be very different. We’d have to wait for a file to finish downloading before doing anything else, or only use one tab at a time, for example.</p>
+
+<p>Another example is your IDE — it performs syntax highlighting, compilation, SonarLint checking, static analysis, and auto-completion seemingly all at once.</p>
+
+<h3 id="memory-management-in-threads">Memory management in threads</h3>
+
+<p>Java programs are executed by the <em>Java Virtual Machine</em> (JVM). It’s a virtual machine is able to execute Java bytecode (i.e., the format that your Java source code compiles down to). “The JVM” is really a specification detailing what a JVM implementation should do.
+Different vendors might implement their JVMs separately—that’s okay, as long as they adhere to the specification.</p>
+
+<p>In most implementations, the JVM is run as a single process. You can see the process’s PID by doing the following:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">ProcessHandle</span><span class="o">.</span><span class="na">current</span><span class="o">().</span><span class="na">pid</span><span class="o">());</span>
+</code></pre></div></div>
+
+<p>If it is easier to think about, you can more-or-less think about “the JVM” and “your running Java program” interchangeably for the purposes of this discussion. So we will talk about how, within that process, memory is managed and shared among multiple threads owned by that process.</p>
+
+<p>There are three main memory areas in the JVM:</p>
+
+<ol>
+  <li><strong>The method area</strong> is shared among all threads. There is usually one method area per JVM. It stores class-level data like:</li>
+</ol>
+
+<ul>
+  <li>Constants pool — including numeric constants, static constants</li>
+  <li>Method data — method signature, modifiers</li>
+  <li>Method code — bytecodes, info about how much space its local variables take, exceptions, etc.</li>
+</ul>
+
+<ol>
+  <li><strong>The heap area</strong> is also shared among all threads. (This is different from the Heap data structure you’re working on for Project 3.)</li>
+</ol>
+
+<p>This area stores information about <strong>Objects</strong> and their instance variables and arrays.</p>
+
+<p><strong>The method area and heap area are not thread-safe</strong>, since they are shared by all threads.</p>
+
+<ol>
+  <li>Finally, you have the <strong>stack area</strong> (related to the Stack data structure that you’re familiar with.) The <strong>stack area</strong> is not shared; it’s a per-thread resource.</li>
+</ol>
+
+<p>For each thread, when it begins running, a separate runtime Stack is created. The runtime Stack’s job is to store method calls. Each time a method is called, a new entry (called a <strong>stack frame</strong>) is pushed onto the stack. When the method terminates, that Stack frame is removed from the runtime stack and destroyed.</p>
+
+<p>Each stack frame stores information about the method’s local variables and some space for performing operations on those local variables. Primitive variables are stored in the stack frame. For object types, a reference is stored that points to the object’s location in the heap area.</p>
+
+<p>(Unlike the <strong>heap area</strong>, the <strong>stack area</strong>’s name is meaningfully related to the data structure that you know of with the same name.)</p>
+
+<p>That’s why when you go into infinite recursion, you get a <code class="language-plaintext highlighter-rouge">StackOverflowError</code> — the runtime stack for that thread overflowed with too many stack frames, because there were too many method calls. It’s possible to get a <code class="language-plaintext highlighter-rouge">StackOverflowError</code> without recursion.</p>
+
+<p><strong>The stack area is thread-safe</strong>, since it belongs to a single thread.</p>
+
+<h2 id="thread-creation">Thread creation</h2>
+
+<p>As we’ve described, each Java program will begin running with a single thread (a “main” thread). You can create additional threads using the <code class="language-plaintext highlighter-rouge">Runnable</code> interface.</p>
+
+<p>In the code below, the <code class="language-plaintext highlighter-rouge">Demo</code> class is an instance of <code class="language-plaintext highlighter-rouge">Runnable</code>, which means it must implement the <code class="language-plaintext highlighter-rouge">run</code> method.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">run</code> method simply prints the string <code class="language-plaintext highlighter-rouge">"Inside the thread."</code>.</p>
+
+<p>In the main thread, we create a new <code class="language-plaintext highlighter-rouge">Demo</code> object, and assign it to a new <code class="language-plaintext highlighter-rouge">Thread</code>. Then, we <code class="language-plaintext highlighter-rouge">start</code> the thread.</p>
+
+<p><strong>Can you predict the order in which the two print statements will execute?</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Demo</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Demo</span> <span class="n">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Demo</span><span class="o">();</span>
+        <span class="nc">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+        <span class="n">t1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"After the thread has finished executing."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Inside the thread."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Instead of creating a <code class="language-plaintext highlighter-rouge">Runnable</code> object, you can also create a class and directly extend the <code class="language-plaintext highlighter-rouge">Thread</code> class. You’ll still need to extend the <code class="language-plaintext highlighter-rouge">run</code> method.</p>
+
+<h2 id="the-thread-api">The <code class="language-plaintext highlighter-rouge">Thread</code> API</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Thread::start</code> — an instance method that you call on a <code class="language-plaintext highlighter-rouge">Thread</code> object. It starts the given thread — when it runs is up to the OS scheduler. A thread can be started at most once. You can’t call <code class="language-plaintext highlighter-rouge">start</code> on a thread that has already been started.</li>
+  <li><code class="language-plaintext highlighter-rouge">Thread.sleep</code> — a static method that tells the current thread (whether it is the main thread or some other thread that was started later) to sleep for a specified amount of time.
+    <ul>
+      <li>This is a way of making processor time available to the other threads of an application that might be running on the same system</li>
+      <li>The sleep method can also be used for pacing of threads</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Thread::join</code> — an instance method that you all on a <code class="language-plaintext highlighter-rouge">Thread</code> object. If a currently running thread calls <code class="language-plaintext highlighter-rouge">t.join()</code> (where <code class="language-plaintext highlighter-rouge">t</code> is a started <code class="language-plaintext highlighter-rouge">Thread</code> object), the currently running thread is made to pause execution until <code class="language-plaintext highlighter-rouge">t</code> terminates. It’s a way of pacing threads without using <code class="language-plaintext highlighter-rouge">sleep</code>.</li>
+</ul>
+
+<p>In the next class, we’ll talk about synchronising threads so they work with shared data safely and correctly.</p>
+
+<hr />
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

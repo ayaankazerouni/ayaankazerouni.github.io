@@ -1,0 +1,179 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Designing for testability - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/07-designing-for-testability/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Designing for testability</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <p>Sources:</p>
+
+<p>Chapters from <em><a href="https://www.manning.com/books/effective-software-testing">Effective Software Testing</a></em> (Aniche):</p>
+
+<ul>
+  <li>Chapter 6 Test doubles and mocks</li>
+  <li>Chapter 7 Designing for testability</li>
+</ul>
+
+<h2 id="outline">Outline</h2>
+
+<ul>
+  <li>unit testing — what is a “unit”? Why do test units in isolation?</li>
+  <li>sometimes modules depend on each other, and we want to test units in isolation without testing their dependencies in isolation</li>
+</ul>
+
+<p><img src="transitive-deps.png" alt="Challenges faced when testing a class that depends on many other classes" /></p>
+
+<p><small>Figure reproduced from Chapter 6.</small></p>
+
+<p>In the above example, if want to test the <code class="language-plaintext highlighter-rouge">A</code> module, would also need instances of modules <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code>, which would require their dependencies to initialised, and so on. This is a lot of work to just test the module we wanted to test in the first place!</p>
+
+<h2 id="testing-and-dependency-injection">Testing and dependency injection</h2>
+
+<p>A common strategy is to create <em>fake</em> <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code> objects and inject them into <code class="language-plaintext highlighter-rouge">A</code> for the purpose of a given test. The fake <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code> modules are given “hard-coded” behaviour. We’re pretending that they work as expected <em>in the context of a particular test case</em>, so we can focus our assertions on the behaviour of module <code class="language-plaintext highlighter-rouge">A</code>.</p>
+
+<p>Some advantages of this are:</p>
+
+<ul>
+  <li><strong>Control</strong>. There’s no need for complicated setup steps to induce specific behaviours that need to be tested. We can directly tell the fake objects what they should do.</li>
+  <li><strong>Speed</strong>. For classes that interact with external resources (web server, databases, files), it’s much faster to instead interact with a fake in-memory replica of the real thing.</li>
+  <li><strong>Design</strong>. This style of testing causes us to be reflective about our design and the interdependencies among our classes. All of this is only possible if you allow clients to <em>inject</em> dependencies when initialising modules. For example, what if module <code class="language-plaintext highlighter-rouge">A</code> was responsible for initialising modules <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code> itself?</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nf">A</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="no">B</span> <span class="n">b</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="no">C</span> <span class="n">c</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">A</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="k">new</span> <span class="no">B</span><span class="o">();</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">c</span> <span class="o">=</span> <span class="k">new</span> <span class="no">C</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the code above, all instantiations of <code class="language-plaintext highlighter-rouge">A</code> would require “full” or “real” instantiations of <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code> objects. But if we were to use <em>dependency injection</em>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nf">A</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="no">B</span> <span class="n">b</span><span class="o">;</span> <span class="c1">// Use an abstract type </span>
+  <span class="kd">private</span> <span class="no">C</span> <span class="n">c</span><span class="o">;</span> <span class="c1">// Use an abstract type</span>
+
+  <span class="kd">public</span> <span class="nf">A</span><span class="o">(</span><span class="no">B</span> <span class="n">b</span><span class="o">,</span> <span class="no">C</span><span class="o">,</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Now in our tests, we can initialise our <code class="language-plaintext highlighter-rouge">A</code> object like this:</p>
+
+<p><code class="language-plaintext highlighter-rouge">new A(new FakeB(), new FakeC())</code></p>
+
+<p><strong>There are a few different ways to inject simpler “doubles” for testing.</strong></p>
+
+<p><strong>Fake objects</strong> have working, but much simpler, implementations of the classes they simulate. For example, a fake database might provide the same functionality as the real thing, but use an <code class="language-plaintext highlighter-rouge">ArrayList</code> instead of a full MySQL database. Developers in real-life often use simpler databases for testing. For example, Java developers like to HyperSQL database (HSQLDB), an in-memory database, for testing.</p>
+
+<p><strong>Stubs and mocks</strong> provide hard-coded answers to all method calls performed during a test. For example, suppose you call <code class="language-plaintext highlighter-rouge">getAllInvoices</code> in an invoice tracking application. The method will return a hard-coded list of invoices, used only for testing. This is a common strategy, because often all you need from a dependency is for it to return a value that your system-under-test will use. Some mocking libraries also let you do checks like verifying that a method was only called once, or that methods were never called with particular arguments.</p>
+
+<p><em><a href="https://site.mockito.org/">Mockito</a></em> is a popular mocking and stubbing library for Java.</p>
+
+<h2 id="example">Example</h2>
+
+<p>The author of <em>Effective Software Testing</em>, Maurício Aniche, has kindly made <a href="https://github.com/effective-software-testing/code/tree/main">all his code examples available on GitHub</a>. We’ll look at a quick example of using Mockito to stub out a dependency. Specifically, we are looking at the following:</p>
+
+<ul>
+  <li><a href="https://github.com/effective-software-testing/code/tree/main/ch6/src/main/java/ch6/stub">Code</a></li>
+  <li>Tests
+    <ul>
+      <li><a href="https://github.com/effective-software-testing/code/blob/main/ch6/src/test/java/ch6/stub/InvoiceFilterWithDatabaseTest.java">Without mocks</a></li>
+      <li><a href="https://github.com/effective-software-testing/code/blob/main/ch6/src/test/java/ch6/stub/InvoiceFilterTest.java">With mocks</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="key-things-to-look-at-in-the-source-code">Key things to look at in the source code</h3>
+
+<ul>
+  <li>First, take a second to peruse the code. We’ve got a number of interacting classes:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">DatabaseConnection</code></li>
+      <li><code class="language-plaintext highlighter-rouge">Invoice</code></li>
+      <li><code class="language-plaintext highlighter-rouge">InvoiceFilter</code> (<code class="language-plaintext highlighter-rouge">InvoiceFilterWithDatabase</code> is provided as a “bad” example, where it requires the database to be initialised)</li>
+      <li><code class="language-plaintext highlighter-rouge">IssuedInvoices</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p>If we wanted to test the <code class="language-plaintext highlighter-rouge">InvoiceFilter</code> class, we would need to initialise a <code class="language-plaintext highlighter-rouge">DatabaseConnection</code> object and use that to initialise an <code class="language-plaintext highlighter-rouge">IssuedInvoices</code> object. You see that in the <a href="https://github.com/effective-software-testing/code/blob/main/ch6/src/test/java/ch6/stub/InvoiceFilterWithDatabaseTest.java"><code class="language-plaintext highlighter-rouge">InvoiceFilterWithDatabaseTest.java</code></a> file. Before each test case, a new database connection must be established (and reset so that each test gets a fresh DB).</p>
+
+<p>Now imagine a larger class with a more complex (i.e., more realistic) database schema. And recall our discussion about systematically choosing a thorough (“requirements covering”) set of test inputs. Our tests would get untenably complicated to setup, and untenably slow to run. All because we have to initialise and setup a dependency (<code class="language-plaintext highlighter-rouge">DatabaseConnection</code>) that’s not the focus of our testing in the first place!</p>
+
+<p><strong>Using a stub object</strong>. Now take a look at <a href="https://github.com/effective-software-testing/code/blob/main/ch6/src/main/java/ch6/stub/InvoiceFilter.java"><code class="language-plaintext highlighter-rouge">InvoiceFilter</code></a>. The constructor takes a parameter <code class="language-plaintext highlighter-rouge">IssuedInvoices</code>, which it uses to initialise the dependency in the class. Now, a client using the class has to <em>inject</em> an <code class="language-plaintext highlighter-rouge">IssuedInvoices</code> object into the <code class="language-plaintext highlighter-rouge">InvoiceFilter</code> class. In this case, the “client” that’s using the module is our tests. As a result of this change, the <code class="language-plaintext highlighter-rouge">InvoiceFilter</code> has no need for a <code class="language-plaintext highlighter-rouge">DatabaseConnection</code> dependency, and we can simplify away large swathes of that behaviour.</p>
+
+<p>Take a look at <a href="https://github.com/effective-software-testing/code/blob/main/ch6/src/test/java/ch6/stub/InvoiceFilterTest.java"><code class="language-plaintext highlighter-rouge">InvoiceFilterTest</code></a>. The amount of code you’re writing is more or less the same, but without the slow DB connection and without persisting information to a database that needs to be cleared between test runs. Also, crucially, the stubbing away of the database connection means that bugs there wouldn’t affect these tests. We are implicitly assuming here that the database connection has been tested in isolation as well.</p>
+
+<h2 id="to-mock-or-not-to-mock-that-is-the-question">To mock or not to mock? That is the question</h2>
+
+<p>Mocking makes your tests less realistic. Your tests are relying some imaginary object that will never exist in real usage of your system. The lack of coupling between modules that you are afforded by your mock objects can actually lead you astray.</p>
+
+<p>For example, suppose you have modules <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>. In the tests for <code class="language-plaintext highlighter-rouge">A</code>, you have mocked the behaviour of <code class="language-plaintext highlighter-rouge">B</code>. In some future change, the postconditions assured by <code class="language-plaintext highlighter-rouge">B</code> change due to changes in your requirements. Typically, when you make changes to <code class="language-plaintext highlighter-rouge">B</code>, you would also update tests for <code class="language-plaintext highlighter-rouge">B</code>. But it would be easy to forget to check if <code class="language-plaintext highlighter-rouge">A</code> handles these changes well. Your tests for <code class="language-plaintext highlighter-rouge">A</code> would pass with no problems, because were relying on an “assumed good” version of <code class="language-plaintext highlighter-rouge">B</code> that is now out of date.</p>
+
+<p>Like all tools, there are specific good times to use mocking:</p>
+
+<ul>
+  <li><strong>Slow dependencies</strong>. Databases, web services, etc.</li>
+  <li><strong>External infrastructure</strong>. Regardless of speed, it may be too complicated to setup and tear down connections to external infrastructure.</li>
+  <li><strong>Cases that are hard to simulate.</strong> A common case is when you want the dependency to throw an exception. If you’ve written your code defensively enough, it can be difficult to come up with scenarios that would cause a module to crash with an exception. Mocks can help you force these exceptions and test that your code handles the exceptions gracefully.</li>
+</ul>
+
+<p>You should NOT mock types that you don’t have control over (e.g., from external libraries). If that library ever changes, your tests would happily continue passing, because they rely on an idealised version of it.</p>
+
+<h2 id="designing-for-testability">Designing for testability</h2>
+
+<p>Many rules about software design in general also apply to designing for testability. So I won’t repeat them in too much detail.</p>
+
+<p>We talk about “designing for testability” (i.e., designing so that testing is easier), but we can also think about things in the opposite direction. If testing difficulties arise like the ones below, that is often good feedback for you about your software’s design.</p>
+
+<ul>
+  <li><strong>Non-cohesive classes can lead to giant test suites</strong>. Naturally, since the class is covering many responsibilities. If you find yourself frequently coming back to the same test suite to add more tests for new functionality, that may be a hint that the class (and its tests) and handling too many responsibilities. It may be time to break it up.</li>
+  <li><strong>Tightly coupled classes result in tests that are difficult to set up.</strong> In some ways, excessive use of mocking libraries like Mockito are a symptom of classes that are coupled with so many dependencies that it becomes difficult to test things in isolation. Decoupling individual pieces of logic result in testable isolated modules—and then perhaps you use mocking where this removal is not possible or feasible. (I.e., at some point, some class will have connect to a database. Isolate that requirement.)</li>
+  <li><strong>Complex conditions</strong>. With large compound conditions, we have already seen that the space of possible inputs can easily blow up, especially if we’re trying to satisfy adequacy criteria like branch coverage. You can refactor your code to remove or combine conditions.</li>
+  <li><strong>Private methods.</strong> In general private methods should be tested through the public methods they support. If it does something too complex or separate from the public methods that use it (e.g., it’s a utility that many methods are using), that’s a good sign that the method does not belong in its current place. It may be time to refactor it into a separate class, where it can be public and testable.</li>
+  <li><strong>Observability</strong>. You need to be able to observe an object’s state in order to test it. Does this mean you need to provide getters for <em>all</em> fields in the object? Not necessarily. Just like with private methods, you can often “test” private fields through other means—for example, through public functions that internally use those fields. For example, the <code class="language-plaintext highlighter-rouge">String</code> class has a number of private fields that are not exposed in any way (e.g., a boolean flag indicating whether the string uses UTF-8 encoding or not; or a uuid for serialisation).</li>
+</ul>
+
+<hr />
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

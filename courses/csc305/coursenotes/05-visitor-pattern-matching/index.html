@@ -1,0 +1,267 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Visitor design pattern - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/05-visitor-pattern-matching/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Visitor design pattern</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <h2 id="topics-for-today">Topics for today</h2>
+
+<ul>
+  <li>Project 1 design discussion</li>
+  <li>Design patterns overview and composite design review</li>
+  <li>Visitor design pattern</li>
+  <li>Pattern matching and sealed types</li>
+</ul>
+
+<h2 id="design-patterns">Design patterns</h2>
+
+<p><strong>Design patterns</strong> are general, re-usable solutions to commonly occurring problems within a given context in software design. They offer templates to solve problems that can be used in multiple contexts.</p>
+
+<p>For example, last week we talked about the Composite design pattern. Recall that the Composite pattern is useful when you need to provide some functionality for a tree-like structure. It turns out that this “pattern” is applicable to a number of different problem contexts. Some examples that we talked about are:</p>
+
+<ul>
+  <li>Traversing an HTML document</li>
+  <li>Reading files and folders in a file system</li>
+  <li>Performing tree operations in a <a href="https://opendsa-server.cs.vt.edu/OpenDSA/Books/Everything/html/Bintree.html">Bintree</a></li>
+  <li>Evaluating an <em>expression tree</em> (like you are doing in Project 1)</li>
+</ul>
+
+<p>In 1994, a group of four authors wrote what was to become a famous book about Design Patterns (titled <em>Design Patterns</em>). The book describes three broad classes of Design Patterns:</p>
+
+<ul>
+  <li>Behavorial Patterns: identifying common communication patterns between objects and realizing these patterns</li>
+  <li>Structural Patterns: organizing different classes and objects to form larger structures and provide new functionality</li>
+  <li>Creational Patterns: provide the capability to create objects based on a required criterion and in a controlled way</li>
+</ul>
+
+<p>The Composite pattern is billed as a “Structural” pattern, because it involves organising your modules into a tree structure (which presumably makes sense for that problem context).</p>
+
+<h2 id="visitor-design-pattern">Visitor design pattern</h2>
+
+<p>The <strong>Visitor design pattern</strong> is a “behavioural” pattern. It makes sense when the you need perform some task on all objects in a complex structure (like a graph or a tree). The underlying classes get “visited” by some code which executes on each object in the structure.</p>
+
+<p>At this point, you may wonder about the difference between the Visitor pattern and the Composite pattern. It’s true, they’re similar in focus and intent. Let’s consider an example.</p>
+
+<h3 id="example-use-case-of-visitor-design">Example use-case of Visitor Design</h3>
+
+<p>(Example from <a href="https://refactoring.guru/design-patterns/visitor">Refactoring Guru</a>)</p>
+
+<p>Suppose you’re working on an app that maintains a large graph of geographical information. Each node represents an complex entity in the graph, like a city, sightseeing area, industry, shopping mall, etc. Depending on its type, each node has various details that make up its internal state, but everything is a “node” in the graph.</p>
+
+<p>You’re asked to export the entire graph to some format, like XML. This is a pretty common ask: you often want to transmit data in some language-agnostic format so that different subsystems can operate on the same data.</p>
+
+<p>Each different type of node in the graph will need to write out its salient details, meaning that the “export” operation looks different for each node. Moreover, the export of one node (like a <code class="language-plaintext highlighter-rouge">SightseeingArea</code>) might lead to the export of its other component nodes (like a <code class="language-plaintext highlighter-rouge">Museum</code> or a <code class="language-plaintext highlighter-rouge">Landmark</code>). So, like we did with Composite design, we could make use of polymorphism and recursion to implement an “export to XML” function for each type of node.</p>
+
+<p class="callout ponder">What are some drawbacks of adding the XML export behaviour to the existing graph nodes?</p>
+
+<ul>
+  <li>It requires us to modify an existing, fairly complex data structure that is already in production. Bugs in the new code would impact existing users.</li>
+  <li>The graph’s primary purpose is model geographic data. An argument can be made that an XML export function would reduce the class’s cohesion.</li>
+  <li>What if somewhere down the line we wanted to export the graph as JSON, another commonly used format for representing structured data? We would need to further modify the nodes in our graph, further exposing existing uses to potentially buggy behaviour, or even requiring further changes in clients to support the new change.</li>
+</ul>
+
+<p>The <strong>Visitor pattern</strong> helps us <em>extend</em> our graph to give it XML export behaviour, without <em>modifying</em> it. It lets us adhere to the <strong>Open/closed principle</strong> (the “O” in the SOLID principles of software design).</p>
+
+<p>I like to think about the Visitor design pattern as the Composite pattern, but from the <em>outside</em> of the object structure instead of from the <em>inside</em>.</p>
+
+<p>A nice added benefit of not coupling your extension to the entire object structure is that you can use the Visitor pattern when some action makes sense for only <em>some</em> objects in the larger structure, but not <em>all</em>.</p>
+
+<p>We’ll go over the basic structure of the Visitor pattern and then look at a real-world example.</p>
+
+<h3 id="implementing-the-visitor-design-pattern">Implementing the visitor design pattern</h3>
+
+<p>There are 5 pieces involved in implementing the visitor pattern</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">Element</code>s</strong>. these are the objects that make up the complex structure for which you want to accomplish some task. E.g., nodes in your expression tree, locations in our geographical graph, etc. Ideally, the nodes in the object structure are extensions or implementations of a common <code class="language-plaintext highlighter-rouge">Element</code> interface.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">accept</code> method</strong>. The <code class="language-plaintext highlighter-rouge">Element</code> interface must have a method to “accept” a visitor, and each subtype of <code class="language-plaintext highlighter-rouge">Element</code> must implement this method.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Element</span> <span class="o">{</span>
+  <span class="kt">void</span> <span class="nf">accept</span><span class="o">(</span><span class="nc">Visitor</span> <span class="n">visitor</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SightseeingArea</span> <span class="kd">implements</span> <span class="nc">Element</span> <span class="o">{</span>
+  <span class="c1">// location-specific stuff...</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accept</span><span class="o">(</span><span class="nc">Visitor</span> <span class="n">visitor</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">visitor</span><span class="o">.</span><span class="na">visit</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<p class="callout ponder">If we have <code class="language-plaintext highlighter-rouge">default</code> methods in Java, why can’t we fully implement the <code class="language-plaintext highlighter-rouge">accept</code> method in the <code class="language-plaintext highlighter-rouge">Element</code> interface itself? Why do we need to implement it in each concrete class?</p>
+
+<ul>
+  <li><strong>A  <code class="language-plaintext highlighter-rouge">Visitor</code> interface</strong>. The <code class="language-plaintext highlighter-rouge">Visitor</code> has abstract (unimplemented) methods to visit each possible type of node. That is, in the geographical graph example, the <code class="language-plaintext highlighter-rouge">Visitor</code> might look something like this:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Visitor</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">SightseeingArea</span> <span class="n">node</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">Museum</span> <span class="n">node</span><span class="o">);</span>
+    <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">Landmark</span> <span class="n">node</span><span class="o">);</span>
+    <span class="c1">// ... overloaded for all types of nodes </span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Concrete visitor</strong>. Now you have the machinery in place to perform <em>some arbitrary operation</em> on <em>all or some nodes in an object structure</em>. In our running example, that “arbitrary” operation is to export the node to an XML string. We can write a concrete visitor class to do this:</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">XMLExportVisitor</span> <span class="kd">implements</span> <span class="nc">Visitor</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">SightseeingArea</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// export the SightseeingArea </span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">Museum</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// export the Museum </span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">visit</span><span class="o">(</span><span class="nc">Landmark</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// export the Museum </span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p class="callout ponder">What if, in a particular Visitor, I only care about visiting some types of nodes and not others? Currently, I would need to implement a bunch of “no-op” methods because I’m forced to implement them by the <code class="language-plaintext highlighter-rouge">Visitor</code> interface.</p>
+
+<ul>
+  <li><strong>Client</strong>. With the above machinery in place, the client can kick off a visitor to perform some operation on the object structure.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Visitor</span> <span class="n">visitor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">XMLExportVisitor</span><span class="o">();</span>
+<span class="k">for</span> <span class="o">(</span><span class="nc">Element</span> <span class="n">current</span> <span class="o">:</span> <span class="k">this</span><span class="o">.</span><span class="na">locations</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">current</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">visitor</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="a-real-world-example">A real-world example</h3>
+
+<p>A few years ago, I was conducting some analysis on the source code of a number of Java projects written by students.
+I wrote code to read in the code of hundreds of projects and emit some data for analysis.</p>
+
+<p>Using the Eclipse Java Development Tools (JDT) API, I parsed students’ code into <a href="https://astexplorer.net/">Abstract Syntax Trees</a> (ASTs), and then “visited” certain nodes of interest in these resulting trees.</p>
+
+<p>Because I used the JDT API to create the object structure (the AST), I only had to write the Visiting code.
+See <a href="https://github.com/ayaankazerouni/incremental-testing/blob/master/src/visitors/ast/MethodASTVisitor.java">this file</a> as an example of a visitor.</p>
+
+<p>In summary, the code visits <code class="language-plaintext highlighter-rouge">MethodDeclarations</code> and <code class="language-plaintext highlighter-rouge">MethodInvocations</code>, i.e., all the places methods are defined or called in the codebase, because that’s what I was interested in for that particular analysis.</p>
+
+<p>Some things to note in this example are:</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">MethodASTVisitor</code> has state of its own. It’s a compound object in its own right that persists some state across visits (i.e., it accumulates some data about when methods were defined and when they were invoked in test cases).</li>
+  <li>I am not overriding the <code class="language-plaintext highlighter-rouge">visit</code> method for <em>all</em> possible types of nodes. (<a href="https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.jdt.doc.isv%2Freference%2Fapi%2Forg%2Feclipse%2Fjdt%2Fcore%2Fdom%2Fpackage-summary.html">A pretty large list.</a>) That’s because, unlike the examples we’ve talked about thus far, the <code class="language-plaintext highlighter-rouge">ASTVisitor</code> I’m extending defines empty <code class="language-plaintext highlighter-rouge">visit</code> methods for all the different types of nodes available, and I only need to override the ones I want to use.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">visit</code> methods are returning <code class="language-plaintext highlighter-rouge">boolean</code>s; they are not <code class="language-plaintext highlighter-rouge">void</code> methods. The structure of an <code class="language-plaintext highlighter-rouge">ASTNode</code> is such that it can be broken down further into further <code class="language-plaintext highlighter-rouge">ASTNode</code>s (much like a composite tree). The return value basically tells the objects whether they should “go further” with this visitor or end the path at this node. If everything returns <code class="language-plaintext highlighter-rouge">true</code>, then the entire AST gets visited, which may be a waste.</li>
+</ul>
+
+<h3 id="visitor-pattern-using-pattern-matching">Visitor pattern using pattern matching</h3>
+
+<p><strong>TODO:</strong> Pattern matching has shipped in Java 21.</p>
+
+<p>In my personal opinion, the Visitor pattern is one of the more clunky design patterns to implement in Java. This is mostly due to a lack of expressive language constructs.</p>
+
+<p>Thankfully, <em>pattern matching</em>, a feature common in functional languages like OCaml, <a href="https://openjdk.org/jeps/441">is now available in Java as well</a>.</p>
+
+<h4 id="pattern-matching">Pattern matching</h4>
+
+<p>In the Visitor example above, we’ve written a <code class="language-plaintext highlighter-rouge">Visitor</code> interface that contains several <code class="language-plaintext highlighter-rouge">visit</code> method overloads, one for each type of <code class="language-plaintext highlighter-rouge">Element</code> we might want to visit.
+Then in our <code class="language-plaintext highlighter-rouge">XMLExportVisitor</code>, we include implementations for each <code class="language-plaintext highlighter-rouge">visit</code> method.
+This is…pretty unwieldy.</p>
+
+<p>However, with <em>pattern matching</em>, we can write a “visitor” much more concisely, as just a function instead of an interface and a class.
+All we need to ensure is that our visitor knows how to visit all possible types of <code class="language-plaintext highlighter-rouge">Element</code>s.</p>
+
+<p>The code below is using pattern matching to match the <code class="language-plaintext highlighter-rouge">current</code> variable with the appropriate case, depending on its type.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">exportXML</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Element</span><span class="o">&gt;</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Element</span> <span class="n">current</span> <span class="o">:</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">current</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="nc">SightseeingArea</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting sightseeing area"</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nc">Landmark</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting landmark"</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nc">Museum</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting museum"</span><span class="o">);</span>
+            <span class="k">default</span> <span class="o">-&gt;</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">IllegalStateException</span><span class="o">(</span><span class="s">"Element is something I didn't expect"</span><span class="o">);</span>
+            <span class="c1">// This code won't compile unless all possible types are accounted for</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The compiler requires that switch pattern matching has exhaustive <strong>type coverage</strong>.
+That is, there shouldn’t be a possible value where our visitor doesn’t know what to do.
+However, our compiler does not know <em>all possible</em> implementing subclasses of <code class="language-plaintext highlighter-rouge">Element</code>, so is always going to err on the side of caution, and refuse to compile this switch expression.</p>
+
+<p>To satisfy the compiler, we’ve stuck a <code class="language-plaintext highlighter-rouge">default</code> at the end and thrown an exception.
+The <code class="language-plaintext highlighter-rouge">default</code> is kind like the <code class="language-plaintext highlighter-rouge">else</code> of that <code class="language-plaintext highlighter-rouge">switch</code> expression—that is, we are saying “for anything that’s not a <code class="language-plaintext highlighter-rouge">SightseeingArea</code>, <code class="language-plaintext highlighter-rouge">Landmark</code>, or <code class="language-plaintext highlighter-rouge">Museum</code>, throw an error.</p>
+
+<p class="callout ponder">What do you think of this strategy?</p>
+
+<p>By using a <code class="language-plaintext highlighter-rouge">default</code> at the end, we would simply be taking that potential type error (i.e., we tried to export a thing for which no export logic is implemented), and moving it from compile time to run time.
+It’s always better to face type errors at compile time rather than run time, because facing them at run time involves doing nothing, crashing the program, or doing something unexpected.</p>
+
+<p>So, how do we achieve type coverage without using <code class="language-plaintext highlighter-rouge">default</code>?</p>
+
+<h4 id="sealed-types"><a href="https://docs.oracle.com/en/java/javase/21/language/sealed-classes-and-interfaces.html">Sealed types</a></h4>
+
+<p><strong>We can achieve this using <a href="https://docs.oracle.com/en/java/javase/21/language/sealed-classes-and-interfaces.html"><code class="language-plaintext highlighter-rouge">sealed</code> types</a>.</strong>
+The idea behind <code class="language-plaintext highlighter-rouge">sealed</code> types is simple.
+We can mark a class or interface as <code class="language-plaintext highlighter-rouge">sealed</code> if we want to limit which classes or interfaces can extend it.</p>
+
+<p>In the code below, we are sealing the <code class="language-plaintext highlighter-rouge">Element</code> interface, saying that it can only be implemented by the named classes.</p>
+
+<p>Remember that we <em>want</em> compiler hints about type errors.
+The <code class="language-plaintext highlighter-rouge">sealed</code> declaration tells the compiler that “these are the only things that will ever implement this interface”.
+Essentially, we are “helping the compiler help us”.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">sealed</span> <span class="kd">interface</span> <span class="nc">Element</span> <span class="n">permits</span> <span class="nc">Landmark</span><span class="o">,</span> <span class="nc">SightseeingArea</span><span class="o">,</span> <span class="nc">Museum</span> <span class="o">{</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The compiler can now be satisfied <strong><em>without</em></strong> the <code class="language-plaintext highlighter-rouge">default</code> case in the switch expression, because it knows that we have achieved type coverage.</p>
+
+<p>This use of pattern matching is well-described in <em><a href="https://nipafx.dev/java-visitor-pattern-pointless/">Visitor Pattern Considered Pointless — Use Pattern Switches Instead</a></em>, though I disagree with the title.</p>
+
+<p>I don’t think pattern matching renders the Visitor pattern “pointless”: it just changes what it looks like.
+As we talk about more design patterns, remember that they can exist both within and without Java-specific features like interfaces and abstract classes.
+Design patterns are <em>ideas</em>, <em>templates</em> to help solve or think about software problems, and they can exist without any particular programming language in mind.</p>
+
+<hr />
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

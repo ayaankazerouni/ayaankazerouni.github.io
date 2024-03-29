@@ -1,0 +1,224 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Coupling and encapsulation - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/02-coupling/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Coupling and encapsulation</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <h2 id="pre-class-stuff">Pre-class stuff</h2>
+
+<p>Most recent CS course you’ve taken?</p>
+
+<ul>
+  <li>CSC 308</li>
+  <li>CSC 309</li>
+  <li>CSC 307</li>
+  <li>CSC 203</li>
+  <li>CSC 357</li>
+</ul>
+
+<p>Java topics needing review?</p>
+
+<ul>
+  <li>Data types</li>
+  <li>Classes</li>
+  <li>Objects</li>
+  <li>instance vs. static</li>
+  <li><code class="language-plaintext highlighter-rouge">this</code></li>
+  <li>inheritance (<code class="language-plaintext highlighter-rouge">extends</code> and <code class="language-plaintext highlighter-rouge">implements</code>)</li>
+</ul>
+
+<hr />
+
+<p>Coupling is the degree to which two or modules are related to/depend on each other’s current implementations. In general we want <em>loose</em> coupling (or “less” coupling). This is not unique to software; the idea is applicable to any complex systems with multiple interacting modules.</p>
+
+<h2 id="a-non-software-example">A non-software example</h2>
+
+<p>Consider the design of a Formula 1 car (or really, a regular car, but Formula 1 makes the example more exciting). It’s got a huge number of parts designed and built by hundreds or thousands of engineers. For example, you have:</p>
+
+<ul>
+  <li>Tyres</li>
+  <li>Steering wheel</li>
+  <li>Front/rear wings</li>
+  <li>Engine</li>
+  <li>Gearbox etc.</li>
+  <li>Safety features on the chassis</li>
+</ul>
+
+<p>Each of these modules is crucial for the car to continue functioning — the car can’t turn at high speeds without a front or rear wing, it can’t turn <em>at all</em> without a steering wheel, and it certainly can’t go anywhere without an engine. So all of these parts work harmoniously together to give us all that on-track action.</p>
+
+<p>Sometimes, these pieces may stop working as well as we need them to. For example, you may have a tyre puncture, or you have lost a wing of your car.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=wsCriICZ-nA">your tyres are very old and need changing</a></li>
+  <li><a href="https://www.youtube.com/watch?v=GKm59ktOeI0">your front wing has fallen off</a></li>
+  <li><a href="https://www.youtube.com/watch?v=QGV3FTGUvSs">electronics on your steering wheel aren’t working any more</a>.</li>
+</ul>
+
+<p>If these modules are <em>tightly coupled</em> they have to change together.
+Put another way, if one module has to change, so do the others that are coupled with it, because they depend on each other’s <em>current implementations</em>. To put it in terms of the car, if the gear-changing system on the steering wheel was tightly bound to the actual gearbox, Lewis Hamilton’s race would have ended right there and then.
+One part needing changing would have rendered the entire system unusable.</p>
+
+<p>The reason F1 pit teams are able to swap out an alarming number of parts of the car during a race is that these individual components make up mostly unrelated modules. That is, the modules are <em>loosely coupled</em> with each other.</p>
+
+<p>When modules are <em>loosely coupled</em>, they are mostly independent. This does not mean they don’t work together to enable the system as a whole to function; it just means that individual modules can be updated (or even swapped out entirely!) without other modules noticing, as long as they adhere to the same <em>interface</em>.</p>
+
+<p>When I say <em>interface</em> above, I don’t (necessarily) mean the <code class="language-plaintext highlighter-rouge">interface</code> construct in object-oriented languages like Java. I mean it more generally as “the surface where two systems interact”. In the F1 cars example, it’s whatever nuts and bolts the front wing (or the new tyres, or the new steering wheel) is expected to tighten into.</p>
+
+<p>In software, the “interface” is made up of the public fields and functions that a module exposes. In Java, this means <code class="language-plaintext highlighter-rouge">public</code> variables and <code class="language-plaintext highlighter-rouge">public</code> methods in classes. What happens inside those public methods cannot and should not be relied upon by clients, as long as the function’s effect/result is as intended.</p>
+
+<h2 id="reducing-coupling-in-software">Reducing coupling in software</h2>
+
+<p>There are many strategies for reducing coupling in software. The small-ish demos we look at now will be in Java, but these concepts (and most of what we talk about this quarter) are not limited to Java or object-oriented programming.</p>
+
+<p><strong>EJ15: Minimise the accessibility of classes and members</strong></p>
+
+<p><em>Encapsulation</em> (information hiding) — a module’s internal information is hidden from the rest of the world. The idea behind this is simple; the less information a module exposes to the <em>other</em> modules, the less those other modules can rely on this internal information.</p>
+
+<p><a href="https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/lang/String.java">So for example, consider the <code class="language-plaintext highlighter-rouge">String</code> class in Java</a>. The <code class="language-plaintext highlighter-rouge">String</code> class is an <em>abstraction</em>, that is, it’s a simplification or a generalisation of the concrete underyling data, which is simply a character array (<code class="language-plaintext highlighter-rouge">char[]</code>). If each time we wanted to deal with variable length text in our programs, we had to build and reason about an array of individual characters, things would get messy quickly. Hence the abstraction.</p>
+
+<p>However, our code that uses Strings rarely has to grapple the fact that there is an underlying array of characters. This information is hidden from all other classes.</p>
+
+<p>We do this by making internal fields (data members, instance variables, attributes, etc.) <em>private</em> and inaccessible to the outside world.
+If classes need access to that data, we make <code class="language-plaintext highlighter-rouge">public</code> accessor methods available—the advantage is that this lets us control <em>who</em> accesses our data and <em>how</em>. Those <code class="language-plaintext highlighter-rouge">public</code> accessor methods form the “public interface” that we expose to other modules.</p>
+
+<p>This leads into our next strategy.</p>
+
+<p><strong>EJ64: Favour interfaces over classes for parameter type</strong></p>
+
+<ul>
+  <li>E.g., <code class="language-plaintext highlighter-rouge">List&lt;String&gt;</code> instead of <code class="language-plaintext highlighter-rouge">ArrayList&lt;String&gt;</code> or <code class="language-plaintext highlighter-rouge">LinkedList&lt;String&gt;</code></li>
+  <li>Similarly <code class="language-plaintext highlighter-rouge">Map</code> instead of <code class="language-plaintext highlighter-rouge">HashMap</code> – you can replace <code class="language-plaintext highlighter-rouge">HashMap</code> with <code class="language-plaintext highlighter-rouge">TreeMap</code>, <code class="language-plaintext highlighter-rouge">ConcurrentHashMap</code>, or any other <code class="language-plaintext highlighter-rouge">Map</code> implementation as yet unwritten</li>
+</ul>
+
+<p>Often used concurrently with this strategy is another strategy called <em>dependency injection</em>.</p>
+
+<p><strong>Dependency injection</strong></p>
+
+<ul>
+  <li>Instead of classes initialising their own dependencies, let the user of a class (“client”) <em>inject</em> the dependency, i.e., as a parameter while initialising the object.</li>
+  <li>This way, the class only depends on the <em>publicly exposed interface</em> of the dependency, and the client can choose <em>which specific implementation</em> will be used at runtime.</li>
+</ul>
+
+<h2 id="a-toy-example">A toy example</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Subject</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="nc">Topic</span> <span class="n">topic</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Topic</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">startReading</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">t</span><span class="o">.</span><span class="na">understand</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Topic</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">understand</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Coupling"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Introduce an interface</strong></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Subject</code> class would now not notice if the underlying <code class="language-plaintext highlighter-rouge">Topic</code> implementation changed.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Topic</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">understand</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Topic1</span> <span class="kd">implements</span> <span class="nc">Topic</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">understand</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Got it"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Topic2</span> <span class="kd">implements</span> <span class="nc">Topic</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">understand</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Coupling"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Subject</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">Topic</span> <span class="n">topic</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Subject</span><span class="o">(</span><span class="nc">Topic</span> <span class="n">topic</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">topic</span> <span class="o">=</span> <span class="n">topic</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">startReading</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">topic</span><span class="o">.</span><span class="na">understand</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="a-software-example">A software example</h2>
+
+<p>Let’s consider a software example in the real world. <a href="https://github.com/ajv-validator/ajv"><code class="language-plaintext highlighter-rouge">ajv</code></a> is a JSON validator written in TypeScript. We won’t be analysing the design of this entire package, but instead we’ll take a look at a pull request and the discussion that led to it eventually being merged.</p>
+
+<p>Let’s take a look at the following <a href="https://github.com/ajv-validator/ajv/issues/1683">issue</a> and <a href="https://github.com/ajv-validator/ajv/pull/1684">pull request that addresses the issue</a><sup id="fnref:jamie" role="doc-noteref"><a href="#fn:jamie" class="footnote" rel="footnote">1</a></sup>. You’re encouraged to work on this collaboratively with your classmates. Just make sure to make an individual submission on Canvas.</p>
+
+<blockquote>
+  <p>In-class discussion</p>
+</blockquote>
+
+<h3 id="key-moments-in-the-discussion">Key moments in the discussion</h3>
+
+<p><strong>Issue is opened.</strong> Author suggests using the Re2 regex engine in the JSON parser because it guarantees worst-case linear time complexity, avoiding the possibility of “catastrophic backtracking” while parsing a regular expression. They want to give users of this JSON parsing library (“clients”) the ability to use Re2 for all regexes for which it would work (not all regexes work with all engines).</p>
+
+<p><strong>Initial PR is made.</strong> In their initial proposed solution (<a href="https://github.com/ajv-validator/ajv/pull/1684">Pull request #1684</a>), the developer bundles the Re2 engine as a dependency in the <code class="language-plaintext highlighter-rouge">ajv</code> module, and added an option to the parsing function that can be used to toggle use of the Re2 engine or the native Node.js engine.</p>
+
+<ul>
+  <li><a href="https://github.com/ajv-validator/ajv/pull/1684/commits/b07542d081e5d3b411a576071a670746f2789e99">See the changes made in this initial commit for this PR</a> The draft includes a new <code class="language-plaintext highlighter-rouge">useRe2</code> boolean option that clients can set as <code class="language-plaintext highlighter-rouge">true</code> if they want to use the Re2 regex engine.</li>
+  <li><a href="https://github.com/ajv-validator/ajv/pull/1684/commits/b07542d081e5d3b411a576071a670746f2789e99#diff-7afb1faba038d72baba992dc54a5d99227b0ccf558172e4450a10e9db8aaf283R95">In the <code class="language-plaintext highlighter-rouge">usePattern</code> function in that commit</a>, they check the <code class="language-plaintext highlighter-rouge">useRe2</code> option, and if that is <code class="language-plaintext highlighter-rouge">true</code>, they use a <code class="language-plaintext highlighter-rouge">new Re2(pattern)</code> object for parsing (necessitating the re2 dependency in this project).</li>
+</ul>
+
+<p class="callout ponder">What do you think of this proposed solution? Discuss with your classmates the pros and cons involved. Even better, can you think of alternatives?**</p>
+
+<p><strong>Project owner suggests a way to <em>not</em> require clients to have to include the Re2 dependency.</strong> See <a href="https://github.com/ajv-validator/ajv/pull/1684#issuecomment-880945417">their comment</a>. This involves creating an <em>interface</em> for a regex engine. So now the <code class="language-plaintext highlighter-rouge">usePattern</code> function doesn’t know or care <em>how</em> a pattern is being parsed. The client makes this choice when they use the software. This was implemented in commit <a href="https://github.com/ajv-validator/ajv/pull/1684/commits/a0720f881b8331db1c8c38a805e24a71f5daacbb">a0720f881b8331db1c8c38a805e24a71f5daacbb</a> (see <code class="language-plaintext highlighter-rouge">lib/core.ts</code> and <code class="language-plaintext highlighter-rouge">usePattern</code> function in <code class="language-plaintext highlighter-rouge">lib/vocabularies/code.ts</code>)</p>
+
+<p class="callout ponder">What strategies that we talked about were implemented in this pull request to reduce coupling?</p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:jamie" role="doc-endnote">
+      <p>Thanks to Jamie Davis for pointing me to this example. <a href="#fnref:jamie" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

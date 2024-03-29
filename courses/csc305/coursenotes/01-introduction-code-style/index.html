@@ -1,0 +1,195 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Introduction + Clean code - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/01-introduction-code-style/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Introduction + Clean code</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <h2 id="course-overview">Course overview</h2>
+
+<p>What’s this course about?</p>
+
+<ul>
+  <li><strong>Program construction</strong>: Practice building mid-sized production-quality software using a high-level programming language (Java).</li>
+  <li><strong>Program design</strong>: A recurring theme in the course will be designing your software for <em>stability</em> in the face of <em>changing requirements</em>.</li>
+  <li><strong>Design patterns</strong>: We will talk about some design patterns. The goal is not to get you to memorise design patterns, but rather to gain an appreciation for the idea of design patterns as way to talk and think about program design. Unlike most books on “design patterns” we will try to think about patterns beyond the context of Object-oriented software.</li>
+</ul>
+
+<p>“Production-quality” means that, in addition to functional correctness (your program does what we expect it to do), you will be expected to attend to the following aspects:</p>
+<ul>
+  <li>Code style (e.g., using a linter) and writing code for readability and maintainability</li>
+  <li>Testing</li>
+  <li>Documentation (i.e., Javadoc comments)</li>
+</ul>
+
+<h3 id="syllabus-overview">Syllabus overview</h3>
+
+<p><strong>Grading and assessments</strong></p>
+
+<ul>
+  <li>Projects — some will build on others — design your programs with this maintainability in mind!</li>
+  <li>Labs — we’ll practice what we talk about in lecture — in the early-to-middle part of the quarter, these will be things like code review discussions, design documents — in the later weeks, these will be “labs” in the sense you’re used to (programming assignments) where you’ll practice new syntax/concepts that we’ve talked about</li>
+  <li>Quizzes — these will be weekly timed quizzes taken during the lab session — you must be present to take these — these will include a mix of open-ended design questions, multiple-choice questions, and programming questions</li>
+  <li>Participation — there’ll occasionally be in-class small-group activities done in class — you’ll get credit for turning them in</li>
+</ul>
+
+<p><strong>Notes about all programming assignments</strong></p>
+
+<ul>
+  <li>Code style — all programming assignments will be done using Java 19, using Checkstyle to enforce coding standards — we’ll use the Google style guide (Checkstyle configuration file provided in Canvas)</li>
+  <li>Programming environment — you’re encouraged to work using IntelliJ IDEA — we’ll set it up with the Checkstyle plugin and walk through enabling test quality checks during the lab session</li>
+</ul>
+
+<p><strong>Academic honesty</strong></p>
+
+<ul>
+  <li><strong>Labs</strong> are meant to be worked on individually, but you’re free to discuss and collaborate with your classmates. But be aware that the labs are meant for your practice — you’re shortchanging yourself if you don’t let yourself be challenged.</li>
+  <li><strong>Projects</strong> are individual endeavours. Normally, you can discuss high-level issues with your classmates, but note that this is a <em>design course</em>. By-and-large, you all know how to program already. The high-level issues are in large part what the projects are meant to test.</li>
+  <li><strong>Quizzes</strong> are completely individual endeavours. Any evidence of illicit collaboration will be taken extremely seriously.</li>
+</ul>
+
+<h2 id="code-style-programming-practices">Code style, programming practices</h2>
+
+<p><em>Effective Java, Sonarlint</em></p>
+
+<p><strong>Code critique</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">delimit</span><span class="o">(</span><span class="nc">String</span> <span class="n">delimiter</span><span class="o">,</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">result</span> <span class="o">+=</span> <span class="n">delimiter</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>What do you think of this code? Is its purpose <strong>clear</strong>? Is the function <strong>maintainable</strong>?</p>
+
+<p><strong>EJ57: Minimise the scope of local variables.</strong></p>
+
+<p>The variable <code class="language-plaintext highlighter-rouge">i</code> is now only available inside the <code class="language-plaintext highlighter-rouge">for</code> loop.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">delimit</span><span class="o">(</span><span class="nc">String</span> <span class="n">delimiter</span><span class="o">,</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">str</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+    <span class="o">}</span>
+    
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">delimiter</span><span class="o">;</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>In the example below, the iterator <code class="language-plaintext highlighter-rouge">i</code> is not needed after the first <code class="language-plaintext highlighter-rouge">while</code> loop. But its scope is
+not limited to that area. This can subtle mistakes like the one below. Can you spot it?</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">example</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">c2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Iterator</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="c1">// ... Some other code.</span>
+    <span class="nc">Iterator</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">i2</span> <span class="o">=</span> <span class="n">c2</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+    <span class="k">while</span> <span class="o">(</span><span class="n">i</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i2</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>EJ63: Beware performance of String concatenation</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">+</code> is a convenient way to concatenate strings</li>
+  <li>but string are <em>immutable</em>, that means each time we “append” to the string, a <code class="language-plaintext highlighter-rouge">new</code> string is created.
+ the <code class="language-plaintext highlighter-rouge">new</code> keyword is expensive to use.</li>
+  <li>use <code class="language-plaintext highlighter-rouge">StringBuilder</code> instead</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">delimit</span><span class="o">(</span><span class="nc">String</span> <span class="n">delimiter</span><span class="o">,</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">StringBuilder</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">str</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">str</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+    <span class="o">}</span>
+    
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">str</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">delimiter</span><span class="o">);</span>
+        <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">str</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+    <span class="o">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>EJ58: Prefer for-each loops to traditional for loops where possible.</strong></p>
+
+<ul>
+  <li>Using a for-each loop instead of a regular for loop removes the chances of making
+off-by-one errors (e.g., ending the loop at <code class="language-plaintext highlighter-rouge">i &lt;= str.length</code> instead of <code class="language-plaintext highlighter-rouge">i &lt; str.length</code>)</li>
+  <li>You may sometimes need the index variable; in those cases a regular <code class="language-plaintext highlighter-rouge">for</code> loop is fine. The <code class="language-plaintext highlighter-rouge">delimit</code> function is an example of such a case: we need the <code class="language-plaintext highlighter-rouge">i</code> variable
+in order to tell the function to skip the first item in the list.</li>
+</ul>
+
+<p><strong>EJ59 Know and use the standard libraries.</strong></p>
+
+<ul>
+  <li>The Java platform has been developed over years</li>
+  <li>Benefit from the experts where you can</li>
+  <li>It’s also really well documented</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">delimit</span><span class="o">(</span><span class="nc">String</span> <span class="n">delimiter</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="n">delimiter</span><span class="o">,</span> <span class="n">str</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">delimit</span><span class="o">(</span><span class="nc">String</span> <span class="n">delimiter</span><span class="o">,</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">String</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="n">delimiter</span><span class="o">,</span> <span class="n">str</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

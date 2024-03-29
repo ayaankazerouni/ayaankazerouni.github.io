@@ -1,0 +1,293 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>Streams - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="/css/github.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/16-streams/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>Streams</h1>
+    <div class="content-box" style="border: none;">
+      <div class="content">
+        
+        <ul>
+  <li>Refresher on the builder pattern</li>
+  <li>Streams and lambdas</li>
+</ul>
+
+<p><strong>References</strong>:</p>
+
+<ul>
+  <li><a href="https://refactoring.guru/design-patterns/builder">Refactoring guru content on the Builder pattern</a> (though, like some of the previous patterns, their suggested structure involves some over-complication)</li>
+  <li><a href="https://howtodoinjava.com/design-patterns/creational/builder-pattern-in-java/">Builder Design Pattern</a> by Lokesh Gupta.</li>
+  <li><a href="https://download.java.net/java/early_access/jdk20/docs/api/java.base/java/util/stream/package-summary.html">Java Stream documentation</a></li>
+</ul>
+
+<h2 id="streams-and-lambdas">Streams and lambdas</h2>
+
+<ul>
+  <li>Refresher about lambdas
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Function, Predicate, Consumer</code></li>
+    </ul>
+  </li>
+  <li>The addition of <code class="language-plaintext highlighter-rouge">Stream</code> was one of the major features added to Java 8.</li>
+  <li><code class="language-plaintext highlighter-rouge">Stream</code>s are wrappers around a data source, allowing us to operate with that data source and making bulk processing convenient and fast</li>
+  <li>A stream does not store data and, in that sense, is not a data structure. It also never modifies the underlying data source.</li>
+  <li>This functionality supports functional-style operations on streams of elements, such as map-reduce transformations on collections. The operations can be composed into “stream pipelines”</li>
+</ul>
+
+<h3 id="creating-streams">Creating streams</h3>
+
+<p>You can create empty streams, or streams from existing data sources like lists.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">s1</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span> <span class="c1">// empty stream</span>
+
+<span class="c1">// Stream of strings</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">s2</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"these"</span><span class="o">,</span> <span class="s">"are"</span><span class="o">,</span> <span class="s">"stream"</span><span class="o">,</span> <span class="s">"contents"</span><span class="o">);</span>
+
+<span class="c1">// Stream of strings</span>
+<span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">myList</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"This"</span><span class="o">,</span> <span class="s">"is"</span><span class="o">,</span> <span class="s">"a"</span><span class="o">,</span> <span class="s">"list"</span><span class="o">,</span> <span class="s">"of"</span><span class="o">,</span> <span class="s">"Strings"</span><span class="o">);</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">myList</span><span class="o">.</span><span class="na">stream</span><span class="o">();</span>
+
+<span class="c1">// Using the builder pattern</span>
+<span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">s4</span> <span class="o">=</span> <span class="nc">Stream</span><span class="o">.&lt;</span><span class="nc">String</span><span class="o">&gt;</span><span class="n">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"builder"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"pattern"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"in action"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>Note that if the Stream comes from an existing data source, it does NOT modify that data source, no matter what operations are performed in the Stream.</p>
+
+<p>Beyond simply creating a stream from pre-existing data, you can generate streams by doing other transformations on data:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Random</span> <span class="n">random</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Random</span><span class="o">();</span>
+<span class="nc">DoubleStream</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">doubles</span><span class="o">(</span><span class="mi">3</span><span class="o">);</span> <span class="c1">// Stream of 3 doubles</span>
+<span class="nc">IntStream</span> <span class="n">intStream</span> <span class="o">=</span> <span class="nc">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+<span class="nc">LongStream</span> <span class="n">longStream</span> <span class="o">=</span> <span class="nc">LongStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Finally, you can also create streams out of file contents:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="nc">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"file.txt"</span><span class="o">),</span> <span class="nc">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>This is in contrast to <code class="language-plaintext highlighter-rouge">Files.readAllLines(Path.of("file.txt"))</code>, which would read all lines into a <code class="language-plaintext highlighter-rouge">List&lt;String&gt;</code>. This can be time and memory intensive.
+The Stream solution loads lines “lazily” and processes them one-at-a-time.</p>
+
+<h3 id="stream-pipelines">Stream pipelines</h3>
+
+<p>In general, a stream pipeline contains of:</p>
+
+<ul>
+  <li><strong>A source</strong>, which can be an array, a collection, a generator function, an I/O channel, etc. We talked about this above.</li>
+  <li><strong>Zero or more intermediate operations</strong>, which transform the stream into another stream. Because these intermediate operations return streams themselves, they can be chained together to perform a number of operations.</li>
+  <li><strong>Exactly one terminal operation</strong>, which produces a result or a side effect. Since the terminal operation “exits” the pipeline, no further stream operations can be added to the pipeline.</li>
+</ul>
+
+<p>Many stream operations take in a <em>behavioural parameter</em> (i.e., a function). This can be written inline as a lambda, referred to using a variable that points to a lambda, or using the method reference syntax (e.g., <code class="language-plaintext highlighter-rouge">System.out::println</code>).
+These behavioural parameters represent functions that must be applied to <em>each item</em> in the stream.</p>
+
+<p>Earlier in the quarter we talked about various “small patterns” we often perform with for loops in imperative languages, like transforming all items in a collection by applying some function to each item (<code class="language-plaintext highlighter-rouge">map</code>), or removing certain items in a collection based on some condition (<code class="language-plaintext highlighter-rouge">filter</code>), or summing up or aggregating in some way the values in a collection (<code class="language-plaintext highlighter-rouge">reduce</code>).</p>
+
+<p>Streams allow us to define “pipelines” of these operations to be performed on collections.</p>
+
+<p>For example, imagine that we have a giant file of strings, and we need to:</p>
+
+<ul>
+  <li>Upper-case each line</li>
+  <li>Keep only the lines that include the phrase “SECRET PHRASE”</li>
+</ul>
+
+<p>If our data is in a file called “file.txt”, this would look like</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Stream</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="nc">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"file.txt"</span><span class="o">),</span> <span class="nc">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">l</span> <span class="o">-&gt;</span> <span class="n">l</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"SECRET PHRASE"</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>You’ll notice that we still only have a <code class="language-plaintext highlighter-rouge">Stream&lt;String&gt;</code> after the above code runs.
+That’s because all we’ve done is create a <em>pipeline</em> of operations to be run — we haven’t actually executed those operations yet.
+The <code class="language-plaintext highlighter-rouge">map</code> and <code class="language-plaintext highlighter-rouge">filter</code> above are <em>intermediate</em> operations.
+They are not actually kicked off until a <em>terminal</em> operation is added to the stream pipeline.</p>
+
+<p>As I mentioned earlier, a <em>terminal</em> operation produces some result or side effect, thereby exiting the stream pipeline. 
+Some examples of terminal operations are:</p>
+
+<ul>
+  <li>Collecting the result of the Stream into a list (<code class="language-plaintext highlighter-rouge">.toList()</code>)</li>
+  <li>Counting the elements left in the stream after the intermediate operations have been performed (<code class="language-plaintext highlighter-rouge">count()</code>)</li>
+  <li>In the case of primitive streams like <code class="language-plaintext highlighter-rouge">IntStream</code>, <code class="language-plaintext highlighter-rouge">DoubleStream</code>, <code class="language-plaintext highlighter-rouge">LongStream</code>, you can perform numerical aggregations (<code class="language-plaintext highlighter-rouge">.sum(), .average()</code>, etc.)</li>
+</ul>
+
+<p>Here are some examples:</p>
+
+<p>Notice that the type of <code class="language-plaintext highlighter-rouge">result</code> is now <code class="language-plaintext highlighter-rouge">List&lt;String&gt;</code>. It is no longer a stream to which we can add further computations.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="nc">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"file.txt"</span><span class="o">),</span> <span class="nc">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">l</span> <span class="o">-&gt;</span> <span class="n">l</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"SECRET PHRASE"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">toList</span><span class="o">()</span>
+</code></pre></div></div>
+
+<p>You can specify that a <code class="language-plaintext highlighter-rouge">map</code> should <code class="language-plaintext highlighter-rouge">mapToInt</code> (i.e., map to an <code class="language-plaintext highlighter-rouge">IntStream</code>).
+That allows stream operations</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">OptionalInt</span> <span class="n">result</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="nc">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"file.txt"</span><span class="o">),</span> <span class="nc">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">l</span> <span class="o">-&gt;</span> <span class="n">l</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"SECRET PHRASE"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">length</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">max</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p><strong>PONDER</strong> Why do you think we get an <code class="language-plaintext highlighter-rouge">OptionalInt</code> instead of a plain old <code class="language-plaintext highlighter-rouge">int</code> in return?</p>
+
+<p>Finally, you can terminate streams with “side effects”, i.e., functions that don’t return a value, but have some other effect (e.g., they change the value of some other variable, or they write to some output stream).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="nc">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"file.txt"</span><span class="o">),</span> <span class="nc">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">String:</span><span class="o">:</span><span class="n">toUpperCase</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">l</span> <span class="o">-&gt;</span> <span class="n">l</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"SECRET PHRASE"</span><span class="o">))</span>
+    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>In the code above, we are applying the <code class="language-plaintext highlighter-rouge">forEach</code> terminal operation the stream. In the terminal operation, we are passing each item to the <code class="language-plaintext highlighter-rouge">System.out::println</code> function that you know and love. Recall that the <code class="language-plaintext highlighter-rouge">::</code> is the method reference syntax — we are “pointing to” the <code class="language-plaintext highlighter-rouge">println</code> function and saying “call this on each item in the stream”.
+If lambdas are more your thing, you can write that as <code class="language-plaintext highlighter-rouge">l -&gt; System.out.println(l)</code>. But in general it’s better to use method references for lambdas that are this simple.</p>
+
+<h3 id="stream-pipelines-are-evaluated-lazily">Stream pipelines are evaluated lazily</h3>
+
+<p>Streams are lazy; computation on the source data is only performed when the terminal operation is initiated, and source elements are consumed only as needed.</p>
+
+<p><strong>This has important implications.</strong>
+For example, consider the following pipeline, where I’ve added print statements in each operation.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">OptionalInt</span> <span class="n">result</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="nc">Path</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"file.txt"</span><span class="o">),</span> <span class="nc">Charset</span><span class="o">.</span><span class="na">defaultCharset</span><span class="o">())</span>
+    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Upper-casing "</span> <span class="o">+</span> <span class="n">line</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+    <span class="o">})</span>
+    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\tChecking "</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="s">" for secret phrase"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">"SECRET PHRASE"</span><span class="o">)</span>
+    <span class="o">})</span>
+    <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"\t\tMapping "</span> <span class="o">+</span> <span class="n">line</span> <span class="o">+</span> <span class="s">" to charlength"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="o">})</span>
+    <span class="o">.</span><span class="na">max</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>Can you predict what the printed output would be with the following input?</p>
+
+<p><strong>INPUT</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>here
+are
+sOME
+LINes SEcret phrASE
+in
+A
+File
+</code></pre></div></div>
+
+<p><strong>OUTPUT</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Upper-casing here
+        Checking HERE for secret phrase
+Upper-casing are
+        Checking ARE for secret phrase
+Upper-casing sOME
+        Checking SOME for secret phrase
+Upper-casing LINes SEcret phrASE
+        Checking LINES SECRET PHRASE for secret phrase
+                Mapping LINES SECRET PHRASE to charlength
+Upper-casing in
+        Checking IN for secret phrase
+Upper-casing A
+        Checking A for secret phrase
+Upper-casing File
+        Checking FILE for secret phrase
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">mapToInt</code> step only applied to one item—the one that survived the previous filtering step.</p>
+
+<h3 id="rules-for-behavioural-parameters">Rules for behavioural parameters</h3>
+
+<p>All behavioural parameters to streams must:</p>
+
+<ul>
+  <li><strong>Be Non-interfering</strong>: While a stream pipeline is executing (i.e., its terminal operation has been defined/invoked), its data source must not be modified. This is similar to how you will be get a <code class="language-plaintext highlighter-rouge">ConcurrentModificationException</code> if you modify a collection while using a <code class="language-plaintext highlighter-rouge">for-each</code> loop to iterate over it.</li>
+  <li><strong>Be Stateless</strong>: A <em>stateful</em> lambda or function is one whose result depends on any state (e.g., instance variables in a class) that might change during execution of the stream pipeline.</li>
+  <li><strong>Not have side-effects</strong>: Recall that stream operations are <em>lazily applied</em>.</li>
+</ul>
+
+<p>From the <a href="https://download.java.net/java/early_access/jdk20/docs/api/java.base/java/util/stream/Stream.html">Stream documentation</a></p>
+
+<blockquote>
+  <p>A stream implementation is permitted significant latitude in optimizing the computation of the result. For example, a stream implementation is free to elide operations (or entire stages) from a stream pipeline – and therefore elide invocation of behavioral parameters – if it can prove that it would not affect the result of the computation. This means that side-effects of behavioral parameters may not always be executed and should not be relied upon, unless otherwise specified (such as by the terminal operations <code class="language-plaintext highlighter-rouge">forEach</code> and <code class="language-plaintext highlighter-rouge">forEachOrdered</code>).</p>
+</blockquote>
+
+<p>In short, you cannot rely on all stream operations always being executed.</p>
+
+<h2 id="parallel-streams">Parallel streams</h2>
+
+<p>As mentioned above, a Stream doesn’t kick off until a terminal operation is called. So until that happens, the Stream is still being built up (using the Builder pattern), and all the intermediate operations like <code class="language-plaintext highlighter-rouge">map</code> and <code class="language-plaintext highlighter-rouge">filter</code> are being added to it.</p>
+
+<p>At this point the “Stream” is usually a “sequential stream”. That is, it processes the data in one thread.
+However, modern computers usually have multiple cores available, meaning they can perform several actions at once. This means that some computations can be sped up if we can split up the problem (or the input data) into subsets, process those subsets, and combine the results.</p>
+
+<p>You can do this by turning the Stream into a Parallel Stream.</p>
+
+<p>Any stream can be told to operate in parallel by calling <code class="language-plaintext highlighter-rouge">parallel()</code> on it. <code class="language-plaintext highlighter-rouge">parallel()</code> is an intermediate operation. (Or, if your stream’s data source is a data structure like a list, you can call <code class="language-plaintext highlighter-rouge">parallelStream()</code> on it instead of <code class="language-plaintext highlighter-rouge">stream()</code> to begin streaming).</p>
+
+<p>While this can result in a significant speedup, there are some important things to be aware of:</p>
+
+<ul>
+  <li><strong>By default, the parallel stream will use up one less than all the available cores.</strong> This may be fine for demonstrating parallelism, but in the real world, you often want more control over how much of the computer’s resources will be devoted to a task. For example, your code may be invoked programmatically by some other module, that is itself working on subproblems in parallel, and needs the ability to orchestrate thread management. <em>If your parallel stream kicks off a number of long-running tasks, you will soon effectively block all available threads.</em></li>
+  <li><strong>Parallel processing may actually be <em>slower</em> than sequential processing in some cases.</strong> If you’re not working on long-enough running tasks, or not working with enough data, then the overhead of splitting the task and combining results may outweigh any benefits of parallel processing.</li>
+  <li><strong>Finally, there can be some “gotchas” while working with parallel streams.</strong> Consider the following <code class="language-plaintext highlighter-rouge">reduce</code> operation, which uses <code class="language-plaintext highlighter-rouge">5</code> as the initial value instead of the default 0.</li>
+</ul>
+
+<p><a href="https://www.baeldung.com/java-when-to-use-parallel-stream">Example from Baeldung</a></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">parallelStream</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="nl">Integer:</span><span class="o">:</span><span class="n">sum</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>In normal sequential application, we would get the result <code class="language-plaintext highlighter-rouge">5 + 1 + 2 + 3 + 4 = 15</code>.
+However, in a parallel stream, the <code class="language-plaintext highlighter-rouge">reduce</code> is given to each thread to handle, and <code class="language-plaintext highlighter-rouge">5</code> is added in each thread. Depending on how many threads are dedicated to this task, we will get different responses.</p>
+
+<hr />
+
+    </div>
+    
+    
+    </article>
+  </main>
+</body>
+</html>

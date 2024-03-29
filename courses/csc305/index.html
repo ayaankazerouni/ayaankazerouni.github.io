@@ -57,8 +57,8 @@
   <li>Office hours: <a href="">See my website</a> (Building 14 Room 229)</li>
   <li>Meeting times
     <ul>
-      <li>Lecture: TR 1:40pm to 3pm (20-140)</li>
-      <li>Lab: TR 3:10pm to 4:30pm (14-256)</li>
+      <li>Lecture: See Canvas</li>
+      <li>Lab: See Canvas</li>
     </ul>
   </li>
 </ul>
@@ -130,16 +130,16 @@
       <td>15</td>
     </tr>
     <tr>
+      <td>Projects</td>
+      <td>51 (3x17)</td>
+    </tr>
+    <tr>
       <td>Quizzes</td>
       <td>20</td>
     </tr>
     <tr>
-      <td>Projects</td>
-      <td>60 (4x15)</td>
-    </tr>
-    <tr>
       <td>Participation</td>
-      <td>5</td>
+      <td>9</td>
     </tr>
   </tbody>
 </table>
@@ -164,7 +164,7 @@
 
 <p><strong>Project late policy</strong></p>
 
-<p>In general, no late assignments will be accepted for projects. For ONE out of the first 3 programming projects (not labs and not project 4), you may have up to a 3-day extension.</p>
+<p>In general, no late assignments will be accepted for projects. For ONE of the first 2 programming projects (not labs and not project 3), you may have up to a 3-day extension.</p>
 
 <p><em>Do not lose track of when you use this.</em> You only get one extension—non-negotiable. The reason this is given is because I recognise life as a college student is often stressful and I don’t know all of the situations you each are going through—your mental and physical health is a priority. In addition, if the policy was “no late work”, some students may feel more entitled to ask for extensions in an emergency than others—the extension is meant to be an equaliser.</p>
 
@@ -178,7 +178,144 @@
 
 <h2 id="course-schedule">Course schedule</h2>
 
-<p>Please see the schedule and notes at <a href="https://github.com/ayaankazerouni/csc305-lectures">this GitHub repository</a>.</p>
+<p>These are rough notes meant to (1) serve as a guide for myself while teaching, and (2) to supplement your own notes from class.</p>
+
+<p>(Numbers marked with <code class="language-plaintext highlighter-rouge">EJ</code> (e.g., <code class="language-plaintext highlighter-rouge">EJ57</code>) are principles from <em>Effective Java</em> by Joshua Bloch.)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Topic</th>
+      <th>Assignments released</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Intro, clean code</td>
+      <td>Lab 1 (Dev environment setup)</td>
+      <td><a href="coursenotes/01-introduction-code-style/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Coupling and encapsulation</td>
+      <td>Lab 2 (TUI tic tac toe)</td>
+      <td><a href="coursenotes/02-coupling/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Encapsulation, immutability, cohesion</td>
+      <td>Project 1</td>
+      <td><a href="coursenotes/03-mutability-cohesion-srp/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>(Some of the) SOLID principles, polymorphism,<br />Composite design pattern</td>
+      <td> </td>
+      <td><a href="coursenotes/04-polymorphism-lsp/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Project 1 design discussion<br />Visitor design pattern<br />Java language features (sealed types, pattern matching)</td>
+      <td> </td>
+      <td><a href="coursenotes/05-visitor-pattern-matching/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Unit testing and test adequacy</td>
+      <td>Lab 3 (Testing)</td>
+      <td><a href="coursenotes/06-unit-testing/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Designing for testability (dependency injection, test doubles)</td>
+      <td> </td>
+      <td><a href="coursenotes/07-designing-for-testability/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Strategy and Command design patterns<br />Lambdas</td>
+      <td> </td>
+      <td><a href="coursenotes/08-strategy-pattern-lambda/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Project 2 design discussion<br />GUI programming in Java</td>
+      <td>Project 2<br />Lab 4 (GUI tic tac toe)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>More on GUIs with JavaFx<br />Java Generics</td>
+      <td> </td>
+      <td><a href="coursenotes/10-observer-generics/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Heaps and heapsort (Project 3 prep)<br />Serialization and Random Access Files</td>
+      <td>Lab 6 (Generics)</td>
+      <td>⇗ OpenDSA content on <a href="https://opendsa-server.cs.vt.edu/OpenDSA/Books/CS3notes/html/Heaps.html">Heaps</a> and <a href="https://opendsa-server.cs.vt.edu/OpenDSA/Books/CS3notes/html/Sorting2.html#heapsort">Heapsort</a><br /><a href="11-serialization/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Buffer pools (Project 3 prep)</td>
+      <td> </td>
+      <td>⇗ OpenDSA content on <a href="https://opendsa-server.cs.vt.edu/OpenDSA/Books/CS3notes/html/FileProc.html#buffers">Buffer Pools</a></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Guest lecture</td>
+      <td>Lab 5 (OSS Design analysis)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Project 1 code review<br />Project 3 discussion</td>
+      <td>Project 3</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Project 3 milestones activity<br />Builder design pattern</td>
+      <td> </td>
+      <td><a href="coursenotes/15-builder/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Streams</td>
+      <td>Lab 7 (Lambdas, streams, parallel streams)</td>
+      <td><a href="coursenotes/16-streams/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Processes and threads</td>
+      <td> </td>
+      <td><a href="coursenotes/17-threads-concurrency/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Thread synchronisation</td>
+      <td> </td>
+      <td><a href="coursenotes/18-thread-synchronisation/">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Mutex and Semaphore</td>
+      <td> </td>
+      <td><a href="coursenotes/19-mutex-semaphore">Coursenotes</a></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Work day</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
 
     </div>
     
