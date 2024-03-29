@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/10-observer-generics/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,14 +25,26 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
   </p>
   
   <h1>Java generics</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <p>We’ve all written this line of code before, which creates a new empty list of <code class="language-plaintext highlighter-rouge">String</code>s.</p>
+  <div class="content">
+      <ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#parameterisation" id="markdown-toc-parameterisation">Parameterisation</a></li>
+  <li><a href="#so-what-does-this-have-to-do-with-generics-in-java" id="markdown-toc-so-what-does-this-have-to-do-with-generics-in-java">So what does this have to do with Generics in Java?</a></li>
+  <li><a href="#writing-our-own-generic-classes" id="markdown-toc-writing-our-own-generic-classes">Writing our own generic classes</a>    <ul>
+      <li><a href="#boxjava" id="markdown-toc-boxjava"><code class="language-plaintext highlighter-rouge">Box.java</code></a></li>
+      <li><a href="#pairjava" id="markdown-toc-pairjava"><code class="language-plaintext highlighter-rouge">Pair.java</code></a></li>
+      <li><a href="#bounded-generics-binarysearchnodejava" id="markdown-toc-bounded-generics-binarysearchnodejava">Bounded generics: <code class="language-plaintext highlighter-rouge">BinarySearchNode.java</code></a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>We’ve all written this line of code before, which creates a new empty list of <code class="language-plaintext highlighter-rouge">String</code>s.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
 </code></pre></div></div>
@@ -393,10 +404,17 @@ That is, we need to specify that even if we don’t care exactly what type of da
   </ol>
 </div>
 
-    </div>
-    
-    
-    </article>
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/08-strategy-pattern-lambda/" class="previous">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc305/coursenotes/11-serialization/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>

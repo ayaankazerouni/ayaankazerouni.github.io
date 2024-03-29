@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/19-mutex-semaphore/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,14 +25,22 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
   </p>
   
   <h1>Mutexes, semaphores, and thread pools</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <p>These notes give a very high-level overview of some additional topics related to concurrency in Java.</p>
+  <div class="content">
+      <p>These notes give a very high-level overview of some additional topics related to concurrency in Java.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#mutex" id="markdown-toc-mutex">Mutex</a></li>
+  <li><a href="#semaphore" id="markdown-toc-semaphore">Semaphore</a>    <ul>
+      <li><a href="#binary-semaphore" id="markdown-toc-binary-semaphore">Binary semaphore</a></li>
+      <li><a href="#counting-semaphore" id="markdown-toc-counting-semaphore">Counting semaphore</a></li>
+    </ul>
+  </li>
+  <li><a href="#thread-pool" id="markdown-toc-thread-pool">Thread pool</a></li>
+</ul>
 
 <h2 id="mutex">Mutex</h2>
 
@@ -94,12 +101,16 @@ Similarly, when a thread calls <code class="language-plaintext highlighter-rouge
 
 <p>More details <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/exinter.html">here</a>.</p>
 
-<hr />
 
-    </div>
-    
-    
-    </article>
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/18-thread-synchronisation/" class="previous">&larr; Previous</a>
+        
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>

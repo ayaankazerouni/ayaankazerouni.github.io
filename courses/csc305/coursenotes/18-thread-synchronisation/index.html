@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/18-thread-synchronisation/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,14 +25,24 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
   </p>
   
   <h1>Thread synchronisation</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <p><strong>Thread interference</strong> occurs when two operations, running in different threads, but acting on the same data, interleave. These types of issues are unpredictable and difficult to predict.</p>
+  <div class="content">
+      <ul id="markdown-toc">
+  <li><a href="#thread-interference-demo" id="markdown-toc-thread-interference-demo">Thread interference demo</a></li>
+  <li><a href="#synchronized-methods-and-statements" id="markdown-toc-synchronized-methods-and-statements">Synchronized methods and statements</a>    <ul>
+      <li><a href="#synchronized-methods" id="markdown-toc-synchronized-methods">Synchronized methods</a></li>
+      <li><a href="#synchronized-statements" id="markdown-toc-synchronized-statements">Synchronized statements</a></li>
+    </ul>
+  </li>
+  <li><a href="#deadlock" id="markdown-toc-deadlock">Deadlock</a></li>
+  <li><a href="#wait-notify-notifyall" id="markdown-toc-wait-notify-notifyall">wait, notify, notifyAll</a></li>
+  <li><a href="#java-lock-objects" id="markdown-toc-java-lock-objects">Java Lock objects</a></li>
+</ul>
+
+<p><strong>Thread interference</strong> occurs when two operations, running in different threads, but acting on the same data, interleave. These types of issues are unpredictable and difficult to predict.</p>
 
 <p>In concurrent programming, concurrent thread accesses to shared data can lead to unexpected or erroneous behaviour.
 The part of the program where the shared data is accessed needs to be protected in ways that avoid concurrent access.</p>
@@ -348,10 +357,17 @@ This results in a situation called <em>deadlock</em>, where neither thread makes
 
 <hr />
 
-    </div>
-    
-    
-    </article>
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/17-threads-concurrency/" class="previous">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc305/coursenotes/19-mutex-semaphore/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>

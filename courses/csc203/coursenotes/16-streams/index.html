@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc203/coursenotes/16-streams/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,14 +25,12 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc203">CSC 203 Project-based Object-oriented Programming and Design</a>)
+    (Coursenotes for <a href="/courses/csc203#course-schedule">CSC 203 Project-based Object-oriented Programming and Design</a>)
   </p>
   
   <h1>Streams</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <h2 id="overview">Overview</h2>
+  <div class="content">
+      <h2 id="overview">Overview</h2>
 
 <p>Having learned about lambdas in <a href="../15-lambdas/">the previous lesson</a>, we will learn about a related construct in Java called <strong>streams</strong>.
 Lambdas and streams are often used together.</p>
@@ -172,9 +169,35 @@ No processing would take place unless some terminal operation was added to the p
 
 <ul>
   <li>Collecting the result of the stream pipeline into a list (<code class="language-plaintext highlighter-rouge">.toList()</code>).</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">albumCosts</span> <span class="o">=</span> <span class="n">albums</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">getYear</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">2000</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">getPrice</span><span class="o">())</span>
+  <span class="o">.</span><span class="na">toList</span><span class="o">();</span>
+</code></pre></div></div>
+
+<ul>
   <li>Counting the elements left in the stream after the intermediate operations have been performed (<code class="language-plaintext highlighter-rouge">count()</code>)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">albumsBefore2000</span> <span class="o">=</span> <span class="n">albums</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">getYear</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">count</span><span class="o">();</span>
+</code></pre></div></div>
+
+<ul>
   <li>Looping over the elements in the stream and operating on them, i.e., applying a <code class="language-plaintext highlighter-rouge">Consumer</code> to each item (<code class="language-plaintext highlighter-rouge">.forEach(Consumer)</code>)</li>
-  <li>In the case of primitive streams like <code class="language-plaintext highlighter-rouge">IntStream</code>, <code class="language-plaintext highlighter-rouge">DoubleStream</code>, <code class="language-plaintext highlighter-rouge">LongStream</code>, you can perform numerical aggregations (<code class="language-plaintext highlighter-rouge">.sum()</code>, <code class="language-plaintext highlighter-rouge">.average()</code>, etc.)</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Reduce cost of pre-2000 albums by 10%</span>
+<span class="n">albums</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+  <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">Year</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">setPrice</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">getPrice</span><span class="o">()</span> <span class="o">*</span> <span class="mf">0.9</span><span class="o">));</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Finally, as we’ve seen above, you can perform numerical aggregations (like <code class="language-plaintext highlighter-rouge">.sum()</code> or <code class="language-plaintext highlighter-rouge">.average()</code>) when you have primitive streams like <code class="language-plaintext highlighter-rouge">IntStream</code>, <code class="language-plaintext highlighter-rouge">DoubleStream</code>, <code class="language-plaintext highlighter-rouge">LongStream</code>.</li>
 </ul>
 
 <h2 id="what-is-streaming">What is “streaming”?</h2>
@@ -219,12 +242,15 @@ The file is too large for you read the entire thing into a list of strings.</p>
 
 <p>If you use a simple collection in memory (like an array or list) as the source of a stream, you’re not gaining much in the way of “streaming” — in that situation, the Streams API mostly provides a convenient library and syntax for performing operations on a collection data. Still pretty good!</p>
 
-<hr />
-
-    </div>
-    
-    
-    </article>
+      <footer class="nav-links">
+        
+        <a href="/courses/csc203/coursenotes/15-lambdas/" class="previous">&larr; Previous</a>
+        
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>

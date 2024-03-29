@@ -5,11 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
 
-	<title>Visitor design pattern - Ayaan M. Kazerouni</title>
+	<title>Composite and Visitor design patterns - Ayaan M. Kazerouni</title>
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/05-visitor-pattern-matching/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,44 +25,161 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
   </p>
   
-  <h1>Visitor design pattern</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <h2 id="topics-for-today">Topics for today</h2>
-
-<ul>
-  <li>Project 1 design discussion</li>
-  <li>Design patterns overview and composite design review</li>
-  <li>Visitor design pattern</li>
-  <li>Pattern matching and sealed types</li>
+  <h1>Composite and Visitor design patterns</h1>
+  <div class="content">
+      <ul id="markdown-toc">
+  <li><a href="#design-patterns" id="markdown-toc-design-patterns">Design patterns</a></li>
+  <li><a href="#composite-design-pattern" id="markdown-toc-composite-design-pattern">Composite design pattern</a>    <ul>
+      <li><a href="#file-system-example" id="markdown-toc-file-system-example">File system example</a></li>
+      <li><a href="#html-elements-example" id="markdown-toc-html-elements-example">HTML elements example</a></li>
+      <li><a href="#benefits-and-drawbacks-of-composite-design" id="markdown-toc-benefits-and-drawbacks-of-composite-design">Benefits and drawbacks of Composite design</a></li>
+    </ul>
+  </li>
+  <li><a href="#visitor-design-pattern" id="markdown-toc-visitor-design-pattern">Visitor design pattern</a>    <ul>
+      <li><a href="#example-use-case" id="markdown-toc-example-use-case">Example use-case</a></li>
+      <li><a href="#implementing-the-visitor-design-pattern" id="markdown-toc-implementing-the-visitor-design-pattern">Implementing the visitor design pattern</a></li>
+      <li><a href="#a-real-world-example" id="markdown-toc-a-real-world-example">A real-world example</a></li>
+      <li><a href="#one-languages-design-pattern-is-another-languages-native-feature" id="markdown-toc-one-languages-design-pattern-is-another-languages-native-feature">One language’s design pattern is another language’s native feature</a></li>
+      <li><a href="#visitor-pattern-using-pattern-matching" id="markdown-toc-visitor-pattern-using-pattern-matching">Visitor pattern using pattern matching</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="design-patterns">Design patterns</h2>
 
 <p><strong>Design patterns</strong> are general, re-usable solutions to commonly occurring problems within a given context in software design. They offer templates to solve problems that can be used in multiple contexts.</p>
 
-<p>For example, last week we talked about the Composite design pattern. Recall that the Composite pattern is useful when you need to provide some functionality for a tree-like structure. It turns out that this “pattern” is applicable to a number of different problem contexts. Some examples that we talked about are:</p>
-
-<ul>
-  <li>Traversing an HTML document</li>
-  <li>Reading files and folders in a file system</li>
-  <li>Performing tree operations in a <a href="https://opendsa-server.cs.vt.edu/OpenDSA/Books/Everything/html/Bintree.html">Bintree</a></li>
-  <li>Evaluating an <em>expression tree</em> (like you are doing in Project 1)</li>
-</ul>
-
 <p>In 1994, a group of four authors wrote what was to become a famous book about Design Patterns (titled <em>Design Patterns</em>). The book describes three broad classes of Design Patterns:</p>
 
 <ul>
-  <li>Behavorial Patterns: identifying common communication patterns between objects and realizing these patterns</li>
+  <li>Behavioural Patterns: identifying common communication patterns between objects and realizing these patterns</li>
   <li>Structural Patterns: organizing different classes and objects to form larger structures and provide new functionality</li>
   <li>Creational Patterns: provide the capability to create objects based on a required criterion and in a controlled way</li>
 </ul>
 
-<p>The Composite pattern is billed as a “Structural” pattern, because it involves organising your modules into a tree structure (which presumably makes sense for that problem context).</p>
+<p>We are not going to talk about all the 23 patterns described in the book, but we’ll talk about some of them, the first of which is the <strong>Composite pattern</strong>.</p>
+
+<h2 id="composite-design-pattern">Composite design pattern</h2>
+
+<p>The Composite pattern is billed as a “Structural” pattern, because it involves a specific organisational structure for your objects.
+The pattern is useful when your data naturally organises into a tree-like structure, and you need to provide functionality for the entire structure (the “Composite”) and the individual objects.</p>
+
+<p>For example, a composite object structure might look like this:</p>
+
+<pre class="mermaid">
+flowchart TD
+  c1[Composite] -- has a --&gt; Leaf1
+  c1 -- has a --&gt; c2[Composite]
+  c2 -- has a --&gt; Leaf2
+  c2 -- has a --&gt; Leaf3
+</pre>
+
+<p>Here are some key things to note:</p>
+
+<ul>
+  <li>Both the <code class="language-plaintext highlighter-rouge">Composite</code> and <code class="language-plaintext highlighter-rouge">Leaf</code> classes implement a common interface. Let’s call that the <code class="language-plaintext highlighter-rouge">Component</code> interface, and it defines a <code class="language-plaintext highlighter-rouge">doSomething</code> abstract method.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Composite</code> class is composed of one or more <code class="language-plaintext highlighter-rouge">Component</code> objects. This can be only a couple (e.g., binary tree-like structures), or it can be a list of variable length (e.g., HTML elements).</li>
+  <li>A client can work with the <code class="language-plaintext highlighter-rouge">Component</code> interface without ever knowing if it’s dealing with a <code class="language-plaintext highlighter-rouge">Composite</code> (that breaks down further) or a <code class="language-plaintext highlighter-rouge">Leaf</code> (that simply computes a vvalue).</li>
+  <li>When a <code class="language-plaintext highlighter-rouge">Composite</code> needs to <code class="language-plaintext highlighter-rouge">doSomething</code>, it tells each of its subparts to <code class="language-plaintext highlighter-rouge">doSomething</code>. The <code class="language-plaintext highlighter-rouge">Composite</code> might itself do some processing before or after this.</li>
+</ul>
+
+<p><strong>Ok, that was super abstract.</strong> Let’s consider a couple of concrete examples.</p>
+
+<h3 id="file-system-example">File system example</h3>
+
+<p>For example, suppose you need to “read” all the files in a computer. You have a root folder (the root of your directory tree). That root may have many children (files or folders inside of it). Some of those children may in turn have further children.</p>
+
+<p>The Composite pattern involves you treating the entire structure as a tree (much like your file system does). Then each “node” of the tree might have a <code class="language-plaintext highlighter-rouge">read</code> operation. For <code class="language-plaintext highlighter-rouge">FileNode</code>s, the <code class="language-plaintext highlighter-rouge">read</code> operation simply prints out the contents of the file. For <code class="language-plaintext highlighter-rouge">FolderNode</code>s, the <code class="language-plaintext highlighter-rouge">read</code> operation involves further traversing its children and <code class="language-plaintext highlighter-rouge">read</code>ing them. This recursively continues until there are no more files to be read.</p>
+
+<p>In the diagram below, reading <i class="fa fa-folder-open"></i> <code class="language-plaintext highlighter-rouge">FolderNode</code>s involves reading all the nodes contained within the folder, which may be <i class="fa fa-file"></i> <code class="language-plaintext highlighter-rouge">FileNode</code>s, or they may themselves be <i class="fa fa-folder-open"></i> <code class="language-plaintext highlighter-rouge">FolderNode</code>s that contain further children.</p>
+
+<pre class="mermaid">
+flowchart TD
+
+home["fa:fa-folder-open Home"] --&gt; music[fa:fa-folder-open Music]
+home --&gt; movies["fa:fa-folder-open Movies"]
+home --&gt; csc305[fa:fa-folder-open CSC 305 Assignments]
+csc305 --&gt; lab1[fa:fa-file Lab 1]
+csc305 --&gt; lab2[fa:fa-file Lab 2]
+movies --&gt; animated[fa:fa-folder-open Animated] 
+animated --&gt; httyd[fa:fa-file How To Train Your Dragon]
+music --&gt; beatles[fa:fa-folder-open The Beatles]
+beatles --&gt; hcs[fa:fa-file Here Comes the Sun]
+beatles --&gt; lib[fa:fa-file Let It Be]
+</pre>
+
+<h3 id="html-elements-example">HTML elements example</h3>
+
+<p>As another exmaple, consider a super simple HTML page:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Composite design pattern<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;div&gt;</span>
+      Here's the text on the page.
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>To represent the page above in objects, we would have the following:</p>
+
+<ul>
+  <li>An <code class="language-plaintext highlighter-rouge">HTMLElement</code> interface, defining what all <code class="language-plaintext highlighter-rouge">HTMLElement</code>s should be able to do.</li>
+  <li>Then, there is the top-level <code class="language-plaintext highlighter-rouge">html</code> element, which contains two subparts: the <code class="language-plaintext highlighter-rouge">head</code> element and the <code class="language-plaintext highlighter-rouge">body</code> element.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">head</code> element contains a <code class="language-plaintext highlighter-rouge">title</code> element.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">body</code> element contains a <code class="language-plaintext highlighter-rouge">div</code> element.</li>
+</ul>
+
+<p>Here’s the structure:</p>
+
+<pre class="mermaid">
+flowchart TD
+  html -- has a --&gt; head
+  html -- has a --&gt; body
+
+  head -- has a --&gt; title
+  body -- has a --&gt; div
+</pre>
+
+<p>This structure is mostly invisible to “clients” using this code.
+The <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement">HTMLElement</a> is an interface in the standard Web API that ships with browser-based JavaScript.
+Any JavaScript code that needs to manipulate a webpage dynamically (e.g., changing the background colour of a given element) can do so using methods from this interface.
+The Composite structure ensures that the behaviours are appropriately carried out for different types of elements.
+That is, the client is not concerned with differences between changing the background-color of a “leaf” element (that no inner elements) vs. a “composite” element (like a <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> that contains many inner elements).</p>
+
+<p><strong>Other examples include:</strong></p>
+
+<ul>
+  <li>Performing tree operations in a <a href="https://opendsa-server.cs.vt.edu/OpenDSA/Books/Everything/html/Bintree.html">Bintree</a></li>
+  <li>Evaluating an <em>expression tree</em> (like you are doing in Project 1)</li>
+</ul>
+
+<h3 id="benefits-and-drawbacks-of-composite-design">Benefits and drawbacks of Composite design</h3>
+
+<p><strong>Benefits of this pattern</strong></p>
+
+<ul>
+  <li>Using <a href="/courses/csc203/coursenotes/05-method-dispatch">dynamic dispatch</a> and recursion, you can work with quite complex tree structures without differentiating between a <em>part</em> or <em>the whole</em>. For example, in the file system example, each folder doesn’t need to know if its children are files or folders; they can simply be <code class="language-plaintext highlighter-rouge">read</code>, because they both belong to the same supertype.</li>
+  <li>You can introduce new types of “nodes” in this tree conveniently, and the rest of the structure doesn’t need to change. For example, consider that our filesystem has a new kind of file (say, that needs to be decrypted before it can be <code class="language-plaintext highlighter-rouge">read</code>). You can simply create a new subclass <code class="language-plaintext highlighter-rouge">EncyrptedFileNode</code> and implement the new <code class="language-plaintext highlighter-rouge">read</code> method so that it gets decrypted as part of the <code class="language-plaintext highlighter-rouge">read</code> operation.</li>
+</ul>
+
+<p><strong>Drawbacks</strong></p>
+
+<ul>
+  <li>A commonly cited drawback of this pattern is:</li>
+</ul>
+
+<blockquote>
+  <p>It might be difficult to provide a common interface for classes whose functionality differs too much. In certain scenarios, you’d need to overgeneralize the component interface, making it harder to comprehend. (<a href="https://refactoring.guru/design-patterns/composite">source</a>)</p>
+</blockquote>
+
+<p>Personally, I think the above would be an indication that you shouldn’t be using the Composite design pattern in the first place.</p>
 
 <h2 id="visitor-design-pattern">Visitor design pattern</h2>
 
@@ -71,7 +187,7 @@
 
 <p>At this point, you may wonder about the difference between the Visitor pattern and the Composite pattern. It’s true, they’re similar in focus and intent. Let’s consider an example.</p>
 
-<h3 id="example-use-case-of-visitor-design">Example use-case of Visitor Design</h3>
+<h3 id="example-use-case">Example use-case</h3>
 
 <p>(Example from <a href="https://refactoring.guru/design-patterns/visitor">Refactoring Guru</a>)</p>
 
@@ -185,11 +301,31 @@ See <a href="https://github.com/ayaankazerouni/incremental-testing/blob/master/s
   <li>The <code class="language-plaintext highlighter-rouge">visit</code> methods are returning <code class="language-plaintext highlighter-rouge">boolean</code>s; they are not <code class="language-plaintext highlighter-rouge">void</code> methods. The structure of an <code class="language-plaintext highlighter-rouge">ASTNode</code> is such that it can be broken down further into further <code class="language-plaintext highlighter-rouge">ASTNode</code>s (much like a composite tree). The return value basically tells the objects whether they should “go further” with this visitor or end the path at this node. If everything returns <code class="language-plaintext highlighter-rouge">true</code>, then the entire AST gets visited, which may be a waste.</li>
 </ul>
 
+<h3 id="one-languages-design-pattern-is-another-languages-native-feature">One language’s design pattern is another language’s native feature</h3>
+
+<p>In many programming languages, <strong>functions are values like anything else</strong>, and we can do things to them like give them variable names, pass them as arguments to other functions, etc.
+Of course, we can also <em>call</em> or <em>apply</em> functions, which is the use with which we’re all already familiar.</p>
+
+<p>With this in mind, another way to think about the Visitor pattern is as follows.</p>
+
+<p>Each node in the object structure (in this example, each location in the map), supports some behaviours of its own.
+In this respect, you could very well think of this “map” as following a Composite design pattern.</p>
+
+<p>What the Visitor pattern brings to the table is that each <code class="language-plaintext highlighter-rouge">Element</code> (each location) also includes one key addition: an <code class="language-plaintext highlighter-rouge">accept</code> function that takes, as its only parameter, <em>another</em> function that is to be applied to the <code class="language-plaintext highlighter-rouge">Element</code>.
+This means that a client component that wants to define some arbitrary additional behaviour for the <code class="language-plaintext highlighter-rouge">Element</code>s (say, an XML export behaviour) needs to:</p>
+
+<ul>
+  <li>Define the additional behaviour in a function (for example, <code class="language-plaintext highlighter-rouge">xmlExport(Element)</code>.</li>
+  <li>Call <code class="language-plaintext highlighter-rouge">accept</code> on the <code class="language-plaintext highlighter-rouge">Element</code>, and give it the function as an argument, i.e., <code class="language-plaintext highlighter-rouge">element.accept(xmlExport)</code>.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">Element</code> can then invoke <code class="language-plaintext highlighter-rouge">xmlExport</code> on itself.</li>
+</ul>
+
+<p>In the example above, we have done exactly this, except our “function” that we give as an argument to <code class="language-plaintext highlighter-rouge">accept</code> is housed in a <code class="language-plaintext highlighter-rouge">Visitor</code> object (i.e., <code class="language-plaintext highlighter-rouge">XMLExportVisitor</code>).</p>
+
 <h3 id="visitor-pattern-using-pattern-matching">Visitor pattern using pattern matching</h3>
 
-<p><strong>TODO:</strong> Pattern matching has shipped in Java 21.</p>
-
-<p>In my personal opinion, the Visitor pattern is one of the more clunky design patterns to implement in Java. This is mostly due to a lack of expressive language constructs.</p>
+<p>In my opinion, the Visitor pattern as described above is one of the more clunky patterns to implement in Java.
+This is mostly due to a lack of expressive language constructs, a situation that is quickly being improved due to many recent improvements to the Java language.</p>
 
 <p>Thankfully, <em>pattern matching</em>, a feature common in functional languages like OCaml, <a href="https://openjdk.org/jeps/441">is now available in Java as well</a>.</p>
 
@@ -206,12 +342,12 @@ All we need to ensure is that our visitor knows how to visit all possible types 
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">exportXML</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Element</span><span class="o">&gt;</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">for</span> <span class="o">(</span><span class="nc">Element</span> <span class="n">current</span> <span class="o">:</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// This switch expression won't compile unless all possible types are accounted for</span>
         <span class="k">switch</span> <span class="o">(</span><span class="n">current</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">case</span> <span class="nc">SightseeingArea</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting sightseeing area"</span><span class="o">);</span>
             <span class="k">case</span> <span class="nc">Landmark</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting landmark"</span><span class="o">);</span>
             <span class="k">case</span> <span class="nc">Museum</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting museum"</span><span class="o">);</span>
             <span class="k">default</span> <span class="o">-&gt;</span> <span class="k">throw</span> <span class="k">new</span> <span class="nc">IllegalStateException</span><span class="o">(</span><span class="s">"Element is something I didn't expect"</span><span class="o">);</span>
-            <span class="c1">// This code won't compile unless all possible types are accounted for</span>
         <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
@@ -224,10 +360,31 @@ However, our compiler does not know <em>all possible</em> implementing subclasse
 <p>To satisfy the compiler, we’ve stuck a <code class="language-plaintext highlighter-rouge">default</code> at the end and thrown an exception.
 The <code class="language-plaintext highlighter-rouge">default</code> is kind like the <code class="language-plaintext highlighter-rouge">else</code> of that <code class="language-plaintext highlighter-rouge">switch</code> expression—that is, we are saying “for anything that’s not a <code class="language-plaintext highlighter-rouge">SightseeingArea</code>, <code class="language-plaintext highlighter-rouge">Landmark</code>, or <code class="language-plaintext highlighter-rouge">Museum</code>, throw an error.</p>
 
+<p>This is similar to using a series of <code class="language-plaintext highlighter-rouge">if</code> conditions and <code class="language-plaintext highlighter-rouge">instanceof</code> checks to check the dynamic type of the <code class="language-plaintext highlighter-rouge">current</code> <code class="language-plaintext highlighter-rouge">Element</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">exportXML</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Element</span><span class="o">&gt;</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Element</span> <span class="n">current</span> <span class="o">:</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="k">instanceof</span> <span class="nc">SightseeingArea</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting sightseeing area"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="k">instanceof</span> <span class="nc">Landmark</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting landmark"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">current</span> <span class="k">instanceof</span> <span class="nc">Museum</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting museum"</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalStateException</span><span class="o">(</span><span class="s">"Element is something I didn't expect"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
 <p class="callout ponder">What do you think of this strategy?</p>
 
-<p>By using a <code class="language-plaintext highlighter-rouge">default</code> at the end, we would simply be taking that potential type error (i.e., we tried to export a thing for which no export logic is implemented), and moving it from compile time to run time.
-It’s always better to face type errors at compile time rather than run time, because facing them at run time involves doing nothing, crashing the program, or doing something unexpected.</p>
+<p>By using a <code class="language-plaintext highlighter-rouge">default</code> at the end (or the <code class="language-plaintext highlighter-rouge">else</code> clause in the second example), we would be taking that potential type error (i.e., we tried to visit a thing for which no visiting logic is implemented), and moving it from compile time to run time.
+That is, <em>we have created a situation in which our program will crash</em> because it received a type it was not prepared for.
+This should simply never happen, especially not in a statically typed language—the compiler works for us!
+We should use it!</p>
+
+<p>In other words, it’s always better to face type errors at compile time rather than run time, because facing them at run time involves doing nothing, or worse, crashing the program, or double worse, silently doing something unexpected.</p>
 
 <p>So, how do we achieve type coverage without using <code class="language-plaintext highlighter-rouge">default</code>?</p>
 
@@ -241,7 +398,7 @@ We can mark a class or interface as <code class="language-plaintext highlighter-
 
 <p>Remember that we <em>want</em> compiler hints about type errors.
 The <code class="language-plaintext highlighter-rouge">sealed</code> declaration tells the compiler that “these are the only things that will ever implement this interface”.
-Essentially, we are “helping the compiler help us”.</p>
+This helps the compiler to help us.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">sealed</span> <span class="kd">interface</span> <span class="nc">Element</span> <span class="n">permits</span> <span class="nc">Landmark</span><span class="o">,</span> <span class="nc">SightseeingArea</span><span class="o">,</span> <span class="nc">Museum</span> <span class="o">{</span>
   <span class="o">...</span>
@@ -250,18 +407,57 @@ Essentially, we are “helping the compiler help us”.</p>
 
 <p>The compiler can now be satisfied <strong><em>without</em></strong> the <code class="language-plaintext highlighter-rouge">default</code> case in the switch expression, because it knows that we have achieved type coverage.</p>
 
-<p>This use of pattern matching is well-described in <em><a href="https://nipafx.dev/java-visitor-pattern-pointless/">Visitor Pattern Considered Pointless — Use Pattern Switches Instead</a></em>, though I disagree with the title.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">exportXML</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Element</span><span class="o">&gt;</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span> <span class="o">(</span><span class="nc">Element</span> <span class="n">current</span> <span class="o">:</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// This is now okay without the default case</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">current</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">case</span> <span class="nc">SightseeingArea</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting sightseeing area"</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nc">Landmark</span> <span class="n">l</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting landmark"</span><span class="o">);</span>
+            <span class="k">case</span> <span class="nc">Museum</span> <span class="n">m</span> <span class="o">-&gt;</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Visiting museum"</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
-<p>I don’t think pattern matching renders the Visitor pattern “pointless”: it just changes what it looks like.
-As we talk about more design patterns, remember that they can exist both within and without Java-specific features like interfaces and abstract classes.
+<p>Through the combination of pattern matching and sealed types, we get the following benefits:</p>
+<ul>
+  <li><strong>Static type checking.</strong> We can write a concise <code class="language-plaintext highlighter-rouge">switch</code> expression, but can still confidently rely on our compiler to tell us if we have cases that we have not covered by our visitor.</li>
+  <li><strong>Dynamic type checking.</strong> We can write code specific to particular subtypes of <code class="language-plaintext highlighter-rouge">Element</code>, since the <code class="language-plaintext highlighter-rouge">switch</code> expression performs a type check at runtime and gives us a reference with the appropriate type, as long as it’s a subtype of <code class="language-plaintext highlighter-rouge">Element</code>.</li>
+  <li>We can do all of this without ever changing the code in the <code class="language-plaintext highlighter-rouge">Element</code> interface or its subclasses, without even adding an <code class="language-plaintext highlighter-rouge">accept</code> method.</li>
+</ul>
+
+<p>This use of pattern matching is well-described in <em><a href="https://nipafx.dev/java-visitor-pattern-pointless/">Visitor Pattern Considered Pointless — Use Pattern Switches Instead</a></em>, though I disagree with the title.
+I don’t think pattern matching renders the Visitor pattern “pointless”: it just changes what it looks like.</p>
+
+<p>As we talk about more design patterns, remember that they can exist both within and without Java-specific features like interfaces and abstract classes.
 Design patterns are <em>ideas</em>, <em>templates</em> to help solve or think about software problems, and they can exist without any particular programming language in mind.</p>
 
-<hr />
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/04-polymorphism-lsp/" class="previous">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc305/coursenotes/06-unit-testing/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
 
-    </div>
-    
-    
-    </article>
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      mermaid.initialize({
+        theme: 'dark'
+      });
+    } else {
+      mermaid.initialize({
+        theme: 'default'
+      });
+    }
+  </script>
+  
   </main>
 </body>
 </html>
