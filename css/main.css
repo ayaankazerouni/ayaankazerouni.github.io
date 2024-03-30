@@ -1,5 +1,28 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap");
+@import url("/css/dark.css") screen and (prefers-color-scheme: dark);
+@import url("/css/github.css") screen and (prefers-color-scheme: light);
+:root {
+  --bg-color: white;
+  --highlight-color: #fdff80;
+  --font-color: #000000;
+  --link-color: #425469;
+  --caption-color: #727375;
+  --emph: #E61726;
+  --nav-color: var(--emph);
+  --heading-font-color: #425469;
+  --header: #000000;
+  --award-color: #0CAC1C;
+  --ponder-color: #d3a10b;
+  --ponder-background-color: rgba(255, 235, 130, 0.2);
+  --todo-color: rgb(148, 2, 206);
+  --todo-background-color: rgba(237, 146, 134, 0.2);
+  --readings-background-color: #bcf6bc;
+  --readings-color: rgb(3, 76, 3);
+  --callout-background-color: rgba(243, 183, 183, 0.197);
+  --table-alternate-bg-color: lightgrey;
+}
+
 *,
 *::before,
 *::after {
@@ -8,10 +31,32 @@
   box-sizing: border-box;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #24272c;
+    --highlight-color: rgba(106, 87, 33, 0.356);
+    --font-color: #EEEEEE;
+    --heading-font-color: #c6f1f3;
+    --caption-color: #c9cacc;
+    --emph: rgb(246, 168, 0);
+    --nav-color: #8bcccf;
+    --link-color: #eafafb;
+    --header: #EEEEEE;
+    --award-color: darkgreen;
+    --todo-color: rgb(222, 156, 248);
+    --todo-background-color: rgb(68, 44, 66, 0.7);
+    --ponder-color: #f1ce68;
+    --readings-background-color: #093102;
+    --readings-color: #03f6e6;
+    --callout-background-color: #679da031;
+    --table-alternate-bg-color: rgb(63, 63, 63);
+  }
+}
 body {
+  background-color: var(--bg-color);
   min-width: 65%;
   margin: auto;
-  color: #000000;
+  color: var(--font-color);
   font-family: "Avenir", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -21,14 +66,14 @@ h3,
 h4,
 .degree {
   font-weight: 600;
-  color: #425469;
+  color: var(--heading-font-color);
   font-family: "Muli", sans-serif;
   margin: auto;
   padding-top: 5px;
 }
 
 h1 {
-  color: #000000;
+  color: var(--header);
   font-family: "Muli", sans-serif;
 }
 h1 a,
@@ -38,12 +83,12 @@ h1 a:visited {
 
 a,
 a:visited {
-  color: #425469;
+  color: var(--link-color);
   text-decoration: underline;
 }
 
 a:hover {
-  color: #E61726;
+  color: var(--emph);
   text-decoration: underline;
 }
 
@@ -63,10 +108,15 @@ header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
 }
 header.pages {
   height: auto;
+}
+header a, header a:visited {
+  color: var(--font-color);
+}
+header a:hover {
+  color: var(--emph);
 }
 header img {
   border-radius: 360px;
@@ -102,10 +152,10 @@ main.post article {
 
 /* Aside */
 aside {
-  background: #fff;
+  background: var(--bg-color);
   width: 100%;
   z-index: 2;
-  border-bottom: 1px solid #f6a0a7;
+  border-bottom: 1px solid var(--emph);
   box-shadow: 0px 1px 1px RGBA(4, 25, 54, 0.1);
 }
 aside nav {
@@ -124,7 +174,7 @@ aside nav ul li {
 }
 aside nav ul li a.nav-link {
   text-decoration: none;
-  color: #E61726;
+  color: var(--nav-color);
   display: block;
   padding: 15px;
   font-family: "Muli", sans-serif;
@@ -135,9 +185,9 @@ aside nav ul li a.nav-link {
   -webkit-transition: 0.3s;
 }
 aside nav ul li a.nav-link:hover, aside nav ul li a.nav-link.active {
-  background: #000000;
+  background: var(--header);
   text-decoration: none;
-  color: #F9CF00;
+  color: var(--bg-color);
 }
 aside nav:after {
   content: "";
@@ -156,21 +206,18 @@ aside nav:after {
 }
 
 .emph {
-  color: #E61726;
+  color: var(--emph);
 }
 
-.content-box {
-  border-radius: 5px;
+.content {
   margin: auto;
   justify-content: center;
-}
-.content-box .content {
   padding: 0 10px;
 }
 
 .award {
   display: inline-block;
-  background: #0CAC1C;
+  background: var(--award-color);
   color: white;
   border-radius: 5px;
   padding: 0 3px;
@@ -187,7 +234,7 @@ figure {
 figure figcaption {
   font-size: 0.8em;
   padding: 0;
-  color: #727375;
+  color: var(--caption-color);
   font-family: Avenir;
 }
 figure.wide {
@@ -215,21 +262,25 @@ ul {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: #425469;
 }
-.contact a {
+.contact a, .contact a:visited {
   font-size: 1.5em !important;
   text-decoration: none;
+  color: var(--link-color);
+}
+.contact a:hover, .contact a:visited:hover {
+  color: var(--emph);
 }
 
 footer {
-  color: #E61726;
   text-align: center;
   padding: 40px;
 }
 footer .address {
   font-size: 0.8em;
-  color: #425469;
+}
+footer a, footer a:visited {
+  color: var(--font-color);
 }
 
 .fa, .fab, .far, .fas, .ai {
@@ -266,7 +317,7 @@ footer .address {
   padding-bottom: 10px;
 }
 .artifact-list .authors {
-  color: #E61726;
+  color: var(--emph);
 }
 .artifact-list .artifact-title > a {
   text-decoration: none;
@@ -279,7 +330,7 @@ footer .address {
   padding: 5px;
   border: 1px grey solid;
   border-radius: 5px;
-  color: black;
+  color: var(--font-color);
   list-style-type: none;
 }
 
@@ -290,8 +341,8 @@ details > summary {
 .banner {
   padding: 10px;
   border-radius: 5px;
-  border: #E61726 solid 2px;
-  background-color: rgba(255, 238, 0, 0.4);
+  border: var(--emph) solid 2px;
+  background-color: var(--highlight-color);
 }
 
 .grey {
@@ -299,20 +350,20 @@ details > summary {
 }
 
 code {
-  color: #E61726;
   font-size: 1rem;
+  color: var(--emph);
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
 }
 pre > code {
-  color: inherit;
+  color: var(--code-color);
 }
 
 pre:not(.mermaid) {
   padding: 10px;
   border-radius: 5px;
-  border: 1pt solid #425469;
+  border: 1pt solid var(--heading-font-color);
   line-height: 1.5;
 }
 
@@ -321,16 +372,16 @@ pre:not(.mermaid) {
   font-family: "Quicksand", "Helvetica", sans-serif;
   padding: 2px 5px;
   margin: 5px;
-  background-color: rgba(255, 238, 0, 0.4);
-  border: 0.5pt solid #E61726;
+  background-color: var(--highlight-color);
+  border: 0.5pt solid var(--emph);
   border-radius: 8px;
   cursor: pointer;
 }
 .tag.active {
-  background-color: #000000;
+  background-color: var(--header);
 }
 .tag.active a {
-  color: #F9CF00;
+  color: var(--highlight-color);
 }
 
 table {
@@ -341,8 +392,8 @@ table {
 table th {
   border-top: 1pt solid;
   border-bottom: 1pt solid;
-  background-color: #000000;
-  color: #F9CF00;
+  background-color: var(--font-color);
+  color: var(--bg-color);
 }
 table tr {
   border-bottom: 0.5pt solid;
@@ -355,7 +406,7 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
 }
 
 .course table tr:nth-child(4n), .course table tr:nth-child(4n-1) {
-  background: lightgrey;
+  background: var(--table-alternate-bg-color);
 }
 
 .coursenotes {
@@ -364,32 +415,42 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
 }
 
 .callout, blockquote {
-  border-left: 4px solid #E61726;
-  background-color: rgba(243, 183, 183, 0.197);
+  border-left: 4px solid var(--emph);
+  background-color: var(--callout-background-color);
   border-radius: 4px;
   padding: 0.5rem;
+  list-style-type: none;
 }
 .callout::before, blockquote::before {
   display: block;
+  padding-bottom: 0.5rem;
   font-weight: bold;
   font-size: 0.8em;
   font-family: "Muli", sans-serif;
 }
 .callout.todo, blockquote.todo {
-  border-color: rgb(148, 2, 206);
-  background-color: rgba(237, 146, 134, 0.2);
+  border-color: var(--todo-color);
+  background-color: var(--todo-background-color);
 }
 .callout.todo::before, blockquote.todo::before {
   content: "TODO";
-  color: rgb(148, 2, 206);
+  color: var(--todo-color);
 }
 .callout.ponder, blockquote.ponder {
-  border-color: #d3a10b;
-  background-color: rgba(255, 235, 130, 0.2);
+  border-color: var(--ponder-color);
+  background-color: var(--ponder-background-color);
 }
 .callout.ponder::before, blockquote.ponder::before {
   content: "PONDER";
-  color: #d3a10b;
+  color: var(--ponder-color);
+}
+.callout.readings, blockquote.readings {
+  border-color: var(--readings-color);
+  background-color: var(--readings-background-color);
+}
+.callout.readings::before, blockquote.readings::before {
+  content: "READINGS";
+  color: var(--readings-color);
 }
 
 blockquote {
@@ -398,7 +459,7 @@ blockquote {
 }
 
 .footnotes :target {
-  background-color: #F9CF00;
+  background-color: var(--highlight-color);
 }
 
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {

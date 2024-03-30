@@ -1,0 +1,291 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+
+	<title>(Some of the) SOLID Principles - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/04-polymorphism-lsp/">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+</head>
+
+
+<body>
+  <main class="coursenotes">
+  
+  
+  
+  
+  <p>
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
+  </p>
+  
+  <h1>(Some of the) SOLID Principles</h1>
+  <div class="content">
+      <ul id="markdown-toc">
+  <li><a href="#what-weve-talked-about-so-far" id="markdown-toc-what-weve-talked-about-so-far">What we’ve talked about so far</a></li>
+  <li><a href="#open-closed-principle" id="markdown-toc-open-closed-principle">Open-closed Principle</a>    <ul>
+      <li><a href="#when-is-the-open-closed-principle-useful" id="markdown-toc-when-is-the-open-closed-principle-useful">When is the open-closed principle useful?</a></li>
+    </ul>
+  </li>
+  <li><a href="#polymorphism" id="markdown-toc-polymorphism">Polymorphism</a></li>
+  <li><a href="#liskov-substitution-principle" id="markdown-toc-liskov-substitution-principle">Liskov substitution principle</a></li>
+</ul>
+
+<h2 id="what-weve-talked-about-so-far">What we’ve talked about so far</h2>
+
+<p>So far, we’ve talked about the following principles for good program design:</p>
+
+<ul>
+  <li>Minimise the scope of local variables</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">StringBuilder</code></li>
+  <li>Use the appropriate looping construct</li>
+  <li>Know and use standard libraries</li>
+  <li>Design and build loosely coupled modules</li>
+  <li>Use strategies like encapsulation, interfaces, and dependency injection</li>
+  <li>Design immutable classes wherever possible</li>
+  <li>Increase cohesion of individual classes</li>
+</ul>
+
+<p>We’ve also started talking about the so-called “SOLID” principles of object-oriented design. We started by talking about the Single Responsibility Principle (the S in SOLID), which is the principle that guides our desire for LOOSE COUPLING between classes and TIGHT COHESION within classes.</p>
+
+<h2 id="open-closed-principle">Open-closed Principle</h2>
+
+<p>The Open-closed Principle states that software entities should be open to extension, but closed to modification.</p>
+
+<p>Unfortunately, there are many interpretations of what exactly this means.
+<a href="https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html">The common interpretation</a> says that in an ideally-designed software system, you should be able to add functionality to that system without modifying the existing code (or minimising changes to existing code), and only by adding new code.
+In an object-oriented language that supports inheritance (e.g., Java), this might be accomplished by creating extensions (subclasses) of existing classes, instead of modifying existing classes.</p>
+
+<p>The idea itself is compelling—new features fitting seamlessly into an existing design is certainly an attractive proposition!
+However, I don’t think it’s terribly realistic a lot of the time.
+I shudder at the thought that we would create new subclasses or ever-deeper type hierarchies each time we wanted to add new functionality to a large software system.</p>
+
+<blockquote>
+  <p>Creating abstraction each time we want to modify our code bring other problems: it can create indirections and, as a result, increase the complexity of the system. If we try to create each time a new “entity” (<a href="https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html">using Martin’s words</a>) when we want to change one, we’ll see the cheer numbers of “entities” going through the roof.</p>
+
+  <p>– blog post on <a href="https://thevaluable.dev/open-closed-principle-revisited/">“The Valuable Dev”</a></p>
+</blockquote>
+
+<p>Happily, many of the “SOLID principles of object-oriented design” can also be thought about in a non-Object-oriented sense.</p>
+
+<p>A good example is the regular expression example we saw last week.
+See <code class="language-plaintext highlighter-rouge">lib/core.ts</code> and the <code class="language-plaintext highlighter-rouge">usePattern</code> function in <code class="language-plaintext highlighter-rouge">lib/vocabularies/code.ts</code> in commit <a href="https://github.com/ajv-validator/ajv/pull/1684/commits/a0720f881b8331db1c8c38a805e24a71f5daacbb">a0720f881b8331db1c8c38a805e24a71f5daacbb</a>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">usePattern</code> function is <em>closed to modification</em> (i.e., we won’t make further changes to the function to support additional regular expression engines), but is <em>open to extension</em> (i.e., it can be extended to work with any regular expression parser, as long as it adheres to the <code class="language-plaintext highlighter-rouge">RegExp</code> interface).</p>
+
+<h3 id="when-is-the-open-closed-principle-useful">When is the open-closed principle useful?</h3>
+
+<p>In many domains, plugin architectures are becoming extremely common.
+A plugin architecture is made up of two main components:</p>
+
+<ul>
+  <li>The <strong>core system</strong> is the main application, containing the fundamental logic needed for the system.</li>
+  <li><strong>Connection points</strong> that various plugins can hook into to extend the core system’s functionality.</li>
+</ul>
+
+<p>Just like we talked about classes exposing a fixed interface to other classes, you can imagine that the core system (which may, itself, contain many software components) exposes an interface that plugins can use to add new features, or even extend existing features, depending on what the core system exposes.</p>
+
+<p>A great example is software development environments.
+Most major IDEs are built using a plugin architecture.</p>
+
+<p>For example, VSCode provides facilities for external developers to create extensions that vastly extend the functionality of the core system.</p>
+
+<p>And it’s not just for external developers!
+The VSCode team themselves have isolated the fundamental editor features in a core system (the <a href="https://github.com/microsoft/vscode/tree/main/src/vs"><code class="language-plaintext highlighter-rouge">microsoft/vscode</code></a> repository), and they ship a large number of features as “extensions” to that core system.
+For example, basic python support comes with the <a href="https://github.com/microsoft/vscode-python"><code class="language-plaintext highlighter-rouge">vscode-python</code></a> extension.</p>
+
+<p>This plugin architecture allows for VSCode to be <em>extended</em> in myriad ways, without ever modifying the core VSCode functionality.
+That, the core functionality has no idea about the plugins that might be operating on it, and the plugins can manipulate parts of the VSCode application that the core system exposes through its extension mechanism.</p>
+
+<p>This is a popular approach in IDEs.
+For example, the <a href="https://aosabook.org/en/v1/intro1.html#moir-kim">Kim Moir</a>, describes the plugin architecture used in the <a href="https://aosabook.org/en/v1/eclipse.html">Eclipse platform</a>.
+That architecture has allowed the same base functionality to create a number of <em>other</em> IDEs by composing together various plugins.
+For example, <a href="https://eclipseide.org/">Eclipse</a> itself is a popular open-source Java IDE, but the same base platform is used to build <a href="https://dbeaver.io/about/">DBeaver</a> an open-source database tool.</p>
+
+<p>Virtually all the <a href="https://www.jetbrains.com/">JetBrains developer tools</a> (including IntelliJ IDEA) are built as combinations of various plugins on top of the core architecture.</p>
+
+<p>So, plugin architectures are a good example of the Open-closed principle in action.
+But I am not super convinced that going for a plugin architecture is the best move in all cases — it can be too much overhead for little benefit.</p>
+
+<h2 id="polymorphism">Polymorphism</h2>
+
+<p class="callout">Do you remember what Polymorphism is? Why is it useful?</p>
+
+<p>Polymorphism is an important pillar of object-oriented programming. The word “polymorph” means “many forms”. Polymorphism allows us to treat objects as having one of multiple “forms”, and we don’t necessarily know until runtime what that form might be. (This should remind you of interfaces!)</p>
+
+<p class="callout">What different kinds of polymorphism are available to us in Java?</p>
+
+<ul>
+  <li>Interfaces
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">default</code> methods allow us to add shared method implementations to interfaces. These methods are inherited by any implementing subclasses that don’t implement their own versions; if <code class="language-plaintext highlighter-rouge">default</code> methods are added to interfaces that have been in use by many clients, this can lead to subtle issues at runtime, even if the client’s code compiles successfully.</li>
+    </ul>
+  </li>
+  <li>Extending a concrete class: a class extends another concrete class. Both the super-class <em>and</em> the sub-class are concrete, initialisable classes. The subclass may inherit the superclass’s behaviour, modify it, or add to it.</li>
+  <li>Abstract classes: An abstract class can define concrete methods as well as abstract methods that <em>must</em> be implemented by a subclass.</li>
+</ul>
+
+<p><strong>EJ20: Prefer interfaces to abstract classes.</strong></p>
+
+<p>It used to be that interfaces were quite limited in what they could do, compared to abstract classes. Interfaces could <em>only</em> define abstract methods that all implementing subclasses had to implement. We’ve already talked about the benefits of this (see lecture notes on coupling and cohesion).</p>
+
+<p>But this led to difficulties when, for example, an interface that was in use by many classes needed to be extended in some way. Any additions of abstract methods to the interface would require <em>all</em> implementing subclasses to also need implementations of the new abstract methods, <em>even if the implementation was to be identical for all subclasses</em>.</p>
+
+<p>Compare this to abstract classes, which allow a mix of fully implemented methods as well as abstract methods. All subclasses <em>must</em> implement their own versions of abstract methods, but have the option to inherit the methods that are already implemented in the superclass.</p>
+
+<p>Clearly, they seem more useful than interfaces!</p>
+
+<p><strong>Enter <code class="language-plaintext highlighter-rouge">default</code> methods</strong></p>
+
+<p>All of this changed with the introduction of <code class="language-plaintext highlighter-rouge">default</code> methods for interfaces. Default methods allow you provide implementations for certain behaviours in the interface itself, so that implementing classes can inherit them or override them.</p>
+
+<p>As a result, using interfaces give you the following benefits:</p>
+
+<ul>
+  <li>
+    <p><strong>Existing classes can easily be retrofitted to implement a new interface.</strong> It’s just a matter of declaring that the class <code class="language-plaintext highlighter-rouge">implements</code> the interface, and adding the required methods. Because classes in Java can implement multiple interfaces, this is not a problem. However, a Java class can <code class="language-plaintext highlighter-rouge">extend</code> at most one class. So it’s not straightforward at all to retrofit an existing class to extend an abstract class.</p>
+  </li>
+  <li>
+    <p><strong>Interfaces let you create non-hierarchical type frameworks.</strong> Not all organisations lend themselves to tree structures. That is, you may want different combinations of types “mixed together” for specific subclasses. To achieve this flexibly with abstract classes, you would end up with a bloated class hierarchy, trying to create a separate type for each combination of functionality you want to support. With interfaces you have infinite flexibility to enhance class behaviours as needed.</p>
+  </li>
+  <li>
+    <p><strong>It’s easy to enhance implementing subclasses behaviours by adding <code class="language-plaintext highlighter-rouge">default</code> methods</strong></p>
+  </li>
+</ul>
+
+<p>For example, consider the <a href="https://github.com/openjdk/jdk20/blob/master/src/java.base/share/classes/java/util/Comparator.java"><code class="language-plaintext highlighter-rouge">Comparable</code></a> interface. In older versions of Java, the interface simply provided an abstract <code class="language-plaintext highlighter-rouge">compare</code> method that compared two objects. Implementing subclasses had to implement those methods. Now, the <code class="language-plaintext highlighter-rouge">Comparator</code> interface provides a number of useful <code class="language-plaintext highlighter-rouge">default</code> methods, which allow you to chain comparators together (using <code class="language-plaintext highlighter-rouge">thenComparing</code>) or to reverse the order of a comparison (using <code class="language-plaintext highlighter-rouge">reversed</code>).</p>
+
+<p>No implementing classes needed to be aware of these additions to be able to benefit from them.</p>
+
+<p>That said, there are risks with <code class="language-plaintext highlighter-rouge">default</code> method implementations. Default methods are “injected” into implementing subclasses without the knowledge or consent of the implementors. It is possible that the default method implementation that is being inherited by some implementor actually violates invariants that the implementor depends upon. good documentation is absolutely essential to communicate this information to implementors.</p>
+
+<p>For example, a library maintainer who updated to Java 9 would suddenly have been saddled with a bunch of inherited behaviour in their classes that implement the <code class="language-plaintext highlighter-rouge">Comparable</code> interface.</p>
+
+<p class="callout">It is simply not possible to write interfaces that maintain all invariants of every conceivable implementation.</p>
+
+<p><strong>EJ21 Design interfaces for posterity</strong></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Collection</code> interface contains the <a href="https://github.com/openjdk/jdk20/blob/master/src/java.base/share/classes/java/util/Collection.java#L571"><code class="language-plaintext highlighter-rouge">removeIf</code></a> method. The method removes an element if it satisfies some boolean condition (a predicate).</p>
+
+<p>Every class that implements the <code class="language-plaintext highlighter-rouge">Collection</code> interface (i.e., <a href="https://download.java.net/java/early_access/jdk20/docs/api/java.base/java/util/Collection.html">a whole ton of classes in the JDK</a>) now inherits this <code class="language-plaintext highlighter-rouge">removeIf</code> method.</p>
+
+<p>Unfortunately, this fails for the <code class="language-plaintext highlighter-rouge">SynchronizedCollection</code>, a collection object from Apache commons which synchronizes the collection based on a locking object. The <code class="language-plaintext highlighter-rouge">default</code> implementation of <code class="language-plaintext highlighter-rouge">removeIf</code> in the <code class="language-plaintext highlighter-rouge">Collection</code> interface doesn’t know about this locking mechanism. And the <code class="language-plaintext highlighter-rouge">SynchronizedCollection</code> cannot override the method and provide its own implementation because that would mutate the underlying collection, breaking its fundamental promise to synchronize on each function call. If a client were to call <code class="language-plaintext highlighter-rouge">removeIf</code> while another thread was modifying the collection, it would lead to a <code class="language-plaintext highlighter-rouge">ConcurrentModificationException</code> or some other undefined behaviour.</p>
+
+<h2 id="liskov-substitution-principle">Liskov substitution principle</h2>
+
+<p>Proposed by <strong>Barbara Liskov</strong>, a pioneer of programming languages, object-oriented programming, and winner of the 2008 Turing award.</p>
+
+<p>The LSP says:</p>
+
+<blockquote>
+  <p>Any class <code class="language-plaintext highlighter-rouge">S</code> can be used to replace a class <code class="language-plaintext highlighter-rouge">B</code> if and only if <code class="language-plaintext highlighter-rouge">S</code> is a subclass of <code class="language-plaintext highlighter-rouge">B</code>.</p>
+</blockquote>
+
+<p>This is a good rule-of-thumb for using <em>polymorphism</em> currently.</p>
+
+<p>The Liskov Substitution Principle says that in an OO program, if we substitute a superclass object reference with an object of any of its subclasses, the program should not break. This is in much the same way that code that uses a <code class="language-plaintext highlighter-rouge">List</code> type can be executed with an <code class="language-plaintext highlighter-rouge">ArrayList</code> or a <code class="language-plaintext highlighter-rouge">LinkedList</code> and everything works just fine.</p>
+
+<p>You can think of the methods defined in a supertype as defining a contract. Every subtype (e.g., everything that claims to be a <code class="language-plaintext highlighter-rouge">List</code>) should stick to the contract.</p>
+
+<p>The LSP helps us to ensure that invariants in the superclass are maintained in subclasses (i.e., preconditions and postconditions are satisfied). This can also help clients rely on extensions to our existing classes without fear of unexpected functional outcomes.</p>
+
+<p>In a language like Java, the <em>existence</em> of the appropriate functions (e.g., methods with the right names, parameter lists, and return type) are more-or-less guaranteed by the language’s type system. For example, if you were you create a new <code class="language-plaintext highlighter-rouge">List</code> implementation, your code would not compile until you had implementations for all of the methods that are required by the <a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.base/java/util/List.html"><code class="language-plaintext highlighter-rouge">List</code> interface</a>.</p>
+
+<p>But the LSP goes beyond simply satisfying the type system. It’s a promise of <em>semantically</em> fulfilling the contract of the supertype. That is, the subtype should behave like the supertype (e.g., no matter what kind of list is being used, the effect of <code class="language-plaintext highlighter-rouge">add</code>ing an item is the same).</p>
+
+<p>For example, subclasses can improve the performance of the superclass:</p>
+
+<ul>
+  <li>a subclass can use a better search algorithm than the base class</li>
+  <li>a subclass can use a better sort algorithm than the base class</li>
+  <li>the expected behaviour and outcome should be the same</li>
+</ul>
+
+<p>Currently, languages do not automatically enforce these properties.</p>
+
+<p><strong>Code Critique</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Bird</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fly</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Flying..."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">eat</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Eating..."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Crow</span> <span class="kd">extends</span> <span class="nc">Bird</span> <span class="o">{}</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Ostrich</span> <span class="kd">extends</span> <span class="nc">Bird</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fly</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBird</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Bird</span><span class="o">&gt;</span> <span class="n">birdList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">birdList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Crow</span><span class="o">());</span>
+        <span class="n">birdList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Ostrich</span><span class="o">());</span>
+        <span class="n">birdList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">Crow</span><span class="o">());</span>
+        <span class="n">letTheBirdsFly</span> <span class="o">(</span> <span class="n">birdList</span> <span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">letTheBirdsFly</span> <span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Bird</span><span class="o">&gt;</span> <span class="n">birdList</span> <span class="o">){</span>
+        <span class="k">for</span> <span class="o">(</span><span class="nc">Bird</span> <span class="n">b</span> <span class="o">:</span> <span class="n">birdList</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">b</span><span class="o">.</span><span class="na">fly</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p class="callout ponder">What’s the problem with the code above?</p>
+
+<details>
+  <summary>Hint</summary>
+  <p>The Ostrich <code class="language-plaintext highlighter-rouge">extends</code> the <code class="language-plaintext highlighter-rouge">Bird</code> superclass, but does not support all of the required behaviours. This is a clear violation of the LSP: the <code class="language-plaintext highlighter-rouge">Ostrich</code> has a more constrained set of functionality than its superclass, <code class="language-plaintext highlighter-rouge">Bird</code>. This happens because the <code class="language-plaintext highlighter-rouge">Bird</code> abstraction has <em>too many responsibilities</em>. It is responsible for too much functionality, so when the time comes to extend the software with the <code class="language-plaintext highlighter-rouge">Ostrich</code> class, we run into trouble.</p>
+</details>
+
+<p class="callout ponder">How would you fix the design?</p>
+
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/03-mutability-cohesion-srp/" class="previous">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc305/coursenotes/05-visitor-pattern-matching/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      mermaid.initialize({
+        theme: 'dark'
+      });
+    } else {
+      mermaid.initialize({
+        theme: 'default'
+      });
+    }
+  </script>
+  
+  </main>
+</body>
+</html>
