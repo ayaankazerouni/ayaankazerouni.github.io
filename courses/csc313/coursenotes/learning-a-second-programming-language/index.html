@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc313/coursenotes/learning-a-second-programming-language/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,16 +25,12 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc313">CSC 313 Teaching Computing</a>)
+    (Coursenotes for <a href="/courses/csc313#course-schedule">CSC 313 Teaching Computing</a>)
   </p>
   
   <h1>Learning a Second Programming Language</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <p><strong>📖 Readings</strong></p>
-
-<p>[1] <a href="https://dl.acm.org/doi/10.1145/3372782.3406270">Understanding Conceptual Transfer for Students Learning New Programming Languages</a> by Ethel Tshukudu and Quintin Cutts</p>
+  <div class="content">
+      <p class="callout readings">[1] <a href="https://dl.acm.org/doi/10.1145/3372782.3406270">Understanding Conceptual Transfer for Students Learning New Programming Languages</a> by Ethel Tshukudu and Quintin Cutts</p>
 
 <p>Prior work on PL transfer focuses on transfer of <em>problem-solving strategies</em> as experts transition from one language to the next. But we don’t know much about how PL transfer happens during <em>code comprehension</em>.</p>
 
@@ -77,6 +72,13 @@
 
 <h3 id="semantic-transfer-between-pl1-and-pl2">Semantic transfer between PL1 and PL2</h3>
 
+<p>The figure below, reproduced from Dr. Tshukudu’s paper, depicts a theoretical model of a student’s understanding of a first programming language (PL1), and what their understanding might look like after an “ideal learning process” in which they learn an additional programming language (PL2).</p>
+
+<p>The conceptual level depicts a programming concept, and the semantic level depicts “how it works” in the programming language.
+For example, in the figure on the left, a concept might be “conditional logic”.
+But there are multiple options for realising this same concept, that work slightly differently (for example, <code class="language-plaintext highlighter-rouge">switch</code> statements and <code class="language-plaintext highlighter-rouge">if-else</code> ladders).
+Finally, those constructs certainly look different from each other syntactically.</p>
+
 <figure>
 
   <a href="model.png" target="_blank">
@@ -87,14 +89,21 @@
   <figcaption>A model of PL transfer (reproduced from [1]).</figcaption>
 </figure>
 
-<p>The paper suggests in the Prior Level, there’s no branching between the syntactic and semantic level. But this is an <em>idealised notion</em>—recall that there can be issues of transfer between the learner’s prior knowledge from other domains with similar tokens or notation (e.g., math). This conceptualisation largely ignores those issues, focusing only knowledge of a programming language.</p>
-
-<p>When learning the second language, relationships between concepts in the two languages are formed.</p>
+<p>After the “ideal learning process” in which the student learns PL2, the student is correctly able to:</p>
 
 <ul>
-  <li><em>True carryover construct (TCC):</em> Similar syntax and same underlying semantics in PL1 and PL2. (E.g., a <code class="language-plaintext highlighter-rouge">while</code> loop in Python and Java)</li>
-  <li><em>False carryover construct (FCC):</em> Similar syntax, but different semantics. Negative transfer! (E.g., integer division in Python and Java).</li>
-  <li><em>Abstract true carryover construct (ATCC):</em> different syntax by same semantics. (E.g., objects in Java are kind of like <code class="language-plaintext highlighter-rouge">dict</code> in Python).<sup id="fnref:map" role="doc-noteref"><a href="#fn:map" class="footnote" rel="footnote">1</a></sup></li>
+  <li>Connect constructs that look and behave the same in the two languages (similar syntax and semantics)</li>
+  <li>Connect constructs that look different but behave the same in the two languages (different syntax, but similar semantics)</li>
+  <li>Distinguish between constructs that look the same, but behave differently in the two languages (similar syntax, but different semantics)
+<sup id="fnref:transfer" role="doc-noteref"><a href="#fn:transfer" class="footnote" rel="footnote">1</a></sup></li>
+</ul>
+
+<p>With the above optimistic eventualities in mind, we can think about relationships between constructs in the two programming languages as follows:</p>
+
+<ul>
+  <li><strong>True carryover construct (TCC):</strong> Similar syntax and same underlying semantics in PL1 and PL2. (E.g., a <code class="language-plaintext highlighter-rouge">while</code> loop in Python and Java)</li>
+  <li><strong>False carryover construct (FCC):</strong> Similar syntax, but different semantics. Negative transfer! (E.g., integer division in Python and Java).</li>
+  <li><strong>Abstract true carryover construct (ATCC):</strong> different syntax by same semantics. (E.g., objects in Java are kind of like <code class="language-plaintext highlighter-rouge">dict</code> in Python, or maybe list comprehensions in Python and the <code class="language-plaintext highlighter-rouge">map</code> or <code class="language-plaintext highlighter-rouge">filter</code> functions in JavaScript).</li>
 </ul>
 
 <p>Totally new (conceptually, semantically, and syntactically novel) constructs in the second PL will appear as brand new strands, unrelated to any known concepts.</p>
@@ -109,21 +118,36 @@
   <figcaption>An example of knowledge transfer between PL1 and PL2 (reproduced from [1]).</figcaption>
 </figure>
 
-<h3 id="how-does-this-affect-pl-knowledge-transfer">How does this affect PL knowledge transfer?</h3>
+<p>The figure above shows:</p>
 
-<p>The authors make three predictions:</p>
+<ul>
+  <li><strong>On top</strong> — The “actual” constructs and the relationships between them.
+    <ul>
+      <li>For TCCs—constructs with similar syntax and semantics in both languages—the learner is able to transfer their knowledge of PL1 to PL2 with no problem.</li>
+      <li>For FCCs, the semantic difference is noted, in spite of the syntactic similarity.</li>
+      <li>For ATCCs, the semantic similarity is noted, in spite of the syntactic difference.</li>
+    </ul>
+  </li>
+  <li><strong>On the bottom</strong> — Disaster!
+    <ul>
+      <li>For TCCs, everything is fine. The learner is able to transfer their PL1 knowledge to PL2.</li>
+      <li>For FCCs, the learner perceives them as TCCs, i.e., they expect the construct in PL2 to behave the same as in PL1 because they look similar. This is negative knowledge transfer.</li>
+      <li>For ATCCs, the learner perceives them as FCCs, i.e., they <em>fail</em> to see how a construct in PL2 in similar to a construct they already know from PL1, because they look different. This is a lack of knowledge transfer.</li>
+    </ul>
+  </li>
+</ul>
 
-<ol>
-  <li>When a TCC is encountered (i.e., a concept which has similar syntax and semantics in PL1 and PL2), the learner <em>correctly</em> perceives the similarity between the concept in the two languages. Positive knowledge transfer takes place.</li>
-  <li>When a FCC is encountered (i.e., a concept which has similar syntax, but <em>different semantics</em> in PL1 and PL2), the learner <em>incorrectly</em> perceives that there is a similarity between the concept’s semantics in the two languages. That is, the learner thinks this is a TCC. Negative knowledge transfer takes place.</li>
-  <li>When an ATCC is encountered (i.e., a concept with similar semantics but <em>different syntax</em> in PL1 and PL2), the differing syntax between PL1 and PL2 masks the concept’s similar semantics from the learner, and they fail to transfer that understanding from PL1 to PL2. They therefore perceive the ATCC as a totally new concept. No knowledge transfer takes place.</li>
-</ol>
+<p>Of course, this is just a theory. But is this actually what happens? The authors tested it out.</p>
 
 <p class="callout ponder">Think about the first two programming languages you learned. For many of you, this will have been two quarters of Python followed by Java. What aspects of this model hold for you? What doesn’t hold?</p>
 
 <h3 id="how-does-this-theory-hold-up">How does this theory hold up?</h3>
 
-<p>Hypotheses:</p>
+<p>The authors conducted two studies.
+First, for constructs in Python and Java, they labelled them as TCCs, FCCs, or ATCCs.
+Then, they recruited students with knowledge in one language and gave them some instruction and assessment in the second language.</p>
+
+<p>They tested these hypotheses.</p>
 
 <ul>
   <li>H1: No difference in quiz scores for concepts involving TCC between PL1 and PL2</li>
@@ -174,16 +198,21 @@
 <hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:map" role="doc-endnote">
-      <p>I’m a bit skeptical of this example for ATCC. But maybe with the introduction of Records in Java, this example holds a bit better. A better example might be the <code class="language-plaintext highlighter-rouge">map</code> function in, say, JavaScript, and list comprehensions in Python. <a href="#fnref:map" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    <li id="fn:transfer" role="doc-endnote">
+      <p>Note that the figure omits issues of negative transfer from <em>other</em> domains that might interfer with learning PL1 itself. This model is specifically focused on knowledge transfer from PL1 to PL2, not on the initial learning of PL1 itself. <a href="#fnref:transfer" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
-    </div>
-    
-    
-    </article>
+      <footer class="nav-links">
+        
+        
+        <a href="/courses/csc313/coursenotes/metacognitive-awareness-problem-comprehension/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>

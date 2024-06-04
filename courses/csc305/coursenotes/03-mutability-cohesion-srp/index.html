@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/03-mutability-cohesion-srp/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,22 +25,20 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
   </p>
   
   <h1>More on encapsulation, immutability, cohesion</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <h2 id="topics">Topics</h2>
-
-<ul>
-  <li>
-    <p>Review — what are the good programming practices we’ve learned about so far?</p>
+  <div class="content">
+      <ul id="markdown-toc">
+  <li><a href="#a-bit-more-on-encapsulation" id="markdown-toc-a-bit-more-on-encapsulation">A bit more on encapsulation</a></li>
+  <li><a href="#immutability" id="markdown-toc-immutability">Immutability</a>    <ul>
+      <li><a href="#benefits-of-immutability" id="markdown-toc-benefits-of-immutability">Benefits of immutability</a></li>
+      <li><a href="#drawbacks-of-immutability" id="markdown-toc-drawbacks-of-immutability">Drawbacks of immutability</a></li>
+    </ul>
   </li>
-  <li>A bit more about encapsulation</li>
-  <li>Mutability</li>
-  <li>Cohesion and the single responsibility principle</li>
+  <li><a href="#cohesion" id="markdown-toc-cohesion">Cohesion</a></li>
+  <li><a href="#an-example-in-the-wild" id="markdown-toc-an-example-in-the-wild">An example in the wild</a></li>
 </ul>
 
 <h2 id="a-bit-more-on-encapsulation">A bit more on encapsulation</h2>
@@ -57,9 +54,9 @@
   <li><code class="language-plaintext highlighter-rouge">public</code> – accessible to everyone</li>
 </ul>
 
-<p>Instance fields of public classes should rarely be public. Some exceptions exist, like the <a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/Point.html"><code class="language-plaintext highlighter-rouge">Point</code></a> and <a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/Dimension.html"><code class="language-plaintext highlighter-rouge">Dimension</code></a> classes in the Java standard library.A</p>
+<p>Instance fields of public classes should rarely be public. Some exceptions exist, like the <a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/Point.html"><code class="language-plaintext highlighter-rouge">Point</code></a> and <a href="https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/Dimension.html"><code class="language-plaintext highlighter-rouge">Dimension</code></a> classes in the Java standard library.</p>
 
-<p>This opens up the <code class="language-plaintext highlighter-rouge">Dimension</code> class in particular (used to encapsulate the 2d dimensions of a component in, say, a desktop application) to some potential issues. For example, the Javadoc for says the following:</p>
+<p>This opens up the <code class="language-plaintext highlighter-rouge">Dimension</code> class in particular (used to encapsulate the 2d dimensions of a component in, say, a desktop application) to some potential issues. For example, the Javadoc for <code class="language-plaintext highlighter-rouge">Dimension</code> says the following:</p>
 
 <blockquote>
   <p>Normally the values of width and height are non-negative integers. The constructors that allow you to create a dimension do not prevent you from setting a negative value for these properties. If the value of width or height is negative, the behavior of some methods defined by other objects is undefined.</p>
@@ -72,11 +69,55 @@ Ideally, we’d want to use mutator (“setter”) methods to mutate these value
 
 <p>Note also that the <code class="language-plaintext highlighter-rouge">Point</code> Javadoc doesn’t say that it’s specifically a point representing a location in desktop windows—if that were the case, then we <em>would</em> only want to allow positive numbers. But that’s not part of the <code class="language-plaintext highlighter-rouge">Point</code> <em>contract</em>, so it’s not something we can or should rely on. This is as opposed to the <code class="language-plaintext highlighter-rouge">Dimension</code> Javadoc, where negative numbers are possible even though they would not make sense in that context.</p>
 
-<h2 id="mutability">Mutability</h2>
+<p><strong>Expose <em>interfaces</em>, not <em>implementations</em></strong></p>
+
+<p>Exposing implementation details of a module can lead to other modules relying on those details, whether or not you intended for them to part of the “contract” of your module.</p>
+
+<p>Consider the following chapter written by <a href="http://aosabook.org/en/intro1.html#crook-james">James Crook</a> about the <a href="http://aosabook.org/en/audacity.html">user interface of Audacity</a>, a popular open-source application for sound recording and mixing.</p>
+
+<p>The chapter is pretty long and worth a read in its entirety<sup id="fnref:aosa" role="doc-noteref"><a href="#fn:aosa" class="footnote" rel="footnote">1</a></sup>, but we’ll focus on the following excerpt (“Going Beyond Stereo: The <code class="language-plaintext highlighter-rouge">GetLink</code> Story”).
+This is my super brief summary, but its worth reading yourselves.</p>
+
+<p>At the time of its writing, Audacity supported only supported tracks in stereo and mono.
+They use a function called <code class="language-plaintext highlighter-rouge">GetLink</code> that returns “the other audio channel in a pair if there are two, and returns <code class="language-plaintext highlighter-rouge">NULL</code> if the track is mono”.
+As a result, littered throughout the codebase is code that looks roughly like this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (GetLink() != NULL) {
+  // The track is in stereo
+} else {
+  // The track is in mono
+}
+</code></pre></div></div>
+
+<p>Fixing this might be “easy” but would involve updates to about 100 calls spanning many many files in the codebase.</p>
+
+<p>Here is a nice summary from that section:</p>
+
+<blockquote>
+  <p>It’s easy to search the code to find GetLink calls and the changes needed are not that complex, so it is not as big a deal to fix this “problem” as it might sound at first. The GetLink story is not about a structural defect that is hard to fix. Rather it’s illustrative of how a relatively small defect can travel into a lot of code, if allowed to.</p>
+
+  <p>With hindsight it would have been good to make the GetLink function private and instead provide an iterator to iterate through all channels in a track. This would have avoided much special case code for stereo, and at the same time made code that uses the list of audio channels agnostic with respect to the list implementation.
+– <a href="https://aosabook.org/en/v1/audacity.html">Audacity — The Architecture of Open Source Applications (Vol. 1) — James Crook</a></p>
+</blockquote>
+
+<h2 id="immutability">Immutability</h2>
+
+<p>References:</p>
+<ul>
+  <li><em><a href="https://www.oreilly.com/library/view/a-functional-approach/9781098109912/">A Functional Approach to Java</a></em> by Ben Weidig</li>
+  <li><em><a href="https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/">Effective Java</a></em> by Joshua Bloch</li>
+</ul>
 
 <p>When something is <em>mutable</em>, that means it is possible for it to change or be changed. In the example above, the <code class="language-plaintext highlighter-rouge">width</code> and <code class="language-plaintext highlighter-rouge">height</code> fields in the <code class="language-plaintext highlighter-rouge">Dimension</code> class are mutable, since they are not declared to be <code class="language-plaintext highlighter-rouge">final</code> fields. The same goes for the <code class="language-plaintext highlighter-rouge">Point</code> class’s <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> values.</p>
 
 <p>This means that <code class="language-plaintext highlighter-rouge">Dimension</code> and <code class="language-plaintext highlighter-rouge">Point</code> objects are themselves mutable, since their internal state is mutable.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Point</span> <span class="n">point</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+<span class="n">point</span><span class="o">.</span><span class="na">move</span><span class="o">(-</span><span class="mi">5</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span> <span class="c1">// x and y are changed</span>
+
+<span class="nc">Dimension</span> <span class="n">dim</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Dimension</span><span class="o">(</span><span class="mi">40</span><span class="o">,</span> <span class="mi">40</span><span class="o">);</span>
+<span class="n">dim</span><span class="o">.</span><span class="na">setSize</span><span class="o">(-</span><span class="mi">10</span><span class="o">,</span> <span class="mi">50</span><span class="o">);</span> <span class="c1">// negative height!</span>
+</code></pre></div></div>
 
 <p>In contrast, the <code class="language-plaintext highlighter-rouge">String</code> class is <em>immutable</em>. Once a <code class="language-plaintext highlighter-rouge">String</code> has been created, it cannot be changed.</p>
 
@@ -91,6 +132,12 @@ Ideally, we’d want to use mutator (“setter”) methods to mutate these value
 <p><strong>EJ17: Minimise mutability</strong></p>
 
 <p>An immutable class is a class whose instances cannot be modified. You can achieve this by not providing methods that modify the instance variables of a class, and ensure that the class cannot be extended (declare it as a <code class="language-plaintext highlighter-rouge">final class</code>).</p>
+
+<blockquote>
+  <p>Mutable state breeds complexity and uncertainty. You must include all possible state changes in your mental model at any time to understand and reason with your code.</p>
+
+  <p>– <em><a href="https://www.oreilly.com/library/view/a-functional-approach/9781098109912/ch04.html">A Functional Approach to Java</a></em></p>
+</blockquote>
 
 <p class="callout todo">Critique the following code. Is the <code class="language-plaintext highlighter-rouge">Person</code> class below immutable? If not, what would it take to make it immutable?</p>
 
@@ -164,16 +211,21 @@ Ideally, we’d want to use mutator (“setter”) methods to mutate these value
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="whats-the-point-of-immutability">What’s the point of immutability?</h3>
+<h3 id="benefits-of-immutability">Benefits of immutability</h3>
 
 <p class="callout ponder">What do you think are some benefits of immutability? (Can answer in general or specifically in an object-oriented context.)</p>
 
 <p>There are many benefits to creating immutable objects.</p>
 
 <ul>
-  <li><strong>Simplicity</strong>. Immutable objects can be in exactly one state—the state in which they were created. This means that you can check invariants in the constructor for the object, and those invariants are guaranteed to hold for the lifetime of the object.
-<strong>Changes become visible</strong>. If changes are to be made, functions called on the object would result in the creation and return of a <em>new</em> object. You can read code and reason about the chain of events that occur from a sequence of function calls, resting assured that there were no invisible changes that occurred within those functions. This can make program comprehension significantly easier, which in turn simplifies things like debugging, contributing to an existing codebase, or refactoring.</li>
+  <li><strong>Simplicity</strong>. Immutable objects can be in exactly one state—the state in which they were created. This means that you can check invariants in the constructor for the object, and those invariants are guaranteed to hold for the lifetime of the object.</li>
+  <li><strong>No side-effects</strong>. Changes to an object are immediately visible, since they would result in the creation of a <em>new</em> object. If you have a reference to an object or data structure, you can rest assured that no changes were made to it, no matter how many ``hands’’ it passes through over the the course of your program. This can make program comprehension significantly easier, which in turn simplifies things like adding features, debugging, or refactoring.</li>
   <li><strong>Immutable objects are thread-safe</strong>. If objects are immutable, they cannot be corrupted by competing threads. This means that objects can be shared among multiple threads freely. Algorithms operating on immutable objects are more easily parallelisable, since the object is guaranteed to always be in a “valid” state, i.e., it hasn’t been inappropriately modified by multiple clients who are unaware of each other.</li>
+  <li><strong>Undo-ability</strong>. When objects are immutable, you can track changes to an object easily by saving previous references, instead of keeping track of minute changes to the object’s internal state. You can easily support an “undo” feature.
+    <ul>
+      <li>For example, <code class="language-plaintext highlighter-rouge">git</code> works by keeping track of <a href="https://blog.git-init.com/immutable-snapshot-in-git/">immutable snapshots</a> of your codebase at specific points in time. This is what allows you to do things like reverting, merging, branching, diffing, etc.</li>
+    </ul>
+  </li>
   <li><strong>Failure atomicity</strong>. Immutable objects guarantee <em>failure atomicity</em>. “Atomicity” is when a sequence of actions are carried out “as one”. For example, consider the action of enrolling for a course at Cal Poly. There a number of steps that need to be taken to perform this “single action”:
     <ul>
       <li>Check if you meet pre-requisites</li>
@@ -190,20 +242,51 @@ Ideally, we’d want to use mutator (“setter”) methods to mutate these value
 <p>In an immutable object, we avoid the possibility of an object in an inconsistent state (e.g., in an an exception occurs halfway through a function). If a function call failed for some internal reason, the original object is left untouched. That is, the “client” either has a reference to the original object (in a valid state) or the result of a successful function call (also a valid state).</p>
 
 <ul>
-  <li><strong>Composability</strong>. You can chain or “compose” abstractions (objects or functions) that have immutability together to solve larger problems. For example, consider the <code class="language-plaintext highlighter-rouge">String</code> class. Because each method returns a copy of the <code class="language-plaintext highlighter-rouge">String</code>, you can chain function calls:</li>
+  <li><strong>Composability</strong>. You can chain functions together to compose solutions to larger problems. For example, consider the <code class="language-plaintext highlighter-rouge">String</code> class. Because each method returns a copy of the <code class="language-plaintext highlighter-rouge">String</code>, you can chain function calls:</li>
 </ul>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">myString</span> <span class="o">=</span> <span class="s">"    this is a string   "</span><span class="o">;</span>
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">myString</span><span class="o">.</span><span class="na">trim</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">());</span> <span class="c1">// prints "THIS IS A STRING"</span>
 </code></pre></div></div>
 
-<p>This may seem like a small benefit, but when functions are defined at the right level abstraction, you can compose them to solve problems of ever-increasing complexity. For example, consider the <code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">filter</code>, and <code class="language-plaintext highlighter-rouge">reduce</code> patterns.</p>
+<p>This may seem like a small benefit, but when functions are defined at the right level abstraction, you can compose them to solve problems of ever-increasing complexity. For example, consider the <code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">filter</code>, and <code class="language-plaintext highlighter-rouge">reduce</code> patterns, each of which operate on immutable collections.</p>
 
-<p>One drawback of immutability is <em>performance</em>. It can be costly to create a new Object each time some changes have to be made. This cost tends to be overstimated in most cases since optimisations in the programming language can absorb most of the cost (by not actually copying data that doesn’t change, advanced garbage collection techniques, etc.). But in programs with large, complex objects that frequently change state (e.g., characters in games) immutability may be too expensive to justify.</p>
+<h3 id="drawbacks-of-immutability">Drawbacks of immutability</h3>
 
-<p>One strategy to manage this cost for “large” objects is to create a “companion” class that is mutable, and is used purely for the purpose of performing operations that require mutability. One example is the <code class="language-plaintext highlighter-rouge">StringBuilder</code> class.</p>
+<p>One drawback of immutability is <em>performance</em>. It can be costly to create a new <code class="language-plaintext highlighter-rouge">Object</code> each time some changes have to be made. This cost tends to be overestimated in most cases since optimisations in the programming language can absorb most of the cost (by not actually copying data that doesn’t change, advanced garbage collection techniques, etc.).
+But in programs with large, complex objects that frequently change state (e.g., characters in games) immutability may be too expensive to justify.</p>
+
+<p>One strategy to manage this cost for “large” objects is to create a “companion” class that is mutable, and is used purely for the purpose of performing operations that require mutability.
+One example is the <code class="language-plaintext highlighter-rouge">StringBuilder</code> class.</p>
+
+<p>Consider the two examples below.</p>
+
+<p>This code could incur a large performance cost, since a new String will be created each time a concatenation is performed.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Character</span><span class="o">&gt;</span> <span class="n">chars</span> <span class="o">=</span> <span class="o">...;</span> <span class="c1">// Some giant list of characters</span>
+<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">current</span> <span class="o">:</span> <span class="n">chars</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="n">current</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This example uses the <code class="language-plaintext highlighter-rouge">StringBuilder</code> class, a companion class that is used for building <code class="language-plaintext highlighter-rouge">Strings</code> programmatically.
+The eventual resulting <code class="language-plaintext highlighter-rouge">String</code> is immutable.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">StringBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">current</span> <span class="o">:</span> <span class="n">chars</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">builder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="c1">// get the final string at the end</span>
+<span class="nc">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</code></pre></div></div>
 
 <h2 id="cohesion">Cohesion</h2>
+
+<p>References:</p>
+<ul>
+  <li><a href="https://aosabook.org/en/">The Architecture of Open source software (Volume 1)</a></li>
+</ul>
 
 <p>The degree to which a module (class, function, package) has a single, well-focused responsibility. A module should <em>do one thing</em>. What does “one thing” mean in this context? It is highly dependent on the problem you’re solving and abstractions you’ve chosen to help you.</p>
 
@@ -214,7 +297,8 @@ Ideally, we’d want to use mutator (“setter”) methods to mutate these value
   <li>If functionality is appropriately isolated in a module, it becomes easier to test. That is, you can test for individual requirements without other requirements getting in the way.</li>
 </ul>
 
-<p>For example, consider a text-based Tic Tac Toe game you’re making for Lab 2. A solution with <strong>highly cohesive</strong> modules might have classes that handle the following responsibilities, <em>separately</em>.</p>
+<p>For example, consider the text-based Tic Tac Toe game you’re making for Lab 2.
+A solution with <strong>highly cohesive</strong> modules might have classes that handle the following responsibilities, <em>separately</em>.</p>
 
 <ul>
   <li>Managing the board state.</li>
@@ -239,20 +323,18 @@ Ideally, we’d want to use mutator (“setter”) methods to mutate these value
 
 <h2 id="an-example-in-the-wild">An example in the wild</h2>
 
-<p>(we didn’t get to this, but we’ll talk about this on Thursday)</p>
-
-<p>Consider the following chapter written by <a href="http://aosabook.org/en/intro1.html#crook-james">James Crook</a> about the <a href="http://aosabook.org/en/audacity.html">user interface of Audacity</a>, a popular open-source application for sound recording and mixing.</p>
-
-<p>The chapter is pretty long and worth a read in its entirety<sup id="fnref:aosa" role="doc-noteref"><a href="#fn:aosa" class="footnote" rel="footnote">1</a></sup>, but we’ll focus on section 2.4 <em>The TrackPanel</em>.</p>
+<p>Coming back to the <a href="http://aosabook.org/en/audacity.html">Audacity</a> example, consider section 2.4 <em>The TrackPanel</em>.</p>
 
 <p class="callout todo">Take a moment to read the referenced section.</p>
 
-<p>The author is describing exactly the kind of problem we discussed with the Tic Tac Toe example. Namely, parts of the user interface are deeply coupled with the domain-specific logic that is being implemented. The reasons for this choice are related to other, earlier tradeoffs regarding a third-party library used in Audacity (wxWidgets).</p>
+<p>The author is describing exactly the kind of problem we discussed with the Tic Tac Toe example. Namely, parts of the user interface are deeply coupled with the domain-specific logic that is being implemented.
+The reasons for this choice are related to other, earlier trade-offs regarding a third-party library used in Audacity (wxWidgets).</p>
 
 <p>The Summary section puts it nicely (emphasis mine):</p>
 
 <blockquote>
-  <p>In the TrackPanel of Audacity we needed to go outside the features that could easily be got from existing widgets. As a result we rolled our own ad hoc system. <strong>There is a cleaner system with widgets and sizers and logically distinct application level objects struggling to come out of the TrackPanel.</strong></p>
+  <p>In the TrackPanel of Audacity we needed to go outside the features that could easily be got from existing widgets. As a result we rolled our own ad hoc system. <strong>There is a cleaner system with widgets and sizers and logically distinct application level objects struggling to come out of the TrackPanel.</strong>
+– <a href="https://aosabook.org/en/v1/audacity.html">Audacity — The Architecture of Open Source Applications (Vol. 1) — James Crook</a></p>
 </blockquote>
 
 <hr />
@@ -265,10 +347,17 @@ Ideally, we’d want to use mutator (“setter”) methods to mutate these value
   </ol>
 </div>
 
-    </div>
-    
-    
-    </article>
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/02-coupling/" class="previous">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc305/coursenotes/04-polymorphism-lsp/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>

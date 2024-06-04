@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/15-builder/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,14 +25,19 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
   </p>
   
   <h1>Builder design pattern</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <p><strong>References</strong>:</p>
+  <div class="content">
+      <ul id="markdown-toc">
+  <li><a href="#pre-class-stuff" id="markdown-toc-pre-class-stuff">Pre-class stuff</a></li>
+  <li><a href="#creating-complex-objects" id="markdown-toc-creating-complex-objects">Creating complex objects</a></li>
+  <li><a href="#enter-the-builder-pattern" id="markdown-toc-enter-the-builder-pattern">Enter the Builder pattern</a></li>
+  <li><a href="#examples" id="markdown-toc-examples">Examples</a></li>
+</ul>
+
+<p><strong>References</strong>:</p>
 
 <ul>
   <li><a href="https://refactoring.guru/design-patterns/builder">Refactoring guru content on the Builder pattern</a> (though, like some of the previous patterns, their suggested structure involves some over-complication)</li>
@@ -88,7 +92,7 @@ Essentially, you have three options with this constructor approach, and each one
   <p>By adding all the setter methods, we’ve made our <code class="language-plaintext highlighter-rouge">User</code> class mutable. Even worse, we only added them in order to <em>create</em> the <code class="language-plaintext highlighter-rouge">User</code>, but now there’s all these public methods to mutate it.</p>
 </details>
 
-<h3 id="enter-the-builder-pattern">Enter the Builder pattern</h3>
+<h2 id="enter-the-builder-pattern">Enter the Builder pattern</h2>
 
 <p>The goal of the Builder design pattern is to separate the <em>construction</em> of complex objects (like our <code class="language-plaintext highlighter-rouge">User</code>) from their representation.
 This allows us to allow, at runtime, the creation of different “forms” of the same object.
@@ -193,7 +197,7 @@ This flexibility means users can be variably constructed at runtime, without kno
 <p>This last point—allowing for different types of objects to be created based on runtime choices—is a fundamental benefit of the builder pattern. We’ve see an example of it being applied when the “different states” of an object come from the object having various values set or unset.
 But it can be applied in other scenarios as well.</p>
 
-<h3 id="examples">Examples</h3>
+<h2 id="examples">Examples</h2>
 
 <p>For example, consider the <a href="https://github.com/openjdk/jdk20/blob/master/src/java.base/share/classes/java/util/Comparator.java"><code class="language-plaintext highlighter-rouge">Comparator</code></a> interface.
 First you can create a Comparator using whatever method you see fit:</p>
@@ -230,10 +234,17 @@ It provides methods like <code class="language-plaintext highlighter-rouge">then
 
 <hr />
 
-    </div>
-    
-    
-    </article>
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/14-proxy-adapter/" class="previous">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc305/coursenotes/16-streams/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>

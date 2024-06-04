@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/08-strategy-pattern-lambda/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,21 +25,25 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
   </p>
   
   <h1>Strategy and command design patterns</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <p>Reading:</p>
-
-<ul>
-  <li><a href="https://refactoring.guru/design-patterns/strategy">Strategy design pattern</a></li>
-  <li><a href="https://refactoring.guru/design-patterns/command">Command design pattern</a></li>
+  <div class="content">
+      <ul id="markdown-toc">
+  <li><a href="#strategy-design-pattern" id="markdown-toc-strategy-design-pattern">Strategy design pattern</a>    <ul>
+      <li><a href="#example-a-routing-application" id="markdown-toc-example-a-routing-application">Example: A routing application</a></li>
+    </ul>
+  </li>
+  <li><a href="#command-design-pattern" id="markdown-toc-command-design-pattern">Command design pattern</a>    <ul>
+      <li><a href="#undo-able-operations" id="markdown-toc-undo-able-operations">Undo-able operations</a></li>
+    </ul>
+  </li>
 </ul>
 
 <h2 id="strategy-design-pattern">Strategy design pattern</h2>
+
+<p>Reference: <a href="https://refactoring.guru/design-patterns/strategy">strategy design pattern</a></p>
 
 <h3 id="example-a-routing-application">Example: A routing application</h3>
 
@@ -98,6 +101,8 @@ Effectively, each new pathfinding strategy you support will also result in a bun
 
 <h2 id="command-design-pattern">Command design pattern</h2>
 
+<p>Reference: <a href="https://refactoring.guru/design-patterns/command">command design pattern</a></p>
+
 <p>The <strong>Command design pattern</strong> is used to turn a “request” into a standalone object. I’m not going to talk too much about details here because this pattern mostly tries to bring “functions as values” to languages that don’t have that ability.</p>
 
 <p>The classical Command pattern requires two pieces:</p>
@@ -136,10 +141,17 @@ This is a common operation for <em>database migrations</em>. A database migratio
   </ol>
 </div>
 
-    </div>
-    
-    
-    </article>
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/07-designing-for-testability/" class="previous">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc305/coursenotes/10-observer-generics/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>

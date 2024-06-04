@@ -1,5 +1,8 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Quicksand");
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap");
+@import url("/css/dark.css") screen and (prefers-color-scheme: dark);
+@import url("/css/github.css") screen and (prefers-color-scheme: light);
 :root {
   --bg-color: white;
   --highlight-color: #fdff80;
@@ -7,6 +10,7 @@
   --link-color: #425469;
   --caption-color: #727375;
   --emph: #E61726;
+  --nav-color: var(--emph);
   --heading-font-color: #425469;
   --header: #000000;
   --award-color: #0CAC1C;
@@ -14,9 +18,10 @@
   --ponder-background-color: rgba(255, 235, 130, 0.2);
   --todo-color: rgb(148, 2, 206);
   --todo-background-color: rgba(237, 146, 134, 0.2);
+  --readings-background-color: #bcf6bc;
+  --readings-color: rgb(3, 76, 3);
   --callout-background-color: rgba(243, 183, 183, 0.197);
   --table-alternate-bg-color: lightgrey;
-  --code-color: #E61726;
 }
 
 *,
@@ -30,20 +35,22 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #24272c;
-    --highlight-color: rgba(106, 87, 33, 0.996);
+    --highlight-color: rgba(106, 87, 33, 0.356);
     --font-color: #EEEEEE;
     --heading-font-color: #c6f1f3;
     --caption-color: #c9cacc;
-    --emph: #8bcccf;
-    --link-color: lightgrey;
-    --header: #8bcccf;
+    --emph: rgb(246, 168, 0);
+    --nav-color: #8bcccf;
+    --link-color: #eafafb;
+    --header: #EEEEEE;
     --award-color: darkgreen;
     --todo-color: rgb(222, 156, 248);
     --todo-background-color: rgb(68, 44, 66, 0.7);
     --ponder-color: #f1ce68;
+    --readings-background-color: #093102;
+    --readings-color: #03f6e6;
     --callout-background-color: #679da031;
     --table-alternate-bg-color: rgb(63, 63, 63);
-    --code-color: #008080;
   }
 }
 body {
@@ -102,10 +109,15 @@ header {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
 }
 header.pages {
   height: auto;
+}
+header a, header a:visited {
+  color: var(--font-color);
+}
+header a:hover {
+  color: var(--emph);
 }
 header img {
   border-radius: 360px;
@@ -163,7 +175,7 @@ aside nav ul li {
 }
 aside nav ul li a.nav-link {
   text-decoration: none;
-  color: var(--emph);
+  color: var(--nav-color);
   display: block;
   padding: 15px;
   font-family: "Muli", sans-serif;
@@ -198,12 +210,9 @@ aside nav:after {
   color: var(--emph);
 }
 
-.content-box {
-  border-radius: 5px;
+.content {
   margin: auto;
   justify-content: center;
-}
-.content-box .content {
   padding: 0 10px;
 }
 
@@ -254,21 +263,25 @@ ul {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: var(--heading-font-color);
 }
-.contact a {
+.contact a, .contact a:visited {
   font-size: 1.5em !important;
   text-decoration: none;
+  color: var(--link-color);
+}
+.contact a:hover, .contact a:visited:hover {
+  color: var(--emph);
 }
 
 footer {
-  color: var(--emph);
   text-align: center;
   padding: 40px;
 }
 footer .address {
   font-size: 0.8em;
-  color: var(--heading-font-color);
+}
+footer a, footer a:visited {
+  color: var(--font-color);
 }
 
 .fa, .fab, .far, .fas, .ai {
@@ -339,12 +352,18 @@ details > summary {
 
 code {
   font-size: 1rem;
+  color: var(--emph);
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
 }
 pre > code {
   color: var(--code-color);
+}
+
+a:has(code):after {
+  content: " 🔗";
+  font-size: 0.8em;
 }
 
 pre:not(.mermaid) {
@@ -406,9 +425,11 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
   background-color: var(--callout-background-color);
   border-radius: 4px;
   padding: 0.5rem;
+  list-style-type: none;
 }
 .callout::before, blockquote::before {
   display: block;
+  padding-bottom: 0.5rem;
   font-weight: bold;
   font-size: 0.8em;
   font-family: "Muli", sans-serif;
@@ -428,6 +449,14 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
 .callout.ponder::before, blockquote.ponder::before {
   content: "PONDER";
   color: var(--ponder-color);
+}
+.callout.readings, blockquote.readings {
+  border-color: var(--readings-color);
+  background-color: var(--readings-background-color);
+}
+.callout.readings::before, blockquote.readings::before {
+  content: "READINGS";
+  color: var(--readings-color);
 }
 
 blockquote {

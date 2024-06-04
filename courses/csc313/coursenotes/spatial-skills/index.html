@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc313/coursenotes/spatial-skills/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,22 +25,22 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc313">CSC 313 Teaching Computing</a>)
+    (Coursenotes for <a href="/courses/csc313#course-schedule">CSC 313 Teaching Computing</a>)
   </p>
   
   <h1>Spatial skills and programming education</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <p><strong>📖 Readings</strong></p>
+  <div class="content">
+      <ul class="callout readings">
+  <li>[1] <a href="https://doi.org/10.1145/3230977.3230990">Investigating the Relationship Between Spatial Skills and Computer Science</a> by Jack Parkinson and Quintin Cutts (2018)</li>
+  <li>[2] <a href="https://doi.org/10.1145/3291279.3339414">Spatial Encoding Strategy Theory: The Relationship Between Spatial Skill and STEM Achievement</a> by Lauren Margulieux (2019)</li>
+</ul>
 
-<p>[1] <a href="https://doi.org/10.1145/3230977.3230990">Investigating the Relationship Between Spatial Skills and Computer Science</a> by Jack Parkinson and Quintin Cutts (2018)</p>
+<p>There is some evidence of a relationship between <em>spatial skills</em> and achievement/ability in STEM fields. Recently, this has come to include a relationship between spatial skills and programming ability.</p>
 
-<p>[2] <a href="https://doi.org/10.1145/3291279.3339414">Spatial Encoding Strategy Theory: The Relationship Between Spatial Skill and STEM Achievement</a> by Lauren Margulieux (2019)</p>
+<p>This is a significant finding if we can build on it, because it’s a lot easier and cheaper to give someone spatial skills training than to teach them programming.
+So this may have impacts on performance and retention in early programming courses.</p>
 
-<p>There is some evidence of a relationship between <em>spatial skills</em> and achievement/ability in STEM fields. Recently, this has come to include a relationship between spatial skills and programming ability. However, while correlations have been uncovered, there’s little in the way of explanations for these correlations.</p>
-
-<p>This is a significant finding if we can build on it, because it’s a lot easier and cheaper to give someone spatial skills training than to teach them programming. So this may have impacts on performance and retention in early programming courses.</p>
+<p>However, while correlations have been uncovered, we don’t yet have great explanations for <em>why</em> they exist.</p>
 
 <p>In this lecture we’ll discuss:</p>
 
@@ -71,11 +70,11 @@
 
 <h3 id="spatial-visualisation">Spatial visualisation</h3>
 
-<p>McGee defined this as the proficiency in being able “to mentally rotate, twist, or invert pictorially presented visual stimuli”.</p>
+<p>This is the proficiency in being able “to mentally rotate, twist, or invert pictorially presented visual stimuli”.<sup id="fnref:mcgee" role="doc-noteref"><a href="#fn:mcgee" class="footnote" rel="footnote">1</a></sup></p>
 
 <p>Can be further broken down into <strong>mental rotation</strong> and <strong>mental transformation.</strong></p>
 
-<p><strong>Mental  transformation</strong></p>
+<h4 id="mental--transformation">Mental  transformation</h4>
 
 <p>The manipulation and modification of objects. For example, see the question below.</p>
 
@@ -91,7 +90,7 @@
 
 <p>Identify the cross-section after the following transformation has occurred. (Reproduced from [1])</p>
 
-<p><strong>Mental  rotation</strong></p>
+<h4 id="mental--rotation">Mental  rotation</h4>
 
 <p>The ability to perform rotations on mental constructs; ability to see a physical representation of a structure and mentally imagine what the object would look like rotated in a different orientation.</p>
 
@@ -133,7 +132,7 @@
 
 <h3 id="other-factors">Other factors</h3>
 
-<p><strong>Closure speed</strong></p>
+<h4 id="closure-speed">Closure speed</h4>
 
 <p>Speed in identifying an <em>unknown</em> pattern in an <em>obscured</em> environment.</p>
 
@@ -147,7 +146,7 @@
   <figcaption>Closure speed (Gestalt Completion Test). What do the two figures above depict? (Reproduced from [1])</figcaption>
 </figure>
 
-<p><strong>Closure flexibility</strong></p>
+<h4 id="closure-flexibility">Closure flexibility</h4>
 
 <p>Speed in identifying a <em>known</em> pattern in an <em>obscured</em> environment.</p>
 
@@ -161,7 +160,7 @@
   <figcaption>Closure flexibility (Hidden Figures Test). Which of the shapes in the top row appear in figures I and II in the bottom row? (Reproduced from [1])</figcaption>
 </figure>
 
-<p><strong>Perceptual speed</strong></p>
+<h4 id="perceptual-speed">Perceptual speed</h4>
 
 <p>Speed in identifying a <em>known</em> pattern from an <em>unobscured</em> environment.</p>
 
@@ -172,7 +171,7 @@
     <img src="perceptual-speed.png" alt="" />
     
   </a>
-  <figcaption>Perceptual speed (Identical Pictures Test). Which of the figures is most similar to the first figure?</figcaption>
+  <figcaption>Perceptual speed (Identical Pictures Test). Which of the figures is most similar to the first figure? (Reproduced from [1])</figcaption>
 </figure>
 
 <p class="callout todo">Do the “Spatial skills activity” in Canvas. As you work through the questions, think about the strategies you’re employing to solve those problems. Try to articulate what it is you’re doing as you try to solve those problems.</p>
@@ -185,7 +184,7 @@
 
 <p><strong>We can reliably train spatial skills to see an improvement in engineering courses.</strong></p>
 
-<p>The argument here is not that one is engaging in spatial reasoning while programming (or while performing physics or chemistry tasks, etc.). Rather, the argument is twofold:</p>
+<p>There are two arguments here:</p>
 
 <ol>
   <li>It seems likely that the same <em>underlying cognitive functions</em> are being exercised while performing spatial reasoning tasks and, say, programming.</li>
@@ -196,11 +195,32 @@
 
 <h2 id="spatial-skills-program-comprehension-and-problem-solving">Spatial skills, program comprehension, and problem solving</h2>
 
-<p>In <em>The Programmer’s Brain,</em> Felienne Hermans cites research that suggests that <em>chunking</em> plays a large role in the process of program comprehension. That is, our working memory is severely limited in the number of Things it can process at once. To help it along, we are constantly retrieving atomic tokens or “chunks” of knowledge from our long-term memory into our working memory—the more information we have chunked, the more Things we can “load” into working memory to process at a given time.</p>
+<p>Parkinson &amp; Cutts put forth two guesses as to what’s going on.</p>
 
-<p>While trying to understand a program, those knowledge chunks can be syntax forms that are familiar to you (e.g., <code class="language-plaintext highlighter-rouge">public static void main</code>) or <em>templates, variable roles</em>, or <em>design patterns</em> that,  through repeated exposure, you have internalised into atomic chunks (e.g., patterns for <code class="language-plaintext highlighter-rouge">filter</code> or <code class="language-plaintext highlighter-rouge">map</code> operations; accumulator variables, etc.).</p>
+<h3 id="program-comprehension">Program comprehension</h3>
 
-<p><strong>The task of recognising these beacons in a codebase and retrieving the relevant knowledge is a lot like the task of <em>identifying known patterns in an obscured environment,</em> i.e., the closure flexibility task.</strong></p>
+<p>In <em>The Programmer’s Brain,</em> Felienne Hermans tell us that <em>chunking</em> plays a large role in the process of program comprehension.</p>
+
+<p>Our <em>working memory</em> is responsible for temporary storage and processing of information.
+It’s where most of our “thinking” takes place, e.g., language comprehension, learning, and of course spatial reasoning.
+It is severely limited in the number of Things it can process at once, so to help it along, we are constantly retrieving related information from our long-term memory into our working memory.</p>
+
+<p>Our <em>long-term memory</em> is like our hard drive—it’s practically limitless and stores information organised as a network of nodes.<sup id="fnref:simplified" role="doc-noteref"><a href="#fn:simplified" class="footnote" rel="footnote">2</a></sup></p>
+
+<p>The connections between these nodes are critical for our ability to recall particular pieces of information.
+When connections between nodes are particularly strong, we are able to “chunk” multiple pieces of related information together.
+This lets us process all of that information <em>as a single unit</em> in working memory, greatly expanding the amount of information that can be processed in working memory.</p>
+
+<p>This effectively expands our ability to “think”! This expansion is usually domain-specific and does not automatically transfer from one domain to another.
+Being able to memorise a hundred numbers does not mean one can also memorise a hundred names or faces.</p>
+
+<p>While trying to understand a program, those “chunks” can be familiar syntax forms (e.g., <code class="language-plaintext highlighter-rouge">public static void main</code> in a Java program, the variable <code class="language-plaintext highlighter-rouge">i</code> being the counter in a <code class="language-plaintext highlighter-rouge">for</code> loop) or <em>templates, variable roles</em>, or <em>design patterns</em> that,  through repeated exposure, you have internalised into atomic chunks.
+For example, to a software engineer who has learned about the Visitor Design Pattern, a codebase using that pattern will be like a map clearly laid out in front of them, easy to navigate to perform some programming task.
+To a developer unfamiliar with the pattern, the codebase is just a large amount of source code that needs to be understood through programming expertise alone (which, to be clear, can get you quite far; but wouldn’t it nice if it were easier?).</p>
+
+<p>The task of recognising these “anchors” or “beacons” in a codebase and retrieving the relevant knowledge is a lot like the task of <strong>identifying known patterns in an obscured environment</strong>, i.e., the closure flexibility task.</p>
+
+<h3 id="problem-solving">Problem-solving</h3>
 
 <p>Recall the idea of a <em>mental model—</em>an abstract belief about a system or problem at hand. In order to correctly understand or write a program, a person must have an accurate mental model of the machine that will be “executing” the program. For learning programming, the “machine” or runtime environment can also be reasoned about at a more simplified, abstract level (i.e, a <em>notional</em> machine).</p>
 
@@ -244,46 +264,54 @@
 
 <p>We now have a general idea that the same cognitive functions are being exercised when one performs spatial reasoning tasks as well as when one engages in programming and problem solving (argument #1 above). We now turn to argument #2, which tells us that these cognitive skills seem to transfer from the context of spatial skills training to the context of programming (or other STEM fields).</p>
 
-<p>That second point is something of a curiosity. Recall our discussions in week 1 about the idea that Computational Thinking would enable people to apply computational ideas to their everyday life. Those arguments have largely not been backed up by evidence; computational thinking skills do not automatically transfer to other contexts. Learning transfer is notoriously difficult. It doesn’t happen automatically; we have to explicitly teach for transfer, and even then it is difficult.  So why do skills gained from spatial skills training apparently transfer to STEM contexts, and vice versa, without explicitly teaching for this transfer?</p>
+<p>That second point is something of a curiosity. Recall our discussions in week 1 about the idea that Computational Thinking would enable people to apply computational ideas to their everyday life. Those arguments have largely not been backed up by evidence.
+Computational thinking skills do not automatically transfer to other contexts.
+Transfer of learning doesn’t happen automatically; we have to explicitly teach for transfer, and even then it is difficult.</p>
 
-<p><em>Spatial encoding strategy theory</em> attempts to explain the transferability of spatial skill to STEM achievement.</p>
+<p>So why do skills gained from spatial skills training apparently transfer to STEM contexts, and vice versa, without explicitly teaching for this transfer?</p>
 
-<h3 id="human-cognition-and-spatial-skills">Human cognition and spatial skills</h3>
-
-<p>To understand the theory, let’s remind ourselves of some basic ideas of how human cognition works.</p>
-
-<p>Our <em>working memory</em> is responsible for temporary storage and processing of information. It is where most of our “thinking” takes place, e.g., language comprehension, learning, and of course spatial reasoning. Working memory has a limited capacity—it can process only 4–6 units of information at one time.</p>
-
-<p>Our <em>long-term memory</em> is like our hard drive—it’s practically limitless and stores information organised as a network of nodes. Previously stored information is usually retrieved from long-term memory into working memory to help process new information.</p>
-
-<p>The connections between these nodes are critical for our ability to recall particular pieces of information. When these connections are particularly strong, we are able to “chunk” multiple pieces of related information together. Crucially, this lets us process all of that information <em>as a single unit</em> in working memory, greatly expanding the amount of information that can be processed in working memory. This effectively expands our ability to “think”—this expansion is usually domain-specific and does not automatically transfer from one domain to another. Being able to memorise a hundred numbers does not mean one can also memorise a hundred names or faces.</p>
-
-<p><strong>So how does this relate to spatial skills?</strong></p>
-
-<p>Spatial encoding strategy theory proposes that spatial reasoning requires the following two generalisable skills:</p>
+<p>Spatial encoding strategy theory, proposed by Lauren Margulieux [2], posits that spatial reasoning requires the following two <em>generalisable</em> skills:</p>
 
 <ul>
-  <li>Being able to encode <strong>mental representations of non-verbal information</strong> (e.g., constructing a mental model of abstract systems and how they work). Non-verbal information, even if not related to spatial skills, tend to be stored using the same cognitive mechanisms as spatial information.</li>
-  <li>This includes the <strong>identification of useful landmarks</strong> to orient the mental representation</li>
+  <li>The ability to encode <em>mental representations of non-verbal information</em> (e.g., constructing a mental model of abstract systems and how they work). Non-verbal information, even if not related to spatial skills, tends to be stored using the same cognitive mechanisms as spatial information.</li>
+  <li>This includes the <em>identification of useful landmarks</em> to orient the mental representation</li>
 </ul>
 
 <p>These are important problem-solving skills in virtually all STEM disciplines. Margulieux suggests that this theory would explain a number of findings in prior work.</p>
 
 <ul>
-  <li>Learners rely on general problem-solving skills before learning domain-specific ones. Learners with higher spatial skills have better general strategies for representing problems and for identifying landmarks (“beacons”) in problems, both of which make problem-solving less taxing.</li>
-  <li>Spatial skill predicts initial STEM achievement more accurately than later STEM achievement. As learners gain more domain-specific skills, their reliance on general problem-solving strategies (like those gained from spatial skills training) are less relevant. This is in keeping with <a href="https://dl.acm.org/doi/abs/10.1145/3341525.3387413">2020 findings from Jack Parkinson and Quintin Cutts</a>, which found that explicit spatial skills training was associated with improved performance in a CS 0 course, but not a CS 1 course. What’s pretty cool is that Spatial encoding strategy theory was published the year before this finding, and could essentially predict it.</li>
-  <li>There are gender differences in initial spatial skills—at the college level, men seem to have higher initial spatial skills than women. This can be linked to influences growing up (toys, encouragement for different disciplines, etc.). Importantly, even a little spatial skills training pretty much eliminates these differences, and spatial skills training reliably increases STEM performance.</li>
-  <li>The “transfer curiosity” is explained because spatial training directly addresses <em>general</em> skills, rather than domain-specific skills. It is easier to transfer skills from general contexts to domain-specific contexts than vice versa.</li>
+  <li><strong>Learners rely on general problem-solving skills before learning domain-specific ones.</strong> Learners with higher spatial skills have better general strategies for representing problems and for identifying landmarks (“beacons”) in problems, both of which make problem-solving less taxing.</li>
+  <li><strong>Spatial skill predicts initial STEM achievement more accurately than later STEM achievement.</strong> As learners gain more domain-specific skills, their reliance on general problem-solving strategies (like those gained from spatial skills training) are less relevant. This is in keeping with <a href="https://dl.acm.org/doi/abs/10.1145/3341525.3387413">2020 findings from Jack Parkinson and Quintin Cutts</a>, which found that explicit spatial skills training was associated with improved performance in a CS 0 course, but not a CS 1 course. What’s pretty cool is that Spatial encoding strategy theory was published the year before this finding, and could essentially predict it.</li>
+  <li><strong>There are slight gender differences in initial spatial skills</strong>. At the college level, men seem to have higher initial spatial skills than women. This can be linked to influences growing up (toys, encouragement for different disciplines, etc.). Importantly, even a little spatial skills training pretty much eliminates these differences, and spatial skills training reliably increases STEM performance.</li>
+  <li><strong>The seemingly automatic transfer of spatial skills to programming tasks.</strong> Spatial training directly addresses the <em>general</em> skills described above, rather than domain-specific skills. It is easier to transfer skills from general contexts to domain-specific contexts than vice versa.</li>
 </ul>
 
 <h2 id="discussion">Discussion</h2>
 
 <p class="callout ponder">Should we include spatial skills training in our introductory programming curriculum?</p>
 
-    </div>
-    
-    
-    </article>
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:mcgee" role="doc-endnote">
+      <p>Mark McGee — <a href="https://eric.ed.gov/?id=EJ216584">Human spatial abilities: Psychometric studies and environmental, genetic, hormonal, and neurological influences.</a> <a href="#fnref:mcgee" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:simplified" role="doc-endnote">
+      <p>This is a greatly simplified view of the world, but one I can work with. <a href="#fnref:simplified" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc313/coursenotes/metacognitive-awareness-problem-comprehension/" class="previous">&larr; Previous</a>
+        
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>

@@ -5,11 +5,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
 
-	<title>Polymorphism + More SOLID principles - Ayaan M. Kazerouni</title>
+	<title>(Some of the) SOLID Principles - Ayaan M. Kazerouni</title>
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/04-polymorphism-lsp/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,16 +25,20 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
   </p>
   
-  <h1>Polymorphism + More SOLID principles</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <h2 id="reminders">Reminders</h2>
-
-<p>First quiz on Thursday taken in lab.</p>
+  <h1>(Some of the) SOLID Principles</h1>
+  <div class="content">
+      <ul id="markdown-toc">
+  <li><a href="#what-weve-talked-about-so-far" id="markdown-toc-what-weve-talked-about-so-far">What we’ve talked about so far</a></li>
+  <li><a href="#open-closed-principle" id="markdown-toc-open-closed-principle">Open-closed Principle</a>    <ul>
+      <li><a href="#when-is-the-open-closed-principle-useful" id="markdown-toc-when-is-the-open-closed-principle-useful">When is the open-closed principle useful?</a></li>
+    </ul>
+  </li>
+  <li><a href="#polymorphism" id="markdown-toc-polymorphism">Polymorphism</a></li>
+  <li><a href="#liskov-substitution-principle" id="markdown-toc-liskov-substitution-principle">Liskov substitution principle</a></li>
+</ul>
 
 <h2 id="what-weve-talked-about-so-far">What we’ve talked about so far</h2>
 
@@ -54,25 +57,64 @@
 
 <p>We’ve also started talking about the so-called “SOLID” principles of object-oriented design. We started by talking about the Single Responsibility Principle (the S in SOLID), which is the principle that guides our desire for LOOSE COUPLING between classes and TIGHT COHESION within classes.</p>
 
-<h2 id="openclosed-principle">Open/Closed Principle</h2>
+<h2 id="open-closed-principle">Open-closed Principle</h2>
 
-<p>The Open/Closed Principle states that software entities should be open to extension, but closed to modification.</p>
+<p>The Open-closed Principle states that software entities should be open to extension, but closed to modification.</p>
 
-<p>“Open to extension”</p>
+<p>Unfortunately, there are many interpretations of what exactly this means.
+<a href="https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html">The common interpretation</a> says that in an ideally-designed software system, you should be able to add functionality to that system without modifying the existing code (or minimising changes to existing code), and only by adding new code.
+In an object-oriented language that supports inheritance (e.g., Java), this might be accomplished by creating extensions (subclasses) of existing classes, instead of modifying existing classes.</p>
+
+<p>The idea itself is compelling—new features fitting seamlessly into an existing design is certainly an attractive proposition!
+However, I don’t think it’s terribly realistic a lot of the time.
+I shudder at the thought that we would create new subclasses or ever-deeper type hierarchies each time we wanted to add new functionality to a large software system.</p>
+
+<blockquote>
+  <p>Creating abstraction each time we want to modify our code bring other problems: it can create indirections and, as a result, increase the complexity of the system. If we try to create each time a new “entity” (<a href="https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html">using Martin’s words</a>) when we want to change one, we’ll see the cheer numbers of “entities” going through the roof.</p>
+
+  <p>– blog post on <a href="https://thevaluable.dev/open-closed-principle-revisited/">“The Valuable Dev”</a></p>
+</blockquote>
+
+<p>Happily, many of the “SOLID principles of object-oriented design” can also be thought about in a non-Object-oriented sense.</p>
+
+<p>A good example is the regular expression example we saw last week.
+See <code class="language-plaintext highlighter-rouge">lib/core.ts</code> and the <code class="language-plaintext highlighter-rouge">usePattern</code> function in <code class="language-plaintext highlighter-rouge">lib/vocabularies/code.ts</code> in commit <a href="https://github.com/ajv-validator/ajv/pull/1684/commits/a0720f881b8331db1c8c38a805e24a71f5daacbb">a0720f881b8331db1c8c38a805e24a71f5daacbb</a>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">usePattern</code> function is <em>closed to modification</em> (i.e., we won’t make further changes to the function to support additional regular expression engines), but is <em>open to extension</em> (i.e., it can be extended to work with any regular expression parser, as long as it adheres to the <code class="language-plaintext highlighter-rouge">RegExp</code> interface).</p>
+
+<h3 id="when-is-the-open-closed-principle-useful">When is the open-closed principle useful?</h3>
+
+<p>In many domains, plugin architectures are becoming extremely common.
+A plugin architecture is made up of two main components:</p>
 
 <ul>
-  <li>Software design will change over time</li>
-  <li>We should leave our code open to extensions due to changes in underlying requirements</li>
+  <li>The <strong>core system</strong> is the main application, containing the fundamental logic needed for the system.</li>
+  <li><strong>Connection points</strong> that various plugins can hook into to extend the core system’s functionality.</li>
 </ul>
 
-<p>“Closed to modification”</p>
+<p>Just like we talked about classes exposing a fixed interface to other classes, you can imagine that the core system (which may, itself, contain many software components) exposes an interface that plugins can use to add new features, or even extend existing features, depending on what the core system exposes.</p>
 
-<ul>
-  <li>Every entity or module should know how to do what it is designed to do</li>
-  <li>If the behaviour changes, we should not change how the entity works, we should instead extend it</li>
-</ul>
+<p>A great example is software development environments.
+Most major IDEs are built using a plugin architecture.</p>
 
-<p>A good example is the regular expression example we saw last week. The <code class="language-plaintext highlighter-rouge">usePattern</code> function is closed to modification (i.e., we won’t make changes to the function), but is open to extension (i.e., it can be extended to work with any regular expression parser, as long as it adheres to the <code class="language-plaintext highlighter-rouge">RegExp</code> interface).</p>
+<p>For example, VSCode provides facilities for external developers to create extensions that vastly extend the functionality of the core system.</p>
+
+<p>And it’s not just for external developers!
+The VSCode team themselves have isolated the fundamental editor features in a core system (the <a href="https://github.com/microsoft/vscode/tree/main/src/vs"><code class="language-plaintext highlighter-rouge">microsoft/vscode</code></a> repository), and they ship a large number of features as “extensions” to that core system.
+For example, basic python support comes with the <a href="https://github.com/microsoft/vscode-python"><code class="language-plaintext highlighter-rouge">vscode-python</code></a> extension.</p>
+
+<p>This plugin architecture allows for VSCode to be <em>extended</em> in myriad ways, without ever modifying the core VSCode functionality.
+That, the core functionality has no idea about the plugins that might be operating on it, and the plugins can manipulate parts of the VSCode application that the core system exposes through its extension mechanism.</p>
+
+<p>This is a popular approach in IDEs.
+For example, the <a href="https://aosabook.org/en/v1/intro1.html#moir-kim">Kim Moir</a>, describes the plugin architecture used in the <a href="https://aosabook.org/en/v1/eclipse.html">Eclipse platform</a>.
+That architecture has allowed the same base functionality to create a number of <em>other</em> IDEs by composing together various plugins.
+For example, <a href="https://eclipseide.org/">Eclipse</a> itself is a popular open-source Java IDE, but the same base platform is used to build <a href="https://dbeaver.io/about/">DBeaver</a> an open-source database tool.</p>
+
+<p>Virtually all the <a href="https://www.jetbrains.com/">JetBrains developer tools</a> (including IntelliJ IDEA) are built as combinations of various plugins on top of the core architecture.</p>
+
+<p>So, plugin architectures are a good example of the Open-closed principle in action.
+But I am not super convinced that going for a plugin architecture is the best move in all cases — it can be too much overhead for little benefit.</p>
 
 <h2 id="polymorphism">Polymorphism</h2>
 
@@ -217,47 +259,33 @@
 
 <p class="callout ponder">How would you fix the design?</p>
 
-<h2 id="the-composite-design-pattern">The composite design pattern</h2>
 
-<p>A <strong>design pattern</strong> is a general, re-usable solution to a commonly occurring problem within a given context in software design. They offer templates for how to solve problems that can be used in multiple different solutions.</p>
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/03-mutability-cohesion-srp/" class="previous">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc305/coursenotes/05-visitor-pattern-matching/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
 
-<p>We’ll do a more general introduction to Design patterns on Tuesday. But for now I would like to introduce the <em>Composite</em> design pattern.</p>
-
-<p>Today, we’re going to talk about the <a href="https://refactoring.guru/design-patterns/composite"><strong>Composite design pattern</strong></a>.</p>
-
-<p>The composite design pattern makes sense when a portion of your application can be structured as a tree.</p>
-
-<p>For example, suppose you need to “read” all the files in a computer. You have a root folder (the root of your directory tree). That root may have many children (files or folders inside of it). Some of those children may in turn have further children.</p>
-
-<p>The Composite pattern involves you treating the entire structure as a tree (much like your file system does). Then each “node” of the tree might have a <code class="language-plaintext highlighter-rouge">read</code> operation. For <code class="language-plaintext highlighter-rouge">FileNode</code>s, the <code class="language-plaintext highlighter-rouge">read</code> operation simply prints out the contents of the file. For <code class="language-plaintext highlighter-rouge">FolderNode</code>s, the <code class="language-plaintext highlighter-rouge">read</code> operation involves further traversing its children and <code class="language-plaintext highlighter-rouge">read</code>ing them. This recursively continues until there are no more files to be read.</p>
-
-<p>Another example that came up in class was reading the Document Object Model (DOM) (i.e., HTML files). An HTML file is made up of an <code class="language-plaintext highlighter-rouge">&lt;html&gt;</code> element, which holds child elements like <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;title&gt;</code>, and the <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code>. The <code class="language-plaintext highlighter-rouge">&lt;body&gt;</code> element holds further children (<code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> elements, <code class="language-plaintext highlighter-rouge">&lt;p&gt;</code> elements, etc.) that make up the contents you see in the webpage. Each element gets “rendered” in the browser according to certain rules (e.g., the <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code> is a “block” element: it takes up the full width available, so that new <code class="language-plaintext highlighter-rouge">&lt;div&gt;</code>s would appear on a new line; whereas the <code class="language-plaintext highlighter-rouge">&lt;span&gt;</code> is an “inline” element: it can appear within another block).</p>
-
-<p><strong>Benefits of this pattern</strong></p>
-
-<ul>
-  <li>Using polymorphism and recursion, you can work with quite complex tree structures. For example, in the file system example each folder doesn’t need to know if its children are files or folders; they can simply be <code class="language-plaintext highlighter-rouge">read</code>, because they both belong to some supertype.</li>
-  <li>You can introduce new types of “nodes” in this tree conveniently, and the rest of the structure doesn’t need to change. For example, consider that our filesystem has a new kind of file (say, that needs to be decrypted before it can be <code class="language-plaintext highlighter-rouge">read</code>). You can simply create a new subclass <code class="language-plaintext highlighter-rouge">EncyrptedFileNode</code> and implement the new <code class="language-plaintext highlighter-rouge">read</code> method so that it gets decrypted as part of the <code class="language-plaintext highlighter-rouge">read</code> operation.</li>
-</ul>
-
-<p><strong>Drawbacks</strong></p>
-
-<ul>
-  <li>A commonly cited drawback of this pattern is:</li>
-</ul>
-
-<blockquote>
-  <p>It might be difficult to provide a common interface for classes whose functionality differs too much. In certain scenarios, you’d need to overgeneralize the component interface, making it harder to comprehend. (<a href="https://refactoring.guru/design-patterns/composite">source</a>)</p>
-</blockquote>
-
-<p>Personally, I think the above would be an indication that you shouldn’t be using the Composite design pattern in the first place.</p>
-
-<hr />
-
-    </div>
-    
-    
-    </article>
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      mermaid.initialize({
+        theme: 'dark'
+      });
+    } else {
+      mermaid.initialize({
+        theme: 'default'
+      });
+    }
+  </script>
+  
   </main>
 </body>
 </html>

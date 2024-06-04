@@ -9,7 +9,6 @@
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
-  <link rel="stylesheet" href="/css/github.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc305/coursenotes/02-coupling/">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
@@ -26,43 +25,35 @@
   
   
   <p>
-    (Coursenotes for <a href="/courses/csc305">CSC 305 Individual Software Design and Development</a>)
+    (Coursenotes for <a href="/courses/csc305#course-schedule">CSC 305 Individual Software Design and Development</a>)
   </p>
   
   <h1>Coupling and encapsulation</h1>
-    <div class="content-box" style="border: none;">
-      <div class="content">
-        
-        <h2 id="pre-class-stuff">Pre-class stuff</h2>
-
-<p>Most recent CS course you’ve taken?</p>
-
-<ul>
-  <li>CSC 308</li>
-  <li>CSC 309</li>
-  <li>CSC 307</li>
-  <li>CSC 203</li>
-  <li>CSC 357</li>
+  <div class="content">
+      <ul id="markdown-toc">
+  <li><a href="#coupling" id="markdown-toc-coupling">Coupling</a>    <ul>
+      <li><a href="#a-non-software-example" id="markdown-toc-a-non-software-example">A non-software example</a></li>
+      <li><a href="#reducing-coupling-in-software" id="markdown-toc-reducing-coupling-in-software">Reducing coupling in software</a></li>
+    </ul>
+  </li>
+  <li><a href="#a-toy-example" id="markdown-toc-a-toy-example">A toy example</a></li>
+  <li><a href="#a-real-world-example" id="markdown-toc-a-real-world-example">A real-world example</a>    <ul>
+      <li><a href="#key-moments-in-the-discussion" id="markdown-toc-key-moments-in-the-discussion">Key moments in the discussion</a></li>
+    </ul>
+  </li>
 </ul>
 
-<p>Java topics needing review?</p>
+<h2 id="coupling">Coupling</h2>
 
-<ul>
-  <li>Data types</li>
-  <li>Classes</li>
-  <li>Objects</li>
-  <li>instance vs. static</li>
-  <li><code class="language-plaintext highlighter-rouge">this</code></li>
-  <li>inheritance (<code class="language-plaintext highlighter-rouge">extends</code> and <code class="language-plaintext highlighter-rouge">implements</code>)</li>
-</ul>
+<p><strong>Coupling</strong> is the degree to which two or more modules are related to or depend on each other’s implementations.
+In general we want <em>loose</em> coupling (or “less” coupling) between software modules.
+This is not unique to software; the idea is applicable to any complex systems with multiple interacting modules.</p>
 
-<hr />
+<h3 id="a-non-software-example">A non-software example</h3>
 
-<p>Coupling is the degree to which two or modules are related to/depend on each other’s current implementations. In general we want <em>loose</em> coupling (or “less” coupling). This is not unique to software; the idea is applicable to any complex systems with multiple interacting modules.</p>
-
-<h2 id="a-non-software-example">A non-software example</h2>
-
-<p>Consider the design of a Formula 1 car (or really, a regular car, but Formula 1 makes the example more exciting). It’s got a huge number of parts designed and built by hundreds or thousands of engineers. For example, you have:</p>
+<p>Consider the design of a Formula 1 car (or really, a regular car, but Formula 1 makes the example more exciting).
+It’s got a huge number of parts designed and built by hundreds or thousands of engineers.
+For example, you have:</p>
 
 <ul>
   <li>Tyres</li>
@@ -73,41 +64,53 @@
   <li>Safety features on the chassis</li>
 </ul>
 
-<p>Each of these modules is crucial for the car to continue functioning — the car can’t turn at high speeds without a front or rear wing, it can’t turn <em>at all</em> without a steering wheel, and it certainly can’t go anywhere without an engine. So all of these parts work harmoniously together to give us all that on-track action.</p>
+<p>Each of these modules is crucial for the car to continue functioning — the car can’t turn at high speeds without a front or rear wing, it can’t turn <em>at all</em> without a steering wheel, and it certainly can’t go anywhere without an engine.
+So all of these parts need to work together harmoniously to give us all that on-track action.</p>
 
-<p>Sometimes, these pieces may stop working as well as we need them to. For example, you may have a tyre puncture, or you have lost a wing of your car.</p>
+<p>Sometimes, these pieces need to be updated, e.g., if they stop working as well as we need them to.</p>
 
-<p>Examples:</p>
+<p>For example:</p>
 
 <ul>
-  <li><a href="https://www.youtube.com/watch?v=wsCriICZ-nA">your tyres are very old and need changing</a></li>
-  <li><a href="https://www.youtube.com/watch?v=GKm59ktOeI0">your front wing has fallen off</a></li>
-  <li><a href="https://www.youtube.com/watch?v=QGV3FTGUvSs">electronics on your steering wheel aren’t working any more</a>.</li>
+  <li><a href="https://www.youtube.com/watch?v=wsCriICZ-nA">Your tyres are very old and need changing</a></li>
+  <li><a href="https://www.youtube.com/watch?v=GKm59ktOeI0">Your front wing has fallen off</a></li>
+  <li><a href="https://www.youtube.com/watch?v=QGV3FTGUvSs">Electronics on your steering wheel aren’t working any more</a>.</li>
 </ul>
 
-<p>If these modules are <em>tightly coupled</em> they have to change together.
-Put another way, if one module has to change, so do the others that are coupled with it, because they depend on each other’s <em>current implementations</em>. To put it in terms of the car, if the gear-changing system on the steering wheel was tightly bound to the actual gearbox, Lewis Hamilton’s race would have ended right there and then.
+<p>If these modules were <em>tightly coupled</em> they would have to change together.</p>
+
+<p class="callout">Put another way, if one module has to change, so do others that are tightly coupled with it, because they depend on each other’s <em>current implementations</em>.</p>
+
+<p>To put it in terms of the car, if the gear-changing controls on the steering wheel were tightly bound to the actual gearbox, Lewis Hamilton’s race would have ended right there and then.
 One part needing changing would have rendered the entire system unusable.</p>
 
-<p>The reason F1 pit teams are able to swap out an alarming number of parts of the car during a race is that these individual components make up mostly unrelated modules. That is, the modules are <em>loosely coupled</em> with each other.</p>
+<p>The reason F1 pit teams are able to swap out an alarming number of parts of the car during a race is that these individual components make up mostly unrelated modules.
+That is, the modules are <strong>loosely coupled</strong> with each other.</p>
 
-<p>When modules are <em>loosely coupled</em>, they are mostly independent. This does not mean they don’t work together to enable the system as a whole to function; it just means that individual modules can be updated (or even swapped out entirely!) without other modules noticing, as long as they adhere to the same <em>interface</em>.</p>
+<p><strong>When modules are <em>loosely coupled</em>, they are mostly independent.</strong> This does not mean they don’t work together to enable the system as a whole to function; it just means that individual modules can be updated (or even swapped out entirely!) without other modules noticing, as long as they adhere to the same <em>interface</em>.</p>
 
-<p>When I say <em>interface</em> above, I don’t (necessarily) mean the <code class="language-plaintext highlighter-rouge">interface</code> construct in object-oriented languages like Java. I mean it more generally as “the surface where two systems interact”. In the F1 cars example, it’s whatever nuts and bolts the front wing (or the new tyres, or the new steering wheel) is expected to tighten into.</p>
+<p>When I say <em>interface</em> above, I don’t (necessarily) mean the <code class="language-plaintext highlighter-rouge">interface</code> construct in object-oriented languages like Java.
+I mean it more generally as “the surface at which two systems interact”.
+In the F1 cars example, it’s whatever nuts and bolts the front wing (or the new tyres, or the new steering wheel) is expected to fit into.</p>
 
-<p>In software, the “interface” is made up of the public fields and functions that a module exposes. In Java, this means <code class="language-plaintext highlighter-rouge">public</code> variables and <code class="language-plaintext highlighter-rouge">public</code> methods in classes. What happens inside those public methods cannot and should not be relied upon by clients, as long as the function’s effect/result is as intended.</p>
+<p>In software, the “interface” is made up of the public fields and functions that a module exposes to other modules.
+In Java, this means <code class="language-plaintext highlighter-rouge">public</code> variables and <code class="language-plaintext highlighter-rouge">public</code> methods in classes.
+What happens inside those public methods cannot and should not be relied upon by clients, as long as the function’s effect is as intended.</p>
 
-<h2 id="reducing-coupling-in-software">Reducing coupling in software</h2>
+<h3 id="reducing-coupling-in-software">Reducing coupling in software</h3>
 
 <p>There are many strategies for reducing coupling in software. The small-ish demos we look at now will be in Java, but these concepts (and most of what we talk about this quarter) are not limited to Java or object-oriented programming.</p>
 
-<p><strong>EJ15: Minimise the accessibility of classes and members</strong></p>
+<p><strong>EJ15: Minimise the accessibility of classes and members</strong><sup id="fnref:EJ" role="doc-noteref"><a href="#fn:EJ" class="footnote" rel="footnote">1</a></sup></p>
 
 <p><em>Encapsulation</em> (information hiding) — a module’s internal information is hidden from the rest of the world. The idea behind this is simple; the less information a module exposes to the <em>other</em> modules, the less those other modules can rely on this internal information.</p>
 
-<p><a href="https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/lang/String.java">So for example, consider the <code class="language-plaintext highlighter-rouge">String</code> class in Java</a>. The <code class="language-plaintext highlighter-rouge">String</code> class is an <em>abstraction</em>, that is, it’s a simplification or a generalisation of the concrete underyling data, which is simply a character array (<code class="language-plaintext highlighter-rouge">char[]</code>). If each time we wanted to deal with variable length text in our programs, we had to build and reason about an array of individual characters, things would get messy quickly. Hence the abstraction.</p>
+<p><a href="https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/lang/String.java">So for example, consider the <code class="language-plaintext highlighter-rouge">String</code> class in Java</a>.
+The <code class="language-plaintext highlighter-rouge">String</code> class is an <em>abstraction</em>, that is, it’s a simplification or a generalisation of the concrete underyling data, which is simply a byte array (<code class="language-plaintext highlighter-rouge">byte[]</code>).
+If each time we wanted to deal with variable length text in our programs, we had to build and reason about an array of individual characters, things would get messy quickly.</p>
 
-<p>However, our code that uses Strings rarely has to grapple the fact that there is an underlying array of characters. This information is hidden from all other classes.</p>
+<p>However, our code that uses <code class="language-plaintext highlighter-rouge">String</code>s rarely has to contend with the fact that there is an underlying array of characters.
+This information is hidden from all other classes.</p>
 
 <p>We do this by making internal fields (data members, instance variables, attributes, etc.) <em>private</em> and inaccessible to the outside world.
 If classes need access to that data, we make <code class="language-plaintext highlighter-rouge">public</code> accessor methods available—the advantage is that this lets us control <em>who</em> accesses our data and <em>how</em>. Those <code class="language-plaintext highlighter-rouge">public</code> accessor methods form the “public interface” that we expose to other modules.</p>
@@ -179,15 +182,11 @@ If classes need access to that data, we make <code class="language-plaintext hig
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h2 id="a-software-example">A software example</h2>
+<h2 id="a-real-world-example">A real-world example</h2>
 
 <p>Let’s consider a software example in the real world. <a href="https://github.com/ajv-validator/ajv"><code class="language-plaintext highlighter-rouge">ajv</code></a> is a JSON validator written in TypeScript. We won’t be analysing the design of this entire package, but instead we’ll take a look at a pull request and the discussion that led to it eventually being merged.</p>
 
-<p>Let’s take a look at the following <a href="https://github.com/ajv-validator/ajv/issues/1683">issue</a> and <a href="https://github.com/ajv-validator/ajv/pull/1684">pull request that addresses the issue</a><sup id="fnref:jamie" role="doc-noteref"><a href="#fn:jamie" class="footnote" rel="footnote">1</a></sup>. You’re encouraged to work on this collaboratively with your classmates. Just make sure to make an individual submission on Canvas.</p>
-
-<blockquote>
-  <p>In-class discussion</p>
-</blockquote>
+<p>Let’s take a look at the following <a href="https://github.com/ajv-validator/ajv/issues/1683">issue</a> and <a href="https://github.com/ajv-validator/ajv/pull/1684">pull request that addresses the issue</a><sup id="fnref:jamie" role="doc-noteref"><a href="#fn:jamie" class="footnote" rel="footnote">2</a></sup>. You’re encouraged to work on this collaboratively with your classmates. Just make sure to make an individual submission on Canvas.</p>
 
 <h3 id="key-moments-in-the-discussion">Key moments in the discussion</h3>
 
@@ -209,16 +208,26 @@ If classes need access to that data, we make <code class="language-plaintext hig
 <hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
+    <li id="fn:EJ" role="doc-endnote">
+      <p>Items marked with <code class="language-plaintext highlighter-rouge">EJ</code> are principles from <em>Effective Java</em> by Joshua Bloch. <a href="#fnref:EJ" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
     <li id="fn:jamie" role="doc-endnote">
       <p>Thanks to Jamie Davis for pointing me to this example. <a href="#fnref:jamie" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
-    </div>
-    
-    
-    </article>
+      <footer class="nav-links">
+        
+        <a href="/courses/csc305/coursenotes/01-introduction-code-style/" class="previous">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc305/coursenotes/03-mutability-cohesion-srp/" class="next">Next &rarr;</a>
+        
+      </footer  >
+  </div>
+  
+  
   </main>
 </body>
 </html>
