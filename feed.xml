@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.org/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.org/" rel="alternate" type="text/html" /><updated>2024-06-25T22:33:41-07:00</updated><id>https://ayaankazerouni.org/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.org/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.org/" rel="alternate" type="text/html" /><updated>2024-06-26T22:55:46-07:00</updated><id>https://ayaankazerouni.org/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
 </subtitle><entry><title type="html">Challenges with learning end-user programming: A case study with Chemistry undergraduate students</title><link href="https://ayaankazerouni.org/posts/end-user-programming" rel="alternate" type="text/html" title="Challenges with learning end-user programming: A case study with Chemistry undergraduate students" /><published>2024-06-25T00:00:00-07:00</published><updated>2024-06-25T00:00:00-07:00</updated><id>https://ayaankazerouni.org/posts/end-user-programming</id><content type="html" xml:base="https://ayaankazerouni.org/posts/end-user-programming"><![CDATA[<p>This is an overview of the research paper <em><a href="/publications#jce2024end-user-programming">Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students</a></em>, published in the ACS Journal of Chemical Education.</p>
 
 <p>The work was conducted at Cal Poly and was led by MS student <a href="https://www.linkedin.com/in/wifuchs">Will Fuchs</a>.
@@ -54,10 +54,20 @@ In the second study, we conducted one-on-one interviews to gain deeper insight i
 On average, the students reported negative attitudes toward computing: low confidence, low enjoyment, and low sense of belonging to a computing community.
 They did perceive computing to be marginally useful.</p>
 
+<figure>
+
+  <a href="/assets/posts/images/end-user-programming/attitudes.png" target="_blank">
+    
+    <img src="/assets/posts/images/end-user-programming/attitudes.png" alt="A column chart showing the average reported confidence with and enjoyment of computing, sense of belonging in computing, and sense that computing is important." width="150px" />
+    
+  </a>
+  <figcaption>Students' average responses to ATC questions. Questions were answered on a 1–5 scale from <i>Strongly disagree</i> to <i>Strongly agree</i></figcaption>
+</figure>
+
 <p>To measure students’ abilities with programming, we used the <a href="https://peer.asee.org/mcs1-a-matlab-programming-concept-inventory-for-assessing-first-year-engineering-courses"><strong>MCS1 concept inventory</strong></a>, a peer-reviewed assessment of MATLAB knowledge. (It’s a multiple-choice test.)</p>
 
 <p>Students generally performed poorly on the assessment.
-Part of this is attributed to the fact that the assessment included some language elements that they had not seen before.
+Part of this is attributed to the fact that it included some language elements that they had not seen before.
 But there were also challenges on questions that “should” have been doable.</p>
 
 <h3 id="interviews">Interviews</h3>
@@ -65,8 +75,6 @@ But there were also challenges on questions that “should” have been doable.<
 <p>Ok, so the students had negative attitudes toward computing, and struggled with MATLAB questions.
 That’s kind of all we can say from numerical responses to Likert questions.
 We can say nothing about what causes these negative attitudes, or what exactly their misunderstandings are that lead to their difficulties on the test.</p>
-
-<p>To get a more useful understanding of the students’ attitudes and abilities, we need something richer than a survey.</p>
 
 <p>Will, the MS student leading the work, conducted one-on-one interviews with 8 students enrolled in the Physical Chemistry courses.
 He asked them questions from the MCS1 assessment, and instead of framing them as multiple-choice questions, he framed them as open-ended short-answer questions, and asked the students to “think out loud” while answering them.
@@ -89,12 +97,30 @@ He recorded the interviews (with the students’ consent), and together we analy
 
 <p>In addition to questions adapted from the MCS1, Will also asked the students about their feelings toward programming in general, and their confidence with the programming they had learned.
 He found that MATLAB appeared to be little more than a glorified graphing calculator to most of the students.
-The students’ collective mindset was exemplified nicely by this quote from one participant: “So I literally threw my calculator away and started doing everything on MATLAB.”
-Most students did not foresee themselves using MATLAB in their futures, and felt that they had not gained generalisable ability with programming that they could use outside the classroom.</p>
+The students’ collective mindset was exemplified nicely by this quote from one participant:</p>
+
+<blockquote>
+  <p>So I literally threw my calculator away and started doing everything on MATLAB.</p>
+</blockquote>
+
+<p>Most students did not foresee themselves using MATLAB in their futures, and felt that they had not gained generalisable ability with programming that they could use outside the classroom.
+Some more quotes from students are below:</p>
+
+<blockquote>
+  <p>I know how to do explicitly what I’ve learned, and not much else.</p>
+</blockquote>
+
+<blockquote>
+  <p>I think with Chemistry they do a really good job of teaching us. But there’s no, like, okay we’re only going to be doing like MATLAB and like learning the very basics of the basics.</p>
+</blockquote>
+
+<blockquote>
+  <p>I should probably understand everything computationally little bit more because that’s the way that the research is moving and I think that’s, you know, an important part of the research future. So I want to develop these skills more but I’m like I don’t know what specific applications really look like.</p>
+</blockquote>
 
 <h2 id="final-remarks">Final remarks</h2>
 
-<p>Our paper closes with the following recommendations for teaching programming to these would-be end-user-programmers:</p>
+<p>Our paper closes with some recommendations for teaching programming to these would-be end-user-programmers:</p>
 
 <ul>
   <li><strong>Promote abstraction and abstract understandings</strong>. We discuss strategies for helping students achieve abstraction, for example, using multiple representations of the same concepts to help disentangle students’ understandings from the specific examples they have learned with.</li>
@@ -102,9 +128,9 @@ Most students did not foresee themselves using MATLAB in their futures, and felt
   <li><strong>Meta-cognitive awareness</strong>. Teach an explicit programming problem-solving process so that students may confidently approach larger multi-step problems. This should include steps for problem comprehension, testing, and debugging.</li>
 </ul>
 
-<p>If you’re thinking that these recommendations would not be out of place in a book titled <em>How to Teach Programming to Anyone, Not Just These Particular Chemistry &amp; Biochemistry Students</em>, you’re right!
+<p>If you’re thinking that these recommendations would not be out of place in a book titled <em>How to Teach Programming to Anyone, Not Just These Chemistry &amp; Biochemistry Students</em>, you’re right!
 These are all things that we try to accomplish in the introductory programming courses taken by our CS and SE majors.
-Unfortunately, these skills as they relate to programming <a href="https://faculty.washington.edu/ajko/papers/Ko2011EndUserSoftwareEngineering.pdf">tend not to be priorities</a> in end-user programming education.
+But these skills as they relate to programming <a href="https://faculty.washington.edu/ajko/papers/Ko2011EndUserSoftwareEngineering.pdf">tend not to be prioritised</a> in end-user programming education.
 However, though these students are not aiming to become software engineers, they <em>will</em> engineer software, potentially of a critical nature, and their programming education should account for this.</p>
 
 <p>The good news is that upper-division Chemistry and Biochemistry students already have significant skill with abstraction, decomposition, and meta-cognitive awareness.
@@ -114,17 +140,43 @@ And so our final recommendation is to <strong>harness the students’ and instru
 <p>For example,</p>
 
 <ul>
-  <li><strong>Abstraction</strong> is already used when reasoning about chemical equations, which are are lightweight abstractions of real-world phenomena.</li>
+  <li><strong>Abstraction</strong> is already used when reasoning about chemical equations, which are lightweight abstractions of real-world phenomena.</li>
   <li><strong>Decomposition</strong> has been espoused as an important skill even in very early Chemistry education, e.g., scientific modelling skills involving breaking down a complex system into smaller elements and mechanisms.</li>
-  <li><strong>Meta-cognitive awareness</strong> is a pre-requisite to success in the multi-step process involved in identifying a chemical compound’s structure from its spectroscopic data.</li>
+  <li><strong>Meta-cognitive awareness</strong> is required to successfully navigate the multi-step process involved in identifying a chemical compound’s structure from its spectroscopic data.</li>
 </ul>
 
-<p>The programming aspects of the Physical Chemistry courses are being revamped as I write this—more updates soon!</p>
+<p>The programming aspects of the Physical Chemistry courses are being revamped as I write this (including a transition to Python)—more updates soon!</p>
 
-<!-- End-user programming tends to be taught via domain-specific examples.
-End-user programmers solve programming problems by studying related examples and making modifications to suit their purpose.
-Learning in this way can be productive, since the student's goal is often to things done_, not to _learn programming_.
-But this can also cause difficulties with knowledge transfer: the student will find it difficult to apply what they have learned to previously unseen problems. -->]]></content><author><name></name></author><summary type="html"><![CDATA[This is an overview of the research paper Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students, published in the ACS Journal of Chemical Education.]]></summary></entry><entry><title type="html">It’s good to be bad at something</title><link href="https://ayaankazerouni.org/posts/good-to-be-bad" rel="alternate" type="text/html" title="It’s good to be bad at something" /><published>2024-03-31T00:00:00-07:00</published><updated>2024-03-31T00:00:00-07:00</updated><id>https://ayaankazerouni.org/posts/good-to-be-bad</id><content type="html" xml:base="https://ayaankazerouni.org/posts/good-to-be-bad"><![CDATA[<p><em>I signed up for a short machine shop training, and was reminded what it’s like to do something for the first time and struggle with it. In related news, I am teaching intro programming again in the Fall.</em></p>
+<hr />
+
+<h2 id="postscript">Postscript</h2>
+
+<p><strong>Why did we publish this paper at the Journal of Chemical Education, and not at a computing education venue like Koli Calling, SIGCSE, or TOCE?</strong></p>
+
+<p>I am confident that this paper is published at the right venue, but it took a bit to get here.
+It got rejected from computing education venues twice!</p>
+
+<p>Both times, the primary hit against it was that it was probably of more interest to Chemistry instructors than CS instructors (the implication being that the readership of computing education research publications are mostly computing instructors).
+I have two reasons to push back against this.
+First, my view is that our Chemistry faculty who are teaching programming <em>are</em> computing instructors — they are teaching computing!
+Second, I perhaps naïvely expect that if instructors in other disciplines are interested in research about teaching computing, they would look in computing education research publications for recommendations or techniques.</p>
+
+<p>Meanwhile, as part of her broader work in computational Chemistry education, our co-author Ashley had been working with her colleagues to update the curriculum based on this work.
+She’d been travelling to meetups of Chemistry educators and talking about this work, and reported high levels of interest and engagement from other Chemists working to include computing in their courses.
+The audience for the paper was right there.</p>
+
+<p>So the question was: do we choose a home for the paper based on its <strong>topic area</strong>, or its <strong>target audience</strong>?
+In most cases, these point to the same venues.
+But that’s not always true for works that straddle multiple academic disciplines.
+Choosing a venue for a target audience may require less “convincing” to get it published, but choosing for a topic area may mean people can find it easily in the future.
+I don’t know that there’s an obvious answer, but in this case there was certainly a practical one.</p>
+
+<p>We made <em>significant improvements</em> to the manuscript (for example, we added the entire discussion section on abstraction, decomposition, and meta-cognitive awareness) and submitted it to the Journal of Chemical Education, where it ended up with extremely positive reviews.</p>
+
+<p>I’m grateful to be in a department where my scholarly output is not judged based on a narrow conception of “valuable” publication targets—without this, there would’ve been a whole other calculus to consider when choosing a publication target.
+I definitely have some sense of professional identity tied up in publishing at my “home” venues, but that was easier to get over than a hostile tenure committee would’ve been.</p>
+
+<hr />]]></content><author><name></name></author><summary type="html"><![CDATA[This is an overview of the research paper Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students, published in the ACS Journal of Chemical Education.]]></summary></entry><entry><title type="html">It’s good to be bad at something</title><link href="https://ayaankazerouni.org/posts/good-to-be-bad" rel="alternate" type="text/html" title="It’s good to be bad at something" /><published>2024-03-31T00:00:00-07:00</published><updated>2024-03-31T00:00:00-07:00</updated><id>https://ayaankazerouni.org/posts/good-to-be-bad</id><content type="html" xml:base="https://ayaankazerouni.org/posts/good-to-be-bad"><![CDATA[<p><em>I signed up for a short machine shop training, and was reminded what it’s like to do something for the first time and struggle with it. In related news, I am teaching intro programming again in the Fall.</em></p>
 
 <p>A couple of weeks ago some colleagues and I signed up for the Cal Poly College of Engineering <a href="https://ceng.calpoly.edu/connection/2019/09/red-tag-training-2/">Red Tag Tour</a> and earned our “red tags”.
 These are passes that allow us to use the wood and sheet metal shop on the Cal Poly campus.
