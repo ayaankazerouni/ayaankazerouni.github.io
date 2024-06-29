@@ -29,6 +29,10 @@
 <lastmod>2024-03-31T00:00:00-07:00</lastmod>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/posts/end-user-programming</loc>
+<lastmod>2024-06-25T00:00:00-07:00</lastmod>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/</loc>
 </url>
 <url>
@@ -108,6 +112,9 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/02-coupling/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc305/coursenotes/14-proxy-adapter/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/17-threads-concurrency/</loc>
