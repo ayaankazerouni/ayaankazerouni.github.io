@@ -160,7 +160,7 @@ This is because both functions are versions of the <strong>map</strong> pattern 
 <h3 id="parameterising-our-mapper">Parameterising our mapper</h3>
 
 <p>Instead of the two functions above, consider the following generalised <code class="language-plaintext highlighter-rouge">map</code> function.
-We can take in a function as a parameter to this* function, allowing this <code class="language-plaintext highlighter-rouge">map</code> function to be more generally useful.</p>
+We can take in a function as a parameter to this function, allowing this <code class="language-plaintext highlighter-rouge">map</code> function to be more generally useful.</p>
 
 <p>There is some new notation in this code, which I will explain below.
 Please take some time to read the code and its accompanying comments.</p>
@@ -382,19 +382,20 @@ In these cases, lambdas are written inline as arguments to those functions thems
 <ul>
   <li>turn each score into a percentage</li>
   <li>bump up each percentage by 5</li>
-  <li>filter down to the “A” scores</li>
   <li>round each percentage to the nearest whole number</li>
+  <li>filter down to the “A” scores</li>
 </ul>
 
-<p>You <em>could</em> do all of that in a for loop, or you could use lambdas and streams:</p>
+<p>You <em>could</em> do all of that in a for loop, or you could use lambdas and streams. Here’s a sneak peak:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">scores</span> <span class="o">=</span> <span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">42</span><span class="o">,</span> <span class="mi">39</span><span class="o">,</span> <span class="mi">43</span><span class="o">,</span> <span class="mi">44</span><span class="o">,</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">37</span><span class="o">,</span> <span class="mi">35</span><span class="o">);</span>
 
 <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Double</span><span class="o">&gt;</span> <span class="n">scoresUpdated</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
                                    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="o">((</span><span class="kt">double</span><span class="o">)</span> <span class="n">s</span> <span class="o">/</span> <span class="mi">44</span><span class="o">)</span> <span class="o">*</span> <span class="mi">100</span><span class="o">)</span> <span class="c1">// percentages</span>
                                    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">5</span><span class="o">)</span> <span class="c1">// bump up</span>
+                                   <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Math:</span><span class="o">:</span><span class="n">round</span><span class="o">)</span> <span class="c1">// round the scores.</span>
                                    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">90</span><span class="o">)</span> <span class="c1">// filter to "A" scores</span>
-                                   <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">Math:</span><span class="o">:</span><span class="n">round</span><span class="o">);</span> <span class="c1">// round the scores.</span>
+                                   <span class="o">.</span><span class="na">toList</span><span class="o">();</span> <span class="c1">// get the final result list back</span>
 </code></pre></div></div>
 
 <hr />

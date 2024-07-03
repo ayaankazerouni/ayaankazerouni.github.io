@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.org/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.org/" rel="alternate" type="text/html" /><updated>2024-07-01T12:57:35-07:00</updated><id>https://ayaankazerouni.org/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
-</subtitle><entry><title type="html">Challenges with learning end-user programming: A case study with Chemistry undergraduate students</title><link href="https://ayaankazerouni.org/posts/end-user-programming" rel="alternate" type="text/html" title="Challenges with learning end-user programming: A case study with Chemistry undergraduate students" /><published>2024-06-25T00:00:00-07:00</published><updated>2024-06-25T00:00:00-07:00</updated><id>https://ayaankazerouni.org/posts/end-user-programming</id><content type="html" xml:base="https://ayaankazerouni.org/posts/end-user-programming"><![CDATA[<p>This is an overview of the research paper <em><a href="/publications#jce2024end-user-programming">Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students</a></em>, published in the ACS Journal of Chemical Education.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.org/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.org/" rel="alternate" type="text/html" /><updated>2024-07-03T11:08:55-07:00</updated><id>https://ayaankazerouni.org/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
+</subtitle><entry><title type="html">Challenges with learning end-user programming: A case study with Chemistry undergraduate students</title><link href="https://ayaankazerouni.org/posts/end-user-programming" rel="alternate" type="text/html" title="Challenges with learning end-user programming: A case study with Chemistry undergraduate students" /><published>2024-06-25T00:00:00-07:00</published><updated>2024-06-25T00:00:00-07:00</updated><id>https://ayaankazerouni.org/posts/end-user-programming</id><content type="html" xml:base="https://ayaankazerouni.org/posts/end-user-programming"><![CDATA[<p>This is an overview of the research paper <em><a href="/publications#jce2024end-user-programming">Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students</a></em>, published in the American Chemical Society (ACS) Journal of Chemical Education.</p>
 
 <p>The work was conducted at Cal Poly and was led by MS student <a href="https://www.linkedin.com/in/wifuchs">Will Fuchs</a>.
 Our co-authors were <a href="https://chemistry.calpoly.edu/content/faculty/ashley_mcdonald">Dr. Ashley McDonald</a> from the Chemistry &amp; Biochemistry department at Cal Poly and <a href="https://aakash.xyz">Dr. Aakash Gautam</a> from the CS department at the University of Pittsburgh.</p>
@@ -33,7 +33,7 @@ But the reality is that about 85% of the material is essential, and the rest is 
 
 <p><strong>Happily, that describes the Physical Chemistry instructors at Cal Poly SLO.</strong></p>
 
-<p>Typically during their third year of undergraduate studies, students majoring in Chemistry or Biochemistry at Cal Poly take a 3-course sequence of Physical Chemistry courses, in which they also learn MATLAB programming.
+<p>Typically during their third year of undergraduate studies, students majoring in Chemistry or Biochemistry at Cal Poly take a 3-course sequence of Physical Chemistry courses, in which they also learn programming.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>
 Including programming alongside thermodynamics, kinetics, and mechanics certainly does add to the instructional obligations of these courses, but over a decade with the curriculum has also revealed desirable gestalt effects—students not only learned <em>to</em> program; they also learned Chemistry <em>through</em> programming.
 Many students go on to successfully apply their newfound computing skills to real problems in their research labs at Cal Poly and beyond.</p>
 
@@ -42,7 +42,7 @@ Most of them also self-select out of future computing experiences, opting out of
 
 <h2 id="understanding-students-challenges-with-learning-programming">Understanding students’ challenges with learning programming</h2>
 
-<p>We conducted two studies to learn about the challenges that the students faced while learning programming in these Chemistry courses.
+<p>We (Chemists and Computer Scientists at Cal Poly) conducted two studies to learn about the challenges that the students faced while learning programming in these Chemistry courses.
 In the first study, we used surveys to learn about students’ attitudes toward programming and their programming abilities.
 In the second study, we conducted one-on-one interviews to gain deeper insight into their attitudes and abilities.</p>
 
@@ -83,8 +83,9 @@ He recorded the interviews (with the students’ consent), and together we analy
 <p>Details are in <a href="/publications#jce2024end-user-programming">the paper</a>, but here are the highlights:</p>
 
 <ul>
-  <li>Without having been taught explicit strategies to solve programming problems, students faced challenges with program planning. This caused difficulties with multi-step problems, and also discouraged and daunted the students.</li>
-  <li>Students lacked an abstract enough mental model of MATLAB’s syntax and semantics. They often had understandings based on example programs they had seen in the past—this served them well when they saw similar-looking programs, but stymied them when they were faced with different representations of the same concepts.</li>
+  <li>We used <a href="https://kar.kent.ac.uk/23997/1/TaxonomyFuller.pdf">Fuller et al.’s Matrix Taxonomy</a> to categorise the level at which students were operating in terms of their programming knowledge. Students were generally competent with code comprehension involving patterns they had seen before.</li>
+  <li>This served them well when they saw similar-looking programs, but stymied them when they were faced with different representations of the same concepts. They lacked an abstract enough mental model of MATLAB’s syntax and semantics.</li>
+  <li>Without having been taught explicit strategies to solve programming problems, students faced challenges with program planning. This caused difficulties with multi-step problems, which were discouraging and daunting.</li>
 </ul>
 
 <p>For example, consider the following MATLAB expression (a Boolean AND): <code class="language-plaintext highlighter-rouge">and(a, b)</code></p>
@@ -177,7 +178,14 @@ I don’t know that there’s an obvious answer, but in this case there was cert
 
 <p>I’m also grateful to be in a department where my scholarly output is not expected to exist in a narrow selection of publication targets—without this, there would’ve been a whole other calculus to consider.</p>
 
-<hr />]]></content><author><name></name></author><category term="research-summary" /><category term="intro-programming" /><summary type="html"><![CDATA[This is an overview of the research paper Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students, published in the ACS Journal of Chemical Education.]]></summary></entry><entry><title type="html">It’s good to be bad at something</title><link href="https://ayaankazerouni.org/posts/good-to-be-bad" rel="alternate" type="text/html" title="It’s good to be bad at something" /><published>2024-03-31T00:00:00-07:00</published><updated>2024-03-31T00:00:00-07:00</updated><id>https://ayaankazerouni.org/posts/good-to-be-bad</id><content type="html" xml:base="https://ayaankazerouni.org/posts/good-to-be-bad"><![CDATA[<p><em>I signed up for a short machine shop training, and was reminded what it’s like to do something for the first time and struggle with it. In related news, I am teaching intro programming again in the Fall.</em></p>
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>At the time this work was carried out, the courses taught MATLAB, and are now switching to Python. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name></name></author><category term="research-summary" /><category term="intro-programming" /><summary type="html"><![CDATA[This is an overview of the research paper Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students, published in the American Chemical Society (ACS) Journal of Chemical Education.]]></summary></entry><entry><title type="html">It’s good to be bad at something</title><link href="https://ayaankazerouni.org/posts/good-to-be-bad" rel="alternate" type="text/html" title="It’s good to be bad at something" /><published>2024-03-31T00:00:00-07:00</published><updated>2024-03-31T00:00:00-07:00</updated><id>https://ayaankazerouni.org/posts/good-to-be-bad</id><content type="html" xml:base="https://ayaankazerouni.org/posts/good-to-be-bad"><![CDATA[<p><em>I signed up for a short machine shop training, and was reminded what it’s like to do something for the first time and struggle with it. In related news, I am teaching intro programming again in the Fall.</em></p>
 
 <p>A couple of weeks ago some colleagues and I signed up for the Cal Poly College of Engineering <a href="https://ceng.calpoly.edu/connection/2019/09/red-tag-training-2/">Red Tag Tour</a> and earned our “red tags”.
 These are passes that allow us to use the wood and sheet metal shop on the Cal Poly campus.

@@ -140,14 +140,16 @@ main {
   max-width: 80em;
   margin: 0 auto;
 }
-main.post {
+
+.post, .coursenotes {
   max-width: 60em;
   font-family: "Merriweather", serif;
+  font-weight: 200;
 }
-main.post .post-details {
+.post .post-details, .coursenotes .post-details {
   padding-bottom: 10px;
 }
-main.post article {
+.post article, .coursenotes article {
   font-size: 1em;
 }
 
@@ -178,7 +180,7 @@ aside nav ul li a.nav-link {
   color: var(--nav-color);
   display: block;
   padding: 15px;
-  font-family: "Muli", sans-serif;
+  font-family: "Mulish", sans-serif;
   line-height: 20px;
   margin-bottom: -1px;
   box-shadow: 0;
@@ -202,7 +204,6 @@ aside nav:after {
   margin-bottom: 5px;
 }
 .sub a {
-  text-decoration: none;
   margin: 2px;
 }
 
@@ -320,9 +321,6 @@ footer a, footer a:visited {
 .artifact-list .authors {
   color: var(--emph);
 }
-.artifact-list .artifact-title > a {
-  text-decoration: none;
-}
 .artifact-list details > summary {
   outline: none;
   margin-bottom: 5px;
@@ -353,6 +351,7 @@ details > summary {
 code {
   font-family: "Roboto Mono", monospace;
   color: var(--emph);
+  font-weight: 450;
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
@@ -375,7 +374,7 @@ pre:not(.mermaid) {
 
 .tag {
   font-size: 0.8em;
-  font-family: "Quicksand", "Helvetica", sans-serif;
+  font-family: "Mulish", sans-serif;
   padding: 2px 5px;
   margin: 5px;
   background-color: var(--highlight-color);
@@ -394,12 +393,11 @@ table {
   margin: 20px auto;
   border-collapse: collapse;
   font-size: 0.9em;
+  border-bottom: 2pt solid var(--font-color);
 }
 table th {
-  border-top: 1pt solid;
-  border-bottom: 1pt solid;
-  background-color: var(--font-color);
-  color: var(--bg-color);
+  border-top: 2pt solid var(--font-color);
+  border-bottom: 2pt solid var(--font-color);
 }
 table tr {
   border-bottom: 0.5pt solid;
@@ -419,8 +417,7 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
 }
 
 .coursenotes {
-  font-size: 1em;
-  font-family: "Merriweather", serif;
+  max-width: inherit;
   padding-top: 5px;
 }
 
