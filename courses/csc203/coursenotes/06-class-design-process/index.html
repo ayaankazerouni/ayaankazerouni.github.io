@@ -89,7 +89,7 @@ That is, we want to write <strong>loosely coupled</strong>, <strong>tightly cohe
 
 <ul>
   <li><strong>Loose coupling</strong>: Modules can work together harmoniously, but are not dependent on each others’ implementation details. If one module needs to change how it works, that should not beget changes in other modules, or at least should minimise them.</li>
-  <li><strong>Tight cohesion</strong>: The above goal can be realised by writing modules that <em>do one thing</em>. What that “one thing” is dependent on the problem at hand. For example, we might have a module whose job it is to manage the user interface for the game (whether it is text-based or graphical) and a module whose job it is to manage the game logic.</li>
+  <li><strong>Tight cohesion</strong>: The above goal can be realised by writing modules that <em>do one thing</em>. What that “one thing” is is dependent on the problem at hand. For example, we might have a module whose job it is to manage the user interface for the game (whether it is text-based or graphical) and a module whose job it is to manage the game logic.</li>
 </ul>
 
 <h2 id="designing-the-classes-needed-for-the-game">Designing the classes needed for the game</h2>
@@ -100,7 +100,7 @@ That is, we want to write <strong>loosely coupled</strong>, <strong>tightly cohe
 
 <ul>
   <li>For starters, we have the <strong>Players</strong>. Based on the recorded game output at the beginning of this lesson, what <em>data</em> do you think a <code class="language-plaintext highlighter-rouge">Player</code> should hold? What <em>behaviours</em> do you think a <code class="language-plaintext highlighter-rouge">Player</code> should be able to perform? For example, the <code class="language-plaintext highlighter-rouge">Player</code> ought to have a <code class="language-plaintext highlighter-rouge">name</code>, since that is what is used in the text-based output. The <code class="language-plaintext highlighter-rouge">Player</code> should also be able to remove a specified number of sticks from the pile. Leading us to…</li>
-  <li><strong>The pile of sticks</strong>. What are the data and behaviours here? The <code class="language-plaintext highlighter-rouge">Pile</code> should, at the very least, be able to keep track of how many <code class="language-plaintext highlighter-rouge">sticks</code> are left in it. It’s also probably a good idea to prevent the removal of <em>too many</em> or <em>too few</em> sticks.[^error-handling]</li>
+  <li><strong>The pile of sticks</strong>. What are the data and behaviours here? The <code class="language-plaintext highlighter-rouge">Pile</code> should, at the very least, be able to keep track of how many <code class="language-plaintext highlighter-rouge">sticks</code> are left in it. It’s also probably a good idea to prevent the removal of <em>too many</em> or <em>too few</em> sticks.</li>
   <li>Finally, we have <strong>the game itself</strong>. This is sort of the “controller” of this whole thing. What <em>data</em> does the <code class="language-plaintext highlighter-rouge">Game</code> know about? It needs to know about the <code class="language-plaintext highlighter-rouge">Player</code>s who are playing the game, and the <code class="language-plaintext highlighter-rouge">Pile</code> they are playing with. It also needs to manage the game logic, i.e., setting up the game, letting the players go turn-by-turn, and checking for a winner after each turn.</li>
 </ul>
 
@@ -162,7 +162,7 @@ That is fine.</p>
 <h2 id="supporting-additional-features">Supporting additional features</h2>
 
 <p>As we’ve said before, a central theme in software engineering is that your requirements can change.
-For example, as you think about designing the game <em>as described above</em>, think about how easy to difficult it would be to support features like the following.
+For example, as you think about designing the game <em>as described above</em>, think about how easy or difficult it would be to support features like the following.
 How much of our code would need to change to allow these features?</p>
 
 <ul>

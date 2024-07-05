@@ -440,8 +440,9 @@ This is why we use <code class="language-plaintext highlighter-rouge">getClass</
 
 <h3 id="summary">Summary</h3>
 
-<p>In 99% of cases, you should use <code class="language-plaintext highlighter-rouge">instanceof</code> for type-checking in Java (though if you are doing a lot of type-checking yourself, you should step back and consider your object-oriented design). In <code class="language-plaintext highlighter-rouge">equals</code> methods, where we need an <em>exact accounting</em> of the differences between two objects, we need to use <code class="language-plaintext highlighter-rouge">getClass</code> if we want two objects with the same parent equals method to be treated differently. \ <br />
-Of course, our other option is to perform the type checks in each subclass in addition to the superclass — if you do that, you can use <code class="language-plaintext highlighter-rouge">instanceof</code> as usual, because the equals method will appropriately fail at the subclass’s type check.</p>
+<p>In 99% of cases, you should use <code class="language-plaintext highlighter-rouge">instanceof</code> for type-checking in Java (though if you are doing a lot of type-checking yourself, you should step back and consider your object-oriented design). In <code class="language-plaintext highlighter-rouge">equals</code> methods, where we need an <em>exact accounting</em> of the differences between two objects, we need to use <code class="language-plaintext highlighter-rouge">getClass</code> if we want two objects with the same parent equals method to be treated differently.</p>
+
+<p>Of course, our other option is to perform the type checks in each subclass in addition to the superclass — if you do that, you can use <code class="language-plaintext highlighter-rouge">instanceof</code> as usual, because the equals method will appropriately fail at the subclass’s type check.</p>
 
 <p>You might say that this code duplication is tiresome, but…so is the <code class="language-plaintext highlighter-rouge">equals</code> method.</p>
 

@@ -29,6 +29,22 @@
   <div class="content">
       <p>In this lecture we will get a first look at <em>Classes and objects</em> in Java. Following this we’ll look at some classes that are available in the Java standard library, specifically <em>Lists</em> and <em>Maps</em>.</p>
 
+<ul id="markdown-toc">
+  <li><a href="#objects-and-classes" id="markdown-toc-objects-and-classes">Objects and classes</a>    <ul>
+      <li><a href="#instance-methods" id="markdown-toc-instance-methods">Instance methods</a></li>
+    </ul>
+  </li>
+  <li><a href="#a-code-example" id="markdown-toc-a-code-example">A code example</a></li>
+  <li><a href="#encapsulation-or-information-hiding" id="markdown-toc-encapsulation-or-information-hiding">Encapsulation, or information hiding</a></li>
+  <li><a href="#using-existing-classes-in-java" id="markdown-toc-using-existing-classes-in-java">Using existing classes in Java</a>    <ul>
+      <li><a href="#using-the-class-that-we-just-created" id="markdown-toc-using-the-class-that-we-just-created">Using the class that we just created</a></li>
+      <li><a href="#using-other-existing-classes-lists" id="markdown-toc-using-other-existing-classes-lists">Using other existing classes: Lists</a></li>
+      <li><a href="#boxed-primitives" id="markdown-toc-boxed-primitives">A note about “boxed” primitive types</a></li>
+    </ul>
+  </li>
+  <li><a href="#maps" id="markdown-toc-maps">Maps</a></li>
+</ul>
+
 <h2 id="objects-and-classes">Objects and classes</h2>
 
 <p>A <em>class</em> is the blueprint that defines data each object has and what behaviours it can perform.
@@ -92,9 +108,19 @@ Hence the name.</p>
 
 <p>Take some time to study the code below and its accompanying annotations.</p>
 
-<object data="CsCohort.html" width="90%" height="100%"></object>
+<p>
+<div style="width: 100%; margin: auto;">
+  <a href="CsCohort.html" target="_blank">
+    <small>
+      View in new tab
+    </small>
+  </a>
+  <br />
+  <object data="CsCohort.html" width="100%" height="900px"></object>
+</div>
+</p>
 
-<h3 id="encapsulation-or-information-hiding">Encapsulation, or, information hiding</h3>
+<h2 id="encapsulation-or-information-hiding">Encapsulation, or information hiding</h2>
 
 <p>Consider the <code class="language-plaintext highlighter-rouge">getYear</code>, <code class="language-plaintext highlighter-rouge">setYear</code>, <code class="language-plaintext highlighter-rouge">getEnrolled</code>, <code class="language-plaintext highlighter-rouge">getRetainedPercent</code>, <code class="language-plaintext highlighter-rouge">setRetainedPercent</code> methods above.
 They don’t do much beyond getting or setting the values of the appropriate variables.
@@ -133,7 +159,7 @@ Each object has its own data and its own behaviours that operate on that data.</
 <p>Remember the Java memory model.
 Each of those <code class="language-plaintext highlighter-rouge">CsCohort</code> variables (<code class="language-plaintext highlighter-rouge">year1</code>, <code class="language-plaintext highlighter-rouge">year2</code>, <code class="language-plaintext highlighter-rouge">year3</code>, <code class="language-plaintext highlighter-rouge">year4</code>) are <em>pointing</em> to the objects sitting somewhere else in memory.</p>
 
-<h3 id="other-existing-classes-in-java">Other existing classes in Java</h3>
+<h3 id="using-other-existing-classes-lists">Using other existing classes: Lists</h3>
 
 <p>Now that we know what <em>classes</em>, <em>objects</em>, and <em>instance methods</em> are, let’s look at some existing classes that are provided by the Java standard library.</p>
 

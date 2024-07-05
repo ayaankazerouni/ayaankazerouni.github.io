@@ -140,14 +140,16 @@ main {
   max-width: 80em;
   margin: 0 auto;
 }
-main.post {
+
+.post, .coursenotes {
   max-width: 60em;
   font-family: "Merriweather", serif;
+  font-weight: 200;
 }
-main.post .post-details {
+.post .post-details, .coursenotes .post-details {
   padding-bottom: 10px;
 }
-main.post article {
+.post article, .coursenotes article {
   font-size: 1em;
 }
 
@@ -349,6 +351,7 @@ details > summary {
 code {
   font-family: "Roboto Mono", monospace;
   color: var(--emph);
+  font-weight: 450;
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
@@ -390,12 +393,11 @@ table {
   margin: 20px auto;
   border-collapse: collapse;
   font-size: 0.9em;
+  border-bottom: 2pt solid var(--font-color);
 }
 table th {
-  border-top: 1pt solid;
-  border-bottom: 1pt solid;
-  background-color: var(--font-color);
-  color: var(--bg-color);
+  border-top: 2pt solid var(--font-color);
+  border-bottom: 2pt solid var(--font-color);
 }
 table tr {
   border-bottom: 0.5pt solid;
@@ -415,8 +417,7 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
 }
 
 .coursenotes {
-  font-size: 1em;
-  font-family: "Merriweather", serif;
+  max-width: inherit;
   padding-top: 5px;
 }
 
