@@ -1,6 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css?family=Quicksand");
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 @import url("/css/dark.css") screen and (prefers-color-scheme: dark);
 @import url("/css/github.css") screen and (prefers-color-scheme: light);
 :root {
@@ -67,16 +66,16 @@ h2,
 h3,
 h4,
 .degree {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--heading-font-color);
-  font-family: "Muli", sans-serif;
+  font-family: "Mulish", sans-serif;
   margin: auto;
   padding-top: 5px;
 }
 
 h1 {
   color: var(--header);
-  font-family: "Muli", sans-serif;
+  font-family: "Mulish", sans-serif;
 }
 h1 a,
 h1 a:visited {
@@ -141,15 +140,17 @@ main {
   max-width: 80em;
   margin: 0 auto;
 }
-main.post {
+
+.post, .coursenotes {
   max-width: 60em;
-  font-family: "EB Garamond", serif;
+  font-family: "Merriweather", serif;
+  font-weight: 200;
 }
-main.post .post-details {
+.post .post-details, .coursenotes .post-details {
   padding-bottom: 10px;
 }
-main.post article {
-  font-size: 1.2em;
+.post article, .coursenotes article {
+  font-size: 1em;
 }
 
 /* Aside */
@@ -179,7 +180,7 @@ aside nav ul li a.nav-link {
   color: var(--nav-color);
   display: block;
   padding: 15px;
-  font-family: "Muli", sans-serif;
+  font-family: "Mulish", sans-serif;
   line-height: 20px;
   margin-bottom: -1px;
   box-shadow: 0;
@@ -203,7 +204,6 @@ aside nav:after {
   margin-bottom: 5px;
 }
 .sub a {
-  text-decoration: none;
   margin: 2px;
 }
 
@@ -321,9 +321,6 @@ footer a, footer a:visited {
 .artifact-list .authors {
   color: var(--emph);
 }
-.artifact-list .artifact-title > a {
-  text-decoration: none;
-}
 .artifact-list details > summary {
   outline: none;
   margin-bottom: 5px;
@@ -341,7 +338,7 @@ details > summary {
 }
 
 .banner {
-  padding: 10px;
+  padding: 2px 5px 2px 5px;
   border-radius: 5px;
   border: var(--emph) solid 2px;
   background-color: var(--highlight-color);
@@ -352,8 +349,9 @@ details > summary {
 }
 
 code {
-  font-size: 1rem;
+  font-family: "Roboto Mono", monospace;
   color: var(--emph);
+  font-weight: 450;
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
@@ -376,7 +374,7 @@ pre:not(.mermaid) {
 
 .tag {
   font-size: 0.8em;
-  font-family: "Quicksand", "Helvetica", sans-serif;
+  font-family: "Mulish", sans-serif;
   padding: 2px 5px;
   margin: 5px;
   background-color: var(--highlight-color);
@@ -395,12 +393,11 @@ table {
   margin: 20px auto;
   border-collapse: collapse;
   font-size: 0.9em;
+  border-bottom: 2pt solid var(--font-color);
 }
 table th {
-  border-top: 1pt solid;
-  border-bottom: 1pt solid;
-  background-color: var(--font-color);
-  color: var(--bg-color);
+  border-top: 2pt solid var(--font-color);
+  border-bottom: 2pt solid var(--font-color);
 }
 table tr {
   border-bottom: 0.5pt solid;
@@ -412,13 +409,16 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
   border-right: 1pt solid;
 }
 
+.course {
+  padding-top: 5px;
+}
 .course table tr:nth-child(4n), .course table tr:nth-child(4n-1) {
   background: var(--table-alternate-bg-color);
 }
 
 .coursenotes {
-  font-size: 1.2rem;
-  font-family: "EB Garamond", serif;
+  max-width: inherit;
+  padding-top: 5px;
 }
 
 .callout, blockquote {
@@ -433,7 +433,7 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
   padding-bottom: 0.5rem;
   font-weight: bold;
   font-size: 0.8em;
-  font-family: "Muli", sans-serif;
+  font-family: "Mulish", sans-serif;
 }
 .callout.todo, blockquote.todo {
   border-color: var(--todo-color);
@@ -567,8 +567,10 @@ blockquote {
     max-width: 95vw;
   }
   img {
-    width: 100%;
-    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    max-height: 60vh;
   }
   .post-title {
     font-size: medium;
