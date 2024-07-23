@@ -57,7 +57,7 @@ body {
   min-width: 65%;
   margin: auto;
   color: var(--font-color);
-  font-family: "Avenir", sans-serif;
+  font-family: "Mulish", sans-serif;
   font-weight: 450;
   -webkit-font-smoothing: antialiased;
 }
@@ -86,6 +86,7 @@ a,
 a:visited {
   color: var(--link-color);
   text-decoration: underline;
+  font-weight: 550;
 }
 
 a:hover {
@@ -338,7 +339,7 @@ details > summary {
 }
 
 .banner {
-  padding: 10px;
+  padding: 5px;
   border-radius: 5px;
   border: var(--emph) solid 2px;
   background-color: var(--highlight-color);
