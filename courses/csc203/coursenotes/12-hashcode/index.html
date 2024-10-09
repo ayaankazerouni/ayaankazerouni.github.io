@@ -36,6 +36,19 @@ Like <code class="language-plaintext highlighter-rouge">toString</code> and <cod
 The produced integer should be consistent for the object.
 That is, the produced integer should not change unless the object itself is changed in some way.</p>
 
+<ul id="markdown-toc">
+  <li><a href="#whats-hashcode-used-for" id="markdown-toc-whats-hashcode-used-for">What’s <code class="language-plaintext highlighter-rouge">hashCode</code> used for?</a>    <ul>
+      <li><a href="#a-hashcode-is-an-integer" id="markdown-toc-a-hashcode-is-an-integer">A <code class="language-plaintext highlighter-rouge">hashCode</code> is an integer</a></li>
+      <li><a href="#equals-and-hashcode-go-hand-in-hand" id="markdown-toc-equals-and-hashcode-go-hand-in-hand"><code class="language-plaintext highlighter-rouge">equals</code> and <code class="language-plaintext highlighter-rouge">hashCode</code> go hand-in-hand</a></li>
+    </ul>
+  </li>
+  <li><a href="#writing-a-hashcode-function" id="markdown-toc-writing-a-hashcode-function">Writing a <code class="language-plaintext highlighter-rouge">hashCode</code> function</a>    <ul>
+      <li><a href="#rolling-our-own" id="markdown-toc-rolling-our-own">Rolling our own</a></li>
+      <li><a href="#using-existing-methods" id="markdown-toc-using-existing-methods">Using existing methods</a></li>
+    </ul>
+  </li>
+</ul>
+
 <h2 id="whats-hashcode-used-for">What’s <code class="language-plaintext highlighter-rouge">hashCode</code> used for?</h2>
 
 <p>Think about the <code class="language-plaintext highlighter-rouge">HashMap</code> data structure, discussed <a href="../03-lists-maps-existing-classes/">in a previous lesson</a>.
@@ -164,8 +177,6 @@ So we could rewrite the <code class="language-plaintext highlighter-rouge">hashC
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="objectsequals"><code class="language-plaintext highlighter-rouge">Objects.equals</code></h3>
-
 <p>The <code class="language-plaintext highlighter-rouge">Objects</code> class also provides the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Objects.html#equals(java.lang.Object,java.lang.Object)"><code class="language-plaintext highlighter-rouge">Objects.equals</code></a> function. You can use <code class="language-plaintext highlighter-rouge">Objects.equals(a, b)</code> instead of <code class="language-plaintext highlighter-rouge">a.equals(b)</code>.
 This is useful in cases you are not sure if <code class="language-plaintext highlighter-rouge">a</code> is null or not — <code class="language-plaintext highlighter-rouge">a.equals(b)</code> would crash with a <code class="language-plaintext highlighter-rouge">NullPointerException</code> if <code class="language-plaintext highlighter-rouge">a</code> was null, whereas <code class="language-plaintext highlighter-rouge">Objects.equals</code> checks that for you, or you could check it yourself.</p>
 
@@ -177,7 +188,7 @@ This is useful in cases you are not sure if <code class="language-plaintext high
       <p>Paraphrased from the <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()">Object documentation</a>. <a href="#fnref:javadoc" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:s" role="doc-endnote">
-      <p>Notice the “s” in Objects. <a href="#fnref:s" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p>Notice the “s” in <code class="language-plaintext highlighter-rouge">Objects</code>. <a href="#fnref:s" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

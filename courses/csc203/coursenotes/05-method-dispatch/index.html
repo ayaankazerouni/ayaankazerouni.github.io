@@ -28,18 +28,29 @@
   
   <h1>Method dispatch (overloading and overriding)</h1>
   <div class="content">
-      <p>Java has a number of mechanisms in which, when a program calls a method on an object, either the compiler or the runtime must decide <em>which</em> method should be executed for that method invocation.</p>
+      <p>Java has a number of mechanisms in which, when a program calls a method on an object, either the compiler or the runtime must decide <em>which</em> method should be executed for that method invocation.
+This is a known as <em>method dispatch</em>.</p>
 
-<p>In this lesson, you will learn:</p>
-
-<ul>
-  <li>About method overloading and method overriding.</li>
-  <li>About static and dynamic dispatch.</li>
-  <li>About the phrases <em>runtime</em> and <em>run time</em>, and how they differ (or at least, what I mean when I use them; I won’t pretend they have generally agreed upon definitions).</li>
-  <li>And you will get your first look at inheritance, everyone’s most or least favourite thing about Java, depending on who you talk to.</li>
+<ul id="markdown-toc">
+  <li><a href="#method-overloading-static-dispatch" id="markdown-toc-method-overloading-static-dispatch">Method overloading (static dispatch)</a></li>
+  <li><a href="#static-type-and-dynamic-type" id="markdown-toc-static-type-and-dynamic-type">Static Type and Dynamic Type</a>    <ul>
+      <li><a href="#first-look-at-inheritance" id="markdown-toc-first-look-at-inheritance">First look at inheritance</a></li>
+    </ul>
+  </li>
+  <li><a href="#back-to-method-dispatch" id="markdown-toc-back-to-method-dispatch">Back to method dispatch</a>    <ul>
+      <li><a href="#example-1" id="markdown-toc-example-1">Example 1</a></li>
+      <li><a href="#example-2" id="markdown-toc-example-2">Example 2</a></li>
+      <li><a href="#example-3" id="markdown-toc-example-3">Example 3</a></li>
+      <li><a href="#example-4" id="markdown-toc-example-4">Example 4</a></li>
+    </ul>
+  </li>
+  <li><a href="#method-overriding-dynamic-dispatch" id="markdown-toc-method-overriding-dynamic-dispatch">Method overriding (dynamic dispatch)</a>    <ul>
+      <li><a href="#example-5" id="markdown-toc-example-5">Example 5</a></li>
+    </ul>
+  </li>
 </ul>
 
-<h2 id="method-overloading">Method overloading</h2>
+<h2 id="method-overloading-static-dispatch">Method overloading (static dispatch)</h2>
 
 <p><strong><em>Method overloading</em></strong> allows us to perform the same task (call the same function) in multiple different ways, depending on the inputs that are given (the arguments that are given to the function).</p>
 
@@ -268,7 +279,7 @@ So the example above would compile, and it would print out <code class="language
   <li>If neither of the above resolves to a method, the compiler checks if the static type of the input can be <em>implicitly</em> converted to the expected parameter type for the method. For example, if the method takes in a <code class="language-plaintext highlighter-rouge">double</code> as a parameter, and we attempt to call it with an <code class="language-plaintext highlighter-rouge">int</code> as a parameter, the compiler will implicitly convert that <code class="language-plaintext highlighter-rouge">int</code> into a <code class="language-plaintext highlighter-rouge">double</code> and call the <code class="language-plaintext highlighter-rouge">double</code> method instead.</li>
 </ol>
 
-<h2 id="method-overriding">Method overriding</h2>
+<h2 id="method-overriding-dynamic-dispatch">Method overriding (dynamic dispatch)</h2>
 
 <p>Closely related to method overloading is the confusingly similarly named <strong><em>method overriding</em></strong>.</p>
 

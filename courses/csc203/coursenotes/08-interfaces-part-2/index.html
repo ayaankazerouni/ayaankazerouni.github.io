@@ -28,19 +28,26 @@
   
   <h1>Interfaces (part 2)</h1>
   <div class="content">
-      <h2 id="overview">Overview</h2>
+      <p>In the previous lesson, we learned about <em>interfaces</em> — both the general concept as well as the program construct in Java.
+In this lesson, we’ll walk through an example of creating and using interfaces in a program design process.
+We’ll see how interfaces can help reduce coupling and introduce separation of concerns.</p>
 
-<p>In the previous lesson, we learned about <em>interfaces</em> — both the general concept as well as the program construct in Java.
-In this lesson, we’ll walk through an example of creating and using interfaces in a program design process.</p>
-
-<h2 id="objectives">Objectives</h2>
-
-<p>In this lesson, you will learn:</p>
-
-<ul>
-  <li>More about interfaces.</li>
-  <li>About using interfaces to reduce coupling and to introduce separation of concerns.</li>
-  <li>About the <code class="language-plaintext highlighter-rouge">instanceof</code> operator in Java.</li>
+<ul id="markdown-toc">
+  <li><a href="#updating-the-nim-game" id="markdown-toc-updating-the-nim-game">Updating the Nim Game</a>    <ul>
+      <li><a href="#our-strategy" id="markdown-toc-our-strategy">Our strategy</a></li>
+    </ul>
+  </li>
+  <li><a href="#implementation" id="markdown-toc-implementation">Implementation</a>    <ul>
+      <li><a href="#the-player-interface" id="markdown-toc-the-player-interface">The Player interface</a></li>
+      <li><a href="#the-timid-player" id="markdown-toc-the-timid-player">The Timid Player</a></li>
+      <li><a href="#the-greedy-player" id="markdown-toc-the-greedy-player">The Greedy Player</a></li>
+      <li><a href="#the-random-player" id="markdown-toc-the-random-player">The Random Player</a></li>
+      <li><a href="#the-game-class" id="markdown-toc-the-game-class">The Game class</a></li>
+      <li><a href="#the-human-player" id="markdown-toc-the-human-player">The Human Player</a></li>
+    </ul>
+  </li>
+  <li><a href="#introducing-player-specific-functionality" id="markdown-toc-introducing-player-specific-functionality">Introducing player-specific functionality</a></li>
+  <li><a href="#summary" id="markdown-toc-summary">Summary</a></li>
 </ul>
 
 <h2 id="updating-the-nim-game">Updating the Nim Game</h2>
@@ -279,7 +286,7 @@ Suppose we want our <code class="language-plaintext highlighter-rouge">GreedyPla
 
 <p>I will work through two ways in which to add this behaviour, and we will discuss pros and cons of each strategy.</p>
 
-<h3 id="1-the-instanceof-operator">#1 The instanceof operator</h3>
+<h4 id="1-the-instanceof-operator">#1 The <code class="language-plaintext highlighter-rouge">instanceof</code> operator</h4>
 
 <p>Strategy 1 is to make the <code class="language-plaintext highlighter-rouge">Game</code> handle this behaviour.
 Whenever a player plays a turn (in the <code class="language-plaintext highlighter-rouge">play</code> method of the <code class="language-plaintext highlighter-rouge">Game</code>), we check if the player is an instance of <code class="language-plaintext highlighter-rouge">GreedyPlayer</code>.
@@ -303,7 +310,7 @@ That is, even though the <strong>static type</strong> of <code class="language-p
 </div>
 </p>
 
-<h3 id="2-make-the-greedyplayer-do-it">#2 Make the GreedyPlayer do it</h3>
+<h4 id="2-make-the-greedyplayer-do-it">#2 Make the GreedyPlayer do it</h4>
 
 <p>Strategy 2 is to make the <code class="language-plaintext highlighter-rouge">GreedyPlayer</code> handle this behaviour.</p>
 

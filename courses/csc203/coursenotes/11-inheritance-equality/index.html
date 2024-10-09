@@ -28,7 +28,29 @@
   
   <h1>Inheritance and equality</h1>
   <div class="content">
-      <h2 id="plain-old-inheritance">Plain old inheritance</h2>
+      <ul id="markdown-toc">
+  <li><a href="#plain-old-inheritance" id="markdown-toc-plain-old-inheritance">Plain old inheritance</a></li>
+  <li><a href="#tostring" id="markdown-toc-tostring"><code class="language-plaintext highlighter-rouge">toString</code></a>    <ul>
+      <li><a href="#tostring-should-not-have-any-side-effects" id="markdown-toc-tostring-should-not-have-any-side-effects"><code class="language-plaintext highlighter-rouge">toString</code> should not have any side-effects!</a></li>
+    </ul>
+  </li>
+  <li><a href="#equals" id="markdown-toc-equals"><code class="language-plaintext highlighter-rouge">equals</code></a></li>
+  <li><a href="#inheritance-and-equality" id="markdown-toc-inheritance-and-equality">Inheritance and equality</a>    <ul>
+      <li><a href="#closedfigure-equals" id="markdown-toc-closedfigure-equals"><code class="language-plaintext highlighter-rouge">ClosedFigure</code> <code class="language-plaintext highlighter-rouge">equals</code></a></li>
+      <li><a href="#circle-equals" id="markdown-toc-circle-equals"><code class="language-plaintext highlighter-rouge">Circle</code> <code class="language-plaintext highlighter-rouge">equals</code></a></li>
+      <li><a href="#square-equals" id="markdown-toc-square-equals"><code class="language-plaintext highlighter-rouge">Square</code> <code class="language-plaintext highlighter-rouge">equals</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#some-examples" id="markdown-toc-some-examples">Some examples</a>    <ul>
+      <li><a href="#example-1" id="markdown-toc-example-1">Example 1</a></li>
+      <li><a href="#example-2" id="markdown-toc-example-2">Example 2</a></li>
+      <li><a href="#example-3" id="markdown-toc-example-3">Example 3</a></li>
+    </ul>
+  </li>
+  <li><a href="#summary" id="markdown-toc-summary">Summary</a></li>
+</ul>
+
+<h2 id="plain-old-inheritance">Plain old inheritance</h2>
 
 <p>So far, we have seen two ways of using polymorphism in Java: interfaces and abstract classes.
 In this lesson we will (briefly) talk about “plain old inheritance”.</p>
@@ -372,7 +394,7 @@ That is, if <code class="language-plaintext highlighter-rouge">super.equals(othe
 <span class="o">}</span>  
 </code></pre></div></div>
 
-<h3 id="some-examples-to-ponder-in-the-examples-above">Some examples to ponder in the examples above</h3>
+<h2 id="some-examples">Some examples</h2>
 
 <p>Because the <code class="language-plaintext highlighter-rouge">ClosedFigure</code> equals method uses <code class="language-plaintext highlighter-rouge">getClass</code> for the type check, <a href="../05-method-dispatch/">dynamic dispatch</a> takes care of getting the right class name at run time.</p>
 
@@ -384,7 +406,7 @@ That is, if <code class="language-plaintext highlighter-rouge">super.equals(othe
 
 <p>If you called <code class="language-plaintext highlighter-rouge">fig.getClass()</code>, you would <code class="language-plaintext highlighter-rouge">Circle</code> in return, not <code class="language-plaintext highlighter-rouge">ClosedFigure</code>.</p>
 
-<h4 id="example-1">Example 1</h4>
+<h3 id="example-1">Example 1</h3>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ClosedFigure</span> <span class="n">fig</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circle</span><span class="o">(</span><span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="mi">10</span><span class="o">);</span>
 <span class="nc">Circle</span> <span class="n">fig2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Circle</span><span class="o">(</span><span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> <span class="mi">10</span><span class="o">);</span>
@@ -403,7 +425,7 @@ That is, if <code class="language-plaintext highlighter-rouge">super.equals(othe
   <li>Finally, we come back to the <code class="language-plaintext highlighter-rouge">Circle</code> class, cast <code class="language-plaintext highlighter-rouge">other</code> to a <code class="language-plaintext highlighter-rouge">Circle</code> and compare radii.</li>
 </ol>
 
-<h4 id="example-2">Example 2</h4>
+<h3 id="example-2">Example 2</h3>
 
 <p>Suppose in our <code class="language-plaintext highlighter-rouge">ClosedFigure</code> class, we had used <code class="language-plaintext highlighter-rouge">instanceof</code> instead of <code class="language-plaintext highlighter-rouge">getClass</code>. That is, the type check was carried out using <code class="language-plaintext highlighter-rouge">other instanceof ClosedFigure</code>.</p>
 
@@ -411,7 +433,7 @@ That is, if <code class="language-plaintext highlighter-rouge">super.equals(othe
 
 <p><strong>There would be no change</strong>. At the moment of the type check, we would check if <code class="language-plaintext highlighter-rouge">other instanceof ClosedFigure</code>. <code class="language-plaintext highlighter-rouge">other</code> is a <code class="language-plaintext highlighter-rouge">Circle</code>, which <em>is a</em> <code class="language-plaintext highlighter-rouge">ClosedFigure</code>. So everything is okay, and our type casts go through without a problem.</p>
 
-<h4 id="example-3">Example 3</h4>
+<h3 id="example-3">Example 3</h3>
 
 <p>Finally, think about the following example:</p>
 
@@ -439,7 +461,7 @@ That is, if <code class="language-plaintext highlighter-rouge">super.equals(othe
 <p>This mismatch only occurs if in the <code class="language-plaintext highlighter-rouge">ClosedFigure</code> equals method, we use <code class="language-plaintext highlighter-rouge">instanceof</code> to check the type. The <code class="language-plaintext highlighter-rouge">Square</code> <em>is</em> an instance of <code class="language-plaintext highlighter-rouge">ClosedFigure</code>, so even though the two objects are of different types, our equality check doesn’t quit at that line.
 This is why we use <code class="language-plaintext highlighter-rouge">getClass</code> to perform the type check in an <code class="language-plaintext highlighter-rouge">equals</code> method.</p>
 
-<h3 id="summary">Summary</h3>
+<h2 id="summary">Summary</h2>
 
 <p>In 99% of cases, you should use <code class="language-plaintext highlighter-rouge">instanceof</code> for type-checking in Java (though if you are doing a lot of type-checking yourself, you should step back and consider your object-oriented design). In <code class="language-plaintext highlighter-rouge">equals</code> methods, where we need an <em>exact accounting</em> of the differences between two objects, we need to use <code class="language-plaintext highlighter-rouge">getClass</code> if we want two objects with the same parent equals method to be treated differently.</p>
 

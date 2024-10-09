@@ -31,6 +31,21 @@
       <p>In this lesson we’ll implement a simple game using an object-oriented (OO) design process.
 The goal is to get a tiny taste of the thought process that goes into designing an OO system with multiple interacting classes.</p>
 
+<ul id="markdown-toc">
+  <li><a href="#game-requirements" id="markdown-toc-game-requirements">Game requirements</a></li>
+  <li><a href="#why-follow-a-principled-design-process" id="markdown-toc-why-follow-a-principled-design-process">Why follow a principled design process?</a>    <ul>
+      <li><a href="#detour-a-small-but-important-real-world-example" id="markdown-toc-detour-a-small-but-important-real-world-example">Detour: A small but important real-world example</a></li>
+    </ul>
+  </li>
+  <li><a href="#designing-the-classes-needed-for-the-game" id="markdown-toc-designing-the-classes-needed-for-the-game">Designing the classes needed for the game</a>    <ul>
+      <li><a href="#the-player-class" id="markdown-toc-the-player-class">The Player class</a></li>
+      <li><a href="#the-pile-class" id="markdown-toc-the-pile-class">The Pile class</a></li>
+      <li><a href="#the-game-class" id="markdown-toc-the-game-class">The Game class</a></li>
+    </ul>
+  </li>
+  <li><a href="#supporting-additional-features" id="markdown-toc-supporting-additional-features">Supporting additional features</a></li>
+</ul>
+
 <h2 id="game-requirements">Game requirements</h2>
 
 <p>We’re going to implement the <a href="https://en.wikipedia.org/wiki/Nim">Game of Nim</a>. Lets start by first understanding the game we’re building. The rules are simple:</p>
@@ -73,25 +88,41 @@ OO design is one such process to help us write maintainable code.</p>
 
 <p>But it’s worth questioning: <strong>what do we actually mean by that?</strong> When I say we should prioritise <em>maintainability</em>, I’m thinking of the following:</p>
 
-<ul>
-  <li>
-    <p><strong>Requirements change over time.</strong> Software requirements rarely stay the same. Either because the client (the person for whom we’re building the software) refines what they’re asking for, or because new features need to be added, or because we, the developers, are correcting initial misunderstandings about aspects of the requirements, change is a constant in software engineering.</p>
-  </li>
-  <li><strong>There will be bugs.</strong> It’s likely that you’ll need to debug your program at some point. Decoupling the different modules involved in the overall game implementation will help to quickly isolate issues as well as the changes needed to resolve them.
-    <ul>
-      <li>This is related to the previous point. If you are making changes all over your codebase to support every change to the system, your likelihood of bugs increases significantly. The more interactions there are between the different modules involved, the larger the “search space” grows when you are trying to hunt down a bug.</li>
-    </ul>
-  </li>
-  <li><strong>Testing.</strong> Finally, you want to be able to test the distinct parts of your program to verify that they are working correctly, both individually and together. “<a href="https://en.wikipedia.org/wiki/Spaghetti_code">Spaghetti code</a>” is much harder to test than smaller cohesive modules, in part because it becomes difficult to even tell what a “distinct part” of the program is.</li>
-</ul>
+<p><strong>Requirements change over time.</strong> Software requirements rarely stay the same. Either because the client (the person for whom we’re building the software) refines what they’re asking for, or because new features need to be added, or because we, the developers, are correcting initial misunderstandings about aspects of the requirements, change is a constant in software engineering.</p>
+
+<p><strong>There will be bugs.</strong> It’s likely that you’ll need to debug your program at some point. Decoupling the different modules involved in the overall game implementation will help to quickly isolate issues as well as the changes needed to resolve them. This is related to the previous point. If you are making changes all over your codebase to support every new feature or bug-fix or what have you, your likelihood of introducing more bugs increases significantly. The more interactions there are between the different modules involved, the larger the “search space” grows when you are trying to hunt down a bug.</p>
+
+<p><strong>Testing.</strong> Finally, you want to be able to test the distinct parts of your program to verify that they are working correctly, both individually and together. “<a href="https://en.wikipedia.org/wiki/Spaghetti_code">Spaghetti code</a>” is much harder to test than smaller cohesive modules, in part because it becomes difficult to even tell what a “distinct part” of the program is.</p>
 
 <p>All that to say: it pays to follow a principled software design process.
-That is, we want to write <strong>loosely coupled</strong>, <strong>tightly cohesive</strong> modules (where “modules” can mean functions, classes, packages, etc.; I use “module” as a general term to emphasise that these principles are not unique to OOP).</p>
+That is, we want to write <strong>loosely coupled</strong>, <strong>tightly cohesive</strong> components (where “components” can mean functions, classes, packages, etc.; I use “component” as a general term to emphasise that these principles are not unique to OOP).</p>
 
 <ul>
-  <li><strong>Loose coupling</strong>: Modules can work together harmoniously, but are not dependent on each others’ implementation details. If one module needs to change how it works, that should not beget changes in other modules, or at least should minimise them.</li>
-  <li><strong>Tight cohesion</strong>: The above goal can be realised by writing modules that <em>do one thing</em>. What that “one thing” is is dependent on the problem at hand. For example, we might have a module whose job it is to manage the user interface for the game (whether it is text-based or graphical) and a module whose job it is to manage the game logic.</li>
+  <li><strong>Loose coupling</strong>: Components can work together harmoniously, but are not dependent on each others’ implementation details. If one component needs to change how it works, that should not beget changes in other components, or at least should minimise them.</li>
+  <li><strong>Tight cohesion</strong>: The above goal can be realised by writing components that <em>do one thing</em>. What that “one thing” is is dependent on the problem at hand. For example, we might have a component whose job it is to manage the user interface for the game (whether it is text-based or graphical) and a component whose job it is to manage the game logic.</li>
 </ul>
+
+<h3 id="detour-a-small-but-important-real-world-example">Detour: A small but important real-world example</h3>
+
+<p>Consider the <strong><code class="language-plaintext highlighter-rouge">String</code></strong> class in Java.</p>
+
+<p>We casually think of a <code class="language-plaintext highlighter-rouge">String</code> as being a “string of characters”.
+This is how the <code class="language-plaintext highlighter-rouge">String</code> used to be implemented in older versions of Java in years past.
+For example, the <a href="https://github.com/openjdk/jdk8/blob/master/jdk/src/share/classes/java/lang/String.java#L114">Java 8 <code class="language-plaintext highlighter-rouge">String</code> implementation</a>, used around 2014, has a <code class="language-plaintext highlighter-rouge">value</code> instance variable declared as a <code class="language-plaintext highlighter-rouge">char[]</code>.</p>
+
+<p>However, the <code class="language-plaintext highlighter-rouge">char</code> data type can represent a large but limited set of possible characters in its two bytes of memory (the <a href="https://en.wikipedia.org/wiki/UTF-16">UTF-16</a> encoding<sup id="fnref:encodings" role="doc-noteref"><a href="#fn:encodings" class="footnote" rel="footnote">1</a></sup>).
+At some point, the Java standard library made the switch to where the <code class="language-plaintext highlighter-rouge">value</code> of a <code class="language-plaintext highlighter-rouge">String</code> is now represented by a much less restricted array of <code class="language-plaintext highlighter-rouge">byte</code>s instead.
+See <a href="https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/lang/String.java#L160">the current <code class="language-plaintext highlighter-rouge">String</code> implementation</a>.</p>
+
+<p>Importantly, the <code class="language-plaintext highlighter-rouge">value</code> instance variable is marked as <code class="language-plaintext highlighter-rouge">private</code>, meaning that other code that used <code class="language-plaintext highlighter-rouge">String</code>s did not have direct access to this <code class="language-plaintext highlighter-rouge">value</code>, and therefore could not <em>rely</em> on it being a <code class="language-plaintext highlighter-rouge">char[]</code>.
+The maintainers were able to change this to be a <code class="language-plaintext highlighter-rouge">byte[]</code> with little fuss (that I’m aware of), because the “public-facing” surface of the <code class="language-plaintext highlighter-rouge">String</code> class remained the same as far as any outsiders were concerned.
+They were <em>decoupled</em> from the <code class="language-plaintext highlighter-rouge">String</code> class.</p>
+
+<p>That said, the <code class="language-plaintext highlighter-rouge">String</code> class <em>does</em> provide the <code class="language-plaintext highlighter-rouge">toCharArray</code> method, which still gives back a <code class="language-plaintext highlighter-rouge">char[]</code>.
+Code that uses that method to obtain access to the underlying array of characters could possibly break if the <code class="language-plaintext highlighter-rouge">String</code> contained characters outside the UTF-16 encoding (e.g., emojis).</p>
+
+<p>This should serve as a warning that you should carefully think about whether or not you should provide accessor methods for your <code class="language-plaintext highlighter-rouge">private</code> instance variables.
+Many Java developers do it as an automatic step when creating new classes, but that defeats some of the purpose of information hiding.</p>
 
 <h2 id="designing-the-classes-needed-for-the-game">Designing the classes needed for the game</h2>
 
@@ -174,13 +205,16 @@ How much of our code would need to change to allow these features?</p>
 
 <p>You will find that there is a balance to be achieved between two extremes.
 On one end, you can put in huge amounts of design effort upfront, and try to prepare your code to easily handle <em>any</em> updates to the requirements, i.e., by strictly adhering to principles like information hiding and creating new abstractions (e.g., classes) to support most key features.
-The downside is that you often don’t need all of those abstractions—that design and preparatory implementation work can go to waste<sup id="fnref:yagni" role="doc-noteref"><a href="#fn:yagni" class="footnote" rel="footnote">1</a></sup>, and worse, it can make your code harder to read and understand for someone who is not already familiar with the codebase.</p>
+The downside is that you often don’t need all of those abstractions—that design and preparatory implementation work can go to waste<sup id="fnref:yagni" role="doc-noteref"><a href="#fn:yagni" class="footnote" rel="footnote">2</a></sup>, and worse, it can make your code harder to read and understand for someone who is not already familiar with the codebase.</p>
 
-<p>On the other extreme, you can eschew this upfront design work, and when changes to requirements inevitably <em>do</em> crop up, you can pay the piper then. Though by that time you may have accrued a fair amount of <em>technical debt</em>.<sup id="fnref:td" role="doc-noteref"><a href="#fn:td" class="footnote" rel="footnote">2</a></sup></p>
+<p>On the other extreme, you can eschew this upfront design work, and when changes to requirements inevitably <em>do</em> crop up, you can pay the piper then. Though by that time you may have accrued a fair amount of <em>technical debt</em>.<sup id="fnref:td" role="doc-noteref"><a href="#fn:td" class="footnote" rel="footnote">3</a></sup></p>
 
 <hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
+    <li id="fn:encodings" role="doc-endnote">
+      <p>If you’re curious, this blog post by Joel Spolsky (one of the creators of StackOverflow) is a good overview about character encodings: <a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/"><em>The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</em></a>. <a href="#fnref:encodings" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
     <li id="fn:yagni" role="doc-endnote">
       <p>Many pithy acronyms for engineering principles hint at this, like <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a> (you aren’t gonna need it) and <a href="https://en.wikipedia.org/wiki/KISS_principle">KISS</a> (keep it simple, stupid!) <a href="#fnref:yagni" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>

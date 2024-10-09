@@ -28,7 +28,19 @@
   
   <h1>Abstract classes</h1>
   <div class="content">
-      <p>We learned about interfaces in Java in the previous lessons.
+      <ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#a-disadvantage-of-using-interfaces" id="markdown-toc-a-disadvantage-of-using-interfaces">A disadvantage of using interfaces</a></li>
+  <li><a href="#abstract-classes" id="markdown-toc-abstract-classes">Abstract classes</a>    <ul>
+      <li><a href="#code-for-the-example-above" id="markdown-toc-code-for-the-example-above">Code for the example above</a></li>
+    </ul>
+  </li>
+  <li><a href="#interfaces-or-abstract-classes" id="markdown-toc-interfaces-or-abstract-classes">Interfaces or abstract classes?</a></li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>We learned about interfaces in Java in the previous lessons.
 For a recap, please take a look at the <a href="../09-interfaces-part-3#summary">Summary</a> from the previous lesson.</p>
 
 <p>Interfaces come with numerous benefits:</p>
@@ -258,8 +270,6 @@ In particular, there are two new keywords introduced in the code below: <code cl
 
 <h2 id="interfaces-or-abstract-classes">Interfaces or abstract classes?</h2>
 
-<p>So, which do you prefer? Abstract classes or interfaces?<sup id="fnref:none" role="doc-noteref"><a href="#fn:none" class="footnote" rel="footnote">1</a></sup></p>
-
 <p>The key consideration here is that a class can implement <em>at most one</em> abstract class.
 If your class hierarchy is designed using only abstract classes, you are necessarily going to end up with a tree-like structure, where very child type has exactly one parent type.
 Sometimes this simplicity is desirable, and sometimes it is too restrictive.</p>
@@ -275,17 +285,14 @@ You have created a number of subclasses that implement various combinations of t
 For example, you find yourself creating many classes that implement both <code class="language-plaintext highlighter-rouge">B</code> and <code class="language-plaintext highlighter-rouge">C</code>, and end up duplicating instance variables and methods in those classes.
 In this case, it may make sense to create an abstract class that <code class="language-plaintext highlighter-rouge">implements B, C</code>, and root all of that common data and behaviour in the abstract class.</p>
 
+<p>Yet another possibility is to use <em>neither</em>, at least when you’re working on a smaller system.
+Sometimes too much polymorphism can be a bad thing.
+If it’s a simple function and you only do it once, perhaps you don’t need to create a whole type hierarchy to do what you could have done with a “type” variable and an <code class="language-plaintext highlighter-rouge">if</code> condition. If you find yourself frequently checking this “type” variable before performing tasks, <em>that’s</em> when you could consider using polymorphism.</p>
+
 <p>Like many problems in software design, there is no “silver bullet” that solves all your problems.
 You will face tradeoffs and make choices about how to design your systems.</p>
 
 <hr />
-<div class="footnotes" role="doc-endnotes">
-  <ol>
-    <li id="fn:none" role="doc-endnote">
-      <p>Or none? Sometimes too much polymorphism can be a bad thing. If it’s a simple function and you only do it once, perhaps you don’t need to create a whole type hierarchy to do what you could have done with a “type” variable and an <code class="language-plaintext highlighter-rouge">if</code> condition. On the other hand, if find yourself frequently checking this “type” variable before performing tasks, that’s a good sign that you could use polymorphism. <a href="#fnref:none" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
 
       <footer class="nav-links">
         

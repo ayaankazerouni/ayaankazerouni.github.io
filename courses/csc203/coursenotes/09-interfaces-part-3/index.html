@@ -28,7 +28,24 @@
   
   <h1>Interfaces (part 3)</h1>
   <div class="content">
-      <h2 id="objectives">Objectives</h2>
+      <ul id="markdown-toc">
+  <li><a href="#objectives" id="markdown-toc-objectives">Objectives</a></li>
+  <li><a href="#recap" id="markdown-toc-recap">Recap</a></li>
+  <li><a href="#interfaces-can-extend-interfaces" id="markdown-toc-interfaces-can-extend-interfaces">Interfaces can extend interfaces</a>    <ul>
+      <li><a href="#whats-the-benefit-of-doing-this" id="markdown-toc-whats-the-benefit-of-doing-this">What’s the benefit of doing this?</a></li>
+    </ul>
+  </li>
+  <li><a href="#classes-can-implement-multiple-interfaces" id="markdown-toc-classes-can-implement-multiple-interfaces">Classes can implement multiple interfaces</a></li>
+  <li><a href="#default-methods" id="markdown-toc-default-methods"><code class="language-plaintext highlighter-rouge">default</code> methods</a>    <ul>
+      <li><a href="#the-diamond-problem" id="markdown-toc-the-diamond-problem">The “diamond problem”</a></li>
+      <li><a href="#java-doesnt-support-multiple-inheritance" id="markdown-toc-java-doesnt-support-multiple-inheritance">Java doesn’t support multiple inheritance</a></li>
+    </ul>
+  </li>
+  <li><a href="#extends-or-implements" id="markdown-toc-extends-or-implements"><code class="language-plaintext highlighter-rouge">extends</code> or <code class="language-plaintext highlighter-rouge">implements</code>?</a></li>
+  <li><a href="#summary" id="markdown-toc-summary">Summary</a></li>
+</ul>
+
+<h2 id="objectives">Objectives</h2>
 
 <p>In this lesson you will learn:</p>
 
@@ -106,7 +123,7 @@ That is, we don’t want <em>only</em> our <code class="language-plaintext highl
 
 <p>Let’s consider some options to accomplish this.</p>
 
-<h3 id="option-1--give-all-players-the-ability-to-print-a-message">Option 1 — Give all players the ability to print a message</h3>
+<p><strong>Option 1 — Give all players the ability to print a message</strong></p>
 
 <p>We could give all of our <code class="language-plaintext highlighter-rouge">Player</code> subtypes a <code class="language-plaintext highlighter-rouge">makeComment()</code> method that prints the <code class="language-plaintext highlighter-rouge">Player</code>’s comment to the screen.
 We can also give them a <code class="language-plaintext highlighter-rouge">makeComment(String)</code> overload that prints the specified message to the screen, instead of the <code class="language-plaintext highlighter-rouge">Player</code>’s pre-defined message.</p>
@@ -119,7 +136,7 @@ For example, the <code class="language-plaintext highlighter-rouge">TimidPlayer<
 
 <p>The <code class="language-plaintext highlighter-rouge">Player</code> interface is now less cohesive because it includes behaviour (<code class="language-plaintext highlighter-rouge">message()</code>) that is not relevant to <em>all</em> <code class="language-plaintext highlighter-rouge">Player</code> instances.</p>
 
-<h3 id="option-2--break-out-the-chatty-behaviour-into-another-type">Option 2 — Break out the chatty behaviour into another type</h3>
+<p><strong>Option 2 — Break out the chatty behaviour into another type</strong></p>
 
 <p>Option 2 is to separate the behaviour of playing games and “socializing” — they are separate concerns that don’t need to be implemented together.</p>
 
@@ -309,7 +326,7 @@ Everything else in the class would remain the same: it still needs to implement 
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h2 id="default-methods">default methods</h2>
+<h2 id="default-methods"><code class="language-plaintext highlighter-rouge">default</code> methods</h2>
 
 <p>The <code class="language-plaintext highlighter-rouge">GreedyPlayer</code>, <code class="language-plaintext highlighter-rouge">Spectator</code>, and <code class="language-plaintext highlighter-rouge">Referee</code> objects all have to include implementations for the two <code class="language-plaintext highlighter-rouge">makeComment</code> methods from the <code class="language-plaintext highlighter-rouge">Socializer</code> interface.
 The overload that has no parameters, i.e., <code class="language-plaintext highlighter-rouge">makeComment()</code>, will be different for each implementation.</p>
@@ -383,7 +400,7 @@ In the example below, the <code class="language-plaintext highlighter-rouge">sup
 
 <p class="callout ponder">In the <code class="language-plaintext highlighter-rouge">makeComment(String)</code> method above, what do you think would happen if we called <code class="language-plaintext highlighter-rouge">this.makeComment(message)</code> instead of <code class="language-plaintext highlighter-rouge">super.makeComment(message)</code>?</p>
 
-<h3 id="multiple-conflicting-default-methods">Multiple conflicting default methods</h3>
+<h3 id="the-diamond-problem">The “diamond problem”</h3>
 
 <p>So far, we have learned the following facts about interfaces in Java:</p>
 
@@ -438,7 +455,7 @@ By implementing its version of the method, there is no ambiguity about which one
 <span class="o">}</span>
 </code></pre></div></div>
 
-<h2 id="extends-or-implements">extends or implements?</h2>
+<h2 id="extends-or-implements"><code class="language-plaintext highlighter-rouge">extends</code> or <code class="language-plaintext highlighter-rouge">implements</code>?</h2>
 
 <p>So we’ve seen two ways of creating fairly complex class structures. We can either create a “tree like” structure, where one interface <code class="language-plaintext highlighter-rouge">extends</code> another interface in order to allow classes to combine those behaviours.
 Or we can create a “flatter” structure by creating multiple interfaces; classes that want to combine those behaviours simply need to implement both interfaces.
