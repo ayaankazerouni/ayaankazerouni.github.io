@@ -75,7 +75,7 @@ classDiagram
 
   class Pile {
     +int numSticks
-    +remove(int) void
+    +removeSticks(int) void
     +getSticks() int
   }
 </pre>
@@ -143,7 +143,7 @@ As far as the <code class="language-plaintext highlighter-rouge">Game</code> is 
 
   <span class="nd">@Override</span> 
   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">takeTurn</span><span class="o">(</span><span class="nc">Pile</span> <span class="n">pile</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">pile</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+    <span class="n">pile</span><span class="o">.</span><span class="na">removeSticks</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
     <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
   <span class="o">}</span>
 <span class="o">}</span>
@@ -213,19 +213,15 @@ The <code class="language-plaintext highlighter-rouge">GreedyPlayer</code> is no
 
   <span class="nd">@Override</span> 
   <span class="kd">public</span> <span class="kt">int</span> <span class="nf">takeTurn</span><span class="o">(</span><span class="nc">Pile</span> <span class="n">pile</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">toRemove</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
-
-    <span class="k">do</span> <span class="o">{</span>
-      <span class="n">toRemove</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">pile</span><span class="o">.</span><span class="na">getSticks</span><span class="o">()</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">while</span><span class="o">(</span><span class="n">toRemove</span> <span class="o">&gt;</span> <span class="n">pile</span><span class="o">.</span><span class="na">getSticks</span><span class="o">());</span>
-
-    <span class="n">pile</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">toRemove</span><span class="o">);</span>
+    <span class="c1">// If there's more than 3 sticks on the pile, only remove 1--3 sticks.</span>
+    <span class="c1">// If there's fewer than 3 sticks on the pile, don't try to remove more</span>
+    <span class="c1">// than the remaining number of sticks.</span>
+    <span class="kt">int</span> <span class="n">toRemove</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="nc">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="mi">3</span><span class="o">,</span> <span class="n">pile</span><span class="o">.</span><span class="na">getSticks</span><span class="o">())</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="n">pile</span><span class="o">.</span><span class="na">removeSticks</span><span class="o">(</span><span class="n">toRemove</span><span class="o">);</span>
     <span class="k">return</span> <span class="n">toRemove</span><span class="o">;</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
-
-<p class="callout ponder">Notice the use of the <code class="language-plaintext highlighter-rouge">do-while</code> loop above. Why do you think we’ve done that? What do you think of that strategy?</p>
 
 <h3 id="the-game-class">The Game class</h3>
 
@@ -383,7 +379,7 @@ classDiagram
 
   class Pile {
     +int numSticks
-    +remove(int) void
+    +removeSticks(int) void
     +getSticks() int
   }
 </pre>
