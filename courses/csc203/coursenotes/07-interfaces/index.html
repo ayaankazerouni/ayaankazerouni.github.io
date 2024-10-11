@@ -202,13 +202,43 @@ The class <em>must</em> contain implementations for all the abstract methods tha
 
 <p>For example, here is what the <code class="language-plaintext highlighter-rouge">ArrayList</code> class might look like. It declares that it <code class="language-plaintext highlighter-rouge">implements</code> the <code class="language-plaintext highlighter-rouge">List</code> interface, and once it does so, it <em>must</em> include implementations (i.e., <em>non</em>-abstract, or “concrete” methods) for all the abstract methods that were declared in the interface.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayList</span> <span class="kd">implements</span> <span class="nc">List</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+* This is (clearly) not the actual ArrayList implementation.
+* Just an illustration of what it might look like.
+*/</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayList</span> <span class="kd">implements</span> <span class="nc">List</span> <span class="o">{</span>
+
+  <span class="kd">private</span> <span class="no">E</span><span class="o">[]</span> <span class="n">backingArray</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
+
+  <span class="cm">/**
+  * Initialise an empty ArrayList with a capacity for 10 items. 
+  */</span>
+  <span class="kd">public</span> <span class="nf">ArrayList</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">backingArray</span> <span class="o">=</span> <span class="k">new</span> <span class="no">E</span><span class="o">[</span><span class="mi">10</span><span class="o">];</span>
+  <span class="o">}</span>
+
   <span class="kd">public</span> <span class="no">E</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// omitted for brevity</span>
+    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">backingArray</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
   <span class="o">}</span>
 
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="no">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// omitted for brevity</span>
+    <span class="c1">// If the list is at capacity, move its contents to a new, bigger</span>
+    <span class="c1">// backing array.</span>
+    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">size</span> <span class="o">==</span> <span class="k">this</span><span class="o">.</span><span class="na">backingArray</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+      <span class="no">E</span><span class="o">[]</span> <span class="n">newBackingArray</span> <span class="o">=</span> <span class="k">new</span> <span class="no">E</span><span class="o">[</span><span class="k">this</span><span class="o">.</span><span class="na">backingArray</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="mi">2</span><span class="o">];</span>
+
+      <span class="c1">// Transfer over all current list items to the new backing array.</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="o">.</span><span class="na">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">newBackingArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">backingArray</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+      <span class="o">}</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">backingArray</span> <span class="o">=</span> <span class="n">newBackingArray</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// Add the new item to the end of the list.</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">backingArray</span><span class="o">[</span><span class="k">this</span><span class="o">.</span><span class="na">size</span><span class="o">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">size</span><span class="o">++;</span>
   <span class="o">}</span>
 
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="no">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
@@ -226,14 +256,15 @@ The class <em>must</em> contain implementations for all the abstract methods tha
   <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">contains</span><span class="o">(</span><span class="no">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// omitted for brevity</span>
   <span class="o">}</span>
-
-  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// omitted for brevity</span>
-  <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
 <p>The <code class="language-plaintext highlighter-rouge">ArrayList</code> and <code class="language-plaintext highlighter-rouge">LinkedList</code> classes <em>must</em> contain implementations for all the abstract methods declared in the <code class="language-plaintext highlighter-rouge">List</code> interface.
+These implementations can be different from each other.
+In the example above, the <code class="language-plaintext highlighter-rouge">ArrayList</code>’s <code class="language-plaintext highlighter-rouge">add</code> method contains logic for making sure we stay within the capacity of our backing array.
+The <code class="language-plaintext highlighter-rouge">LinkedList</code>’s <code class="language-plaintext highlighter-rouge">add</code> method will include a different set of rules for appending to a <code class="language-plaintext highlighter-rouge">LinkedList</code>.</p>
+
+<p>What’s important is that all the methods exist and contain the required signatures.
 If any of the methods are omitted (or if the names are misspelled, parameter lists are different, etc.) you will get a compiler error that won’t go away until you implement all of the methods.</p>
 
 <p>The two list implementations <em>can</em> contain:</p>
@@ -305,7 +336,7 @@ You would ideally make your function take a <code class="language-plaintext high
 When that module calls your <code class="language-plaintext highlighter-rouge">mean</code> function, the input will be a <code class="language-plaintext highlighter-rouge">List</code> at compile time, but will be the specific list subtype at run tme.
 Dynamic dispatch will help the runtime figure out whether to call <code class="language-plaintext highlighter-rouge">ArrayList</code> methods or <code class="language-plaintext highlighter-rouge">LinkedList</code> methods while the program runs.</p>
 
-<p>This is an example of <strong>polymporphism</strong>. Polymorphism literally means “many forms” — the <code class="language-plaintext highlighter-rouge">data</code> variable in the function above can take (one of) many forms at run time.</p>
+<p>This is an example of <strong>polymorphism</strong>. Polymorphism literally means “many forms” — the <code class="language-plaintext highlighter-rouge">data</code> variable in the function above can take (one of) many forms at run time.</p>
 
 <p>Your <code class="language-plaintext highlighter-rouge">mean</code> function is <em>decoupled</em> from the specifics of how the other module is handling its data. It can use a <code class="language-plaintext highlighter-rouge">LinkedList</code>, an <code class="language-plaintext highlighter-rouge">ArrayList</code>, or some newfangled list type that we haven’t heard of, as long as it exposes a <code class="language-plaintext highlighter-rouge">List</code>-like interface; your function would never know the difference.</p>
 
