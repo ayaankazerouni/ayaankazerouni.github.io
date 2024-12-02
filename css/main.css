@@ -233,27 +233,35 @@ figure {
   margin: 25px auto;
   display: grid;
   justify-content: center;
+  text-align: center;
 }
 figure figcaption {
-  font-size: 0.8em;
   padding: 0;
   color: var(--caption-color);
   font-family: Avenir;
+  text-align: center;
+  margin-top: 2vw;
 }
 figure.wide {
-  display: table;
-  position: relative;
-  float: right;
-  overflow-x: scroll;
+  overflow-x: visible;
+  max-width: 120%;
 }
-figure.wide img, figure.wide figcaption {
-  display: table-row;
-  position: relative;
-  max-width: 70vw;
+figure.wide img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-img, figcaption {
+figure.wrap {
+  float: left;
+}
+figure.wrap img {
   max-width: 40vw;
+}
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+figure.wrap img, figure.wrap figcaption {
+  margin-right: 5vw;
 }
 
 ul {
@@ -423,6 +431,7 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
 }
 
 .callout, blockquote {
+  overflow: hidden;
   border-left: 4px solid var(--emph);
   background-color: var(--callout-background-color);
   border-radius: 4px;
@@ -470,6 +479,14 @@ blockquote {
   background-color: var(--highlight-color);
 }
 
+@media only screen and (max-width: 750px) {
+  figure.wrap {
+    float: unset;
+  }
+  figure.wrap img, figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   main {
     max-width: 80%;
@@ -484,6 +501,9 @@ blockquote {
   }
   header > * {
     margin: 10px;
+  }
+  img, figcaption {
+    max-width: 95vw;
   }
   img, figcaption {
     max-width: 95vw;

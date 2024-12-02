@@ -28,7 +28,9 @@
   
   <h1>Introduction</h1>
   <div class="content">
-      <ul id="markdown-toc">
+      <p>This introduction covers some Java language syntax relatively quickly, assuming programming proficiency at the level one would expect after an introductory college programming class.</p>
+
+<ul id="markdown-toc">
   <li><a href="#data-types-in-java" id="markdown-toc-data-types-in-java">Data types in Java</a>    <ul>
       <li><a href="#static-typing" id="markdown-toc-static-typing">Static typing</a></li>
       <li><a href="#declaring-and-initialising-variables" id="markdown-toc-declaring-and-initialising-variables">Declaring and initialising variables</a></li>
@@ -58,7 +60,7 @@ By the end of the quarter, there won’t be keywords we see in class that I’ll
 
 <h3 id="static-typing">Static typing</h3>
 
-<p><strong>Java is a <em>statically typed</em> language.</strong> What does this mean? It means that before you can <em>run</em> Java code, a <em>compiler</em> checks that variables are used in ways that are consistent with their declared types.</p>
+<p><strong>Java is a <em>statically typed</em> language.</strong> What does this mean? It means that before you can <em>run</em> Java code, a <em>compiler</em> checks that variables and values are used in ways that are consistent with their data types.</p>
 
 <p>For example, consider the following expression:</p>
 
@@ -66,17 +68,19 @@ By the end of the quarter, there won’t be keywords we see in class that I’ll
 </code></pre></div></div>
 
 <p>It attempts to divide the text <code class="language-plaintext highlighter-rouge">"foobar"</code> by the number <code class="language-plaintext highlighter-rouge">10</code>, which is a meaningless operation.
-The above expression would result in errors in <em>statically-typed</em> languages (like Java) as well as in <em>dynamically-typed</em> languages (like Python).
+The above expression would result in errors in statically-typed languages (like Java) as well as in dynamically-typed languages (like Python).
 But exactly <em>when</em> those errors occur is different between the two languages.</p>
 
-<p>In a <em>dynamically-typed</em> language like Python, the program would begin to run, encounter the expression above, and then crash with an error message. The program would execute right up until it encounters the erroneous line, and then crash. That is, the error appears <em>at run time</em>.</p>
+<p>In a dynamically-typed language like Python, the program would begin to run, encounter the expression above, and then crash with an error message.
+That is, the error appears <em>at run time</em>.</p>
 
-<p>In a <em>statically-typed</em> language like Java, before the program runs, the <em>compiler</em> checks the program for erroneous uses of values like we see above. If the compiler finds any errors, you must fix them before you’re able to run the program.</p>
+<p>In a statically-typed language like Java, before the program runs, the <strong>compiler</strong> checks the program for erroneous uses of values like we see above.
+If the compiler finds any errors, you must fix them before you’re able to run the program.</p>
 
 <p>If the code has type errors like this, the code will not execute at all.</p>
 
 <p>A statically-typed language like Java helps us catch these errors at <em>compile time</em> instead of at <em>run time</em>.
-There is ongoing debate about whether statically-typed languages are better than dynamically-typed languages, and also what “better” means in this context.</p>
+There is ongoing debate about whether statically-typed languages are better than dynamically-typed languages, and also what “better” means.</p>
 
 <p>Proponents of statically-typed languages argue that programming is less error-prone with static typing, particularly in large codebases or in codebases where the developer is unfamiliar with the code (i.e., they didn’t write it themselves).</p>
 
@@ -84,19 +88,31 @@ There is ongoing debate about whether statically-typed languages are better than
 
 <h3 id="declaring-and-initialising-variables">Declaring and initialising variables</h3>
 
-<p>You may already know what it means to <em>declare</em> and <em>initialize</em> variables using whatever language you’re coming from, but we will revisit this vocabulary briefly.</p>
+<p>You may already know what it means to <em>declare</em> and <em>initialise</em> variables using whatever language you’re coming from, but we will revisit this vocabulary briefly.</p>
 
-<p>When you <em>declare</em> a variable, you are creating it, i.e., you are saying that there is now a variable with the given name. 
-When you <em>initialize</em> a variable, you are giving that variable an initial value.
-When you <em>assign</em> a value to a variable, you are giving it a value, potentially replacing its previous value.</p>
+<ul>
+  <li>When you <strong>declare</strong> a variable, you are creating it, i.e., you are saying that there is now a variable with the given name.</li>
+  <li>When you <strong>initialise</strong> a variable, you are giving that variable an initial value.</li>
+  <li>When you <strong>assign</strong> a value to a variable, you are giving it a value, potentially replacing its previous value.</li>
+</ul>
 
-<p>When you <em>declare</em> a variable in Java, you must also say what its <em>data type</em> is.
-For example:</p>
+<p>When you declare a variable in Java, you must also say what its <em>data type</em> is.</p>
+
+<p>A <em>data type</em> defines two things:</p>
+
+<ul>
+  <li>A set of allowed values</li>
+  <li>A set of allowed operations on those values</li>
+</ul>
+
+<p>For example:</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">z</span><span class="o">;</span>
 </code></pre></div></div>
 
-<p>The variable <code class="language-plaintext highlighter-rouge">z</code> above can now <em>only</em> hold integer values. Its type also dictates that we can only perform “integer-friendly” operations using its value, like math operations or printing.
+<p>The variable <code class="language-plaintext highlighter-rouge">z</code> above can now <em>only</em> hold integer values.
+Its set of allowed values are all the integers (<a href="#primitive-types-and-reference-types">up to certain minimum and maximum values</a>).
+Its type also dictates that we can only perform “integer-friendly” operations using its value, like math operations or printing.
 We can’t do things like turn it to “upper case”, because that doesn’t make sense for an integer.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">z</span> <span class="o">=</span> <span class="s">"this isn't a number!"</span><span class="o">;</span> <span class="c1">// this code will not compile</span>
@@ -131,17 +147,17 @@ We can’t do things like turn it to “upper case”, because that doesn’t ma
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">short</code></td>
-      <td>A 2-byte integer.<br />Use this when you need to save memory.</td>
+      <td>A 2-byte integer.<br />Use this when you are working in limited memory environments and or you aren’t working with huge numbers.</td>
       <td>-32,768 to 32,767 (inclusive)</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">int</code></td>
-      <td>A 4-byte integer.<br />Simply using an integer value (e.g., <code class="language-plaintext highlighter-rouge">12</code> or <code class="language-plaintext highlighter-rouge">4305</code>) will default to using the <code class="language-plaintext highlighter-rouge">int</code> type.</td>
+      <td>A 4-byte integer.<br />An integer literal (e.g., directly typing <code class="language-plaintext highlighter-rouge">12</code> or <code class="language-plaintext highlighter-rouge">4305</code>) will default to using the <code class="language-plaintext highlighter-rouge">int</code> type.</td>
       <td>\(-2^{31}\) to \(2^{31}-1\) (inclusive)</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">long</code></td>
-      <td>An 8-byte integer.<br />Use this when you need larger numbers than <code class="language-plaintext highlighter-rouge">int</code> provides.<br />An an <code class="language-plaintext highlighter-rouge">L</code> after a number to indicate that you mean for it to be a <code class="language-plaintext highlighter-rouge">long</code>, i.e., <code class="language-plaintext highlighter-rouge">256L</code> will be a <code class="language-plaintext highlighter-rouge">long</code> value and not an <code class="language-plaintext highlighter-rouge">int</code> value.</td>
+      <td>An 8-byte integer.<br />Use this when you need larger numbers than <code class="language-plaintext highlighter-rouge">int</code> can support.<br />An an <code class="language-plaintext highlighter-rouge">L</code> after a number to indicate that you mean for it to be a <code class="language-plaintext highlighter-rouge">long</code>, i.e., <code class="language-plaintext highlighter-rouge">256L</code> will be a <code class="language-plaintext highlighter-rouge">long</code> value and not an <code class="language-plaintext highlighter-rouge">int</code> value.</td>
       <td>\(-2^{63}\) to \(2^{63}-1\) (inclusive)</td>
     </tr>
     <tr>
@@ -161,19 +177,24 @@ We can’t do things like turn it to “upper case”, because that doesn’t ma
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">char</code></td>
-      <td>A single 2-byte character.</td>
-      <td>‘\u0000’ (or 0) to <code class="language-plaintext highlighter-rouge">\uffff</code> (or 65535)</td>
+      <td>A single 2-byte character.<br />For example, <code class="language-plaintext highlighter-rouge">'A'</code> or <code class="language-plaintext highlighter-rouge">'#'</code> (single-quotes must be used).</td>
+      <td><code class="language-plaintext highlighter-rouge">\u0000</code> (or 0) to <code class="language-plaintext highlighter-rouge">\uffff</code> (or 65535)</td>
     </tr>
   </tbody>
 </table>
 
-<p>There are also <em>reference</em> types, for example the <code class="language-plaintext highlighter-rouge">String</code> type.
-Reference types are abstractions created for programming convenience.
+<p>There are also <em>reference</em> types, for example the <code class="language-plaintext highlighter-rouge">String</code> type.</p>
+
+<p class="callout">Reference types are abstractions created for programming convenience.
 They are built using primitive types or other reference types as building blocks.</p>
 
-<p>The most commonly used reference type in Java is the <code class="language-plaintext highlighter-rouge">String</code> type. It stores <em>text</em>. The <code class="language-plaintext highlighter-rouge">String</code> type “strings together” a bunch of <code class="language-plaintext highlighter-rouge">char</code>s to make a longer piece of text.</p>
+<p>The most commonly used reference type in Java is the <code class="language-plaintext highlighter-rouge">String</code> type.
+It stores <em>text</em>.
+The <code class="language-plaintext highlighter-rouge">String</code> type “strings together” a bunch of characters to make a longer piece of text.</p>
 
-<p>You can declare and initialise a <code class="language-plaintext highlighter-rouge">String</code> variable like below. Notice the double-quotes! Single-quotes are reserved for the <code class="language-plaintext highlighter-rouge">char</code> type. You must use double-quotes for <code class="language-plaintext highlighter-rouge">String</code>s.</p>
+<p>You can declare and initialise a <code class="language-plaintext highlighter-rouge">String</code> variable like below.
+Notice the double-quotes!
+In Java, single-quotes are reserved for the <code class="language-plaintext highlighter-rouge">char</code> type. You must use double-quotes for <code class="language-plaintext highlighter-rouge">String</code>s.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">course</span> <span class="o">=</span> <span class="s">"CSC 203"</span><span class="o">;</span> 
 </code></pre></div></div>
@@ -181,6 +202,20 @@ They are built using primitive types or other reference types as building blocks
 <p>The “value” of a variable that is declared as a reference type is a <em>reference</em> to the data stored somewhere in memory.
 Hence the name.
 You can have multiple references to the same data.</p>
+
+<p>Consider the following code:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">course</span> <span class="o">=</span> <span class="s">"CSC 203"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">courseAgain</span> <span class="o">=</span> <span class="n">course</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>When the program runs, you have now a <code class="language-plaintext highlighter-rouge">course</code> variable that points to the value <code class="language-plaintext highlighter-rouge">"CSC 203"</code>, and another variable <code class="language-plaintext highlighter-rouge">courseAgain</code> that points to the <em>same</em> value.</p>
+
+<pre class="mermaid">
+flowchart LR
+    course --&gt; v["CSC 203"]
+    courseAgain --&gt; v
+</pre>
 
 <h3 id="reference-types-and-equality">Reference types and equality</h3>
 
@@ -216,9 +251,23 @@ You can have multiple references to the same data.</p>
 <span class="nc">Point</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span> <span class="c1">// Another point at coordinates (1, 2).</span>
 </code></pre></div></div>
 
-<p class="callout ponder">What would the expression <code class="language-plaintext highlighter-rouge">p1 == p2</code> result in? <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>?<sup id="fnref:sameness-answer" role="doc-noteref"><a href="#fn:sameness-answer" class="footnote" rel="footnote">2</a></sup></p>
+<p>Here is a figure depicting the above situation:</p>
 
-<p>Because <code class="language-plaintext highlighter-rouge">p1</code> and <code class="language-plaintext highlighter-rouge">p2</code> are <em>reference types</em>, each of those variables is pointing to a different location in memory. Now, you and me and everyone else understands that if two points have the same <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> coordinates, they should probably be considered equal.</p>
+<pre class="mermaid">
+flowchart LR
+p1 --&gt; v1["(1, 2)"]
+p2 --&gt; v2["(1, 2)"]
+</pre>
+
+<p class="callout ponder">What would the expression <code class="language-plaintext highlighter-rouge">p1 == p2</code> result in? <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>?</p>
+
+<details>
+  <summary>Answer</summary>
+  <p>The answer is <code class="language-plaintext highlighter-rouge">false</code>, because the <code class="language-plaintext highlighter-rouge">==</code> operator checks <em>sameness</em>, not <em>equality</em>.
+Because <code class="language-plaintext highlighter-rouge">p1</code> and <code class="language-plaintext highlighter-rouge">p2</code> are <em>reference types</em>, each of those variables is pointing to a different location in memory.</p>
+</details>
+
+<p>Now, you and me and everyone else understands that if two points have the same <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> coordinates, they should probably be considered equal.</p>
 
 <p>That is why all reference types provide an <code class="language-plaintext highlighter-rouge">equals</code> function, which checks <em>equality</em> (using some logical definition of equality) rather than <em>sameness</em>.</p>
 
@@ -228,16 +277,36 @@ You can have multiple references to the same data.</p>
 <span class="nc">Point</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
 
 <span class="nc">Point</span> <span class="n">p1Again</span> <span class="o">=</span> <span class="n">p1</span><span class="o">;</span> <span class="c1">// p1Again and p1 are both pointing to the same Point.</span>
-
-<span class="c1">// This will print false, because p1 and p2 are not the same object.</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="n">p2</span><span class="o">);</span>
-
-<span class="c1">// This will print true, because p1 and p1Again are the same object.</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p1</span> <span class="o">==</span> <span class="n">p1Again</span><span class="o">);</span>
-
-<span class="c1">// This will print true, because p1 and p2 are logically equal objects.</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">p2</span><span class="o">));</span>
 </code></pre></div></div>
+
+<p>Here’s a figure depicting the above situation:</p>
+
+<pre class="mermaid">
+flowchart LR
+p1 --&gt; v1["(1, 2)"]
+p2 --&gt; v2["(1, 2)"]
+p1Again --&gt; v1
+</pre>
+
+<div class="callout ponder">
+  <p>Considering the variable assignments above, what do you think would be the values of the following expressions?</p>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">p1 == p2</code></li>
+    <li><code class="language-plaintext highlighter-rouge">p1 == p1Again</code></li>
+    <li><code class="language-plaintext highlighter-rouge">p1.equals(p2)</code></li>
+  </ul>
+</div>
+
+<p>Consider the expressions above and check your answers below.</p>
+
+<details>
+  <summary>Answers</summary>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">p1 == p2</code> is <code class="language-plaintext highlighter-rouge">false</code>, because <code class="language-plaintext highlighter-rouge">p1</code> and <code class="language-plaintext highlighter-rouge">p2</code> are not pointing to the same object.</li>
+    <li><code class="language-plaintext highlighter-rouge">p1 == p1Again</code> is <code class="language-plaintext highlighter-rouge">true</code>, because <code class="language-plaintext highlighter-rouge">p1</code> and <code class="language-plaintext highlighter-rouge">p1Again</code> <em>are</em> pointing to the same object.</li>
+    <li><code class="language-plaintext highlighter-rouge">p1.equals(p2)</code> is <code class="language-plaintext highlighter-rouge">true</code>, because <code class="language-plaintext highlighter-rouge">p1</code> and <code class="language-plaintext highlighter-rouge">p2</code> are logically equal objects (they have equal <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> coordinates)</li>
+  </ul>
+</details>
 
 <h4 id="string-equality">String equality</h4>
 
@@ -519,7 +588,8 @@ The <code class="language-plaintext highlighter-rouge">while</code> loop checks 
 The <code class="language-plaintext highlighter-rouge">do-while</code> loop checks the looping condition <em>after</em> each iteration.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">do</span> <span class="o">{</span>
-    <span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">nextLine</span><span class="o">();</span> <span class="c1">// Suppose, for example, our file is guaranteed to have at least one line.</span>
+    <span class="c1">// Suppose, for example, our file is guaranteed to have at least one line.</span>
+    <span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">nextLine</span><span class="o">();</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">line</span><span class="o">);</span>
 <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">fileStillHasLines</span><span class="o">);</span>
 </code></pre></div></div>
@@ -531,9 +601,6 @@ The <code class="language-plaintext highlighter-rouge">do-while</code> loop chec
   <ol>
     <li id="fn:compiler-test-suite" role="doc-endnote">
       <p>You can think of the compiler as a type of limited test suite. Instead of checking functional correctness, it checks for syntax and, in statically-typed languages, type-related correctness. <a href="#fnref:compiler-test-suite" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
-    </li>
-    <li id="fn:sameness-answer" role="doc-endnote">
-      <p>The answer is <code class="language-plaintext highlighter-rouge">false</code>, because the <code class="language-plaintext highlighter-rouge">==</code> operator checks <em>sameness</em>, not <em>equality</em>. <a href="#fnref:sameness-answer" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -550,7 +617,7 @@ The <code class="language-plaintext highlighter-rouge">do-while</code> loop chec
   
   
   <script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
     if (mql.matches) {
