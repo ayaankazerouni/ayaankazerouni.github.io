@@ -60,7 +60,7 @@
       <div class="content">
         <div class="post">
         <div class="post-details">
-          <time>Jan 4, 2024 • 1397 words</time>
+          <time>Jan 4, 2024 • 1396 words</time>
           <div style="display: inline-block;">
             
               <span class="tag">
@@ -98,12 +98,12 @@ As students are encouraged to frequently write and run their own tests to check 
 <p>Our findings are summarised in the process model below.</p>
 
 <figure>
-
   <a href="/assets/posts/images/test-feedback-sensemaking/process-model.png" target="_blank">
     
     <img src="/assets/posts/images/test-feedback-sensemaking/process-model.png" alt="A process diagram showing a novice's test selection process. A participant receives a testing task, then reads the source code or program description to first understand the problem and program. Once this is done, they write an initial set of tests based on experience and intuition. If any tests fail, the participant re-evaluates their understanding. Once all tests pass, they receive test adequacy feedback. They use strategies like code tracing to identify gaps in branch or mutation feedback. If mutation feedback is too difficult to address, the participant may fall back to addressing branch coverage instead. Once all feedback is satisfied, the testing task is done." />
     
   </a>
+
   <figcaption>A process model for how novices write software tests when being guided by a test adequacy criterion (code coverage or mutation analysis).</figcaption>
 </figure>
 
@@ -126,12 +126,10 @@ Students were asked to think out loud while performing the testing tasks, and th
 <p>Below is the interface in which students were given testing exercises.</p>
 
 <figure class="wide">
-
   <a href="/assets/posts/images/test-feedback-sensemaking/muttle.png" target="_blank">
-    
-    <img src="/assets/posts/images/test-feedback-sensemaking/muttle.png" alt="A screenshot of the testing interface, showing where the user creates test cases and receives branch coverage or mutation coverage feedback about those test cases" width="65%" />
-    
+    <img src="/assets/posts/images/test-feedback-sensemaking/muttle.png" alt="A screenshot of the testing interface, showing where the user creates test cases and receives branch coverage or mutation coverage feedback about those test cases" />
   </a>
+
   <figcaption>Each exercise lets the user create, modify or delete test cases (A). If their test cases pass, they are given code coverage feedback in the coloured gutter next to the line numbers (B) or mutation-based feedback in the form of bug badges above the lines of code where mutations were made (C) In this example, the statement <code>return x * y</code> was mutated to <code>return x ** y</code>. The interviewer used the toggles at the top of the screen to switch between no coverage, code coverage, or mutation-based feedback, based on the experimental condition (D).</figcaption>
 </figure>
 

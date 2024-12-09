@@ -19,6 +19,8 @@
   --todo-background-color: rgba(237, 146, 134, 0.2);
   --readings-background-color: #bcf6bc;
   --readings-color: rgb(3, 76, 3);
+  --note-color: rgb(0, 107, 161);
+  --note-background-color: rgba(159, 213, 239, 0.2);
   --callout-background-color: rgba(243, 183, 183, 0.197);
   --table-alternate-bg-color: lightgrey;
 }
@@ -46,10 +48,12 @@
     --todo-color: rgb(222, 156, 248);
     --todo-background-color: rgb(68, 44, 66, 0.7);
     --ponder-color: #f1ce68;
+    --note-color: rgb(5, 155, 230);
+    --note-background-color: rgba(179, 223, 245, 0.2);
     --readings-background-color: #093102;
     --readings-color: #03f6e6;
     --callout-background-color: #679da031;
-    --table-alternate-bg-color: rgb(63, 63, 63);
+    --table-alternate-bg-color: --bg-color;
   }
 }
 body {
@@ -58,7 +62,7 @@ body {
   margin: auto;
   color: var(--font-color);
   font-family: "Mulish", sans-serif;
-  font-weight: 450;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -233,27 +237,39 @@ figure {
   margin: 25px auto;
   display: grid;
   justify-content: center;
+  text-align: center;
 }
 figure figcaption {
-  font-size: 0.8em;
   padding: 0;
   color: var(--caption-color);
   font-family: Avenir;
+  text-align: center;
+  margin-top: 2vw;
+}
+figure img {
+  max-width: 85%;
 }
 figure.wide {
-  display: table;
-  position: relative;
-  float: right;
-  overflow-x: scroll;
+  overflow-x: visible;
+  max-width: 120%;
 }
-figure.wide img, figure.wide figcaption {
-  display: table-row;
-  position: relative;
-  max-width: 70vw;
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-
-img, figcaption {
+figure.wrap {
+  float: left;
+}
+figure.wrap img {
   max-width: 40vw;
+}
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+figure.wrap img, figure.wrap figcaption {
+  margin-right: 5vw;
 }
 
 ul {
@@ -423,18 +439,26 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
 }
 
 .callout, blockquote {
+  overflow: hidden;
   border-left: 4px solid var(--emph);
   background-color: var(--callout-background-color);
   border-radius: 4px;
-  padding: 0.5rem;
+  padding: 0.5em 1em;
   list-style-type: none;
 }
 .callout::before, blockquote::before {
   display: block;
-  padding-bottom: 0.5rem;
   font-weight: bold;
-  font-size: 0.8em;
+  font-size: 0.85em;
   font-family: "Mulish", sans-serif;
+}
+.callout.note, blockquote.note {
+  border-color: var(--note-color);
+  background-color: var(--note-background-color);
+}
+.callout.note::before, blockquote.note::before {
+  content: "NOTE";
+  color: var(--note-color);
 }
 .callout.todo, blockquote.todo {
   border-color: var(--todo-color);
@@ -470,6 +494,14 @@ blockquote {
   background-color: var(--highlight-color);
 }
 
+@media only screen and (max-width: 750px) {
+  figure.wrap {
+    float: unset;
+  }
+  figure.wrap img, figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   main {
     max-width: 80%;
@@ -484,6 +516,9 @@ blockquote {
   }
   header > * {
     margin: 10px;
+  }
+  img, figcaption {
+    max-width: 95vw;
   }
   img, figcaption {
     max-width: 95vw;

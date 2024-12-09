@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.org/posts/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.org/" rel="alternate" type="text/html" /><updated>2024-11-20T13:41:05-08:00</updated><id>https://ayaankazerouni.org/posts/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://ayaankazerouni.org/posts/feed.xml" rel="self" type="application/atom+xml" /><link href="https://ayaankazerouni.org/" rel="alternate" type="text/html" /><updated>2024-12-09T11:38:10-08:00</updated><id>https://ayaankazerouni.org/posts/feed.xml</id><title type="html">Ayaan M. Kazerouni</title><subtitle>Ayaan Kazerouni&apos;s personal website. Contains information about his research in computing education and software engineering, and  his hobbies and interests.
 </subtitle><entry><title type="html">Challenges with learning end-user programming: A case study with Chemistry undergraduate students</title><link href="https://ayaankazerouni.org/posts/end-user-programming" rel="alternate" type="text/html" title="Challenges with learning end-user programming: A case study with Chemistry undergraduate students" /><published>2024-06-25T00:00:00-07:00</published><updated>2024-06-25T00:00:00-07:00</updated><id>https://ayaankazerouni.org/posts/end-user-programming</id><content type="html" xml:base="https://ayaankazerouni.org/posts/end-user-programming"><![CDATA[<p>This is an overview of the research paper <em><a href="/publications#jce2024end-user-programming">Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students</a></em>, published in the American Chemical Society (ACS) Journal of Chemical Education.</p>
 
 <p>The work was conducted at Cal Poly and was led by MS student <a href="https://www.linkedin.com/in/wifuchs">Will Fuchs</a>.
@@ -54,13 +54,13 @@ In the second study, we conducted one-on-one interviews to gain deeper insight i
 On average, the students reported negative attitudes toward computing: low confidence, low enjoyment, and low sense of belonging to a computing community.
 They did perceive computing to be marginally useful.</p>
 
-<figure>
-
+<figure class="wrap">
   <a href="/assets/posts/images/end-user-programming/attitudes.png" target="_blank">
     
-    <img src="/assets/posts/images/end-user-programming/attitudes.png" alt="A column chart showing the average reported confidence with and enjoyment of computing, sense of belonging in computing, and sense that computing is important." width="150px" />
+    <img src="/assets/posts/images/end-user-programming/attitudes.png" alt="A column chart showing the average reported confidence with and enjoyment of computing, sense of belonging in computing, and sense that computing is important." width="100" />
     
   </a>
+
   <figcaption>Students' average responses to ATC questions. Questions were answered on a 1–5 scale from <i>Strongly disagree</i> to <i>Strongly agree</i></figcaption>
 </figure>
 
@@ -192,13 +192,13 @@ These are passes that allow us to use the wood and sheet metal shop on the Cal P
 It was a 3-hour session that started with a whirlwind introduction to the machine shop in the Aero Hangar on campus, following which we worked through a scaffolded sequence of steps to make our own bookends.
 Here’s mine:</p>
 
-<figure>
-
+<figure class="wrap">
   <a href="/assets/posts/images/good-to-be-bad/bookend.png" target="_blank">
     
     <img src="/assets/posts/images/good-to-be-bad/bookend.png" alt="A bookend made by me in a machine shop training session." width="400px" />
     
   </a>
+
   <figcaption>Not my best handiwork, but my only handiwork.</figcaption>
 </figure>
 
@@ -282,12 +282,12 @@ As students are encouraged to frequently write and run their own tests to check 
 <p>Our findings are summarised in the process model below.</p>
 
 <figure>
-
   <a href="/assets/posts/images/test-feedback-sensemaking/process-model.png" target="_blank">
     
     <img src="/assets/posts/images/test-feedback-sensemaking/process-model.png" alt="A process diagram showing a novice's test selection process. A participant receives a testing task, then reads the source code or program description to first understand the problem and program. Once this is done, they write an initial set of tests based on experience and intuition. If any tests fail, the participant re-evaluates their understanding. Once all tests pass, they receive test adequacy feedback. They use strategies like code tracing to identify gaps in branch or mutation feedback. If mutation feedback is too difficult to address, the participant may fall back to addressing branch coverage instead. Once all feedback is satisfied, the testing task is done." />
     
   </a>
+
   <figcaption>A process model for how novices write software tests when being guided by a test adequacy criterion (code coverage or mutation analysis).</figcaption>
 </figure>
 
@@ -310,12 +310,10 @@ Students were asked to think out loud while performing the testing tasks, and th
 <p>Below is the interface in which students were given testing exercises.</p>
 
 <figure class="wide">
-
   <a href="/assets/posts/images/test-feedback-sensemaking/muttle.png" target="_blank">
-    
-    <img src="/assets/posts/images/test-feedback-sensemaking/muttle.png" alt="A screenshot of the testing interface, showing where the user creates test cases and receives branch coverage or mutation coverage feedback about those test cases" width="65%" />
-    
+    <img src="/assets/posts/images/test-feedback-sensemaking/muttle.png" alt="A screenshot of the testing interface, showing where the user creates test cases and receives branch coverage or mutation coverage feedback about those test cases" />
   </a>
+
   <figcaption>Each exercise lets the user create, modify or delete test cases (A). If their test cases pass, they are given code coverage feedback in the coloured gutter next to the line numbers (B) or mutation-based feedback in the form of bug badges above the lines of code where mutations were made (C) In this example, the statement <code>return x * y</code> was mutated to <code>return x ** y</code>. The interviewer used the toggles at the top of the screen to switch between no coverage, code coverage, or mutation-based feedback, based on the experimental condition (D).</figcaption>
 </figure>
 
@@ -420,15 +418,19 @@ One student was so distracted by this parallel comprehension task that when they
 
 <p>We received 138 survey responses about the frequency with which students accessed various help resources.</p>
 
-<figure>
+<div style="background-color: grey;">
 
+<figure>
   <a href="/assets/posts/images/help-seeking-behaviours/frequency.png" target="_blank">
     
     <img src="/assets/posts/images/help-seeking-behaviours/frequency.png" alt="" />
     
   </a>
+
   <figcaption>Frequency of accessing various help resources.</figcaption>
 </figure>
+
+</div>
 
 <p>Students most frequently relied on <strong>online sources</strong>, followed closely by their <strong>peers in class</strong>.
 They reported modest reliance on the <strong>instructor</strong> for help, preferring to ask questions in class or online rather than going to office hours.</p>
@@ -573,12 +575,12 @@ It’s possible that students who are less inclined to seek help from social sou
 <p>We grouped submissions by source lines of code (SLoC), ranging from ~150 LoC to ~1200 LoC.</p>
 
 <figure>
-
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" target="_blank">
     
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" alt="A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code." />
     
   </a>
+
   <figcaption>Groups of submissions based on source lines of code (SLoC). Dashed lines indicate group boundaries.</figcaption>
 </figure>
 
@@ -620,12 +622,10 @@ It’s possible that students who are less inclined to seek help from social sou
 <p>We found that most of the Deletion set’s effectiveness comes from the first two operators, i.e., <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> and <code class="language-plaintext highlighter-rouge">AOD</code>. Inclusion of additional operators drives up the cost, but with little improvement to accuracy.</p>
 
 <figure class="wide">
-
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" target="_blank">
-    
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" alt="Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy." />
-    
   </a>
+
   <figcaption>The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R² predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.</figcaption>
 </figure>
 
@@ -667,24 +667,24 @@ It’s possible that students who are less inclined to seek help from social sou
 <p>In terms of <strong>reliability</strong>, it appeared that the incremental subsets were nearly as effective as the entire Deletion set, with the 3-op subset (<code class="language-plaintext highlighter-rouge">NonVoidMethodCalls</code> and beyond) bringing diminishing returns. This is similar to our original results.</p>
 
 <figure>
-
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" target="_blank">
     
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" alt="Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively." />
     
   </a>
+
   <figcaption>Mutation coverage: Proportion of Full mutants detected by the subset-adequate test suite.</figcaption>
 </figure>
 
 <p>The <strong>cost</strong> naturally decreases in the order Deletion \(\to\) 3-op \(\to\) 2-op \(\to\) 1-op.</p>
 
 <figure>
-
   <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" target="_blank">
     
     <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" alt="The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively." />
     
   </a>
+
   <figcaption>Computational cost: Number of mutants produced by each subset, expressed as a proportion of the Full number of mutants.</figcaption>
 </figure>
 
@@ -789,12 +789,12 @@ It’s possible that students who are less inclined to seek help from social sou
 <p>Results are summarised in the figure below.</p>
 
 <figure>
-
   <a href="/assets/posts/images/explicit-project-milestones/completion-time-milestone-group.png" target="_blank">
     
-    <img src="/assets/posts/images/explicit-project-milestones/completion-time-milestone-group.png" alt="" />
+    <img src="/assets/posts/images/explicit-project-milestones/completion-time-milestone-group.png" alt="A series of boxplots showing distributions of project completion times in terms of hours before the deadline. They generally completing more milestones led to generally earlier completion times." />
     
   </a>
+
   <figcaption>Completion times (in terms of hours before or after the deadline) with and without milestones. Whiskers are the 10th and 90th percentiles. Outliers beyond these percentiles are omitted.</figcaption>
 </figure>
 
@@ -810,12 +810,12 @@ It’s possible that students who are less inclined to seek help from social sou
 </ul>
 
 <figure>
-
   <a href="/assets/posts/images/explicit-project-milestones/correctness-milestone-group.png" target="_blank">
     
-    <img src="/assets/posts/images/explicit-project-milestones/correctness-milestone-group.png" alt="" />
+    <img src="/assets/posts/images/explicit-project-milestones/correctness-milestone-group.png" alt="A column chart showing pass, withdraw, and failure rates between the milestones term and the term without milestones. There were largely no changes." />
     
   </a>
+
   <figcaption>Correctness scores with and without milestones</figcaption>
 </figure>
 
@@ -842,12 +842,12 @@ It’s possible that students who are less inclined to seek help from social sou
 <p>We didn’t find any differences in these outcomes between the two semesters. This is apparent in the figure below.</p>
 
 <figure>
-
   <a href="/assets/posts/images/explicit-project-milestones/outcomes.png" target="_blank">
     
     <img src="/assets/posts/images/explicit-project-milestones/outcomes.png" alt="" />
     
   </a>
+
   <figcaption>Milestones seem not to have affected course Pass, Fail, and Withdraw rates.</figcaption>
 </figure>
 
@@ -856,12 +856,12 @@ It’s possible that students who are less inclined to seek help from social sou
 <p>We examined differences in the frequencies of <em>A</em>, <em>B</em>, <em>C</em>, <em>D</em>, and <em>F</em> grades between the two semesters. Results are in the figure below.</p>
 
 <figure>
-
   <a href="/assets/posts/images/explicit-project-milestones/grades.png" target="_blank">
     
-    <img src="/assets/posts/images/explicit-project-milestones/grades.png" alt="" />
+    <img src="/assets/posts/images/explicit-project-milestones/grades.png" alt="A column chart showing percentages of A, B, C, D, and F grades in the two terms. There were more A grades and fewer B grades in the term with milestones than the term without. No changes in other grade frequencies are apparent." />
     
   </a>
+
   <figcaption>Final course grades with and without milestones.</figcaption>
 </figure>
 
@@ -898,9 +898,8 @@ It’s possible that students who are less inclined to seek help from social sou
 
 <p>Milestones are by no means perfect, but we believe they help students (1) by making them practice a successful approach to large programming projects, and (2) by giving them the experience of successfully completing these projects, that they can then draw on in later courses. Effects of explicit milestones going into later courses is an open question.</p>
 
-<blockquote>
-  <p>I’d be surprised to learn that this is a novel practice. But I haven’t witnessed this at other institutions I’ve been affiliated with, and the literature review didn’t turn up anything in the context of intermediate project development. If your courses use milestones or something similar, how’s it going for you?</p>
-</blockquote>
+<p>I am sure that this is not a unique practice.
+But I haven’t seen this at other institutions I’ve been affiliated with, and the literature review didn’t turn up anything in the context of intermediate project development. If your courses use milestones or something similar, how’s it going for you?</p>
 
 <hr />
 
@@ -978,13 +977,11 @@ We addressed this by avoiding the “TDD or not” dichotomy. Students’ (and i
 
 <p>Consider the following figure, which shows an example sequence of developer activity created from synthetic data. Colours indicate methods in the project; solid and shaded blocks are solution and test code, respectively; and groups of blocks indicate work sessions.</p>
 
-<figure>
-
+<figure class="wide">
   <a href="/assets/posts/images/assessing-incremental-testing/example-dev-activity.png" target="_blank">
-    
-    <img src="/assets/posts/images/assessing-incremental-testing/example-dev-activity.png" alt="" />
-    
+    <img src="/assets/posts/images/assessing-incremental-testing/example-dev-activity.png" alt="Coloured bars organised into groups, demarcating time spent writing production code and test code, devoted to individual methods." />
   </a>
+
   <figcaption>An example sequence of developer activity (synthetic data).</figcaption>
 </figure>
 
@@ -1012,12 +1009,12 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 <p>Measurements are depicted in the figure below. All measurements were aggregated as medians for each project.</p>
 
 <figure>
-
   <a href="/assets/posts/images/assessing-incremental-testing/metrics.png" target="_blank">
     
-    <img src="/assets/posts/images/assessing-incremental-testing/metrics.png" alt="" />
+    <img src="/assets/posts/images/assessing-incremental-testing/metrics.png" alt="Coloured bars depicting time spent writing and testing individual methods in a program. They are grouped in four different ways: grouped by time (ignoring the methods being focused on), grouped by method, grouped by method and time, and grouped by sequence." />
     
   </a>
+
   <figcaption>Measurements to be derived from a programming activity stream. Each row depicts a different way of aggregating the events from the figure above.</figcaption>
 </figure>
 
@@ -1032,12 +1029,12 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 <p>The measurements are summarised in the figure below. The first four box-plots (in blue) represent measures of the balance of test writing effort. The fifth box-plot (in orange) represents proportion of test writing effort devoted before the relevant solution code was finalised.</p>
 
 <figure>
-
   <a href="/assets/posts/images/assessing-incremental-testing/boxplots-balance-sequence.png" target="_blank">
     
     <img src="/assets/posts/images/assessing-incremental-testing/boxplots-balance-sequence.png" alt="" />
     
   </a>
+
   <figcaption>Distributions of testing effort measurements described above.</figcaption>
 </figure>
 
@@ -1174,12 +1171,12 @@ The short-term benefit of this is that we can provide feedback to students “be
 <p>As an example, consider the figure below, which shows how a real student distributed their work across the days on which they worked on a project.</p>
 
 <figure>
-
   <a href="/assets/posts/images/procrastination-feedback/tm-early-often.png" target="_blank">
     
-    <img src="/assets/posts/images/procrastination-feedback/tm-early-often.png" alt="" />
+    <img src="/assets/posts/images/procrastination-feedback/tm-early-often.png" alt="" width="400" />
     
   </a>
+
   <figcaption>The mean edit time for a student, drawn from real data.</figcaption>
 </figure>
 
@@ -1191,12 +1188,12 @@ The short-term benefit of this is that we can provide feedback to students “be
 <p>The figure below indicates distributions of the mean edit time for solution code and for test code, across all project implementations.</p>
 
 <figure>
-
   <a href="/assets/posts/images/procrastination-feedback/solution-test-early-often-dists.png" target="_blank">
     
-    <img src="/assets/posts/images/procrastination-feedback/solution-test-early-often-dists.png" alt="Two box-and-whisker plots which show the mean edit times for solution code and test code." />
+    <img src="/assets/posts/images/procrastination-feedback/solution-test-early-often-dists.png" alt="Two box-and-whisker plots which show the mean edit times for solution code and test code." width="400" />
     
   </a>
+
   <figcaption>On average, students tended to write code fewer than 10 days before the project deadline.</figcaption>
 </figure>
 
@@ -1225,24 +1222,24 @@ The short-term benefit of this is that we can provide feedback to students “be
 <p><strong>When students worked earlier and more often, they tended to produce programs with higher correctness.</strong> To illustrate this, we split the dataset roughly into half: those projects that had “solved” the assigned problem (53%), and those that had not (47%). The figure below shows the difference in edit mean times between these populations.</p>
 
 <figure>
-
   <a href="/assets/posts/images/procrastination-feedback/solution-early-often-by-solved.png" target="_blank">
     
-    <img src="/assets/posts/images/procrastination-feedback/solution-early-often-by-solved.png" alt="Two box-and-whisker plots showing the mean edit time for solved and unsolved projects." />
+    <img src="/assets/posts/images/procrastination-feedback/solution-early-often-by-solved.png" alt="Two box-and-whisker plots showing the mean edit time for solved and unsolved projects." width="500" />
     
   </a>
+
   <figcaption>Comparison of solution edit times between projects that correctly solved an assignment, and those that did not.</figcaption>
 </figure>
 
 <p><strong>When students worked earlier and more often, they tended to finish their projects earlier.</strong> This is so intuitive, it’s almost tautological. It is encouraging that the measurement is able to discriminate between early and late project submissions.</p>
 
 <figure>
-
   <a href="/assets/posts/images/procrastination-feedback/solution-early-often-by-on-time-status.png" target="_blank">
     
-    <img src="/assets/posts/images/procrastination-feedback/solution-early-often-by-on-time-status.png" alt="Two box-and-whisker plots showing the mean edit time for late and on-time submissions." />
+    <img src="/assets/posts/images/procrastination-feedback/solution-early-often-by-on-time-status.png" alt="Two box-and-whisker plots showing the mean edit time for late and on-time submissions." width="500" />
     
   </a>
+
   <figcaption>Comparison of solution edit times between on-time and late submissions.</figcaption>
 </figure>
 
