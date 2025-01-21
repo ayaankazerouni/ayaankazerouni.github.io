@@ -6,6 +6,7 @@
   --bg-color: white;
   --highlight-color: #fdff80;
   --font-color: #000000;
+  --inverted-font-color: var(--font-color);
   --link-color: #425469;
   --caption-color: #727375;
   --emph: #E61726;
@@ -36,8 +37,9 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #24272c;
-    --highlight-color: rgba(106, 87, 33, 0.356);
+    --highlight-color: rgb(186, 181, 47);
     --font-color: #EEEEEE;
+    --inverted-font-color: #000000;
     --heading-font-color: #c6f1f3;
     --caption-color: #c9cacc;
     --emph: rgb(246, 168, 0);
@@ -62,7 +64,6 @@ body {
   margin: auto;
   color: var(--font-color);
   font-family: "Mulish", sans-serif;
-  font-weight: 500;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -90,12 +91,14 @@ a,
 a:visited {
   color: var(--link-color);
   text-decoration: underline;
-  font-weight: 550;
 }
 
-a:hover {
-  color: var(--emph);
-  text-decoration: underline;
+.hlt, .fn-tooltip, .footnotes :target, .tag, .banner {
+  background-color: var(--highlight-color);
+  color: var(--inverted-font-color);
+}
+.hlt a, .fn-tooltip a, .footnotes :target a, .tag a, .banner a {
+  color: var(--inverted-font-color);
 }
 
 .blurb {
@@ -358,7 +361,6 @@ details > summary {
   padding: 5px;
   border-radius: 5px;
   border: var(--emph) solid 2px;
-  background-color: var(--highlight-color);
 }
 
 .grey {
@@ -394,7 +396,6 @@ pre:not(.mermaid) {
   font-family: "Mulish", sans-serif;
   padding: 2px 5px;
   margin: 5px;
-  background-color: var(--highlight-color);
   border: 0.5pt solid var(--emph);
   border-radius: 8px;
   cursor: pointer;
@@ -490,8 +491,19 @@ blockquote {
   padding: 0 5px 0 8px;
 }
 
-.footnotes :target {
-  background-color: var(--highlight-color);
+sup[id^="fnref:"] {
+  padding-right: 0.5em;
+}
+
+.fn-tooltip {
+  position: absolute;
+  font-size: 0.9em;
+  max-width: 25em;
+  border: 1px solid var(--font-color);
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 
 @media only screen and (max-width: 750px) {

@@ -1,5 +1,5 @@
 window.onload = () => {
-  let hash = window.location.hash.substr(1);
+  let hash = window.location.hash.slice(1);
   const artifact = document.getElementById(`p_${hash}`);
   if (artifact) {
     artifact.open = true;
@@ -21,7 +21,6 @@ window.onload = () => {
         detail.open = false;
       }
     });
-    const hash = target.id.substr(2);
-    window.location.hash = target.id.substr(2);
+    window.location.hash = target.id.slice(2);
   }
 };
