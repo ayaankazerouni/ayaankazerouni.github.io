@@ -40,7 +40,7 @@
   </li>
   <li><a href="#a-toy-example" id="markdown-toc-a-toy-example">A toy example</a></li>
   <li><a href="#a-real-world-example" id="markdown-toc-a-real-world-example">A real-world example</a>    <ul>
-      <li><a href="#key-moments-in-the-discussion" id="markdown-toc-key-moments-in-the-discussion">Key moments in the discussion</a></li>
+      <li><a href="#discussion" id="markdown-toc-discussion">Discussion</a></li>
     </ul>
   </li>
 </ul>
@@ -188,9 +188,11 @@ If classes need access to that data, we make <code class="language-plaintext hig
 
 <p>Let’s consider a software example in the real world. <a href="https://github.com/ajv-validator/ajv"><code class="language-plaintext highlighter-rouge">ajv</code></a> is a JSON validator written in TypeScript. We won’t be analysing the design of this entire package, but instead we’ll take a look at a pull request and the discussion that led to it eventually being merged.</p>
 
-<p>Let’s take a look at the following <a href="https://github.com/ajv-validator/ajv/issues/1683">issue</a> and <a href="https://github.com/ajv-validator/ajv/pull/1684">pull request that addresses the issue</a><sup id="fnref:jamie" role="doc-noteref"><a href="#fn:jamie" class="footnote" rel="footnote">2</a></sup>. You’re encouraged to work on this collaboratively with your classmates. Just make sure to make an individual submission on Canvas.</p>
+<p>Let’s take a look at the following <a href="https://github.com/ajv-validator/ajv/issues/1683">issue</a> and <a href="https://github.com/ajv-validator/ajv/pull/1684">pull request that addresses the issue</a>.<sup id="fnref:jamie" role="doc-noteref"><a href="#fn:jamie" class="footnote" rel="footnote">2</a></sup></p>
 
-<h3 id="key-moments-in-the-discussion">Key moments in the discussion</h3>
+<p class="callout todo">Take a moment to summarise to yourself the issue, the proposed fix, and the project owner’s concern with the proposed fix.</p>
+
+<h3 id="discussion">Discussion</h3>
 
 <p><strong>Issue is opened.</strong> Author suggests using the Re2 regex engine in the JSON parser because it guarantees worst-case linear time complexity, avoiding the possibility of “catastrophic backtracking” while parsing a regular expression. They want to give users of this JSON parsing library (“clients”) the ability to use Re2 for all regexes for which it would work (not all regexes work with all engines).</p>
 
@@ -201,7 +203,7 @@ If classes need access to that data, we make <code class="language-plaintext hig
   <li><a href="https://github.com/ajv-validator/ajv/pull/1684/commits/b07542d081e5d3b411a576071a670746f2789e99#diff-7afb1faba038d72baba992dc54a5d99227b0ccf558172e4450a10e9db8aaf283R95">In the <code class="language-plaintext highlighter-rouge">usePattern</code> function in that commit</a>, they check the <code class="language-plaintext highlighter-rouge">useRe2</code> option, and if that is <code class="language-plaintext highlighter-rouge">true</code>, they use a <code class="language-plaintext highlighter-rouge">new Re2(pattern)</code> object for parsing (necessitating the re2 dependency in this project).</li>
 </ul>
 
-<p class="callout ponder">What do you think of this proposed solution? Discuss with your classmates the pros and cons involved. Even better, can you think of alternatives?**</p>
+<p class="callout ponder">What do you think of this proposed solution? Discuss with your classmates the pros and cons involved. Even better, can you think of alternatives?</p>
 
 <p><strong>Project owner suggests a way to <em>not</em> require clients to have to include the Re2 dependency.</strong> See <a href="https://github.com/ajv-validator/ajv/pull/1684#issuecomment-880945417">their comment</a>. This involves creating an <em>interface</em> for a regex engine. So now the <code class="language-plaintext highlighter-rouge">usePattern</code> function doesn’t know or care <em>how</em> a pattern is being parsed. The client makes this choice when they use the software. This was implemented in commit <a href="https://github.com/ajv-validator/ajv/pull/1684/commits/a0720f881b8331db1c8c38a805e24a71f5daacbb">a0720f881b8331db1c8c38a805e24a71f5daacbb</a> (see <code class="language-plaintext highlighter-rouge">lib/core.ts</code> and <code class="language-plaintext highlighter-rouge">usePattern</code> function in <code class="language-plaintext highlighter-rouge">lib/vocabularies/code.ts</code>)</p>
 
