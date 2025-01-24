@@ -45,9 +45,6 @@
 <loc>https://ayaankazerouni.org/publications</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/about</loc>
-</url>
-<url>
 <loc>https://ayaankazerouni.org/courses/csc313/active-tutoring.html</loc>
 </url>
 <url>
@@ -70,6 +67,12 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/how-long</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/12-hashcode/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/06-class-design-process/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/01-intro-java/</loc>
@@ -120,9 +123,6 @@
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/17-threads-concurrency/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc305/coursenotes/05-visitor-pattern-matching/</loc>
-</url>
-<url>
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/18-thread-synchronisation/</loc>
 </url>
 <url>
@@ -150,7 +150,7 @@
 <loc>https://ayaankazerouni.org/courses/csc305/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/02-arithmetic-and-testing/</loc>
+<loc>https://ayaankazerouni.org/courses/csc305/coursenotes/05-visitor-pattern-matching/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/coursenotes/metacognitive-awareness-problem-comprehension/</loc>
@@ -171,6 +171,9 @@
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/08-interfaces-part-2/</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/02-arithmetic-and-testing/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/03-lists-maps-existing-classes/</loc>
 </url>
 <url>
@@ -183,12 +186,6 @@
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/13-comparable-comparator/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/12-hashcode/</loc>
-</url>
-<url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/06-class-design-process/</loc>
-</url>
-<url>
 <loc>https://ayaankazerouni.org/courses/csc590/</loc>
 </url>
 <url>
@@ -198,7 +195,7 @@
 <loc>https://ayaankazerouni.org/courses/csc590/literature-review.html</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/theses</loc>
+<loc>https://ayaankazerouni.org/masters-theses</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/mind-mapping.html</loc>
