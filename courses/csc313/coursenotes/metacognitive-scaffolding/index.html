@@ -8,12 +8,12 @@
   <meta name="robots" content="noindex">
   
 
-	<title>Ayaan M. Kazerouni</title>
+	<title>Metacognitive scaffolding - Ayaan M. Kazerouni</title>
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc313/coursenotes/metacognitive-awareness-problem-comprehension/">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc313/coursenotes/metacognitive-scaffolding/">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 	<script src="/assets/js/footnote-preview.js" ></script>
 </head>
@@ -30,7 +30,7 @@
     (Coursenotes for <a href="/courses/csc313#course-schedule">CSC 313 Teaching Computing</a>)
   </p>
   
-  <h1></h1>
+  <h1>Metacognitive scaffolding</h1>
   <article>
       <ul class="callout readings">
   <li>[1] <a href="http://dl.acm.org/citation.cfm?doid=3230977.3230981">Metacognitive Difficulties Faced by Novice Programmers in Automated Assessment Tools</a> by Prather, Pettit, McMurry, Peters, Homer, &amp; Cohen</li>
@@ -172,23 +172,32 @@ The lack of metacognitive awareness <em>almost</em> kept otherwise capable stude
   <li>Chaffs would include implementations that compute the mean instead of the median, or implementations that do not correctly handle empty lists.</li>
 </ul>
 
-<p>Before working on implementing solutions to problems, students were asked to create <em>executable examples</em> for the problem. The examples are simple input+output pairs—that is, for some given input, what is the expected output from a correctly implemented solution? The examples were operationalised using unit-test-like assertions.</p>
+<p>Before working on implementing solutions to problems, students were asked to create <em>executable examples</em> for the problem. 
+The examples are simple input+output pairs—that is, for some given input, what should the function’s output be?</p>
 
-<p>These examples are assessed as follows:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>median([1]) == 1
+median([1, 2, 3]) == 2
+median([2, 3, 4, 1]) == 2.5
+</code></pre></div></div>
+
+<p>This suite of examples can be assessed as follows:</p>
 
 <ul>
   <li><em>Validity</em> was assessed based on whether or not the examples were accepted by the <em>wheats</em>. If a wheat “fails” an example, it means the example is incorrect. <em>This means the student has formed an incorrect understanding of the problem</em>.<sup id="fnref:wheat-caveat" role="doc-noteref"><a href="#fn:wheat-caveat" class="footnote" rel="footnote">3</a></sup></li>
   <li><em>Thoroughness</em> was assessed based on the number of <em>chaffs</em> that were detected by the student’s set of examples. If a chaff does not “fail” against at least one example, it means the examples are incomplete in terms of the number of cases it covers. <em>This could mean the student has an incomplete understanding of the problem.</em></li>
 </ul>
 
+<p>So far, the students have not yet written their own implementations. They are still only testing their understanding of the <strong>problem</strong>.</p>
+
 <p>It’s important to note that these examples are <em>not</em> test cases, even though they look like test cases.
-The examples are not being run against the student’s own solution (which may or may not exist yet)—they are being run against <em>the problem</em>, which is embodied as a series of correct and incorrect implementations created by the instructors.</p>
+The examples are not being run against the student’s own solution (which may or may not exist yet)—they are being run against <em>the problem prompt</em>.
+In this paper, the authors have the examples <em>checkable</em> by implementing a series of correct and incorrect implementations.</p>
 
 <p>Results were promising:</p>
 
 <ul>
   <li>Students used executable examples even when it was not required; it was a helpful metacognitive scaffold.</li>
-  <li>The <em>examples</em> students created turned into <em>tests</em> once they had solutions implemented; a win for step 6 of the Design Recipe!</li>
+  <li>The <em>examples</em> students created turned into <em>tests</em> once they went on to implement their own solutions; a win for step 6 of the Design Recipe!</li>
   <li>Test suites were more valid than before—they were less likely to overzealously reject correct implementations based on underspecified behaviour.</li>
   <li>The authors also suggest that the existence of this feature helped reduce load on course staff: if students were not sure of underspecified requirements, they could just “ask the IDE” by probing the problem with examples.</li>
 </ul>
