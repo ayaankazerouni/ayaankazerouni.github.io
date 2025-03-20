@@ -50,7 +50,7 @@
     --todo-background-color: rgb(68, 44, 66, 0.7);
     --ponder-color: #f1ce68;
     --note-color: rgb(5, 155, 230);
-    --note-background-color: rgba(179, 223, 245, 0.2);
+    --note-background-color: rgb(7, 31, 56);
     --readings-background-color: #093102;
     --readings-color: #03f6e6;
     --callout-background-color: #679da031;
@@ -129,12 +129,6 @@ header {
 }
 header.pages {
   height: auto;
-}
-header a, header a:visited {
-  color: var(--font-color);
-}
-header a:hover {
-  color: var(--emph);
 }
 header img {
   border-radius: 360px;
@@ -287,10 +281,6 @@ ul {
 .contact a, .contact a:visited {
   font-size: 1.5em !important;
   text-decoration: none;
-  color: var(--link-color);
-}
-.contact a:hover, .contact a:visited:hover {
-  color: var(--emph);
 }
 
 footer {
@@ -299,9 +289,6 @@ footer {
 }
 footer .address {
   font-size: 0.8em;
-}
-footer a, footer a:visited {
-  color: var(--font-color);
 }
 
 .fa, .fab, .far, .fas, .ai {
