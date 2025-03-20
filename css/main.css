@@ -130,12 +130,6 @@ header {
 header.pages {
   height: auto;
 }
-header a, header a:visited {
-  color: var(--font-color);
-}
-header a:hover {
-  color: var(--emph);
-}
 header img {
   border-radius: 360px;
   height: min(35vh, 150px);
@@ -287,10 +281,6 @@ ul {
 .contact a, .contact a:visited {
   font-size: 1.5em !important;
   text-decoration: none;
-  color: var(--link-color);
-}
-.contact a:hover, .contact a:visited:hover {
-  color: var(--emph);
 }
 
 footer {
@@ -299,9 +289,6 @@ footer {
 }
 footer .address {
   font-size: 0.8em;
-}
-footer a, footer a:visited {
-  color: var(--font-color);
 }
 
 .fa, .fab, .far, .fas, .ai {
