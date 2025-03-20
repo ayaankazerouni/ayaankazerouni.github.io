@@ -94,10 +94,12 @@ a,
 a:visited {
   color: var(--link-color);
   text-decoration: underline;
+  font-weight: 500;
 }
 
 a:hover {
-  font-weight: 600;
+  color: var(--inverted-font-color);
+  background-color: var(--highlight-color);
 }
 
 .hlt, .fn-tooltip, .footnotes :target, .tag, .banner {
