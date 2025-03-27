@@ -6,7 +6,7 @@
   <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
   
 
-	<title>Ayaan M. Kazerouni</title>
+	<title>CSC 203 Project-based Object-oriented Programming and Design (Spring 2025) - Ayaan M. Kazerouni</title>
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
@@ -31,11 +31,25 @@
 <ul id="markdown-toc">
   <li><a href="#syllabus" id="markdown-toc-syllabus">Syllabus</a>    <ul>
       <li><a href="#course-info-and-important-links" id="markdown-toc-course-info-and-important-links">Course info and important links</a></li>
-      <li><a href="#course-overview" id="markdown-toc-course-overview">Course overview</a></li>
-      <li><a href="#policies-and-advice" id="markdown-toc-policies-and-advice">Policies and advice</a></li>
+      <li><a href="#course-overview" id="markdown-toc-course-overview">Course overview</a>        <ul>
+          <li><a href="#course-objectives" id="markdown-toc-course-objectives">Course objectives</a></li>
+          <li><a href="#here-are-some-of-the-computer-science-and-university-learning-objectives" id="markdown-toc-here-are-some-of-the-computer-science-and-university-learning-objectives">Here are (some of the) Computer Science and University learning objectives</a></li>
+        </ul>
+      </li>
       <li><a href="#class-communication-and-getting-help" id="markdown-toc-class-communication-and-getting-help">Class communication and getting help</a></li>
       <li><a href="#attendance-policy" id="markdown-toc-attendance-policy">Attendance policy</a></li>
-      <li><a href="#assignments" id="markdown-toc-assignments">Assignments</a></li>
+      <li><a href="#assignments" id="markdown-toc-assignments">Assignments</a>        <ul>
+          <li><a href="#labs" id="markdown-toc-labs">Labs</a></li>
+          <li><a href="#projects" id="markdown-toc-projects">Projects</a></li>
+          <li><a href="#quizzes" id="markdown-toc-quizzes">Quizzes</a></li>
+          <li><a href="#final-exam" id="markdown-toc-final-exam">Final exam</a></li>
+        </ul>
+      </li>
+      <li><a href="#classroom-climate-and-conduct" id="markdown-toc-classroom-climate-and-conduct">Classroom climate and conduct</a>        <ul>
+          <li><a href="#academic-honesty" id="markdown-toc-academic-honesty">Academic honesty</a></li>
+          <li><a href="#class-conduct" id="markdown-toc-class-conduct">Class conduct</a></li>
+        </ul>
+      </li>
     </ul>
   </li>
   <li><a href="#course-schedule" id="markdown-toc-course-schedule">Course schedule</a></li>
@@ -53,7 +67,7 @@
   <li>Email: ayaank@calpoly.edu</li>
   <li>Office hours: <a href="https://ayaankazerouni.org">See my website</a></li>
   <li><a href="https://csc.calpoly.edu/tutoring/">CSSE tutoring lab</a>: Your fellow students offer free tutoring for various introductory CS courses, including CPE/CSC 203.</li>
-  <li>EdStem forum (you will need to join using this invite link before you can access the forum)</li>
+  <li><a href="https://edstem.org/us/courses/77481/discussion">EdStem forum</a> (see the invite link in Canvas)</li>
   <li><a href="#course-schedule">Course schedule</a> (Check this frequently!)</li>
 </ul>
 
@@ -68,14 +82,14 @@
 <ul>
   <li>Explain key object‐oriented concepts including: classes, objects, methods, instantiation, invocation, interaction between objects, composition, encapsulation, and use of class libraries.</li>
   <li>Use object‐oriented concepts and design to implement moderately sophisticated “large” programs.</li>
-  <li>Describe the philosophy and mechanics of interfaces including abstraction and specification independence of specification and implementation, contractual requirements in interface implementation, subtypes and type casting, polymorphism, interface hierarchies, and implementation of multiple interfaces.</li>
-  <li>Define interfaces in programs to support abstractions according to the principles of interface segregation and dependency inversion where design weaknesses are identified.</li>
+  <li>Describe the philosophy and mechanics of interfaces including abstraction and specification independence of specification and implementation, contractual requirements in interface implementation, subtypes and type casting, polymorphism, interface hierarchies, and implementation of multiple interfaces.
+<!-- * Define interfaces in programs to support abstractions according to the principles of interface segregation and dependency inversion where design weaknesses are identified. --></li>
   <li>Create a unit test plan for a set of methods in a class.</li>
-  <li>Implement program pieces (classes and methods) that use generic types.</li>
-  <li>Discuss the differences among generics, sub-typing, and overloading.</li>
-  <li>Describe the philosophy and mechanics of inheritance including generalization, specialization via extension, difference between extension and composition, subtypes and type casting, polymorphism, and inheritance hierarchies.</li>
-  <li>Use inheritance in the implementation of program components such as in the application of a refactoring process to an existing software implementation to improve some aspect of its design.</li>
-  <li>Explain the relationship between object‐oriented inheritance (code‐sharing and overriding) and sub-typing.</li>
+  <li>Implement program pieces (classes and methods) that use generic types.
+<!-- * Discuss the differences among generics, sub-typing, and overloading. -->
+<!-- * Describe the philosophy and mechanics of inheritance including generalization, specialization via extension, difference between extension and composition, subtypes and type casting, polymorphism, and inheritance hierarchies. --></li>
+  <li>Use inheritance in the implementation of program components such as in the application of a refactoring process to an existing software implementation to improve some aspect of its design.
+<!-- * Explain the relationship between object‐oriented inheritance (code‐sharing and overriding) and sub-typing. --></li>
   <li>Articulate design principles including separation of concerns, information hiding, coupling and cohesion, and encapsulation.</li>
   <li>Apply class design principles to the development of a design document for a moderately sophisticated “large” program.</li>
 </ul>
@@ -90,15 +104,11 @@
   <li>Recognition of the need for, and an ability to engage in continuing professional development</li>
 </ul>
 
-<h3 id="policies-and-advice">Policies and advice</h3>
-
 <h3 id="class-communication-and-getting-help">Class communication and getting help</h3>
 
 <p>We will use EdStem as the class Q&amp;A forum. Get yourself added to it using the invite link.</p>
 
-<p>I’m teaching two sections of this class this quarter—one at 2:10pm and one at 4:10pm. Both sections will use the same EdStem forum. Please include your section time in your display name. For example, if I were a student in the earlier section, I would write Ayaan Kazerouni (2pm) as my display name.</p>
-
-<p>Please ask all course-related questions on EdStem, unless you are sending me documents or files of some kind, or asking for things like meeting appointments.</p>
+<p>Please ask all course-related questions on EdStem, unless you are sending me documents or files of some kind, or asking about things that apply only to you, assignment extensions.</p>
 
 <p>Some benefits of using EdStem are:</p>
 
@@ -146,7 +156,7 @@ If you can’t make office hours, contact me and we can schedule an appointment 
     </tr>
     <tr>
       <td>4 projects</td>
-      <td>40% (10% each)</td>
+      <td>40% (11% + 11% + 11% + 7%)</td>
     </tr>
     <tr>
       <td>6–7 quizzes</td>
@@ -175,7 +185,7 @@ If you can’t make office hours, contact me and we can schedule an appointment 
   <li>Please create a GitHub account by the first day of class. If your GitHub username does not include your name, please add your name to your profile—I’ll need to know to whom each account belongs.</li>
 </ul>
 
-<h4 id="lab-and-lab-exercises">Lab and lab exercises</h4>
+<h4 id="labs">Labs</h4>
 
 <p>Regular and frequent labs will be assigned and collected each week and together will comprise 20% of your course grade. The three hours of scheduled lab time each week is the primary time your instructor will be available for questions and assistance—make wise use of this resource! You are expected to work on the lab exercises during your scheduled lab time plus as much additional time as necessary to complete them. <strong>You ARE allowed to discuss labs with classmates, but you must turn in your own work.</strong></p>
 
@@ -232,7 +242,9 @@ This means you cannot rely purely on the open notes to take the quiz.</p>
 
 <p>This means that our course will <strong><em>NOT</em></strong> use the Registrar-allocated final exam time for our lecture time. We have requested a common final exam slot and will be allocated one by the Registrar in the coming weeks. <strong>I will update the schedule and make an announcement when the time is finalised.</strong></p>
 
-<h4 id="honesty">Honesty</h4>
+<h3 id="classroom-climate-and-conduct">Classroom climate and conduct</h3>
+
+<h4 id="academic-honesty">Academic honesty</h4>
 
 <p>Although I encourage you to have lively discussions with one another, <strong><em>all work you hand in must be your own work,</em></strong> unless otherwise specified. Programs will be compared using software that can reliably detect similarities in source code.</p>
 
@@ -254,130 +266,252 @@ This means you cannot rely purely on the open notes to take the quiz.</p>
   <li>Because you may not submit any ChatGPT-generated code in project submissions, it is specifically not acceptable to say that you submitted the same code as another student because it was generated by ChatGPT. Duplicate submissions, even those due to identical outputs of ChatGPT, will be considered academic integrity violations, and subject to the treatments above.</li>
 </ul>
 
-<h4 id="diversity-and-inclusion">Diversity and Inclusion</h4>
+<h4 id="class-conduct">Class conduct</h4>
 
 <p>Our classroom and lab are to be places of learning and inclusion. Students of all ages, abilities, background, race, sexual orientations, beliefs, religious affiliations, gender identities, and origins are to be treated with dignity and respect as contributors to our scholarly environment.</p>
 
 <ul>
   <li>We are not code snobs. We do not assume knowledge or imply there are things that somebody should know.</li>
   <li>After our work is complete, we prioritise the education of others and actively offer to help, explain, debug, etc. in order to support one another’s learning. We do not share our working solution, but explain the logic/thinking behind our solution and help others recognise errors in their implementation when invited to do so.</li>
-  <li>We consistently make the effort to actively recognise and validate multiple types of contributions to a positive classroom environment.</li>
+  <li>We consistently make the effort to recognise and validate multiple types of contributions to a positive classroom environment.</li>
 </ul>
 
 <h2 id="course-schedule">Course schedule</h2>
 
-<p>Here’s the topic breakdown for the course. These are unpolished course-notes, partly written as guides for myself. Many of the code examples in these notes originated from Julie Workman, Paul Hatalsky, Aaron Keen, and Zoë Wood.</p>
+<p>Here is our intended course schedule. If things change as we go, I will update this page.
+Assignments and quizzes will appear in Canvas with deadlines.
+If deadlines listed here conflict with deadlines in Canvas, <strong>the Canvas deadlines should take precedence</strong>.</p>
 
-<p>Lab and project specs will be released in Canvas.</p>
+<p>Roughly speaking, we’ll have:</p>
+
+<ul>
+  <li>A lab each week</li>
+  <li>A project every two weeks</li>
+  <li>A quiz each Wednesday in lab</li>
+  <li>A final exam during finals week</li>
+  <li>They may also be in-class activities not listed here</li>
+</ul>
 
 <table>
   <thead>
     <tr>
-      <th>#</th>
+      <th>WEEK</th>
+      <th>DAY</th>
       <th>TOPIC AND NOTES</th>
+      <th>ASSIGNMENT RELEASED</th>
       <th>ASSIGNMENT DUE</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>1.</td>
+      <td>1</td>
+      <td>Wednesday</td>
       <td><a href="../coursenotes/01-intro-java/">Introduction</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>2.</td>
-      <td><a href="../coursenotes/02-arithmetic-and-testing/">Data types, arithmetic, type-casting</a></td>
       <td>Lab 0 (Intro to Java)</td>
+      <td>Introduce yourself in EdStem<br />Create a GitHub account<br />Download and setup IntelliJ IDEA and Java</td>
     </tr>
     <tr>
-      <td>3.</td>
-      <td><a href="../coursenotes/03-lists-maps-existing-classes/">Classes, objects, lists, maps</a></td>
+      <td> </td>
+      <td>Friday</td>
+      <td><a href="../coursenotes/02-arithmetic-and-testing/">Data types, arithmetic, type-casting</a></td>
       <td>Lab 1 (Loops and lists)</td>
+      <td>Lab 0</td>
     </tr>
     <tr>
-      <td>4.</td>
-      <td><a href="../coursenotes/04-oop-and-procedural/">Procedural and object-oriented programs</a></td>
+      <td>2</td>
+      <td>Monday</td>
+      <td><a href="../coursenotes/03-lists-maps-existing-classes/">Classes, objects, lists, maps</a></td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
-      <td>5.</td>
-      <td><a href="../coursenotes/05-method-dispatch/">Method dispatch (overloading and overriding)</a></td>
-      <td>Lab 2 (Instance and static methods)</td>
+      <td> </td>
+      <td>Wednesday</td>
+      <td><a href="../coursenotes/04-oop-and-procedural/">Procedural and object-oriented programs</a></td>
+      <td>Project 1</td>
+      <td>Quiz taken in lab</td>
     </tr>
     <tr>
-      <td>6.</td>
+      <td> </td>
+      <td>Friday</td>
+      <td><a href="../coursenotes/04-oop-and-procedural/#static-data-and-methods">Instance members and static members</a></td>
+      <td>Lab 2 (Classes, objects, and methods)</td>
+      <td>Lab 1</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Monday</td>
+      <td><a href="../coursenotes/05-method-dispatch/">Method dispatch (overloading and overriding)</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
       <td><a href="../coursenotes/06-class-design-process/">A class design process</a></td>
       <td> </td>
+      <td>Quiz taken in lab</td>
     </tr>
     <tr>
-      <td>7.</td>
+      <td> </td>
+      <td>Friday</td>
       <td><a href="../coursenotes/07-interfaces/">Interfaces (part 1)</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>8.</td>
-      <td><a href="../coursenotes/08-interfaces-part-2/">Interfaces (part 2)</a></td>
       <td>Lab 3 (Interfaces)</td>
+      <td>Lab 2</td>
     </tr>
     <tr>
-      <td>9.</td>
+      <td>4</td>
+      <td>Monday</td>
+      <td><a href="../coursenotes/08-interfaces-part-2/">Interfaces (part 2)</a></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
       <td><a href="../coursenotes/09-interfaces-part-3/">Interfaces (part 3)</a></td>
-      <td> </td>
+      <td>Project 2</td>
+      <td>Project 1<br />Quiz 3 taken in lab</td>
     </tr>
     <tr>
-      <td>10.</td>
+      <td> </td>
+      <td>Friday</td>
       <td><a href="../coursenotes/10-abstract-classes/">Abstract classes</a></td>
+      <td>Lab 4 (Inheritance, equality, hashCode)</td>
+      <td>Lab 3</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Monday</td>
+      <td>Project 2 discussion</td>
+      <td> </td>
       <td> </td>
     </tr>
     <tr>
-      <td>11.</td>
+      <td> </td>
+      <td>Wednesday</td>
       <td><a href="../coursenotes/11-inheritance-equality/">Inheritance and equality</a></td>
       <td> </td>
+      <td>Quiz taken in lab</td>
     </tr>
     <tr>
-      <td>12.</td>
-      <td><a href="../coursenotes/12-hashcode/">Hashcode</a></td>
-      <td>Lab 4 (Inheritance, equality, and hashcode)</td>
+      <td> </td>
+      <td>Friday</td>
+      <td><a href="../coursenotes/11-inheritance-equality/#equals"><code class="language-plaintext highlighter-rouge">equals</code></a></td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
-      <td>13.</td>
+      <td>6</td>
+      <td>Monday</td>
+      <td><a href="../coursenotes/12-hashcode/"><code class="language-plaintext highlighter-rouge">hashcode</code></a></td>
+      <td> </td>
+      <td>Lab 4</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
       <td><a href="../coursenotes/13-comparable-comparator/">Comparables and comparators</a></td>
       <td> </td>
+      <td>Quiz taken in lab</td>
     </tr>
     <tr>
-      <td>14.</td>
+      <td> </td>
+      <td>Friday</td>
       <td><a href="../coursenotes/14-comparators/">Comparators, lambdas, and method references</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>15.</td>
-      <td><a href="../coursenotes/15-lambdas/">Lambdas and functional interfaces</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>16.</td>
-      <td><a href="../coursenotes/16-streams/">Streams</a></td>
       <td>Lab 5 (Comparators, lambdas, and streams)</td>
+      <td>Project 2</td>
     </tr>
     <tr>
-      <td>17.</td>
-      <td><a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/BinaryTree.html">Binary trees (OpenDSA Chapter ⇗)</a></td>
+      <td>7</td>
+      <td>Monday</td>
+      <td><a href="../coursenotes/15-lambdas/">Lambdas and functional interfaces</a></td>
+      <td>Project 3 released</td>
       <td> </td>
     </tr>
     <tr>
-      <td>18.</td>
-      <td><a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/GraphTraversal.html">Graph traversals — Depth-first search and breadth-first search (OpenDSA Chapter ⇗)</a></td>
-      <td>Lab 6 (Depth-first search)</td>
+      <td> </td>
+      <td>Wednesday</td>
+      <td><a href="../coursenotes/16-streams/">Streams</a></td>
+      <td> </td>
+      <td>Quiz taken in lab</td>
     </tr>
     <tr>
-      <td>19.</td>
+      <td> </td>
+      <td>Friday</td>
+      <td><a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/BinaryTree.html">Binary trees (OpenDSA Chapter ⇗)</a> and <a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/GraphTraversal.html">Depth-first search and breadth-first search (OpenDSA Chapter ⇗)</a></td>
+      <td>Lab 6 (Depth-first search)</td>
+      <td>Lab 5</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Monday</td>
       <td>A-star search</td>
       <td> </td>
+      <td> </td>
     </tr>
     <tr>
-      <td>20.</td>
+      <td> </td>
+      <td>Wednesday</td>
+      <td>More on A-star search</td>
+      <td> </td>
+      <td>Quiz taken in lab</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>Testing A-star search</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Monday</td>
+      <td>Project 4 discussion<br />Final exam review</td>
+      <td>Project 4 released</td>
+      <td>Project 3</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
       <td>Exceptions and exception handling</td>
       <td>Lab 7 (Exception handling)</td>
+      <td>Lab 6</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>Exceptions and exception handling</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><b style="color: var(--emph)">Tuesday</b></td>
+      <td>Generics</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td>Final exam review</td>
+      <td> </td>
+      <td>Lab 7<br />Quiz taken in lab</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>Schedule wiggle room</td>
+      <td> </td>
+      <td>Project 4</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>FINALS WEEK</strong></td>
+      <td><strong>COMMON FINAL EXAM</strong></td>
+      <td><strong>DATE TO BE ANNOUNCED</strong></td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
