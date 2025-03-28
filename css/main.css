@@ -412,6 +412,24 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
   padding-top: 5px;
 }
 
+.released {
+  font-weight: bold;
+  background-color: green;
+  color: white;
+}
+.released::before {
+  content: "RELEASED";
+}
+
+.due {
+  font-weight: bold;
+  background-color: firebrick;
+  color: white;
+}
+.due::before {
+  content: "DUE";
+}
+
 .callout, blockquote {
   overflow: hidden;
   border-left: 4px solid var(--emph);

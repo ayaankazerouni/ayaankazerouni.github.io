@@ -26,7 +26,279 @@
     
     <h1>CSC 477 Scientific and Information Visualization</h1>
     
-    <p>This page is under construction.</p>
+    <p class="banner">This page is under construction.</p>
+
+<h2 class="no_toc" id="contents">Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#syllabus" id="markdown-toc-syllabus">Syllabus</a></li>
+  <li><a href="#course-info-and-important-links" id="markdown-toc-course-info-and-important-links">Course info and important links</a>    <ul>
+      <li><a href="#course-overview" id="markdown-toc-course-overview">Course overview</a>        <ul>
+          <li><a href="#objectives" id="markdown-toc-objectives">Objectives</a></li>
+        </ul>
+      </li>
+      <li><a href="#assignments" id="markdown-toc-assignments">Assignments</a></li>
+    </ul>
+  </li>
+  <li><a href="#course-schedule" id="markdown-toc-course-schedule">Course schedule</a></li>
+</ul>
+
+<h2 id="syllabus">Syllabus</h2>
+
+<h2 id="course-info-and-important-links">Course info and important links</h2>
+
+<ul>
+  <li>Instructor: Ayaan M. Kazerouni</li>
+  <li>Email: ayaank@calpoly.edu</li>
+  <li>Office hours: <a href="https://ayaankazerouni.org">See my homepage</a></li>
+  <li><a href="https://edstem.org/us/courses/77500/discussion">EdStem forum</a> (see the invite link in Canvas)</li>
+  <li><a href="#course-schedule">Course schedule</a> (Check this frequently!)</li>
+</ul>
+
+<h3 id="course-overview">Course overview</h3>
+
+<h4 id="objectives">Objectives</h4>
+
+<h3 id="assignments">Assignments</h3>
+
+<ul>
+  <li>Class participation (10%)</li>
+  <li>Assignment 1: Visualization Curation and Analysis (5%)</li>
+  <li>Assignment 2: Data wrangling with JavaScript (5%)</li>
+  <li>Assignment 3: Data visualization with Vega-lite (15%)</li>
+  <li>Assignment 4: Visualization evaluation + User study (10%)</li>
+  <li>Assignment 5: Interactive visualization (15%)</li>
+  <li>Assignment 6: Deceptive visualization (10%)</li>
+  <li>Project (30%), in 3 parts:
+    <ul>
+      <li>Part 1: Initial proposal (5%)</li>
+      <li>Part 2: Prototype (10%)</li>
+      <li>Part 3: Final interactive deliverable (15%)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="course-schedule">Course schedule</h2>
+
+<p>This is tentative course schedule. I will update it if things change as we go (which they will!)
+Assignments will appear in Canvas with deadlines. If deadlines in Canvas conflict with those listed here, <strong>the Canvas deadlines take precedence</strong>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>WEEK</th>
+      <th>DAY</th>
+      <th>TOPICS</th>
+      <th>READINGS / RESOURCES</th>
+      <th>ASSIGNMENT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Wednesday</td>
+      <td>Introduction<br />Why visualize?</td>
+      <td>🎥 <a href="https://youtu.be/1GhZisgc6DI"><em>What’s Vis, and Why Do It?</em></a> Tamara Munzner.</td>
+      <td><span class="due"></span> Introduce yourself in EdStem<br /><small>You’ll need the invite link in Canvas to join the forum.</small><br /><br /><span class="due"></span> Make an account at <a href="https://observablehq.com/">Observable</a>.<br /><br /><span class="released"></span> <a href="./assignments/a1-visualization-curation-and-analysis/">A1: Visualization curation and analysis</a></td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>JavaScript primer<br />Observable notebooks</td>
+      <td><a href="https://observablehq.com/documentation/notebooks/">Observable Notebooks documentation</a><br /><br /><a href="https://observablehq.com/@uwdata/a-minimal-introduction-to-javascript-and-observable"><em>A Minimal Introduction to JavaScript and Observable</em></a> by Jeffrey Heer</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Monday</td>
+      <td>Data wrangling<br />Tidy data</td>
+      <td><a href="https://r4ds.hadley.nz/data-tidy.html"><em>Data tidying</em></a>. Hadley Wickham<br /><br /><a href="https://observablehq.com/@uwdata/tidy-data-in-javascript"><em>Tidy Data in JavaScript</em></a>. Jeffrey Heer</td>
+      <td><span class="due"></span> A1<br /><br /><span class="released"></span> A2: Data wrangling with JavaScript</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td>Data types<br />Marks, channels, and encodings</td>
+      <td>🎥 <em>Marks and Channels</em> <a href="https://youtu.be/xplSAMwlTmY">Part I</a> and <a href="https://youtu.be/xP1J_FKx9JM">Part II</a>. Tamara Munzner.<br /><br /><a href="https://observablehq.com/@uwdata/data-types-graphical-marks-encoding-channels-json"><em>Data types, Graphical marks, and Visual channels</em></a> by Jeffrey Heer</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>Visualization with Vega-lite</td>
+      <td><a href="https://observablehq.com/@uwdata/introduction-to-vega-lite"><em>Introduction to Vega-lite</em></a>. Jeffrey Heer.<br /><br /><a href="https://vega.github.io/vega-lite/">Vega-lite documentation</a><br /><small>Most of these docs use the JSON syntax, but we will mostly use the <a href="https://vega.github.io/vega-lite-api/api/">JavaScript API</a>.</small></td>
+      <td><span class="released"></span> A3: Visualization with Vega-lite</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Monday</td>
+      <td>Data transformation</td>
+      <td><a href="https://observablehq.com/@uwdata/data-transformation?collection=@uwdata/visualization-curriculum"><em>Data transformations</em></a>. Jeffrey Heer.<br /><br /><a href="https://vega.github.io/vega-lite/docs/transform.html">Vega-lite transformations documentation</a><br /></td>
+      <td><span class="due"></span> A2</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td>Scales, axes, legends</td>
+      <td><a href="https://observablehq.com/@uwdata/scales-axes-and-legends?collection=@uwdata/visualization-curriculum"><em>Scales, Axes, and Legends</em></a>. Jeffrey Heer.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>Multi-view composition</td>
+      <td><a href="https://observablehq.com/@uwdata/multi-view-composition?collection=@uwdata/visualization-curriculum"><em>Multi-view Composition</em></a>. Jeffrey Heer.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Monday</td>
+      <td>Perception</td>
+      <td>Ware</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td>Evaluating visualizations</td>
+      <td><em>Analysis: Four Levels for Validation</em>. <a href="https://youtu.be/KXswx4QSkHc">Part I</a> and <a href="https://youtu.be/xP1J_FKx9JM">Part II</a>. Tamara Munzner.</td>
+      <td><span class="released"></span> A4: Vis evaluation + User study</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>Sketching<br />Exploratory visualization</td>
+      <td>Munzner, Froehlich, Heer</td>
+      <td><span class="due"></span> A3<br /><br /><span class="released"></span> P1: Project proposal</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Monday</td>
+      <td>Interactivity</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td>Interactivity</td>
+      <td> </td>
+      <td><span class="due"></span> A4<br /><br /><span class="released"></span> A5: Interactive visualization</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>Interactivity</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Monday</td>
+      <td>D3</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td>D3</td>
+      <td> </td>
+      <td><span class="due"></span> P1<br /><br /><span class="released"></span> P2: Prototype</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>D3</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Monday</td>
+      <td>Cartographic visualization</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td>Ethically sound and dubious visualization</td>
+      <td> </td>
+      <td><span class="due"></span> A5<br /><br /><span class="released"></span> A6: Deceptive visualization</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td><span class="emph">Wiggle room</span></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Monday</td>
+      <td>Prototype walkthroughs</td>
+      <td> </td>
+      <td><span class="released"></span> P3: Final deliverable (interactive vis)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td><span class="emph">Wiggle room</span></td>
+      <td> </td>
+      <td><span class="due"></span> A6</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td><span class="emph">Wiggle room</span></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><b class="emph">Tuesday</b></td>
+      <td>Accessibility</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td><span class="emph">Wiggle room</span></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td><span class="emph">Wiggle room</span></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Monday</td>
+      <td><span class="emph">Wiggle room</span></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday</td>
+      <td>Final project presentations</td>
+      <td> </td>
+      <td><span class="due"></span> P3</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday</td>
+      <td>Final project presentations</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
     
   </main>
