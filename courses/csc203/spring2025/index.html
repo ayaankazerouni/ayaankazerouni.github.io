@@ -30,12 +30,8 @@
 
 <ul id="markdown-toc">
   <li><a href="#syllabus" id="markdown-toc-syllabus">Syllabus</a>    <ul>
-      <li><a href="#course-info-and-important-links" id="markdown-toc-course-info-and-important-links">Course info and important links</a></li>
-      <li><a href="#course-overview" id="markdown-toc-course-overview">Course overview</a>        <ul>
-          <li><a href="#course-objectives" id="markdown-toc-course-objectives">Course objectives</a></li>
-          <li><a href="#here-are-some-of-the-computer-science-and-university-learning-objectives" id="markdown-toc-here-are-some-of-the-computer-science-and-university-learning-objectives">Here are (some of the) Computer Science and University learning objectives</a></li>
-        </ul>
-      </li>
+      <li><a href="#info-and-links" id="markdown-toc-info-and-links">Info and links</a></li>
+      <li><a href="#learning-objectives" id="markdown-toc-learning-objectives">Learning objectives</a></li>
       <li><a href="#class-communication-and-getting-help" id="markdown-toc-class-communication-and-getting-help">Class communication and getting help</a></li>
       <li><a href="#attendance-policy" id="markdown-toc-attendance-policy">Attendance policy</a></li>
       <li><a href="#assignments" id="markdown-toc-assignments">Assignments</a>        <ul>
@@ -47,6 +43,7 @@
       </li>
       <li><a href="#classroom-climate-and-conduct" id="markdown-toc-classroom-climate-and-conduct">Classroom climate and conduct</a>        <ul>
           <li><a href="#academic-honesty" id="markdown-toc-academic-honesty">Academic honesty</a></li>
+          <li><a href="#use-of-large-language-models-like-chatgpt" id="markdown-toc-use-of-large-language-models-like-chatgpt">Use of large-language models like ChatGPT</a></li>
           <li><a href="#class-conduct" id="markdown-toc-class-conduct">Class conduct</a></li>
         </ul>
       </li>
@@ -60,55 +57,51 @@
 
 <p>Welcome!</p>
 
-<h3 id="course-info-and-important-links">Course info and important links</h3>
+<p>This course is all about software design.
+We will use object-oriented programming as a vehicle to study software design principles like separation of concerns, coupling and cohesion, and encapsulation.
+We will learn and use the Java programming language in this course, though the software design lessons learned are meant to be transferable to other languages and programming paradigms as well.</p>
+
+<p>Here’s the description in the course catalogue:</p>
+
+<p>Object-oriented programming and design with applications to project construction. Introduction to class design, interfaces, inheritance, generics, exceptions, streams, and testing. 3 lectures, 1 laboratory. Prerequisite: CPE/CSC 202 with a grade of C– or better or consent of instructor.</p>
+
+<h3 id="info-and-links">Info and links</h3>
 
 <ul>
   <li>Instructor: Ayaan M. Kazerouni</li>
   <li>Email: ayaank@calpoly.edu</li>
   <li>Office hours: <a href="https://ayaankazerouni.org">See my website</a></li>
-  <li><a href="https://csc.calpoly.edu/tutoring/">CSSE tutoring lab</a>: Your fellow students offer free tutoring for various introductory CS courses, including CPE/CSC 203.</li>
+  <li><a href="https://canvas.calpoly.edu/courses/156486">Class Canvas</a></li>
   <li><a href="https://edstem.org/us/courses/77481/discussion">EdStem forum</a> (see the invite link in Canvas)</li>
-  <li><a href="#course-schedule">Course schedule</a> (Check this frequently!)</li>
+  <li><a href="#course-schedule">Course notes</a> (Check this frequently!)</li>
+  <li><a href="https://csc.calpoly.edu/tutoring/">CSSE tutoring lab</a>: Your fellow students offer free tutoring for various introductory CS courses, including CPE/CSC 203.</li>
 </ul>
 
-<h3 id="course-overview">Course overview</h3>
+<h3 id="learning-objectives">Learning objectives</h3>
 
-<p>Object-oriented programming and design with applications to project construction. Introduction to class design, interfaces, inheritance, generics, exceptions, streams, and testing. 3 lectures, 1 laboratory. Prerequisite: CPE/CSC 202 with a grade of C– or better or consent of instructor.</p>
-
-<h4 id="course-objectives">Course objectives</h4>
-
-<p>By the end of the quarter, students will be able to:</p>
+<p>By the end of the quarter, we aim for you to be able to:</p>
 
 <ul>
   <li>Explain key object‐oriented concepts including: classes, objects, methods, instantiation, invocation, interaction between objects, composition, encapsulation, and use of class libraries.</li>
   <li>Use object‐oriented concepts and design to implement moderately sophisticated “large” programs.</li>
-  <li>Describe the philosophy and mechanics of interfaces including abstraction and specification independence of specification and implementation, contractual requirements in interface implementation, subtypes and type casting, polymorphism, interface hierarchies, and implementation of multiple interfaces.
+  <li>Describe the philosophy and mechanics of interfaces, including abstraction, separation between specification and implementation, subtypes and type casting, polymorphism, interface hierarchies, and implementation of multiple interfaces.
 <!-- * Define interfaces in programs to support abstractions according to the principles of interface segregation and dependency inversion where design weaknesses are identified. --></li>
-  <li>Create a unit test plan for a set of methods in a class.</li>
-  <li>Implement program pieces (classes and methods) that use generic types.
+  <li>Create a unit test plan for a set of methods in a class.
 <!-- * Discuss the differences among generics, sub-typing, and overloading. -->
 <!-- * Describe the philosophy and mechanics of inheritance including generalization, specialization via extension, difference between extension and composition, subtypes and type casting, polymorphism, and inheritance hierarchies. --></li>
   <li>Use inheritance in the implementation of program components such as in the application of a refactoring process to an existing software implementation to improve some aspect of its design.
 <!-- * Explain the relationship between object‐oriented inheritance (code‐sharing and overriding) and sub-typing. --></li>
   <li>Articulate design principles including separation of concerns, information hiding, coupling and cohesion, and encapsulation.</li>
   <li>Apply class design principles to the development of a design document for a moderately sophisticated “large” program.</li>
-</ul>
-
-<h4 id="here-are-some-of-the-computer-science-and-university-learning-objectives">Here are (some of the) Computer Science and University learning objectives</h4>
-
-<ul>
-  <li>Ability to apply knowledge of computing and mathematics</li>
-  <li>Ability to analyze a problem and identify and define the computing requirements appropriate for its solution</li>
-  <li>An ability to communicate effectively with a range of audiences</li>
-  <li>An ability to use current techniques, skills, and tools necessary for computing practice</li>
-  <li>Recognition of the need for, and an ability to engage in continuing professional development</li>
+  <li>Implement programs that use generic types.</li>
 </ul>
 
 <h3 id="class-communication-and-getting-help">Class communication and getting help</h3>
 
-<p>We will use EdStem as the class Q&amp;A forum. Get yourself added to it using the invite link.</p>
+<p>We will use <a href="https://edstem.org/">EdStem</a> for class-related Q&amp;A.
+See the invite link in Canvas.</p>
 
-<p>Please ask all course-related questions on EdStem, unless you are sending me documents or files of some kind, or asking about things that apply only to you, assignment extensions.</p>
+<p>Please ask all course-related questions in EdStem, unless you are sending me documents or files of some kind, or asking about things that apply only to you, like assignment extensions.</p>
 
 <p>Some benefits of using EdStem are:</p>
 
@@ -177,7 +170,26 @@ If you can’t make office hours, contact me and we can schedule an appointment 
   </tbody>
 </table>
 
-<p>Please see each program description for grading/rubric details. I won’t curve grades, aside from a few very specific cases. Please don’t ask me if I’ll curve your grade at the end of the quarter.</p>
+<p>Please see each program description for grading/rubric details.</p>
+
+<p>At the end of the course, I will round UP your final numerical score and turn that into a letter grade using the following scale:</p>
+
+<ul style="font-size: 0.9em; column-count: 3; width: 50%; min-width: 300px;">
+<li>A &gt;= 93</li>
+<li>A– &gt;= 90</li>
+<li>B+ &gt;= 87</li>
+<li>B &gt;= 83</li>
+<li>B– &gt;= 80</li>
+<li>C+ &gt;= 77</li>
+<li>C &gt;= 73</li>
+<li>C– &gt;= 70</li>
+<li>D+ &gt;= 67</li>
+<li>D &gt;= 63</li>
+<li>D– &gt;= 60</li>
+<li>F &lt; 60</li>
+</ul>
+
+<p>I won’t curve grades, aside from a few very specific cases. Please don’t ask me if I’ll curve your grade at the end of the quarter.</p>
 
 <ul>
   <li>Source code for all programming assignments will use the most recent Java version.</li>
@@ -187,40 +199,49 @@ If you can’t make office hours, contact me and we can schedule an appointment 
 
 <h4 id="labs">Labs</h4>
 
-<p>Regular and frequent labs will be assigned and collected each week and together will comprise 20% of your course grade. The three hours of scheduled lab time each week is the primary time your instructor will be available for questions and assistance—make wise use of this resource! You are expected to work on the lab exercises during your scheduled lab time plus as much additional time as necessary to complete them. <strong>You ARE allowed to discuss labs with classmates, but you must turn in your own work.</strong></p>
+<p>There’ll be a lab assignment roughly each week. These are meant for <em>practice</em> with the concepts we talk about in lecture. The goal here is to familiarise you with material necessary for your projects and to help you do well on the quizzes.</p>
 
-<p>The lab exercises are designed to familiarise you with some of the concepts necessary to complete your projects and to help you do well on quizzes. You may work on your projects in lab after completing all currently assigned labs.</p>
+<p>The three hours of scheduled lab time each week is the primary time I’ll be available for questions and assistance—make good use of this time! You are expected to work on the lab exercises during your scheduled lab time plus as much additional time as necessary to complete them. <strong>You ARE allowed to discuss labs with classmates, but you must turn in your own work.</strong></p>
+
+<p>You may also demonstrate your lab to myself or the student assistant before your final submission—this will allow you to get at least one round of feedback before grading takes place.</p>
 
 <p><strong>Late policy</strong></p>
 
 <p>Labs may be turned in 1 day late for up to 70% credit. It’s your responsibility to make sure the staff know when you are doing this—without prior communication, we will not know to look for late lab submissions.</p>
 
-<p>Labs will be graded against test cases, in-lab demos, or both.</p>
+<p>Labs will be graded against test cases, in-lab demonstrations, or both.</p>
 
 <h4 id="projects">Projects</h4>
 
-<p>There will be 4 programming assignments throughout the quarter. The last three will build upon each other. They will require analysis, design, implementation, testing, and documentation.</p>
+<p>There will be 4 programming projects throughout the quarter. These are meant for <em>assessment</em> of your ability to apply to the concepts we talk about in lecture and practice in labs.</p>
+
+<p>All projects will require analysis, design, implementation, testing, and documentation.
+Turning in a fully functional project is not a guarantee of a perfect score—remember, the goal of this course is to learn about software design, and so each project rubric will involve a significant design component.</p>
 
 <p><strong>Late policy</strong></p>
 
-<p>For ONE of the first 3 programming projects (not labs and not project 4), you may have up to a 3-day extension, no questions asked. You must let the instructor know you wish to use this extension before the project deadline.</p>
+<p>You are allowed THREE late days, to be used as you wish on any of the FIRST THREE projects (not on labs and not on Project 4).</p>
 
-<p>The reason this is given is because I recognise life as a college student is often stressful and I don’t know all of the situations you each are going through—your mental and physical health is a priority. In addition, if the policy was “no late work”, some students may feel more entitled to ask for extensions in an emergency than others—the extension is meant to be an equaliser.</p>
+<p class="callout">If you plan to use a late day, you must email me <em>ahead of time</em> (i.e., before the active project’s deadline) telling me how many late days you plan to use. This must happen over email because we will need to remember that information at grading time.</p>
+
+<p>The reason for this policy is that I recognise life as a college student is often stressful and I don’t know all of the situations you each are experiencing—your mental and physical health is a priority. In addition, if the policy was “no late work”, some students may feel more entitled to ask for extensions in an emergency than others—the extension is meant to be an equaliser.</p>
 
 <p>A couple of things to note regarding this extension:</p>
 
 <ul>
-  <li>Do not lose track of when you use this—you only get one extension, non-negotiable.</li>
-  <li>Projects build upon each other—you do not want to use your extension unless absolutely necessary. The class is intentionally paced—if you use this policy as a procrastination tool, your work will pile up. You will have to wait longer to get your grade when you use it.</li>
+  <li>Do not use the late days lightly—save it for when you are managing several colliding deadlines or lose days because of illness.</li>
+  <li>Do not lose track of when you use late days—it’s your responsibility to make sure you don’t go beyond your allotted extensions.</li>
+  <li>The last three projects will build on each other—you do not want to use late days on those unless absolutely necessary. The class is intentionally paced—if you use this policy as a procrastination tool, your work will pile up.</li>
 </ul>
 
 <h4 id="quizzes">Quizzes</h4>
 
-<p>We’ll have weekly quizzes, taken on Fridays at the start of lab.
+<p>We’ll have weekly quizzes, taken on Wednesdays at the start of lab. These are meant to <em>assess</em> your understanding of the concepts we talk about in class. 
 You must be present in class to take the quiz.
 If you are not present in class, your score for that quiz is automatically a 0.</p>
 
-<p>If you have an unavoidable reason why you cannot make it to class on a quiz day, please talk to me about it. If you miss class for some unforeseeable reason or emergency, please talk to me as and when you are able to after a quiz.
+<p>If you have an unavoidable reason why you cannot make it to class on a quiz day, please talk to me about it.
+If you miss class for some unforeseeable reason or emergency, please talk to me as and when you are able to after a quiz.
 I’m usually willing to do make-up quizzes if they are missed for legitimate reasons.</p>
 
 <p>Quizzes will be cumulative since programming knowledge tends to build on itself.
@@ -228,19 +249,19 @@ But they will mostly focus on material from the previous week.</p>
 
 <p><strong>Quizzes will be open-note.</strong> This means you can use your notes or material that I have provided to help you take the quiz. However, you cannot use other resources like Google, StackOverflow, or large language models to help you take the quizzes.</p>
 
-<p>The purpose of each quiz is for me and you to assess your understanding.
-I won’t ask questions that require you to memorise obscure facts, and on the rare occasions I ask you to write code in a quiz, I will be lenient for things like syntax issues.</p>
+<p>I won’t ask questions that require you to memorise obscure facts, and on the rare occasions I ask you to write code in a quiz, I will be lenient for things like syntax issues.</p>
 
 <p><strong>Quizzes will have time limits.</strong> These will be somewhat tight time limits.
 This means you cannot rely purely on the open notes to take the quiz.</p>
 
 <h4 id="final-exam">Final exam</h4>
 
-<p>There will be a written final exam during finals week. The exam will be have questions similar to what you have seen on the quizzes, so studying the quizzes is a good way to study for the final.</p>
+<p>There will be a written final exam during finals week. The exam’s goal is, naturally, <em>assessment</em>.
+The exam will be have questions similar to what you have seen on the quizzes, so studying the quizzes is a good way to study for the final.</p>
 
 <p><strong>The time and place for the final exam are still being decided,</strong> since it will be a common final exam taken at the same time by all sections of CSC 203.</p>
 
-<p>This means that our course will <strong><em>NOT</em></strong> use the Registrar-allocated final exam time for our lecture time. We have requested a common final exam slot and will be allocated one by the Registrar in the coming weeks. <strong>I will update the schedule and make an announcement when the time is finalised.</strong></p>
+<p>This means that our course will <span class="emph"><strong><em>NOT</em></strong></span> use the Registrar-allocated final exam time for our lecture time. We have requested a common final exam slot and will be allocated one by the Registrar in the coming weeks. <strong>I will update the schedule and make an announcement when the time is finalised.</strong></p>
 
 <h3 id="classroom-climate-and-conduct">Classroom climate and conduct</h3>
 
@@ -252,15 +273,18 @@ This means you cannot rely purely on the open notes to take the quiz.</p>
 
 <p>This includes students who copied and students who were copied from—you are responsible for the privacy of your source code.</p>
 
-<p><strong>Use of large-language models like ChatGPT</strong></p>
+<h4 id="use-of-large-language-models-like-chatgpt">Use of large-language models like ChatGPT</h4>
 
 <p>Large-language models (LLMs) and similar tools have the potential to radically change the way in humans work. I understand the value-added in using ChatGPT and its ilk to help learn and study. But these tools should be used carefully, and never in a way that undermines the spirit of expending genuine mental energy to understand material and to complete programming assignments.</p>
 
-<p>I have used it myself for quick routine tasks — however, I need to correct its output frequently, often in subtle but impactful ways. It can be challenging for newcomers to a programming language (such as, I expect, yourselves) to tell when ChatGPT’s output requires modifications or wholesale revisions. As such, I am imposing the following rules with respect to its usage in CSC 203 (I say “ChatGPT” below, but these rules apply to any similar ML-based tools):</p>
+<p>I have used it myself for quick routine tasks — however, I need to correct its output frequently, often in subtle but impactful ways. It can be challenging for newcomers to a programming language—such as, I expect, yourselves—to tell when ChatGPT’s output requires modifications or wholesale revisions.
+One might say that an indirect goal of a class like this is to prepare you with skills that will allow you to be able to use AI code synthesisers effectively in the workplace.</p>
+
+<p>As such, I am imposing the following rules with respect to its usage in CSC 203 (I say “ChatGPT” below, but these rules apply to any similar AI-based tools):</p>
 
 <ul>
   <li>You MAY use it to help study and understand material from class.</li>
-  <li>You MAY use it on lab assignments, provided that you provide the prompt you used in a comment and are honest about your usage of it.</li>
+  <li>You MAY use it on lab assignments, provided that you provide the prompt you used (or a description of your interaction) in a comment and are honest about your usage of it. Talk to me if you are not sure how to write this attribution.</li>
   <li>You MAY NOT use ChatGPT during quizzes or the final exam.</li>
   <li>You MAY NOT submit any code generated by ChatGPT for programming projects.</li>
   <li>Because you may not submit any ChatGPT-generated code in project submissions, it is specifically not acceptable to say that you submitted the same code as another student because it was generated by ChatGPT. Duplicate submissions, even those due to identical outputs of ChatGPT, will be considered academic integrity violations, and subject to the treatments above.</li>
@@ -281,240 +305,6 @@ This means you cannot rely purely on the open notes to take the quiz.</p>
 <p>Here is our intended course schedule. If things change as we go, I will update this page.
 Assignments and quizzes will appear in Canvas with deadlines.
 If deadlines listed here conflict with deadlines in Canvas, <strong>the Canvas deadlines should take precedence</strong>.</p>
-
-<p>Roughly speaking, we’ll have:</p>
-
-<ul>
-  <li>A lab each week</li>
-  <li>A project every two weeks</li>
-  <li>A quiz each Wednesday in lab</li>
-  <li>A final exam during finals week</li>
-  <li>They may also be in-class activities not listed here</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>WEEK</th>
-      <th>DAY</th>
-      <th>TOPIC AND NOTES</th>
-      <th>ASSIGNMENT RELEASED</th>
-      <th>ASSIGNMENT DUE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Wednesday</td>
-      <td><a href="../coursenotes/01-intro-java/">Introduction</a></td>
-      <td>Lab 0 (Intro to Java)</td>
-      <td><a href="https://edstem.org/us/courses/77481/discussion/6437603">Introduce yourself in EdStem</a><br /><small>You’ll need to join the forum first, see the invite link in Canvas.</small><br /><br />Create a GitHub account<br /><br />Download and setup IntelliJ IDEA and Java</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td><a href="../coursenotes/02-arithmetic-and-testing/">Data types, arithmetic, type-casting</a></td>
-      <td>Lab 1 (Loops and lists)</td>
-      <td>Lab 0</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Monday</td>
-      <td><a href="../coursenotes/03-lists-maps-existing-classes/">Classes, objects, lists, maps</a></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday</td>
-      <td><a href="../coursenotes/04-oop-and-procedural/">Procedural and object-oriented programs</a></td>
-      <td>Project 1</td>
-      <td>Quiz taken in lab</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td><a href="../coursenotes/04-oop-and-procedural/#static-data-and-methods">Instance members and static members</a></td>
-      <td>Lab 2 (Classes, objects, and methods)</td>
-      <td>Lab 1</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Monday</td>
-      <td><a href="../coursenotes/05-method-dispatch/">Method dispatch (overloading and overriding)</a></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday</td>
-      <td><a href="../coursenotes/06-class-design-process/">A class design process</a></td>
-      <td> </td>
-      <td>Quiz taken in lab</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td><a href="../coursenotes/07-interfaces/">Interfaces (part 1)</a></td>
-      <td>Lab 3 (Interfaces)</td>
-      <td>Lab 2</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Monday</td>
-      <td><a href="../coursenotes/08-interfaces-part-2/">Interfaces (part 2)</a></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday</td>
-      <td><a href="../coursenotes/09-interfaces-part-3/">Interfaces (part 3)</a></td>
-      <td>Project 2</td>
-      <td>Project 1<br />Quiz 3 taken in lab</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td><a href="../coursenotes/10-abstract-classes/">Abstract classes</a></td>
-      <td>Lab 4 (Inheritance, equality, hashCode)</td>
-      <td>Lab 3</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Monday</td>
-      <td>Project 2 discussion</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday</td>
-      <td><a href="../coursenotes/11-inheritance-equality/">Inheritance and equality</a></td>
-      <td> </td>
-      <td>Quiz taken in lab</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td><a href="../coursenotes/11-inheritance-equality/#equals"><code class="language-plaintext highlighter-rouge">equals</code></a></td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Monday</td>
-      <td><a href="../coursenotes/12-hashcode/"><code class="language-plaintext highlighter-rouge">hashcode</code></a></td>
-      <td> </td>
-      <td>Lab 4</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday</td>
-      <td><a href="../coursenotes/13-comparable-comparator/">Comparables and comparators</a></td>
-      <td> </td>
-      <td>Quiz taken in lab</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td><a href="../coursenotes/14-comparators/">Comparators, lambdas, and method references</a></td>
-      <td>Lab 5 (Comparators, lambdas, and streams)</td>
-      <td>Project 2</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Monday</td>
-      <td><a href="../coursenotes/15-lambdas/">Lambdas and functional interfaces</a></td>
-      <td>Project 3 released</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday</td>
-      <td><a href="../coursenotes/16-streams/">Streams</a></td>
-      <td> </td>
-      <td>Quiz taken in lab</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td><a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/BinaryTree.html">Binary trees (OpenDSA Chapter ⇗)</a> and <a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/GraphTraversal.html">Depth-first search and breadth-first search (OpenDSA Chapter ⇗)</a></td>
-      <td>Lab 6 (Depth-first search)</td>
-      <td>Lab 5</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>Monday</td>
-      <td>A-star search</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday</td>
-      <td>More on A-star search</td>
-      <td> </td>
-      <td>Quiz taken in lab</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td>Testing A-star search</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>Monday</td>
-      <td>Project 4 discussion<br />Final exam review</td>
-      <td>Project 4 released</td>
-      <td>Project 3</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday</td>
-      <td>Exceptions and exception handling</td>
-      <td>Lab 7 (Exception handling)</td>
-      <td>Lab 6</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td>Exceptions and exception handling</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td><b style="color: var(--emph)">Tuesday</b></td>
-      <td>Generics</td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday</td>
-      <td>Final exam review</td>
-      <td> </td>
-      <td>Lab 7<br />Quiz taken in lab</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday</td>
-      <td>Schedule wiggle room</td>
-      <td> </td>
-      <td>Project 4</td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td><strong>FINALS WEEK</strong></td>
-      <td><strong>COMMON FINAL EXAM</strong></td>
-      <td><strong>DATE TO BE ANNOUNCED</strong></td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
 
 <table>
   <thead>

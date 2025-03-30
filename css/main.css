@@ -3,7 +3,7 @@
 @import url("/css/github.css") screen and (prefers-color-scheme: light);
 :root {
   --bg-color: white;
-  --highlight-color: #fdff80;
+  --highlight-color: #fffb00;
   --font-color: #000000;
   --inverted-font-color: var(--font-color);
   --link-color: #425469;
@@ -62,8 +62,9 @@ body {
   min-width: 65%;
   margin: auto;
   color: var(--font-color);
-  font-family: "Mulish", sans-serif;
+  font-family: "Avenir", sans-serif;
   -webkit-font-smoothing: antialiased;
+  font-size: 14pt;
 }
 
 strong {
@@ -154,7 +155,7 @@ main {
 
 article {
   max-width: 60em;
-  font-size: 1em;
+  font-size: 12pt;
   line-height: 1.5em;
   font-weight: 200;
   font-family: "Merriweather", serif;
