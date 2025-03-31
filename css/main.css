@@ -9,6 +9,7 @@
   --link-color: #425469;
   --caption-color: #727375;
   --emph: #E61726;
+  --code-color: var(--emph);
   --nav-color: var(--emph);
   --heading-font-color: #425469;
   --header: #000000;
@@ -42,6 +43,7 @@
     --heading-font-color: #c6f1f3;
     --caption-color: #c9cacc;
     --emph: rgb(246, 168, 0);
+    --code-color: var(--font-color);
     --nav-color: #8bcccf;
     --link-color: #eafafb;
     --header: #EEEEEE;
@@ -54,17 +56,15 @@
     --readings-background-color: #093102;
     --readings-color: #03f6e6;
     --callout-background-color: #679da031;
-    --table-alternate-bg-color: --bg-color;
   }
 }
 body {
   background-color: var(--bg-color);
   min-width: 65%;
-  margin: auto;
   color: var(--font-color);
   font-family: "Avenir", sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 14pt;
+  font-size: 13pt;
 }
 
 strong {
@@ -97,8 +97,8 @@ a:visited {
   text-decoration: underline;
   font-weight: 500;
 }
-
-a:hover {
+a:not(:has(img)):hover,
+a:visited:not(:has(img)):hover {
   color: var(--inverted-font-color);
   background-color: var(--highlight-color);
 }
@@ -147,13 +147,14 @@ header .info {
 }
 
 main {
-  padding: 0 15px;
+  padding: 15px;
   width: 80%;
   max-width: 60em;
-  margin: 0 auto;
+  margin: auto;
 }
 
 article {
+  margin: auto;
   max-width: 60em;
   font-size: 12pt;
   line-height: 1.5em;
@@ -326,6 +327,7 @@ footer .address {
   padding-bottom: 10px;
 }
 .artifact-list .authors {
+  font-size: 0.85em;
   color: var(--emph);
 }
 .artifact-list details > summary {
@@ -359,14 +361,14 @@ details > summary {
 
 code {
   font-family: "Roboto Mono", monospace;
-  color: var(--emph);
+  color: var(--code-color);
   font-weight: 450;
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
 }
-pre > code {
-  color: var(--code-color);
+a:hover > code {
+  color: var(--inverted-font-color);
 }
 
 pre:not(.mermaid) {
