@@ -339,6 +339,9 @@ footer .address {
   color: var(--font-color);
   list-style-type: none;
 }
+.artifact-list details p.abstract {
+  font-size: 0.9em;
+}
 
 details > summary {
   cursor: pointer;
