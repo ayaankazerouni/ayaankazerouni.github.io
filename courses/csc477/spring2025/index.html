@@ -31,24 +31,26 @@
 <h2 class="no_toc" id="contents">Contents</h2>
 
 <ul id="markdown-toc">
-  <li><a href="#syllabus" id="markdown-toc-syllabus">Syllabus</a>    <ul>
-      <li><a href="#info-and-important-links" id="markdown-toc-info-and-important-links">Info and important links</a></li>
-      <li><a href="#learning-objectives" id="markdown-toc-learning-objectives">Learning objectives</a></li>
-      <li><a href="#assignments" id="markdown-toc-assignments">Assignments</a></li>
+  <li><a href="#info-and-important-links" id="markdown-toc-info-and-important-links">Info and important links</a></li>
+  <li><a href="#learning-objectives" id="markdown-toc-learning-objectives">Learning objectives</a></li>
+  <li><a href="#assignments" id="markdown-toc-assignments">Assignments</a></li>
+  <li><a href="#resources" id="markdown-toc-resources">Resources</a></li>
+  <li><a href="#classroom-conduct-and-climate" id="markdown-toc-classroom-conduct-and-climate">Classroom conduct and climate</a>    <ul>
+      <li><a href="#academic-honesty" id="markdown-toc-academic-honesty">Academic honesty</a></li>
+      <li><a href="#using-ai-in-this-course" id="markdown-toc-using-ai-in-this-course">Using AI in this course</a></li>
+      <li><a href="#classroom-climate" id="markdown-toc-classroom-climate">Classroom climate</a></li>
     </ul>
   </li>
   <li><a href="#course-schedule" id="markdown-toc-course-schedule">Course schedule</a></li>
   <li><a href="#acknowledgements" id="markdown-toc-acknowledgements">Acknowledgements</a></li>
 </ul>
 
-<h2 id="syllabus">Syllabus</h2>
-
 <p><strong>What we’ll learn.</strong> Data visualization is one means of helping humans make sense of vast quantities of data. Well-designed visualizations can replace slower cognitive calculations with much faster perceptual inferences, improving comprehension, memory, and decision-making. Conversely, poorly-designed visualizations can (intentionally or unintentionally) make decision-making more difficult or inaccurate.</p>
 
 <p>In this class, we’ll learn how to design <em>expressive</em> and <em>effective</em> visualizations. We’ll study techniques for creating visualizations based on principles from graphic design, perceptual psychology, and cognitive science.
 Students will learn how to design and build interactive visualizations for the Web using <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> and <a href="https://d3js.org">D3</a> (data-driven documents).</p>
 
-<h3 id="info-and-important-links">Info and important links</h3>
+<h2 id="info-and-important-links">Info and important links</h2>
 
 <ul>
   <li>Instructor: Ayaan M. Kazerouni</li>
@@ -59,7 +61,7 @@ Students will learn how to design and build interactive visualizations for the W
   <li><a href="#course-schedule">Course schedule</a> (Check this frequently!)</li>
 </ul>
 
-<h3 id="learning-objectives">Learning objectives</h3>
+<h2 id="learning-objectives">Learning objectives</h2>
 
 <ul>
   <li><strong>Visualization preparation and design.</strong> Data collection, wrangling, and choice of abstraction to be presented in a visualization.</li>
@@ -70,7 +72,7 @@ Students will learn how to design and build interactive visualizations for the W
   <li><strong>(Non-)Deceptive visualization.</strong> We will learn how people and organizations lie with visualization, and how not to do it ourselves.</li>
 </ul>
 
-<h3 id="assignments">Assignments</h3>
+<h2 id="assignments">Assignments</h2>
 
 <p>The course will involve roughly 1.5-weekly assignments that exercise what we talk about in class, and a 3-part final project, worked on in teams.
 The <strong>Class participation</strong> portion of the grade will be based on completion of in-class activities and discussions, and attendance on important class days (such as prototype walkthroughs).</p>
@@ -79,12 +81,16 @@ The <strong>Class participation</strong> portion of the grade will be based on c
 
 <ul>
   <li>Class participation (10%)</li>
-  <li>Assignment 1: Visualization Curation and Analysis (5%)</li>
-  <li>Assignment 2: Data wrangling with JavaScript (5%)</li>
-  <li>Assignment 3: Data visualization with Vega-Lite (15%)</li>
-  <li>Assignment 4: Visualization evaluation + User study (10%)</li>
-  <li>Assignment 5: Interactive visualization (15%)</li>
-  <li>Assignment 6: Deceptive visualization (10%)</li>
+  <li>Assignments (60%), made up of:
+    <ul>
+      <li>Assignment 1: Visualization Curation and Analysis (5%)</li>
+      <li>Assignment 2: Data wrangling with JavaScript (5%)</li>
+      <li>Assignment 3: Data visualization with Vega-Lite (15%)</li>
+      <li>Assignment 4: Visualization evaluation + User study (10%)</li>
+      <li>Assignment 5: Interactive visualization (15%)</li>
+      <li>Assignment 6: Deceptive visualization (10%)</li>
+    </ul>
+  </li>
   <li>Project (30%), in 3 parts:
     <ul>
       <li>Part 1: Initial proposal (5%)</li>
@@ -94,7 +100,7 @@ The <strong>Class participation</strong> portion of the grade will be based on c
   </li>
 </ul>
 
-<p>At the end of the quarter, I will round UP your final numerical score and turn that into a letter grade using the following grading scale:</p>
+<p>At the end of the quarter, I will round UP your final numerical score<sup id="fnref:participation" role="doc-noteref"><a href="#fn:participation" class="footnote" rel="footnote">1</a></sup>and turn that into a letter grade using the following grading scale:</p>
 
 <ul style="font-size: 0.9em; column-count: 3; width: 50%; min-width: 300px;">
 <li>A &gt;= 93</li>
@@ -109,6 +115,70 @@ The <strong>Class participation</strong> portion of the grade will be based on c
 <li>D &gt;= 63</li>
 <li>D– &gt;= 60</li>
 <li>F &lt; 60</li>
+</ul>
+
+<h2 id="resources">Resources</h2>
+
+<p>There is no official textbook for the course, but we will frequently refer to material from the following sources, generously shared publicly by the authors listed below.</p>
+
+<ul>
+  <li><a href="https://observablehq.com/@uwdata/data-visualization-curriculum?collection=@uwdata/visualization-curriculum">Visualization Curriculum</a>, a set of notebooks from Jeffrey Heer, Dominik Moritz, Jake VanderPlas, and Brock Craft.</li>
+  <li><a href="https://www.cs.ubc.ca/~tmm/vadbook/"><em>Visualization Analysis and Design</em></a>, a graduate-level text book by Tamara Munzner. The linked page points to per-chapter summaries on YouTube.</li>
+</ul>
+
+<p>Additionally, you will frequently refer to the following online documentation:</p>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">JavaScript API reference (Mozilla Developer Network)</a></li>
+  <li><a href="https://observablehq.com/documentation/notebooks/">Observable Notebooks documentation</a></li>
+  <li><a href="https://idl.uw.edu/arquero/api/">Arquero API reference</a> and <a href="https://observablehq.com/collection/@uwdata/arquero">Notebook collection</a></li>
+  <li><a href="https://vega.github.io/vega-lite/">Vega-Lite documentation</a> and the <a href="https://vega.github.io/vega-lite-api/">Vega-Lite JS API</a></li>
+</ul>
+
+<p>Finally, each class day links to readings/resources for that day.</p>
+
+<h2 id="classroom-conduct-and-climate">Classroom conduct and climate</h2>
+
+<h3 id="academic-honesty">Academic honesty</h3>
+
+<p><strong>Work you turn in must be your own.</strong> Although I encourage you to have lively discussions with one another, all work you hand in must be your own work, unless otherwise specified.
+Programs will be compared using software that can reliably detect similarities in source code.
+Evidence that your program or parts of your program are plagiarized from another student or an unapproved source will be taken seriously.
+At minimum, you will receive a 0 for the assignment, and potentially also an F in the class and report filed with the Office of Student Rights and Responsibilities.</p>
+
+<p>You have a number of resources at your disposal to help you succeed in this course (your peers, myself, online sources), and I am usually willing to work with you on flexible deadlines.
+If you feel you <em>need</em> to plagiarize in order to succeed, know that you almost certainly have other options. Just come talk to me!</p>
+
+<h3 id="using-ai-in-this-course">Using AI in this course<sup id="fnref:peck" role="doc-noteref"><a href="#fn:peck" class="footnote" rel="footnote">2</a></sup></h3>
+
+<p><strong>✅ You MAY use AI (ChatGPT, etc.) to help you program or implement visualizations.</strong> Prompts like: <em>Why isn’t this code showing the data? How do I increase the size of points in this plot? How do I extend the x-axis using Vega-Lite? What does this error mean? Show me an example of…</em> Those are all okay!  But if you choose to use AI, there are two things you must know:</p>
+<ol>
+  <li>You must state that you used it in a comment in your code (I used ChatGPT to help with…)</li>
+  <li>You are responsible for any mistakes that it makes. It <em>will</em> make mistakes or mislead you on occasion. You can’t blame the AI if you get something wrong.</li>
+</ol>
+
+<p><strong>🛑 You MAY NOT use AI to help you make design decisions, make critiques, or generate writing about visualizations.</strong> <em>Why?</em> There is a lot of advice out there that is just flat out wrong with respect to years of visualization research.
+There is also a lot of advice that ignores the context of diverse communities who need to understand data (disability, access to technology, education, etc.).
+AI is likely going to amplify some of that bad advice, and we shouldn’t be complicit in it.
+We need to be careful and critical about our designs.
+So using ChatGPT (or similar programs) here is not permitted.</p>
+
+<p><strong>✅ You MAY use AI to help you <em>polish</em> writing.</strong>
+Some AI tools like Grammarly can help students find grammatical or clarity errors in their writing.
+That is perfectly fine.
+The key difference is <em>creation</em> (not okay) vs. <em>refinement</em> (okay).
+Again, you are responsible for any mistakes or even more serious issues of plagiarism that are possible when using AI.</p>
+
+<h3 id="classroom-climate">Classroom climate</h3>
+
+<p>All members of this class are expected to contribute to a respectful, welcoming, and inclusive environment for everyone.
+I expect us to strive to build a community in which:</p>
+
+<ul>
+  <li>We are not code snobs. We do not assume knowledge or imply there are things that somebody should know.</li>
+  <li>After our own work is complete, we support one another’s learning by sharing our expertise generously if invited to do so.</li>
+  <li>We consistently make the effort to actively recognise and validate multiple types of contributions to a positive classroom environment.</li>
+  <li>We strive to contribute meaningfully to group work.</li>
 </ul>
 
 <h2 id="course-schedule">Course schedule</h2>
@@ -340,6 +410,16 @@ If deadlines in Canvas conflict with those listed here, <strong>the Canvas deadl
 <p>This course’s materials are adapted from those shared publicly by <a href="https://homes.cs.washington.edu/~jheer/">Jeffrey Heer</a>, <a href="https://jonfroehlich.github.io/">Jon Froehlich</a>, <a href="https://www.cs.ubc.ca/~tmm/">Tamara Munzner</a>, and <a href="https://evanpeck.github.io/">Evan Peck</a>.</p>
 
 <hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:participation" role="doc-endnote">
+      <p>With the exception of if you are right on a grade border but have an extremely low participation score. <a href="#fnref:participation" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:peck" role="doc-endnote">
+      <p>Adapted from Evan Peck’s AI policy. <a href="#fnref:peck" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
     
   </main>
