@@ -118,11 +118,12 @@ Hence the name.</p>
 
 <p>
 <div style="width: 100%; margin: auto;">
-  <a href="CsCohort.html" target="_blank">
-    <small>
+  <small>
+    <a href="CsCohort.html" target="_blank">
       View in new tab
-    </small>
-  </a>
+    </a>
+    &nbsp;and then click <b>Walkthrough</b>.
+  </small>
   <br />
   <object data="CsCohort.html" width="100%" height="900px"></object>
 </div>
@@ -195,7 +196,7 @@ Arrays can be limiting in that regard.</p>
 It is, essentially, a resizable array implementation.
 This means you can dynamically grow and shrink the size of the list by adding items to it or removing items from it.</p>
 
-<p>See the <code class="language-plaintext highlighter-rouge">CompareCohorts</code> class above for examples about how to create and use <code class="language-plaintext highlighter-rouge">ArrayLists</code>.</p>
+<p>See the <code class="language-plaintext highlighter-rouge">CompareCohorts</code> class below for examples about how to create and use <code class="language-plaintext highlighter-rouge">ArrayLists</code>.</p>
 
 <p><em>Why would we want to use an <code class="language-plaintext highlighter-rouge">ArrayList</code> instead of a regular old array?</em> Easy. Its size can be dynamically changed, which makes it much more flexible.</p>
 
@@ -441,7 +442,7 @@ Each item points to the next item, forming a chain of items, i.e., the linked li
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">intList</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
 </code></pre></div></div>
 
-<p>What’s up the the <code class="language-plaintext highlighter-rouge">Integer</code> in the code above? Wasn’t the primitive integer type in Java called <code class="language-plaintext highlighter-rouge">int</code>?</p>
+<p>What’s up with the <code class="language-plaintext highlighter-rouge">Integer</code> in the code above? Wasn’t the primitive integer type in Java called <code class="language-plaintext highlighter-rouge">int</code>?</p>
 
 <p>In Java, all the primitive types have “boxed” versions of those types.
 I.e., versions in which they masquerade as reference types.
@@ -495,24 +496,25 @@ This is useful when you need to quickly access individual records in a very larg
 
 <p>You add records into a map using the <code class="language-plaintext highlighter-rouge">put</code> method.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">123456789</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Joe"</span><span class="o">,</span> <span class="s">"Bro"</span><span class="o">));</span>
-<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">987654321</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Pooja"</span><span class="o">,</span> <span class="s">"Ahuja"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">123</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Joe"</span><span class="o">,</span> <span class="s">"Bro"</span><span class="o">));</span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">987</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Pooja"</span><span class="o">,</span> <span class="s">"Ahuja"</span><span class="o">));</span>
 </code></pre></div></div>
 
 <p>Assuming you have the <em>key</em>, you can get the <em>value</em> from map using the <code class="language-plaintext highlighter-rouge">get</code> method. If the key does not exist in the map, you will get <code class="language-plaintext highlighter-rouge">null</code> in return.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapOfPeople</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">123456789</span><span class="o">);</span> <span class="c1">// will return Joe Bro</span>
-<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">987654321</span><span class="o">);</span> <span class="c1">// will return Pooja Ahuja </span>
-<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">192837465</span><span class="o">);</span> <span class="c1">// will return null, </span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapOfPeople</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">123</span><span class="o">);</span> <span class="c1">// will return Joe Bro</span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">987</span><span class="o">);</span> <span class="c1">// will return Pooja Ahuja </span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">192</span><span class="o">);</span> <span class="c1">// will return null, </span>
 </code></pre></div></div>
 
 <p>If you try to re-enter the same key, the map will <em>replace</em> whatever was there previously with the new item.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">123456789</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Joe"</span><span class="o">,</span> <span class="s">"Bro"</span><span class="o">));</span>
-<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">987654321</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Pooja"</span><span class="o">,</span> <span class="s">"Ahuja"</span><span class="o">));</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">123</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Joe"</span><span class="o">,</span> <span class="s">"Bro"</span><span class="o">));</span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">987</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Pooja"</span><span class="o">,</span> <span class="s">"Ahuja"</span><span class="o">));</span>
 
 <span class="c1">// Adding using a duplicate key</span>
-<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">123456789</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Cody"</span><span class="o">,</span> <span class="s">"Coderson"</span><span class="o">));</span> <span class="c1">// Joe Bro is now replaced by Cody Coderson</span>
+<span class="c1">// Joe Bro is now replaced by Cody Coderson</span>
+<span class="n">mapOfPeople</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">123</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"Cody"</span><span class="o">,</span> <span class="s">"Coderson"</span><span class="o">));</span>
 </code></pre></div></div>
 
 <p>The <code class="language-plaintext highlighter-rouge">HashMap</code> provides the following functionality:</p>
@@ -528,7 +530,20 @@ This is useful when you need to quickly access individual records in a very larg
 
 <p>All of the concepts in this section are demonstrated in the <code class="language-plaintext highlighter-rouge">CompareCohorts</code> class below:</p>
 
-<object data="CompareCohorts.html" width="100%" height="100%"></object>
+<p>
+<div style="width: 100%; margin: auto;">
+  <small>
+    <a href="./CompareCohorts.html" target="_blank">
+      View in new tab
+    </a>
+    &nbsp;and then click <b>Walkthrough</b>.
+  </small>
+  <br />
+  <object data="./CompareCohorts.html" width="100%" height="1000px"></object>
+</div>
+</p>
+
+<hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:generics" role="doc-endnote">
