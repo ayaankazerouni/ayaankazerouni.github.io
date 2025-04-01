@@ -69,6 +69,9 @@
 <loc>https://ayaankazerouni.org/how-long</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/11-inheritance-equality/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/04-oop-and-procedural/</loc>
 </url>
 <url>
@@ -93,9 +96,6 @@
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/10-abstract-classes/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/16-streams/</loc>
-</url>
-<url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/07-interfaces/</loc>
 </url>
 <url>
@@ -112,6 +112,9 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc477/spring2025/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc477/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc513/winter2023/</loc>
@@ -139,6 +142,9 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/17-threads-concurrency/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc305/coursenotes/05-visitor-pattern-matching/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/18-thread-synchronisation/</loc>
@@ -174,7 +180,7 @@
 <loc>https://ayaankazerouni.org/courses/csc305/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc305/coursenotes/05-visitor-pattern-matching/</loc>
+<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/16-streams/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/winter2025/</loc>
@@ -187,6 +193,9 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/coursenotes/metacognitive-scaffolding/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc313/coursenotes/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/</loc>
@@ -205,9 +214,6 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc203/coursenotes/03-lists-maps-existing-classes/</loc>
-</url>
-<url>
-<loc>https://ayaankazerouni.org/courses/csc203/coursenotes/11-inheritance-equality/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc590/winter2023/</loc>
