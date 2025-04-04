@@ -416,6 +416,7 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
 
 .course {
   padding-top: 5px;
+  max-width: 80ch;
 }
 
 .released {

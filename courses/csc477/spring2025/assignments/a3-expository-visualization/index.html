@@ -1,0 +1,251 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+
+	<title>CSC 477 Expository visualization - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc477/spring2025/assignments/a3-expository-visualization/">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+
+  <main class="course">
+    
+    
+    
+    
+    
+    <p>
+      
+      <a href="/courses/csc477/spring2025">&larr; CSC 477 Scientific and Information Visualization</a>
+      
+    </p>
+    
+      <div class="content">
+     
+      <h1>CSC 477 Expository visualization</h1>
+      <p>An expository article requires the author to investigate an idea, evaluate evidence, expound on the idea, and set forth an argument concerning that idea in a clear and concise manner.</p>
+
+<p>In this assignment, you will</p>
+<ol>
+  <li>Design (with pen and paper) an expository visualization to clearly communicate an idea based on a provided data set,</li>
+  <li>Implement the visualization in an Observable notebook using Vega-Lite, and</li>
+  <li>Provide a rigorous rationale for your design choices. You should, in theory, be ready to explain the contribution of <em>every pixel</em> in the display towards your expository goals.</li>
+</ol>
+
+<ul id="markdown-toc">
+  <li><a href="#deliverable" id="markdown-toc-deliverable">Deliverable</a></li>
+  <li><a href="#dataset" id="markdown-toc-dataset">Dataset</a></li>
+  <li><a href="#assignment" id="markdown-toc-assignment">Assignment</a>    <ul>
+      <li><a href="#part-1-sketching" id="markdown-toc-part-1-sketching">Part 1: Sketching</a></li>
+      <li><a href="#part-2-implementation" id="markdown-toc-part-2-implementation">Part 2: Implementation</a></li>
+      <li><a href="#part-3-write-up" id="markdown-toc-part-3-write-up">Part 3: Write-up</a></li>
+    </ul>
+  </li>
+  <li><a href="#grading" id="markdown-toc-grading">Grading</a></li>
+  <li><a href="#acknowledgement" id="markdown-toc-acknowledgement">Acknowledgement</a></li>
+</ul>
+
+<h2 id="deliverable">Deliverable</h2>
+
+<p>Your Deliverable in Canvas will be a URL to an Observable notebook.
+The notebook will contain your pen-and-paper sketch (uploaded as an image), your Vega-Lite implementation, and your write-up describing your design rationale and the question your visualization answers.</p>
+
+<p>Whether you use the <a href="https://observablehq.com/@jonfroehlich/vega-lite-json-vs-javascript-api">JSON syntax or the JS API</a> for Vega-Lite is up to you.</p>
+
+<p>To get started, create a new Observable Notebook and give it a useful title (don’t overthink it to start with, since you will likely change it once your ideas emerge).</p>
+
+<p>When you are finished, click the <code class="language-plaintext highlighter-rouge">🌐 Share...</code> button on the top right, copy the URL, and submit it in Canvas.
+Please be sure to make your notebook <strong>publicly viewable</strong> and <strong>unlisted</strong>.</p>
+
+<p><strong>Suggested imports</strong></p>
+
+<p>It’s recommended that you add a cell with the following code to import Vega-Lite.<sup id="fnref:vl" role="doc-noteref"><a href="#fn:vl" class="footnote" rel="footnote">1</a></sup></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">vl</span><span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@vega/vega-lite-api-v5</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p>You may also want to import Arquero for nice table viewing:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">aq</span><span class="p">,</span> <span class="nx">op</span><span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@uwdata/arquero</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<h2 id="dataset">Dataset</h2>
+
+<p>Computing is considered a fundamental skill for civic engagement, self-expression, and employment opportunity.
+An extremely strong predictor of individuals’ impressions of computing and likelihood to study computing in college is whether or not they took computing courses in high school or middle school.</p>
+
+<p>In this assignment, you are given a dataset about the demographics of K-12 CS enrolment in the state of California, kindly provided to me by the non-profit organization <a href="https://csforca.org/">CSforCA.org</a>, which tracks K-12 access to CS coursework.
+Household income data was obtained from the <a href="https://data.ca.gov">data.ca.gov</a> website.</p>
+
+<p>Here are the first five records in the dataset, showing the number of students from each demographic group that were enrolled in AP CS courses, other (Non-AP) CS courses, and the total high school enrolment in that county.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">county</code></th>
+      <th><code class="language-plaintext highlighter-rouge">race</code></th>
+      <th><code class="language-plaintext highlighter-rouge">sex</code></th>
+      <th><code class="language-plaintext highlighter-rouge">medianHouseholdIncome</code></th>
+      <th><code class="language-plaintext highlighter-rouge">AP CS</code></th>
+      <th><code class="language-plaintext highlighter-rouge">Non-AP CS</code></th>
+      <th><code class="language-plaintext highlighter-rouge">Overall Enrollment</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alameda</td>
+      <td>African American</td>
+      <td>F</td>
+      <td>112017</td>
+      <td>19</td>
+      <td>292</td>
+      <td>3398</td>
+    </tr>
+    <tr>
+      <td>Alameda</td>
+      <td>African American</td>
+      <td>M</td>
+      <td>112017</td>
+      <td>21</td>
+      <td>407</td>
+      <td>3584</td>
+    </tr>
+    <tr>
+      <td>Alameda</td>
+      <td>Asian</td>
+      <td>F</td>
+      <td>112017</td>
+      <td>115</td>
+      <td>768</td>
+      <td>8367</td>
+    </tr>
+    <tr>
+      <td>Alameda</td>
+      <td>Asian</td>
+      <td>M</td>
+      <td>112017</td>
+      <td>202</td>
+      <td>1400</td>
+      <td>8687</td>
+    </tr>
+    <tr>
+      <td>Alameda</td>
+      <td>Filipino</td>
+      <td>F</td>
+      <td>112017</td>
+      <td>17</td>
+      <td>69</td>
+      <td>1904</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Add a cell with the following code to your notebook to import this data.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">data</span> <span class="o">=</span> <span class="nx">aq</span><span class="p">.</span><span class="nf">loadJSON</span><span class="p">(</span><span class="dl">'</span><span class="s1">path/TODO/</span><span class="dl">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Also, add a reference to the <a href="https://csforca.org/wp-content/uploads/2021/09/KC21007_CS-for-CA_9-28-21-1-1.pdf">CS Access Report</a> to the bottom of your notebook, in a section titled <strong>References</strong>.
+You may also want to skim the report to get a better sense of the issues at play.</p>
+
+<h2 id="assignment">Assignment</h2>
+
+<p>Your task is to design a static (i.e., single image) visualization that you believe effectively communicates an idea about the data, and provide a short write-up (no more than 4 paragraphs) describing your design.</p>
+
+<h3 id="part-1-sketching">Part 1: Sketching</h3>
+
+<p>Start by choosing a question you’d like your visualization to answer.
+Then, design your visualization to answer that question.
+Begin this process by sketching (with pen and paper!) your visualizations of the dataset.</p>
+
+<p>Sketching allows us to explore initial ideas cheaply and quickly.
+And, as we sketch, we generate new ideas. In this way, sketching is generative—sketches “talk back” us and sketching engenders new or more concrete ways of thinking as we manifest ideas on the page.
+Sketches are also easy to share and solicit feedback (from each other, from me, from anyone) without heavy investment into any one idea.
+And research has shown that exploring several ideas in parallel can lead to better designs.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">3</a></sup></p>
+
+<p>Your sketches do not need to include every datapoint, or even precisely represent the data.
+The goal at this point is to think about data representation, communicating through visualization and sketching different visualization designs.
+I encourage you to use sharpies, colour pencils, or pens to control line thicknesses and colours.</p>
+
+<h3 id="part-2-implementation">Part 2: Implementation</h3>
+
+<p>Once you’ve arrived at an idea or set of ideas, implement them using Vega-Lite.
+You will likely iterate further on your designs in this stage. <em>That’s fine</em>.
+There’s no requirement that your final design look exactly like your sketch.</p>
+
+<p>While you must use the data set given, you are free to transform the data as you see fit.
+Such transforms may include (but are not limited to) tidying, log transformation, computing percentages or averages, grouping elements into new categories, or removing unnecessary variables or records.
+You are also free to incorporate additional external data.
+If you do this, you must include the source of the external data as a Reference entry at the bottom of your notebook, along with a URL.</p>
+
+<p>Your graphic should be interpretable without recourse to your write-up (see below).
+Don’t forget to include title, axis labels, or legends as needed!</p>
+
+<h3 id="part-3-write-up">Part 3: Write-up</h3>
+
+<p>As different visualizations can emphasise different aspects of a data set, your write-up should document what aspects of the data you are attempting to most effectively communicate.
+In short, what story are you trying to tell?
+Just as important, also note which aspects of the data might be obscured due to your visualization design.</p>
+
+<p>Your write-up should provide a rigorous rationale for your design decisions.
+Document the visual encodings you used and why they are appropriate for the data and your specific question.
+These decisions include the choice of visualization type, size, colour, scale, and other visual elements, as well as the use of sorting or other data transformations.
+How do these decisions facilitate effective communication?</p>
+
+<p>Finally, although this assignment is organised into three parts, that is only a guideline.
+You are free to organize your notebook however you wish—whatever best communicates your exposition.</p>
+
+<h2 id="grading">Grading</h2>
+
+<p>The assignment score is out of a maximum of 10 points. I will determine scores by judging both the <strong>soundness of your design</strong> and the <strong>quality of the write-up.</strong> I will also look for consideration of audience, message, and intended task.
+Here are examples of aspects that may lead to point deductions:</p>
+
+<ul>
+  <li>Use of misleading, unnecessary, or unmotivated graphic elements.</li>
+  <li>Missing chart title, axis labels, or data transformation description.</li>
+  <li>Ineffective encodings for your stated goal (e.g., distracting colours, improper data transformation).</li>
+  <li>Missing or incomplete design rationale in write-up.</li>
+  <li>Missing references for external data.</li>
+  <li>Excessive grammar mistakes/lack of proofreading in the write-up.</li>
+</ul>
+
+<p>Examples of going above and beyond the assignment requirements include: entries with outstanding visual design, meaningful incorporation of external data to reveal important trends, entries that demonstrate exceptional creativity, or effective annotations and other narrative devices.</p>
+
+<h2 id="acknowledgement">Acknowledgement</h2>
+
+<p>This assignment is adapted from similar assignments from <a href="https://courses.cs.washington.edu/courses/cse442/24au/a1.html">Jeffrey Heer</a> and <a href="https://docs.google.com/document/d/1k4WHViGAGRN02-kNpxR2J2aTWZg1LhDf6MgbgYMqM88/edit?tab=t.0#heading=h.5q6g0flf43al">Jon Froehlich</a>.</p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:vl" role="doc-endnote">
+      <p>Although <code class="language-plaintext highlighter-rouge">vl</code> is available in all Observable Notebooks by default, the version imported like below comes with some goodies like nicer tooltips and scrolling enabled for very wide figures (assuming the graphic’s width is justified). <a href="#fnref:vl" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:1" role="doc-endnote">
+      <p>Parallel prototyping leads to better design results, more divergence, and increased self-efficacy. <a href="https://doi.org/10.1145/1879831.1879836">Dow et al.</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Getting the right design and the design right. <a href="https://dl.acm.org/doi/10.1145/1124772.1124960">Tohidi et al.</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      </div>
+    
+    
+  </main>
+
+</body>
+</html>
