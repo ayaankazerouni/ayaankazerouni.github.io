@@ -1,0 +1,324 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+
+	<title>Incorporating Socially Responsible Computing in Early CS Courses is Pretty Not Bad - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/posts/src-in-early-cs-courses/">
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5STZ7GN6Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J5STZ7GN6Z');
+</script>
+
+<body>
+  <aside>
+    <nav>
+        <ul>
+        
+            
+            <li><a href="/#" class="nav-link">Home</a></li>
+        
+            
+            <li><a href="/teaching" class="nav-link">Teaching</a></li>
+        
+            
+            <li><a href="/projects" class="nav-link">Projects</a></li>
+        
+            
+            <li><a href="/publications" class="nav-link">Publications</a></li>
+        
+            
+            <li><a href="/posts" class="nav-link">Posts</a></li>
+        
+        </ul>
+    </nav>
+</aside>
+
+
+  <main>
+  <h1>Incorporating Socially Responsible Computing in Early CS Courses is Pretty Not Bad</h1>
+  <article>
+    <div>
+      <p> &#9474; <time>981 words</time></p>
+      
+      <div class="banner">
+        This is an unlisted post, which means it's in a draft state.
+      </div>
+      
+    </div>
+      <p>My colleagues and I (from Cal Poly and five other CSU campuses) worked to incorporate <em>socially responsible computing</em> (SRC) into our early CS courses.
+We’ve been carrying out this work as part of a sustained effort to improve the experiences of students who are historically under-represented in computing majors.
+Our explicit goal has been to increase retention rates of students identifying as Hispanic/Latino—currently, students identifying as Hispanic/Latino tend leave the CS major at our institutions at far higher rates than other students.</p>
+
+<p>This multi-year project was <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2216687&amp;HistoricalAwards=false">funded by the National Science Foundation in 2022</a>.
+In this post, I summarize the work done by our team over the last two-and-a-half years.</p>
+
+<h2 class="no_toc" id="contents">Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#summary" id="markdown-toc-summary">Summary</a></li>
+  <li><a href="#what-did-we-do" id="markdown-toc-what-did-we-do">What did we do?</a></li>
+  <li><a href="#did-it-work" id="markdown-toc-did-it-work">Did it work?</a></li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+
+<ul>
+  <li>Across our alliance of six campuses, we incorporated SRC in our intro CS courses. For example, at Cal Poly SLO, this took the form of a new data-centric introductory CS course focused on using computation to examine social trends and phenomena relevant to the students. The course is described in the paper <em><a href="/publications#sigcse2024cs0-course">Community-Action Computing: A Data-centric CS0 course</a></em>.</li>
+  <li>We also participated in a faculty learning community that met for monthly workshops led by social scientists (Jane Lehr from Cal Poly SLO and Sarah Hug from Colorado Evaluation and Research Consulting). Some lessons learned from these workshops were published in <em><a href="/publications#sigcse2025src">Reflecting on Practices to Integrate Socially Responsible Computing in Introductory Computer Science Courses</a></em>.</li>
+  <li><strong>Finally, we found that our curricular additions had positive impacts on students’ sense of belonging in computing and their perceived learning and agency in early CS courses.</strong> These results were published in <em><a href="/publications#toce2025src">The Benefits of Socially Responsible Computing in Early Computing Courses</a></em>, in the ACM Transactions on Computing Education journal.</li>
+</ul>
+
+<p>This post mostly summarizes the work in the last  paper above.
+Our team of authors is large and awesome, including folks from Cal Poly SLO, Cal Poly Pomona, CSU Los Angeles, San Francisco State University, CSU Dominguez Hills, CSU Fullerton, and the educational research non-profit <a href="wested.org">WestEd</a>.</p>
+
+<h2 id="what-did-we-do">What did we do?</h2>
+
+<p><strong>What’s SRC?</strong> We sought to develop curricular materials (assignments, discussions) that demonstrated to students that they could use computing to benefit their communities and society, and to encourage students to think critically about the impacts of computing on society. This idea has <a href="https://responsible.cs.brown.edu/">been</a> <a href="https://ethicalcs.github.io/">around</a> <a href="https://dl.acm.org/doi/10.1145/3702212.3702225">for</a> <a href="https://identity.cs.duke.edu/fellows.html">a while</a>.</p>
+
+<p>We were also driven by the knowledge that <a href="https://paul-bruno.com/wp-content/uploads/2019/07/Lewis_2019_CommunalGoals.pdf">some students are strongly drawn to goals (and therefore, academic disciplines) that <em>they believe</em> would help benefit society</a>.
+Clear signalling in early CS courses of computing’s impact on and relevance to society, and demonstration to students that even their nascent computing skills can be applied toward the social good should, in theory, help improve their motivation and sense of belonging in computing.</p>
+
+<p>Here’s one example of what we mean.
+At Cal Poly SLO, we developed a new <a href="/publications#sigcse2024cs0-course">data-centric introductory programming course</a> in which students used <a href="https://typescriptlang.org">TypeScript</a> and <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> to analyze and visualize datasets about socially relevant phenomena.
+Datasets were often chosen by the students themselves, and projects involved written and oral reflective components in addition to programs.
+For example, students studied disparities in access to CS education in the state of California, using data provided by the non-profit organization <a href="https://csforca.org">CSforCA</a>, data about the victims of fatal police shootings, <a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">compiled by the Washington Post</a>, and data about people’s access to fresh food, compiled by the <a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/">US Department of Agriculture’s Economic Research Service</a>.<sup id="fnref:corgis" role="doc-noteref"><a href="#fn:corgis" class="footnote" rel="footnote">1</a></sup>
+(A number of students also did deep dives into…<a href="https://corgis-edu.github.io/corgis/csv/ufo_sightings/">UFO sightings</a>.)</p>
+
+<h2 id="did-it-work">Did it work?</h2>
+
+<p>Over two academic years—2022-2023 and 2023–2024—we collected survey data from students at all six campuses.
+The Fall 2022 term was our “Control” group.
+No SRC curricular materials were used in the surveyed class sections.</p>
+
+<p>Spring 2023, Fall 2023, and Spring 2024 were our “Treatment” groups.
+All surveyed courses had significant SRC materials added, ranging from individual assignments with discussions and reflective components (as in the case of <a href="https://dl.acm.org/doi/10.1145/3626252.3630853">CSU Fullerton</a>) to entirely new course work (as in the case of <a href="/publications#sigcse2024cs0-course">Cal Poly SLO</a> and <a href="https://dl.acm.org/doi/10.1145/3626252.3630926">San Francisco State University</a>).</p>
+
+<div class="chart-container" id="chart"></div>
+<script type="module">
+    const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+    const vega = (await import('https://cdn.jsdelivr.net/npm/vega@6/+esm')).default;
+    const vl = (await import('https://cdn.jsdelivr.net/npm/vega-lite@6/+esm')).default;
+    const vegaEmbed = (await import('https://cdn.jsdelivr.net/npm/vega-embed@6/+esm')).default;
+    const data = (await (await fetch('/posts/src-in-early-cs-courses//data.json')).json());
+    const chartSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json",
+        "config": {
+            "view": {
+                "continuousHeight": 300,
+                "continuousWidth": 300,
+                "discreteWidth": 100,
+            }
+        },
+        "datasets": data,
+        "hconcat": [
+            {
+                "data": {
+                    "name": "data-629d1449ab85628f5830cf1828476f00"
+                },
+                "encoding": {
+                    "color": {
+                    "field": "survey_type",
+                    "legend": {
+                        "labelFontSize": 12,
+                        "title": "Survey type",
+                        "titleFontSize": 14
+                    },
+                    "type": "nominal"
+                    },
+                    "column": {
+                    "field": "campus",
+                    "spacing": 5,
+                    "title": [
+                        "Without Competitive CS Enrollment"
+                    ],
+                    "type": "nominal"
+                    },
+                    "x": {
+                        "axis": {
+                            "labelFontSize": 12,
+                            "title": ""
+                        },
+                        "field": "survey_type",
+                    },
+                    "y": {
+                        "axis": {
+                            "labelFontSize": 12
+                        },
+                        "field": "belonging_cfa",
+                        "title": [
+                            "Sense of belonging",
+                            "(CFA)"
+                        ],
+                        "type": "quantitative"
+                    }
+                },
+                "mark": {
+                    "extent": "min-max",
+                    "size": 48,
+                    "type": "boxplot"
+                }
+            },
+            {
+                "data": {
+                    "name": "data-dc5a0321bd9a659acaa017e227a617ad"
+                },
+                "encoding": {
+                    "color": {
+                    "field": "survey_type",
+                    "legend": {
+                        "labelFontSize": 12,
+                        "title": "Survey type",
+                        "titleFontSize": 14
+                    },
+                    "type": "nominal"
+                    },
+                    "column": {
+                    "field": "campus",
+                    "spacing": 5,
+                    "title": [
+                        "With Competitive CS Enrollment"
+                    ],
+                    "type": "nominal"
+                    },
+                    "x": {
+                    "axis": {
+                        "labelFontSize": 12,
+                        "title": ""
+                    },
+                    "field": "survey_type"
+                    },
+                    "y": {
+                    "axis": {
+                        "labelFontSize": 12
+                    },
+                    "field": "belonging_cfa",
+                    "title": [
+                        "Sense of belonging",
+                        "(CFA)"
+                    ],
+                    "type": "quantitative"
+                    }
+                },
+                "mark": {
+                    "extent": "min-max",
+                    "size": 48,
+                    "type": "boxplot"
+                }
+            }
+        ]
+    }
+    vegaEmbed(
+        '#chart',
+        chartSpec,
+        {
+            theme: theme, // For the chart
+            tooltip: {
+                theme // For the tooltip
+            },
+        });
+</script>
+
+<!-- 
+<pre class='mermaid'>
+%%{init: { 'themeVariables': { 'lineHeight': '3', 'width': '20%', 'height': '20%' }}}%%
+timeline
+    title Survey Timeline Overview
+
+    section Control group
+      Fall 2022
+          : Late survey 
+
+    section Treatment groups
+        Spring 2023
+            : Early + Late
+        Fall 2023
+            : Early + Late
+        Spring 2024
+            : Late
+</pre> -->
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:corgis" role="doc-endnote">
+      <p>In many cases, students used tidied versions of the datasets from the <a href="https://corgis-edu.github.io/corgis/">CORGIS</a> dataset repository, which was my inspiring friend <a href="https://acbart.github.io/">Austin Cory Bart</a>’s dissertation project. <a href="#fnref:corgis" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  
+  </article>
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      mermaid.initialize({
+        theme: 'dark'
+      });
+    } else {
+      mermaid.initialize({
+        theme: 'default'
+      });
+    }
+  </script>
+  
+  <footer>
+  <div class='get-in-touch'>Contact<br></div>
+  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
+  <!--<div class='address'></div> -->
+  <div class='contact'>
+    <!-- <a href='https://twitter.com/ayaankazerouni'>
+      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
+      <span class='visible-hidden'>Twitter profile</span>
+    </a> -->
+    <a rel="me" href='https://hci.social/@ayaankazerouni'>
+      <i class='fab fa-mastodon' aria-label="Mastodon" title="Mastodon" target="_blank"></i>
+      <span class='visible-hidden'>Mastodon profile</span>
+    </a>
+    <a href='https://github.com/ayaankazerouni'>
+      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
+      <span class='visible-hidden'>GitHub profile</span>
+    </a>
+    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
+      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
+      <span class='visible-hidden'>LinkedIn profile</span>
+    </a> -->
+    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
+      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
+      <span class='visible-hidden'>Google Scholar profile</span>
+    </a>
+    <a href='https://dblp.org/pid/202/1256.html'>
+      <i class='ai ai-dblp-square' aria-label="DBLP" title="DBLP"></i>
+      <span class='visible-hidden'>DBLP page</span>
+    </a>
+    <!-- <a href='https://orcid.org/0000-0002-6574-1278'>
+      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
+      <span class='visible-hidden'>OrcID profile</span>
+    </a> -->
+  </div>
+</footer>
+
+  </main>
+</body>
+</html>

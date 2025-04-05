@@ -156,10 +156,12 @@ main {
 article {
   margin: auto;
   max-width: 60em;
-  font-size: 12pt;
   line-height: 1.5em;
   font-weight: 200;
-  font-family: "Merriweather", serif;
+}
+
+.chart-container {
+  margin-left: 10%;
 }
 
 /* Aside */

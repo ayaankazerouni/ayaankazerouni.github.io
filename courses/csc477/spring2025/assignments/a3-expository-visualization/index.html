@@ -57,6 +57,8 @@
   <li><a href="#acknowledgement" id="markdown-toc-acknowledgement">Acknowledgement</a></li>
 </ul>
 
+<p>Please read these directions completely before starting.</p>
+
 <h2 id="deliverable">Deliverable</h2>
 
 <p>Your Deliverable in Canvas will be a URL to an Observable notebook.
@@ -86,7 +88,7 @@ Please be sure to make your notebook <strong>publicly viewable</strong> and <str
 <p>Computing is considered a fundamental skill for civic engagement, self-expression, and employment opportunity.
 An extremely strong predictor of individuals’ impressions of computing and likelihood to study computing in college is whether or not they took computing courses in high school or middle school.</p>
 
-<p>In this assignment, you are given a dataset about the demographics of K-12 CS enrolment in the state of California, kindly provided to me by the non-profit organization <a href="https://csforca.org/">CSforCA.org</a>, which tracks K-12 access to CS coursework.
+<p>In this assignment, you are given a dataset about the demographics of K-12 CS enrolment in the state of California, kindly provided to me by the non-profit organization <a href="https://csforca.org/">CSforCA.org</a>, which tracks K-12 access to CS coursework in California.
 Household income data was obtained from the <a href="https://data.ca.gov">data.ca.gov</a> website.</p>
 
 <p>Here are the first five records in the dataset, showing the number of students from each demographic group that were enrolled in AP CS courses, other (Non-AP) CS courses, and the total high school enrolment in that county.</p>
@@ -152,17 +154,19 @@ Household income data was obtained from the <a href="https://data.ca.gov">data.c
   </tbody>
 </table>
 
-<p>Add a cell with the following code to your notebook to import this data.</p>
+<p>Add a cell with the following code to your notebook to import this data as an Arquero table.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">data</span> <span class="o">=</span> <span class="nx">aq</span><span class="p">.</span><span class="nf">loadJSON</span><span class="p">(</span><span class="dl">'</span><span class="s1">path/TODO/</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Also, add a reference to the <a href="https://csforca.org/wp-content/uploads/2021/09/KC21007_CS-for-CA_9-28-21-1-1.pdf">CS Access Report</a> to the bottom of your notebook, in a section titled <strong>References</strong>.
-You may also want to skim the report to get a better sense of the issues at play.</p>
+You should also skim the report to get a better sense of the issues at play.</p>
 
 <h2 id="assignment">Assignment</h2>
 
-<p>Your task is to design a static (i.e., single image) visualization that you believe effectively communicates an idea about the data, and provide a short write-up (no more than 4 paragraphs) describing your design.</p>
+<p>Your task is to design a static (i.e., non-interactive) visualization that you believe effectively communicates an idea about the data, and provide a short write-up (no more than 4 paragraphs) describing your design.</p>
+
+<p>You visualization may include multiple graphics concatenated together. We’ll talk about <em>multi-view composition</em> as this assignment progresses.</p>
 
 <h3 id="part-1-sketching">Part 1: Sketching</h3>
 
@@ -170,10 +174,9 @@ You may also want to skim the report to get a better sense of the issues at play
 Then, design your visualization to answer that question.
 Begin this process by sketching (with pen and paper!) your visualizations of the dataset.</p>
 
-<p>Sketching allows us to explore initial ideas cheaply and quickly.
-And, as we sketch, we generate new ideas. In this way, sketching is generative—sketches “talk back” us and sketching engenders new or more concrete ways of thinking as we manifest ideas on the page.
-Sketches are also easy to share and solicit feedback (from each other, from me, from anyone) without heavy investment into any one idea.
-And research has shown that exploring several ideas in parallel can lead to better designs.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">3</a></sup></p>
+<p>Sketching allows us to explore initial ideas cheaply and quickly, and we also generate new ideas in the process.
+Sketches are also easy to share and solicit feedback about (from each other, from me, from anyone) without heavy investment into any one idea.
+Finally, research has shown that exploring several ideas in parallel can lead to better designs.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">3</a></sup></p>
 
 <p>Your sketches do not need to include every datapoint, or even precisely represent the data.
 The goal at this point is to think about data representation, communicating through visualization and sketching different visualization designs.
@@ -209,7 +212,8 @@ You are free to organize your notebook however you wish—whatever best communic
 
 <h2 id="grading">Grading</h2>
 
-<p>The assignment score is out of a maximum of 10 points. I will determine scores by judging both the <strong>soundness of your design</strong> and the <strong>quality of the write-up.</strong> I will also look for consideration of audience, message, and intended task.
+<p>The assignment score is out of a maximum of 10 points. I will determine scores by judging both the <strong>soundness of your design</strong> and the <strong>overall presentation and quality of the write-up.</strong>
+I will also look for consideration of audience, message, and intended task.
 Here are examples of aspects that may lead to point deductions:</p>
 
 <ul>
