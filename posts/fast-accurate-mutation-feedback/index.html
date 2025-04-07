@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	<link rel="canonical" href="https://ayaankazerouni.org/posts/fast-accurate-mutation-feedback">
+	<link rel="canonical" href="https://ayaankazerouni.org/posts/fast-accurate-mutation-feedback/">
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 	<script src="/assets/js/footnote-preview.js" ></script>
 </head>
@@ -56,22 +56,7 @@
   <h1>Fast and Accurate Incremental Feedback for Students' Software Tests Using Selective Mutation Analysis</h1>
   <article>
     <div>
-      <time>Mar 17, 2021 • 2433 words</time>
-      <div style="display: inline-block;">
-        
-          <span class="tag">
-            <a href="/posts/tagged/research-summary">
-              research-summary
-            </a>
-          </span>
-        
-          <span class="tag">
-            <a href="/posts/tagged/software-testing">
-              software-testing
-            </a>
-          </span>
-        
-      </div>
+      <p>March 17, 2021 &#9474; <time>2293 words</time></p>
       
     </div>
       <p><small>
@@ -133,9 +118,9 @@
 <p>We grouped submissions by source lines of code (SLoC), ranging from ~150 LoC to ~1200 LoC.</p>
 
 <figure>
-  <a href="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" target="_blank">
+  <a href="submission-groups.png" target="_blank">
     
-    <img src="/assets/posts/images/fast-accurate-mutation-feedback/submission-groups.png" alt="A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code." />
+    <img src="submission-groups.png" alt="A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code." />
     
   </a>
 
@@ -180,8 +165,8 @@
 <p>We found that most of the Deletion set’s effectiveness comes from the first two operators, i.e., <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> and <code class="language-plaintext highlighter-rouge">AOD</code>. Inclusion of additional operators drives up the cost, but with little improvement to accuracy.</p>
 
 <figure class="wide">
-  <a href="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" target="_blank">
-    <img src="/assets/posts/images/fast-accurate-mutation-feedback/inc-subsets.png" alt="Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy." />
+  <a href="inc-subsets.png" target="_blank">
+    <img src="inc-subsets.png" alt="Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy." />
   </a>
 
   <figcaption>The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R² predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.</figcaption>
@@ -194,7 +179,7 @@
   <li>Each blue dot represents the percent of variance in comprehensive mutation that is explained by that subset for the given submission group</li>
 </ul>
 
-<p>We can see that for submission groups 2–4, the cost drops precipitously from Deletion \(\to\) 3-op \(\to\) 2-op \(\to\) 1-op, while the accuracy stays more or less the same. For the smaller submissions in group 1, it’s possible that they simply do not provide enough opportunities for mutation to take place, so accuracy takes a huge hit for each mutation operator that is excluded.</p>
+<p>We can see that for submission groups 2–4, the cost drops precipitously from Deletion → 3-op → 2-op → 1-op, while the accuracy stays more or less the same. For the smaller submissions in group 1, it’s possible that they simply do not provide enough opportunities for mutation to take place, so accuracy takes a huge hit for each mutation operator that is excluded.</p>
 
 <p>Some key takeaways:</p>
 
@@ -225,9 +210,9 @@
 <p>In terms of <strong>reliability</strong>, it appeared that the incremental subsets were nearly as effective as the entire Deletion set, with the 3-op subset (<code class="language-plaintext highlighter-rouge">NonVoidMethodCalls</code> and beyond) bringing diminishing returns. This is similar to our original results.</p>
 
 <figure>
-  <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" target="_blank">
+  <a href="val-mutation-score.png" target="_blank">
     
-    <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-mutation-score.png" alt="Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively." />
+    <img src="val-mutation-score.png" alt="Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively." />
     
   </a>
 
@@ -237,9 +222,9 @@
 <p>The <strong>cost</strong> naturally decreases in the order Deletion \(\to\) 3-op \(\to\) 2-op \(\to\) 1-op.</p>
 
 <figure>
-  <a href="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" target="_blank">
+  <a href="val-cost.png" target="_blank">
     
-    <img src="/assets/posts/images/fast-accurate-mutation-feedback/val-cost.png" alt="The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively." />
+    <img src="val-cost.png" alt="The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively." />
     
   </a>
 
@@ -273,9 +258,8 @@
 </div>
 
   
-  <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
-  
   </article>
+  
   <footer>
   <div class='get-in-touch'>Contact<br></div>
   <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
