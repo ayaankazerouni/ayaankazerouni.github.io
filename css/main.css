@@ -294,6 +294,13 @@ footer .address {
   font-size: 0.8em;
 }
 
+.nav-links {
+  text-align: center;
+}
+.nav-links a {
+  padding: 0 5px;
+}
+
 .fa, .fab, .far, .fas, .ai {
   margin: 5px;
   text-decoration: none;
