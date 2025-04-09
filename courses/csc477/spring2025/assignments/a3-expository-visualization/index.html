@@ -90,7 +90,7 @@ An extremely strong predictor of individuals’ impressions of computing and lik
 <p>In this assignment, you are given a dataset about the demographics of K-12 CS enrolment in the state of California, kindly provided to me by the non-profit organization <a href="https://csforca.org/">CSforCA.org</a>, which tracks K-12 access to CS coursework in California.
 <!-- Household income data was obtained from the [data.ca.gov](https://data.ca.gov) website. --></p>
 
-<p>Here are the first five records in the dataset, showing the number of students from each demographic group that were enrolled in AP CS courses, other (Non-AP) CS courses, and the total high school enrolment in that county.</p>
+<p>Here are the first five records in the dataset, showing the number of students from each demographic group that were enrolled in AP CS courses, other (Non-AP) CS courses, and the total high school enrolment in that county. The report was published in 2021, and the data herein is about the 2018–2019 academic year.</p>
 
 <table>
   <thead>
@@ -149,7 +149,7 @@ An extremely strong predictor of individuals’ impressions of computing and lik
 
 <p>Add a cell with the following code to your notebook to import this data as an Arquero table.</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">data</span> <span class="o">=</span> <span class="nx">aq</span><span class="p">.</span><span class="nf">loadJSON</span><span class="p">(</span><span class="dl">'</span><span class="s1">https:ayaankazerouni.org/courses/csc477/spring2025/datasets/csforca-enrollment.json</span><span class="dl">'</span><span class="p">)</span>  
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">data</span> <span class="o">=</span> <span class="nx">aq</span><span class="p">.</span><span class="nf">loadJSON</span><span class="p">(</span><span class="dl">'</span><span class="s1">https:ayaankazerouni.org/courses/csc477/datasets/csforca-enrollment.json</span><span class="dl">'</span><span class="p">)</span>  
 </code></pre></div></div>
 
 <p>Also, add a reference to the <a href="https://csforca.org/wp-content/uploads/2021/09/KC21007_CS-for-CA_9-28-21-1-1.pdf">CS Access Report</a> to the bottom of your notebook, in a section titled <strong>References</strong>.
@@ -185,7 +185,8 @@ There’s no requirement that your final design look exactly like your sketch.</
 Such transforms may include (but are not limited to) tidying, log transformation, computing percentages or averages, grouping elements into new categories, or removing unnecessary variables or records.</p>
 
 <p>You are also free (and encouraged!) to incorporate additional external data.
-For example, you might search <a href="https://data.ca.gov">data.ca.gov</a> for datasets that, merged with the data I’ve provided, would help answer your question.
+For instance, you might search <a href="https://data.ca.gov">data.ca.gov</a> for datasets that, merged with the data I’ve provided, would help answer your question.
+E.g., contrasting CS enrolment with factors such as county income levels, percentage of households that have access to computers at home, or others, are likely to shed more light on the situation.
 If you include external data, you must include the source as a Reference entry at the bottom of your notebook, along with a URL.</p>
 
 <p>Your graphic should be interpretable without recourse to your write-up (see below).
