@@ -57,6 +57,12 @@
     --readings-color: #03f6e6;
     --callout-background-color: #679da031;
   }
+  main {
+    font-weight: 100;
+  }
+  main strong {
+    font-weight: 1000;
+  }
 }
 body {
   background-color: var(--bg-color);
