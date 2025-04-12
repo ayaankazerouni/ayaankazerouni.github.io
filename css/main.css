@@ -505,6 +505,13 @@ blockquote {
   padding: 0 5px 0 8px;
 }
 
+.footnotes {
+  font-size: 0.9em;
+}
+.footnotes::before {
+  font-size: 1.2em;
+  content: "Footnotes";
+}
 sup[id^="fnref:"] {
   padding-right: 0.5em;
 }
