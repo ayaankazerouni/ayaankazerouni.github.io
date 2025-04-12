@@ -57,6 +57,12 @@
     --readings-color: #03f6e6;
     --callout-background-color: #679da031;
   }
+  main {
+    font-weight: 100;
+  }
+  main strong {
+    font-weight: 1000;
+  }
 }
 body {
   background-color: var(--bg-color);
@@ -246,7 +252,8 @@ figure figcaption {
   margin-top: 2vw;
 }
 figure img {
-  max-width: 85%;
+  max-width: 90%;
+  margin: auto;
 }
 figure.wide {
   overflow-x: visible;
@@ -292,6 +299,13 @@ footer {
 }
 footer .address {
   font-size: 0.8em;
+}
+
+.nav-links {
+  text-align: center;
+}
+.nav-links a {
+  padding: 0 5px;
 }
 
 .fa, .fab, .far, .fas, .ai {
@@ -364,6 +378,7 @@ code {
   font-family: "Roboto Mono", monospace;
   color: var(--code-color);
   font-weight: 450;
+  font-size: 0.9em;
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;
@@ -417,7 +432,7 @@ table tr > td:not(:last-child), table tr > th:not(:last-child) {
 
 .course {
   padding-top: 5px;
-  max-width: 80ch;
+  max-width: 120ch;
 }
 
 .released {

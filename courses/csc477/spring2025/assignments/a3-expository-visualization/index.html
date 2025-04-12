@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc477/spring2025/assignments/a3-expository-visualization/">
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 	<script src="/assets/js/footnote-preview.js" ></script>
 </head>
 
@@ -35,14 +34,14 @@
       <div class="content">
      
       <h1>CSC 477 Expository visualization</h1>
-      <p>An expository article requires the author to investigate an idea, evaluate evidence, expound on the idea, and set forth an argument concerning that idea in a clear and concise manner.</p>
+      <figure>
+<img src="A3-banner.png" alt="A sketch of a table of data, followed by a hand-sketched visualization of grouped boxplots and an overlayed line chart, followed by a screenshot of a figure containing grouped boxplots and a layered line chart." />
+<figcaption>
+From data to sketch to figure. Figure taken from <a href="https://www.sciencedirect.com/science/article/pii/S0164121221000029?via%3Dihub">Kazerouni et al., 2021.</a>
+</figcaption>
+</figure>
 
-<p>In this assignment, you will</p>
-<ol>
-  <li>Design (with pen and paper) an expository visualization to clearly communicate an idea based on a provided data set,</li>
-  <li>Implement the visualization in an Observable notebook using Vega-Lite, and</li>
-  <li>Provide a rigorous rationale for your design choices. You should, in theory, be ready to explain the contribution of <em>every pixel</em> in the display towards your expository goals.</li>
-</ol>
+<h2 class="no_toc" id="contents">Contents</h2>
 
 <ul id="markdown-toc">
   <li><a href="#deliverable" id="markdown-toc-deliverable">Deliverable</a></li>
@@ -54,8 +53,18 @@
     </ul>
   </li>
   <li><a href="#grading" id="markdown-toc-grading">Grading</a></li>
+  <li><a href="#resources" id="markdown-toc-resources">Resources</a></li>
   <li><a href="#acknowledgement" id="markdown-toc-acknowledgement">Acknowledgement</a></li>
 </ul>
+
+<p>An expository article requires the author to investigate an idea, evaluate evidence, expound on the idea, and set forth an argument concerning that idea in a clear and concise manner.</p>
+
+<p>In this assignment, you will</p>
+<ol>
+  <li>Design (with pen and paper) an expository visualization to clearly communicate an idea based on a provided data set,</li>
+  <li>Implement the visualization in an Observable notebook using Vega-Lite, and</li>
+  <li>Provide a rigorous rationale for your design choices. You should, in theory, be ready to explain the contribution of <em>every pixel</em> in the display towards your expository goals.</li>
+</ol>
 
 <p>Please read these directions completely before starting.</p>
 
@@ -89,9 +98,9 @@ Please be sure to make your notebook <strong>publicly viewable</strong> and <str
 An extremely strong predictor of individuals’ impressions of computing and likelihood to study computing in college is whether or not they took computing courses in high school or middle school.</p>
 
 <p>In this assignment, you are given a dataset about the demographics of K-12 CS enrolment in the state of California, kindly provided to me by the non-profit organization <a href="https://csforca.org/">CSforCA.org</a>, which tracks K-12 access to CS coursework in California.
-Household income data was obtained from the <a href="https://data.ca.gov">data.ca.gov</a> website.</p>
+<!-- Household income data was obtained from the [data.ca.gov](https://data.ca.gov) website. --></p>
 
-<p>Here are the first five records in the dataset, showing the number of students from each demographic group that were enrolled in AP CS courses, other (Non-AP) CS courses, and the total high school enrolment in that county.</p>
+<p>Here are the first five records in the dataset, showing the number of students from each demographic group that were enrolled in AP CS courses, other (Non-AP) CS courses, and the total high school enrolment in that county. The report was published in 2021, and the data herein is about the 2018–2019 academic year.</p>
 
 <table>
   <thead>
@@ -99,7 +108,6 @@ Household income data was obtained from the <a href="https://data.ca.gov">data.c
       <th><code class="language-plaintext highlighter-rouge">county</code></th>
       <th><code class="language-plaintext highlighter-rouge">race</code></th>
       <th><code class="language-plaintext highlighter-rouge">sex</code></th>
-      <th><code class="language-plaintext highlighter-rouge">medianHouseholdIncome</code></th>
       <th><code class="language-plaintext highlighter-rouge">AP CS</code></th>
       <th><code class="language-plaintext highlighter-rouge">Non-AP CS</code></th>
       <th><code class="language-plaintext highlighter-rouge">Overall Enrollment</code></th>
@@ -110,7 +118,6 @@ Household income data was obtained from the <a href="https://data.ca.gov">data.c
       <td>Alameda</td>
       <td>African American</td>
       <td>F</td>
-      <td>112017</td>
       <td>19</td>
       <td>292</td>
       <td>3398</td>
@@ -119,7 +126,6 @@ Household income data was obtained from the <a href="https://data.ca.gov">data.c
       <td>Alameda</td>
       <td>African American</td>
       <td>M</td>
-      <td>112017</td>
       <td>21</td>
       <td>407</td>
       <td>3584</td>
@@ -128,7 +134,6 @@ Household income data was obtained from the <a href="https://data.ca.gov">data.c
       <td>Alameda</td>
       <td>Asian</td>
       <td>F</td>
-      <td>112017</td>
       <td>115</td>
       <td>768</td>
       <td>8367</td>
@@ -137,7 +142,6 @@ Household income data was obtained from the <a href="https://data.ca.gov">data.c
       <td>Alameda</td>
       <td>Asian</td>
       <td>M</td>
-      <td>112017</td>
       <td>202</td>
       <td>1400</td>
       <td>8687</td>
@@ -146,7 +150,6 @@ Household income data was obtained from the <a href="https://data.ca.gov">data.c
       <td>Alameda</td>
       <td>Filipino</td>
       <td>F</td>
-      <td>112017</td>
       <td>17</td>
       <td>69</td>
       <td>1904</td>
@@ -156,11 +159,21 @@ Household income data was obtained from the <a href="https://data.ca.gov">data.c
 
 <p>Add a cell with the following code to your notebook to import this data as an Arquero table.</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">data</span> <span class="o">=</span> <span class="nx">aq</span><span class="p">.</span><span class="nf">loadJSON</span><span class="p">(</span><span class="dl">'</span><span class="s1">path/TODO/</span><span class="dl">'</span><span class="p">)</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">data</span> <span class="o">=</span> <span class="nx">aq</span><span class="p">.</span><span class="nf">loadJSON</span><span class="p">(</span>
+  <span class="dl">'</span><span class="s1">https://ayaankazerouni.org/courses/csc477/datasets/csforca-enrollment.json</span><span class="dl">'</span>
+<span class="p">)</span>  
 </code></pre></div></div>
 
 <p>Also, add a reference to the <a href="https://csforca.org/wp-content/uploads/2021/09/KC21007_CS-for-CA_9-28-21-1-1.pdf">CS Access Report</a> to the bottom of your notebook, in a section titled <strong>References</strong>.
 You should also skim the report to get a better sense of the issues at play.</p>
+
+<p>While you must use this provided data-set, you are free to transform it as you see fit.
+Such transforms may include (but are not limited to) tidying, log transformation, computing percentages or averages, grouping elements into new categories, or removing unnecessary variables or observations.</p>
+
+<p>You’re also strongly encouraged to incorporate additional external data that, when merged with the provided data, lead to interesting insights.
+For example, the <a href="https://data.ca.gov">data.ca.gov</a> website contains data collected by the California state government about things like household incomes in California counties, the percentage of homes with access to computers, food access, etc.</p>
+
+<p>If you include additional data, your notebook should cite the source in the References section, and include a URL.</p>
 
 <h2 id="assignment">Assignment</h2>
 
@@ -171,7 +184,10 @@ You should also skim the report to get a better sense of the issues at play.</p>
 <h3 id="part-1-sketching">Part 1: Sketching</h3>
 
 <p>Start by choosing a question you’d like your visualization to answer.
-Then, design your visualization to answer that question.
+You’re encouraged to base your question on a combination of the provided dataset and some externally obtained data.
+I advise to start with a relatively small-scope question—this assignment is fairly open-ended and I want you to spend more time on the visualization than on scouring the Web for additional data sources.</p>
+
+<p>Then, design your visualization to answer that question.
 Begin this process by sketching (with pen and paper!) your visualizations of the dataset.</p>
 
 <p>Sketching allows us to explore initial ideas cheaply and quickly, and we also generate new ideas in the process.
@@ -188,13 +204,10 @@ I encourage you to use sharpies, colour pencils, or pens to control line thickne
 You will likely iterate further on your designs in this stage. <em>That’s fine</em>.
 There’s no requirement that your final design look exactly like your sketch.</p>
 
-<p>While you must use the data set given, you are free to transform the data as you see fit.
-Such transforms may include (but are not limited to) tidying, log transformation, computing percentages or averages, grouping elements into new categories, or removing unnecessary variables or records.
-You are also free to incorporate additional external data.
-If you do this, you must include the source of the external data as a Reference entry at the bottom of your notebook, along with a URL.</p>
-
 <p>Your graphic should be interpretable without recourse to your write-up (see below).
 Don’t forget to include title, axis labels, or legends as needed!</p>
+
+<p>Remember that the goal for this assignment is a <em>static</em> visualization (potentially made up of multiple layered or concatenated views).</p>
 
 <h3 id="part-3-write-up">Part 3: Write-up</h3>
 
@@ -225,7 +238,16 @@ Here are examples of aspects that may lead to point deductions:</p>
   <li>Excessive grammar mistakes/lack of proofreading in the write-up.</li>
 </ul>
 
-<p>Examples of going above and beyond the assignment requirements include: entries with outstanding visual design, meaningful incorporation of external data to reveal important trends, entries that demonstrate exceptional creativity, or effective annotations and other narrative devices.</p>
+<p>Examples of going above and beyond the assignment requirements include: entries with outstanding visual design, meaningful incorporation of external data and context to reveal and explain important trends, entries that demonstrate exceptional creativity, or effective annotations and other narrative devices.</p>
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+  <li><a href="https://vega.github.io/vega-lite/">Vega-Lite documentation</a> (JSON syntax).</li>
+  <li>Vega-Lite JS <a href="https://vega.github.io/vega-lite-api/api/">API reference</a> and <a href="https://observablehq.com/@vega/vega-lite-api-v5?collection=@vega/vega-lite-api">Example gallery</a>.</li>
+  <li><a href="https://csforca.org">CS for CA website</a>, containing the report and other graphics that may give you ideas.</li>
+  <li><a href="https://data.ca.gov">California government data</a>. Data at this website is often already broken down by county, making it convenient to pair with the provided dataset.</li>
+</ul>
 
 <h2 id="acknowledgement">Acknowledgement</h2>
 
@@ -238,10 +260,10 @@ Here are examples of aspects that may lead to point deductions:</p>
       <p>Although <code class="language-plaintext highlighter-rouge">vl</code> is available in all Observable Notebooks by default, the version imported like below comes with some goodies like nicer tooltips and scrolling enabled for very wide figures (assuming the graphic’s width is justified). <a href="#fnref:vl" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:1" role="doc-endnote">
-      <p>Parallel prototyping leads to better design results, more divergence, and increased self-efficacy. <a href="https://doi.org/10.1145/1879831.1879836">Dow et al.</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="https://doi.org/10.1145/1879831.1879836">Parallel prototyping leads to better design results, more divergence, and increased self-efficacy</a>. Dow et al. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
-      <p>Getting the right design and the design right. <a href="https://dl.acm.org/doi/10.1145/1124772.1124960">Tohidi et al.</a> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="https://data.ca.gov/dataset">Getting the right design and the design right</a>. Tohidi et al. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>

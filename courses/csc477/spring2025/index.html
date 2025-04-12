@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc477/spring2025/">
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 	<script src="/assets/js/footnote-preview.js" ></script>
 </head>
 
@@ -83,12 +82,13 @@ The <strong>Class participation</strong> portion of the grade will be based on c
   <li>Class participation (10%)</li>
   <li>Assignments (60%), made up of:
     <ul>
-      <li>Assignment 1: Visualization Curation and Analysis (5%)</li>
-      <li>Assignment 2: Data wrangling with JavaScript (5%)</li>
-      <li>Assignment 3: Data visualization with Vega-Lite (15%)</li>
-      <li>Assignment 4: Visualization evaluation + User study (10%)</li>
+      <li><a href="./assignments/a1-visualization-curation-and-analysis/">Assignment 1: Visualization Curation and Analysis</a> (5%)</li>
+      <li><a href="./assignments/a2-data-wrangling-with-javascript/">Assignment 2: Data wrangling with JavaScript</a> (5%)</li>
+      <li><a href="./assignments/a3-expository-visualization/">Assignment 3: Expository Visualization</a> (15%)</li>
+      <li>Assignment 4: Visualization evaluation + User study (5%)</li>
       <li>Assignment 5: Interactive visualization (15%)</li>
-      <li>Assignment 6: Deceptive visualization (10%)</li>
+      <li>Assignment 6: Ethical and deceptive visualization (10%)</li>
+      <li>Assignment 7: Practice with D3 (5%)<sup id="fnref:d3" role="doc-noteref"><a href="#fn:d3" class="footnote" rel="footnote">1</a></sup></li>
     </ul>
   </li>
   <li>Project (30%), in 3 parts:
@@ -100,7 +100,7 @@ The <strong>Class participation</strong> portion of the grade will be based on c
   </li>
 </ul>
 
-<p>At the end of the quarter, I will round UP your final numerical score<sup id="fnref:participation" role="doc-noteref"><a href="#fn:participation" class="footnote" rel="footnote">1</a></sup>and turn that into a letter grade using the following grading scale:</p>
+<p>At the end of the quarter, I will round UP your final numerical score<sup id="fnref:participation" role="doc-noteref"><a href="#fn:participation" class="footnote" rel="footnote">2</a></sup>and turn that into a letter grade using the following grading scale:</p>
 
 <ul style="font-size: 0.9em; column-count: 3; width: 50%; min-width: 300px;">
 <li>A &gt;= 93</li>
@@ -149,7 +149,7 @@ At minimum, you will receive a 0 for the assignment, and potentially also an F i
 <p>You have a number of resources at your disposal to help you succeed in this course (your peers, myself, online sources), and I am usually willing to work with you on flexible deadlines.
 If you feel you <em>need</em> to plagiarize in order to succeed, know that you almost certainly have other options. Just come talk to me!</p>
 
-<h3 id="using-ai-in-this-course">Using AI in this course<sup id="fnref:peck" role="doc-noteref"><a href="#fn:peck" class="footnote" rel="footnote">2</a></sup></h3>
+<h3 id="using-ai-in-this-course">Using AI in this course<sup id="fnref:peck" role="doc-noteref"><a href="#fn:peck" class="footnote" rel="footnote">3</a></sup></h3>
 
 <p><strong>✅ You MAY use AI (ChatGPT, etc.) to help you program or implement visualizations.</strong> Prompts like: <em>Why isn’t this code showing the data? How do I increase the size of points in this plot? How do I extend the x-axis using Vega-Lite? What does this error mean? Show me an example of…</em> Those are all okay!  But if you choose to use AI, there are two things you must know:</p>
 <ol>
@@ -202,140 +202,140 @@ If deadlines in Canvas conflict with those listed here, <strong>the Canvas deadl
     <tr>
       <td>1</td>
       <td>Wednesday, 4/2</td>
-      <td>Introduction<br />Why visualize?</td>
+      <td>Introduction.<br />Why visualize?</td>
       <td>🎥 <a href="https://youtu.be/1GhZisgc6DI"><em>What’s Vis, and Why Do It?</em></a> Tamara Munzner.<br /><br />💻 <a href="https://cpslo-my.sharepoint.com/:p:/g/personal/ayaank_calpoly_edu/EccAlzPSH29PtKpPYp89cxsBgfc0fy-jSe4p-cmtKzZ32A?e=QBXWdh">Slides from class</a></td>
       <td><span class="due"></span> Introduce yourself in EdStem<br /><small>You’ll need the invite link in Canvas to join the forum.</small><br /><br /><span class="due"></span> Make an account at <a href="https://observablehq.com/">Observable</a>.<br /><br /><span class="released"></span> <a href="./assignments/a1-visualization-curation-and-analysis/">A1: Visualization curation and analysis</a></td>
     </tr>
     <tr>
       <td> </td>
       <td>Friday, 4/4</td>
-      <td>JavaScript primer<br />Observable notebooks</td>
+      <td>JavaScript primer.<br />Observable notebooks.</td>
       <td><a href="https://observablehq.com/documentation/notebooks/">Observable Notebooks documentation</a><br /><br /><a href="https://observablehq.com/@uwdata/a-minimal-introduction-to-javascript-and-observable"><em>A Minimal Introduction to JavaScript and Observable</em></a>. Jeffrey Heer.<br /><br />💻 <a href="https://observablehq.com/@ayaankazerouni/csc477-observable-demo?collection=@ayaankazerouni/csc-477-cal-poly">Notebook from class</a></td>
       <td> </td>
     </tr>
     <tr>
       <td>2</td>
       <td>Monday, 4/7</td>
-      <td>Data wrangling<br />Tidy data</td>
-      <td><a href="https://r4ds.hadley.nz/data-tidy.html"><em>Data tidying</em></a>. Hadley Wickham.<br /><br /><a href="https://observablehq.com/@uwdata/tidy-data-in-javascript"><em>Tidy Data in JavaScript</em></a>. Jeffrey Heer.</td>
-      <td><span class="due"></span> A1<br /><br /><span class="released"></span> A2: Data wrangling with JavaScript</td>
+      <td>Data wrangling.<br />Tidy data.</td>
+      <td><a href="https://r4ds.hadley.nz/data-tidy.html"><em>Data tidying</em></a>. Hadley Wickham.<br /><br /><a href="https://observablehq.com/@uwdata/tidy-data-in-javascript"><em>Tidy Data in JavaScript</em></a>. Jeffrey Heer.<br /><br />💻 <a href="https://cpslo-my.sharepoint.com/:p:/g/personal/ayaank_calpoly_edu/EahbjpzIKYhPjQU_MhcdP7gBnYxEGo8vNHzqz_mMZ3EvzQ?e=VecVBT">Slides from class, contains link to notebook</a></td>
+      <td><span class="due"></span> A1<br /><br /><span class="released"></span> <a href="https://observablehq.com/@ayaankazerouni/csc477-lab-data-wrangling">A2: Data wrangling with JavaScript</a></td>
     </tr>
     <tr>
       <td> </td>
       <td>Wednesday, 4/9</td>
-      <td>Data types<br />Marks, channels, and encodings</td>
-      <td>🎥 <em>Marks and Channels</em> <a href="https://youtu.be/xplSAMwlTmY">Part I</a> and <a href="https://youtu.be/xP1J_FKx9JM">Part II</a>. Tamara Munzner.<br /><br /><a href="https://observablehq.com/@uwdata/data-types-graphical-marks-encoding-channels-json"><em>Data types, Graphical marks, and Visual channels</em></a>. Jeffrey Heer</td>
+      <td>Bit more about tidy data.<br />Marks, channels, and encodings.</td>
+      <td>🎥 <em>Marks and Channels</em> <a href="https://youtu.be/xplSAMwlTmY">Part I</a> and <a href="https://youtu.be/xP1J_FKx9JM">Part II</a>. Tamara Munzner.<br /><br /><a href="https://observablehq.com/@uwdata/data-types-graphical-marks-encoding-channels-json"><em>Data types, Graphical marks, and Visual channels</em></a>. Jeffrey Heer.<br /><br /> 💻 <a href="https://cpslo-my.sharepoint.com/:p:/g/personal/ayaank_calpoly_edu/ETYUTKkHYBdHm7yGUYpAIQ0BEJv0UCbJ4oAUDpyeyjP3IQ?e=k5hqRI">Slides from class, contains link to notebook</a></td>
       <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td>Friday, 4/11</td>
       <td>Visualization with Vega-lite</td>
-      <td><a href="https://observablehq.com/@uwdata/introduction-to-vega-lite"><em>Introduction to Vega-lite</em></a>. Jeffrey Heer.<br /><br /><a href="https://vega.github.io/vega-lite/">Vega-lite documentation</a><br /><small>Most of these docs use the JSON syntax, but we will mostly use the <a href="https://vega.github.io/vega-lite-api/api/">JavaScript API</a>.</small></td>
-      <td><span class="released"></span> A3: Visualization with Vega-lite</td>
+      <td><a href="https://observablehq.com/@uwdata/introduction-to-vega-lite"><em>Introduction to Vega-lite</em></a>. Jeffrey Heer.<br /><br /><a href="https://vega.github.io/vega-lite/">Vega-lite documentation</a><br /><small>Most of these docs use the JSON syntax, but we will mostly use the <a href="https://vega.github.io/vega-lite-api/api/">JavaScript API</a>.</small><br /><br />💻 <a href="https://observablehq.com/@ayaankazerouni/vega-lite-intro">Notebook used in class</a></td>
+      <td><span class="released"></span> <a href="./assignments/a3-expository-visualization/">A3: Expository visualization</a></td>
     </tr>
     <tr>
       <td>3</td>
       <td>Monday, 4/14</td>
-      <td>Scales and other choices</td>
-      <td><a href="https://observablehq.com/@uwdata/scales-axes-and-legends?collection=@uwdata/visualization-curriculum"><em>Scales, Axes, and Legends</em></a>. Jeffrey Heer.</td>
+      <td>Temporal fields<br />Free work time</td>
+      <td>Vega-Lite docs on <a href="https://vega.github.io/vega-lite/docs/timeunit.html">Time units</a>.<br /><br />Same notebook as last class.</td>
       <td><span class="due"></span> A2</td>
     </tr>
     <tr>
       <td> </td>
       <td>Wednesday, 4/16</td>
-      <td>Data transformation</td>
-      <td><a href="https://observablehq.com/@uwdata/data-transformation?collection=@uwdata/visualization-curriculum"><em>Data Transformation</em></a>. Jeffrey Heer.<br /><br /><a href="https://vega.github.io/vega-lite/docs/transform.html">Vega-lite transformations documentation</a><br /></td>
+      <td>Multi-view composition</td>
+      <td>🎥 <a href="https://www.youtube.com/watch?v=hxBRDRf_rTM"><em>Multiple Views</em></a>. Tamara Munzner.<br /><small>Specifically the parts about small multiples, juxtaposed views, and layering.</small><br /><br /><a href="https://observablehq.com/@uwdata/multi-view-composition?collection=@uwdata/visualization-curriculum"><em>Multi-view Composition</em></a>. Jeffrey Heer.<br /><br />Vega-Lite docs on <a href="https://vega.github.io/vega-lite/docs/facet.html">Faceting</a>, <a href="https://vega.github.io/vega-lite/docs/layer.html">Layering</a>, and <a href="https://vega.github.io/vega-lite/docs/concat.html">Concatenating</a> views.</td>
       <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td>Friday, 4/18</td>
-      <td>Multi-view composition</td>
-      <td><a href="https://observablehq.com/@uwdata/multi-view-composition?collection=@uwdata/visualization-curriculum"><em>Multi-view Composition</em></a>. Jeffrey Heer.</td>
+      <td>Scales and other choices</td>
+      <td><a href="https://observablehq.com/@uwdata/scales-axes-and-legends?collection=@uwdata/visualization-curriculum"><em>Scales, Axes, and Legends</em></a>. Jeffrey Heer.</td>
       <td> </td>
     </tr>
     <tr>
       <td>4</td>
       <td>Monday, 4/21</td>
+      <td>Data transformation</td>
+      <td><a href="https://observablehq.com/@uwdata/data-transformation?collection=@uwdata/visualization-curriculum"><em>Data Transformation</em></a>. Jeffrey Heer.<br /><br />Vega-Lite docs on <a href="https://vega.github.io/vega-lite/docs/transform.html">Transformations</a><br /></td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday, 4/23</td>
       <td>Perception</td>
       <td>Ware</td>
       <td> </td>
     </tr>
     <tr>
       <td> </td>
-      <td>Wednesday, 4/23</td>
-      <td>Evaluating visualizations</td>
-      <td><em>Analysis: Four Levels for Validation</em>. <a href="https://youtu.be/KXswx4QSkHc">Part I</a> and <a href="https://youtu.be/xP1J_FKx9JM">Part II</a>. Tamara Munzner.</td>
-      <td><span class="released"></span> A4: Vis evaluation + User study</td>
-    </tr>
-    <tr>
-      <td> </td>
       <td>Friday, 4/25</td>
-      <td>Sketching<br />Exploratory visualization</td>
-      <td>Munzner, Froehlich, Heer</td>
-      <td><span class="due"></span> A3<br /><br /><span class="released"></span> P1: Project proposal</td>
+      <td>Evaluating visualizations</td>
+      <td>📜 <a href="https://www.cs.ubc.ca/labs/imager/tr/2009/NestedModel/NestedModel.pdf"><em>A Nested Model for Visualization Design and Analysis</em></a>. Tamara Munzner.<br /><br /><em>Analysis: Four Levels for Validation</em>. <a href="https://youtu.be/KXswx4QSkHc">Part I</a> and <a href="https://youtu.be/xP1J_FKx9JM">Part II</a>. Tamara Munzner.</td>
+      <td><span class="due"></span> A3<br /><br /><span class="released"></span> A4: Vis evaluation + User study</td>
     </tr>
     <tr>
       <td>5</td>
       <td>Monday, 4/28</td>
       <td>Interactivity</td>
-      <td><a href="https://vega.github.io/vega-lite/docs/parameter.html">Vega-lite params documentation</a></td>
-      <td> </td>
+      <td>Munzner.<br /><br />Vega-Lite docs on <a href="https://vega.github.io/vega-lite/docs/parameter.html">Params</a></td>
+      <td><span class="released"></span> P1: Project proposal</td>
     </tr>
     <tr>
       <td> </td>
       <td>Wednesday, 4/30</td>
       <td>Interactivity</td>
-      <td><a href="https://vega.github.io/vega-lite/docs/parameter.html">Vega-lite params documentation</a></td>
-      <td><span class="due"></span> A4<br /><br /><span class="released"></span> A5: Interactive visualization</td>
+      <td>Vega-Lite docs on <a href="https://vega.github.io/vega-lite/docs/parameter.html">Params</a></td>
+      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td>Friday, 5/2</td>
       <td>Interactivity</td>
-      <td><a href="https://vega.github.io/vega-lite/docs/parameter.html">Vega-lite params documentation</a></td>
-      <td> </td>
+      <td>Vega-Lite docs on <a href="https://vega.github.io/vega-lite/docs/parameter.html">Params</a></td>
+      <td><span class="due"></span> A4<br /><br /><span class="released"></span> A5: Interactive visualization</td>
     </tr>
     <tr>
       <td>6</td>
       <td>Monday, 5/5</td>
-      <td>D3</td>
-      <td>Murray, Heer, <a href="https://observablehq.com/@d3/learn-d3">D3 docs and examples</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Wednesday, 5/7</td>
-      <td>D3</td>
-      <td>Murray, Heer, <a href="https://observablehq.com/@d3/learn-d3">D3 docs and examples</a></td>
-      <td><span class="due"></span> P1<br /><br /><span class="released"></span> P2: Prototype</td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td>Friday, 5/9</td>
-      <td>D3</td>
-      <td>Murray, Heer, <a href="https://observablehq.com/@d3/learn-d3">D3 docs and examples</a></td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Monday, 5/12</td>
       <td>Cartographic visualization</td>
       <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td> </td>
-      <td>Wednesday, 5/14</td>
-      <td>Ethically sound and dubious visualization</td>
+      <td>Wednesday, 5/7</td>
+      <td>Cartographic visualization</td>
       <td> </td>
-      <td><span class="due"></span> A5<br /><br /><span class="released"></span> A6: Deceptive visualization</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Friday, 5/9</td>
+      <td>Cartographic visualization</td>
+      <td> </td>
+      <td><span class="due"></span> P1<br /><br /><span class="released"></span> P2: Prototype</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Monday, 5/12</td>
+      <td><span class="emph">Wiggle room</span></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Wednesday, 5/14</td>
+      <td>Ethical and deceptive visualization</td>
+      <td> </td>
+      <td><span class="due"></span> A5<br /><br /><span class="released"></span> A6: Ethical and deceptive visualization</td>
     </tr>
     <tr>
       <td> </td>
       <td>Friday, 5/16</td>
-      <td><span class="emph">Wiggle room</span></td>
+      <td>Accessibility</td>
       <td> </td>
       <td> </td>
     </tr>
@@ -349,21 +349,21 @@ If deadlines in Canvas conflict with those listed here, <strong>the Canvas deadl
     <tr>
       <td> </td>
       <td>Wednesday, 5/21</td>
-      <td><span class="emph">Wiggle room</span></td>
+      <td>A 30,000-foot-view of D3.</td>
       <td> </td>
-      <td><span class="due"></span> A6</td>
+      <td><span class="due"></span> A6<br /><br /><span class="released"></span> A7: Practice with D3</td>
     </tr>
     <tr>
       <td> </td>
       <td>Friday, 5/23</td>
-      <td><span class="emph">Wiggle room</span></td>
+      <td>A 30,000-foot-view of D3.</td>
       <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td>9</td>
       <td><b class="emph">Tuesday, 5/27</b></td>
-      <td>Accessibility</td>
+      <td>A 30,000-foot-view of D3.</td>
       <td> </td>
       <td> </td>
     </tr>
@@ -386,7 +386,7 @@ If deadlines in Canvas conflict with those listed here, <strong>the Canvas deadl
       <td>Monday, 6/2</td>
       <td><span class="emph">Wiggle room</span></td>
       <td> </td>
-      <td> </td>
+      <td><span class="due"></span> A7</td>
     </tr>
     <tr>
       <td> </td>
@@ -412,6 +412,9 @@ If deadlines in Canvas conflict with those listed here, <strong>the Canvas deadl
 <hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
+    <li id="fn:d3" role="doc-endnote">
+      <p>We’ll do this assignment if we get to D3 because I don’t think the topic counts as “covered” unless you get to practice it. If we don’t do this assignment, its grade allocation will be distributed among the other assignments. <a href="#fnref:d3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
     <li id="fn:participation" role="doc-endnote">
       <p>With the exception of if you are right on a grade border but have an extremely low participation score. <a href="#fnref:participation" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
