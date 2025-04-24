@@ -1,0 +1,132 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+
+	<title>CSC 477 Interactive Visualization - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc477/spring2025/assignments/a4-interactive-visualization/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+
+  <main class="course">
+    
+    
+    
+    
+    
+    <p>
+      
+      <a href="/courses/csc477/spring2025">&larr; CSC 477 Scientific and Information Visualization</a>
+      
+    </p>
+    
+      <div class="content">
+     
+      <h1>CSC 477 Interactive Visualization</h1>
+      <p>This assignment involves building an interactive visualization of a dataset of your own choosing.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#deliverables" id="markdown-toc-deliverables">Deliverables</a>    <ul>
+      <li><a href="#interactive-graphic" id="markdown-toc-interactive-graphic">Interactive graphic</a></li>
+      <li><a href="#design-rationale" id="markdown-toc-design-rationale">Design rationale</a></li>
+    </ul>
+  </li>
+  <li><a href="#grading-criteria" id="markdown-toc-grading-criteria">Grading criteria</a></li>
+  <li><a href="#submission-details" id="markdown-toc-submission-details">Submission details</a></li>
+  <li><a href="#acknowledgement" id="markdown-toc-acknowledgement">Acknowledgement</a></li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>One goal of this assignment is for you to gain familiarity with various interaction techniques.
+We’ve seen many examples of interactions in class, like Shneiderman and Wattenberg’s <a href="https://www.cs.umd.edu/~ben/papers/Shneiderman2001Ordered.pdf">Treemap</a>, originally invented as a way to visualize hierarchical data (like file structure and usage on a disk), and were later adapted to <a href="https://finviz.com/map.ashx?t=sec">visualize the stock market</a>.
+Other tools enable exploration for the purpose of uncovering patterns in specific data, like <a href="https://benfry.com/zipdecode/">zip codes</a> or <a href="https://web.archive.org/web/20211107232302/https:/www.babynamewizard.com/namevoyager-expert#prefix=&amp;sw=both&amp;exact=false">baby names</a>.</p>
+
+<p>Although we haven’t (yet) learned some of the graphical techniques used in those examples (like map visualizations as in <a href="https://benfry.com/zipdecode/">Zipdecode</a>), the <em>interactions</em> in those graphics should be a source of inspiration.
+We have seen many other examples of interactive visualizations in class and in the readings.</p>
+
+<p><strong>Remember, you need to scope this assignment so you can finish it in two weeks.</strong> Focus on designing a limited yet compelling visualization that enables interactive exploration along a few critical dimensions.
+A tightly-focused, well-implemented interactive graphic is much preferred to a sprawling design that attempts too much.</p>
+
+<h2 id="deliverables">Deliverables</h2>
+
+<p>Just like before, your final deliverable will be a public and unlisted Observable notebook. It will contain an interactive graphic followed by a short write-up describing your design rationale.</p>
+
+<h3 id="interactive-graphic">Interactive graphic</h3>
+
+<p>Design and implement interactive graphic aimed at enabling understanding of a compelling question for a dataset of your own choosing.
+In order to determine what subset of the data and which interactive options are most promising, you may want to perform additional exploratory analysis.
+What aspects of the data reveal the most interesting discoveries or stories?
+Do not feel obligated to try to convey <em>everything</em> about the data: focus on a compelling subset.</p>
+
+<p>Implement your interactive graphic using Vega-Lite.
+Your graphic must include interactions that enable exploration.
+Possible techniques include panning, zooming, brushing, details-on-demand (e.g., tooltips), dynamic query filters, and selecting different measures to display.
+You are free to also consider highlights, annotations, or other narrative features intended to draw attention to particular items of interest and provide additional context.</p>
+
+<p>In addition to gaining hands-on implementation experience, another goal of this assignment is for you to think about the effectiveness of specific techniques for your chosen data domain.</p>
+
+<p>You must also include references to external resources.
+Be sure to list the data sources you used.
+If your work adapts or builds on existing visualization examples, please cite those as well.</p>
+
+<h3 id="design-rationale">Design rationale</h3>
+
+<p>In addition to your interactive graphic, you will also provide a write-up describing the rationale for your design decisions. How did you choose your particular visual encodings and interaction techniques? What alternatives did you consider and how did you arrive at your ultimate choices?</p>
+
+<p>Provide your write-up in the Canvas textbox for the assignment.
+That is, you’re not required to add it to your notebook: you have complete creative control over what your final notebook will look like.</p>
+
+<h2 id="grading-criteria">Grading criteria</h2>
+
+<p>Squarely meeting the requirements as described above for this assignment will receive a score of 9/10.
+Going beyond above and beyond would net the final point.
+Examples of this include:</p>
+
+<ul>
+  <li>novel interaction techniques or visualization elements (i.e., novel to us and our class)</li>
+  <li>effective multi-view coordination</li>
+  <li>thoughtful and elegant graphic design that attends to what we’ve learned about effective visual encodings</li>
+  <li>insightful and engaging exploration experience</li>
+</ul>
+
+<p>Point deductions will be made when projects suffer from:</p>
+
+<ul>
+  <li>errors or broken features</li>
+  <li>clearly ineffective visual encodings</li>
+  <li>confusing interface design or unhelpful interactions</li>
+  <li>lack of exploratory interaction techniques</li>
+  <li>incomplete or insufficient write-up in Canvas</li>
+</ul>
+
+<h2 id="submission-details">Submission details</h2>
+
+<p>In Canvas, submit a link to your public and unlisted Observable Notebook as well as your design rationale.</p>
+
+<p>Note that submissions to this assignment will be reviewed as part of a subsequent peer-review assignment (tentatively due on Wednesday 5/14).
+So try to avoid late submissions.</p>
+
+<h2 id="acknowledgement">Acknowledgement</h2>
+
+<p>This assignment is adapted from <a href="https://courses.cs.washington.edu/courses/cse442/24au/a3.html">Jeffrey Heer’s assignment at UW</a>.</p>
+
+      </div>
+    
+    
+  </main>
+
+</body>
+</html>
