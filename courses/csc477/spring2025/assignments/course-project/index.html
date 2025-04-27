@@ -1,0 +1,214 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+
+	<title>Course project: Explorable explanations - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc477/spring2025/assignments/course-project/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+
+  <main class="course">
+    
+    
+    
+    
+    
+    <p>
+      
+      <a href="/courses/csc477/spring2025">&larr; CSC 477 Scientific and Information Visualization</a>
+      
+    </p>
+    
+      <div class="content">
+     
+      <h1>Course project: Explorable explanations</h1>
+      <ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#milestones" id="markdown-toc-milestones">Milestones</a>    <ul>
+      <li><a href="#p1-project-proposal" id="markdown-toc-p1-project-proposal">P1: Project Proposal</a></li>
+      <li><a href="#p2-interactive-prototype" id="markdown-toc-p2-interactive-prototype">P2: Interactive Prototype</a></li>
+      <li><a href="#p3-final-deliverable" id="markdown-toc-p3-final-deliverable">P3: Final Deliverable</a></li>
+    </ul>
+  </li>
+  <li><a href="#resources" id="markdown-toc-resources">Resources</a>    <ul>
+      <li><a href="#visualization-tools" id="markdown-toc-visualization-tools">Visualization tools</a></li>
+      <li><a href="#possible-data-sources" id="markdown-toc-possible-data-sources">Possible data sources</a></li>
+    </ul>
+  </li>
+  <li><a href="#acknowledgement" id="markdown-toc-acknowledgement">Acknowledgement</a></li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>For this project, <strong>you’ll work in teams of 3–4</strong> to create and publish an interactive article that uses visualization to explain some complex subject to a reader.
+The visualizations you create should all embody the best practices for effective visualization that you have learned in class.</p>
+
+<p>In terms of toolkits, I expect most teams will build an “interactive webpage” using <a href="https://observablehq.com">Observable Notebooks</a>.
+I also expect most teams will use <strong><a href="https://vega.github.io/vega-lite/">Vega-Lite</a></strong> to create interactive visualizations, but you are also free to use <a href="https://d3js.org/">D3.js</a> or <a href="https://p5js.org/">p5.js</a> (both of which we will talk about later this term), or some combination thereof.
+D3 in particular has a <a href="https://observablehq.com/@d3/gallery">vast gallery of examples</a> that <em>you are encouraged to explore and adapt as you see fit</em>.
+The only requirement here is that you cite your sources (in a code comment) whenever you use code from another example.</p>
+
+<p>If you want to use other tools that we haven’t talked about or that are not JavaScript-based, please talk to me first.</p>
+
+<p>You will choose the topic, but it must have <strong>social or scientific importance.</strong>
+Example topics include philanthropic spending, election donations, economic development, humanitarian aid, climate change, education, civil rights, legislative voting records, a computer science algorithm or mathematical concept (or music concept, or any discipline you’re into in addition to CS), or some other important societal topic.
+Within this constraint, I encourage you to select something of great personal interest.</p>
+
+<p>Create an interactive, engaging <a href="https://worrydream.com/ExplorableExplanations/"><em>explorable explanation</em></a> of your topic.
+Your job is to <strong>educate your non-expert reader</strong> about your topic, and also highlight its importance to society.
+You should use interactive visualizations to do this.</p>
+
+<p>You may be inspired by the following examples:</p>
+
+<ul>
+  <li><a href="https://www.washingtonpost.com/graphics/2020/world/corona-simulator/">Why outbreaks like coronavirus spread exponentially, and how to “flatten the curve”</a>. Harry Stevens. <em>Washington Post.</em></li>
+  <li><a href="https://parametric.press/issue-02/streaming/">The Hidden Cost of Digital Consumption</a>. Halden Lin, Aishwarya Nirmal, Shobhit Hathi, and Lilian Liang.</li>
+  <li><a href="https://archive.nytimes.com/www.nytimes.com/interactive/2012/11/02/us/politics/paths-to-the-white-house.html?_r=0">512 Paths to the White House</a>. Mike Bostock and Shan Carter. <em>New York Times</em> archive.</li>
+  <li><a href="https://docs.google.com/document/d/1HSwkSe5p2lo9ZnSA4C3wwSeYhWYVOKERWC6UXk4gODI/edit?tab=t.0">Bicycle</a>. Bartosz Ciechanowski.</li>
+  <li><a href="https://mbtaviz.github.io/">Visualizing MBTA Data: An interactive exploration of Boston’s subway system</a>. Mike Barry and Brian Card.</li>
+  <li>See other examples at <a href="https://explorabl.es/">explorabl.es</a></li>
+</ul>
+
+<p>The examples above should help demonstrate the style of article we should aim for, though they may not meet our requirement for being of societal or scientific importance.</p>
+
+<p>Before you start, please read <a href="https://www.cs.ubc.ca/labs/imager/tr/2009/NestedModel/NestedModel.pdf">A Nested Model for Visualization Design and Validation</a> by Tamara Munzner to help you understand what goes into making an effective interactive visualization.
+The paper is required reading later in the course, so you might as well get a head start!</p>
+
+<h2 id="milestones">Milestones</h2>
+
+<p>The project has three key milestones (see due dates in the course schedule):</p>
+
+<ul>
+  <li>P1: Project proposal: An initial proposal answering specific questions about your planned work (see below); includes information about your teammates as well as initial sketches.</li>
+  <li>P2: Prototypes: An initial interactive prototype in Observable.</li>
+  <li>P3: Final deliverable: Your final explorable explanation, deployed publicly and presented in class. The class will collectively vote for their top explorable explanation as well as the most impactful topic.</li>
+</ul>
+
+<h3 id="p1-project-proposal">P1: Project Proposal</h3>
+
+<p>Using <a href="https://cpslo-my.sharepoint.com/:w:/g/personal/ayaank_calpoly_edu/EZvbmzYUHrNDqvccc2YODxwBoE1nIsL7LxitDGO86x5Q4g?e=sQG7eu">this Word document</a> as a template, propose your topic, dataset(s), and team members. Answer the following questions in your write-up:</p>
+
+<ul>
+  <li>What is your topic?</li>
+  <li>Why is it socially or scientifically significant?</li>
+  <li>Who is your audience? Why are they reading your article? What are your assumptions about them?</li>
+  <li>What dataset(s) are you using? Why are they authoritative? Please include hyperlinks when relevant.</li>
+  <li>What are some questions you could answer with these data? Include at least two sketches made with pen and pencil or a tablet and stylus to illustrate your team’s initial ideas.</li>
+</ul>
+
+<p>Not including sketches, your write-up should be no longer than 1.25 pages.</p>
+
+<p>As you brainstorm, consider that we will cover the following as this project progresses:</p>
+
+<ul>
+  <li>Cartographic visualizations.</li>
+  <li>p5.js and d3.js, allowing you to draw custom marks and animations, and graphics in general.</li>
+</ul>
+
+<p>So you are not limited to the visualizations and interactions that are possible through Vega-Lite.</p>
+
+<p>Turn in your write-up to Canvas as a PDF filled out by your team.</p>
+
+<h3 id="p2-interactive-prototype">P2: Interactive Prototype</h3>
+
+<p>Develop an initial interactive prototype on Observable and submit the following to Canvas:</p>
+
+<ol>
+  <li>A public (but possibly unlisted) link to your notebook. Please choose a custom URL for your notebook that communicates your chosen topic.</li>
+  <li>A static PDF of your notebook, so that improvements you make between now and the final submission may be considered.</li>
+  <li>A reflection of what you’ve learned and what you’ve been challenged by so far.</li>
+</ol>
+
+<p>Your interactive prototype will be presented to the rest of the class in a “gallery walk” situation, kind of like a conference poster session.
+This will be an opportunity to receive constructive feedback from myself and your classmates about your prototype.
+At this stage, your project does not need to be in its final state.
+However, you should have:</p>
+
+<ul>
+  <li>An overall structure and flow to your document (i.e., some key headings).</li>
+  <li>A draft introduction to your article.</li>
+  <li>A description of your dataset and its integrity (including hyperlinks).</li>
+  <li>More than one interactive visualization with some basic descriptive text.</li>
+</ul>
+
+<h3 id="p3-final-deliverable">P3: Final Deliverable</h3>
+
+<p>Finalise and publish your interactive article, and prepare a live demo for the rest of the class.
+You will present to the class on the last two days of week 10.</p>
+
+<p>The final interactive visualization should have:</p>
+
+<ul>
+  <li>Significant improvements over the P2 prototype, based on feedback received.</li>
+  <li>Multiple interactive visualizations that follow best practices and engagingly explain your topic, including coordination of interactions across linked graphics.</li>
+  <li>Well-written and concise prose interspersed through your visualizations. That said, try to avoid excessive amounts of prose in your article—the reader should primarily explore your topic through your visuals, not paragraphs of text.</li>
+</ul>
+
+<p>More details about the final presentation will be forthcoming closer to week 10.</p>
+
+<h2 id="resources">Resources</h2>
+
+<h3 id="visualization-tools">Visualization tools</h3>
+
+<ul>
+  <li><a href="https://observablehq.com/@uwdata/data-visualization-curriculum">UW Data Visualization Curriculum</a> (using Vega-Lite). Jeffrey Heer, Dominik Moritz, Jake VanderPlas, Brock Craft.</li>
+  <li><a href="https://observablehq.com/@uwdata/introduction-to-d3-part-1?collection=@uwdata/introduction-to-d3">Introduction to D3</a>. Jeffrey Heer.</li>
+  <li><a href="https://observablehq.com/@jonfroehlich/using-p5js-in-observable">Using p5.js in Observable</a>. Jon Froehlich.</li>
+</ul>
+
+<h3 id="possible-data-sources">Possible data sources</h3>
+
+<p>Within the requirement that your topic be societally or scientifically important, <strong>you’re strongly encouraged to choose a topic that aligns with your own interests</strong>.
+This list of possible data sources <em>should not dictate</em> your project topic.
+I provide the list in the hope that something in there intersects with your chosen topic.
+But if not, please talk to me about finding a dataset!
+(Note that if your topic is an explanation of an algorithm or mathematical or musical concept, your dataset may be <em>generated</em> instead of downloaded.)</p>
+
+<p>You’re obviously not required to choose from here!</p>
+
+<ul>
+  <li><a href="https://opendata.slocounty.ca.gov/">opendata.slocounty.ca.gov</a> — San Luis Obispo County Open Data</li>
+  <li><a href="https://data.ca.gov">data.ca.gov</a> — California Open Data</li>
+  <li><a href="https://data.gov/">data.gov</a> — US Government Open Datasets</li>
+  <li><a href="https://www.census.gov/data.html">data.census.gov</a> — US Census Bureau Open Data</li>
+  <li><a href="https://www.ipums.org/">IPUMS.org</a> — Integrated Census and Survey data from around the world</li>
+  <li><a href="https://www.gapminder.org/data/">Gapminder.org</a> — Gapminder’s mission is to “fight devastating ignorance with a fact-based worldview everyone can understand”</li>
+  <li><a href="https://www.fec.gov/data/">Federal Elections Commission</a> — Campaign finance data</li>
+  <li><a href="https://www.ncei.noaa.gov/">NOAA weather datasets</a> — See code in the appendix of <a href="https://observablehq.com/@ayaankazerouni/csc477-view-composition">this notebook</a> for examples of tidying this data</li>
+  <li><a href="https://www.washingtonpost.com/national/2019/07/18/how-download-use-dea-pain-pills-database/?arc404=true">DEA Pain Pills database</a> — You may need to enter an email to access this data</li>
+  <li><a href="https://github.com/fivethirtyeight/data/">fivethirtyeight.com</a> — Code and data behind stories on <a href="https://fivethirtyeight.com/features">538</a></li>
+  <li><a href="https://business.yelp.com/data/resources/open-dataset/">Yelp open dataset</a></li>
+  <li><a href="https://www.tableau.com/learn/articles/free-public-data-sets">Datasets curated by Tableau</a></li>
+  <li><a href="https://observablehq.com/@observablehq/curated-datasets">Datasets curated by Observable</a></li>
+  <li><a href="https://www.kaggle.com/datasets">Kaggle datasets</a></li>
+  <li><a href="https://corgis-edu.github.io/corgis/">The CORGIS dataset of datasets</a> — Note that these datasets are cleaned and curated specifically for educational use and may be of limited direct utility or may be out of date. However, many link to their original sources (e.g., government websites and the like), which may be useful.</li>
+  <li><a href="https://github.com/vega/vega-datasets/">The Vega datasets collection</a> — Same caveat as above.</li>
+</ul>
+
+<p>You may also consider services like <a href="https://datasetsearch.research.google.com/">Google Dataset Search</a>, but note that you are responsible for judging the legitimacy of the data you find.</p>
+
+<h2 id="acknowledgement">Acknowledgement</h2>
+
+<p>This assignment is adapted from similar assignments from <a href="https://docs.google.com/document/d/1IkLt99Wy4FsyGyVT3oPsPH9Eg-HjiyVsOyviqQSnQYc/edit?tab=t.0">Jon Froehlich’s CSE 412</a> course and <a href="https://courses.cs.washington.edu/courses/cse442/24au/">Jeffrey Heer’s CSE 442</a> course at UW.</p>
+
+<hr />
+
+      </div>
+    
+    
+  </main>
+
+</body>
+</html>
