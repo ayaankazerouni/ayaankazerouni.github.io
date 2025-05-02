@@ -110,14 +110,14 @@ And, as we know, all reference types <code class="language-plaintext highlighter
 <p>Below are two methods defined in the <code class="language-plaintext highlighter-rouge">Object</code> class that are commonly overridden in subclasses. (There are more, but these two are relevant for this discussion.)</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">public String toString()</code>: Computes and returns a <code class="language-plaintext highlighter-rouge">String</code> representation of the object. For the <code class="language-plaintext highlighter-rouge">Object</code> class, this simply returns the object’s memory address. This (not super useful) behaviour will be inherited by a subclass unless the subclass overrides it by writing its own <code class="language-plaintext highlighter-rouge">toString</code> method.</li>
+  <li><code class="language-plaintext highlighter-rouge">public String toString()</code>: Computes and returns a <code class="language-plaintext highlighter-rouge">String</code> representation of the object. For the <code class="language-plaintext highlighter-rouge">Object</code> class, this simply returns the object’s hash code (an unique-as-far-as-possible integer representing the object). This (not super useful) behaviour will be inherited by a subclass unless the subclass overrides it by writing its own <code class="language-plaintext highlighter-rouge">toString</code> method.</li>
   <li><code class="language-plaintext highlighter-rouge">public boolean equals(Object other)</code>: Checks if this <code class="language-plaintext highlighter-rouge">Object</code> (the calling object) is logically equal to the <code class="language-plaintext highlighter-rouge">other</code> object. For the <code class="language-plaintext highlighter-rouge">Object</code> class, this method checks if they are the same object (i.e., it is the same as using the <code class="language-plaintext highlighter-rouge">==</code> operator). If a subclass wants to define a more useful <code class="language-plaintext highlighter-rouge">equals</code> method, it must override it.</li>
 </ul>
 
 <h2 id="tostring"><code class="language-plaintext highlighter-rouge">toString</code></h2>
 
 <p>The <code class="language-plaintext highlighter-rouge">Object</code> class defines a <code class="language-plaintext highlighter-rouge">toString</code> method whose job it is to return a short, human friendly string representation of the object.
-For a plain old <code class="language-plaintext highlighter-rouge">Object</code> which is almost never used directly by developers, this <code class="language-plaintext highlighter-rouge">toString</code> method simply returns the object’s address in memory.
+For a plain old <code class="language-plaintext highlighter-rouge">Object</code> which is almost never used directly by developers, this <code class="language-plaintext highlighter-rouge">toString</code> method simply returns the object’s hash code, which itself is simply an integer representation of the object’s memory address, unless you override it yourself, <a href="../12-hashcode/">which you should</a>.
 The <code class="language-plaintext highlighter-rouge">Object</code> has no other distinguishing features, so there’s not much more to say about it.</p>
 
 <p><strong>You should always override <code class="language-plaintext highlighter-rouge">toString</code> when you write your own classes.</strong> It’s often useful to have a <code class="language-plaintext highlighter-rouge">toString</code> method for your own classes.
@@ -161,11 +161,11 @@ Actual: 3 --&gt; 2 --&gt; 1
 <p><strong>In general, IDEs and libraries will use the <code class="language-plaintext highlighter-rouge">toString</code> method whenever they need to refer to an object in text output for a human to read.</strong></p>
 
 <p>Another really important example is the <a href="https://www.jetbrains.com/help/idea/debugging-code.html">debugger in IntelliJ IDEA</a> and most other Java IDEs. When you inspect a variable’s value while debugging, the debugger by default displays the result of calling <code class="language-plaintext highlighter-rouge">toString</code> on that variable.
-Without a <code class="language-plaintext highlighter-rouge">toString</code> method for custom classes, you are just going to be given the memory address.</p>
+Without a <code class="language-plaintext highlighter-rouge">toString</code> method for custom classes, you are just going to be given the Object’s default <code class="language-plaintext highlighter-rouge">toString</code> which as we’ve seen above is not very useful.</p>
 
 <p>For example, consider the image below, reproduced from <a href="https://www.jetbrains.com/help/idea/debug-tool-window.html#sessions">IntelliJ’s help docs</a>. In the screenshot, the user is inspecting the <code class="language-plaintext highlighter-rouge">this</code> object, which appears to be a <code class="language-plaintext highlighter-rouge">Whale</code> object.
 Unfortunately, the <code class="language-plaintext highlighter-rouge">Whale</code> in this example does <em>not</em> have a <code class="language-plaintext highlighter-rouge">toString</code> method, so the user has to expand the <code class="language-plaintext highlighter-rouge">this</code> object to inspect its data.
-If the <code class="language-plaintext highlighter-rouge">Whale</code> <em>did</em> have a <code class="language-plaintext highlighter-rouge">toString</code>, that value would be printed instead of <code class="language-plaintext highlighter-rouge">{Whale@784}</code> (the object’s memory address).</p>
+If the <code class="language-plaintext highlighter-rouge">Whale</code> <em>did</em> have a <code class="language-plaintext highlighter-rouge">toString</code>, that value would be printed instead of <code class="language-plaintext highlighter-rouge">{Whale@784}</code> (the object’s hash code).</p>
 
 <figure>
   <a href="debugger.png" target="_blank">
