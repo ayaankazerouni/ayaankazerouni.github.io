@@ -1,0 +1,149 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+
+	<title>Assignment 5: Ethical and Deceptive Visualization - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc477/spring2025/assignments/a5-ethical-and-deceptive-visualization/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+
+  <main class="course">
+    
+    
+    
+    
+    
+    <p>
+      
+      <a href="/courses/csc477/spring2025">&larr; CSC 477 Scientific and Information Visualization</a>
+      
+    </p>
+    
+      <div class="content">
+     
+      <h1>Assignment 5: Ethical and Deceptive Visualization</h1>
+      <p>In this assignment, you will design and implement two static visualizations using the same dataset.
+One visualization will be an ethical representation of the data, while the other will be deceptive.
+With the deceptive visualization, your goal is to trick the viewer into believing that the visualization is legitimate and to draw inaccurate conclusions from it.</p>
+
+<p>We will examine each other’s work in an in-class activity—see if you can deceive your teammates.</p>
+
+<p>You will use Vega-Lite in an Observable Notebook to create your visualizations.</p>
+
+<h2 id="task">Task</h2>
+
+<p>Begin by selecting a dataset (see below). You must use the same dataset for both visualizations.</p>
+
+<p>Choose a question that you want your visualization to answer—you may choose a different question for each of your visualizations if you wish.
+The question must appear in the title of your visualization.
+Design your visualization to answer the question correctly (for the ethical visualization) and incorrectly (for the deceptive visualization).</p>
+
+<p>We will consider an <em>ethical visualization</em> to be one where:</p>
+
+<ul>
+  <li>The visualization is clear and interpretable by the general population.</li>
+  <li>The visual encodings are appropriate and effective for the intended task.</li>
+  <li>Data transformations are clearly and transparently communicated.</li>
+  <li>The underlying data source (and any potential bias) is clearly communicated.</li>
+</ul>
+
+<p>On the other hand, a <em>deceptive visualization</em> may exhibit the following properties:</p>
+
+<ul>
+  <li>The visual representation is intentionally inappropriate or misleading.</li>
+  <li>Titles are skewed to intentionally influence the viewer’s perception.</li>
+  <li>The data has been transformed or filtered in an intentionally misleading way.</li>
+  <li>The existence or source of bias in the underlying data is unclear.</li>
+</ul>
+
+<p>Additionally, for the deceptive visualization, aim to use subtle ineffective choices in the design that require close reading to be identified.
+Misleading strategies are fine, but <strong>outright lying is not.</strong> For example, do not use fake data or lie about the data source.
+Similarly, deliberate lies in axis titles or labels are not allowed. Technically true but otherwise misleading statements are allowed.</p>
+
+<h2 id="deliverable">Deliverable</h2>
+
+<p>Your deliverable will be a link to a public and <strong>unlisted</strong> Observable notebook that contains both visualizations.
+The two visualizations should be side by side near the top of the notebook.</p>
+
+<p><strong>It should be not be immediately clear in your submission which visualization is ethical and which is deceptive.</strong></p>
+
+<p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details">HTML <code class="language-plaintext highlighter-rouge">details</code> and <code class="language-plaintext highlighter-rouge">summary</code> elements</a> to create collapsible sections for the parts of your write-up that describe the visualization designs. That is, it should not be immediately clear to the reader which visualization is ethical and which is deceptive; a reader should have to click to expand the section to see the details.</p>
+
+<p>In addition to the visualizations, you should include a write up that describes the following:</p>
+
+<ul>
+  <li>The dataset you chose.</li>
+  <li>For each visualization:
+    <ul>
+      <li>The question you are trying to answer.</li>
+      <li>A description of your design rationales, and how your choices were intended to inform or mislead the viewer.
+        <ul>
+          <li>This should make clear which visualization is ethical and which is deceptive.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>If your notebook has lots of data-cleaning code or code for experimental visualizations that you later discarded, please move those to a separate section at the bottom of the notebook.
+The main part of your notebook should focus on the two visualizations and your write-up.</p>
+
+<h2 id="grading">Grading</h2>
+
+<p>Your assignment will be graded based on:</p>
+
+<ul>
+  <li>The clarity and interpretability of your ethical visualization.</li>
+  <li>The duplicity of your deceptive visualization.</li>
+  <li>The clarity and completeness of your write-up.</li>
+</ul>
+
+<p>Remember that your deliverable should be two static visualizations.
+Our goal here is to explore the subtle choices we can make in the design of data visualizations, and their effects on the viewer’s understanding of the data.
+Our is <em>not</em> to explore the use of multiple views or interactivity as it was in the previous assignments.
+<strong>It is okay to keep it simple.</strong></p>
+
+<p>Examples of things that will result in point deductions include:</p>
+
+<ul>
+  <li>Obvious identification of the ethical and deceptive visualizations.</li>
+  <li>Missing titles containing the questions for each visualization.</li>
+  <li>Missing elements in the write-up.</li>
+  <li>Outright lies in the deceptive visualization or write-up.</li>
+  <li>Untidy or unprofessional presentation of the notebook, including missing references.</li>
+</ul>
+
+<h2 id="recommended-data-sources">Recommended data sources</h2>
+
+<p>It’s recommended that you choose from one of the following sources:</p>
+
+<ul>
+  <li><a href="https://www.gapminder.org/data/">Gapminder.org</a> — Global human development data, e.g., population, life expectancy, income, C02 emissions.</li>
+  <li><a href="https://www.washingtonpost.com/national/2019/07/18/how-download-use-dea-pain-pills-database/?arc404=true">DEA Pain Pills database</a> — You may need to enter an email to access this data</li>
+</ul>
+
+<p>You may also consider datasets listed in the <a href="../course-project/">final project assignment</a>. If you want to use a different dataset, please check it with me as early as possible.</p>
+
+<p>As always, whichever dataset you choose, please include a reference to it in your notebook.</p>
+
+<hr />
+
+      </div>
+    
+    
+  </main>
+
+</body>
+</html>
