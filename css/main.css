@@ -109,11 +109,11 @@ a:visited:not(:has(img)):hover {
   background-color: var(--highlight-color);
 }
 
-.hlt, .fn-tooltip, .footnotes :target, .tag, .banner {
+.hlt, .footnotes :target, .tag, .banner {
   background-color: var(--highlight-color);
   color: var(--inverted-font-color);
 }
-.hlt a, .fn-tooltip a, .footnotes :target a, .tag a, .banner a {
+.hlt a, .footnotes :target a, .tag a, .banner a {
   color: var(--inverted-font-color);
 }
 
@@ -525,6 +525,8 @@ sup[id^="fnref:"] {
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  background-color: ivory;
+  color: var(--inverted-font-color);
 }
 
 @media only screen and (max-width: 750px) {
