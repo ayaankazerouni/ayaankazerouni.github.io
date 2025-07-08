@@ -1,1 +1,2 @@
-Sitemap: https://ayaankazerouni.org/sitemap.xml
+User-agent: *
+Disallow: /drafts/
