@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Ayaan Kazerouni's blog posts</title>
+  <link>https://ayaankazerouni.org/blog/</link>
+  <description>Posts about computing education</description>
+  <lastBuildDate>Fri, 22 Aug 2025 13:04:01 -0700</lastBuildDate>
+
+  
+  
+  
+  
+  <item>
+    <title>Incorporating Socially Responsible Computing in Early Undergraduate CS Courses</title>
+    <link>https://ayaankazerouni.org/blog/src-in-early-cs-courses/</link>
+    <guid>https://ayaankazerouni.org/blog/src-in-early-cs-courses/</guid>
+    <pubDate>Thu, 10 Apr 2025 00:00:00 -0700</pubDate>
+    <description></description>
+  </item>
+  
+  
+  
+  <item>
+    <title>Challenges with learning end-user programming: A case study with Chemistry undergraduate students</title>
+    <link>https://ayaankazerouni.org/blog/end-user-programming/</link>
+    <guid>https://ayaankazerouni.org/blog/end-user-programming/</guid>
+    <pubDate>Tue, 25 Jun 2024 00:00:00 -0700</pubDate>
+    <description></description>
+  </item>
+  
+  
+  
+  <item>
+    <title>It&apos;s good to be bad at something</title>
+    <link>https://ayaankazerouni.org/blog/good-to-be-bad/</link>
+    <guid>https://ayaankazerouni.org/blog/good-to-be-bad/</guid>
+    <pubDate>Sun, 31 Mar 2024 00:00:00 -0700</pubDate>
+    <description></description>
+  </item>
+  
+  
+  
+  <item>
+    <title>How relative novices make sense of code coverage and mutation-based feedback</title>
+    <link>https://ayaankazerouni.org/blog/test-feedback-sensemaking/</link>
+    <guid>https://ayaankazerouni.org/blog/test-feedback-sensemaking/</guid>
+    <pubDate>Thu, 04 Jan 2024 00:00:00 -0800</pubDate>
+    <description></description>
+  </item>
+  
+  
+  
+  <item>
+    <title>What makes CS students seek or avoid academic help resources?</title>
+    <link>https://ayaankazerouni.org/blog/help-seeking-behaviours/</link>
+    <guid>https://ayaankazerouni.org/blog/help-seeking-behaviours/</guid>
+    <pubDate>Sat, 13 Nov 2021 00:00:00 -0800</pubDate>
+    <description></description>
+  </item>
+  
+  
+  
+  <item>
+    <title>Fast and Accurate Incremental Feedback for Students&apos; Software Tests Using Selective Mutation Analysis</title>
+    <link>https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/</link>
+    <guid>https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/</guid>
+    <pubDate>Wed, 17 Mar 2021 00:00:00 -0700</pubDate>
+    <description></description>
+  </item>
+  
+  
+  
+  <item>
+    <title>Explicit Milestones on Intermediate Software Projects are Pretty Not Bad</title>
+    <link>https://ayaankazerouni.org/blog/explicit-project-milestones/</link>
+    <guid>https://ayaankazerouni.org/blog/explicit-project-milestones/</guid>
+    <pubDate>Wed, 14 Oct 2020 00:00:00 -0700</pubDate>
+    <description></description>
+  </item>
+  
+  
+  
+  <item>
+    <title>Assessing Incremental Testing Practices and Their Impact on Project Outcomes</title>
+    <link>https://ayaankazerouni.org/blog/assessing-incremental-testing/</link>
+    <guid>https://ayaankazerouni.org/blog/assessing-incremental-testing/</guid>
+    <pubDate>Tue, 07 Jul 2020 00:00:00 -0700</pubDate>
+    <description></description>
+  </item>
+  
+  
+  
+  <item>
+    <title>Developing Procrastination Feedback for Student Software Developers</title>
+    <link>https://ayaankazerouni.org/blog/procrastination-feedback/</link>
+    <guid>https://ayaankazerouni.org/blog/procrastination-feedback/</guid>
+    <pubDate>Fri, 17 Apr 2020 00:00:00 -0700</pubDate>
+    <description></description>
+  </item>
+  
+  
+  
+  <item>
+    <title></title>
+    <link>https://ayaankazerouni.org/blog/feed.xml</link>
+    <guid>https://ayaankazerouni.org/blog/feed.xml</guid>
+    <pubDate></pubDate>
+    <description></description>
+  </item>
+  
+  
+</channel>
+</rss>

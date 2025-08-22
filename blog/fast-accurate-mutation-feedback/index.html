@@ -6,6 +6,10 @@
   <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
   
 
+	
+	<link rel="alternate" type="application/rss+xml" title="Ayaan Kazerouni's blog posts" href="/blog/feed.xml">
+	
+
 	<title>Fast and Accurate Incremental Feedback for Students' Software Tests Using Selective Mutation Analysis - Ayaan M. Kazerouni</title>
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
@@ -168,7 +172,7 @@
     <img src="inc-subsets.png" alt="Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy." />
   </a>
 
-  <figcaption>The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R² predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.</figcaption>
+  <figcaption>The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R<sup>2</sup> predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.</figcaption>
 </figure>
 
 <p>In the figure above,</p>
@@ -182,7 +186,7 @@
 
 <p>Some key takeaways:</p>
 
-<p><strong>The RemoveConditionals operator, by itself, is enormously effective</strong> for the larger, more complex submissions, pushing 90% adjusted \(R^2\) for group 4 submissions (see the 1-op box plot in the rightmost subplot). For groups 2 and 3, it still does pretty well, but requires the inclusion of <code class="language-plaintext highlighter-rouge">AOD</code> operator to cross the 90% threshold.</p>
+<p><strong>The RemoveConditionals operator, by itself, is enormously effective</strong> for the larger, more complex submissions, pushing 90% adjusted R<sup>2</sup> for group 4 submissions (see the 1-op box plot in the rightmost subplot). For groups 2 and 3, it still does pretty well, but requires the inclusion of <code class="language-plaintext highlighter-rouge">AOD</code> operator to cross the 90% threshold.</p>
 
 <p><strong>Which operators are most useful seems tied to the project itself.</strong> It is no surprise that <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> does not do so well for the group 1 submissions: they are of minimal cyclomatic complexity, meaning they contain few conditional statements. Including <code class="language-plaintext highlighter-rouge">AOD</code> substantially improves the approximation, because these projects tend to focus more on arithmetic operations and less on data structure implementations (in contrast to the submissions found in the Data Structures and Algorithms course).</p>
 
@@ -218,7 +222,7 @@
   <figcaption>Mutation coverage: Proportion of Full mutants detected by the subset-adequate test suite.</figcaption>
 </figure>
 
-<p>The <strong>cost</strong> naturally decreases in the order Deletion \(\to\) 3-op \(\to\) 2-op \(\to\) 1-op.</p>
+<p>The <strong>cost</strong> naturally decreases in the order Deletion → 3-op → 2-op → 1-op.</p>
 
 <figure>
   <a href="val-cost.png" target="_blank">
