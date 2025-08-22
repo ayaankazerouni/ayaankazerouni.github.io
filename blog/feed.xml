@@ -4,7 +4,7 @@
   <title>Ayaan Kazerouni's blog posts</title>
   <link>https://ayaankazerouni.org/blog/</link>
   <description>Posts about computing education</description>
-  <lastBuildDate>Fri, 22 Aug 2025 13:10:00 -0700</lastBuildDate>
+  <lastBuildDate>Fri, 22 Aug 2025 13:21:23 -0700</lastBuildDate>
 
   
   
@@ -14,8 +14,11 @@
     <title>Incorporating Socially Responsible Computing in Early Undergraduate CS Courses</title>
     <link>https://ayaankazerouni.org/blog/src-in-early-cs-courses/</link>
     <guid>https://ayaankazerouni.org/blog/src-in-early-cs-courses/</guid>
-    <pubDate>Thu, 10 Apr 2025 00:00:00 -0700</pubDate>
-    <description></description>
+    <pubDate>Thu, 10 Apr 2025</pubDate>
+    <description>
+      <br/>
+      See the post at <a href='/blog/src-in-early-cs-courses/'>/blog/src-in-early-cs-courses/</a>.
+    </description>
   </item>
   
   
@@ -24,8 +27,11 @@
     <title>Challenges with learning end-user programming: A case study with Chemistry undergraduate students</title>
     <link>https://ayaankazerouni.org/blog/end-user-programming/</link>
     <guid>https://ayaankazerouni.org/blog/end-user-programming/</guid>
-    <pubDate>Tue, 25 Jun 2024 00:00:00 -0700</pubDate>
-    <description></description>
+    <pubDate>Tue, 25 Jun 2024</pubDate>
+    <description>
+      <br/>
+      See the post at <a href='/blog/end-user-programming/'>/blog/end-user-programming/</a>.
+    </description>
   </item>
   
   
@@ -34,8 +40,11 @@
     <title>It&apos;s good to be bad at something</title>
     <link>https://ayaankazerouni.org/blog/good-to-be-bad/</link>
     <guid>https://ayaankazerouni.org/blog/good-to-be-bad/</guid>
-    <pubDate>Sun, 31 Mar 2024 00:00:00 -0700</pubDate>
-    <description></description>
+    <pubDate>Sun, 31 Mar 2024</pubDate>
+    <description>
+      <br/>
+      See the post at <a href='/blog/good-to-be-bad/'>/blog/good-to-be-bad/</a>.
+    </description>
   </item>
   
   
@@ -44,8 +53,11 @@
     <title>How relative novices make sense of code coverage and mutation-based feedback</title>
     <link>https://ayaankazerouni.org/blog/test-feedback-sensemaking/</link>
     <guid>https://ayaankazerouni.org/blog/test-feedback-sensemaking/</guid>
-    <pubDate>Thu, 04 Jan 2024 00:00:00 -0800</pubDate>
-    <description></description>
+    <pubDate>Thu, 04 Jan 2024</pubDate>
+    <description>
+      <br/>
+      See the post at <a href='/blog/test-feedback-sensemaking/'>/blog/test-feedback-sensemaking/</a>.
+    </description>
   </item>
   
   
@@ -54,8 +66,11 @@
     <title>What makes CS students seek or avoid academic help resources?</title>
     <link>https://ayaankazerouni.org/blog/help-seeking-behaviours/</link>
     <guid>https://ayaankazerouni.org/blog/help-seeking-behaviours/</guid>
-    <pubDate>Sat, 13 Nov 2021 00:00:00 -0800</pubDate>
-    <description></description>
+    <pubDate>Sat, 13 Nov 2021</pubDate>
+    <description>
+      <br/>
+      See the post at <a href='/blog/help-seeking-behaviours/'>/blog/help-seeking-behaviours/</a>.
+    </description>
   </item>
   
   
@@ -64,8 +79,11 @@
     <title>Fast and Accurate Incremental Feedback for Students&apos; Software Tests Using Selective Mutation Analysis</title>
     <link>https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/</link>
     <guid>https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/</guid>
-    <pubDate>Wed, 17 Mar 2021 00:00:00 -0700</pubDate>
-    <description></description>
+    <pubDate>Wed, 17 Mar 2021</pubDate>
+    <description>
+      <br/>
+      See the post at <a href='/blog/fast-accurate-mutation-feedback/'>/blog/fast-accurate-mutation-feedback/</a>.
+    </description>
   </item>
   
   
@@ -74,8 +92,11 @@
     <title>Explicit Milestones on Intermediate Software Projects are Pretty Not Bad</title>
     <link>https://ayaankazerouni.org/blog/explicit-project-milestones/</link>
     <guid>https://ayaankazerouni.org/blog/explicit-project-milestones/</guid>
-    <pubDate>Wed, 14 Oct 2020 00:00:00 -0700</pubDate>
-    <description></description>
+    <pubDate>Wed, 14 Oct 2020</pubDate>
+    <description>
+      <br/>
+      See the post at <a href='/blog/explicit-project-milestones/'>/blog/explicit-project-milestones/</a>.
+    </description>
   </item>
   
   
@@ -84,8 +105,11 @@
     <title>Assessing Incremental Testing Practices and Their Impact on Project Outcomes</title>
     <link>https://ayaankazerouni.org/blog/assessing-incremental-testing/</link>
     <guid>https://ayaankazerouni.org/blog/assessing-incremental-testing/</guid>
-    <pubDate>Tue, 07 Jul 2020 00:00:00 -0700</pubDate>
-    <description></description>
+    <pubDate>Tue, 07 Jul 2020</pubDate>
+    <description>
+      <br/>
+      See the post at <a href='/blog/assessing-incremental-testing/'>/blog/assessing-incremental-testing/</a>.
+    </description>
   </item>
   
   
@@ -94,8 +118,11 @@
     <title>Developing Procrastination Feedback for Student Software Developers</title>
     <link>https://ayaankazerouni.org/blog/procrastination-feedback/</link>
     <guid>https://ayaankazerouni.org/blog/procrastination-feedback/</guid>
-    <pubDate>Fri, 17 Apr 2020 00:00:00 -0700</pubDate>
-    <description></description>
+    <pubDate>Fri, 17 Apr 2020</pubDate>
+    <description>
+      <br/>
+      See the post at <a href='/blog/procrastination-feedback/'>/blog/procrastination-feedback/</a>.
+    </description>
   </item>
   
   
