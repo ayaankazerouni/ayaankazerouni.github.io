@@ -1,0 +1,325 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Expressions and Evaluation - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/03-expressions-and-evaluation/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/02-abstraction-composition/">&larr; Previous</a>
+    
+    
+    <a href="/courses/csc123/coursenotes/04-typescript/">Next &rarr;</a>
+    
+  </div>
+  <h1>Expressions and Evaluation</h1>
+  <article>
+      <p>Lets dive into some of the computational aspects of “data” with a type of data we are familiar with manipulating: <strong>numbers</strong>.
+We’re going to draw on what we already know about algebra to build up our understanding of using this type of data in computing.</p>
+
+<p>Consider the screenshots below of a Health app or the Instagram app on a mobile phone.</p>
+
+<figure style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
+<img src="basicNumbers.png" width="400px" alt="A screenshot of a Health app on a mobile phone showing data about steps walked in the week and on the current day." />
+<img src="basicNumbers2.png" width="400px" alt="A screenshot of an Instagram post showing likes and comments." />
+  <figcaption>
+  How are numbers being used in these displays? What information are they representing?
+</figcaption>
+</figure>
+
+<h2 id="data-and-operations">Data and operations</h2>
+
+<p>When we are talking about numbers from a computer science perspective, we want to think carefully about them in terms of the operations that are allowed and expected on numbers.
+For example, in computer science, we differentiate between <strong>Integers</strong> (whole numbers) and <strong>Floating point numbers</strong> (numbers with a fractional component).</p>
+
+<p>Integers are used for values such as: Year, Page Number, Number of Friends</p>
+
+<ul>
+  <li>Year: 2020</li>
+  <li>Page: 327</li>
+  <li>421 Friends</li>
+</ul>
+
+<p>Floating point numbers are used for values such as: Approximation of real numbers, Mass, Distance, Temperature</p>
+
+<ul>
+  <li>18.4 kg</li>
+  <li>27.4 miles</li>
+  <li>-3.7 ºF</li>
+</ul>
+
+<p>Some of the common operations associated with numbers are addition, subtraction, multiplication and division</p>
+
+<p>For example: <code class="language-plaintext highlighter-rouge">Year 2020 plus 3 years =&gt; 2020 + 3 = 2023</code></p>
+
+<p>Other operations include rounding a floating point number to the nearest whole number.</p>
+
+<p>For example: <code class="language-plaintext highlighter-rouge">87.6 degrees rounded up to 88 degrees</code></p>
+
+<h2 id="what-is-an-expression">What is an expression?</h2>
+
+<p>Let’s establish some terminology to describe how we understand the results of a computation.</p>
+
+<p><strong>Evaluation</strong> is the process of applying computations to data to arrive at a value.
+An <strong>Expression</strong> is anything that can be evaluated.</p>
+
+<p>You’ve seen math expressions before, so let’s start there.
+If these look simple, great, let’s just make sure we are on the same page:</p>
+
+<p>What is the result of this expression?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="mi">17</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And this one?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">6</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And this one?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">((</span><span class="mi">7</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Finally, what about this one?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">4</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">12</span> <span class="o">/</span> <span class="mi">6</span> <span class="o">-</span> <span class="mi">2</span>
+</code></pre></div></div>
+
+<!-- 40 -->
+
+<p>How did you approach evaluating the expression above?</p>
+
+<p>You likely recall that in mathematics there are conventions on <em>order of operations</em>.
+This idea is present in programming as well.
+An expression written in a program will be evaluated one operator at a time, following established rules about the order in which to apply operators.</p>
+
+<p>Similar to mathematics, we can also force a specific precedence (or order) by using parentheses <code class="language-plaintext highlighter-rouge">()</code>.</p>
+
+<p>Consider the same expression as before, but now we use parentheses to denote the individual <em>sub-expressions</em> that are being evaluated step-by-step.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">((((</span><span class="mi">4</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">12</span> <span class="o">/</span> <span class="mi">6</span><span class="p">))</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This expression is composed of smaller (and smaller) expressions.
+The smaller expressions must be evaluated before one can evaluate the larger expression.</p>
+
+<p>So, in general,</p>
+
+<ul>
+  <li>A number is an expression. It evaluates to itself.</li>
+  <li>If you have an expression (let’s call it <code class="language-plaintext highlighter-rouge">a</code>), and another expression (let’s call it <code class="language-plaintext highlighter-rouge">b</code>), then <code class="language-plaintext highlighter-rouge">(a + b)</code> is an expression.</li>
+  <li>Similarly for subtraction (<code class="language-plaintext highlighter-rouge">-</code>), multiplication (<code class="language-plaintext highlighter-rouge">*</code>) and division (<code class="language-plaintext highlighter-rouge">/</code>).</li>
+</ul>
+
+<p>Nothing else is an expression. (We will expand this definition as we progress further.)</p>
+
+<p>Now lets look at another expression:</p>
+
+<style>
+.expr { text-decoration-line: underline; text-decoration-thickness: 2px; }
+.l1 { text-decoration-color: #e63946; text-underline-offset: 4px; }   /* 7 */
+.l2 { text-decoration-color: #2a9d8f; text-underline-offset: 12px; }   /* (7 + 4) */
+.l3 { text-decoration-color: #9341dbff; text-underline-offset: 20px; }  /* ((7 + 4) * 2) */
+</style>
+
+<p style="text-align: center; font-size: 2em">
+  <span class="expr l3">(
+    <span class="expr l2">( <span class="expr l1">7</span> + <span class="expr l1">4</span> )</span>
+    * <span class="expr l1">2</span>
+  )</span>
+</p>
+
+<p>Each of the colored underline bars corresponds to the use of a rule from above. There is a different color for each rule. This process of determining which rules were used to generate each term is essentially what we call “parsing” an expression.  But lets look at this with a diagram to help illustrate our mental model of evaluating this expression:</p>
+
+<pre class="mermaid">
+flowchart TD
+  times --&gt; plus
+  times --&gt; 2
+  plus --&gt; 7
+  plus --&gt; 4
+</pre>
+
+<p>This representation is often called a “tree”.
+It is upside-down from what we usually think of a tree with branches expanding upwards.
+If we start reading from the bottom we see numbers (expressions) and then operators joining those prior/lower expressions.
+This allows us to read, bottom up, the order in which the evaluation will proceed.</p>
+
+<p>So starting from the bottom we can read <code class="language-plaintext highlighter-rouge">"7+4"</code>, etc.</p>
+
+<p>Consider this expression tree as well:</p>
+
+<pre class="mermaid">
+flowchart TD
+  minus --&gt; 16
+  minus --&gt; plus
+  plus --&gt; 3
+  plus --&gt; 2
+</pre>
+
+<p class="callout todo">Can you re-write the tree above to a single-line valid expression?</p>
+
+<h2 id="steps-of-evaluation">Steps of evaluation</h2>
+
+<p>To help make sure we are starting to build up our mental model for computation, lets take a moment to explicitly write down the evaluation of this expression into individual steps.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="mi">16</span> <span class="o">-</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>The steps of evaluation here are:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">.</span> <span class="p">(</span><span class="mi">16</span> <span class="o">-</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+<span class="mi">2</span><span class="p">.</span> <span class="p">(</span><span class="mi">16</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">3</span><span class="p">.</span> <span class="mi">11</span>
+</code></pre></div></div>
+
+<h3 id="another-example">Another example</h3>
+
+<p>How about</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">((</span><span class="mi">8</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>What are the steps of evaluation for this expression?</p>
+
+<p>You may notice that there are, in fact, two options, since there’s no obviously “smallest” expression to start with.
+Therefore, we need to <strong>establish some rules</strong>.</p>
+
+<ul>
+  <li>Eliminate ambiguity</li>
+  <li>Show each step of evaluation
+    <ul>
+      <li>Aid understanding now and in the future when more operations are supported</li>
+    </ul>
+  </li>
+  <li>Fully parenthesize expressions before evaluating.</li>
+  <li>When evaluating an expression with a binary operator (e.g., +, -, *, /), evaluate the left sub-expression before the right sub-expression.</li>
+  <li>A value is considered fully evaluated (it cannot be evaluated further).</li>
+</ul>
+
+<h2 id="additional-considerations">Additional considerations</h2>
+
+<p>Although numbers and their operators are familiar, in computing, there are some additional considerations we need to talk about.</p>
+
+<p>For example:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">((</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>What is the result of evaluating this expression?</p>
+
+<p>This is the first time we need to explicitly acknowledge that not all computations can be evaluated.
+In fact, we need a way to represent ERRORS.
+To be clear, lets consider the steps:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">.</span> <span class="p">((</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span><span class="p">))</span>
+<span class="mi">2</span><span class="p">.</span> <span class="p">(</span><span class="mi">6</span> <span class="o">/</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">3</span><span class="p">))</span>
+<span class="mi">3</span><span class="p">.</span> <span class="p">(</span><span class="mi">6</span> <span class="o">/</span> <span class="mi">0</span><span class="p">)</span>
+<span class="mi">4</span><span class="p">.</span> <span class="o">!!!</span>
+</code></pre></div></div>
+
+<p>There are different ways you can decide to represent this evaluation in your own mental model.
+Some viable representations include a model in which you consider that the machine fails.
+The point of building a mental model is mostly to allow you to “reason” about computing and what will happen when your code is executed on a computational device.</p>
+
+<p>As another example of limits in computing, consider that in many programming languages, <strong>integers have maximum and minimum values</strong>.
+What happens when you go over or under these values?</p>
+
+<!-- Donkeykong glitch, therac-25 radiation therapy -->
+
+<p>Consider what your data can actually hold!</p>
+
+<h2 id="identifiers-are-also-expressions">Identifiers are also expressions</h2>
+
+<p>To further build up our notional machine for more complex computation, consider how you would evaluate an expression that computes the area of a circle with radius <code class="language-plaintext highlighter-rouge">2</code>.</p>
+
+<p>Or, more precisely, evaluate (π * (2 * 2))`</p>
+
+<p>How are we able to evaluate this? You likely have done something interesting in your mental model, which is to substitute a numeric value for the symbol \(\pi\).</p>
+
+<ul>
+  <li>Identifiers (such as π) can be bound to values.</li>
+  <li>Evaluation works with values.</li>
+  <li>Identifiers can be treated as expressions.</li>
+  <li>Evaluation of an <strong>identifier</strong> results in the <strong>value</strong> to which it was bound.</li>
+</ul>
+
+<p>In other words, in the steps of our evaluation, at a certain point, we will substitute a value for any identifiers, something like:</p>
+
+<p>(π * (2 * 2)) =&gt; (π * 4) =&gt; (3.14159 * 4) =&gt; 12.56636</p>
+
+<p>Given this, we can extend our prior rules of evaluation:</p>
+
+<ul>
+  <li>Eliminate ambiguity</li>
+  <li>Show each step of evaluation
+    <ul>
+      <li>Aid understanding now and in the future when more operations are supported</li>
+    </ul>
+  </li>
+  <li>Fully parenthesize expression before evaluating.</li>
+  <li>When evaluating an expression with a binary operator (e.g., +, -, *, /), evaluate the left sub-expression before the right sub-expression.</li>
+  <li>A value is fully evaluated.</li>
+  <li><strong>An identifier evaluates to the value to which it is bound.</strong></li>
+</ul>
+
+<p>Building on this foundation, we can move on to reading and writing TypeScript programs.</p>
+
+<hr />
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/02-abstraction-composition/">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc123/coursenotes/04-typescript/">Next &rarr;</a>
+        
+      </footer  >
+  </article>
+  
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      mermaid.initialize({
+        theme: 'dark'
+      });
+    } else {
+      mermaid.initialize({
+        theme: 'default'
+      });
+    }
+  </script>
+  
+  </main>
+</body>
+</html>

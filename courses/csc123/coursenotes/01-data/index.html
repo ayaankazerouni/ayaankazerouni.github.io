@@ -1,0 +1,151 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Thinking About Data - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/01-data/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/">&larr; Previous</a>
+    
+    
+    <a href="/courses/csc123/coursenotes/02-abstraction-composition/">Next &rarr;</a>
+    
+  </div>
+  <h1>Thinking About Data</h1>
+  <article>
+      <p>One view of computation (or computing) is the <em>processing of data to create other data</em>.
+This act of transforming data suggests that there are <em>operations</em> that can be done on data.
+In perhaps the most familiar case, two numbers can be added together to get another number.</p>
+
+<p>Specifying and developing a computation can be—and often is—approached from a data-centric view.
+That is, we identify what kind of data we’re working with, and that dictates the operations that are available (i.e., the things we can do with that sort of data).
+We’ll emphasize this perspective throughout this course.</p>
+
+<p>So: we’ll begin this introduction to computing just like we begin consideration for problems that we aim to solve with computing: by thinking about data.</p>
+
+<p><strong>But what is data?</strong> As we go about our daily lives, we constantly encounter and interact with data.
+Such data takes a great variety of forms and is not always or necessarily linked to computing.
+Some of the most ubiquitous data with which most of us interact are</p>
+
+<ul>
+  <li>words from another person,</li>
+  <li>the people and objects that we see around us,</li>
+  <li>the physical items that we pick up and use.</li>
+</ul>
+
+<!-- These kinds of data my not match what one commonly thinks of when using the word "data", likely because humans are accustomed to processing such data frequently and rapidly (still better than computers in most cases). -->
+
+<p>But what sort of data is presented to us when we visit a website or when we use a mobile app?
+More generally, what sort of data does a computer manipulate?
+Sounds, colors, and textures?
+Or is it just numbers such as measurements and the results of calculations?</p>
+
+<h2 id="different-perspectives-on-data">Different perspectives on data</h2>
+
+<p><strong>Is text data?</strong></p>
+
+<p>Consider the “text” of the article below.</p>
+
+<figure>
+  <a href="is-text-data.png" target="_blank">
+    
+    <img src="is-text-data.png" alt="Screenshot of an article about carbon emissions. The screenshot contains a graph showing carbon dioxide emissions over time and prose describing the graph." width="60%" />
+    
+  </a>
+
+  <figcaption></figcaption>
+</figure>
+
+<p>The main body of text consists of two <em>paragraphs,</em> each made up of <em>sentences</em> constructed <em>from words.</em>
+Each word consists of <em>individual characters.</em>
+This allows for one to consider text at various levels of specification: body &gt; paragraph &gt; sentence &gt; word &gt; character.</p>
+
+<p class="callout ponder">Could we then consider the entire “text” of the article to simply be a bunch of characters? Yes. But is this a useful perspective? Sometimes it is.</p>
+
+<p>Often, however, we may want to consider (and work with) data from a variety of perspectives.
+If, for instance, we wanted a computation that considers each paragraph on a webpage, then a perspective of the text as a sequence of characters is likely more detailed than desired.
+This is similar to an experienced reader reading a book in chunks of words or phrases instead of individual characters.</p>
+
+<p>This is a matter of <strong>abstraction</strong>. It is common to ignore (abstract away) details of data until those details are needed.</p>
+
+<p class="callout">The perspective you take when considering data influences and is influenced by the specific computational task you are aiming to perform.</p>
+
+<h3 id="one-perspective">One Perspective</h3>
+
+<p>What “data” do you see in the article above?</p>
+
+<!-- ![data-article.png](data-article.png) -->
+
+<p>One perspective might be to focus on the data presented as the content of the article (i.e., the data presented in the line chart).
+Such data includes measures of carbon dioxide, years, and points labeled with a date and the specific measurement on that date.</p>
+
+<h3 id="another-perspective">Another Perspective</h3>
+
+<p>A different perspective we might take is that, in addition to the measurements described in the article, the article also includes the following bits of data:</p>
+
+<ul>
+  <li>Text: The written content of the article, including all the words and sentences.</li>
+  <li>Images: Any visual content, such as photographs or diagrams.</li>
+  <li>Links: Hyperlinks to other articles or resources.</li>
+  <li>Interactive graph: The Direct Measurements graph that users can interact with.</li>
+</ul>
+
+<p>These data are interpreted by the browser (Chrome or Firefox or Arc, etc.) and used to display the webpage to you, the user.
+This perspective is almost entirely detached from the data within the content of the article, i.e., the meaning or implications of the carbon dioxide measurements.</p>
+
+<figure>
+  <a href="data-article.png" target="_blank">
+    
+    <img src="data-article.png" alt="Screenshot of an article about carbon emissions. The screenshot contains a graph showing carbon dioxide emissions over time and prose describing the graph. There is also a listing of the different bits of data shown in the screenshot." width="100%" />
+    
+  </a>
+
+  <figcaption></figcaption>
+</figure>
+
+<hr />
+
+<p><strong>Next:</strong> <a href="01-01-abstraction-and-composition/">Abstraction and composition</a></p>
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc123/coursenotes/02-abstraction-composition/">Next &rarr;</a>
+        
+      </footer  >
+  </article>
+  
+  
+  </main>
+</body>
+</html>

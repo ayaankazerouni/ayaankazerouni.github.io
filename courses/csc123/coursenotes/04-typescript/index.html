@@ -1,0 +1,203 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>What's TypeScript? - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/04-typescript/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/03-expressions-and-evaluation/">&larr; Previous</a>
+    
+    
+  </div>
+  <h1>What's TypeScript?</h1>
+  <article>
+      <p>This lesson gives a brief primer about what <a href="https://www.typescriptlang.org/">TypeScript</a> is and why we’re using it in this course.</p>
+
+<p>To tell you about TypeScript, I first need to tell you about JavaScript.</p>
+
+<h2 id="whats-javascript">What’s JavaScript?</h2>
+
+<p>JavaScript is a programming language.</p>
+
+<p>JavaScript has an interesting origin story.
+It started as a “<a href="https://deno.com/blog/history-of-javascript">weird little scripting language developed in ten days</a>”,<sup id="fnref:brief" role="doc-noteref"><a href="#fn:brief" class="footnote" rel="footnote">1</a></sup> created to add little bells and whistles to webpages.
+You know, things like validating that you’ve written an email address where an email address was asked for.
+Since then, it has evolved into the <em>de facto</em> default programming language for the Web—every mainstream web browser has the ability to run JavaScript code by default.
+This is what allows websites that you visit to be interactive and dynamic, allows features like location tracking, audio and video recording and playback, advanced graphics facilities, and more.</p>
+
+<h2 id="javascript-is-dynamically-typed">JavaScript is dynamically typed</h2>
+
+<p>Let’s unpack that, one word at a time.</p>
+
+<ul>
+  <li>“typed”: This has nothing to do with “typing” on your keyboard. Instead, this has to do with the different types of data types that your programs can deal with, like numbers or strings.</li>
+  <li>“dynamically”: This means that JavaScript figures out the <strong>types</strong> of values and variables “on the fly”, i.e., as a program runs.</li>
+</ul>
+
+<p>For example, consider the following JavaScript program:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">course</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">CSC 123</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">course</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>On the first line, we are creating an identifier (or a “variable”) called <code class="language-plaintext highlighter-rouge">course</code>, and using it to name the value <code class="language-plaintext highlighter-rouge">"CSC 123"</code>.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup>
+<strong>What type of data is this?</strong></p>
+
+<p>On the second line, we changing the value to which <code class="language-plaintext highlighter-rouge">course</code> points to the value <code class="language-plaintext highlighter-rouge">123</code>. <strong>What type of data is this?</strong></p>
+
+<p>This is completely okay with JavaScript, because it figures out variable types at run time (i.e., while the program is running).
+In this case, the type of <code class="language-plaintext highlighter-rouge">course</code> is initially text, or a <code class="language-plaintext highlighter-rouge">string</code> in JavaScript parlance.
+Then it changes to a <code class="language-plaintext highlighter-rouge">number</code>.
+JavaScript allows this flexibility, but it can lead to unexpected errors if you’re not careful.</p>
+
+<p>For example, suppose after the code above, you inspect the value of the following expression:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">course</span><span class="p">.</span><span class="nx">length</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">length</code> is a property that gives us the number of characters in <code class="language-plaintext highlighter-rouge">string</code>.
+However, after the second line executes (<code class="language-plaintext highlighter-rouge">course = 123;</code>), <code class="language-plaintext highlighter-rouge">course</code> is no longer a <code class="language-plaintext highlighter-rouge">string</code>.
+It is a <code class="language-plaintext highlighter-rouge">number</code>.</p>
+
+<p>It is meaningless to ask for the “length” of a number.
+As a result, this line will give us back a special value in JavaScript that indicates the <em>absence</em> of a value: <code class="language-plaintext highlighter-rouge">undefined</code>.</p>
+
+<details class="callout todo">
+  <summary>Try this example in your browser's console. Expand and follow these steps.</summary>
+
+  <ol>
+    <li>Press <kbd>Cmd/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> to open your browser’s Developer Tools, then navigate to the “Console” tab. (If you’re using Safari, see <a href="https://devtoolstips.org/tips/en/enable-safari-devtools/">these instructions</a>).</li>
+    <li>Type in <code class="language-plaintext highlighter-rouge">let course = "CSC 123";</code> and hit <kbd>Enter</kbd>.</li>
+    <li>Type in <code class="language-plaintext highlighter-rouge">course = 123;</code> and hit <kbd>Enter</kbd>.</li>
+    <li>Type in <code class="language-plaintext highlighter-rouge">course.length;</code> and hit <kbd>Enter</kbd>.</li>
+  </ol>
+
+  <p>What value do you see?</p>
+</details>
+
+<p>It turns out that these kinds of mistakes (or “bugs”) are really easy to make and difficult to track down in large programs!
+And by definition, they will only become apparent while the program is running, and then only if you trigger the particular conditions needed to reveal the error.
+This can make programming a rather time-consuming cyclical process.</p>
+
+<p>Imagine a super-simplified software development process that goes like this.</p>
+
+<pre class="mermaid">
+flowchart LR
+  w["Write code"]
+  r["Run/test code"]
+  t["Notice a
+type-related error"]
+  p["Publish changes"]
+
+  w --&gt; r --&gt; p
+  r --&gt; t -- "Fix" --&gt; w
+</pre>
+
+<p>In general, you want to move any bug-fixing activities “to the left” on the timeline above. It’s better to find a bug before running your code, and definitely before publishing it.</p>
+
+<p>To help with this, Microsoft introduced a “dialect” of JavaScript that helps us detect type-related mistakes in our programs <em>before</em> we run the program.
+This dialect is rather cleverly named <strong>TypeScript</strong>.</p>
+
+<h2 id="typescript-is-statically-typed">TypeScript is statically typed</h2>
+
+<p>TypeScript does a series of checks on your program before you ever run it.
+We refer to this as <em>static typing</em>. “Static” as in “fixed”, or “stationary” as opposed to “dynamic”, which means “continuously changing or in motion”.</p>
+
+<p>For example, when you create a variable, TypeScript figures out its type and checks that you only ever used its value in ways that are compatible with that type.</p>
+
+<p>That is, it moves the “type-related error” step to left in our imaginary simplified programming process.</p>
+
+<pre class="mermaid">
+flowchart LR
+  w["Write code"]
+  r["Run/test code"]
+  t["Notice a
+type-related error"]
+  p["Publish changes"]
+
+  w --"Type checks satisfied"--&gt; r --&gt; p
+  w --&gt; t -- "Fix" --&gt; w
+</pre>
+
+<p>In most code editors, these type checks happen <em>as you type</em>, resulting in a code-writing process in which we massage out type-related errors as they appear. Much faster feedback loop!</p>
+
+<p>Of course, developers (and their silicon assistants) will still introduce other types of errors. Type checking does not eliminate all bugs.</p>
+
+<p>Here’s how we would re-write the code above using TypeScript instead of JavaScript.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">course</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">CSC 123</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">course</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span> <span class="c1">// Type error!</span>
+</code></pre></div></div>
+
+<p>We don’t even get to line 3, where we inspected <code class="language-plaintext highlighter-rouge">course.length</code>. TypeScript is already unhappy!</p>
+
+<p class="callout todo">See the example in the <a href="https://www.typescriptlang.org/play/?#code/DYUwLgBAxg9grgJwM4gFwSWBBLAdgcwgF4IAiAYQGVyIBGAJgGZSBuAKFkRWLqZaA">TypeScript playground.</a>. What do you see, without ever running the program?</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:brief" role="doc-endnote">
+      <p><a href="https://deno.com/blog/history-of-javascript"><em>A Brief History of JavaScript</em></a>. Author unknown (to me), from the <a href="https://deno.com/">Deno</a> team. <a href="#fnref:brief" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:1" role="doc-endnote">
+      <p>See <a href="../coursenotes/02-expressions-and-evaluation/">the previous lesson</a> for more about identifiers and values. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/03-expressions-and-evaluation/">&larr; Previous</a>
+        
+        
+      </footer  >
+  </article>
+  
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      mermaid.initialize({
+        theme: 'dark'
+      });
+    } else {
+      mermaid.initialize({
+        theme: 'default'
+      });
+    }
+  </script>
+  
+  </main>
+</body>
+</html>
