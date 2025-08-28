@@ -131,15 +131,19 @@ An expression written in a program will be evaluated one operator at a time, fol
 <p>This expression is composed of smaller (and smaller) expressions.
 The smaller expressions must be evaluated before one can evaluate the larger expression.</p>
 
-<p>So, in general,</p>
+<p>So:</p>
 
 <ul>
-  <li>A number is an expression. It evaluates to itself.</li>
-  <li>If you have an expression (let’s call it <code class="language-plaintext highlighter-rouge">a</code>), and another expression (let’s call it <code class="language-plaintext highlighter-rouge">b</code>), then <code class="language-plaintext highlighter-rouge">(a + b)</code> is an expression.</li>
-  <li>Similarly for subtraction (<code class="language-plaintext highlighter-rouge">-</code>), multiplication (<code class="language-plaintext highlighter-rouge">*</code>) and division (<code class="language-plaintext highlighter-rouge">/</code>).</li>
+  <li>A value cannot be evaluated any further.</li>
+  <li>An expression can be:
+    <ul>
+      <li>A value, or</li>
+      <li>An operation acting upon a value or an expression (for example, <code class="language-plaintext highlighter-rouge">5 + 10</code> or <code class="language-plaintext highlighter-rouge">(7 + (4 * 2))</code>)</li>
+    </ul>
+  </li>
 </ul>
 
-<p>Nothing else is an expression. (We will expand this definition as we progress further.)</p>
+<p>(We will expand on this as we progress further.)</p>
 
 <p>Now lets look at another expression:</p>
 
@@ -209,20 +213,10 @@ flowchart TD
 
 <p>What are the steps of evaluation for this expression?</p>
 
-<p>You may notice that there are, in fact, two options, since there’s no obviously “smallest” expression to start with.
-Therefore, we need to <strong>establish some rules</strong>.</p>
+<p>You may notice that there are, in fact, two options, since there’s no obviously “smallest” expression to start with.</p>
 
-<ul>
-  <li>Eliminate ambiguity</li>
-  <li>Show each step of evaluation
-    <ul>
-      <li>Aid understanding now and in the future when more operations are supported</li>
-    </ul>
-  </li>
-  <li>Fully parenthesize expressions before evaluating.</li>
-  <li>When evaluating an expression with a binary operator (e.g., +, -, *, /), evaluate the left sub-expression before the right sub-expression.</li>
-  <li>A value is considered fully evaluated (it cannot be evaluated further).</li>
-</ul>
+<p>Therefore, we’ll fully parenthesize expressions before evaluating so there is no ambiguity.
+An when evaluating an expression with a binary operator (e.g., +, -, *, /), we’ll evaluate the left sub-expression before the right sub-expression.</p>
 
 <h2 id="additional-considerations">Additional considerations</h2>
 
@@ -252,42 +246,54 @@ The point of building a mental model is mostly to allow you to “reason” abou
 <p>As another example of limits in computing, consider that in many programming languages, <strong>integers have maximum and minimum values</strong>.
 What happens when you go over or under these values?</p>
 
-<!-- Donkeykong glitch, therac-25 radiation therapy -->
+<p>Even at this early stage of thinking about computing it is important to consider what can go wrong with this type of data and operation.</p>
 
-<p>Consider what your data can actually hold!</p>
+<p>For example, integers can have maximum and minimum values. What happens when you go over or under these values?</p>
+
+<p>Some examples:</p>
+
+<ul>
+  <li>Computing the average of two numbers might result in an overflow if the sum (but not the average) is greater than the maximum possible value.</li>
+  <li>In the old Donkey Kong arcade game, the game calculates the timer for the level with the formula <code class="language-plaintext highlighter-rouge">10 * (level + 4)</code>. So for level 22, the timer would add up to 260. This was too large for the 8-bit counter’s maximum allowed value of 256. So the system overflowed to 4, making the level impossible to complete.</li>
+  <li>More seriously, occasional integer overflows in the <a href="https://en.wikipedia.org/wiki/Therac-25#Root_causes">Therac-25 radiation therapy machine</a> caused the machine to bypass some safety checks, causing at least six deaths as a result of radiation poisoning.</li>
+</ul>
 
 <h2 id="identifiers-are-also-expressions">Identifiers are also expressions</h2>
 
 <p>To further build up our notional machine for more complex computation, consider how you would evaluate an expression that computes the area of a circle with radius <code class="language-plaintext highlighter-rouge">2</code>.</p>
 
-<p>Or, more precisely, evaluate (π * (2 * 2))`</p>
+<p>Or, more precisely, evaluate (π * (2 * 2)).</p>
 
-<p>How are we able to evaluate this? You likely have done something interesting in your mental model, which is to substitute a numeric value for the symbol \(\pi\).</p>
+<p>How are we able to evaluate this? You likely have done something interesting in your mental model, which is to substitute a numeric value for the symbol π.</p>
 
 <ul>
   <li>Identifiers (such as π) can be bound to values.</li>
-  <li>Evaluation works with values.</li>
-  <li>Identifiers can be treated as expressions.</li>
-  <li>Evaluation of an <strong>identifier</strong> results in the <strong>value</strong> to which it was bound.</li>
+  <li>As a result, identifiers (or names) can be treated as expressions.</li>
+  <li>Evaluation of an identifier gives the  <strong>value</strong> to which it was bound.</li>
 </ul>
 
 <p>In other words, in the steps of our evaluation, at a certain point, we will substitute a value for any identifiers, something like:</p>
 
-<p>(π * (2 * 2)) =&gt; (π * 4) =&gt; (3.14159 * 4) =&gt; 12.56636</p>
+<ul>
+  <li>(π * (2 * 2)) =&gt;</li>
+  <li>(π * 4) =&gt;</li>
+  <li><strong>(3.14159 * 4) =&gt;</strong></li>
+  <li>12.56636</li>
+</ul>
 
-<p>Given this, we can extend our prior rules of evaluation:</p>
+<p>Given this, we can extend our rules for expressions:</p>
 
 <ul>
-  <li>Eliminate ambiguity</li>
-  <li>Show each step of evaluation
+  <li>A value cannot be evaluated any further.</li>
+  <li><strong>An identifier is a name that refers to a value. Evaluation of an identifier gives its value.</strong></li>
+  <li>An expression can be:
     <ul>
-      <li>Aid understanding now and in the future when more operations are supported</li>
+      <li>A value, or</li>
+      <li>An operation acting upon a value or an expression</li>
     </ul>
   </li>
-  <li>Fully parenthesize expression before evaluating.</li>
-  <li>When evaluating an expression with a binary operator (e.g., +, -, *, /), evaluate the left sub-expression before the right sub-expression.</li>
-  <li>A value is fully evaluated.</li>
-  <li><strong>An identifier evaluates to the value to which it is bound.</strong></li>
+  <li>We’ll fully parenthesize expressions before evaluating so there is no ambiguity.</li>
+  <li>When evaluating an expression with a binary operation, evaluate the left sub-expression before the right sub-expression.</li>
 </ul>
 
 <p>Building on this foundation, we can move on to reading and writing TypeScript programs.</p>

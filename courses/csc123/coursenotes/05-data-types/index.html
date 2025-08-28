@@ -1,0 +1,429 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Expressions and Data Types in TypeScript - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/05-data-types/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/04-typescript/">&larr; Previous</a>
+    
+    
+  </div>
+  <h1>Expressions and Data Types in TypeScript</h1>
+  <article>
+      <p>In the previous lessons, we’ve talked about data, the kinds of operations we can do with them, and some rules for evaluating expressions.
+For example, we learned about expressions involving numbers, and also considered the idea that data can take many forms.
+Today we will make some of those concepts more concrete by embodying them in TypeScript.</p>
+
+<p>Values in TypeScript can take on different <strong>data types</strong>.</p>
+
+<div class="callout">
+A <strong>data type</strong> defines two things:
+<ul>
+<li>the set of allowed values, and</li>
+<li>the operations that can be performed on those values.</li>
+</ul>
+</div>
+
+<p>There are three <em>primitive</em> data types in TypeScript. 
+We call them “primitive” because these are the basic building blocks for more complex types we will encounter later.</p>
+
+<p>You can explore the example expressions in this lesson in your browser’s console.
+Press <kbd>Cmd/Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> to open your browser’s Developer Tools, then navigate to the “Console” tab. (If you’re using Safari, see <a href="https://devtoolstips.org/tips/en/enable-safari-devtools/">these instructions</a>).</p>
+
+<p><strong>However, note that the browser Consoles use JavaScript. So there’s no type checking before you hit <kbd>Enter</kbd>!</strong></p>
+
+<p>In this lesson:</p>
+
+<ul id="markdown-toc">
+  <li><a href="#number" id="markdown-toc-number"><code class="language-plaintext highlighter-rouge">number</code></a></li>
+  <li><a href="#string" id="markdown-toc-string"><code class="language-plaintext highlighter-rouge">string</code></a></li>
+  <li><a href="#boolean" id="markdown-toc-boolean"><code class="language-plaintext highlighter-rouge">boolean</code></a></li>
+  <li><a href="#compound-expressions" id="markdown-toc-compound-expressions">Compound expressions</a></li>
+  <li><a href="#what-happens-when-you-use-the-wrong-type" id="markdown-toc-what-happens-when-you-use-the-wrong-type">What happens when you use the wrong type?</a></li>
+</ul>
+
+<h2 id="number"><code class="language-plaintext highlighter-rouge">number</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">number</code> type represents numeric values like <code class="language-plaintext highlighter-rouge">8</code>, <code class="language-plaintext highlighter-rouge">-2</code>, and <code class="language-plaintext highlighter-rouge">0.45</code>.
+Additionally, the <code class="language-plaintext highlighter-rouge">number</code> type defines some named values:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Infinity</code> and <code class="language-plaintext highlighter-rouge">-Infinity</code>: These represent positive and negative infinity, respectively.</li>
+  <li><code class="language-plaintext highlighter-rouge">NaN</code>: This stands for “Not a Number”. It represents an unrepresentable value, such as the result of dividing by zero.</li>
+</ul>
+
+<p>Try out some math expressions in your Console to get a sense for evaluation rules. (Hit <kbd>Enter</kbd> after each one.)</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">-</span><span class="mi">5</span>
+<span class="mi">2</span> <span class="o">+</span> <span class="mi">8</span>
+<span class="p">(</span><span class="mi">6</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span>
+<span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">-</span> <span class="mi">5</span>
+<span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span>
+
+<span class="mi">1</span><span class="nx">e6</span> <span class="o">/</span> <span class="mi">1000</span> <span class="c1">// Scientific notation</span>
+
+<span class="kc">Infinity</span> <span class="o">+</span> <span class="mi">10</span> <span class="c1">// What do you think will happen here?</span>
+<span class="mi">45</span> <span class="o">/</span> <span class="kc">Infinity</span>
+<span class="mi">0</span> <span class="o">/</span> <span class="mi">0</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span>
+</code></pre></div></div>
+
+<p>TypeScript allows certain operations to be performed with numbers.</p>
+
+<p>First, arithmetic as we’ve seen above. These operate on <code class="language-plaintext highlighter-rouge">number</code>s and give <code class="language-plaintext highlighter-rouge">number</code>s in return.
+The <em>values</em> (or expressions) on which an operator operates are called <em>operands</em>.</p>
+
+<ul>
+  <li>Addition: <code class="language-plaintext highlighter-rouge">2 + 8</code></li>
+  <li>Subtraction: <code class="language-plaintext highlighter-rouge">4 - 3</code></li>
+  <li>Multiplication: <code class="language-plaintext highlighter-rouge">5 * 6</code></li>
+  <li>Division: <code class="language-plaintext highlighter-rouge">10 / 2</code></li>
+  <li>Exponentiation: <code class="language-plaintext highlighter-rouge">2 ** 3</code> (i.e., 2<sup>3</sup>)</li>
+  <li>Modulus: <code class="language-plaintext highlighter-rouge">5 % 2</code>  (i.e., the remainder of 5 divided by 2)</li>
+</ul>
+
+<p>TypeScript also allows a number of operations on <code class="language-plaintext highlighter-rouge">number</code>s that <em>don’t</em> return a <code class="language-plaintext highlighter-rouge">number</code>.
+Chief among these are the <strong>relational operators</strong>.
+They are used to tell us about the relationship between two values.</p>
+
+<p>A <strong>relational operator</strong> operates on two <code class="language-plaintext highlighter-rouge">number</code>s and gives back a <code class="language-plaintext highlighter-rouge">boolean</code> value.
+For example,</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">5 &lt; 10</code> (is 5 <strong>less than</strong> 10? <code class="language-plaintext highlighter-rouge">true</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">5 &gt; 10</code> (is 5 <strong>greater than</strong> 10? <code class="language-plaintext highlighter-rouge">false</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">7 &lt;= 7</code> (is 7 <strong>less than or equal to</strong> 7? <code class="language-plaintext highlighter-rouge">true</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">7 &gt;= 7</code> (is 7 <strong>greater than or equal to</strong> 7? <code class="language-plaintext highlighter-rouge">true</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">5 === 10</code> (is 5 <strong>equal to</strong> 10? <code class="language-plaintext highlighter-rouge">false</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">5 !== 10</code> (is 5 <strong>not equal to</strong> 10? <code class="language-plaintext highlighter-rouge">true</code>)</li>
+</ul>
+
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">Math</a> library in TypeScript also defines a number of additional operations that can be performed on numbers.
+Some examples are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Math.round(4.2)</code> This will round the number to the nearest integer.</li>
+  <li><code class="language-plaintext highlighter-rouge">Math.abs(-10)</code> This will return the absolute value of the number.</li>
+  <li><code class="language-plaintext highlighter-rouge">Math.sqrt(144)</code> This will return the square root of the number.</li>
+  <li>…and many more</li>
+</ul>
+
+<h2 id="string"><code class="language-plaintext highlighter-rouge">string</code></h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">string</code> type is used to represent textual data like <code class="language-plaintext highlighter-rouge">"hello"</code>, <code class="language-plaintext highlighter-rouge">"TypeScript"</code>, and <code class="language-plaintext highlighter-rouge">'123'</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">string</code>s in TypeScript are enclosed in either double quotes (<code class="language-plaintext highlighter-rouge">"</code>) or single quotes (<code class="language-plaintext highlighter-rouge">'</code>).</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span>
+<span class="dl">'</span><span class="s1">TypeScript</span><span class="dl">'</span>
+<span class="dl">'</span><span class="s1">CSC 123: Community Action Computing</span><span class="dl">'</span>
+<span class="dl">"</span><span class="s2">false</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p>It doesn’t matter whether you use double or single quotes, but you need to be consistent within a given <code class="language-plaintext highlighter-rouge">string</code>.
+The use of multiple quote types is especially useful when you need to include a quote character within the string itself.</p>
+
+<p><small><a href="https://www.youtube.com/watch?v=rblYSKz_VnI">Hello, Goodbye</a></small></p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">You say 'Yes'</span><span class="dl">"</span>
+
+<span class="dl">'</span><span class="s1">I say "No"</span><span class="dl">'</span>
+
+<span class="dl">"</span><span class="s2">You say 'why'</span><span class="dl">"</span>
+
+<span class="dl">'</span><span class="s1">I say "I don</span><span class="se">\'</span><span class="s1">t know"</span><span class="dl">'</span>
+</code></pre></div></div>
+
+<p>When things get out of hand and you’ve used up all your quote types, you can also “escape” the quote inside a string using the backslash character (<code class="language-plaintext highlighter-rouge">\</code>).
+That way, the quote character is treated as a literal character (it is part of the <code class="language-plaintext highlighter-rouge">string</code>), and is not treated as the end of the <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<p>You can <em>also</em> enclose <code class="language-plaintext highlighter-rouge">string</code>s in backticks (<code class="language-plaintext highlighter-rouge">`</code>).
+These are typically used when you want to include computed values inside a string (you will sometimes see this referred to as “interpolation” or “template literals”).
+For example:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">`The square root of 144 is </span><span class="p">${</span><span class="nb">Math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="mi">144</span><span class="p">)}</span><span class="s2">.`</span><span class="p">.</span>
+</code></pre></div></div>
+
+<p>The expression above will give the value:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"The square root of 144 is 12."
+</code></pre></div></div>
+
+<p>Any valid TypeScript expression can go inside the <code class="language-plaintext highlighter-rouge">${...}</code>.
+You could use the backtick syntax even without interpolation, but this is less common (and goes against code style conventions).</p>
+
+<h3 id="string-operations">String operations</h3>
+
+<p><code class="language-plaintext highlighter-rouge">string</code>s in TypeScript have a <code class="language-plaintext highlighter-rouge">length</code> property that tells you how many characters there are in the <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">hello     </span><span class="dl">"</span><span class="p">.</span><span class="nx">length</span> <span class="c1">// Try this in the Console</span>
+</code></pre></div></div>
+
+<p>TypeScript defines a number of other operations for <code class="language-plaintext highlighter-rouge">string</code>s.</p>
+
+<p>First, the relational operators that we saw for <code class="language-plaintext highlighter-rouge">number</code>s can also be used with <code class="language-plaintext highlighter-rouge">string</code>s.
+I.e., <code class="language-plaintext highlighter-rouge">&lt;</code>, <code class="language-plaintext highlighter-rouge">&gt;</code>, <code class="language-plaintext highlighter-rouge">&lt;=</code>, <code class="language-plaintext highlighter-rouge">&gt;=</code>, <code class="language-plaintext highlighter-rouge">===</code>, and <code class="language-plaintext highlighter-rouge">!==</code>.</p>
+
+<p>Obviously, it is not meaningful to ask whether one <code class="language-plaintext highlighter-rouge">string</code> is “less than” or “greater than” another <code class="language-plaintext highlighter-rouge">string</code>.
+So in this context, these operators refer to the alphabetic ordering between <code class="language-plaintext highlighter-rouge">string</code>s.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">"hello" &lt; "world"</code> (does “hello” <strong>come before</strong> “world” alphabetically? <code class="language-plaintext highlighter-rouge">true</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">"hello" &gt; "world"</code> (does “hello” <strong>come after</strong> “world” alphabetically? <code class="language-plaintext highlighter-rouge">false</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">"hello" &lt;= "hello"</code> (does “hello” <strong>come before or is it equal to</strong> “hello”? <code class="language-plaintext highlighter-rouge">true</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">"hello" &gt;= "hello"</code> (does “hello” <strong>come after or is it equal to</strong> “hello”? <code class="language-plaintext highlighter-rouge">true</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">"hello" === "world"</code> (does “hello” <strong>equal</strong> “world”? <code class="language-plaintext highlighter-rouge">false</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">"hello" !== "world"</code> (does “hello” <strong>not equal</strong> “world”? <code class="language-plaintext highlighter-rouge">true</code>)</li>
+</ul>
+
+<p>Other <code class="language-plaintext highlighter-rouge">string</code> operations operate as follows (assume that <code class="language-plaintext highlighter-rouge">str</code> here is a name given to a string value):</p>
+
+<p><code class="language-plaintext highlighter-rouge">str.operation()</code></p>
+
+<p>Some examples include:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">str.toUpperCase()</code> This gives back a copy of <code class="language-plaintext highlighter-rouge">str</code> with all characters in upper case.</li>
+  <li><code class="language-plaintext highlighter-rouge">str.toLowerCase()</code> This gives back a copy of <code class="language-plaintext highlighter-rouge">str</code> with all characters in lower case.</li>
+  <li><code class="language-plaintext highlighter-rouge">str.trim()</code> This gives back a copy of <code class="language-plaintext highlighter-rouge">str</code> with whitespace removed from both ends.</li>
+</ul>
+
+<p>Other operations might look like</p>
+
+<p><code class="language-plaintext highlighter-rouge">str.operation(arg1, arg2)</code>, where <code class="language-plaintext highlighter-rouge">arg1</code> and <code class="language-plaintext highlighter-rouge">arg2</code> are bits of data needed for the operation to work.</p>
+
+<p>Some examples include:</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">str.includes(searchString)</code></strong> — This checks if <code class="language-plaintext highlighter-rouge">searchString</code> is found within <code class="language-plaintext highlighter-rouge">str</code> and returns <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>. In this example, note that <code class="language-plaintext highlighter-rouge">searchString</code> is a <em>name</em> given to some <code class="language-plaintext highlighter-rouge">string</code> value.</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">str.at(index)</code></strong> — This returns the character at the specified <code class="language-plaintext highlighter-rouge">index</code> or position in the string. For example, <code class="language-plaintext highlighter-rouge">"hello".at(1)</code> would return the character <code class="language-plaintext highlighter-rouge">"e"</code>. To get the first character, you would say <code class="language-plaintext highlighter-rouge">"hello.at(0)"</code>.</p>
+
+<p>Many more string operations are defined in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/prototype">TypeScript standard library</a>.</p>
+
+<p>One key thing to notice is that <code class="language-plaintext highlighter-rouge">string</code> operations NEVER modify the original <code class="language-plaintext highlighter-rouge">string</code>. That is, <code class="language-plaintext highlighter-rouge">string</code>s in TypeScript are <strong>immutable</strong>.</p>
+
+<h2 id="boolean"><code class="language-plaintext highlighter-rouge">boolean</code></h2>
+
+<p>Finally, the <code class="language-plaintext highlighter-rouge">boolean</code> type represents a logical value.
+It has only two possible values: <code class="language-plaintext highlighter-rouge">true</code> and <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+<p>We have already seen other operations that return <code class="language-plaintext highlighter-rouge">boolean</code> values, such as the relational operators using <code class="language-plaintext highlighter-rouge">string</code> and <code class="language-plaintext highlighter-rouge">number</code>.</p>
+
+<p>There are also <strong>logical operators</strong> that operate on <code class="language-plaintext highlighter-rouge">boolean</code> values and return <code class="language-plaintext highlighter-rouge">boolean</code> values.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&amp;&amp;</code> — Logical AND. Checks if <em>both</em> sides of the expression are <code class="language-plaintext highlighter-rouge">true</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">||</code> — Logical OR. Checks if <em>either</em> side of the expression is <code class="language-plaintext highlighter-rouge">true</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">!</code> — Logical NOT. Inverts the truth value.</li>
+</ul>
+
+<p>They operate according to the following rules.
+Suppose you have two <code class="language-plaintext highlighter-rouge">boolean</code> values <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>.
+For different values of <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code>, here are the results of these logical operations.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>A &amp;&amp; B</th>
+      <th>A || B</th>
+      <th>!A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td><code class="language-plaintext highlighter-rouge">false</code></td>
+      <td><code class="language-plaintext highlighter-rouge">true</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="the-ternary-operator">The ternary operator</h3>
+
+<p>So far, we have only see <em>binary</em> operators for <code class="language-plaintext highlighter-rouge">boolean</code> values, i.e., operators that take two operands. However, there is also a <em>ternary</em> operator that takes three operands.</p>
+
+<p>The syntax for the ternary operator is as follows:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">boolExpr</span> <span class="p">?</span> <span class="nx">expr1</span> <span class="p">:</span> <span class="nx">expr2</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">boolExpr</code> <em>must</em> be a <code class="language-plaintext highlighter-rouge">boolean</code> expression. It can be a literal <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>, or it can a longer expression that evaluates to <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>.</li>
+  <li>If <code class="language-plaintext highlighter-rouge">boolExpr</code> evaluates to <code class="language-plaintext highlighter-rouge">true</code>, then the entire expression evaluates to <code class="language-plaintext highlighter-rouge">expr1</code>.</li>
+  <li>If <code class="language-plaintext highlighter-rouge">boolExpr</code> evaluates to <code class="language-plaintext highlighter-rouge">false</code>, then the entire expression evaluates to <code class="language-plaintext highlighter-rouge">expr2</code>.</li>
+  <li>There are no restrictions on the data types of <code class="language-plaintext highlighter-rouge">expr1</code> and <code class="language-plaintext highlighter-rouge">expr2</code>.</li>
+</ul>
+
+<h2 id="compound-expressions">Compound expressions</h2>
+
+<p>Just like in algebra, expressions can be combined into longer expressions.
+And these do not necessarily have to all involve the same data types.
+But our rules of evaluation can remain the same!</p>
+
+<ul>
+  <li>A value cannot be evaluated any further.</li>
+  <li><strong>An identifier is a name that refers to a value. Evaluation of an identifier gives its value.</strong></li>
+  <li>An expression can be:
+    <ul>
+      <li>A value, or</li>
+      <li>An operation acting upon a value or an expression</li>
+    </ul>
+  </li>
+  <li>We’ll fully parenthesize expressions before evaluating so there is no ambiguity.</li>
+  <li>When evaluating an expression with a binary operation, evaluate the left sub-expression before the right sub-expression.</li>
+</ul>
+
+<p>For example, does the string “CSC 123” contain the substring CSC?</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">CSC 123</span><span class="dl">"</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="dl">"</span><span class="s2">CSC</span><span class="dl">"</span><span class="p">)</span> <span class="c1">// evaluates to true</span>
+</code></pre></div></div>
+
+<p>The expression above is a lot like the math expression <code class="language-plaintext highlighter-rouge">3 + 7</code>, in the sense that it involves an operator and operands.
+In this case, the operator is <code class="language-plaintext highlighter-rouge">includes</code> and the operands are the string <code class="language-plaintext highlighter-rouge">"CSC 123"</code> and the substring <code class="language-plaintext highlighter-rouge">"CSC"</code>.</p>
+
+<p>Try another example.</p>
+
+<p>What would the following evaluate to?</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="dl">"</span><span class="s2">CSC 123</span><span class="dl">"</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>To evaluate the expression above, we can begin by fully parenthesizing it. This step will start to occur as second nature once you get more practice—for now let’s do it to make clear all the sub-expressions that need evaluation.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">((</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">((</span><span class="dl">"</span><span class="s2">CSC 123</span><span class="dl">"</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>In the expression above, <code class="language-plaintext highlighter-rouge">3</code>, <code class="language-plaintext highlighter-rouge">2</code>, <code class="language-plaintext highlighter-rouge">"CSC 123"</code> and <code class="language-plaintext highlighter-rouge">20</code> are all <em>values</em> that need no further evaluation.</p>
+
+<p>Now let’s evaluate from left to right.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="p">((</span><span class="dl">"</span><span class="s2">CSC 123</span><span class="dl">"</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">))</span> <span class="c1">// 3 &gt; 2 is true</span>
+
+<span class="p">(</span><span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">9</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">))</span>  <span class="c1">// "CSC 123".length is 9</span>
+
+<span class="p">(</span><span class="kc">true</span> <span class="o">&amp;&amp;</span> <span class="kc">true</span><span class="p">)</span> <span class="c1">// 9 &lt; 20 is true</span>
+
+<span class="kc">true</span> <span class="c1">// final result: true &amp;&amp; true is true</span>
+</code></pre></div></div>
+
+<p>Here’s one that’s a bit more challenging. What would the following expression evaluate to?</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">`The sum of 5 and 3 is </span><span class="p">${(</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">even</span><span class="dl">"</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">odd</span><span class="dl">"</span><span class="p">}</span><span class="s2">.`</span>
+</code></pre></div></div>
+
+<h2 id="what-happens-when-you-use-the-wrong-type">What happens when you use the wrong type?</h2>
+
+<p>At this point, you should start to wonder what happens when you use unexpected types.</p>
+
+<p>For example, what do you think the following expressions will evaluate to?</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span> <span class="o">&lt;</span> <span class="mi">20</span>
+
+<span class="dl">"</span><span class="s2">CSC 123</span><span class="dl">"</span> <span class="o">-</span> <span class="mi">123</span>
+
+<span class="dl">"</span><span class="s2">CSC </span><span class="dl">"</span> <span class="o">+</span> <span class="mi">123</span>
+</code></pre></div></div>
+
+<p>Remember that your browser Console (in which you’ve hopefully been following along!) is running JavaScript.
+In a more just world, all of these would give you an error of some kind.
+Unfortunately, JavaScript includes a number of design decisions that lead to confusing or hard-to-remember behaviour in cases such as these.</p>
+
+<p>There is no better demonstration for why we’re using TypeScript than these expressions.</p>
+
+<p>Consider these expressions:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span> <span class="o">&lt;</span> <span class="mi">20</span>
+<span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span> <span class="o">&gt;</span> <span class="mi">20</span>
+</code></pre></div></div>
+
+<p>In JavaScript, both the expressions above give you the result <code class="language-plaintext highlighter-rouge">false</code>.
+Seeing that <code class="language-plaintext highlighter-rouge">"hello"</code> is not a number, JavaScript tries to coerces it into a number when making the comparison.
+In this case, it coerces <code class="language-plaintext highlighter-rouge">"hello"</code> into <code class="language-plaintext highlighter-rouge">NaN</code> (Not-a-Number), which is not greater than or less than any value, including 20.</p>
+
+<p>(So what do you think <code class="language-plaintext highlighter-rouge">"20" &gt; 5</code> would give us?)</p>
+
+<p>Similarly, in <code class="language-plaintext highlighter-rouge">"CSC 123" - 123</code>, JavaScript tries to coerce <code class="language-plaintext highlighter-rouge">"CSC 123"</code> into a number, resulting in <code class="language-plaintext highlighter-rouge">NaN</code>, and then performs the subtraction. The final result is <code class="language-plaintext highlighter-rouge">NaN</code>.</p>
+
+<p>On the other hand, <code class="language-plaintext highlighter-rouge">"CSC " + 123</code> actually gives us a usable value! JavaScript coerces the number <code class="language-plaintext highlighter-rouge">123</code> into the string <code class="language-plaintext highlighter-rouge">"123"</code> and <em>concatenates</em> the two strings (i.e., jams them together to form one bigger string).</p>
+
+<p>There is always <em>some</em> explanation for why you get the result you get in unreasonable cases like these.
+JavaScript is a language designed by humans, and those humans made decisions about what would be a reasonable response to an unreasonable expression like <code class="language-plaintext highlighter-rouge">"hello" &lt; 20</code>.</p>
+
+<p>However, the exact behaviour in many of these cases are not easy to remember, and <a href="https://www.destroyallsoftware.com/talks/wat">some find them downright unintuitive</a>.</p>
+
+<p class="callout"><strong>That’s why we’re using TypeScript.</strong>
+Open the <a href="https://www.typescriptlang.org/play">TypeScript Playground</a> and type in <code class="language-plaintext highlighter-rouge">"hello" &lt; 20</code>. You will immediately see a red squiggly line under the expression, indicating that there is a type error: <code class="language-plaintext highlighter-rouge">string</code>s and <code class="language-plaintext highlighter-rouge">number</code>s cannot be compared.
+TypeScript will simply not allow you to run that code.</p>
+
+<p>Don’t get me wrong, TypeScript does a bunch of weird stuff as well, that we will no doubt discover this term.
+But there is less weird stuff than JavaScript.</p>
+
+<hr />
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/04-typescript/">&larr; Previous</a>
+        
+        
+      </footer  >
+  </article>
+  
+  
+  </main>
+</body>
+</html>
