@@ -145,7 +145,13 @@
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/05-data-types/</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/courses/csc123/coursenotes/08-functions-part-2/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/03-expressions-and-evaluation/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc123/coursenotes/09-functions-part-3/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/02-abstraction-composition/</loc>
@@ -154,7 +160,13 @@
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/01-data/</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/courses/csc123/coursenotes/06-variables/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/04-typescript/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc123/coursenotes/07-functions-part-1/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/</loc>
@@ -196,6 +208,9 @@
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/06-unit-testing/</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/courses/csc305/coursenotes/19-mutex-semaphore/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/01-introduction-code-style/</loc>
 </url>
 <url>
@@ -217,7 +232,7 @@
 <loc>https://ayaankazerouni.org/courses/csc305/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc305/coursenotes/19-mutex-semaphore/</loc>
+<loc>https://ayaankazerouni.org/courses/csc590/winter2023/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/blog/end-user-programming/</loc>
@@ -254,9 +269,6 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/coursenotes/spatial-skills/</loc>
-</url>
-<url>
-<loc>https://ayaankazerouni.org/courses/csc590/winter2023/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc590/</loc>

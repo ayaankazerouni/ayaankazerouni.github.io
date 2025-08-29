@@ -1,0 +1,190 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Functions (Part 1) - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/07-functions-part-1/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/06-variables/">&larr; Previous</a>
+    
+    
+    <a href="/courses/csc123/coursenotes/08-functions-part-2/">Next &rarr;</a>
+    
+  </div>
+  <h1>Functions (Part 1)</h1>
+  <article>
+      
+<figure>
+  <a href="funcs.png" target="_blank">
+    
+    <img src="funcs.png" alt="Two graphical representations of functions that operate on numbers. The first adds one to its input, the second squares its input" />
+    
+  </a>
+
+  <figcaption>Two examples of functions. What do you think they do?</figcaption>
+</figure>
+
+<h2 id="what-is-a-function">What is a function?</h2>
+
+<p>A <strong>function</strong> represents a calculation (or, for our purposes, computation) that uses data provided to it and the results in new data.
+The type of data that a function expects (i.e., the “input type”) is often called the “domain” (common in mathematics).
+The type of data that the function calculates (i.e., the “output type”) is often called the “codomain”.</p>
+
+<p>So a function takes data from the domain and calculates data in the codomain.</p>
+
+<p>Recall that one common view of computation (or computing) is the processing of data to create other data. This view aligns well with the concept of a function.
+A function processes data to create other data; as such, a function is a means to represent or specify computation.
+<em>This perspective positions programming as the definition of multiple (likely interacting) functions.</em></p>
+
+<p>We will refine this idea (that functions map inputs to outputs) this module, but for now will leverage our intuition and/or prior experience.</p>
+
+<h2 id="some-early-function-examples">Some early function examples</h2>
+
+<p>Recall some of the problems that we have already thought about in our discussion of data. The webpage in the following image includes the use of (or is produced through the use of) a variety of functions. Can you list some?</p>
+
+<figure>
+  <a href="../01-data/is-text-data.png" target="_blank">
+    
+    <img src="../01-data/is-text-data.png" alt="Screenshot of an article about carbon emissions. The screenshot contains a graph showing carbon dioxide emissions over time and prose describing the graph." width="60%" />
+    
+  </a>
+
+  <figcaption></figcaption>
+</figure>
+
+<p>Some of the functions involved are:</p>
+
+<ul>
+  <li>A function that takes in a <strong>year</strong> and gives us a <strong>CO2 ppm measurement</strong>.</li>
+  <li>A function that takes in <strong>CO2 data</strong> and gives us an <strong>image</strong>.</li>
+  <li>A function that takes in <strong>some text</strong> and gives us an <strong>image</strong>.</li>
+  <li>A function that takes in <strong>user input</strong> and gives us an <strong>updated image</strong> (though it is not obvious in this screenshot, the graph is interactive).</li>
+</ul>
+
+<p>There are likely many functions used in the generation of a webpage such as that shown in the image below. Though we do not know the details of the implementation of the software, we can make guesses at the sort of behaviour/functionality needed.</p>
+
+<figure>
+  <a href="../02-abstraction-composition/tweets.png" target="_blank">
+    
+    <img src="../02-abstraction-composition/tweets.png" alt="A screenshot containing three tweets from the account 'Black Art in America'" width="60%" />
+    
+  </a>
+
+  <figcaption></figcaption>
+</figure>
+
+<p>Some of the functions involved here likely include:</p>
+
+<ul>
+  <li>A function mapping each <strong>tweet</strong> to <strong>images</strong> stored within.</li>
+  <li>A function that maps your <strong>user credentials</strong> to <strong>“success” or “failure”</strong> when attempting to access the webpage.</li>
+  <li>A function that maps your <strong>user id</strong> to a <strong>sequence of tweet data</strong> (what you will see).</li>
+  <li>A function that maps your <strong>existing history and your new login time</strong> to a <strong>new history</strong> for you (so that you see new things).</li>
+</ul>
+
+<h2 id="how-are-functions-represented">How are functions represented?</h2>
+
+<p>You may recall the following different representations of functions from mathematics courses.</p>
+
+<p><strong>The algebraic representation</strong></p>
+
+\[f(x) = x^2 + 1\]
+
+<p>In this example, the <code class="language-plaintext highlighter-rouge">x</code> represents the <em>input</em> to the function.
+When the function is applied to different values for <code class="language-plaintext highlighter-rouge">x</code>, you get different <em>output</em> values.</p>
+
+<p><strong>The graphical representation</strong></p>
+
+<p>Here is the function applied to increasing values of <code class="language-plaintext highlighter-rouge">x</code>. The <em>input</em> and <em>output</em> are plotted in the graph below.</p>
+
+<figure>
+  <a href="func-graphical.png" target="_blank">
+    
+    <img src="func-graphical.png" alt="A graphical representation of the function \(f(x) = x^2 + 1\)" width="400px" />
+    
+  </a>
+
+  <figcaption>A graphical representation of the function \(f(x) = x^2 + 1\)</figcaption>
+</figure>
+
+<p><strong>The tabular representation</strong></p>
+
+<p>For example, applying \(f(x) = x^2 + 1\) to inputs 1 through 4.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>x</th>
+      <th>x<sup>2</sup> + 1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>17</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Each of these representations is useful for different purposes.
+As relates to our goals, the algebraic representation is the only one that suggests (or <em>declares</em>) what the function actually does.
+We will explore the details of this representation and how to reason about its use during the remainder of this module (and course).</p>
+
+<hr />
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/06-variables/">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc123/coursenotes/08-functions-part-2/">Next &rarr;</a>
+        
+      </footer  >
+  </article>
+  
+  <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+  
+  
+  </main>
+</body>
+</html>

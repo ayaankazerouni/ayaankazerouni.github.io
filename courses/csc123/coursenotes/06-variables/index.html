@@ -1,0 +1,131 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Variables in TypeScript - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/06-variables/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/05-data-types/">&larr; Previous</a>
+    
+    
+    <a href="/courses/csc123/coursenotes/07-functions-part-1/">Next &rarr;</a>
+    
+  </div>
+  <h1>Variables in TypeScript</h1>
+  <article>
+      <p>Previously, we talked about how you would evaluate the following expression:</p>
+
+<p><code>&pi; * 25</code></p>
+
+<p>The identifier π represents a numerical value (approximately 3.14).
+To evaluate the expression above, you would replace π with the value it represents.</p>
+
+<p>This same idea is embodied in TypeScript through <strong>variables</strong>.</p>
+
+<p class="callout">A variable is a name given to a value.</p>
+
+<p><strong>Variable declaration</strong> is the act of creating a new variable.
+It involves specifying the variable’s <em>name</em> and <em>data type</em>.</p>
+
+<p><strong>Variable initialization</strong> is when you assign the variable an initial value.
+You’ll nearly always want to initialize a variable at the time of declaration.</p>
+
+<p>You can create variables in two ways in TypeScript.</p>
+
+<p>First, using the <code class="language-plaintext highlighter-rouge">const</code> keyword:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">radius</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The line above is a <em>statement</em>.
+It is not an <em>expression</em> because the line as a whole does not evaluate to a value.
+Instead, it affects the program environment in some way—in this case, there now exists a new variable.
+We typically end statements with a semi-colon (<code class="language-plaintext highlighter-rouge">;</code>) — it’s sort of like the “full stop” in programming.</p>
+
+<p class="callout">Expressions evaluate to values. Statements do not yield values.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">=</code> operator is called the “assignment operator” — a single <code class="language-plaintext highlighter-rouge">=</code> does NOT mean “equals” in programming.</p>
+
+<ul>
+  <li>We created a <em>constant</em> called <code class="language-plaintext highlighter-rouge">radius</code> whose data type is <code class="language-plaintext highlighter-rouge">number</code> and whose value is <code class="language-plaintext highlighter-rouge">5</code>.</li>
+  <li>Because we declared that the data type is <code class="language-plaintext highlighter-rouge">number</code>, TypeScript will enforce that the expression on the right-hand-side of <code class="language-plaintext highlighter-rouge">=</code> is also a <code class="language-plaintext highlighter-rouge">number</code>.</li>
+  <li>Finally, because we used <code class="language-plaintext highlighter-rouge">const</code>, once the variable is declared and initialized, its value cannot be changed. That is, you would see an error if you tried the following:</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">radius</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nx">radius</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// !!! This code will cause an error.</span>
+</code></pre></div></div>
+
+<p>If you wanted to be able to assign a new value to a variable, you would use <code class="language-plaintext highlighter-rouge">let</code>.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">course</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">CSC 123: Introduction to Computing</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">course</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">CSC 123: Community Action Computing</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Again, TypeScript enforces type checks, both on the first line where the variable is initialized as well as on the second line when a new value is assigned to the variable.
+Because we declared <code class="language-plaintext highlighter-rouge">course</code> to be a <code class="language-plaintext highlighter-rouge">string</code>, TypeScript will only allow <code class="language-plaintext highlighter-rouge">string</code> values to be given to the variable.</p>
+
+<p>So, some rules for variables in TypeScript:</p>
+
+<ol>
+  <li><strong>Variable names must be unique within a scope.</strong> We’ll talk more about <em>scope</em> very soon. For now, suffice it to say that you can’t have multiple variables with the same name.</li>
+  <li><strong>Variables can only be declared once.</strong> Once a variable has been created (say, using <code class="language-plaintext highlighter-rouge">let</code>), subsequent assignments to that variable must <em>not</em> say <code class="language-plaintext highlighter-rouge">let</code> again, since that will be interpreted as declaring another variable with the same name. (And then see rule #1).</li>
+  <li><strong>Variables declared with <code class="language-plaintext highlighter-rouge">const</code> cannot be reassigned.</strong> In this course, you should <em>use <code class="language-plaintext highlighter-rouge">const</code> whenever possible</em>. Knowing that a variable’s value won’t change after its creation makes it much easier to reason about your code.</li>
+  <li><strong>A variable must have a data type and values that matches its data type.</strong> If you declare a variable to be a <code class="language-plaintext highlighter-rouge">number</code>, you can’t give it a <code class="language-plaintext highlighter-rouge">string</code> or <code class="language-plaintext highlighter-rouge">boolean</code> as a value.</li>
+  <li><strong>Variables can be used in expressions, provided they have already been declared.</strong> For example:</li>
+</ol>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">radius</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">area</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="nx">radius</span> <span class="o">*</span> <span class="nx">radius</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">description</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="s2">`A circle with radius </span><span class="p">${</span><span class="nx">radius</span><span class="p">}</span><span class="s2"> has an area of </span><span class="p">${</span><span class="nx">area</span><span class="p">}</span><span class="s2">.`</span><span class="p">;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">description</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><a href="https://www.typescriptlang.org/play" target="_blank">Try out this example in the TypeScript Playground.</a></p>
+
+<hr />
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/05-data-types/">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc123/coursenotes/07-functions-part-1/">Next &rarr;</a>
+        
+      </footer  >
+  </article>
+  
+  
+  </main>
+</body>
+</html>
