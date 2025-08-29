@@ -1,0 +1,486 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Arrays - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/10-arrays/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/09-functions-part-3/">&larr; Previous</a>
+    
+    
+  </div>
+  <h1>Arrays</h1>
+  <article>
+      <p>In addition to the three primitive data types we’ve discussed so far (<code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">string</code>, and <code class="language-plaintext highlighter-rouge">boolean</code>), TypeScript also lets us work with <em>collections</em> of values, called <em>arrays</em>.</p>
+
+<p>This module is kind of long, and contains several code examples.
+As always, you’re encouraged to open the <a href="https://www.typescriptlang.org/play" target="_blank">TypeScript Playground</a> and follow along.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#declaring-and-initializing-arrays" id="markdown-toc-declaring-and-initializing-arrays">Declaring and initializing arrays</a></li>
+  <li><a href="#basic-array-operations" id="markdown-toc-basic-array-operations">Basic array operations</a></li>
+  <li><a href="#destructive-array-operations" id="markdown-toc-destructive-array-operations">Destructive array operations</a></li>
+  <li><a href="#arrays-are-mutable" id="markdown-toc-arrays-are-mutable">Arrays are mutable</a></li>
+</ul>
+
+<h2 id="declaring-and-initializing-arrays">Declaring and initializing arrays</h2>
+
+<p>An array can hold several values of the same type.
+We use square brackets (<code class="language-plaintext highlighter-rouge">[...]</code>) to denote that a value is an array in TypeScript.
+That is, depending on the task we’re trying to perform, we can shift our view to think of arrays as <em>collections of values</em>, or to think of the array itself as a single value.</p>
+
+<p>For example, the following is an array of numbers describing the tons of CO2 emissions from the USA the years 1900 to 2020 (in twenty-year increments):<sup id="fnref:data" role="doc-noteref"><a href="#fn:data" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>(The numbers use scientific notations to denote millions and billions.)</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">662.74e6</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>Notice that the data type of the value is denoted as <code class="language-plaintext highlighter-rouge">number[]</code>, i.e., the data type of its contents followed by <code class="language-plaintext highlighter-rouge">[]</code>.</p>
+
+<p>If we tried to include a non-<code class="language-plaintext highlighter-rouge">number</code> value in the array, TypeScript would get mad at us.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//                            👇🏽 not a number!</span>
+<span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">662.74e6</span><span class="dl">"</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+</code></pre></div></div>
+<p><a href="https://www.typescriptlang.org/play/?#code/PTAE4yunF4NxxHcDwbhf-dAOwPYBdQEN0CuAtgEYCmATgIQBQAxhmgM45aNMDyAZgMIcBMALkKlKAbQC6oALygxAIgBsi-gDoA7ABYyi+QBpQARg3aAnAeMAOdWXOg1p2wc2rLhp6EWqADO7sv1PwkAbiA">See the error that would occur in the TypeScript Playground</a>.</p>
+
+<p>We can also have arrays of strings (<code class="language-plaintext highlighter-rouge">string[]</code>) or arrays of booleans (<code class="language-plaintext highlighter-rouge">boolean[]</code>).</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">words</span><span class="p">:</span> <span class="kr">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">world</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">TypeScript</span><span class="dl">"</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">bools</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p class="callout">Values of any data type can be stored together in an array.</p>
+
+<p>Since arrays themselves are considered values, you can also have an array of arrays, or a “2-dimensional array”.</p>
+
+<p>For example, suppose you wanted to represent a tic-tac-toe board.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">board</span><span class="p">:</span> <span class="kr">string</span><span class="p">[][]</span> <span class="o">=</span> <span class="p">[[</span><span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">O</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">],</span> <span class="p">[</span><span class="dl">"</span><span class="s2">O</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">O</span><span class="dl">"</span><span class="p">],</span> <span class="p">[</span><span class="dl">""</span><span class="p">,</span> <span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">,</span> <span class="dl">""</span><span class="p">]]</span>
+</code></pre></div></div>
+
+<p>The statement above declares the variable <code class="language-plaintext highlighter-rouge">board</code> and sets its data type to be <code class="language-plaintext highlighter-rouge">string[][]</code>.
+Let’s evaluate <code class="language-plaintext highlighter-rouge">string[][]</code> left-to-right:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">string</code>: This indicates that we’re dealing with strings.</li>
+  <li><code class="language-plaintext highlighter-rouge">[]</code>: This indicates that the data type is an array of <em>whatever comes before</em> in the type annotation. So <code class="language-plaintext highlighter-rouge">string[]</code> is an array of strings.</li>
+  <li><code class="language-plaintext highlighter-rouge">[]</code>: Similarly, this indicates that the data type is an array of <em>whatever comes before</em> in the type annotation. This leaves us with <code class="language-plaintext highlighter-rouge">string[][]</code>, or an array of arrays of strings.</li>
+</ul>
+
+<p>The structure of the tic-tac-toe grid is perhaps more visible if we format it like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">board</span><span class="p">:</span> <span class="kr">string</span><span class="p">[][]</span> <span class="o">=</span> 
+  <span class="p">[</span>
+    <span class="p">[</span><span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">O</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">],</span>
+    <span class="p">[</span><span class="dl">"</span><span class="s2">O</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">O</span><span class="dl">"</span><span class="p">],</span>
+    <span class="p">[</span><span class="dl">""</span><span class="p">,</span>  <span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">,</span> <span class="dl">""</span> <span class="p">]</span>
+  <span class="p">]</span>
+</code></pre></div></div>
+
+<p>The two versions above are equal (in the <code class="language-plaintext highlighter-rouge">===</code> sense), but sensible use of whitespace (spaces, newlines) can code easier to read.
+This is important <a href="https://www.inf.usi.ch/faculty/lanza/Downloads/Mine2015b.pdf">developers tend to spend far more time reading code than writing it</a>.</p>
+
+<p>We will spend <em><strong>a lot</strong></em> of time with arrays this quarter.
+Here are some basic operations you can perform on arrays — we will learn a lot more as we go!</p>
+
+<h2 class="callout alert" id="basic-array-operations">Basic array operations</h2>
+
+<h3 id="get-the-length-of-an-array">Get the length of an array</h3>
+
+<p>Just like with strings, the <code class="language-plaintext highlighter-rouge">length</code> property gives the number of items in an array.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">numberOfItems</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="c1">// 4 items</span>
+</code></pre></div></div>
+
+<h3 id="getting-individual-items-from-an-array">Getting individual items from an array</h3>
+
+<p>You can obtain values from the array based on <em>index</em> or position.</p>
+
+<p>For example, to get the first item in the array:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">662.74e6</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+
+<span class="kd">const</span> <span class="nx">firstItem</span> <span class="o">=</span> <span class="nx">tonsOfCO2</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p class="callout ponder">Notice that I haven’t specified a type for <code class="language-plaintext highlighter-rouge">firstItem</code>. This is because the <code class="language-plaintext highlighter-rouge">at</code> operation can give back a <code class="language-plaintext highlighter-rouge">number</code> OR <code class="language-plaintext highlighter-rouge">undefined</code>. We’ll talk about this more below, but when do you think <code class="language-plaintext highlighter-rouge">at</code> might need to give back <code class="language-plaintext highlighter-rouge">undefined</code>?</p>
+
+<p>Just like with strings, you can use the <code class="language-plaintext highlighter-rouge">at</code> operation to get an item at a particular index (or position) within the array.
+Just like with strings, the index is zero-based, meaning the first item is at index <code class="language-plaintext highlighter-rouge">0</code>.</p>
+
+<p>To get the second item:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">secondItem</span> <span class="o">=</span> <span class="nx">tonsOfCO2</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>What if you request a negative index?</strong> If you give the <code class="language-plaintext highlighter-rouge">at</code> operation a negative index, it will count backward. So the expression</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">lastItem</span> <span class="o">=</span> <span class="nx">tonsOfCO2</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>…will give you the last item in the array.</p>
+
+<p><strong>What if you request an index that is out of bounds?</strong> If you give the <code class="language-plaintext highlighter-rouge">at</code> operation an index that is either negative beyond the start of the array, or positive beyond the end of the array, you will get back the value <code class="language-plaintext highlighter-rouge">undefined</code>.</p>
+
+<p>In our <code class="language-plaintext highlighter-rouge">tonsOfCO2</code> array, the last element is at index 6 (i.e., there are 7 items in the array)</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">outOfBounds</span> <span class="o">=</span> <span class="nx">tonsOfCO2</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span> <span class="c1">// undefined</span>
+</code></pre></div></div>
+
+<p class="callout todo">Paste the code above into the <a href="https://www.typescriptlang.org/play" target="_blank">TypeScript Playground</a>, and then hover your mouse over the <code class="language-plaintext highlighter-rouge">at</code> operation to see its signature.
+You should see it has a return type of <code class="language-plaintext highlighter-rouge">number | undefined</code> (to be read as “number or undefined”).
+This is precisely to account for the possibility that you requested an invalid index.</p>
+
+<h3 id="check-if-an-array-contains-an-item">Check if an array contains an item</h3>
+
+<p>Just like with <code class="language-plaintext highlighter-rouge">string</code>s, you can check if an item is contained within an array.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">].</span><span class="nf">includes</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1">// true</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">].</span><span class="nf">includes</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1">// false</span>
+</code></pre></div></div>
+
+<p>Additionally, because TypeScript is performing static type checks, it won’t let you search for an item of the wrong type.</p>
+
+<p>The expression below will cause a type error.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">].</span><span class="nf">includes</span><span class="p">(</span><span class="dl">"</span><span class="s2">this is not a number</span><span class="dl">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>TypeScript sees that the array is a number array (<code class="language-plaintext highlighter-rouge">number[]</code>).
+So the string <code class="language-plaintext highlighter-rouge">"this is not a number"</code> can <em>never</em> be included in it.</p>
+
+<p><a href="https://www.typescriptlang.org/play/?#code/NoJgNABAzJAskFYC6A6AlgOwMYBsCuAJgKYDOAFAEQkAuATpgOYUCUQA" target="_blank">See the code and the associated error in the TypeScript Playground.</a></p>
+
+<h3 id="find-the-index-of-an-item">Find the index of an item</h3>
+
+<p>You can use the <code class="language-plaintext highlighter-rouge">indexOf</code> operation to find the position of a given item in an array.
+It is sort of the inverse of <code class="language-plaintext highlighter-rouge">at</code>.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">at</code> is used when you know the position and you want the item at that position.</li>
+  <li><code class="language-plaintext highlighter-rouge">indexOf</code> is used when you know the item and you want to find its position.</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">].</span><span class="nf">indexOf</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span> <span class="c1">// 2</span>
+</code></pre></div></div>
+
+<p><strong>What happens if the item is not in the array?</strong> In this case, TypeScript will give you the value <code class="language-plaintext highlighter-rouge">-1</code>.</p>
+
+<p>This allows you to do things like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">].</span><span class="nf">indexOf</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span> <span class="p">?</span>
+  <span class="dl">"</span><span class="s2">5 is in the array</span><span class="dl">"</span> <span class="p">:</span>
+  <span class="dl">"</span><span class="s2">5 is not in the array</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p>Which is equivalent to</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">].</span><span class="nf">includes</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">?</span>
+  <span class="dl">"</span><span class="s2">5 is in the array</span><span class="dl">"</span> <span class="p">:</span>
+  <span class="dl">"</span><span class="s2">5 is not in the array</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<h3 id="changing-an-item-in-the-middle-of-the-array">Changing an item in the middle of the array</h3>
+
+<p>You can use the <code class="language-plaintext highlighter-rouge">with</code> operation to change an item in the middle of the array.
+The <code class="language-plaintext highlighter-rouge">with</code> operation <em>does not update the existing array</em>; it gives back a new array with the change made.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">with</code> operation takes two parameters (in this order):</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">index</code>: The index at which to make the change.</li>
+  <li><code class="language-plaintext highlighter-rouge">value</code>: The new value to insert at the specified index.</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">662.74e6</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">updatedTonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">tonsOfCO2</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">3.0e9</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In the code above, the value <code class="language-plaintext highlighter-rouge">3.0e9</code> will be inserted at index <code class="language-plaintext highlighter-rouge">3</code> in the new array, in place of what was previously at that index.</p>
+
+<p>Just like <code class="language-plaintext highlighter-rouge">at</code>, you can use negative numbers to count backward. However, an invalid index will cause a runtime error, and stop your program from running further. I.e., your program will crash.</p>
+
+<h3 id="obtain-a-slice-of-the-list">Obtain a slice of the list</h3>
+
+<p>You can use the <code class="language-plaintext highlighter-rouge">slice</code> operation to obtain a sub-array from an existing array.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">slice</code> operation takes two inputs (or “arguments”):</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">start</code>: The index at which to start slicing,</li>
+  <li><code class="language-plaintext highlighter-rouge">end</code>: The index <em>before</em> which to stop slicing.</li>
+</ul>
+
+<p>And gives you back a new array containing elements from the original array at <code class="language-plaintext highlighter-rouge">start</code> to <code class="language-plaintext highlighter-rouge">end - 1</code>.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">].</span><span class="nf">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The expression above will evaluate to the array <code class="language-plaintext highlighter-rouge">[3, 5, 8]</code>.</p>
+
+<h3 id="the-spread-operator">The spread operator</h3>
+
+<p>TypeScript includes a useful operator called the spread operator (<code class="language-plaintext highlighter-rouge">...</code>).
+Its job is to “expand” an array into its individual elements.
+This is useful when we use operations that expect individual elements as inputs instead of a single array.</p>
+
+<p>For example: <code class="language-plaintext highlighter-rouge">Math.max</code> and <code class="language-plaintext highlighter-rouge">Math.min</code> can be used to find the maximum and minimum in an array of numbers.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">662.74e6</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">maxCO2</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">max</span><span class="p">(...</span><span class="nx">tonsOfCO2</span><span class="p">);</span> <span class="c1">// 6.01e9</span>
+<span class="kd">const</span> <span class="nx">minCO2</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">min</span><span class="p">(...</span><span class="nx">tonsOfCO2</span><span class="p">);</span> <span class="c1">// 662.74e6</span>
+</code></pre></div></div>
+<h3 id="adding-a-new-item-to-the-beginning-or-end-of-an-array">Adding a new item to the beginning or end of an array</h3>
+
+<p>We can use this syntax to add new items to an array, without modifying our original array.</p>
+
+<p>The code below creates a new array, containing two new values:</p>
+
+<ul>
+  <li>CO2 emissions for 1880 (198.68e6 metric tons), and</li>
+  <li>A rather wishful guess (from me) about CO2 emissions in 2040 (4.2e9 metric tons).</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">662.74e6</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">withNewData</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">198.68e6</span><span class="p">,</span> <span class="p">...</span><span class="nx">tonsOfCO2</span><span class="p">,</span> <span class="mf">4.2e9</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>The code above would give us back a <em>new</em> array (<code class="language-plaintext highlighter-rouge">withNewData</code>) containing the added data, and the original array (<code class="language-plaintext highlighter-rouge">tonsOfCO2</code>) remains unchanged.</p>
+
+<p class="callout todo">Using <code class="language-plaintext highlighter-rouge">slice</code> and the spread operator, how would you create a new array with new added inserted to the middle, without modifying the original array?</p>
+
+<h2 id="destructive-array-operations">Destructive array operations</h2>
+
+<p class="callout"><b class="emph">Danger zone!</b> The following operations are destructive, i.e., they <em>mutate the array</em> instead of giving back a fresh copy.</p>
+
+<p>These are often convenient and memory efficient, since you don’t end up creating copies of your data.
+However, they can lead to hard-to-track-down errors in your program.</p>
+
+<p>We will generally avoid using these mutating operations this quarter where possible. 
+However, they are “idiomatic” in the sense that many examples you see online will use them.
+So I want you to know what they mean.</p>
+
+<h3 id="push">push</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">push</code> operation can be used to append items to an array.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">662.74e6</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+
+<span class="nx">tonsOfCO2</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="mf">4.2e9</span><span class="p">);</span> <span class="c1">// 2040 🤞🏽</span>
+</code></pre></div></div>
+
+<p>After the code above executes, the <code class="language-plaintext highlighter-rouge">tonsOfCO2</code> array will have an additional item at the end (<code class="language-plaintext highlighter-rouge">4.2e9</code>). Its <code class="language-plaintext highlighter-rouge">length</code> will have increased to <code class="language-plaintext highlighter-rouge">8</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">push</code> operation is <em>both a statement and an expression</em>.
+It has a “side-effect” (the arrays contents are changed), and it returns the new length of the array. (In this example, we are not using that returned value.)</p>
+
+<h3 id="unshift">unshift</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">unshift</code> operation can be used to add items to the beginning of an array.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">662.74e6</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+
+<span class="nx">tonsOfCO2</span><span class="p">.</span><span class="nf">unshift</span><span class="p">(</span><span class="mf">198.68e6</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>It mutates the original array by adding a new item at the beginning (<code class="language-plaintext highlighter-rouge">198.68e6</code>) and returns the new length of the array.</p>
+
+<h3 id="pop">pop</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">pop</code> operation can be used to remove and obtain the last item from the array.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">662.74e6</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">lastItem</span> <span class="o">=</span> <span class="nx">tonsOfCO2</span><span class="p">.</span><span class="nf">pop</span><span class="p">();</span> <span class="c1">// 4.71e9</span>
+</code></pre></div></div>
+
+<p>Once again, the <code class="language-plaintext highlighter-rouge">pop</code> operation is <em>both a statement and an expression</em>.
+It has a “side-effect” (the arrays contents are changed), and it returns the item that was removed from the array.</p>
+
+<p>Again, paste the code above into the TypeScript Playground and hover over the <code class="language-plaintext highlighter-rouge">pop</code> operation.
+See that its signature is <code class="language-plaintext highlighter-rouge">number | undefined</code>.</p>
+
+<h3 id="shift">shift</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">shift</code> operation can be used to remove and obtain the first item from the array.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tonsOfCO2</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">662.74e6</span><span class="p">,</span> <span class="mf">1.74e9</span><span class="p">,</span> <span class="mf">1.87e9</span><span class="p">,</span> <span class="mf">2.9e9</span><span class="p">,</span> <span class="mf">4.81e9</span><span class="p">,</span> <span class="mf">6.01e9</span><span class="p">,</span> <span class="mf">4.71e9</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">firstItem</span> <span class="o">=</span> <span class="nx">tonsOfCO2</span><span class="p">.</span><span class="nf">shift</span><span class="p">();</span> <span class="c1">// 662.74e6</span>
+</code></pre></div></div>
+
+<p>Yet again, the <code class="language-plaintext highlighter-rouge">shift</code> operation is <em>both a statement and an expression</em>.
+It has a “side-effect” (the arrays contents are changed), and it returns the item that was removed from the array.</p>
+
+<p>Again, paste the code above into the TypeScript Playground and hover over the <code class="language-plaintext highlighter-rouge">shift</code> operation.
+See that its signature is <code class="language-plaintext highlighter-rouge">number | undefined</code>.</p>
+
+<p class="callout ponder">When do you suppose <code class="language-plaintext highlighter-rouge">pop</code> and <code class="language-plaintext highlighter-rouge">shift</code> might return <code class="language-plaintext highlighter-rouge">undefined</code>?</p>
+
+<h3 id="indexing-into-an-array-using--notation">Indexing into an array using <code class="language-plaintext highlighter-rouge">[]</code> notation</h3>
+
+<p>Finally, the <code class="language-plaintext highlighter-rouge">[]</code> notation can be used to access individual items in an array.</p>
+
+<p>“Indexing” into an array means accessing specific positions in the array, either to read what’s in the array at that location, or to change the value at that location.</p>
+
+<p>For example, suppose you have a simple array of words.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">beatles</span><span class="p">:</span> <span class="kr">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Paul</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">George</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Pete</span><span class="dl">"</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>You can access locations within the array with the following syntax:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array[index]
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">array</code> is any expression that evaluates to an array, and <code class="language-plaintext highlighter-rouge">index</code> is a <code class="language-plaintext highlighter-rouge">number</code> representing the position you want to access.</p>
+
+<p>So, for example, to read the first and second item in the <code class="language-plaintext highlighter-rouge">beatles</code> array, you would write:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">firstBeatle</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="nx">beatles</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// "John"</span>
+<span class="kd">const</span> <span class="nx">secondBeatle</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="nx">beatles</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// "Paul"</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">[]</code> notation functions kind of like variable names (at least, like variables declared using <code class="language-plaintext highlighter-rouge">let</code>).
+You can use it to read a value, and you can also use it to <em>change</em> a value.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">beatles</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Ringo</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// replace "Pete" with "Ringo"</span>
+</code></pre></div></div>
+
+<p>As always, TypeScript will perform type enforcements: in this example, when you read a value, you can’t treat it as anything but a string, and when you write a value, you can only provide a string. Because the <code class="language-plaintext highlighter-rouge">beatles</code> array was declared as a <code class="language-plaintext highlighter-rouge">string[]</code>.</p>
+
+<h2 id="arrays-are-mutable">Arrays are mutable</h2>
+
+<p>It bears repeating.</p>
+
+<p>In the <code class="language-plaintext highlighter-rouge">beatles</code> example, notice that even though <code class="language-plaintext highlighter-rouge">beatles</code> was declared using <code class="language-plaintext highlighter-rouge">const</code>, we were still able to change its contents.
+This is because <code class="language-plaintext highlighter-rouge">const</code> only prevents reassignment of the variable itself.
+If the variable happens to be <em>mutable</em>, it doesn’t stop us from mutating it.</p>
+
+<p>So far, arrays are the only mutable compound type we’ve come across. (E.g., <code class="language-plaintext highlighter-rouge">strings</code> are immutable — all the <code class="language-plaintext highlighter-rouge">string</code> operations you encounter will always give back a new string if changes are to be made.)</p>
+
+<p><strong>What are some implications of this?</strong></p>
+
+<p>Suppose you have a function that modifies an element in array (rather simplistic for now):</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">updateScores</span> <span class="o">=</span> <span class="p">(</span><span class="nx">input</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]):</span> <span class="k">void</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">input</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">34</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>And another bit of code that finds the minimum score in the scores array.</p>
+
+<p>After the following code runs, what do you think the minimum score will be?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">.</span><span class="o">|</span> <span class="kd">const</span> <span class="nx">scores</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">83</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">42</span><span class="p">];</span>
+<span class="mi">2</span><span class="p">.</span><span class="o">|</span> <span class="nf">updateScores</span><span class="p">(</span><span class="nx">scores</span><span class="p">);</span>
+<span class="mi">3</span><span class="p">.</span><span class="o">|</span> <span class="kd">const</span> <span class="nx">minimumScore</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">min</span><span class="p">(...</span><span class="nx">scores</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>After Line 1</strong></p>
+
+<p>In the code above, when line 1 runs, we have declared and initialized a variable called <code class="language-plaintext highlighter-rouge">scores</code> that <em>points to</em> the array.</p>
+
+<pre class="mermaid">
+flowchart TD
+  s["scores"]
+  a["[83, 42, 77, 92, 81, 42]"]
+
+  s --&gt; a
+</pre>
+
+<p><strong>After Line 2 (inside <code class="language-plaintext highlighter-rouge">updateScores</code>)</strong></p>
+
+<p>When line 2 runs, execution of this sequence pauses so that the <code class="language-plaintext highlighter-rouge">updateScores</code> function can do its work.
+Here’s where it gets tricky.</p>
+
+<p>When you pass a value (such as an array) to a function, <em>the input in the function is pointing to the same value as the argument that was given to it</em>.</p>
+
+<pre class="mermaid">
+flowchart TD
+  s["scores"]
+  i["input"]
+  a["[83, 42, 77, 92, 81, 42]"]
+
+  s --&gt; a
+  i --&gt; a
+</pre>
+
+<p>That is, the <code class="language-plaintext highlighter-rouge">scores</code> variable (outside the <code class="language-plaintext highlighter-rouge">updateScores</code> function) and the <code class="language-plaintext highlighter-rouge">input</code> variable (inside the <code class="language-plaintext highlighter-rouge">updateScores</code> function) are both pointing to the same <strong>mutable</strong> value.
+That means any changes that occur inside the function will also affect the array outside the function, and therefore be visible to any portions of your code that use the array.</p>
+
+<p>Consequently, Line 3 (finding the minimum value in the array) will give you different answers depending on whether it comes before or after the call to <code class="language-plaintext highlighter-rouge">updateScores</code>.
+It’s important to be aware of whether a function mutates its inputs, and if you’re the one writing the function, be <strong>extremely clear</strong> about how you treat your inputs.</p>
+
+<ol>
+  <li>The best thing is to not mutate your inputs.</li>
+  <li>If you must use destructive operations, make a copy of the array (using the spread operator: <code class="language-plaintext highlighter-rouge">[...array]</code>) and then work with that instead.</li>
+  <li>If your function’s explicit goal is to mutate the array, make that clear in documentation as well as in the way you name the function. For example, the TypeScript standard library has two functions for reversing an array: <code class="language-plaintext highlighter-rouge">reverse()</code> (which mutates the array and reverses it “in place”), and <code class="language-plaintext highlighter-rouge">toReversed()</code> (which returns a new array that is the reversed version of the original). Give users of your functions (which includes yourself!) as many indicators as you can when a function is destructive.</li>
+  <li>But really, just try not to mutate your inputs as far as possible.</li>
+</ol>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:data" role="doc-endnote">
+      <p>Data from <em><a href="https://ourworldindata.org/co2-emissions">Our World in Data</a></em>. <a href="#fnref:data" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/09-functions-part-3/">&larr; Previous</a>
+        
+        
+      </footer  >
+  </article>
+  
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      mermaid.initialize({
+        theme: 'dark'
+      });
+    } else {
+      mermaid.initialize({
+        theme: 'default'
+      });
+    }
+  </script>
+  
+  </main>
+</body>
+</html>
