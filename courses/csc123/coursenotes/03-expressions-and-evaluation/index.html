@@ -156,12 +156,12 @@ The smaller expressions must be evaluated before one can evaluate the larger exp
 
 <p style="text-align: center; font-size: 2em">
   <span class="expr l3">(
+    <span class="expr l1">2</span> *
     <span class="expr l2">( <span class="expr l1">7</span> + <span class="expr l1">4</span> )</span>
-    * <span class="expr l1">2</span>
   )</span>
 </p>
 
-<p>Each of the colored underline bars corresponds to the use of a rule from above. There is a different color for each rule. This process of determining which rules were used to generate each term is essentially what we call “parsing” an expression.  But lets look at this with a diagram to help illustrate our mental model of evaluating this expression:</p>
+<p>Lets look at this with a diagram to help illustrate our mental model of evaluating this expression:</p>
 
 <pre class="mermaid">
 flowchart TD
@@ -173,10 +173,10 @@ flowchart TD
 
 <p>This representation is often called a “tree”.
 It is upside-down from what we usually think of a tree with branches expanding upwards.
-If we start reading from the bottom we see numbers (expressions) and then operators joining those prior/lower expressions.
+If we start reading from the bottom we see numbers (values) and then operators joining numbers, and still more operators joining the results of the prior/lower expressions.
 This allows us to read, bottom up, the order in which the evaluation will proceed.</p>
 
-<p>So starting from the bottom we can read <code class="language-plaintext highlighter-rouge">"7+4"</code>, etc.</p>
+<p>So starting from the bottom we can read <code class="language-plaintext highlighter-rouge">"7+4"</code>, and then <code class="language-plaintext highlighter-rouge">"2*(7+4)"</code>.</p>
 
 <p>Consider this expression tree as well:</p>
 
@@ -213,10 +213,8 @@ flowchart TD
 
 <p>What are the steps of evaluation for this expression?</p>
 
-<p>You may notice that there are, in fact, two options, since there’s no obviously “smallest” expression to start with.</p>
-
-<p>Therefore, we’ll fully parenthesize expressions before evaluating so there is no ambiguity.
-An when evaluating an expression with a binary operator (e.g., +, -, *, /), we’ll evaluate the left sub-expression before the right sub-expression.</p>
+<p>You may notice that there are two options for potential starting points, since there’s no obviously “smallest” expression to start with.
+In cases like these, it’s common convention to evaluate the left-most sub-expression first.</p>
 
 <h2 id="additional-considerations">Additional considerations</h2>
 
@@ -241,26 +239,24 @@ To be clear, lets consider the steps:</p>
 
 <p>There are different ways you can decide to represent this evaluation in your own mental model.
 Some viable representations include a model in which you consider that the machine fails.
-The point of building a mental model is mostly to allow you to “reason” about computing and what will happen when your code is executed on a computational device.</p>
+Some include the notion of “infinity”, an imaginary but useful construct.</p>
 
 <p>As another example of limits in computing, consider that in many programming languages, <strong>integers have maximum and minimum values</strong>.
+For example, an 8-bit unsigned integer can only represent values from 0 to 255.<sup id="fnref:binary" role="doc-noteref"><a href="#fn:binary" class="footnote" rel="footnote">1</a></sup>
+Size limits in modern computing are much larger, but they do exist.
 What happens when you go over or under these values?</p>
 
-<p>Even at this early stage of thinking about computing it is important to consider what can go wrong with this type of data and operation.</p>
-
-<p>For example, integers can have maximum and minimum values. What happens when you go over or under these values?</p>
-
-<p>Some examples:</p>
+<p>Software errors can occur due to these <em>integer overflows</em>:</p>
 
 <ul>
-  <li>Computing the average of two numbers might result in an overflow if the sum (but not the average) is greater than the maximum possible value.</li>
-  <li>In the old Donkey Kong arcade game, the game calculates the timer for the level with the formula <code class="language-plaintext highlighter-rouge">10 * (level + 4)</code>. So for level 22, the timer would add up to 260. This was too large for the 8-bit counter’s maximum allowed value of 256. So the system overflowed to 4, making the level impossible to complete.</li>
+  <li>Computing the average of two very large numbers might result in an overflow if the sum (but not the average) is greater than the maximum possible value.</li>
+  <li>In the old Donkey Kong arcade game, the game calculated a timer for each level with the formula <code class="language-plaintext highlighter-rouge">10 * (level + 4)</code>. So for level 22, the timer would add up to 260. This was too large for the 8-bit counter’s maximum allowed value. So the system overflowed to a very small number, making the level impossible to complete.</li>
   <li>More seriously, occasional integer overflows in the <a href="https://en.wikipedia.org/wiki/Therac-25#Root_causes">Therac-25 radiation therapy machine</a> caused the machine to bypass some safety checks, causing at least six deaths as a result of radiation poisoning.</li>
 </ul>
 
 <h2 id="identifiers-are-also-expressions">Identifiers are also expressions</h2>
 
-<p>To further build up our notional machine for more complex computation, consider how you would evaluate an expression that computes the area of a circle with radius <code class="language-plaintext highlighter-rouge">2</code>.</p>
+<p>To further build up our mental model for more complex computation, consider how you would evaluate an expression that computes the area of a circle with radius <code class="language-plaintext highlighter-rouge">2</code>.</p>
 
 <p>Or, more precisely, evaluate (π * (2 * 2)).</p>
 
@@ -288,7 +284,7 @@ What happens when you go over or under these values?</p>
   <li><strong>An identifier is a name that refers to a value. Evaluation of an identifier gives its value.</strong></li>
   <li>An expression can be:
     <ul>
-      <li>A value, or</li>
+      <li><strong>An identifier or value</strong>, or</li>
       <li>An operation acting upon a value or an expression</li>
     </ul>
   </li>
@@ -299,6 +295,13 @@ What happens when you go over or under these values?</p>
 <p>Building on this foundation, we can move on to reading and writing TypeScript programs.</p>
 
 <hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:binary" role="doc-endnote">
+      <p><strong>Why?</strong> “8-bit” means there are 8 binary digits (bits) used to represent the number. In the binary system, each bit starts at 0 and can go up to 1 before overflowing to 0 and carrying 1 to the next digit (much like counting in the decimal [0-9] system, where 9 overflows to 0 and we carry 1 to the next digit). Counting this way, using 8 bits, we can represent a total of 2<sup>8</sup> = 256 different values. <a href="#fnref:binary" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
       <footer class="nav-links">
         
