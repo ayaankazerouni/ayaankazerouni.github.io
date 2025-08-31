@@ -100,7 +100,7 @@ Because we declared <code class="language-plaintext highlighter-rouge">course</c
   <li><strong>Variable names must be unique within a scope.</strong> We’ll talk more about <em>scope</em> very soon. For now, suffice it to say that you can’t have multiple variables with the same name.</li>
   <li><strong>Variables can only be declared once.</strong> Once a variable has been created (say, using <code class="language-plaintext highlighter-rouge">let</code>), subsequent assignments to that variable must <em>not</em> say <code class="language-plaintext highlighter-rouge">let</code> again, since that will be interpreted as declaring another variable with the same name. (And then see rule #1).</li>
   <li><strong>Variables declared with <code class="language-plaintext highlighter-rouge">const</code> cannot be reassigned.</strong> In this course, you should <em>use <code class="language-plaintext highlighter-rouge">const</code> whenever possible</em>. Knowing that a variable’s value won’t change after its creation makes it much easier to reason about your code.</li>
-  <li><strong>A variable must have a data type and values that matches its data type.</strong> If you declare a variable to be a <code class="language-plaintext highlighter-rouge">number</code>, you can’t give it a <code class="language-plaintext highlighter-rouge">string</code> or <code class="language-plaintext highlighter-rouge">boolean</code> as a value.</li>
+  <li><strong>A variable must have a data type and a value that matches its data type.</strong> If you declare a variable to be a <code class="language-plaintext highlighter-rouge">number</code>, you can’t give it a <code class="language-plaintext highlighter-rouge">string</code> or <code class="language-plaintext highlighter-rouge">boolean</code> as a value.</li>
   <li><strong>Variables can be used in expressions, provided they have already been declared.</strong> For example:</li>
 </ol>
 
@@ -112,6 +112,45 @@ Because we declared <code class="language-plaintext highlighter-rouge">course</c
 </code></pre></div></div>
 
 <p><a href="https://www.typescriptlang.org/play" target="_blank">Try out this example in the TypeScript Playground.</a></p>
+
+<p>You’ll also notice a new statement: <code class="language-plaintext highlighter-rouge">console.log</code>.
+This statement is used to “print” values to the console.
+It’s useful when you want to inspect the value of a variable or expression.</p>
+
+<p>You can log values of any type.
+Any value that is not already a <code class="language-plaintext highlighter-rouge">string</code> will be coerced into a <code class="language-plaintext highlighter-rouge">string</code> when logged.</p>
+
+<p>So all of these are valid:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">This is a string. Easy peasy</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="kc">undefined</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="type-inference">Type inference</h2>
+
+<p>In many cases, TypeScript is able to <em>infer</em> the type of a variable based on other information (like its value).
+So, for example, consider the variable declaration below:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">words</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">It's only words</span><span class="dl">"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Even though I haven’t explicitly declared that the type of <code class="language-plaintext highlighter-rouge">words</code> is <code class="language-plaintext highlighter-rouge">string</code>, TypeScript has this figured out.
+To see this, paste the code into the TypeScript Playground and hover your mouse over the variable name <code class="language-plaintext highlighter-rouge">words</code>.
+In the little pop-up that appears, you will see that TypeScript has statically (i.e., without running the program) determined that the type of <code class="language-plaintext highlighter-rouge">words</code> is <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<p>The consequence of this is that, even if you were to reassign <code class="language-plaintext highlighter-rouge">words</code> a new value, that new value would <em>have to</em> be a <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// This code will cause a type error.</span>
+<span class="kd">let</span> <span class="nx">words</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">It's only words</span><span class="dl">"</span><span class="p">;</span>
+<span class="nx">words</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>In the above example, TypeScript inferred that <code class="language-plaintext highlighter-rouge">words</code> is a <code class="language-plaintext highlighter-rouge">string</code> (based on the value), and so the type-checking proceeds as though it was declared with that data type explicitly.</p>
+
+<p class="callout">Despite this capability, in this class, we will explicitly declare the data types of all variables except in specific circumstances which you will see in later modules.</p>
 
 <hr />
 

@@ -93,7 +93,7 @@ f(-10.2) = -9.2\]
 
 <p>We can do the same thing for computing the area of of a circle given its diameter. But this time, instead of calling the function <code class="language-plaintext highlighter-rouge">f</code>, which is a pretty uninformative name, we can call it <code class="language-plaintext highlighter-rouge">areaFromDiameter</code>. And instead of the input variable being called <code class="language-plaintext highlighter-rouge">x</code>, we’ll call it <code class="language-plaintext highlighter-rouge">d</code> for “diameter”.</p>
 
-\[areaFromDiameter(d) = \pi * (d / 2) * (d / 2)\]
+\[areaFromDiameter(d) =&gt; \pi * (d / 2) * (d / 2)\]
 
 <p>This function can be applied to any numerical value, like 10 or 17, and will give us the correct result.</p>
 
@@ -140,9 +140,9 @@ f(-10.2) = -9.2\]
 
 <ul>
   <li><code class="language-plaintext highlighter-rouge">const areaFromDiameter</code> — The function is <em>declared</em> using <code class="language-plaintext highlighter-rouge">const</code>. It is, after all, a <em>named value</em>, albeit a different kind of value than the ones we are used to, like <code class="language-plaintext highlighter-rouge">5</code>s or <code class="language-plaintext highlighter-rouge">"hello"</code>.</li>
-  <li><code class="language-plaintext highlighter-rouge">(diameter: number): number</code> — This part is called the <strong>function signature</strong>. It defines the function’s <em>type</em>, which is composed of the type(s) of its input(s) and the type of its output.
+  <li><code class="language-plaintext highlighter-rouge">(diameter: number): number</code> — This part is called the <strong>function signature</strong>. It defines the function’s <em>type</em>, which is composed of the type(s) of its input(s) and the type of its output.<sup id="fnref:output" role="doc-noteref"><a href="#fn:output" class="footnote" rel="footnote">1</a></sup>
     <ul>
-      <li>It also defines the function’s inputs or <em>parameters</em>. A function can take 0 or more parameters, and each one must have its type specified. This function takes one input, called <code class="language-plaintext highlighter-rouge">diameter</code>, which is a <code class="language-plaintext highlighter-rouge">number</code>.</li>
+      <li>The function’s inputs are also called its <em>parameters</em>. A function can take 0 or more parameters, and each one must have its type specified. This function takes one input, called <code class="language-plaintext highlighter-rouge">diameter</code>, which is a <code class="language-plaintext highlighter-rouge">number</code>.</li>
       <li>This bit may not look like much, but at this point we’ve done a fair amount of work already! We have received our problem statement (”calculate the area of a circle given its diameter”), and we’ve expressed what a solution <em>should</em> look like, even if we haven’t implemented it yet.</li>
     </ul>
   </li>
@@ -166,7 +166,16 @@ f(-10.2) = -9.2\]
 
 <p>We can now use this function to calculate the area of circles with any diameter.</p>
 
-<p>When you use a function, you are <em>invoking</em> it, or <em>calling</em> it, or <em>applying</em> it. You will frequently hear the phrase “call a function”. You can call a function in TypeScript by typing its name and giving it input values of the appropriate type.</p>
+<p>When you use a function, you are <em>invoking</em> it, or <em>calling</em> it, or <em>applying</em> it.
+You will frequently hear the phrase “call a function”.
+You can call a function in TypeScript by</p>
+<ul>
+  <li>typing its name, and</li>
+  <li>within parentheses, providing input values for each of its parameters</li>
+</ul>
+
+<p>If the function does not expect any inputs, <em>you still need to provide empty parentheses</em>! I.e., <code class="language-plaintext highlighter-rouge">()</code>
+The parentheses indicate that you are <em>calling</em> (or invoking, or applying) the function.</p>
 
 <p>Let’s call <code class="language-plaintext highlighter-rouge">areaFromDiameter</code> with some input values.</p>
 
@@ -230,6 +239,13 @@ The same thing happens for the expression <code class="language-plaintext highli
 <p>Once all of this is done, we’re just left with one big expression. We can evaluate this using the rules of computation that you’re already used to, and produce one single value, which is given to the <code class="language-plaintext highlighter-rouge">areaAnnulus</code> variable.</p>
 
 <hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:output" role="doc-endnote">
+      <p>The function can also not return <em>anything</em>, in which case its output type is <code class="language-plaintext highlighter-rouge">void</code>. We won’t typically write functions that don’t return anything, but we may <em>use</em> such functions (e.g., those that are in-built in TypeScript). <a href="#fnref:output" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
       <footer class="nav-links">
         
