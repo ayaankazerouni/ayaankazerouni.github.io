@@ -154,6 +154,9 @@
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/03-expressions-and-evaluation/</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/courses/csc123/coursenotes/14-control-flow-if-statements/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/09-functions-part-3/</loc>
 </url>
 <url>
@@ -208,9 +211,6 @@
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/17-threads-concurrency/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc305/coursenotes/05-visitor-pattern-matching/</loc>
-</url>
-<url>
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/18-thread-synchronisation/</loc>
 </url>
 <url>
@@ -244,7 +244,7 @@
 <loc>https://ayaankazerouni.org/courses/csc305/</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc590/winter2023/</loc>
+<loc>https://ayaankazerouni.org/courses/csc305/coursenotes/05-visitor-pattern-matching/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/blog/end-user-programming/</loc>
@@ -281,6 +281,9 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/coursenotes/spatial-skills/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc590/winter2023/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc590/</loc>

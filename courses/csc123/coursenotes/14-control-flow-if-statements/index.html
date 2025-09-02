@@ -1,0 +1,327 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Conditional control flow - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/14-control-flow-if-statements/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/13-reduce/">&larr; Previous</a>
+    
+    
+  </div>
+  <h1>Conditional control flow</h1>
+  <article>
+      <ul id="markdown-toc">
+  <li><a href="#control-flow" id="markdown-toc-control-flow">Control flow</a></li>
+  <li><a href="#if-statements" id="markdown-toc-if-statements"><code class="language-plaintext highlighter-rouge">if</code> statements</a></li>
+  <li><a href="#if-else" id="markdown-toc-if-else"><code class="language-plaintext highlighter-rouge">if-else</code></a></li>
+  <li><a href="#if-else-if" id="markdown-toc-if-else-if">if-else-if</a></li>
+  <li><a href="#an-example" id="markdown-toc-an-example">An example</a></li>
+</ul>
+
+<h2 id="control-flow">Control flow</h2>
+
+<p><strong>Control flow</strong> is the order in which expressions and statements will execute in your program. And you’ve already seen it in action!</p>
+
+<p>For example, consider the following functions. <code class="language-plaintext highlighter-rouge">areaFromRadius</code> computes the area of a circle given its radius. <code class="language-plaintext highlighter-rouge">areaOfAnnulus</code> computes the area of an annulus (a ring shape made up of two concentric circles), given the radii of the two circles.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+* Compute the area of a circle, given its radius.
+*/</span>
+<span class="kd">const</span> <span class="nx">areaFromRadius</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="nx">r</span> <span class="o">*</span> <span class="nx">r</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/**
+* Compute the area of an annulus, given the radii of the inner circle
+* and outer circle.
+*/</span>
+<span class="kd">const</span> <span class="nx">areaOfAnnulus</span> <span class="o">=</span> <span class="p">(</span><span class="nx">innerRadius</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">outerRadius</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="na">innerArea</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nf">areaFromRadius</span><span class="p">(</span><span class="nx">innerRadius</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="na">outerArea</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nf">areaFromRadius</span><span class="p">(</span><span class="nx">outerRadius</span><span class="p">);</span>
+	
+  <span class="k">return</span> <span class="nx">outerArea</span> <span class="o">-</span> <span class="nx">innerArea</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>With the two function definitions in hand, let’s think about evaluating the following expression:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">areaOfAnnulus</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>When we encounter the expression <code class="language-plaintext highlighter-rouge">areaOfAnnulus(3, 5)</code>, we know that we need to execute the body of the <code class="language-plaintext highlighter-rouge">areaOfAnnulus</code> function.
+That is, we <em>give control to the <code class="language-plaintext highlighter-rouge">areaOfAnnulus</code> function</em>, along with the values <code class="language-plaintext highlighter-rouge">3</code> and <code class="language-plaintext highlighter-rouge">5</code> for the two parameters.</p>
+
+<p>Next, consider the code for the <code class="language-plaintext highlighter-rouge">areaOfAnnulus</code> function.
+We know that when we hit the first line, execution in <code class="language-plaintext highlighter-rouge">areaOfAnnulus</code> will “pause” while the call to <code class="language-plaintext highlighter-rouge">areaFromRadius</code> is resolved.
+This can be referred to as <em>control being transferred</em> to <code class="language-plaintext highlighter-rouge">areaFromRadius</code>.</p>
+
+<p>When the call <code class="language-plaintext highlighter-rouge">areaFromRadius(innerRadius)</code> returns, control is returned to the <code class="language-plaintext highlighter-rouge">areaOfAnnulus</code> function.
+The same thing will happen for the next line, which computes the area of the outer circle.</p>
+
+<p>The rules by which control is transferred from one statement/expression to another are referred to as <strong>control flow</strong>.
+Typically, control flows from one statement to the next in the order in which they appear.
+But, as we see in the example above, control can also be transferred between functions.</p>
+
+<p>In this lesson we’ll learn about another type of control flow: <strong>conditional statements</strong>.</p>
+
+<h2 id="if-statements"><code class="language-plaintext highlighter-rouge">if</code> statements</h2>
+
+<p>Conditional statements allow us to check <code class="language-plaintext highlighter-rouge">boolean</code> conditions and execute different blocks of code depending on whether those conditions are <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>.
+The construct you will use most often for this task is the <code class="language-plaintext highlighter-rouge">if</code> statement.</p>
+
+<p><code class="language-plaintext highlighter-rouge">if</code> statements have the following structure:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (booleanExpression) {
+  BLOCK A
+}
+
+BLOCK D 
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">if</code> statement will always involve a <code class="language-plaintext highlighter-rouge">boolean</code> expression, i.e., any expression that evaluates to <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>.</p>
+
+<p>Next, we have a block of code (<code class="language-plaintext highlighter-rouge">BLOCK A</code> in the example above) to be executed only if that expression evaluates to <code class="language-plaintext highlighter-rouge">true</code>.
+This is referred to as <strong>the “then” block</strong>.
+(So that we can read it as “if the condition is true, THEN do this”).</p>
+
+<p>If the boolean expression evaluates to <code class="language-plaintext highlighter-rouge">false</code>, the then block (<code class="language-plaintext highlighter-rouge">BLOCK A</code> above) is simply skipped, and execution moves on to the code after the if statement (<code class="language-plaintext highlighter-rouge">BLOCK D</code> in the example above).</p>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">BLOCK D</code> in the example above is always executed. That is, these are the possible paths through the example above:</p>
+
+<pre class="mermaid">
+graph TD;
+    bool[booleanExpression] --is true--&gt; A[BLOCK A];
+    A --is done--&gt; D;
+    bool --is false--&gt; D[BLOCK D];
+</pre>
+
+<p>Only one path in the diagram above can be taken in a single execution of the program.</p>
+
+<h2 id="if-else"><code class="language-plaintext highlighter-rouge">if-else</code></h2>
+
+<p>Often, in addition to the then block, you want to specify a block of code to run if the condition is false.
+Sort of like an “otherwise” clause to your conditional check.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (booleanExpression) {
+  BLOCK A
+} else {
+  BLOCK B
+}
+
+BLOCK D
+</code></pre></div></div>
+
+<p>If the <code class="language-plaintext highlighter-rouge">booleanExpression</code> evaluates to <code class="language-plaintext highlighter-rouge">true</code>, then <code class="language-plaintext highlighter-rouge">BLOCK A</code> is executed, as we saw above.
+If it evaluates to <code class="language-plaintext highlighter-rouge">false</code>, then <code class="language-plaintext highlighter-rouge">BLOCK B</code> is executed.
+In either case, execution moves on to <code class="language-plaintext highlighter-rouge">BLOCK D</code> once the entire if-else statement has concluded.</p>
+
+<p>The example above also has two possible execution paths:</p>
+
+<pre class="mermaid">
+graph TD;
+    bool[booleanExpression] --is true--&gt; A[BLOCK A];
+    A --is done--&gt; D[BLOCK D];
+    bool --is false--&gt; B[BLOCK B];
+    B --is done--&gt; D[BLOCK D];
+</pre>
+
+<p>Note that execution will <em>always</em> go through at least <code class="language-plaintext highlighter-rouge">BLOCK A</code> or <code class="language-plaintext highlighter-rouge">BLOCK B</code>—a condition is either <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>, so one of the blocks must execute.</p>
+
+<p>Again, only a single path from <code class="language-plaintext highlighter-rouge">booleanExpression</code> to <code class="language-plaintext highlighter-rouge">BLOCK D</code> can be taken in a single execution of the program.
+That is, the then block OR the else block is guaranteed to execute. But never both.</p>
+
+<p>As an example, consider the following function, which checks if a given number is odd or even.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+* Return "EVEN" if the number is odd, "ODD" otherwise.
+*/</span>
+<span class="kd">const</span> <span class="nx">oddOrEven</span> <span class="o">=</span> <span class="p">(</span><span class="nx">num</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nx">num</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">EVEN</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">ODD</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nf">oddOrEven</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1">// "EVEN"</span>
+<span class="nf">oddOrEven</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span> <span class="c1">// "ODD"</span>
+</code></pre></div></div>
+
+<p>When we call <code class="language-plaintext highlighter-rouge">oddOrEven(10)</code>, the boolean expression <code class="language-plaintext highlighter-rouge">num % 2 === 0</code> evaluates to <code class="language-plaintext highlighter-rouge">true</code>, because <code class="language-plaintext highlighter-rouge">10 % 2</code> does in fact equal <code class="language-plaintext highlighter-rouge">0</code>. Therefore, control goes to the line <code class="language-plaintext highlighter-rouge">return "EVEN"</code>, and the function returns <code class="language-plaintext highlighter-rouge">"EVEN"</code>.</p>
+
+<p>When we call <code class="language-plaintext highlighter-rouge">oddOrEven(17)</code>, the boolean expression <code class="language-plaintext highlighter-rouge">num % 2 === 0</code> evaluates to <code class="language-plaintext highlighter-rouge">false</code>, because <code class="language-plaintext highlighter-rouge">17 % 2</code> does NOT equal <code class="language-plaintext highlighter-rouge">0</code>. Therefore, control goes to the line return <code class="language-plaintext highlighter-rouge">"ODD"</code>, and the function returns <code class="language-plaintext highlighter-rouge">"ODD"</code>.</p>
+
+<p class="callout note">The <code class="language-plaintext highlighter-rouge">oddOrEven</code> example above is a long-winded way of saying: <code class="language-plaintext highlighter-rouge">num % 2 === 0 ? "EVEN" : "ODD"</code>. You don’t always need to reach for <code class="language-plaintext highlighter-rouge">if</code> statements. The <a href="../05-data-types#the-ternary-operator">ternary operator</a> is a useful shorthand for such cases.</p>
+
+<h2 id="if-else-if">if-else-if</h2>
+
+<p>Finally, sometimes you want to support more than two possible outcomes for some condition.
+Here is where “if-else-if ladders” are useful.
+They have the following structure:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if (booleanExpression) {
+  BLOCK A
+} else if (anotherBooleanExpression) {
+  BLOCK B
+} else {
+  BLOCK C
+}
+
+BLOCK D
+</code></pre></div></div>
+
+<p>Code that looks like the above have the following possible execution paths:</p>
+
+<pre class="mermaid">
+graph TD;
+    bool[booleanExpression]
+    bool2[anotherBooleanExpression]
+    a[BLOCK A]
+    b[BLOCK B]
+    c[BLOCK C]
+    d[BLOCK D]
+
+    bool--is true--&gt;a
+    bool--is false--&gt;bool2
+    bool2--is true--&gt;b
+    bool2--is false--&gt;c
+    a--is done--&gt;d
+    b--is done--&gt;d
+    c--is done--&gt;d
+</pre>
+
+<ul>
+  <li>Path 1: <code class="language-plaintext highlighter-rouge">booleanExpression</code> is <code class="language-plaintext highlighter-rouge">true</code>, so <code class="language-plaintext highlighter-rouge">BLOCK A</code> executes, and then the program continues with <code class="language-plaintext highlighter-rouge">BLOCK D</code>. It doesn’t matter whether <code class="language-plaintext highlighter-rouge">anotherBooleanExpression</code> is <code class="language-plaintext highlighter-rouge">true</code> or <code class="language-plaintext highlighter-rouge">false</code>: it will not be checked.</li>
+  <li>Path 2: <code class="language-plaintext highlighter-rouge">booleanExpression</code> is <code class="language-plaintext highlighter-rouge">false</code>, so <code class="language-plaintext highlighter-rouge">anotherBooleanExpression</code> is checked. It is found to be <code class="language-plaintext highlighter-rouge">true</code>, so <code class="language-plaintext highlighter-rouge">BLOCK B</code> executes, and then the program continues with <code class="language-plaintext highlighter-rouge">BLOCK D</code>.</li>
+  <li>Path 3: <code class="language-plaintext highlighter-rouge">booleanExpression</code> is <code class="language-plaintext highlighter-rouge">false</code> and <code class="language-plaintext highlighter-rouge">anotherBooleanExpression</code> is also <code class="language-plaintext highlighter-rouge">false</code>. So the <code class="language-plaintext highlighter-rouge">else</code> clause is invoked, i.e., <code class="language-plaintext highlighter-rouge">BLOCK C</code> is executed, after which the program continues with <code class="language-plaintext highlighter-rouge">BLOCK D</code>.</li>
+</ul>
+
+<p>As usual, only one of the possible paths above can be taken in a single execution of the program.
+That is, even if <em>both</em> <code class="language-plaintext highlighter-rouge">booleanExpression</code> and <code class="language-plaintext highlighter-rouge">anotherBooleanExpression</code> are <code class="language-plaintext highlighter-rouge">true</code>, only the then block for <code class="language-plaintext highlighter-rouge">booleanExpression</code> will be executed.</p>
+
+<p>You can have any number of <code class="language-plaintext highlighter-rouge">else if</code> clauses.
+They will be checked in the order in which they appear: if any one is found to be <code class="language-plaintext highlighter-rouge">true</code>, the following ones are not checked.
+If none of the conditions are <code class="language-plaintext highlighter-rouge">true</code>, then the else clause is executed. Same as before, only one clause will be executed.</p>
+
+<h2 id="an-example">An example</h2>
+
+<p>Consider the following.
+In California, a would-be driver is eligible for a learner’s permit at the age of 16, and a full license at the age of 17.
+Let’s write a function to check what type of license an individual can get, if any, based on their age.</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">typeOfLicense</span> <span class="o">=</span> <span class="p">(</span><span class="nx">age</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="nf">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">LEARNER PERMIT</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p class="callout todo">There is a mistake in the function above. Can you spot it? Take a second and think about it.
+Trace the function with some example inputs like <code class="language-plaintext highlighter-rouge">typeOfLicense(12)</code> and <code class="language-plaintext highlighter-rouge">typeOfLicense(18)</code>.
+What is the output you expect? Does the actual output match that output?</p>
+
+<ul>
+  <li>We want the call <code class="language-plaintext highlighter-rouge">typeOfLicense(12)</code> to return the value <code class="language-plaintext highlighter-rouge">"NO LICENSE"</code>. The check <code class="language-plaintext highlighter-rouge">age &lt; 16</code> will be satisfied and our function will correctly do what we expect. It will return <code class="language-plaintext highlighter-rouge">"NO LICENSE"</code>.</li>
+  <li>We want the call <code class="language-plaintext highlighter-rouge">typeOfLicense(16)</code> to return the value <code class="language-plaintext highlighter-rouge">"LEARNER PERMIT"</code>. We <em>won’t</em> satisfy the <code class="language-plaintext highlighter-rouge">age &lt; 16</code> check, and we’ll pass the <code class="language-plaintext highlighter-rouge">age &gt;= 16</code> check. Our function will successfully return <code class="language-plaintext highlighter-rouge">"LEARNER PERMIT"</code>.</li>
+  <li>Finally, consider the call <code class="language-plaintext highlighter-rouge">typeOfLicense(17)</code>. We <strong><em>want</em></strong> it to return the value <code class="language-plaintext highlighter-rouge">"FULL LICENSE"</code>. During execution, we will fail the check <code class="language-plaintext highlighter-rouge">age &lt; 16</code> as expected, but we will <em>pass</em> the check <code class="language-plaintext highlighter-rouge">age &gt;= 16</code>! And then, because only one clause can be executed, <code class="language-plaintext highlighter-rouge">"LEARNER PERMIT"</code> will be returned and the function will finish.</li>
+</ul>
+
+<p><strong>So what went wrong?</strong> The issue is that there are age values that would pass multiple conditional checks in our code. Control goes through our conditional statements in the order in which they’re specified. The second it finds a condition that evaluates to true, control will execute that clause and skip the rest of the conditions, even if that doesn’t make sense for the problem we’re trying to solve.</p>
+
+<p>In the example above, the check for <code class="language-plaintext highlighter-rouge">age &gt;= 16</code> will incorrectly match ages that should be classified as <code class="language-plaintext highlighter-rouge">"FULL LICENSE"</code>.</p>
+
+<p><strong>Therefore, the order of conditions is important in if-else-if ladders.</strong></p>
+
+<p>So, a correct version of the <code class="language-plaintext highlighter-rouge">typeOfLicense</code> function is as follows.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">typeOfLicense</span> <span class="o">=</span> <span class="p">(</span><span class="nx">age</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">17</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="nf">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">LEARNER PERMIT</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now, it wouldn’t matter if an age would pass multiple checks, due to the way we’ve ordered our conditional checks.</p>
+
+<p>Let’s consider the call <code class="language-plaintext highlighter-rouge">getGetLicense(21)</code>.</p>
+
+<p>We first check <code class="language-plaintext highlighter-rouge">age &gt;= 17</code> and this check passes, since <code class="language-plaintext highlighter-rouge">21</code> is greater than or equal to <code class="language-plaintext highlighter-rouge">17</code>. We correctly return <code class="language-plaintext highlighter-rouge">"FULL LICENSE"</code>. It doesn’t matter that the check <code class="language-plaintext highlighter-rouge">age &gt;= 16</code> is also <code class="language-plaintext highlighter-rouge">true</code> for <code class="language-plaintext highlighter-rouge">21</code>, because we never reach that if statement—control has already moved on beyond the <code class="language-plaintext highlighter-rouge">if-else-if</code> ladder.</p>
+
+<p>You may also have written the function using compound Boolean conditions.
+While technically correct, this is a bit more complicated than the version above, and consequently harder to read and will be harder to debug if needed.</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">typeOfLicense</span> <span class="o">=</span> <span class="p">(</span><span class="nx">age</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="nf">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span> <span class="o">&amp;&amp;</span> <span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">17</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">LEARNER PERMIT</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/13-reduce/">&larr; Previous</a>
+        
+        
+      </footer  >
+  </article>
+  
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      mermaid.initialize({
+        theme: 'dark'
+      });
+    } else {
+      mermaid.initialize({
+        theme: 'default'
+      });
+    }
+  </script>
+  
+  </main>
+</body>
+</html>
