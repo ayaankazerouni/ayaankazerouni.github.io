@@ -376,9 +376,11 @@ details > summary {
 
 code {
   font-family: "Roboto Mono", monospace;
-  color: var(--code-color);
   font-weight: 450;
   font-size: 0.9em;
+}
+code:not(.highlight code) {
+  color: var(--code-color);
 }
 h1 > code, h2 > code, h3 > code {
   font-size: inherit;

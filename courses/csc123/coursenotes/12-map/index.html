@@ -1,0 +1,218 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Mapping functions over arrays - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/12-map/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/11-filter/">&larr; Previous</a>
+    
+    
+    <a href="/courses/csc123/coursenotes/13-reduce/">Next &rarr;</a>
+    
+  </div>
+  <h1>Mapping functions over arrays</h1>
+  <article>
+      <p>We’ve learned about functions as computations that can be applied to inputs to produce certain outputs.
+In addition to applying functions to individual values, commonly in data-centric computing one needs to process collections of data.
+I.e., we need some way to apply a function each item in a collection of items (i.e., an array).</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">map</code> function in TypeScript is designed for this purpose.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#lets-look-at-an-example" id="markdown-toc-lets-look-at-an-example">Let’s look at an example</a></li>
+  <li><a href="#structure-of-the-map-function" id="markdown-toc-structure-of-the-map-function">Structure of the <code class="language-plaintext highlighter-rouge">map</code> function</a></li>
+  <li><a href="#some-exercises" id="markdown-toc-some-exercises">Some exercises</a></li>
+</ul>
+
+<h2 id="lets-look-at-an-example">Let’s look at an example</h2>
+
+<p>Suppose you have a list of words, and you would like to find the lengths of all the words.
+That is, given the following array of words…</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">world</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">this</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">is</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">typescript</span><span class="dl">"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>…we want to end up with the array</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p class="callout todo">Just like before, let’s first think about how we would accomplish this manually.</p>
+
+<p>My plan is pretty simple: work through the list of words left-to-right, finding the length of each one, and “saving” the result.
+My steps look something like this:</p>
+
+<p>Keep track of a running array of result numbers. To start with, it is empty: <code class="language-plaintext highlighter-rouge">[]</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"hello".length gives 5; add it to the result [5]
+"world".length gives 5; add it to the result [5, 5]
+"this".length gives 4; add it to the result [5, 5, 4]
+"is".length gives 2; add it to the result [5, 5, 4, 2]
+"typescript".length gives 10; add it to the result [5, 5, 4, 2, 10]
+</code></pre></div></div>
+
+<p>When we no longer have numbers in the input list, we’re done.</p>
+
+<p>So we are applying the <em>same operation</em> (<code class="language-plaintext highlighter-rouge">item.length</code>) to each individual item in the original list.</p>
+
+<p>We <em>could</em> do this manually:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Set up the initial list.</span>
+<span class="kd">const</span> <span class="nx">initialList</span><span class="p">:</span> <span class="kr">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">world</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">this</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">is</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">typescript</span><span class="dl">"</span><span class="p">];</span>
+
+<span class="c1">// Find the length of each item in the initial list.</span>
+<span class="kd">const</span> <span class="nx">first</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">initialList</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">second</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">initialList</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">third</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">initialList</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">fourth</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">initialList</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">fifth</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">initialList</span><span class="p">[</span><span class="mi">4</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span>
+
+<span class="c1">// Prepare the result list.</span>
+<span class="kd">const</span> <span class="nx">result</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">first</span><span class="p">,</span> <span class="nx">second</span><span class="p">,</span> <span class="nx">third</span><span class="p">,</span> <span class="nx">fourth</span><span class="p">,</span> <span class="nx">fifth</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>But this is pretty tedious. And doing it this way is not possible if we don’t know beforehand the number of items we’re going to need to process.</p>
+
+<p>That’s where the <code class="language-plaintext highlighter-rouge">map</code> operation comes in.</p>
+
+<h2 id="structure-of-the-map-function">Structure of the <code class="language-plaintext highlighter-rouge">map</code> function</h2>
+
+<p><strong>The <code class="language-plaintext highlighter-rouge">map</code> operation applies a function to each item in an array, and collects the results in an output array.</strong></p>
+
+<p>It can be used as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">result</span><span class="p">:</span> <span class="nx">R</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">mapper</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">array</code> is some array containing elements of type <code class="language-plaintext highlighter-rouge">T</code> (<code class="language-plaintext highlighter-rouge">T</code> is a placeholder type; it could be any type)</li>
+  <li><code class="language-plaintext highlighter-rouge">mapper</code> is a function that takes an element of type <code class="language-plaintext highlighter-rouge">T</code> and returns a value of type <code class="language-plaintext highlighter-rouge">R</code> (also a placeholder). The <code class="language-plaintext highlighter-rouge">mapper</code> function has the following type:</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Takes in one item of some type T and returns a value of some type R.</span>
+<span class="c1">// It is possible for T and R to be the same type.</span>
+<span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="nx">T</span><span class="p">):</span> <span class="nx">R</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">T</code> and <code class="language-plaintext highlighter-rouge">R</code> are placeholders I am using in this explanation to represent the input and output types of the mapper. They could be any types (even the same type as each other).</p>
+
+<ul>
+  <li>The results from applying <code class="language-plaintext highlighter-rouge">mapper</code> to each item in <code class="language-plaintext highlighter-rouge">array</code> are collected in the <code class="language-plaintext highlighter-rouge">results</code> array</li>
+</ul>
+
+<p>In other words, we could write a simple function that takes in a string and returns its length:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">mapper</span> <span class="o">=</span> <span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="kr">string</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">item</span><span class="p">.</span><span class="nx">length</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We will refer to this as our <em>mapper</em>, since its job is to map each value (a string) to a new value (the string’s length).</p>
+
+<p>Just like in the <code class="language-plaintext highlighter-rouge">filter</code> examples from before, the mapper can be written as an anonymous function—a “lambda”—and we can omit the curly braces and the <code class="language-plaintext highlighter-rouge">return</code> keyword since it is only a single expression:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">length</span>
+</code></pre></div></div>
+
+<p>We are now ready to give our mapper to the <code class="language-plaintext highlighter-rouge">map</code> function, which will apply it to each item in the array:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">initialList</span><span class="p">:</span> <span class="kr">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">world</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">this</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">is</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">typescript</span><span class="dl">"</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">result</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">initialList</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>When the code above runs, the <code class="language-plaintext highlighter-rouge">map</code> function applies the mapper to each item in the array.
+One-by-one, each word in the <code class="language-plaintext highlighter-rouge">initialList</code> is passed to the mapper function.
+That is, <code class="language-plaintext highlighter-rouge">item</code> is first <code class="language-plaintext highlighter-rouge">"hello"</code>, then <code class="language-plaintext highlighter-rouge">"world"</code>, etc.
+After each application of the mapper, the result is collected into the <code class="language-plaintext highlighter-rouge">result</code> array.</p>
+
+<p>Because the mapper is giving back a single <code class="language-plaintext highlighter-rouge">number</code> for each item, the <code class="language-plaintext highlighter-rouge">result</code> will be a number array (<code class="language-plaintext highlighter-rouge">number[]</code>), since it collects up all the results.</p>
+
+<p>You will notice that we did not specify types for the mapper function in the code above.
+TypeScript can infer the types based on context.</p>
+
+<ul>
+  <li>It knows that the input type to the mapper <em>must</em> be <code class="language-plaintext highlighter-rouge">string</code>, since the type of <code class="language-plaintext highlighter-rouge">initialList</code> is <code class="language-plaintext highlighter-rouge">string[]</code>.</li>
+  <li>It knows that the output type must be <code class="language-plaintext highlighter-rouge">number</code>, since we are mapping each string to its length (a number).</li>
+  <li>It is satisfied that the declared type of <code class="language-plaintext highlighter-rouge">result</code> is <code class="language-plaintext highlighter-rouge">number[]</code>, which matches the output type of the mapper.</li>
+</ul>
+
+<h2 id="some-exercises">Some exercises</h2>
+
+<p><strong>1. What would be the value of the following expression?</strong></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="dl">"</span><span class="s2">why</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">are</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">you</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">shouting</span><span class="dl">"</span><span class="p">].</span><span class="nf">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span><span class="p">.</span><span class="nf">toUpperCase</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p><strong>2. Combining <code class="language-plaintext highlighter-rouge">map</code> and <code class="language-plaintext highlighter-rouge">filter</code>.</strong></p>
+
+<p>Because <code class="language-plaintext highlighter-rouge">map</code> and <code class="language-plaintext highlighter-rouge">filter</code> return arrays, the result of one map or filter operation can be used as the starting point for another.
+That is, we can compose “pipelines” of data steps operations by chaining together map and filter operations.</p>
+
+<p>What would be the value of the following expression?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+  <span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span> <span class="o">*</span> <span class="nx">item</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>3. Finally, here’s a slightly more challenging example.</strong> What would be the value of the expression at the end of this code snippet?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">words</span><span class="p">:</span> <span class="kr">string</span><span class="p">[][]</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">[</span><span class="dl">"</span><span class="s2">cat</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">dog</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">elephant</span><span class="dl">"</span><span class="p">],</span>
+  <span class="p">[</span><span class="dl">"</span><span class="s2">sun</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">moon</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">star</span><span class="dl">"</span><span class="p">],</span>
+  <span class="p">[</span><span class="dl">"</span><span class="s2">red</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">green</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">]</span>
+<span class="p">];</span>
+
+<span class="c1">// What would be the value of the following expression?</span>
+<span class="nx">words</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">group</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">group</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">w</span> <span class="o">=&gt;</span> <span class="nx">w</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">))</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">group</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">group</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/11-filter/">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc123/coursenotes/13-reduce/">Next &rarr;</a>
+        
+      </footer  >
+  </article>
+  
+  
+  </main>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Reduce - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/13-reduce/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/12-map/">&larr; Previous</a>
+    
+    
+  </div>
+  <h1>Reduce</h1>
+  <article>
+      <p><strong>The <code class="language-plaintext highlighter-rouge">reduce</code> operation <em>reduces</em> an array down to a single value by repeatedly applying a function to pairs of values from left to right.</strong></p>
+
+<p>Given an array of some type <code class="language-plaintext highlighter-rouge">T</code>, <code class="language-plaintext highlighter-rouge">reduce</code> will give back a <em>single value</em> of type <code class="language-plaintext highlighter-rouge">T</code>.
+So if you reduce a number array (<code class="language-plaintext highlighter-rouge">number[]</code>), you’ll always get a <code class="language-plaintext highlighter-rouge">number</code> in a return.
+If you reduce a string array (<code class="language-plaintext highlighter-rouge">string[]</code>), you’ll always get a <code class="language-plaintext highlighter-rouge">string</code> in return.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#well-start-with-an-example" id="markdown-toc-well-start-with-an-example">We’ll start with an example</a></li>
+  <li><a href="#structure-of-the-reduce-function" id="markdown-toc-structure-of-the-reduce-function">Structure of the <code class="language-plaintext highlighter-rouge">reduce</code> function</a></li>
+  <li><a href="#why-do-we-recommend-providing-an-initial-value" id="markdown-toc-why-do-we-recommend-providing-an-initial-value">Why do we recommend providing an initial value?</a></li>
+  <li><a href="#additional-examples-and-exercises" id="markdown-toc-additional-examples-and-exercises">Additional examples and exercises</a></li>
+</ul>
+
+<h2 id="well-start-with-an-example">We’ll start with an example</h2>
+
+<p>Consider the relatively simple problem of finding the sum of a list of numbers.</p>
+
+<p>What’s the sum of the following numbers? Don’t use a calculator! Let’s first try to understand what <em>our own</em> process is to solve this problem.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span>
+</code></pre></div></div>
+
+<p>Chances are, you started from the left and moved right-ward one number at a time, keeping track of a running result as you went.</p>
+
+<p>The table below illustrates this process, with the running total being kept track of as <span class="hlt">highlighted text</span>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Step number</th>
+      <th>Task description</th>
+      <th>Running total</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0.</td>
+      <td>Start with the original list</td>
+      <td><span class="hlt">0</span></td>
+      <td>2</td>
+      <td>3</td>
+      <td>10</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>1.</td>
+      <td>The first number is <code class="language-plaintext highlighter-rouge">2</code>, add it to our total</td>
+      <td><span class="hlt">2</span></td>
+      <td><code class="language-plaintext highlighter-rouge">2</code></td>
+      <td>3</td>
+      <td>10</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>2.</td>
+      <td>Add the next number to our running total (<code class="language-plaintext highlighter-rouge">2 + 3</code>)</td>
+      <td><span class="hlt">5</span></td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">5</code></td>
+      <td>10</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>3.</td>
+      <td>Add the next number to the running total (<code class="language-plaintext highlighter-rouge">5 + 10</code>)</td>
+      <td><span class="hlt">15</span></td>
+      <td> </td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">15</code></td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>4.</td>
+      <td>Add the next number to the running total (<code class="language-plaintext highlighter-rouge">15 + 5</code>)</td>
+      <td><span class="hlt">20</span></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><code class="language-plaintext highlighter-rouge">20</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>One way of looking at this process is that we “folded” the list of numbers into a single value, by consuming each item and combining it with the <em>result up to that point</em>.</p>
+
+<p>Here’s that definition of <code class="language-plaintext highlighter-rouge">reduce</code> operation again:</p>
+
+<p class="callout">The <code class="language-plaintext highlighter-rouge">reduce</code> operation <em>reduces</em> an array down to a single value by repeatedly applying a function to items from left to right.</p>
+
+<p>In this example the <em>function</em> that we repeatedly applied was a function that finds the sum of two given numbers.</p>
+
+<p>Here’s what that function might look like:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">acc</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">curr</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">curr</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p class="callout note">It is common convention to name the two parameters in a reducer <code class="language-plaintext highlighter-rouge">acc</code> (short for “accumulator”) and <code class="language-plaintext highlighter-rouge">curr</code> (short for “current value”). The <code class="language-plaintext highlighter-rouge">acc</code> parameter is the running result up to that point (i.e., it has <em>accumulated</em> results so far), and the <code class="language-plaintext highlighter-rouge">curr</code> parameter is the current item being processed.</p>
+
+<p>For the list <code class="language-plaintext highlighter-rouge">2, 3, 10, 5</code>, our usage of <code class="language-plaintext highlighter-rouge">sum</code> would progress as follows.
+We start with the initial list, and a starting total of <code class="language-plaintext highlighter-rouge">0</code> (since no numbers have been added yet).</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">initial</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">runningTotal</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Notice the use of "let"!</span>
+
+<span class="nx">runningTotal</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nx">runningTotal</span><span class="p">,</span> <span class="nx">initial</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// 0 + 2 = 2</span>
+<span class="nx">runningTotal</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nx">runningTotal</span><span class="p">,</span> <span class="nx">initial</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// 2 + 3 = 5</span>
+<span class="nx">runningTotal</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nx">runningTotal</span><span class="p">,</span> <span class="nx">initial</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">// 5 + 10 = 15</span>
+<span class="nx">runningTotal</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nx">runningTotal</span><span class="p">,</span> <span class="nx">initial</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span> <span class="c1">// 15 + 5 = 20</span>
+</code></pre></div></div>
+
+<p>The code above follows our strategy of moving from left to right, keeping track of a running result and using the <code class="language-plaintext highlighter-rouge">sum</code> function to sum it with each subsequent item.
+After it finishes, <code class="language-plaintext highlighter-rouge">runningTotal</code> will have the value <code class="language-plaintext highlighter-rouge">20</code>.</p>
+
+<p>This would be really tedious to do manually, especially for large lists!
+That is where the <code class="language-plaintext highlighter-rouge">reduce</code> array operation comes in.
+The <code class="language-plaintext highlighter-rouge">reduce</code> function’s job is to take our <code class="language-plaintext highlighter-rouge">sum</code> function and push it through the list from left to right, just like we did “manually” in the example above.</p>
+
+<h2 id="structure-of-the-reduce-function">Structure of the <code class="language-plaintext highlighter-rouge">reduce</code> function</h2>
+
+<p>It can be used as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">value</span><span class="p">:</span> <span class="nx">T</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="nx">reducer</span><span class="p">,</span> <span class="nx">initialValue</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">array</code> is the array you want to reduce. It is an array of type <code class="language-plaintext highlighter-rouge">T[]</code>. (<code class="language-plaintext highlighter-rouge">T</code> might be any type, like <code class="language-plaintext highlighter-rouge">string</code> or <code class="language-plaintext highlighter-rouge">number</code>, etc.)</li>
+  <li><code class="language-plaintext highlighter-rouge">reducer</code> is the function that will be applied to each item in the array. It has the following type:</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Takes two values of some type T and returns a single value of the same type.</span>
+<span class="p">(</span><span class="nx">acc</span><span class="p">:</span> <span class="nx">T</span><span class="p">,</span> <span class="nx">curr</span><span class="p">:</span> <span class="nx">T</span><span class="p">):</span> <span class="nx">T</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">initialValue</code> is the initial value to use for the running result. This is optional in TypeScript, but it’s a good idea to always provide this.</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">reduce</code> function returns a single value that’s of the same type as the items in the array: this is the result from the final application of <code class="language-plaintext highlighter-rouge">reduce</code>.</p>
+
+<p>So solving the sum problem again, this time using <code class="language-plaintext highlighter-rouge">reduce</code>, our complete code would look like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// The initial array of values.</span>
+<span class="kd">const</span> <span class="nx">initial</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+
+<span class="c1">// The sum function, i.e., the reducer.</span>
+<span class="kd">const</span> <span class="nx">sum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">acc</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">curr</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">curr</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Call reduce.</span>
+<span class="kd">const</span> <span class="nx">total</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">initial</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="nx">sum</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Isn’t that way nicer?</p>
+
+<p>In fact, the code can be reduced (hah) even further.
+Just like with <code class="language-plaintext highlighter-rouge">filter</code> and <code class="language-plaintext highlighter-rouge">map</code>, we can declare our reducer as a lambda.</p>
+
+<p>Here’s what that would look like:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">initial</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">total</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">initial</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">curr</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">curr</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Also notice that I did not specify parameter types or a return type for the reducer function.
+Since the initial list was a list of numbers (i.e., <code class="language-plaintext highlighter-rouge">number[]</code>), TypeScript <em>expects</em> that the reducer takes in two <code class="language-plaintext highlighter-rouge">number</code>s and gives back a <code class="language-plaintext highlighter-rouge">number</code>, and it will appropriately give me errors and warnings if I break that expectation.
+So there’s no need to specify that explicitly.</p>
+
+<h2 id="why-do-we-recommend-providing-an-initial-value">Why do we recommend providing an initial value?</h2>
+
+<p>TypeScript allows a <code class="language-plaintext highlighter-rouge">reduce</code> call to look like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">array</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="nx">reducer</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>That is, without an initial value.
+If no initial value is provided, <code class="language-plaintext highlighter-rouge">reduce</code> will use the first item in the array as the initial <code class="language-plaintext highlighter-rouge">acc</code> value, and begin processing with the next item.</p>
+
+<p><strong>However, this does not account for the possibility that <code class="language-plaintext highlighter-rouge">array</code> is empty.</strong></p>
+
+<p>Consider the same <code class="language-plaintext highlighter-rouge">sum</code> example as above, this time with an empty list.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">emptyList</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="kd">const</span> <span class="nx">total</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">emptyList</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">curr</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">curr</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Since there <em>is</em> no first value or second value in the list, the code above will cause an error when run.
+However, if you provide an initial value, like this:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">total</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">emptyList</span><span class="p">.</span><span class="nf">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span> <span class="nx">curr</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">acc</span> <span class="o">+</span> <span class="nx">curr</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Then the code will run without error, and <code class="language-plaintext highlighter-rouge">total</code> will be <code class="language-plaintext highlighter-rouge">0</code>, which is the expected sum of an empty number array.</p>
+
+<p>Your choice of initial value should of course make sense for the problem you’re solving.
+For finding a sum of an array of numbers, an initial value of <code class="language-plaintext highlighter-rouge">0</code> makes sense.
+But it is not necessarily the right choice in <em>all</em> cases.</p>
+
+<h2 id="additional-examples-and-exercises">Additional examples and exercises</h2>
+
+<p><strong>1. Find the product of an array of numbers.</strong></p>
+
+<p>Using the same initial array of values (<code class="language-plaintext highlighter-rouge">[2, 3, 10, 5]</code>), how would you find the product of all the numbers? What would the reducer function look like, and what should the initial value be?</p>
+
+<p><strong>2. Find the longest word in an array of strings.</strong></p>
+
+<p>For example, given the list <code class="language-plaintext highlighter-rouge">["apple", "apricot", "cherry", "date"]</code>, how would you use <code class="language-plaintext highlighter-rouge">reduce</code> to find the longest word?</p>
+
+<details>
+  <summary>Some hints</summary>
+  <ul>
+    <li>The “accumulated” result as you move through the array would be the longest word encountered so far.</li>
+    <li>The reducer should compare each current value to the accumulated result, and return the larger of the two.
+      <ul>
+        <li>What expression do you know of that can check a condition and return one of two values?</li>
+      </ul>
+    </li>
+    <li>What should the initial value be?</li>
+  </ul>
+</details>
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/12-map/">&larr; Previous</a>
+        
+        
+      </footer  >
+  </article>
+  
+  
+  </main>
+</body>
+</html>

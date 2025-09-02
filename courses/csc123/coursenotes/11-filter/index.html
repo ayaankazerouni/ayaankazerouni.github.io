@@ -10,7 +10,7 @@
 
 	
 
-	<title>Higher-order Array Functions: Filter - Ayaan M. Kazerouni</title>
+	<title>Higher-order Array Functions and Filter - Ayaan M. Kazerouni</title>
 
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
@@ -36,8 +36,10 @@
     <a href="/courses/csc123/coursenotes/10-arrays/">&larr; Previous</a>
     
     
+    <a href="/courses/csc123/coursenotes/12-map/">Next &rarr;</a>
+    
   </div>
-  <h1>Higher-order Array Functions: Filter</h1>
+  <h1>Higher-order Array Functions and Filter</h1>
   <article>
       <p>Last week, we learned about <strong>functions:</strong> computations that we can apply to provided data and produce new data in return.
 Functions are fundamental to computing, given our view of computing as the <em>processing of data to create other data.</em></p>
@@ -57,7 +59,7 @@ We can write functions that work with bigger amounts of data, allowing us to do 
 Realistic data analyses will often require functions that can do more.</p>
 
 <p>In this module we will explore the more powerful array operations available in TypeScript.
-After this module, some examples of operations we’ll be able to perform are:</p>
+After the lessons in this module, some examples of operations we’ll be able to perform are:</p>
 
 <ul>
   <li>Transform all items in an array in some way (for example, make all strings in an array upper-case, or square all numbers in an array),</li>
@@ -65,7 +67,20 @@ After this module, some examples of operations we’ll be able to perform are:</
   <li>Compute a value based on the array’s contents (for example, find the sum of all numbers in the array, or check if all items in an array match a given condition)</li>
 </ul>
 
-<p>As we will see, we can assemble (or compose) sequences of these operations to perform complex analyses and solve large data-centric problems.</p>
+<p>The examples above can be accomplished using existing higher-order array functions like <code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">filter</code>, and <code class="language-plaintext highlighter-rouge">reduce</code>.
+As we will see, we can assemble (or compose) sequences of these operations to perform complex analyses and solve large data-centric problems.
+Effective problem-solving with these operations will involve <em>recognising</em> when a problem calls for <code class="language-plaintext highlighter-rouge">filter</code>, <code class="language-plaintext highlighter-rouge">map</code>, or <code class="language-plaintext highlighter-rouge">reduce</code> steps, or combinations of those steps.</p>
+
+<p>We will practice using all of these tools together while solving programming problems.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#are-functions-data" id="markdown-toc-are-functions-data">Are functions data?</a></li>
+  <li><a href="#functions-are-values" id="markdown-toc-functions-are-values">Functions are values</a></li>
+  <li><a href="#the-filter-function--an-example" id="markdown-toc-the-filter-function--an-example">The <code class="language-plaintext highlighter-rouge">filter</code> function — an example</a></li>
+  <li><a href="#structure-of-the-filter-function" id="markdown-toc-structure-of-the-filter-function">Structure of the <code class="language-plaintext highlighter-rouge">filter</code> function</a></li>
+  <li><a href="#expressing-our-predicate-as-a-lambda" id="markdown-toc-expressing-our-predicate-as-a-lambda">Expressing our predicate as a lambda</a></li>
+  <li><a href="#some-exercises" id="markdown-toc-some-exercises">Some exercises</a></li>
+</ul>
 
 <h2 id="are-functions-data">Are functions data?</h2>
 
@@ -125,35 +140,7 @@ We’ve already hinted at this in the way we declare functions, i.e., by declari
 
 <p>We will learn about functions that take other functions as parameters—referred to as <em>higher-order functions</em>—in the context of processing data stored in arrays.</p>
 
-<h2 id="the-filter-function">The <code class="language-plaintext highlighter-rouge">filter</code> function</h2>
-
-<p><code class="language-plaintext highlighter-rouge">filter</code> is a higher-order function on arrays.
-It is used to, well, <em>filter</em> an array of data based on some criterion.</p>
-
-<p>It can be used as follows:</p>
-
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">filteredArray</span><span class="p">:</span> <span class="nx">T</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">predicate</span><span class="p">);</span>
-</code></pre></div></div>
-
-<p>Where:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">array</code> is some array containing elements of type <code class="language-plaintext highlighter-rouge">T</code>
-    <ul>
-      <li>We’re using <code class="language-plaintext highlighter-rouge">T</code> as a placeholder in this example: it could be an array of any type, like <code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">string</code>, etc.</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">predicate</code> is a function with the following type:</li>
-</ul>
-
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="nx">T</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">boolean</span>
-</code></pre></div></div>
-
-<p>That is, <code class="language-plaintext highlighter-rouge">predicate</code> takes one parameter that’s of the same type as the array contents, and returns a <code class="language-plaintext highlighter-rouge">boolean</code>.</p>
-
-<p class="callout">The <code class="language-plaintext highlighter-rouge">filter</code> function applies the <code class="language-plaintext highlighter-rouge">predicate</code> to each item in <code class="language-plaintext highlighter-rouge">array</code>, and returns a new array containing only the items for which the <code class="language-plaintext highlighter-rouge">predicate</code> returned <code class="language-plaintext highlighter-rouge">true</code>. All items that did not satisfy the predicate (i.e., for which <code class="language-plaintext highlighter-rouge">predicate</code> returned <code class="language-plaintext highlighter-rouge">false</code>) are excluded from the new array.</p>
-
-<p><strong>Consider the following example.</strong></p>
+<h2 id="the-filter-function--an-example">The <code class="language-plaintext highlighter-rouge">filter</code> function — an example</h2>
 
 <p>Suppose you are a healthcare professional working with patient data, and you have a list of numbers representing patient ages.
 Mistakes were made during collection of this data, and some values are negative numbers.</p>
@@ -181,8 +168,6 @@ That is, for each number we ask “is this non-negative?”.</p>
 
 <p>Now that we have that function, we need to apply it to each individual item in our array of numbers.
 We will keep the items for which the result is <code class="language-plaintext highlighter-rouge">true</code>.</p>
-
-<p>That’s what <code class="language-plaintext highlighter-rouge">filter</code> does for us.</p>
 
 <p>The table below illustrates the steps taken to arrive at our result.
 For the table below, the array we’re working with is our list of ages <code class="language-plaintext highlighter-rouge">[27, -5, 15, 30, -12, 0]</code>.</p>
@@ -229,8 +214,43 @@ For the table below, the array we’re working with is our list of ages <code cl
   </tbody>
 </table>
 
-<p>After <code class="language-plaintext highlighter-rouge">filter</code> finishes checking all the items in our array, it will keep all the ones for which <code class="language-plaintext highlighter-rouge">isNonNegative</code> returned <code class="language-plaintext highlighter-rouge">true</code>.
+<p>That’s what <code class="language-plaintext highlighter-rouge">filter</code> does for us.</p>
+
+<p>After we finish checking all the items in our array, we keep all the ones for which <code class="language-plaintext highlighter-rouge">isNonNegative</code> returned <code class="language-plaintext highlighter-rouge">true</code>.
 So, we end up with <code class="language-plaintext highlighter-rouge">27, 15, 30, 0</code> as the filtered result list.</p>
+
+<p>This is a common task in many programming problems, and the <code class="language-plaintext highlighter-rouge">filter</code> function in TypeScript allows us to express this kind of filtering operation succinctly.</p>
+
+<h2 id="structure-of-the-filter-function">Structure of the <code class="language-plaintext highlighter-rouge">filter</code> function</h2>
+
+<p><code class="language-plaintext highlighter-rouge">filter</code> is a higher-order function on arrays.
+It is used to, well, <em>filter</em> an array of data based on some criterion.</p>
+
+<p>It can be used as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">filteredArray</span><span class="p">:</span> <span class="nx">T</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">array</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">predicate</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Where:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">array</code> is some array containing elements of type <code class="language-plaintext highlighter-rouge">T</code>
+    <ul>
+      <li>We’re using <code class="language-plaintext highlighter-rouge">T</code> as a placeholder in this example: it could be an array of any type, like <code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">string</code>, etc.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">predicate</code> is a function with the following type:</li>
+</ul>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Takes in one item of some type T and returns a boolean.</span>
+<span class="p">(</span><span class="nx">item</span><span class="p">:</span> <span class="nx">T</span><span class="p">):</span> <span class="nx">boolean</span>
+</code></pre></div></div>
+
+<p>That is, <code class="language-plaintext highlighter-rouge">predicate</code> takes one parameter that’s of the same type as the array contents, and returns a <code class="language-plaintext highlighter-rouge">boolean</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">filter</code> function applies the <code class="language-plaintext highlighter-rouge">predicate</code> to each item in <code class="language-plaintext highlighter-rouge">array</code>, and returns a new array containing only the items for which the <code class="language-plaintext highlighter-rouge">predicate</code> returned <code class="language-plaintext highlighter-rouge">true</code>. All items that did not satisfy the predicate (i.e., for which <code class="language-plaintext highlighter-rouge">predicate</code> returned <code class="language-plaintext highlighter-rouge">false</code>) are excluded from the new array.</p>
+
+<p><strong>Returning to our example with patient ages</strong></p>
 
 <p>Here’s what this looks like using the <code class="language-plaintext highlighter-rouge">filter</code> operation.</p>
 
@@ -248,15 +268,16 @@ So, we end up with <code class="language-plaintext highlighter-rouge">27, 15, 30
 
 <p>After the code above finishes running, the value of <code class="language-plaintext highlighter-rouge">validAges</code> will be <code class="language-plaintext highlighter-rouge">[27, 15, 30, 0]</code>.</p>
 
-<p>We can shorten this further.
-Since we’re only using our <code class="language-plaintext highlighter-rouge">isNonNegative</code> function one time, and it’s rather short, we don’t need to go through the steps of giving it a name and all that.
+<h2 id="expressing-our-predicate-as-a-lambda">Expressing our predicate as a lambda</h2>
+
+<p>Since we’re only using our <code class="language-plaintext highlighter-rouge">isNonNegative</code> function one time, and it’s rather short, we don’t need to go through the steps of giving it a name and all that.
 We can define our predicate directly inside the filter, and not bother giving it a name.</p>
 
 <p>These “anonymous” functions are known as <em>lambdas</em>.</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ages</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
 
-<span class="c1">// Call filter on the array, and define the predicate directly as a parameter.</span>
+<span class="c1">// Define the predicate directly as a parameter to the filter function.</span>
 <span class="kd">const</span> <span class="nx">validAges</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">ages</span><span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">item</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">});</span>
 </code></pre></div></div>
 
@@ -277,14 +298,32 @@ In functions that consist of a single expression, we can omit the curly braces t
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">ages</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">27</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
 
-<span class="c1">// Call filter on the array, and define the predicate directly as a parameter.</span>
+<span class="c1">// Define the predicate directly as a parameter to the filter function.</span>
 <span class="kd">const</span> <span class="nx">validAges</span><span class="p">:</span> <span class="kr">number</span><span class="p">[]</span> <span class="o">=</span> <span class="nx">ages</span><span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">item</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">);</span>
 </code></pre></div></div>
+
+<h2 id="some-exercises">Some exercises</h2>
+
+<p>What would be the values of the following expressions?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">].</span><span class="nf">filter</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="p">[</span><span class="dl">"</span><span class="s2">hi</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">cat</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">hello</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">].</span><span class="nf">filter</span><span class="p">(</span><span class="nx">w</span> <span class="o">=&gt;</span> <span class="nx">w</span><span class="p">.</span><span class="nf">includes</span><span class="p">(</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">))</span>
+
+<span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">].</span><span class="nf">filter</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="nx">n</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="p">[</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">].</span><span class="nf">filter</span><span class="p">(</span><span class="nx">b</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">)</span>
+
+<span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">].</span><span class="nf">filter</span><span class="p">(</span><span class="nx">n</span> <span class="o">=&gt;</span> <span class="kc">false</span><span class="p">)</span>
+</code></pre></div></div>
+
 
       <footer class="nav-links">
         
         <a href="/courses/csc123/coursenotes/10-arrays/">&larr; Previous</a>
         
+        
+        <a href="/courses/csc123/coursenotes/12-map/">Next &rarr;</a>
         
       </footer  >
   </article>
