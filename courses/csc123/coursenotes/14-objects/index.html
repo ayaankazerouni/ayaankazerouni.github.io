@@ -1,0 +1,589 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Objects and Interfaces - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/14-objects/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/13-reduce/">&larr; Previous</a>
+    
+    
+    <a href="/courses/csc123/coursenotes/15-control-flow-if-statements/">Next &rarr;</a>
+    
+  </div>
+  <h1>Objects and Interfaces</h1>
+  <article>
+      <ul id="markdown-toc">
+  <li><a href="#whats-a-date" id="markdown-toc-whats-a-date">What’s a date?</a></li>
+  <li><a href="#accessing-values-within-an-object" id="markdown-toc-accessing-values-within-an-object">Accessing values within an object</a></li>
+  <li><a href="#accessing-fields-from-nested-objects" id="markdown-toc-accessing-fields-from-nested-objects">Accessing fields from nested objects</a></li>
+  <li><a href="#transforming-objects" id="markdown-toc-transforming-objects">Transforming objects</a></li>
+  <li><a href="#example-operations-involving-objects" id="markdown-toc-example-operations-involving-objects">Example operations involving objects</a></li>
+  <li><a href="#but-what-about-types" id="markdown-toc-but-what-about-types">But what about types?</a></li>
+  <li><a href="#interfaces" id="markdown-toc-interfaces"><code class="language-plaintext highlighter-rouge">interface</code>s</a></li>
+</ul>
+
+<p>So far, we’ve learned how to process primitive data like <code class="language-plaintext highlighter-rouge">number</code>s, <code class="language-plaintext highlighter-rouge">string</code>s, and <code class="language-plaintext highlighter-rouge">boolean</code>s, and arrays of those types.
+However, any realistic data analysis or processing will need to work with data that cannot be represented with those primitive types alone.</p>
+
+<p>For example, in our early lessons, we talked about the various bits of data that make up a “tweet” (or substitute your favourite social medium’s made-up verb here).</p>
+
+<figure>
+  <a href="../02-abstraction-composition/composed-tweets.png" target="_blank">
+    
+    <img src="../02-abstraction-composition/composed-tweets.png" alt="A screenshot containing three tweets from the account 'Black Art in America'. Each tweet is highlighted with a green border." width="60%" />
+    
+  </a>
+
+  <figcaption>What data is represented in this figure?</figcaption>
+</figure>
+
+<p>We can see that each tweet contains a number of bits of information: the user name, the text of the tweet, the number of likes, and so on.</p>
+
+<p>As we build up the complexity of our computation, we need to practice interacting with <em>composite data</em>—data that is composed of smaller pieces of data that make up the whole.
+These are known as <strong>objects</strong> in TypeScript.</p>
+
+<h2 id="whats-a-date">What’s a date?</h2>
+
+<p>For example, consider the data needed to represent a <strong>date</strong>.
+We <em>could</em> simply represent the date using a single primitive data type.</p>
+
+<p>For example, as a string:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="dl">"</span><span class="s2">6/7/1957</span><span class="dl">"</span>
+</code></pre></div></div>
+
+<p>While the representation above may look familiar, the view is impoverished in key ways:</p>
+
+<ul>
+  <li>We can’t look at individual components easily. This will make it harder to answer questions like “How many days between this date and your birthday?” or “Does this date appear before some specified deadline?”</li>
+  <li>We could get caught up in ambiguity. Is <code class="language-plaintext highlighter-rouge">"6/7/1957"</code> meant to be July 6th or June 7th?</li>
+</ul>
+
+<p>Objects in TypeScript let us represent a composite type wherein:</p>
+
+<ul>
+  <li>we can group related data together and work with <em>the whole</em> if we choose,</li>
+  <li>and we can also pull out individual components easily.</li>
+</ul>
+
+<p>Here is an <strong>object</strong> in TypeScript:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">'</span><span class="s1">month</span><span class="dl">'</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">day</span><span class="dl">'</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">:</span> <span class="mi">1957</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The object above is a <em>value</em>, just like the values we’ve seen previously.</p>
+
+<p>Let’s talk about each part of the object above:</p>
+
+<ul>
+  <li>An object is enclosed in curly braces (<code class="language-plaintext highlighter-rouge">{</code> and <code class="language-plaintext highlighter-rouge">}</code>).</li>
+  <li>An object is made up of one or more <strong>fields</strong>. These fields are named (<code class="language-plaintext highlighter-rouge">month</code>, <code class="language-plaintext highlighter-rouge">day</code>, <code class="language-plaintext highlighter-rouge">year</code>).</li>
+  <li>A field name enclosed in quotes can be any valid string, including spaces and special characters.</li>
+  <li>Each field has a value associated with it (month is <code class="language-plaintext highlighter-rouge">7</code>, day is <code class="language-plaintext highlighter-rouge">6</code>, year is <code class="language-plaintext highlighter-rouge">1957</code>).</li>
+  <li>Values can be any TypeScript value, of any data type, including arrays or even other objects.</li>
+</ul>
+
+<p>Objects are a powerful way to group together fields into a single representation.
+They are an example of <strong>abstraction</strong>, i.e., they allow us to replace the details of a large chunk of data with an abstract representation or stand-in, making it easier to reason about a larger concept (like a <em>date</em> instead of a primitive type like a <code class="language-plaintext highlighter-rouge">string</code> or <code class="language-plaintext highlighter-rouge">number</code>).</p>
+
+<p>For example, consider the variable declaration below.
+It creates a <code class="language-plaintext highlighter-rouge">tweet</code> variable and assigns it a (simplified) representation of a tweet:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Black Art In America</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BAIAONLINE</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">month</span><span class="dl">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">day</span><span class="dl">"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">year</span><span class="dl">"</span><span class="p">:</span> <span class="mi">2011</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">time</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">hour</span><span class="dl">"</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">minute</span><span class="dl">"</span><span class="p">:</span> <span class="mi">14</span>
+  <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span><span class="p">:</span> <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">tweet</code> object is a composite value that contains information related to a tweet.
+This includes fields like <code class="language-plaintext highlighter-rouge">date</code> and <code class="language-plaintext highlighter-rouge">time</code>, whose values are <em>also</em> objects that contain their own fields.</p>
+
+<p>This type of structured representation lets us work with complex data more easily.</p>
+
+<h2 id="accessing-values-within-an-object">Accessing values within an object</h2>
+
+<p>We use square brackets (<code class="language-plaintext highlighter-rouge">[</code> and <code class="language-plaintext highlighter-rouge">]</code>) to access specified fields from an object.</p>
+
+<p>This is similar to the syntax for accessing data from <a href="../10-arrays/">arrays</a>, except that now, instead of an index number (or “position”), we use the name of the field we want to access.</p>
+
+<p>Suppose you have an object that represents a <code class="language-plaintext highlighter-rouge">tweet</code>, as follows (the inner objects for the <code class="language-plaintext highlighter-rouge">date</code> and <code class="language-plaintext highlighter-rouge">time</code> have been written on one line for brevity):</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Black Art In America</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BAIAONLINE</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">date</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">month</span><span class="dl">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="dl">"</span><span class="s2">day</span><span class="dl">"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="dl">"</span><span class="s2">year</span><span class="dl">"</span><span class="p">:</span> <span class="mi">2011</span> <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">time</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">hour</span><span class="dl">"</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span> <span class="dl">"</span><span class="s2">minute</span><span class="dl">"</span><span class="p">:</span> <span class="mi">14</span> <span class="p">},</span>
+  <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span><span class="p">:</span> <span class="p">...</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>We could declare and initialize a variable called <code class="language-plaintext highlighter-rouge">tweetName</code> as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tweetName</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="nx">tweet</span><span class="p">[</span><span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>In this case, <code class="language-plaintext highlighter-rouge">tweetName</code> would be given the value <code class="language-plaintext highlighter-rouge">"Black Art In America"</code>.</p>
+
+<h2 id="accessing-fields-from-nested-objects">Accessing fields from nested objects</h2>
+
+<p>As we’ve seen, an object can contain <em>nested objects</em>—objects within other objects.</p>
+
+<p>In the example above, the <code class="language-plaintext highlighter-rouge">tweet</code> has additional composite data within it for its <code class="language-plaintext highlighter-rouge">date</code> and <code class="language-plaintext highlighter-rouge">time</code> fields.</p>
+
+<p>We can access the <em>year</em> of the tweet as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">tweet</span><span class="p">[</span><span class="dl">'</span><span class="s1">date</span><span class="dl">'</span><span class="p">][</span><span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Let’s work on tracing the evaluation of the expression above.</p>
+
+<p>As before, we will work from left-to-right, substituting in values for sub-expressions as we evaluate them.
+This gets a bit large with records, but working through an example will help show explicitly how the operation works.</p>
+
+<p>First, the identified <code class="language-plaintext highlighter-rouge">tweet</code> variable is evaluated to be the entire data record associated with the <code class="language-plaintext highlighter-rouge">tweet</code> identifier. Recall this variable definition from earlier:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tweet</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Black Art In America</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">id</span><span class="dl">'</span><span class="p">:</span> <span class="dl">"</span><span class="s2">BAIAONLINE</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">date</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">month</span><span class="dl">'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="dl">'</span><span class="s1">day</span><span class="dl">'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">:</span> <span class="mi">2011</span><span class="p">},</span>
+  <span class="dl">'</span><span class="s1">time</span><span class="dl">'</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">hour</span><span class="dl">'</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span> <span class="dl">'</span><span class="s1">minute</span><span class="dl">'</span><span class="p">:</span> <span class="mi">14</span> <span class="p">},</span>
+  <span class="dl">'</span><span class="s1">text</span><span class="dl">'</span><span class="p">:...</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Out of this <code class="language-plaintext highlighter-rouge">tweet</code> record, we pull out the value for the field <code class="language-plaintext highlighter-rouge">date</code>. This sub-expression (<code class="language-plaintext highlighter-rouge">tweet['date']</code>) gets us the record:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="dl">'</span><span class="s1">month</span><span class="dl">'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="dl">'</span><span class="s1">day</span><span class="dl">'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">:</span> <span class="mi">2011</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Then from <em>that</em> record, we pull out the value for the <code class="language-plaintext highlighter-rouge">year</code> field. The entire expression is <code class="language-plaintext highlighter-rouge">tweet['date']['year']</code>. This gets us the value <code class="language-plaintext highlighter-rouge">2011</code>.</p>
+
+<h2 id="transforming-objects">Transforming objects</h2>
+
+<p>Just like arrays, objects are mutable.
+And just like with arrays, <strong>we’ll avoid mutating objects whenever possible</strong>.</p>
+
+<h3 id="the-spread-operator">The spread operator</h3>
+
+<p>Remember the spread operator (<code class="language-plaintext highlighter-rouge">...</code>) we used with arrays? We can use it with objects as well!</p>
+
+<p>For example, suppose we have the following object:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">month</span><span class="dl">'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="dl">'</span><span class="s1">day</span><span class="dl">'</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span> <span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">:</span> <span class="mi">1966</span> <span class="p">};</span>
+</code></pre></div></div>
+
+<p>We can use the spread operator to create a new object that is a copy of <code class="language-plaintext highlighter-rouge">date</code>, and also combine it with some changes, like changing a field’s value, or adding a field:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">newDate</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">date</span><span class="p">,</span> <span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">:</span> <span class="mi">2025</span><span class="p">,</span> <span class="dl">'</span><span class="s1">dayOfWeek</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Friday</span><span class="dl">'</span> <span class="p">};</span>
+</code></pre></div></div>
+
+<ul>
+  <li>The code above creates a new object with the data inside the curly braces.</li>
+  <li><code class="language-plaintext highlighter-rouge">...date</code> syntax is used to “spread” the properties of the <code class="language-plaintext highlighter-rouge">date</code> object into the new object.</li>
+  <li><code class="language-plaintext highlighter-rouge">'year': 2025</code> sets the <code class="language-plaintext highlighter-rouge">year</code> to be 2025. Because there was an existing <code class="language-plaintext highlighter-rouge">year</code> field in the <code class="language-plaintext highlighter-rouge">date</code> object, this new value will replace the old one.</li>
+  <li><code class="language-plaintext highlighter-rouge">'dayOfWeek': 'Friday'</code> adds a new field called <code class="language-plaintext highlighter-rouge">dayOfWeek</code> with the value <code class="language-plaintext highlighter-rouge">'Friday'</code> to the new object.</li>
+</ul>
+
+<p>After all of this, the original <code class="language-plaintext highlighter-rouge">date</code> object is unmodified, and the value of <code class="language-plaintext highlighter-rouge">newDate</code> is the following object:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">'</span><span class="s1">month</span><span class="dl">'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">day</span><span class="dl">'</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">:</span> <span class="mi">2025</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">dayOfWeek</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Friday</span><span class="dl">'</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Because <strong>objects are mutable,</strong> this is the recommended way in which to make “updates” to objects.</p>
+
+<h3 id="mutating-objects">Mutating objects</h3>
+
+<p>That said, you can also mutate objects directly, using the box bracket syntax. For example, working with that same date again:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">date</span> <span class="o">=</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">month</span><span class="dl">'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="dl">'</span><span class="s1">day</span><span class="dl">'</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span> <span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">:</span> <span class="mi">1966</span> <span class="p">};</span>
+</code></pre></div></div>
+
+<p>We can change the <code class="language-plaintext highlighter-rouge">year</code> to <code class="language-plaintext highlighter-rouge">2025</code> and add the field <code class="language-plaintext highlighter-rouge">dayOfWeek</code> as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">date</span><span class="p">[</span><span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2025</span><span class="p">;</span> <span class="c1">// Replaces 1966.</span>
+<span class="nx">date</span><span class="p">[</span><span class="dl">'</span><span class="s1">dayOfWeek</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Friday</span><span class="dl">'</span><span class="p">;</span> <span class="c1">// Adds a new field.</span>
+</code></pre></div></div>
+
+<p>After the statements above execute, <strong>the <code class="language-plaintext highlighter-rouge">date</code> object has been modified</strong>. So any references to <code class="language-plaintext highlighter-rouge">date</code> (including inside other functions), will see the following updated object:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="dl">'</span><span class="s1">month</span><span class="dl">'</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">day</span><span class="dl">'</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">year</span><span class="dl">'</span><span class="p">:</span> <span class="mi">2025</span><span class="p">,</span>
+  <span class="dl">'</span><span class="s1">dayOfWeek</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Friday</span><span class="dl">'</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="example-operations-involving-objects">Example operations involving objects</h2>
+
+<p>Let’s look at some examples of operations involving multiple objects.</p>
+
+<h3 id="example-1">Example 1</h3>
+
+<p>Suppose we have “person” objects, where each person has an <code class="language-plaintext highlighter-rouge">age</code>, a <code class="language-plaintext highlighter-rouge">height</code>, and a <code class="language-plaintext highlighter-rouge">name</code>.
+We want to be able to compute the average age of two “persons”.</p>
+
+<p>To accomplish this task, we need to average the age fields for the two objects representing people.</p>
+
+<p>Given two objects for two different people:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">person1</span> <span class="o">=</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">height</span><span class="dl">'</span><span class="p">:</span> <span class="mf">6.0</span><span class="p">,</span> <span class="dl">'</span><span class="s1">age</span><span class="dl">'</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hakim</span><span class="dl">"</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">person2</span> <span class="o">=</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">height</span><span class="dl">'</span><span class="p">:</span> <span class="mf">5.2</span><span class="p">,</span> <span class="dl">'</span><span class="s1">age</span><span class="dl">'</span><span class="p">:</span> <span class="mi">51</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Pat</span><span class="dl">"</span> <span class="p">};</span>
+</code></pre></div></div>
+
+<p class="callout todo">Can you write an expression that computes the average age of the two persons?</p>
+
+<h3 id="example-2">Example 2</h3>
+
+<p>Let’s practice tracing example code.
+Below is a function that, given two <strong>person</strong> objects, returns the older of the two people.
+Following the function definition is an expression that calls the function with two example inputs.</p>
+
+<p>(I have included line numbers in the code below to aid in tracing.)</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="o">|</span> <span class="c1">// Use the ternary operator to determine the older person.</span>
+<span class="mi">2</span> <span class="o">|</span> <span class="kd">const</span> <span class="nx">getOlderPerson</span> <span class="o">=</span> <span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="mi">3</span> <span class="o">|</span>  <span class="k">return</span> <span class="nx">p1</span><span class="p">[</span><span class="dl">'</span><span class="s1">age</span><span class="dl">'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">p2</span><span class="p">[</span><span class="dl">'</span><span class="s1">age</span><span class="dl">'</span><span class="p">]</span> <span class="p">?</span> <span class="nx">p1</span> <span class="p">:</span> <span class="nx">p2</span><span class="p">;</span>
+<span class="mi">4</span> <span class="o">|</span> <span class="p">}</span>
+<span class="mi">5</span> <span class="o">|</span> 
+<span class="mi">6</span> <span class="o">|</span> <span class="kd">const</span> <span class="nx">person1</span> <span class="o">=</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">height</span><span class="dl">'</span><span class="p">:</span> <span class="mf">6.0</span><span class="p">,</span> <span class="dl">'</span><span class="s1">age</span><span class="dl">'</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Hakim</span><span class="dl">"</span> <span class="p">};</span>
+<span class="mi">7</span> <span class="o">|</span> <span class="kd">const</span> <span class="nx">person2</span> <span class="o">=</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">height</span><span class="dl">'</span><span class="p">:</span> <span class="mf">5.2</span><span class="p">,</span> <span class="dl">'</span><span class="s1">age</span><span class="dl">'</span><span class="p">:</span> <span class="mi">51</span><span class="p">,</span> <span class="dl">'</span><span class="s1">name</span><span class="dl">'</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Pat</span><span class="dl">"</span> <span class="p">};</span>
+<span class="mi">8</span> <span class="o">|</span> <span class="kd">const</span> <span class="nx">olderPerson</span> <span class="o">=</span> <span class="nf">getOlderPerson</span><span class="p">(</span><span class="nx">person1</span><span class="p">,</span> <span class="nx">person2</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Using a trace table to work through this example, we see:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Line number</th>
+      <th>At this line</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Line 2</td>
+      <td>On this line:<br /><code class="language-plaintext highlighter-rouge">getOlderPerson</code> function is defined</td>
+    </tr>
+    <tr>
+      <td>Line 6</td>
+      <td>Already exists:<br /><code class="language-plaintext highlighter-rouge">getOlderPerson</code><br /><br />On this line:<br /><code class="language-plaintext highlighter-rouge">person1 = { 'height': 6.0, 'age': 45, 'name': "Hakim" }</code></td>
+    </tr>
+    <tr>
+      <td>Line 7</td>
+      <td>Already exists:<br /><code class="language-plaintext highlighter-rouge">getOlderPerson</code>, <code class="language-plaintext highlighter-rouge">person1</code><br /><br />On this line:<br /><code class="language-plaintext highlighter-rouge">person2 = { 'height': 5.2, 'age': 51, 'name': "Pat" }</code></td>
+    </tr>
+    <tr>
+      <td>Line 8 (partial)</td>
+      <td>Already exists:<br /><code class="language-plaintext highlighter-rouge">getOlderPerson</code>, <code class="language-plaintext highlighter-rouge">person1</code>, <code class="language-plaintext highlighter-rouge">person2</code><br /><br />Control is now transferred to the <code class="language-plaintext highlighter-rouge">getOlderPerson</code> function.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Line 8 contains a call to <code class="language-plaintext highlighter-rouge">getOlderPerson</code>, which transfers control to the function along with its parameter values.
+Since the function only contains the one line (Line 3), we’ll explore that step-by-step.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Line number</th>
+      <th>At this line</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Line 3</td>
+      <td>Already exists:<br /><code class="language-plaintext highlighter-rouge">p1 = { 'height': 6.0, 'age': 45, 'name': "Hakim" }</code><br /><code class="language-plaintext highlighter-rouge">p2 = { 'height': 5.2, 'age': 51, 'name': "Pat" }</code><br />(These values were passed in to the function.)</td>
+    </tr>
+    <tr>
+      <td>Line 3</td>
+      <td>We encounter the expression<br /><code class="language-plaintext highlighter-rouge">p1['age'] &gt; p2['age'] ? p1 : p2</code>.</td>
+    </tr>
+    <tr>
+      <td>Line 3</td>
+      <td>We evaluate sub-expression <code class="language-plaintext highlighter-rouge">p1['age'] &gt; p2['age']</code> first.<br />Substitute in the values for <code class="language-plaintext highlighter-rouge">p1['age']</code> and <code class="language-plaintext highlighter-rouge">p2['age']</code>:<br /><br /><code class="language-plaintext highlighter-rouge">45 &gt; 51</code><br /><br />This evaluates to <code class="language-plaintext highlighter-rouge">false</code>.</td>
+    </tr>
+    <tr>
+      <td>Line 3</td>
+      <td>We now have <code class="language-plaintext highlighter-rouge">false ? p1 : p2</code>, which evaluates to <code class="language-plaintext highlighter-rouge">p2</code>.<br /><br />We now have <code class="language-plaintext highlighter-rouge">return p2</code>.<br />This returns the value of <code class="language-plaintext highlighter-rouge">p2</code>:<br /><br /><code class="language-plaintext highlighter-rouge">{'height': 5.2, 'age': 51, 'name': "Pat"}</code><br /><br />Control is now returned to Line 8.</td>
+    </tr>
+    <tr>
+      <td>Line 8 (completed)</td>
+      <td>Already exists:<br /><code class="language-plaintext highlighter-rouge">getOlderPerson</code>, <code class="language-plaintext highlighter-rouge">person1</code>, <code class="language-plaintext highlighter-rouge">person2</code><br /><br />On this line:<br /><code class="language-plaintext highlighter-rouge">olderPerson = {'height': 5.2, 'age': 51, 'name': "Pat"}</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="example-3">Example 3</h3>
+
+<p>We want to write a function that is able to find the sum of two <strong>cost</strong> objects.
+A <strong>cost</strong> object has two fields, both of which have <code class="language-plaintext highlighter-rouge">number</code> values:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">dollars</code></li>
+  <li><code class="language-plaintext highlighter-rouge">cents</code></li>
+</ul>
+
+<p>The function should give give back a new <strong>cost</strong> object that represents the sum of two inputs <strong>costs</strong>.</p>
+
+<p>That is, conceptually we would like to do something like:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="mi">25</span> <span class="p">}</span>
+
+<span class="dl">"</span><span class="s2">plus</span><span class="dl">"</span>
+
+<span class="p">{</span> <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="mi">14</span> <span class="p">}</span>
+
+<span class="o">=</span>
+
+<span class="p">{</span> <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="mi">39</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Start by declaring the function:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">addCosts</span> <span class="o">=</span> <span class="p">(</span><span class="nx">cost1</span><span class="p">,</span> <span class="nx">cost2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The function’s body may seem rather simple at first: we just need to sum up the <code class="language-plaintext highlighter-rouge">dollars</code> and <code class="language-plaintext highlighter-rouge">cents</code> from the two parameters.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// An initial version!</span>
+<span class="kd">const</span> <span class="nx">addCosts</span> <span class="o">=</span> <span class="p">(</span><span class="nx">cost1</span><span class="p">,</span> <span class="nx">cost2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">],</span>
+    <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Is our function above correct? Let’s test it out with some example inputs.
+Paste the function definition above into the TypeScript Playground, and then print (using <code class="language-plaintext highlighter-rouge">console.log</code>) the values of the following expressions. Do they match your expected outputs?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">addCosts</span><span class="p">({</span> <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="mi">25</span> <span class="p">},</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="mi">14</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>We <em>want</em> the expression above to give us <code class="language-plaintext highlighter-rouge">{ 'dollars': 7, 'cents': 39 }</code>, because $4.25 + $3.14 = $7.39. And yes, we get the expected value back when we printed out the expression in the TypeScript Playground.</p>
+
+<p><strong>What about the following?</strong></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">addCosts</span><span class="p">({</span> <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="mi">75</span> <span class="p">},</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="mi">50</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p>Wait a minute! What do we expect <code class="language-plaintext highlighter-rouge">addCosts({ 'dollars': 1, 'cents': 75 }, { 'dollars': 2, 'cents': 50 })</code> to return? That is, what’s $1.75 + $2.50? <strong>We want $4.25 in return.</strong></p>
+
+<p>However, our function would give us back the object <code class="language-plaintext highlighter-rouge">{ 'dollars': 3, 'cents': 125 }</code>, because we summed up the <code class="language-plaintext highlighter-rouge">cents</code> values without carrying over a dollar when <code class="language-plaintext highlighter-rouge">cents</code> reached 100.</p>
+
+<p>Our updated function should account for this by checking if the <code class="language-plaintext highlighter-rouge">cents</code> field exceeds 100, and if so, it should carry over the extra amount to the <code class="language-plaintext highlighter-rouge">dollars</code> field.</p>
+
+<p>The code below implements this.
+Take a moment to study it, and read the descriptive text that follows.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Updated to account for cents carrying over to dollars.</span>
+<span class="kd">const</span> <span class="nx">addCosts</span> <span class="o">=</span> <span class="p">(</span><span class="nx">cost1</span><span class="p">,</span> <span class="nx">cost2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">totalCents</span> <span class="o">=</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">];</span>
+
+  <span class="c1">// Carry over one dollar if cents exceed 100.</span>
+  <span class="kd">const</span> <span class="nx">totalDollars</span> <span class="o">=</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">totalCents</span> <span class="o">/</span> <span class="mi">100</span><span class="p">);</span>
+
+  <span class="c1">// Construct and return the final object.</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="nx">totalDollars</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="nx">totalCents</span> <span class="o">%</span> <span class="mi">100</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The function uses the <code class="language-plaintext highlighter-rouge">Math.floor</code> operation, which rounds <strong>down</strong> to the nearest whole number.
+So, for example, if you had a <code class="language-plaintext highlighter-rouge">totalCents</code> value of <code class="language-plaintext highlighter-rouge">125</code>, the <code class="language-plaintext highlighter-rouge">totalDollars</code> value would get <code class="language-plaintext highlighter-rouge">1</code> added to it.
+If you had a <code class="language-plaintext highlighter-rouge">totalCents</code> value of <code class="language-plaintext highlighter-rouge">99</code>, the <code class="language-plaintext highlighter-rouge">totalDollars</code> value would get <code class="language-plaintext highlighter-rouge">0</code> added to it.</p>
+
+<p>When we construct our final object:</p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">dollars</code> field receives the <code class="language-plaintext highlighter-rouge">totalDollars</code> amount that we computed.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">cents</code> field receives the value of <code class="language-plaintext highlighter-rouge">totalCents % 100</code>, i.e., the remainder from dividing <code class="language-plaintext highlighter-rouge">totalCents</code> by <code class="language-plaintext highlighter-rouge">100</code>. (If <code class="language-plaintext highlighter-rouge">totalCents</code> was <code class="language-plaintext highlighter-rouge">125</code>, <code class="language-plaintext highlighter-rouge">totalCents % 100</code> would be 25. If <code class="language-plaintext highlighter-rouge">totalCents</code> was <code class="language-plaintext highlighter-rouge">99</code>, <code class="language-plaintext highlighter-rouge">totalCents % 100</code> would be 99.)</li>
+</ul>
+
+<h2 id="but-what-about-types">But what about types?</h2>
+
+<p>You’ll notice that we didn’t specify data types for many things in this lesson.
+For example, consider the function for adding two costs:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">addCosts</span> <span class="o">=</span> <span class="p">(</span><span class="nx">cost1</span><span class="p">,</span> <span class="nx">cost2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">totalCents</span> <span class="o">=</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">];</span>
+  <span class="kd">const</span> <span class="nx">totalDollars</span> <span class="o">=</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">totalCents</span> <span class="o">/</span> <span class="mi">100</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">dollars</span><span class="p">:</span> <span class="nx">totalDollars</span><span class="p">,</span>
+    <span class="na">cents</span><span class="p">:</span> <span class="nx">totalCents</span> <span class="o">%</span> <span class="mi">100</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The function above “works” if we give it sensible data. However, consider the following scenarios.</p>
+
+<p><strong>What if we give it two nonsensical cost objects, like this?</strong></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">addCosts</span><span class="p">({</span> <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">four</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">twenty-five</span><span class="dl">'</span> <span class="p">},</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">three</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">fourteen</span><span class="dl">'</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong>What we give it sensible-looking objects, but with unexpected field names?</strong></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">addCosts</span><span class="p">({</span> <span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">:</span> <span class="mi">25</span> <span class="p">},</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="dl">'</span><span class="s1">c</span><span class="dl">'</span><span class="p">:</span> <span class="mi">14</span> <span class="p">})</span>
+</code></pre></div></div>
+
+<p><strong>Or what if we don’t give it objects at all?</strong></p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">addCosts</span><span class="p">(</span><span class="mf">4.25</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p class="callout">We have currently not accounted for these possibilities.</p>
+
+<p>We need some way to specify to TypeScript’s type-checker what “shape” we expect our objects to have.
+So if someone tries to call the function with the wrong kind of data, TypeScript catches the error before the code is even run.</p>
+
+<p>So…what’s the “shape” of our <strong>cost</strong> objects? It has a <code class="language-plaintext highlighter-rouge">dollars</code> field that is a <code class="language-plaintext highlighter-rouge">number</code>, and a <code class="language-plaintext highlighter-rouge">cents</code> field that is a <code class="language-plaintext highlighter-rouge">number</code>.
+This can be expressed as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span> <span class="nl">dollars</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">cents</span><span class="p">:</span> <span class="kr">number</span> <span class="p">}</span>
+</code></pre></div></div>
+
+<p>The definition above looks a lot like an object, but differs in one key way: the <strong>fields do not have values; they have types</strong>.</p>
+
+<p>Let’s use that type definition in the function signature for our <code class="language-plaintext highlighter-rouge">addCosts</code> function.
+(I’ve split up the function signature over multiple lines for the sake of readability.)</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">addCosts</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="nx">cost1</span><span class="p">:</span> <span class="p">{</span> <span class="nl">dollars</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">cents</span><span class="p">:</span> <span class="kr">number</span> <span class="p">},</span>
+  <span class="nx">cost2</span><span class="p">:</span> <span class="p">{</span> <span class="nl">dollars</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span> <span class="nx">cents</span><span class="p">:</span> <span class="kr">number</span> <span class="p">}</span>
+<span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">totalCents</span> <span class="o">=</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">];</span>
+  <span class="kd">const</span> <span class="nx">totalDollars</span> <span class="o">=</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">totalCents</span> <span class="o">/</span> <span class="mi">100</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">dollars</span><span class="p">:</span> <span class="nx">totalDollars</span><span class="p">,</span>
+    <span class="na">cents</span><span class="p">:</span> <span class="nx">totalCents</span> <span class="o">%</span> <span class="mi">100</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>We can confidently access the <code class="language-plaintext highlighter-rouge">cents</code> and <code class="language-plaintext highlighter-rouge">dollars</code> fields inside <code class="language-plaintext highlighter-rouge">cost1</code> and <code class="language-plaintext highlighter-rouge">cost2</code>, knowing for sure that they exist and are <code class="language-plaintext highlighter-rouge">number</code>s.
+TypeScript will give type errors if <code class="language-plaintext highlighter-rouge">addCosts</code> is called with the wrong kind of data.</p>
+
+<p><a href="https://www.typescriptlang.org/play/?#code/MYewdgzgLgBAhgEwQYRNCMC8MAUpoCMAXDAN4wIgA2VcAThCWAK4C2ARgKZ0A0MwnMFEYwWHbjAC+ffFABMJcpRr0RYrr36DhTNhqkBKLAD4yAKBj9w0GFBBQ4VZNozZZBANoByAUIheAXRgAaitoOW9fYUCAbgsrSFg7ByoAEWpaBiwwqE8vZUz-INDZCPyM1UCQmABZOCgACwA6ADMqEBA6HGTHZz8YAHoYAgAGEYM4+LpOKGY6MHNLSwLVEh60ioYeeMsokXW+4RgAUmGx+Mk4yTMzAaGAQRoYEBbbBs4IThgW5jBgKAAluB+I4qBh6F8AQsAG5A2iA4EvN5fRAoNBHH5-BELCAAgDmYHqc04TTMqNQ6Bw5HKKgYXhIXhaIDmXj4Phc9JgXigAHdtABPAC0LQB0M4XikfGpKzpDMa03FbL2nMZzLoUE4gglkgMZKQFOEVK5ABJOQAWJWcuQAVklZBNnIAzJaSAQzYY9WjKWamja+I6mm6DEA">See this example in the TypeScript Playground.</a></p>
+
+<p>However, it can get kind of repetitive to keep specifying the shape of our cost object.
+Writing it as you see above is useful if you don’t expect to be using the same “object shape” in several places.</p>
+
+<p>But if you <em>do</em> expect to use it often, it’d be much better if we could define it once and then re-use it whenever we want.
+This is where <strong>interfaces</strong> come in.</p>
+
+<h2 id="interfaces"><code class="language-plaintext highlighter-rouge">interface</code>s</h2>
+
+<p>An <code class="language-plaintext highlighter-rouge">interface</code> in TypeScript is used to define the shape of an object.
+That is, you use it to specify the fields that an object can have, and their data types.</p>
+
+<p>Continuing our <code class="language-plaintext highlighter-rouge">addCosts</code> example, we could define an interface for <strong>cost</strong> objects as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">Cost</span> <span class="p">{</span>
+  <span class="nl">dollars</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span>
+  <span class="nx">cents</span><span class="p">:</span> <span class="kr">number</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>You type the word <code class="language-plaintext highlighter-rouge">interface</code>, followed by the name of your new interface.
+By convention, the name of an interface should always begin with an uppercase character.</p>
+
+<p>Then, using a syntax that looks very similar to that of objects, you define the fields and their types.
+The difference here is that, instead of fields having <em>values</em>, they have <em>types</em>.</p>
+
+<p>We have essentially created a new data type called <code class="language-plaintext highlighter-rouge">Cost</code>.
+It can be used just like other types like <code class="language-plaintext highlighter-rouge">number</code> or <code class="language-plaintext highlighter-rouge">string</code>.</p>
+
+<p>For example, in a variable declaration:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myCost</span><span class="p">:</span> <span class="nx">Cost</span> <span class="o">=</span> <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">75</span> <span class="p">};</span>
+</code></pre></div></div>
+
+<p>The code above will prevent any actions that would result in an invalid cost object, like adding a field that is not specified in the <code class="language-plaintext highlighter-rouge">Cost</code> interface.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">myCost</span><span class="p">[</span><span class="dl">'</span><span class="s1">invalidField</span><span class="dl">'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// TypeScript won't allow this.</span>
+</code></pre></div></div>
+
+<p>This lets us rewrite our <code class="language-plaintext highlighter-rouge">addCosts</code> function as follows:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">addCosts</span> <span class="o">=</span> <span class="p">(</span><span class="nx">cost1</span><span class="p">:</span> <span class="nx">Cost</span><span class="p">,</span> <span class="nx">cost2</span><span class="p">:</span> <span class="nx">Cost</span><span class="p">):</span> <span class="nx">Cost</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">totalCents</span> <span class="o">=</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">];</span>
+  <span class="kd">const</span> <span class="nx">totalDollars</span> <span class="o">=</span> <span class="nx">cost1</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nx">cost2</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nx">totalCents</span> <span class="o">/</span> <span class="mi">100</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">dollars</span><span class="p">:</span> <span class="nx">totalDollars</span><span class="p">,</span>
+    <span class="na">cents</span><span class="p">:</span> <span class="nx">totalCents</span> <span class="o">%</span> <span class="mi">100</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/13-reduce/">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc123/coursenotes/15-control-flow-if-statements/">Next &rarr;</a>
+        
+      </footer  >
+  </article>
+  
+  
+  </main>
+</body>
+</html>
