@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/15-control-flow-if-statements/">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/10-conditional-control-flow/">
 	<script src="/assets/js/footnote-preview.js" ></script>
 </head>
 
@@ -33,10 +33,10 @@
   
   <div class="nav-links">
     
-    <a href="/courses/csc123/coursenotes/14-objects/">&larr; Previous</a>
+    <a href="/courses/csc123/coursenotes/09-design-recipe/">&larr; Previous</a>
     
     
-    <a href="/courses/csc123/coursenotes/16-data-vis/">Next &rarr;</a>
+    <a href="/courses/csc123/coursenotes/11-arrays/">Next &rarr;</a>
     
   </div>
   <h1>Conditional control flow</h1>
@@ -286,8 +286,37 @@ What is the output you expect? Does the actual output match that output?</p>
 
 <p>We first check <code class="language-plaintext highlighter-rouge">age &gt;= 17</code> and this check passes, since <code class="language-plaintext highlighter-rouge">21</code> is greater than or equal to <code class="language-plaintext highlighter-rouge">17</code>. We correctly return <code class="language-plaintext highlighter-rouge">"FULL LICENSE"</code>. It doesn’t matter that the check <code class="language-plaintext highlighter-rouge">age &gt;= 16</code> is also <code class="language-plaintext highlighter-rouge">true</code> for <code class="language-plaintext highlighter-rouge">21</code>, because we never reach that if statement—control has already moved on beyond the <code class="language-plaintext highlighter-rouge">if-else-if</code> ladder.</p>
 
+<p>In practice, snippets like the one above—where a value is being computed based on some condition—can be written using <a href="../05-data-types#the-ternary-operator">ternary expressions</a> like we’ve seen in previous modules.</p>
+
+<p>Here’s the same function written both ways:</p>
+
+<div style="display: flex; flex flow: row wrap; justify-content: space-around;">
+<div>
+    <p><strong>If-else-if</strong></p>
+    <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">typeOfLicense</span> <span class="o">=</span> <span class="p">(</span><span class="nx">age</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">17</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="nf">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">LEARNER PERMIT</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </div>
+<div>
+    <p><strong>Ternary expressions</strong></p>
+    <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">typeOfLicense</span> <span class="o">=</span> <span class="p">(</span><span class="nx">age</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">17</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span> <span class="p">:</span>
+    <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">LEARNER PERMIT</span><span class="dl">"</span> <span class="p">:</span>
+      <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </div>
+</div>
+
 <p>You may also have written the function using compound Boolean conditions.
-While technically correct, this is a bit more complicated than the version above, and consequently harder to read and will be harder to debug if needed.</p>
+While technically correct, it’s generally better to reduce the number of checks you perform if you can, because each conditional check is a condition you also need to test.</p>
 
 <div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">typeOfLicense</span> <span class="o">=</span> <span class="p">(</span><span class="nx">age</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nf">if </span><span class="p">(</span><span class="nx">age</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
@@ -302,10 +331,10 @@ While technically correct, this is a bit more complicated than the version above
 
       <footer class="nav-links">
         
-        <a href="/courses/csc123/coursenotes/14-objects/">&larr; Previous</a>
+        <a href="/courses/csc123/coursenotes/09-design-recipe/">&larr; Previous</a>
         
         
-        <a href="/courses/csc123/coursenotes/16-data-vis/">Next &rarr;</a>
+        <a href="/courses/csc123/coursenotes/11-arrays/">Next &rarr;</a>
         
       </footer  >
   </article>
