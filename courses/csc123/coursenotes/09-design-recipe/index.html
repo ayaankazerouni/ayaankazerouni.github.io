@@ -1,0 +1,213 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>The Function Design Recipe - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/09-design-recipe/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/08-function-comprehension/">&larr; Previous</a>
+    
+    
+    <a href="/courses/csc123/coursenotes/09-functions-part-3/">Next &rarr;</a>
+    
+  </div>
+  <h1>The Function Design Recipe</h1>
+  <article>
+      <p><small>This page presents (a version of) the Function Design Recipe from the textbook <a href="http://htdp.org/">How to Design Programs</a>. Specifically it is a TypeScript re-telling of <a href="https://docs.racket-lang.org/htdf/">this document</a> from the Racket website.</small></p>
+
+<p>We have so far learned about <em>what functions are</em> and <em>how to read code involving functions</em>.
+However, to build software systems, you also need to <em>design and implement functions</em>.</p>
+
+<p>When faced with a programming problem prompt, it can be tempting to <em>just start coding</em>.
+However, this can lead to all sorts of trouble:</p>
+
+<ul>
+  <li>You might have misunderstood the problem.</li>
+  <li>There might be edge cases you have not considered.</li>
+  <li>You might end up writing code that is difficult to understand or explain (to others or even to yourself several weeks from now).</li>
+</ul>
+
+<p>This page presents a recipe (a set of steps) to follow when designing and implementing functions.
+When you’re working on a problem and you get stuck, <strong>try following this recipe before asking for help</strong>.
+Even if that doesn’t get you unstuck, this recipe can help you articulate the specific step with which you need help.</p>
+
+<div style="border: 1px solid var(--font-color); padding: 1em; border-radius: 5px;">
+  <p>For the remainder of this document, let’s use the following programming problem prompt as a running example:</p>
+
+  <p><strong>Write a function that takes in a temperature in degrees Fahrenheit and converts it to degrees Celsius.</strong></p>
+</div>
+
+<p><strong>Steps in the Design Recipe</strong></p>
+
+<ul id="markdown-toc">
+  <li><a href="#1-function-signature" id="markdown-toc-1-function-signature">1. Function signature</a></li>
+  <li><a href="#2-examples" id="markdown-toc-2-examples">2. Examples</a></li>
+  <li><a href="#3-implementation-template" id="markdown-toc-3-implementation-template">3. Implementation template</a></li>
+  <li><a href="#4-implementation" id="markdown-toc-4-implementation">4. Implementation</a></li>
+  <li><a href="#5-testing" id="markdown-toc-5-testing">5. Testing</a></li>
+</ul>
+
+<h2 id="1-function-signature">1. Function signature</h2>
+
+<p>The <strong>signature</strong> of your function is everything that describes <em>what</em> your function does, but not <em>how</em> it does it.
+This includes:</p>
+
+<ul>
+  <li>A purpose statement describing what the function does</li>
+  <li>The name of the function</li>
+  <li>The data type(s) of its parameter(s)</li>
+  <li>The data type of its return value</li>
+</ul>
+
+<p>For our function, the pieces would be:</p>
+
+<ul>
+  <li>A purpose statement: “Converts a temperature in degrees Fahrenheit to degreesCelsius.”</li>
+  <li>The name of the function: <code class="language-plaintext highlighter-rouge">fahrenheitToCelsius</code></li>
+  <li>The data type of its parameter(s): <code class="language-plaintext highlighter-rouge">number</code></li>
+  <li>The data type of its return value: <code class="language-plaintext highlighter-rouge">number</code></li>
+</ul>
+
+<p>We can write all of this down to build up our function.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Converts a temperature in degrees Fahrenheit to degrees Celsius.
+ */</span>
+<span class="kd">const</span> <span class="nx">fahrenheitToCelsius</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fahrenheit</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>The purpose statement is written as a comment above the function.
+Notice that it doesn’t give information about the formula for the conversion.
+It only says WHAT the function does, not HOW it does it.</p>
+
+<p>The name, parameter type, and return type are included in the function’s declaration and type annotations.
+(The benefit of explicitly including these annotations in TypeScript is that our code becomes <em>self-documenting</em>.)</p>
+
+<h2 id="2-examples">2. Examples</h2>
+
+<p>We have already said what our function is expected to do.
+However, to make this “what” explicit, we can include <strong>examples.</strong></p>
+
+<p>In the comment above the function, include a few examples showing what <strong>the correct output</strong> of the function is for <strong>an example input</strong> (or inputs, if the function has multiple parameters).
+For example:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Converts a temperature in degrees Fahrenheit to degrees Celsius.
+ * fahrenheitToCelsius(86) should be 30
+ */</span>
+<span class="kd">const</span> <span class="nx">fahrenheitToCelsius</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fahrenheit</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>There is no specific formatting requirement for these examples.
+What’s important is that they are clear and precise.</p>
+
+<p>Examples are effective for two reasons:</p>
+
+<ul>
+  <li>They help others understand your code.</li>
+  <li>They can help <em>you</em> ensure that you’ve understood the problem correctly, before you invest a lot of time in implementing a solution.</li>
+</ul>
+
+<h2 id="3-implementation-template">3. Implementation template</h2>
+
+<p>In this step, we finally shift our focus to the body of the function.
+Going from the signature and examples to a working implementation can be a big leap.
+It’s often useful to break down our plan for solving the problem by writing down a <em>template.</em></p>
+
+<p>For our <code class="language-plaintext highlighter-rouge">fahrenheitToCelsius</code> function, the implementation is rather small: we need to use the formula for converting a temperature from Fahrenheit to Celsius.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Converts a temperature in degrees Fahrenheit to degrees Celsius.
+ * fahrenheitToCelsius(86) should be 30
+ */</span>
+<span class="kd">const</span> <span class="nx">fahrenheitToCelsius</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fahrenheit</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Use the formula (F - 32) * 5/9 to convert `fahrenheit` to a value in celsius</span>
+  <span class="c1">// Return the result</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Again, there is no specific formatting requirement.
+I like to write steps as comments in my code—I often remove the comments when the time comes for implementation.</p>
+
+<p>Templates tend to be more useful when a function is more complex, e.g., when it requires more steps, or when the input data is more complex.</p>
+
+<h2 id="4-implementation">4. Implementation</h2>
+
+<p>In this step, we fill out the function body.
+The template from the previous step should give us our implementation plan.
+If you find yourself not knowing how to implement a specific step, consider going back to the template and breaking down the step into smaller steps.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * Converts a temperature in degrees Fahrenheit to degrees Celsius.
+ * fahrenheitToCelsius(86) should be 30
+ */</span>
+<span class="kd">const</span> <span class="nx">fahrenheitToCelsius</span> <span class="o">=</span> <span class="p">(</span><span class="nx">fahrenheit</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// Use the formula (F - 32) * 5/9 to convert `fahrenheit` to a value in celsius</span>
+  <span class="c1">// Return the result</span>
+  <span class="nf">return </span><span class="p">(</span><span class="nx">fahrenheit</span> <span class="o">-</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">/</span> <span class="mi">9</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h2 id="5-testing">5. Testing</h2>
+
+<p>We’re not done yet! We still need to be sure that our function works. That means we need to <em>test</em> it.</p>
+
+<p>We can test our function manually by calling it with different inputs, <strong>knowing what we expect the outputs to be</strong>, and checking that our function’s output matches our expectations.</p>
+
+<p>We can express our tests as <em>expectations</em> for what function should do, i.e., by writing boolean expressions that compare the actual output of the function to the expected output.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">assert</span><span class="p">(</span><span class="nf">fahrenheitToCelsius</span><span class="p">(</span><span class="mi">86</span><span class="p">)</span> <span class="o">===</span> <span class="mi">30</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">assert</span><span class="p">(</span><span class="nf">fahrenheitToCelsius</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nf">assert</span><span class="p">(</span><span class="nf">fahrenheitToCelsius</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span> <span class="o">===</span> <span class="mi">100</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>If any expectations are not met, a message will be printed to your console.</p>
+
+<p class="callout note"><code class="language-plaintext highlighter-rouge">console.assert</code> differs from <code class="language-plaintext highlighter-rouge">console.log</code> in that it will only print a message if the assertion fails (i.e., if the boolean expression you give it is <code class="language-plaintext highlighter-rouge">false</code>).</p>
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/08-function-comprehension/">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc123/coursenotes/09-functions-part-3/">Next &rarr;</a>
+        
+      </footer  >
+  </article>
+  
+  
+  </main>
+</body>
+</html>
