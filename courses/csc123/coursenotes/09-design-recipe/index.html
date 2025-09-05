@@ -36,7 +36,7 @@
     <a href="/courses/csc123/coursenotes/08-function-comprehension/">&larr; Previous</a>
     
     
-    <a href="/courses/csc123/coursenotes/09-functions-part-3/">Next &rarr;</a>
+    <a href="/courses/csc123/coursenotes/10-conditional-control-flow/">Next &rarr;</a>
     
   </div>
   <h1>The Function Design Recipe</h1>
@@ -186,23 +186,42 @@ If you find yourself not knowing how to implement a specific step, consider goin
 
 <p>We can test our function manually by calling it with different inputs, <strong>knowing what we expect the outputs to be</strong>, and checking that our function’s output matches our expectations.</p>
 
-<p>We can express our tests as <em>expectations</em> for what function should do, i.e., by writing boolean expressions that compare the actual output of the function to the expected output.</p>
+<p>We can express our tests as <em>expectations</em> for what function should do.</p>
+
+<p>The code below compares our <em>actual value</em> (the value returned by calling the function) to our <em>expected value</em> (the literal value we write down).</p>
+
+<p>For example,</p>
+
+<ul>
+  <li>Actual value: Whatever <code class="language-plaintext highlighter-rouge">fahrenheitToCelsius(86)</code> evaluates to</li>
+  <li>Expected value: 30</li>
+</ul>
+
+<p>We can compare the two using the <code class="language-plaintext highlighter-rouge">===</code> operator to check if they’re equal: <code class="language-plaintext highlighter-rouge">fahrenheitToCelsius(86) === 30</code>.</p>
+
+<p>Even better, we can put that comparison in a place where we’ll be alerted if it evaluates to <code class="language-plaintext highlighter-rouge">false</code>, i.e., if our implementation doesn’t match our expectation.</p>
+
+<p>We can do this using the <code class="language-plaintext highlighter-rouge">console.assert</code> statement:</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">assert</span><span class="p">(</span><span class="nf">fahrenheitToCelsius</span><span class="p">(</span><span class="mi">86</span><span class="p">)</span> <span class="o">===</span> <span class="mi">30</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nf">assert</span><span class="p">(</span><span class="nf">fahrenheitToCelsius</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">console.assert</code> takes any boolean expression as a parameter, and if the expression is <code class="language-plaintext highlighter-rouge">false</code>, it prints an error message when we run our tests.
+It won’t print anything if our test passes, i.e., if the boolean expression was <code class="language-plaintext highlighter-rouge">true</code>.</p>
+
+<p>Here are a couple more example tests:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">assert</span><span class="p">(</span><span class="nf">fahrenheitToCelsius</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nf">assert</span><span class="p">(</span><span class="nf">fahrenheitToCelsius</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span> <span class="o">===</span> <span class="mi">100</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p>If any expectations are not met, a message will be printed to your console.</p>
-
-<p class="callout note"><code class="language-plaintext highlighter-rouge">console.assert</code> differs from <code class="language-plaintext highlighter-rouge">console.log</code> in that it will only print a message if the assertion fails (i.e., if the boolean expression you give it is <code class="language-plaintext highlighter-rouge">false</code>).</p>
 
       <footer class="nav-links">
         
         <a href="/courses/csc123/coursenotes/08-function-comprehension/">&larr; Previous</a>
         
         
-        <a href="/courses/csc123/coursenotes/09-functions-part-3/">Next &rarr;</a>
+        <a href="/courses/csc123/coursenotes/10-conditional-control-flow/">Next &rarr;</a>
         
       </footer  >
   </article>

@@ -316,6 +316,61 @@ For different values of <code class="language-plaintext highlighter-rouge">A</co
   <li>There are no restrictions on the data types of <code class="language-plaintext highlighter-rouge">expr1</code> and <code class="language-plaintext highlighter-rouge">expr2</code>.</li>
 </ul>
 
+<p>Because <code class="language-plaintext highlighter-rouge">expr1</code> and <code class="language-plaintext highlighter-rouge">expr2</code> are themselves expressions, they can themselves be longer ternary expressions.
+For example, suppose you have a variable called <code class="language-plaintext highlighter-rouge">age</code>, that represents some person’s age in years.
+Based on their age, you want to determine what kind of driver’s license they can receive, according to the following rules:</p>
+
+<ul>
+  <li>If they are under 16, they receive no license</li>
+  <li>If they are 16 or 17, they can receive a learner’s permit</li>
+  <li>If they are 18 or over, they can receive a full license</li>
+</ul>
+
+<p>This sequence of conditions can be expressed as a single ternary expression (assuming <code class="language-plaintext highlighter-rouge">age</code> is a <code class="language-plaintext highlighter-rouge">number</code>):</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span> <span class="p">:</span>        <span class="c1">// If they 18 or older, full license, otherwise...</span>
+  <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">LEARNER'S PERMIT</span><span class="dl">"</span> <span class="p">:</span>  <span class="c1">// If they are 16 or older, learner's permit, otherwise...</span>
+    <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span>                    <span class="c1">// No license</span>
+</code></pre></div></div>
+
+<p>The entire code snippet above is a single expression that will evaluate to a <code class="language-plaintext highlighter-rouge">string</code> value.</p>
+
+<p>Here’s a diagram showing the possible <em>paths</em> the expression might take during evaluation:</p>
+
+<pre class="mermaid">
+graph TD
+  c1[age &gt;= 18]
+  c2[age &gt;= 16]
+  r1["FULL LICENSE"]
+  r2["LEARNER'S PERMIT"]
+  r3["NO LICENSE"]
+
+  c1 -- true --&gt; r1
+  c1 -- false --&gt; c2
+  c2 -- false --&gt; r3
+  c2 -- true --&gt; r2
+</pre>
+
+<p>Using the diagram above, let’s trace a couple of examples through the expression.</p>
+
+<p>Suppose <code class="language-plaintext highlighter-rouge">age</code> is 23.
+The evaluation would take the following steps:</p>
+
+<ol>
+  <li>Is <code class="language-plaintext highlighter-rouge">23 &gt;= 18</code>? Yes; the expression evaluates to <code class="language-plaintext highlighter-rouge">"FULL LICENSE"</code> and goes no further.</li>
+</ol>
+
+<p>Next, suppose <code class="language-plaintext highlighter-rouge">age</code> is 17.</p>
+
+<ol>
+  <li>Is <code class="language-plaintext highlighter-rouge">17 &gt;= 18</code>? No; we therefore evaluate the “<code class="language-plaintext highlighter-rouge">expr2</code>”, which in this case is another ternary expression.</li>
+  <li>Is <code class="language-plaintext highlighter-rouge">17 &gt;= 16</code>? Yes; the expression evaluates to <code class="language-plaintext highlighter-rouge">"LEARNER'S PERMIT"</code> and goes no further.</li>
+</ol>
+
+<p class="callout note"><strong>Notice the formatting choices made in the expression.</strong><br /><br />Each “otherwise” clause starts on a new line, indented slightly to the right.
+The slight indentation in a line indicates that the line is a continuation of the expression from the previous line.
+None of these formatting choices are <em>required</em> by TypeScript—but it makes it easier to understand the expression.</p>
+
 <h2 id="compound-expressions">Compound expressions</h2>
 
 <p>Just like in algebra, expressions can be combined into longer expressions.
@@ -432,6 +487,21 @@ But there is less weird stuff than JavaScript.</p>
       </footer  >
   </article>
   
+  
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const mql = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mql.matches) {
+      mermaid.initialize({
+        theme: 'dark'
+      });
+    } else {
+      mermaid.initialize({
+        theme: 'default'
+      });
+    }
+  </script>
   
   </main>
 </body>
