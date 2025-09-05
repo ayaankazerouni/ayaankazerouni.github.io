@@ -288,7 +288,7 @@ What is the output you expect? Does the actual output match that output?</p>
 
 <p>In practice, snippets like the one above—where a value is being computed based on some condition—can be written using <a href="../05-data-types#the-ternary-operator">ternary expressions</a> like we’ve seen in previous modules.</p>
 
-<p>Here’s the same function written both ways:</p>
+<p>Here’s the same function written both ways—which do you prefer?</p>
 
 <div style="display: flex; flex flow: row wrap; justify-content: space-around;">
 <div>
@@ -314,6 +314,10 @@ What is the output you expect? Does the actual output match that output?</p>
 </code></pre></div>    </div>
   </div>
 </div>
+
+<p>Conventional wisdom is that if you have more than one condition to check, use <code class="language-plaintext highlighter-rouge">if-else-if</code> ladders.
+They are more readable.
+(However, I couldn’t find any empirical evidence for this.)</p>
 
 <p>You may also have written the function using compound Boolean conditions.
 While technically correct, it’s generally better to reduce the number of checks you perform if you can, because each conditional check is a condition you also need to test.</p>
