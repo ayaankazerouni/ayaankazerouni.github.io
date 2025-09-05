@@ -307,9 +307,9 @@ What is the output you expect? Does the actual output match that output?</p>
 <div>
     <p><strong>Ternary expressions</strong></p>
     <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">typeOfLicense</span> <span class="o">=</span> <span class="p">(</span><span class="nx">age</span><span class="p">:</span> <span class="kr">number</span><span class="p">):</span> <span class="kr">string</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">17</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span> <span class="p">:</span>
-    <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">LEARNER PERMIT</span><span class="dl">"</span> <span class="p">:</span>
-      <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">17</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span>
+    <span class="p">:</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">LEARNER PERMIT</span><span class="dl">"</span>
+    <span class="p">:</span> <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>    </div>
   </div>
