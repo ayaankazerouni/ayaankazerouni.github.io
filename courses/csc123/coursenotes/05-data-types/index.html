@@ -328,9 +328,9 @@ Based on their age, you want to determine what kind of driver’s license they c
 
 <p>This sequence of conditions can be expressed as a single ternary expression (assuming <code class="language-plaintext highlighter-rouge">age</code> is a <code class="language-plaintext highlighter-rouge">number</code>):</p>
 
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span> <span class="p">:</span>        <span class="c1">// If they 18 or older, full license, otherwise...</span>
-  <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">LEARNER'S PERMIT</span><span class="dl">"</span> <span class="p">:</span>  <span class="c1">// If they are 16 or older, learner's permit, otherwise...</span>
-    <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span>                    <span class="c1">// No license</span>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">FULL LICENSE</span><span class="dl">"</span>          <span class="c1">// If they 18 or older, full license, otherwise...</span>
+  <span class="p">:</span> <span class="nx">age</span> <span class="o">&gt;=</span> <span class="mi">16</span> <span class="p">?</span> <span class="dl">"</span><span class="s2">LEARNER'S PERMIT</span><span class="dl">"</span>  <span class="c1">// If they are 16 or older, learner's permit, otherwise...</span>
+  <span class="p">:</span> <span class="dl">"</span><span class="s2">NO LICENSE</span><span class="dl">"</span>                    <span class="c1">// No license</span>
 </code></pre></div></div>
 
 <p>The entire code snippet above is a single expression that will evaluate to a <code class="language-plaintext highlighter-rouge">string</code> value.</p>
