@@ -533,6 +533,9 @@ sup[id^="fnref:"] {
 .fn-tooltip a {
   color: var(--inverted-font-color);
 }
+.fn-tooltip code {
+  color: var(--inverted-font-color) !important;
+}
 
 @media only screen and (max-width: 750px) {
   figure.wrap {
