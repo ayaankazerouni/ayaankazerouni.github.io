@@ -1,0 +1,187 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  
+  <meta name="robots" content="noindex">
+  
+
+	
+
+	<title>Sorting arrays of objects - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/coursenotes/15-2-sorting-objects/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+
+<body>
+  <main>
+  
+  
+  
+  <p>
+  <a href="/courses/csc123/coursenotes">Coursenotes index</a> | <a href="/courses/csc123/fall2025">CSC 123 Introduction to Community Action Computing</a>
+  <!-- <a href="/teaching">Ayaan M. Kazerouni <i class="fa fa-sign-out-alt"></i></a> -->
+  </p>
+  
+  <div class="nav-links">
+    
+    <a href="/courses/csc123/coursenotes/15-1-objects/">&larr; Previous</a>
+    
+    
+    <a href="/courses/csc123/coursenotes/16-data-vis/">Next &rarr;</a>
+    
+  </div>
+  <h1>Sorting arrays of objects</h1>
+  <article>
+      <p>In the last module, we talked about compound data, i.e, <em>objects</em> in TypeScript.</p>
+
+<p>For example, suppose we have defined a <code class="language-plaintext highlighter-rouge">DollarAmount</code> type:</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kr">interface</span> <span class="nx">DollarAmount</span> <span class="p">{</span>
+  <span class="nl">dollars</span><span class="p">:</span> <span class="kr">number</span><span class="p">,</span>
+  <span class="nx">cents</span><span class="p">:</span> <span class="kr">number</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Now, suppose we have an array of <code class="language-plaintext highlighter-rouge">DollarAmount</code> objects.</p>
+
+<p><strong>First, consider what the <em>type</em> of this array would be.</strong> Our <code class="language-plaintext highlighter-rouge">DollarAmount</code> is now a <em>type</em> that we can use for values and variables. So we can use the same box-bracket syntax <code class="language-plaintext highlighter-rouge">[]</code> that we’re used to to say that something is an array of <code class="language-plaintext highlighter-rouge">DollarAmount</code>s.</p>
+
+<p>So let’s create an example array:</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dollarAmounts</span><span class="p">:</span> <span class="nx">DollarAmount</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">50</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">75</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">99</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">249</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">99</span> <span class="p">},</span> <span class="c1">// Apple AirPods, amirite?</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">99</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">95</span> <span class="p">}</span> <span class="c1">// Tall black coffee at Starbucks</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<p>Suppose I want to figure out the <strong>top 3</strong> <code class="language-plaintext highlighter-rouge">DollarAmount</code>s in this array. Now, we could manually compute these top 3 using a <code class="language-plaintext highlighter-rouge">for</code> loop and the reducer pattern that we’ve studied.
+But that would be a fairly complex algorithm to solve this problem.</p>
+
+<p>Instead, there’s a much simpler one:</p>
+
+<ul>
+  <li>Step 1: Sort the array</li>
+  <li>Step 2: Use <code class="language-plaintext highlighter-rouge">slice</code> to grab the last three items in the sorted array.</li>
+</ul>
+
+<h3 id="comparing-objects">Comparing objects</h3>
+
+<p>But hold on! To be able to sort an array of <code class="language-plaintext highlighter-rouge">DollarAmount</code>s, we first need to know how to compare two <code class="language-plaintext highlighter-rouge">DollarAmount</code>s.
+Now you and I can see that it’s fairly obvious how to compare two <code class="language-plaintext highlighter-rouge">DollarAmount</code>s—$1.99 is <em>clearly</em> less than <em>$2.75</em>, and it’s <em>clearly</em> more than $1.50.</p>
+
+<p>But we need to tell TypeScript this.</p>
+
+<p>We can do this by writing a <code class="language-plaintext highlighter-rouge">compare</code> function that compares two <code class="language-plaintext highlighter-rouge">DollarAmount</code>s.</p>
+
+<p>Follow the Design Recipe: What should the inputs and output of this function be?</p>
+
+<p><strong>Inputs</strong></p>
+
+<p>Our inputs should be two <code class="language-plaintext highlighter-rouge">DollarAmount</code> values, since that’s what we’re comparing.</p>
+
+<p><strong>Output</strong></p>
+
+<p>This is a little more tricky. What should the output type of the <code class="language-plaintext highlighter-rouge">compare</code> function be?</p>
+
+<p>We want our function to compare the first item to the second item.
+At first, you might think the output should be a <code class="language-plaintext highlighter-rouge">boolean</code>, so we can say that the output is <code class="language-plaintext highlighter-rouge">true</code> if the first amount is greater than the second amount, or <code class="language-plaintext highlighter-rouge">false</code> otherwise.</p>
+
+<p>But there’s a third possible outcome we need to account for: the case where the two dollar amounts are <em>equal</em>.</p>
+
+<p>So instead, we’ll return a <code class="language-plaintext highlighter-rouge">number</code>. We’ll have the following “contract” for our <code class="language-plaintext highlighter-rouge">compare</code> method:</p>
+
+<ul>
+  <li>If the first <code class="language-plaintext highlighter-rouge">DollarAmount</code> is greater than the second <code class="language-plaintext highlighter-rouge">DollarAmount</code>, we will return a number that’s greater than 0 (<code class="language-plaintext highlighter-rouge">&gt; 0</code>).</li>
+  <li>If the first <code class="language-plaintext highlighter-rouge">DollarAmount</code> is less than the second <code class="language-plaintext highlighter-rouge">DollarAmount</code>, we will return a number that’s less than 0 (<code class="language-plaintext highlighter-rouge">&lt; 0</code>).</li>
+  <li>If the two <code class="language-plaintext highlighter-rouge">DollarAmount</code>s are equal, return 0</li>
+</ul>
+
+<p>Note that we don’t actually care <em>what</em> the returned numbers are: we just care that they’re appropriately positive, negative, or 0.</p>
+
+<p>So we’re ready to write our function.</p>
+
+<p>Comparing <code class="language-plaintext highlighter-rouge">DollarAmount</code>s is straightforward: first compare their <code class="language-plaintext highlighter-rouge">dollars</code> values, and if those are equal, then compare their <code class="language-plaintext highlighter-rouge">cents</code> values.</p>
+
+<p>Since our goal is to return a positive number, a negative number, or 0, we can use subtraction to get the numbers we’re looking for.</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">compare</span> <span class="o">=</span> <span class="p">(</span><span class="nx">d1</span><span class="p">:</span> <span class="nx">DollarAmount</span><span class="p">,</span> <span class="nx">d2</span><span class="p">:</span> <span class="nx">DollarAmount</span><span class="p">):</span> <span class="kr">number</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="na">dollarDifference</span><span class="p">:</span> <span class="kr">number</span> <span class="o">=</span> <span class="nx">d1</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">]</span> <span class="o">-</span> <span class="nx">d2</span><span class="p">[</span><span class="dl">'</span><span class="s1">dollars</span><span class="dl">'</span><span class="p">];</span>
+
+  <span class="nf">if </span><span class="p">(</span><span class="nx">dollarDifference</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// their dollars are the same, so compare cents</span>
+    <span class="k">return</span> <span class="nx">d1</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">]</span> <span class="o">-</span> <span class="nx">d2</span><span class="p">[</span><span class="dl">'</span><span class="s1">cents</span><span class="dl">'</span><span class="p">];</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">dollarDifference</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The function above returns a positive number if <code class="language-plaintext highlighter-rouge">d1</code> is “greater than” <code class="language-plaintext highlighter-rouge">d2</code>, a negative number if <code class="language-plaintext highlighter-rouge">d1</code> is “less than” <code class="language-plaintext highlighter-rouge">d2</code>, and 0 if <code class="language-plaintext highlighter-rouge">d1</code> is equal to <code class="language-plaintext highlighter-rouge">d2</code>.</p>
+
+<p>Let’s consider some example calls to our <code class="language-plaintext highlighter-rouge">compare</code> to see what the output should be.</p>
+
+<p>Let’s say that we have two dollar amounts:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">compare({ dollars: 1, cents: 99 }, { dollars: 2, cents: 75 })</code> should give us <code class="language-plaintext highlighter-rouge">-1</code>. (The first amount is less than the second amount.)</li>
+  <li><code class="language-plaintext highlighter-rouge">compare({ dollars: 1, cents: 99 }, { dollars: 1, cents: 50})</code> should give us <code class="language-plaintext highlighter-rouge">49</code>. (The first amount is greater than the second amount.)</li>
+  <li><code class="language-plaintext highlighter-rouge">compare({ dollars: 2, cents: 50 }, { dollars: 2, cents: 50 })</code> should give us <code class="language-plaintext highlighter-rouge">0</code>. (The first amount is equal to the second amount.)</li>
+</ul>
+
+<h3 id="back-to-sorting">Back to sorting</h3>
+
+<p>Now that we know how to compare two <code class="language-plaintext highlighter-rouge">DollarAmount</code>s, we can turn back to our original problem.</p>
+
+<p>Suppose we have the following list of <code class="language-plaintext highlighter-rouge">DollarAmount</code>s, and we want to sort it:</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">dollarAmounts</span><span class="p">:</span> <span class="nx">DollarAmount</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">50</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">75</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">99</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">249</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">99</span> <span class="p">},</span> <span class="c1">// Apple AirPods, amirite?</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">99</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="na">dollars</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">cents</span><span class="p">:</span> <span class="mi">95</span> <span class="p">}</span> <span class="c1">// Tall black coffee at Starbucks</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<p>We can use the <code class="language-plaintext highlighter-rouge">sort</code> function to sort this array.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">sort</code> function, like <code class="language-plaintext highlighter-rouge">splice</code>, modifies the underlying array and sorts its values.</p>
+
+<p>We can call it on the array, just like <code class="language-plaintext highlighter-rouge">splice</code> or <code class="language-plaintext highlighter-rouge">slice</code> or the other array functions we’ve talked about.</p>
+
+<p><code class="language-plaintext highlighter-rouge">dollarAmounts.sort(_____)</code></p>
+
+<p>But what do we put in the blank above? Like I said before, to “sort” a list of things, the main problem we need to solve is—how to compare any two items in the list? This is where the <code class="language-plaintext highlighter-rouge">compare</code> function that we wrote comes in.</p>
+
+<p>We can sort the above array by doing the following:</p>
+
+<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">dollarAmounts</span><span class="p">.</span><span class="nf">sort</span><span class="p">(</span><span class="nx">compare</span><span class="p">);</span>
+</code></pre></div></div>
+
+      <footer class="nav-links">
+        
+        <a href="/courses/csc123/coursenotes/15-1-objects/">&larr; Previous</a>
+        
+        
+        <a href="/courses/csc123/coursenotes/16-data-vis/">Next &rarr;</a>
+        
+      </footer  >
+  </article>
+  
+  
+  </main>
+</body>
+</html>
