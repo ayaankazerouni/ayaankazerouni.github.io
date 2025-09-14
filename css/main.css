@@ -60,22 +60,16 @@
   main {
     font-weight: 100;
   }
-  main strong {
-    font-weight: 1000;
-  }
 }
 body {
   background-color: var(--bg-color);
   min-width: 65%;
   color: var(--font-color);
-  font-family: "Avenir", sans-serif;
+  text-rendering: optimizeLegibility;
+  font-family: "Avenir", BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 14pt;
-  font-weight: 300;
-}
-
-strong {
-  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 h2,
@@ -102,12 +96,13 @@ a,
 a:visited {
   color: var(--link-color);
   text-decoration: underline;
-  font-weight: 500;
 }
 a:not(:has(img)):hover,
 a:visited:not(:has(img)):hover {
-  color: var(--inverted-font-color);
-  background-color: var(--highlight-color);
+  text-decoration: var(--emph) underline;
+  text-decoration-thickness: 2px;
+  /* color: var(--inverted-font-color);
+  background-color: var(--highlight-color); */
 }
 
 .hlt, .footnotes :target, .tag, .banner {
@@ -163,11 +158,22 @@ main {
 article {
   margin: auto;
   max-width: 60em;
-  line-height: 1.5em;
 }
 
 .chart-container {
   margin-left: 10%;
+}
+
+.writing {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  grid-template-columns: 3fr 1fr;
+  margin: auto;
+}
+.writing a {
+  text-decoration: none;
+  font-weight: bold;
 }
 
 /* Aside */
@@ -205,9 +211,8 @@ aside nav ul li a.nav-link {
   -webkit-transition: 0.3s;
 }
 aside nav ul li a.nav-link:hover, aside nav ul li a.nav-link.active {
-  background: var(--header);
   text-decoration: none;
-  color: var(--bg-color);
+  color: var(--emph);
 }
 aside nav:after {
   content: "";
