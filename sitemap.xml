@@ -154,6 +154,12 @@
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/03-expressions-and-evaluation/</loc>
 </url>
 <url>
+<loc>https://ayaankazerouni.org/courses/csc123/coursenotes/15-2-sorting-objects/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc123/coursenotes/15-1-objects/</loc>
+</url>
+<url>
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/02-abstraction-composition/</loc>
 </url>
 <url>
@@ -164,9 +170,6 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/06-variables/</loc>
-</url>
-<url>
-<loc>https://ayaankazerouni.org/courses/csc123/coursenotes/15-objects/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc123/coursenotes/04-typescript/</loc>
@@ -494,6 +497,10 @@
 <url>
 <loc>https://ayaankazerouni.org/papers/2024/toce2023testing.pdf</loc>
 <lastmod>2025-02-08T16:05:38-08:00</lastmod>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/papers/2025/koli2025topic-choices.pdf</loc>
+<lastmod>2025-09-13T21:33:32-07:00</lastmod>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/papers/2025/sigcse2025src-practices.pdf</loc>

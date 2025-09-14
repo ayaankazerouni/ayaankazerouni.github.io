@@ -8,12 +8,12 @@
   --inverted-font-color: var(--font-color);
   --link-color: #425469;
   --caption-color: #727375;
-  --emph: #E61726;
+  --emph: #e61726;
   --code-color: var(--emph);
   --nav-color: var(--emph);
   --heading-font-color: #425469;
   --header: #000000;
-  --award-color: #0CAC1C;
+  --award-color: #0cac1c;
   --ponder-color: #d3a10b;
   --ponder-background-color: rgba(255, 235, 130, 0.2);
   --todo-color: rgb(148, 2, 206);
@@ -38,7 +38,7 @@
   :root {
     --bg-color: #24272c;
     --highlight-color: var(--emph);
-    --font-color: #FFFFFF;
+    --font-color: #ffffff;
     --inverted-font-color: #000000;
     --heading-font-color: #c6f1f3;
     --caption-color: #c9cacc;
@@ -46,7 +46,7 @@
     --code-color: var(--font-color);
     --nav-color: #8bcccf;
     --link-color: #eafafb;
-    --header: #EEEEEE;
+    --header: #eeeeee;
     --award-color: darkgreen;
     --todo-color: rgb(222, 156, 248);
     --todo-background-color: rgb(68, 44, 66, 0.7);
@@ -70,7 +70,8 @@ body {
   color: var(--font-color);
   font-family: "Avenir", sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 13pt;
+  font-size: 14pt;
+  font-weight: 300;
 }
 
 strong {
@@ -274,7 +275,8 @@ figure.wrap img {
 figure.wrap figcaption {
   max-width: 20vw;
 }
-figure.wrap img, figure.wrap figcaption {
+figure.wrap img,
+figure.wrap figcaption {
   margin-right: 5vw;
 }
 
@@ -288,7 +290,8 @@ ul {
   align-items: center;
   justify-content: center;
 }
-.contact a, .contact a:visited {
+.contact a,
+.contact a:visited {
   font-size: 1.5em !important;
   text-decoration: none;
 }
@@ -308,7 +311,11 @@ footer .address {
   padding: 0 5px;
 }
 
-.fa, .fab, .far, .fas, .ai {
+.fa,
+.fab,
+.far,
+.fas,
+.ai {
   margin: 5px;
   text-decoration: none;
 }
@@ -425,10 +432,12 @@ table th {
 table tr {
   border-bottom: 0.5pt solid;
 }
-table tr > td, table tr > th {
+table tr > td,
+table tr > th {
   padding: 0.5em;
 }
-table tr > td:not(:last-child), table tr > th:not(:last-child) {
+table tr > td:not(:last-child),
+table tr > th:not(:last-child) {
   border-right: 1pt solid;
 }
 
@@ -532,6 +541,9 @@ sup[id^="fnref:"] {
 }
 .fn-tooltip a {
   color: var(--inverted-font-color);
+}
+.fn-tooltip code {
+  color: var(--inverted-font-color) !important;
 }
 
 @media only screen and (max-width: 750px) {
