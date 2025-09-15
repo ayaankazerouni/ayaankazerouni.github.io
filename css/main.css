@@ -6,7 +6,7 @@
   --highlight-color: #fffb00;
   --font-color: #000000;
   --inverted-font-color: var(--font-color);
-  --link-color: #425469;
+  --link-color: var(--font-color);
   --caption-color: #727375;
   --emph: #e61726;
   --code-color: var(--emph);
@@ -45,7 +45,7 @@
     --emph: rgb(246, 168, 0);
     --code-color: var(--font-color);
     --nav-color: #8bcccf;
-    --link-color: #eafafb;
+    --link-color: var(--font-color);
     --header: #eeeeee;
     --award-color: darkgreen;
     --todo-color: rgb(222, 156, 248);
@@ -154,7 +154,7 @@ main {
 
 article {
   margin: auto;
-  max-width: 60em;
+  max-width: 50em;
 }
 
 .chart-container {
