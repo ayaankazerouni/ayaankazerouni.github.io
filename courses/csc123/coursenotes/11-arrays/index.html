@@ -101,7 +101,7 @@ Let’s evaluate <code class="language-plaintext highlighter-rouge">string[][]</
 
 <p>The structure of the tic-tac-toe grid is perhaps more visible if we format it like this:</p>
 
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">board</span><span class="p">:</span> <span class="kr">string</span><span class="p">[][]</span> <span class="o">=</span> 
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">board</span><span class="p">:</span> <span class="kr">string</span><span class="p">[][]</span> <span class="o">=</span>
   <span class="p">[</span>
     <span class="p">[</span><span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">O</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">],</span>
     <span class="p">[</span><span class="dl">"</span><span class="s2">O</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">X</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">O</span><span class="dl">"</span><span class="p">],</span>
@@ -162,6 +162,45 @@ Just like with strings, the index is zero-based, meaning the first item is at in
 <p class="callout todo">Paste the code above into the <a href="https://www.typescriptlang.org/play" target="_blank">TypeScript Playground</a>, and then hover your mouse over the <code class="language-plaintext highlighter-rouge">at</code> operation to see its signature.
 You should see it has a return type of <code class="language-plaintext highlighter-rouge">number | undefined</code> (to be read as “number or undefined”).
 This is precisely to account for the possibility that you requested an invalid index.</p>
+
+<h3 id="indexing-into-an-array-using--notation">Indexing into an array using <code class="language-plaintext highlighter-rouge">[]</code> notation</h3>
+
+<p>You can also use the <code class="language-plaintext highlighter-rouge">[]</code> notation can be used to access individual items in an array.</p>
+
+<p>“Indexing” into an array means accessing specific positions in the array, either to read what’s in the array at that location, or to change the value at that location.</p>
+
+<p>For example, suppose you have a simple array of words.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">beatles</span><span class="p">:</span> <span class="kr">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Paul</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">George</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Pete</span><span class="dl">"</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>You can access locations within the array with the following syntax:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array[index]
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">array</code> is any expression that evaluates to an array, and <code class="language-plaintext highlighter-rouge">index</code> is a <code class="language-plaintext highlighter-rouge">number</code> representing the position you want to access.</p>
+
+<p>So, for example, to read the first and second item in the <code class="language-plaintext highlighter-rouge">beatles</code> array, you would write:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">firstBeatle</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="nx">beatles</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// "John"</span>
+<span class="kd">const</span> <span class="nx">secondBeatle</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="nx">beatles</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// "Paul"</span>
+</code></pre></div></div>
+
+<p>If you have an array of arrays, like the following:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">arrOfArrays</span><span class="p">:</span> <span class="kr">number</span><span class="p">[][]</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="p">];</span>
+</code></pre></div></div>
+
+<p>You can get specific items by <em>chaining</em> multiple uses of the <code class="language-plaintext highlighter-rouge">[]</code> notation.
+For example, if we wanted the element <code class="language-plaintext highlighter-rouge">8</code>, we would say:</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">arrOfArrays</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
 
 <h3 id="check-if-an-array-contains-an-item">Check if an array contains an item</h3>
 
@@ -294,7 +333,7 @@ For example, if we wanted to add new items to an array without modifying our ori
 <p>These are often convenient and memory-efficient, since you don’t end up creating copies of your data.
 However, they can lead to hard-to-track-down errors in your program. (A motivating example using these destructive operations follows after this section.)</p>
 
-<p>We will generally avoid using these mutating operations this quarter where possible. 
+<p>We will generally avoid using these mutating operations this quarter where possible.
 However, they are “idiomatic” in the sense that many examples you see online will use them.
 So I want you to know what they mean.</p>
 
@@ -357,28 +396,13 @@ See that its signature is <code class="language-plaintext highlighter-rouge">num
 
 <p class="callout ponder">When do you suppose <code class="language-plaintext highlighter-rouge">pop</code> and <code class="language-plaintext highlighter-rouge">shift</code> might return <code class="language-plaintext highlighter-rouge">undefined</code>?</p>
 
-<h3 id="indexing-into-an-array-using--notation">Indexing into an array using <code class="language-plaintext highlighter-rouge">[]</code> notation</h3>
+<h3 id="indexing-into-an-array-using--notation-1">Indexing into an array using <code class="language-plaintext highlighter-rouge">[]</code> notation</h3>
 
-<p>Finally, the <code class="language-plaintext highlighter-rouge">[]</code> notation can be used to access individual items in an array.</p>
+<p>Finally, the <code class="language-plaintext highlighter-rouge">[]</code> notation can also be used to <em>mutate</em> individual items in an array.</p>
 
-<p>“Indexing” into an array means accessing specific positions in the array, either to read what’s in the array at that location, or to change the value at that location.</p>
-
-<p>For example, suppose you have a simple array of words.</p>
+<p>Consider the Beatles array again:</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">beatles</span><span class="p">:</span> <span class="kr">string</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Paul</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">George</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Pete</span><span class="dl">"</span><span class="p">];</span>
-</code></pre></div></div>
-
-<p>You can access locations within the array with the following syntax:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array[index]
-</code></pre></div></div>
-
-<p>Where <code class="language-plaintext highlighter-rouge">array</code> is any expression that evaluates to an array, and <code class="language-plaintext highlighter-rouge">index</code> is a <code class="language-plaintext highlighter-rouge">number</code> representing the position you want to access.</p>
-
-<p>So, for example, to read the first and second item in the <code class="language-plaintext highlighter-rouge">beatles</code> array, you would write:</p>
-
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">firstBeatle</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="nx">beatles</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// "John"</span>
-<span class="kd">const</span> <span class="nx">secondBeatle</span><span class="p">:</span> <span class="kr">string</span> <span class="o">=</span> <span class="nx">beatles</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// "Paul"</span>
 </code></pre></div></div>
 
 <p>The <code class="language-plaintext highlighter-rouge">[]</code> notation behaves a bit like variable names (at least, like variables declared using <code class="language-plaintext highlighter-rouge">let</code>).
@@ -477,7 +501,6 @@ flowchart TD
 </ol>
 
 <hr />
-
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:data" role="doc-endnote">
