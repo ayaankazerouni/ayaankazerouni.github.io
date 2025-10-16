@@ -2,7 +2,7 @@
 @import url("/css/dark.css") screen and (prefers-color-scheme: dark);
 @import url("/css/github.css") screen and (prefers-color-scheme: light);
 :root {
-  --bg-color: white;
+  --bg-color: rgb(255, 255, 255);
   --highlight-color: #fffb00;
   --font-color: #000000;
   --inverted-font-color: var(--font-color);
@@ -36,7 +36,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-color: #24272c;
+    --bg-color: rgb(36, 39, 44);
     --highlight-color: var(--emph);
     --font-color: #ffffff;
     --inverted-font-color: #000000;
@@ -98,8 +98,6 @@ a:not(:has(img)):hover,
 a:visited:not(:has(img)):hover {
   text-decoration: var(--emph) underline;
   text-decoration-thickness: 2px;
-  /* color: var(--inverted-font-color);
-  background-color: var(--highlight-color); */
 }
 
 .hlt, .footnotes :target, .tag, .banner {
@@ -466,56 +464,50 @@ table tr > th:not(:last-child) {
   content: "DUE";
 }
 
-.callout, blockquote {
+.callout {
   overflow: hidden;
-  border-left: 4px solid var(--emph);
-  background-color: var(--callout-background-color);
+  border-left: 4px solid var(--callout-border-color, var(--emph));
+  background-color: var(--callout-bg-color, var(--callout-background-color));
   border-radius: 4px;
   padding: 0.5em 1em;
   list-style-type: none;
 }
-.callout::before, blockquote::before {
+.callout::before {
   display: block;
   font-weight: bold;
   font-size: 0.85em;
   font-family: "Mulish", sans-serif;
+  content: var(--callout-label);
+  color: var(--callout-color);
 }
-.callout.note, blockquote.note {
-  border-color: var(--note-color);
-  background-color: var(--note-background-color);
+.callout.note {
+  --callout-label: "NOTE";
+  --callout-color: var(--note-color);
+  --callout-bg-color: var(--note-background-color);
+  --callout-border-color: var(--note-color);
 }
-.callout.note::before, blockquote.note::before {
-  content: "NOTE";
-  color: var(--note-color);
+.callout.todo {
+  --callout-label: "TASK";
+  --callout-color: var(--todo-color);
+  --callout-bg-color: var(--todo-background-color);
+  --callout-border-color: var(--todo-color);
 }
-.callout.todo, blockquote.todo {
-  border-color: var(--todo-color);
-  background-color: var(--todo-background-color);
+.callout.ponder {
+  --callout-label: "PONDER";
+  --callout-color: var(--ponder-color);
+  --callout-bg-color: var(--ponder-background-color);
+  --callout-border-color: var(--ponder-color);
 }
-.callout.todo::before, blockquote.todo::before {
-  content: "TASK";
-  color: var(--todo-color);
-}
-.callout.ponder, blockquote.ponder {
-  border-color: var(--ponder-color);
-  background-color: var(--ponder-background-color);
-}
-.callout.ponder::before, blockquote.ponder::before {
-  content: "PONDER";
-  color: var(--ponder-color);
-}
-.callout.reading, blockquote.reading {
-  border-color: var(--reading-color);
-  background-color: var(--reading-background-color);
-}
-.callout.reading::before, blockquote.reading::before {
-  content: "READING";
-  color: var(--reading-color);
+.callout.reading {
+  --callout-label: "READING";
+  --callout-color: var(--reading-color);
+  --callout-bg-color: var(--reading-background-color);
+  --callout-border-color: var(--reading-color);
 }
 
 blockquote {
-  background-color: unset;
-  padding: 0 5px 0 8px;
+  border: 1pt dashed var(--emph);
+  padding: 0 5px 0 5px;
 }
 
 .footnotes {
@@ -552,7 +544,8 @@ sup[id^="fnref:"] {
   figure.wrap {
     float: unset;
   }
-  figure.wrap img, figure.wrap figcaption {
+  figure.wrap img,
+  figure.wrap figcaption {
     max-width: 95vw;
   }
 }
@@ -571,10 +564,12 @@ sup[id^="fnref:"] {
   header > * {
     margin: 10px;
   }
-  img, figcaption {
+  img,
+  figcaption {
     max-width: 95vw;
   }
-  img, figcaption {
+  img,
+  figcaption {
     max-width: 95vw;
   }
   .blurb {
@@ -594,6 +589,10 @@ sup[id^="fnref:"] {
   }
   aside nav ul > li > a.nav-link {
     padding: 8px 8px;
+  }
+  blockquote {
+    margin: 10px;
+    padding: 0 20px;
   }
   main {
     min-width: 100%;
@@ -632,7 +631,8 @@ sup[id^="fnref:"] {
   h1 {
     font-size: 1.5em;
   }
-  ul, ol {
+  ul,
+  ol {
     padding-left: 0.8em;
   }
   .blurb {
@@ -653,7 +653,8 @@ sup[id^="fnref:"] {
     float: none;
     width: inherit;
   }
-  img, figcaption {
+  img,
+  figcaption {
     max-width: 95vw;
   }
   img {
