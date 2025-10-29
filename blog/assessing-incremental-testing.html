@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-	<link rel="canonical" href="https://ayaankazerouni.org/blog/assessing-incremental-testing/">
+	<link rel="canonical" href="https://ayaankazerouni.org/blog/assessing-incremental-testing">
 	<script src="/assets/js/footnote-preview.js" ></script>
 </head>
 
@@ -65,7 +65,7 @@
       <article>
         <div>
           <p>
-            <time>July 07, 2020</time>&#9474;2229 words
+            <time>July 07, 2020</time>&#9474;2322 words
           </p>
           
         </div>
@@ -73,7 +73,7 @@
 <em>This article was originally posted on <a href="https://ayaankazerouni.medium.com">my Medium blog</a> on July 7 2020.</em>
 </small></p>
 
-<p><em>This is a brief overview of the research paper “<strong><a href="https://ayaankazerouni.org/publications#sigcse2019paper">Assessing Incremental Testing Practices and Their Impact on Project Outcomes</a></strong>”, published at SIGCSE 2019. My co-authors were <a href="https://people.cs.vt.edu/~shaffer">Cliff Shaffer</a>, <a href="https://people.cs.vt.edu/~edwards">Steve Edwards</a>, and <a href="https://people.cs.vt.edu/~fservant">Francisco Servant</a>.</em></p>
+<p><em>This is a brief overview of the research paper “<strong><a href="/publications#sigcse2019paper”">Assessing Incremental Testing Practices and Their Impact on Project Outcomes</a></strong>, published at SIGCSE 2019. My co-authors were <a href="https://people.cs.vt.edu/~shaffer">Cliff Shaffer</a>, <a href="https://people.cs.vt.edu/~edwards">Steve Edwards</a>, and <a href="https://people.cs.vt.edu/~fservant">Francisco Servant</a>.</em></p>
 
 <p>Software testing is the most common method of ensuring the correctness of software. As students work on relatively long-running software projects, we would like to know if they are engaging with testing consistently through the life-cycle. The long-term goal is to provide students with feedback about their testing habits as they work on projects.</p>
 
@@ -126,8 +126,8 @@ We addressed this by avoiding the “TDD or not” dichotomy. Students’ (and i
 <p>Consider the following figure, which shows an example sequence of developer activity created from synthetic data. Colours indicate methods in the project; solid and shaded blocks are solution and test code, respectively; and groups of blocks indicate work sessions.</p>
 
 <figure class="wide">
-  <a href="https://ayaankazerouni.org/blog/assessing-incremental-testing/example-dev-activity.png" target="_blank">
-    <img src="https://ayaankazerouni.org/blog/assessing-incremental-testing/example-dev-activity.png" alt="Coloured bars organised into groups, demarcating time spent writing production code and test code, devoted to individual methods." />
+  <a href="https://ayaankazerouni.org/blog/assessing-incremental-testingexample-dev-activity.png" target="_blank">
+    <img src="https://ayaankazerouni.org/blog/assessing-incremental-testingexample-dev-activity.png" alt="Coloured bars organised into groups, demarcating time spent writing production code and test code, devoted to individual methods." />
   </a>
 
   <figcaption>An example sequence of developer activity (synthetic data).</figcaption>
@@ -147,7 +147,7 @@ The measures are summarised in the next figure.</p>
 
 <p>Each measurement is a proportion, i.e., the proportion of all code — written in a work session or for a method or on the entire project — that was test code. So if a student wrote 100 LoC in a work session, and 20 of them were test code, the proportion for that work session would be 0.2.</p>
 
-<p>In terms of <strong>sequence</strong>, we measured the extent to which students tended to write test code before finalising the solution code under test (MOS below).
+<p>In terms of <strong>sequence</strong>, we measured the extent to which students tended to write test code before finalising the solution code under test (MOS below).<br />
 This was measured as the proportion of test code devoted to a method that was written before the method was finalised (i.e., before it was changed for the last time).</p>
 
 <p>Note that this is different from measuring adherence to “TDD or not”.
@@ -157,9 +157,9 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 <p>Measurements are depicted in the figure below. All measurements were aggregated as medians for each project.</p>
 
 <figure>
-  <a href="https://ayaankazerouni.org/blog/assessing-incremental-testing/metrics.png" target="_blank">
+  <a href="https://ayaankazerouni.org/blog/assessing-incremental-testingmetrics.png" target="_blank">
     
-    <img src="https://ayaankazerouni.org/blog/assessing-incremental-testing/metrics.png" alt="Coloured bars depicting time spent writing and testing individual methods in a program. They are grouped in four different ways: grouped by time (ignoring the methods being focused on), grouped by method, grouped by method and time, and grouped by sequence." />
+    <img src="https://ayaankazerouni.org/blog/assessing-incremental-testingmetrics.png" alt="Coloured bars depicting time spent writing and testing individual methods in a program. They are grouped in four different ways: grouped by time (ignoring the methods being focused on), grouped by method, grouped by method and time, and grouped by sequence." />
     
   </a>
 
@@ -177,9 +177,9 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 <p>The measurements are summarised in the figure below. The first four box-plots (in blue) represent measures of the balance of test writing effort. The fifth box-plot (in orange) represents proportion of test writing effort devoted before the relevant solution code was finalised.</p>
 
 <figure>
-  <a href="https://ayaankazerouni.org/blog/assessing-incremental-testing/boxplots-balance-sequence.png" target="_blank">
+  <a href="https://ayaankazerouni.org/blog/assessing-incremental-testingboxplots-balance-sequence.png" target="_blank">
     
-    <img src="https://ayaankazerouni.org/blog/assessing-incremental-testing/boxplots-balance-sequence.png" alt="" />
+    <img src="https://ayaankazerouni.org/blog/assessing-incremental-testingboxplots-balance-sequence.png" alt="" />
     
   </a>
 
