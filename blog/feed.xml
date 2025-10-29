@@ -4,7 +4,7 @@
   <title>Ayaan M. Kazerouni</title>
   <link>https://ayaankazerouni.org/blog/</link>
   <description>Posts about computing education</description>
-  <lastBuildDate>Tue, 21 Oct 2025 10:12:41 -0700</lastBuildDate>
+  <lastBuildDate>Tue, 28 Oct 2025 20:09:22 -0700</lastBuildDate>
 
   
   
@@ -15,7 +15,90 @@
     <guid>https://ayaankazerouni.org/blog/what-topics-interest-students/</guid>
     <pubDate>Sun, 14 Sep 2025</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/what-topics-interest-students/">https://ayaankazerouni.org/blog/what-topics-interest-students/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/what-topics-interest-students/">https://ayaankazerouni.org/blog/what-topics-interest-students/</a>.]]> -->
+      {:.blurb}
+This is a brief summary of the paper [_What Topics Interest Students in Socially Responsible Computing Coursework?_]({{site.baseurl}}/publications#koli2025topic-choices), appearing at [Koli Calling](https://www.kolicalling.fi) 2025.
+My co-authors were [Zainab Agha](https://cs.sfsu.edu/people/zainab-agha), [Aleata Hubbard Cheuoua](https://aleatahubbard.com/), [Melissa Lee](https://www.linkedin.com/in/melissa-lee-15637949), [Jane Lehr](https://ethnicstudies.calpoly.edu/faculty-staff/jane-lehr), [Ilmi Yoon](https://ilmiyoon8.wordpress.com/), and [Zoë Wood](https://users.csc.calpoly.edu/~zwood/).
+
+When teaching math or CS, we often need to ground examples or assignments in some *context*.
+For example, when teaching boolean logic, I might give examples like deciding what kind of drivers&apos; license an individual should receive based on their age.
+When working with lists, I might use the [rainfall problem](https://runestone.academy/ns/books/published/StudentCSP/CSPIntroData/rainfall.html).
+We tend to not teach &quot;free-floating&quot; computational thinking, untethered from any real-world problem context, however contrived by the instructor.
+
+Obviously, the contexts we choose will impact the student&apos;s learning experience.
+
+**We should teach with humanitarian contexts.**
+Students in CS courses [tend to be interested in applications of computing that further the social good](https://dl.acm.org/doi/10.1145/3626253.3635513)[^why].
+That is, when given a choice, students prefer to see more humanitarian contexts for their assignments and coursework, like tracking availability of shelters for the homeless, or building an application to help learn sign language, and fewer assignments focused on business contexts like tracking pizza deliveries.
+This preference for humanitarian applications and learning through service is also present in other STEM disciplines.
+For example, [_Engineers Without Borders_](https://www.ewb.calpoly.edu/) is thriving at Cal Poly and other chapters.
+
+[^why]: This is not the same as saying _that&apos;s why they chose to study CS_: [that&apos;s a separate, multi-faceted decision](https://dl.acm.org/doi/abs/10.1145/2016911.2016915).
+
+**How we teach can impact students&apos; perceptions of the discipline.**
+In early courses, one challenge is that it&apos;s hard for students (and instructors) to draw a line from &quot;learning Python&quot; to &quot;benefitting the social good&quot;.
+I imagine the same is true in, say, an introductory course in mechanical or electrical engineering.
+Perhaps as a result, there&apos;s evidence of a [perception that opportunity to pursue &quot;communal goals&quot; is impeded in STEM disciplines](https://journals.sagepub.com/doi/10.1177/0956797610377342).
+
+
+**We should give students choices about their learning.** We (humans) tend to be more motivated to learn [when we can make choices about how and what we learn](https://www.simplypsychology.org/self-determination-theory.html), compared to a learning process where we follow a sequence of instructions without agency.
+A [number](https://dl.acm.org/doi/10.1145/1595496.1562891) [of](https://ieeexplore.ieee.org/document/8985947) [experiences](https://dl.acm.org/doi/10.1145/1383602.1383637) incorporating student choice into CS assignments have reported positive results in terms of affect, performance, and sense of belonging in the discipline.
+
+There&apos;s a slight tension here: should we prioritise a focus on humanitarian and socially responsible topics, or should we prioritise giving students freedom to focus on topics of their choosing?
+Even within socially responsible topic domains, not all students&apos; interests are the same.
+If an instructor prescribes a focus on a topic like education, food access, or government, they run the risk of alienating a student that&apos;s instead interested in economic development, human rights, or housing access.
+
+Unfortunately, teaching to individual students&apos; interests is not always feasible.
+
+_Wouldn&apos;t it be great to have a list of topic domains that would likely be interesting to a large number of students?_
+
+We learned from students which topic domains (within a fuzzy notion of socially responsible computing) students most wanted to see in their coursework.
+We did this in three ways:
+
+1. **We talked to students**: We interviewed 4 students at San Francisco State University and 2 at Cal Poly SLO.
+2. **We surveyed college students taking CS courses**: We surveyed 1443 students at [six CSU campuses](../src-in-early-cs-courses/).
+3. **We studied the choices students made when given free rein to pick a topic**: Two data-centric CS courses at Cal Poly SLO (an [introductory programming course]({{site.baseurl}}/courses/csc123) and a [data visualisation course]({{site.baseurl}}/courses/csc477)) included assignments where students were free to choose **any** topic and dataset to work with. Their choices provide insight into their interests.
+
+## What did students find interesting?
+
+Students consistently expressed interest in the following topic domains:
+
+- **Education**, e.g., analyzing data from the [CSforCA report](https://csforca.org/accessreport/) about K–12 CS education access in California.
+- **Economic development**, e.g., analyzing data from [Gapminder.org](https://gapminder.org) about World Bank country development indicators.
+- **Health**, e.g., measles outbreaks in the United States.
+- **The Environment**, e.g., global carbon emissions.
+- **Community engagement**, i.e., projects that actually engage with community members.
+
+The topics above were present and prominent in both survey responses and in the actual topic choices made by students when given the freedom to do so.
+
+In survey responses, the vast majority of students also expressed interest in **Artificial Intelligence** (surprise!) and **Digital inclusion, safety, and privacy**.
+These topics were also singled out by students in focus group interviews.
+We think these didn&apos;t show up in students&apos; assignment topic choices due to difficulty finding relevant datasets, and likely not because of a lack of interest.
+
+## What about &quot;non-humanitarian&quot; topics?
+
+In our study of students&apos; actual topic choices in open-ended assignments, 65% of projects focused on what we deemed to be &quot;humanitarian&quot; or &quot;socially relevant&quot; topics.[^bias]
+This is great! Those previous studies were right! Students _do_ find them interesting! (It is also good for humanity.)
+
+[^bias]: Obviously, this is subject to individual impressions—see [the paper]({{site.baseurl}}/publications#koli2025-topic-choices) for details about how we categorised students&apos; submissions.
+
+But that means 35% of projects did _not_ focus on these topics.
+Instead, they focused on topics and datasets like:
+
+- LeBron James&apos; shot choices over his career
+- Video game sales over time
+- Broadway plays and ticket sales
+- UFO sighting reports in the USA ([there&apos;s a dataset of these](https://nuforc.org/databank/))
+
+These topics may not be the most socially impactful, but were likely no less important, motivating, and _fun_ for these students.
+
+For example, in the intro programming class, one student who&apos;d been relatively quiet throughout the term went well beyond the assignment&apos;s requirement when they were given freedom to choose a topic, and gave an animated and energetic presentation about trends in Broadway plays at the end of the term.
+Had I required a focus on &quot;humanitarian&quot; topics, this student might have lost this opportunity to connect their budding computing skills with an existing passion.
+
+For more details, see [the paper]({{site.baseurl}}/publications#koli2025topic-choices), or a [previous post]({{site.baseurl}}/blog/src-in-early-cs-courses) outlining some of the broader goals of our work.
+
+---
+
     </description>
   </item>
   
@@ -27,7 +110,162 @@
     <guid>https://ayaankazerouni.org/blog/src-in-early-cs-courses/</guid>
     <pubDate>Thu, 10 Apr 2025</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/src-in-early-cs-courses/">https://ayaankazerouni.org/blog/src-in-early-cs-courses/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/src-in-early-cs-courses/">https://ayaankazerouni.org/blog/src-in-early-cs-courses/</a>.]]> -->
+      ## Contents
+{:.no_toc}
+
+* s
+{:toc}
+
+## Overview 
+
+Hispanic/Latino students are currently underrepresented in CS majors in California.
+
+That is, the percentage of Hispanic/Latino students in CS majors is far lower than the percentage of college-going students in California who are Hispanic/Latino.
+[48% of students in the CSU system identified as Hispanic/Latino in Fall 2023](https://tableau.calstate.edu/views/SelfEnrollmentDashboard/EnrollmentSummary), but only [25% of the CS degrees awarded by the CSU in 2023 went to Hispanic/Latino students](https://tableau.calstate.edu/views/CSUDegreesIssued/CSUDegreesIssued).
+
+In an alliance of six campuses in the California State University system (CSU), we worked to incorporate _socially responsible computing_ (SRC) into our early CS courses in a sustained effort to improve the experience of students who are historically under-represented in computing majors.
+Our explicit goal is to increase retention rates of students identifying as Hispanic/Latino---currently, these students tend to leave the CS major at our institutions at far higher rates than other students.
+We are driven by evidence that suggests that [we might draw more students toward computing through clear signalling of computing&apos;s _communal goal affordances_](https://paul-bruno.com/wp-content/uploads/2019/07/Lewis_2019_CommunalGoals.pdf) (i.e., stronger signalling to students that they can use their computing knowledge to benefit society).
+
+This multi-year project was [funded by the National Science Foundation in 2022](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2216687&amp;HistoricalAwards=false).
+This helped support the following activities and personnel:
+
+- **Development of new curricular materials,** including two new courses at Cal Poly SLO and San Francisco State University. These materials have also been adopted at universities outside our six-campus alliance.
+- **Monthly online teacher training workshops,** organised by social scientists and computer scientists, attended by 20–25 CS professors at various institutions.
+- **Annual 1.5 day-long in-person workshops** in June 2023, 2024, and 2025 to support collaborative work, brainstorming, and feedback.
+- **Independent external evaluation** by evaluators at the non-profit agency [WestEd.org](https://wested.org), who helped collect the data leading to the conclusions described in this post.
+- **Incentives for students to participate in focus groups** about their experiences in the courses we studied.
+
+Our team was:
+
+- At Cal Poly SLO: Zoë Wood, Jane Lehr, and myself.
+- At CSU Fullerton: Paul Salvador Inventado, Kevin Wortman, and Kanika Sood.
+- At San Francisco State University (formerly and currently): Ilmi Yoon, Aakash Gautam, Anagha Kulkarni, and Zainab Agha.
+- At CSU Los Angeles: Elaine Eun-Young Kang and David Krum.
+- At CSU Dominguez Hills: Mohsen Beheshti and Sahar Hooshmand.
+- At Cal Poly Pomona: Daisy Tang, Yu Sun, and Amlan Chatterjee.
+- At WestEd.org: Aleata Hubbard Cheuoua and Melissa Lee.
+- At Colorado Evaluation and Research Consulting: Sarah Hug.
+
+In this post, I summarize the work done by our team over the last two-and-a-half years.
+
+## What did we do?
+
+- We incorporated SRC in our intro CS courses at all six campuses. For example, at Cal Poly SLO, this took the form of a new data-centric introductory CS course focused on using computation to examine social trends and phenomena relevant to the students. The course is described in the paper *[Community-Action Computing: A Data-centric CS0 course]({{site.baseurl}}/publications#sigcse2024cs0-course)* (SIGCSE 2024 Curricular Initiatives).
+- We also participated in a faculty learning community that met for monthly workshops led by social scientists (Jane Lehr from Cal Poly SLO and Sarah Hug from Colorado Evaluation and Research Consulting). Some lessons learned from these workshops were published in *[Reflecting on Practices to Integrate Socially Responsible Computing in Introductory Computer Science Courses]({{site.baseurl}}/publications#sigcse2025src-practices)* (SIGCSE 2025 Experience Reports).
+- **Finally (the focus of this post) we found that our curricular additions had positive impacts on students&apos; sense of belonging in computing and their perceived learning and agency in early CS courses.** These results were published in *[The Benefits of Socially Responsible Computing in Early Computing Courses: A Multi-Institutional Study at Primarily Undergraduate Hispanic-Serving Institutions]({{site.baseurl}}/publications#toce2025src)* (TOCE).
+
+## What&apos;s SRC?
+
+We sought to develop curricular materials that demonstrated to students that they could use computing to benefit their communities and society, and to encourage students to think critically about the impacts of computing on society.
+
+This went beyond teaching ethics in computing.
+We encouraged students to actively consider social and
+ethical implications of their work, acknowledge (with examples) the significant power that computing systems have in society, and aimed to prepare students to exercise that power responsibly as they develop technical skills.
+To this end, we integrated SRC considerations in the context of technical skills introduced in the class, rather than introducing separate modules for ethical and social
+considerations.
+
+These ideas have [been](https://responsible.cs.brown.edu/) [around](https://ethicalcs.github.io/) [for](https://dl.acm.org/doi/10.1145/3702212.3702225) [a while](https://identity.cs.duke.edu/fellows.html).
+
+[Evan Peck](https://evanpeck.github.io/)&apos;s work—a big source of inspiration for us—[puts it well](https://ethicalcs.github.io/):
+
+&gt; 1. _**Introduce a deeper level of reflection in CS 1 courses.** I want students to see that their actions either directly or indirectly impact people, communities, and cultures, and that this impact is often not felt equally by different groups of people (along lines of gender, race, class, geography, etc.)_
+&gt; 2. _**Develop reflection habits alongside coding habits** - all modules involve programming! I believe that habits are formed early in CS and must be tightly coupled with technical concepts in order for them to stick._
+&gt; 3. _**Pair directly with existing CS 1 curriculum** - CS 1 is already a busy course. You don’t need to set aside a month of new material. I believe that reflection and responsible computing pairs directly with technical concepts already taught (conditionals, for loops, etc.)_
+
+We were also driven by the knowledge that [some students, more than others, are strongly drawn to disciplines that *they believe* would help benefit society](https://paul-bruno.com/wp-content/uploads/2019/07/Lewis_2019_CommunalGoals.pdf).
+Clear signalling in early CS courses of computing&apos;s impact on and relevance to society, and demonstration to students that even their nascent computing skills can be applied toward the social good should, in theory, improve their motivation and sense of belonging in computing.
+
+For example, at CSU Fullerton the lessons on control flow with `if` statements were accompanied by programming assignments where students designed, implemented, and critiqued in small groups schemes for allocating tips in restaurants.
+These were also accompanied by readings about [the racialized history of tipping in America](https://www.nytimes.com/2021/02/05/opinion/minimum-wage-racism.html).
+
+Also while learning about conditional logic, students at CSU Dominguez Hills wrote programs to determine individuals&apos; eligibilities for safe blood donations, and designed a simple system for tracking and managing blood donations.
+All of this was accompanied by readings and reflections about the [need for blood donations](https://www.youtube.com/watch?v=Tfwq_vJHwT8&amp;feature=youtu.be).
+
+At Cal Poly SLO, we developed a new [data-centric introductory programming course]({{site.baseurl}}/publications#sigcse2024cs0-course) in which students used [TypeScript](https://typescriptlang.org) and [Vega-Lite](https://vega.github.io/vega-lite/) to analyze and visualize datasets about socially relevant phenomena.
+Datasets were often chosen by the students and projects involved written and oral reflective components in addition to programs.
+Among other topics, students studied disparities in access to CS education in the state of California using data provided by the non-profit organization [CSforCA](https://csforca.org), data about the victims of fatal police shootings [compiled by the Washington Post](https://www.washingtonpost.com/graphics/investigations/police-shootings-database/), and data about people&apos;s access to fresh food compiled by the [US Department of Agriculture&apos;s Economic Research Service](https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/).[^corgis]
+In all cases, students were given freedom to choose their topics, ask their own questions, and present their findings to the rest of the class.
+
+[^corgis]: In many cases, students used tidied versions of the datasets from the [CORGIS](https://corgis-edu.github.io/corgis/) dataset repository, which was a part of [Austin Cory Bart](https://acbart.github.io/)&apos;s wonderful dissertation project.
+
+## Did it work?
+
+Over two academic years---2022--2023 and 2023--2024---we collected survey data from students at all six campuses to measure their *sense of belonging* in CS.
+Belonging was measured using the 26-item survey developed by [Moudgalya et al.](https://dl.acm.org/doi/10.1145/3408877.3432425), containing statements about belonging scored from _Strongly disagree_ (–3) to _Strongly agree_ (3).
+
+Statements were positive or negative and preceded by the phrase &quot;In this computer science class...&quot;. Some example statements are:
+
+- I feel a connection with the computer science community.
+- I feel insignificant.
+- I feel at ease.
+- I enjoy being an active participant.
+- I try to say as little as possible.
+
+The Fall 2022 term was our &quot;Baseline&quot; group.
+Surveyed classes were taught with no added SRC curricular materials.
+Spring 2023, Fall 2023, and Spring 2024 were our &quot;Intervention&quot; groups (&quot;Post&quot; in the figure below).
+All surveyed courses had significant SRC materials added, ranging from individual assignments with discussions and reflective components (as in the case of [CSU Fullerton](https://dl.acm.org/doi/10.1145/3626252.3630853)) to entirely new courses (as in the case of [Cal Poly SLO]({{site.baseurl}}/publications#sigcse2024cs0-course) and [San Francisco State University](https://dl.acm.org/doi/10.1145/3626252.3630926)).
+
+**Our intervention had significant positive impacts on students&apos; sense of belonging at some campuses, but not others.**
+The split appeared to be between campuses that had &quot;competitive enrolment policies&quot; for their CS majors, and those that did not.
+[Nguyen and Lewis](https://dl.acm.org/doi/10.1145/3328778.3366805) describe competitive enrolment policies as those in which students already at the University need to meet minimum GPA thresholds to declare a CS major and take CS courses, or where students are admitted directly to the CS major.
+
+In our study, the two Cal Polys (SLO and Pomona) have competitive enrolment policies, due in large part to enrolment pressures. 
+Students are either admitted directly into the CS major or must satisfy fairly intensive requirements before transferring into the CS major.
+Conversely, the other participating campuses---SFSU, Dominguez Hills, Fullerton, and CSU LA---have no such additional requirements for majoring in CS.
+They also have relatively higher proportions of students identifying as Hispanic/Latino.
+
+In general, we saw that the campuses _without_ competitive enrolment policies were more likely to report significant positive impacts from SRC curricular additions. The pattern is visible in the figure below.
+
+(CSU Fullerton does not appear in this figure because no classes at Fullerton were surveyed in both the Baseline and Intervention terms. Fullerton features in other analyses in [the paper]({{site.baseurl}}/publications#toce2025src).)
+
+&lt;figure&gt;
+&lt;div id=&apos;chart&apos; class=&apos;chart-container&apos;&gt;&lt;/div&gt;
+&lt;figcaption&gt;Sense of belonging scores at each campus in the Baseline term (Fall 2022) and in post-surveys in Intervention terms (Spring 2023, Fall 2023, Spring 2024). The paper reports transformed belonging scores based on a confirmatory factor analysis, but the same trend is visible and easier to interpret with the –3 &amp;rarr; 3 scale shown here.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;script type=&apos;module&apos;&gt;
+    const tooltipTheme = window.matchMedia(&apos;(prefers-color-scheme: dark)&apos;).matches ? &apos;dark&apos; : &apos;default&apos;;
+    const vega = (await import(&apos;https://cdn.jsdelivr.net/npm/vega@6/+esm&apos;)).default;
+    const vl = (await import(&apos;https://cdn.jsdelivr.net/npm/vega-lite@6/+esm&apos;)).default;
+    const vegaEmbed = (await import(&apos;https://cdn.jsdelivr.net/npm/vega-embed@6/+esm&apos;)).default;
+    const chartSpec = (await (await fetch(&apos;{{page.url}}/chart.json&apos;)).json());
+    vegaEmbed(&apos;#chart&apos;, chartSpec, { theme: &apos;ggplot2&apos;, tooltip: { theme: tooltipTheme } })
+&lt;/script&gt;
+
+## Final remarks 
+
+While there were [other overall benefits]({{site.baseurl}}/publications#toce2025src) of our SRC curricular additions, in terms of sense of belonging our intervention appeared to impact students at some campuses far more than others.
+Five of the six participating campuses in our alliance were designated as Hispanic-Serving Institutions at the time the research was carried out (all except Cal Poly SLO).
+
+Upon reflection, perhaps the relative stability of sense of belonging at the institutions with competitive CS enrolment (the two Cal Polys) is to be expected.
+CS students at those campuses have already been put through significant filtering criteria, based on GPA thresholds within the University, and admissions that are heavily influenced by AP courses, the availability of which is largely dependent on school district and household income levels.
+It would make sense that these students, who were also more likely to have had pre-college CS experiences, had a relatively stable sense of self in the computing discipline.
+
+With occasional exceptions, the two groups of campuses also differed in other important ways,
+like overall University acceptance rates, representation and attrition of historically underrepresented students in CS, and percentage of students on federal Pell grants, a proxy for the overall socio-economic status of our student bodies.
+
+| Attribute                                     | DH  | LA  | SF  | Fullerton | Pomona | SLO |
+|----------------------------------------------|-----|-----|-----|-----------|--------|-----|
+| Had pre-college CS education                 | 21% | 38% | 23% | 43%       | 65%    | 47% |
+| % Hispanic/Latino (University)               | 69% | 75% | 37% | 52%       | 53%    | 23% |
+| % Hispanic/Latino (CS Majors)                | 63% | 54% | 26% | 27%       | 27%    | 11% |
+| % of students who leave CS who are “URM”     | 42% | 45% | 45% | 30%       | 26%    | 18% |
+| % Receiving Pell grant                       | 61% | 66% | 43% | 47%       | 46%    | 18% |
+| % First-generation students                  | 46% | 57% | 32% | 32%       | 55%    | 17% |
+| University acceptance rate                   | 86% | 91% | 93% | 59%       | 44%    | 33% |
+| Has competitive CS enrollment?               | No  | No  | No  | No        | Yes    | Yes |
+
+An example of how these environmental contexts might influence educational outcomes: we found that Hispanic/Latino students at the campuses without competitive enrolment policies were more likely than other students to report that work and family obligations interfered with their learning during the term.
+[The same effect was observed by Salguero et al. at UC San Diego.](https://dl.acm.org/doi/10.1145/3446871.3469755) 
+**However, no such effect was observed at the two participating Cal Polys.**
+
+These results underscore the importance of attending to institutional contextual differences when evaluating research results or considering (or disregarding) the adoption of curricular initiatives.
+
+---
+
     </description>
   </item>
   
@@ -39,7 +277,170 @@
     <guid>https://ayaankazerouni.org/blog/end-user-programming/</guid>
     <pubDate>Tue, 25 Jun 2024</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/end-user-programming/">https://ayaankazerouni.org/blog/end-user-programming/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/end-user-programming/">https://ayaankazerouni.org/blog/end-user-programming/</a>.]]> -->
+      This is an overview of the research paper _[Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students](/publications#jce2024end-user-programming)_, published in the American Chemical Society (ACS) Journal of Chemical Education.
+
+The work was conducted at Cal Poly and was led by MS student [Will Fuchs](https://www.linkedin.com/in/wifuchs).
+Our co-authors were [Dr. Ashley McDonald](https://chemistry.calpoly.edu/content/faculty/ashley_mcdonald) from the Chemistry &amp; Biochemistry department at Cal Poly and [Dr. Aakash Gautam](https://aakash.xyz) from the CS department at the University of Pittsburgh.
+
+This article should be of interest to educators in disciplines **other than computer science or software engineering** who are teaching their students programming.
+For more details, see [the paper](/publications#jce2024end-user-programming).
+
+## Where should we teach Chemists to program? 
+
+Professional software engineers are a minority of professionals who use programming in their work.
+They are vastly outnumbered by professionals in other disciplines who use programming in their work (like chemists, climate scientists, or graphic designers).
+These professionals are often the end-users of the software they create, and they are referred to as _end-user programmers_. 
+Students preparing to enter these roles tend to learn _some_ programming at the undergraduate level, through various channels, each with its own challenges.
+
+**They could take the same intro programming course as computing majors**, but this means they would be learning programming that is mostly disconnected from their discipline-specific context.
+An additional challenge, at least at Cal Poly, is that computing departments tend to be over-enrolled and under-staffed.
+If whole majors begin requiring their students to take our introductory CS course, we would quickly buckle under the enrolment pressure.
+&lt;!-- (Or, maybe everyone _should_ take it, just like they take Calculus, English, or History courses. But that&apos;s a separate conversation.) --&gt;
+
+**They could take specially-designed contextualised computing courses**, where they learn programming specifically geared toward their discipline.
+For example, the Media Computation courses at Georgia Tech have been hugely successful at getting folks from different (demographic as well as professional) backgrounds interested in programming, and &quot;CS + X&quot; programs are sprouting up at universities all over the USA.
+This is great, but difficult for a campus to operationalise for all its majors that would use programming.
+If these courses were designed to cast a wide-enough net, we&apos;d end up back at problem #1 above.
+
+**They could learn programming within their discipline-specific courses**.
+An obvious challenge here is that most courses are already bursting at the seams with content, and the designers of those courses are often loath to let go of much of it to make room for new content.
+I&apos;m the same---when I design a course I could swear that every single topic is absolutely essential.
+But the reality is that about 85% of the material is essential, and the rest is just, like, my opinion, man.
+
+So, if we want to add programming to discipline-specific courses to prepare, say, chemists to use programming in their work, we need Chemistry professors who know how to program, and who care enough about its importance in their discipline to include it in their already-full curricula.
+
+**Happily, that describes the Physical Chemistry instructors at Cal Poly SLO.**
+
+Typically during their third year of undergraduate studies, students majoring in Chemistry or Biochemistry at Cal Poly take a 3-course sequence of Physical Chemistry courses, in which they also learn programming.[^1]
+Including programming alongside thermodynamics, kinetics, and mechanics certainly does add to the instructional obligations of these courses, but over a decade with the curriculum has also revealed desirable gestalt effects---students not only learned _to_ program; they also learned Chemistry _through_ programming.
+Many students go on to successfully apply their newfound computing skills to real problems in their research labs at Cal Poly and beyond.
+
+[^1]: At the time this work was carried out, the courses taught MATLAB, and are now switching to Python.
+
+However, many students also seem to intensely dislike the programming aspects of the courses: they find it challenging, are unmoved by arguments that it would benefit them professionally, and generally don&apos;t &quot;reach for computing&quot; to help them solve Chemistry problems outside the classroom.
+Most of them also self-select out of future computing experiences, opting out of an elective Computational Chemistry course following the 3-course Physical Chemistry sequence.
+
+## Understanding students&apos; challenges with learning programming
+
+We (Chemists and Computer Scientists at Cal Poly) conducted two studies to learn about the challenges that the students faced while learning programming in these Chemistry courses.
+In the first study, we used surveys to learn about students&apos; attitudes toward programming and their programming abilities.
+In the second study, we conducted one-on-one interviews to gain deeper insight into their attitudes and abilities.
+
+### Preliminary surveys
+
+We used the [**attitudes toward computing survey**](https://dl.acm.org/doi/10.1145/3287324.3287369) to measure students&apos; self-reported _confidence_ with and _enjoyment_ of computing, their perception of computing as being _important and useful_, and the strength of their sense that they _belong_ in computing.
+
+Results were...not fun.
+On average, the students reported negative attitudes toward computing: low confidence, low enjoyment, and low sense of belonging to a computing community.
+They did perceive computing to be marginally useful.
+
+
+{% include image.html
+  wrap=true
+  url=&quot;attitudes.png&quot;
+  width=&quot;100&quot;
+  inline=&quot;true&quot;
+  alt=&quot;A column chart showing the average reported confidence with and enjoyment of computing, sense of belonging in computing, and sense that computing is important.&quot;
+  description=&quot;Students&apos; average responses to ATC questions. Questions were answered on a 1–5 scale from &lt;i&gt;Strongly disagree&lt;/i&gt; to &lt;i&gt;Strongly agree&lt;/i&gt;&quot;
+%}
+
+To measure students&apos; abilities with programming, we used the [**MCS1 concept inventory**](https://peer.asee.org/mcs1-a-matlab-programming-concept-inventory-for-assessing-first-year-engineering-courses), a peer-reviewed assessment of MATLAB knowledge. (It&apos;s a multiple-choice test.)
+
+Students generally performed poorly on the assessment.
+Part of this is attributed to the fact that it included some language elements that they had not seen before.
+But there were also challenges on questions that &quot;should&quot; have been doable.
+
+### Interviews
+
+Ok, so the students had negative attitudes toward computing, and struggled with MATLAB questions.
+That&apos;s kind of all we can say from numerical responses to Likert questions.
+We can say nothing about what causes these negative attitudes, or what exactly their misunderstandings are that lead to their difficulties on the test.
+
+Will, the MS student leading the work, conducted one-on-one interviews with 8 students enrolled in the Physical Chemistry courses.
+He asked them questions from the MCS1 assessment, and instead of framing them as multiple-choice questions, he framed them as open-ended short-answer questions, and asked the students to &quot;think out loud&quot; while answering them.
+He recorded the interviews (with the students&apos; consent), and together we analysed the transcripts.
+
+Details are in [the paper](/publications#jce2024end-user-programming), but here are the highlights:
+
+* We used [Fuller et al.&apos;s Matrix Taxonomy](https://kar.kent.ac.uk/23997/1/TaxonomyFuller.pdf) to categorise the level at which students were operating in terms of their programming knowledge. Students were generally competent with code comprehension involving patterns they had seen before.
+* This served them well when they saw similar-looking programs, but stymied them when they were faced with different representations of the same concepts. They lacked an abstract enough mental model of MATLAB&apos;s syntax and semantics.
+* Without having been taught explicit strategies to solve programming problems, students faced challenges with program planning. This caused difficulties with multi-step problems, which were discouraging and daunting.
+
+For example, consider the following MATLAB expression (a Boolean AND): `and(a, b)`
+
+The students had previously only seen Boolean expressions in the context of conditional branching using `if` statements.
+
+So, students who were correctly able to trace code involving conditional branching (e.g., `if and(a, b)`) were then *un*able to trace code that included `c = and(true, and(true, false))`
+
+Lacking abstract understandings for _statements_ and _expressions_, students combined the notions of `if` and `and` into a single construct based on superficial characteristics of programs they had seen before. Students faced similar difficulties with things like matrix concatenation and functions.
+
+In addition to questions adapted from the MCS1, Will also asked the students about their feelings toward programming in general, and their confidence with the programming they had learned.
+He found that MATLAB appeared to be little more than a glorified graphing calculator to most of the students.
+The students&apos; collective mindset was exemplified nicely by this quote from one participant:
+
+&gt; So I literally threw my calculator away and started doing everything on MATLAB.
+
+Most students did not foresee themselves using MATLAB in their futures, and felt that they had not gained generalisable ability with programming that they could use outside the classroom.
+Some more quotes from students are below:
+
+&gt; I know how to do explicitly what I&apos;ve learned, and not much else.
+
+&gt; I think with Chemistry they do a really good job of teaching us. But there&apos;s no, like, okay we&apos;re only going to be doing like MATLAB and like learning the very basics of the basics.
+
+&gt; I should probably understand everything computationally little bit more because that&apos;s the way that the research is moving and I think that&apos;s, you know, an important part of the research future. So I want to develop these skills more but I&apos;m like I don&apos;t know what specific applications really look like.
+
+## Final remarks 
+
+Our paper closes with some recommendations for teaching programming to these would-be end-user-programmers:
+
+* **Promote abstraction and abstract understandings**. We discuss strategies for helping students achieve abstraction, for example, using multiple representations of the same concepts to help disentangle students&apos; understandings from the specific examples they have learned with. 
+* **Decomposition**. Use sub-goals to break programming problems into small steps, and show examples of function reuse.
+* **Meta-cognitive awareness**. Teach an explicit programming problem-solving process so that students may confidently approach larger multi-step problems. This should include steps for problem comprehension, testing, and debugging.
+
+If you&apos;re thinking that these recommendations would not be out of place in a book titled _How to Teach Programming to Anyone, Not Just These Chemistry &amp; Biochemistry Students_, you&apos;re right!
+These are all things that we try to accomplish in the introductory programming courses taken by our CS and SE majors.
+But these skills as they relate to programming [tend not to be prioritised](https://faculty.washington.edu/ajko/papers/Ko2011EndUserSoftwareEngineering.pdf) in end-user programming education.
+However, though these students are not aiming to become software engineers, they _will_ engineer software, potentially of a critical nature, and their programming education should account for this.
+
+The good news is that upper-division Chemistry and Biochemistry students already have significant skill with abstraction, decomposition, and meta-cognitive awareness.
+These skills are obviously not unique to computer science or programming---they are practised all the time in other STEM disciplines.
+And so our final recommendation is to **harness the students&apos; and instructors&apos; existing competencies** with abstraction, decomposition, and meta-cognitive awareness while teaching them in the context of programming.
+
+For example,
+
+* **Abstraction** is already used when reasoning about chemical equations, which are lightweight abstractions of real-world phenomena.
+* **Decomposition** has been espoused as an important skill even in very early Chemistry education, e.g., scientific modelling skills involving breaking down a complex system into smaller elements and mechanisms.
+* **Meta-cognitive awareness** is required to successfully navigate the multi-step process involved in identifying a chemical compound&apos;s structure from its spectroscopic data.
+
+The programming aspects of the Physical Chemistry courses are being revamped as I write this (including a transition to Python)---more updates soon!
+
+---
+
+## Postscript
+
+**Why did we publish this paper at the Journal of Chemical Education, and not at a computing education venue like Koli Calling or SIGCSE?**
+
+I am confident that this paper is published at the right venue, but it took a bit to get here.
+
+The manuscript was rejected from computing education venues twice!
+Both times, the primary (but not the only) hit against it was that it was probably of more interest to Chemistry instructors than CS instructors (the implication being that the readership of computing education research publications are mostly computing instructors).
+I have two reasons to push back against this.
+First, my view is that our Chemistry faculty who are teaching programming _are_ computing instructors — they are teaching computing!
+Second, I perhaps naïvely expect that if instructors in other disciplines are interested in research about teaching computing, they would look in computing education research publications for recommendations or techniques.
+
+(Ok, fine, I also have some sense of professional identity wrapped up in publishing at my &quot;home&quot; venues.)
+
+Meanwhile, as part of her broader work in computational Chemistry education, our co-author Ashley had been working with her colleagues to update the curriculum based on this work.
+She&apos;d been travelling to meetups of Chemistry educators and talking about this work, and reported high levels of interest and engagement from other Chemists working to include computing in their courses.
+The audience for the paper was right there.
+
+So, we made _significant improvements_ to the manuscript (for example, we added the entire discussion section on abstraction, decomposition, and meta-cognitive awareness) and submitted it to the Journal of Chemical Education, where it ended up with extremely positive reviews.
+
+I&apos;m also grateful to be in a department where my scholarly output is not expected to exist in a narrow selection of publication targets---without this, there would&apos;ve been a whole other calculus to consider.
+
+---
+
     </description>
   </item>
   
@@ -51,7 +452,74 @@
     <guid>https://ayaankazerouni.org/blog/good-to-be-bad/</guid>
     <pubDate>Sun, 31 Mar 2024</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/good-to-be-bad/">https://ayaankazerouni.org/blog/good-to-be-bad/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/good-to-be-bad/">https://ayaankazerouni.org/blog/good-to-be-bad/</a>.]]> -->
+      *I signed up for a short machine shop training, and was reminded what it&apos;s like to do something for the first time and struggle with it. In related news, I am teaching intro programming again in the Fall.*
+
+A couple of weeks ago some colleagues and I signed up for the Cal Poly College of Engineering [Red Tag Tour](https://ceng.calpoly.edu/connection/2019/09/red-tag-training-2/) and earned our &quot;red tags&quot;.
+These are passes that allow us to use the wood and sheet metal shop on the Cal Poly campus.
+It was a 3-hour session that started with a whirlwind introduction to the machine shop in the Aero Hangar on campus, following which we worked through a scaffolded sequence of steps to make our own bookends.
+Here&apos;s mine:
+
+{% include image.html
+  wrap=true
+  url=&quot;bookend.png&quot;
+  width=&quot;400px&quot;
+  alt=&quot;A bookend made by me in a machine shop training session.&quot;
+  description=&quot;Not just my best handiwork, but also my only handiwork.&quot;
+%}
+
+It was a blast! I think it&apos;s super cool that this is offered on our campus, and that they had a day where faculty could attend.
+And I&apos;m super grateful to the two student volunteers who were extremely patient with us.
+What I do with my cool new red tag pass remains to be seen.
+
+Anyway, we used a number of tools to make our bookends:
+
+* A compound slide to cut a piece of acrylic
+* A few different drill presses
+* A miter saw to cut a length of wood
+* A step shear to cut a sheet of metal (by far the most fun tool to use)
+* A rotex punch to punch holes in the metal
+* A corner shear to cut a 90&amp;deg; corner off the metal
+* A finger brake to bend the sheet metal
+
+It was a nicely-designed activity meant to introduce us to the types of tools that are available in a typical machine shop and what they do.
+
+I had never set foot in a machine shop before, so this was all new to me. And boy was I bad at it.
+
+By that I mean there were many steps with which I struggled in many little ways; ways that I didn&apos;t expect while watching the student volunteer demonstrate the steps beforehand.
+For example:
+
+* While cutting the acrylic piece, I stopped pushing the acrylic through the saw when I felt the resistance reduce. But I had only cut through 3/4 of the acrylic, and didn&apos;t immediately see this from my line of sight. This was easy to fix, but resulted in a cut that was not super smooth.
+* While countersinking the holes I drilled in my acrylic piece, I first drilled too little, and then over-corrected and ended up with comically large rims (far bigger than the heads of the screws that eventually went in).
+* While punching holes in the sheet metal, I didn&apos;t do so in a smooth motion and ended up with holes that were jagged on the other side. Thanks to the student volunteer who hammered away at them to flatten them out!
+
+It&apos;s been a while since I did something _totally, completely_ new to me.
+It felt good to be that far from familiar territory!
+First, I promptly forgot a fair bit about all the tools to which I was introduced.
+Then, after watching the student volunteer demonstrate the steps to build the bookend, I thought &quot;okay, looks fine, I can do that&quot;.
+Finally, I proceeded to struggle in a bunch of little ways that neither they nor I expected.
+
+**The experience has made me a bit more empathetic toward students in my introductory programming courses.**
+For example, the students in my CS 0 class have often never programmed before I see them, and they are doing something _totally, completely_ new to them.
+
+A really reductive description of my intro course might be that I introduce students to a bunch of &quot;tools&quot; (~~drill presses, step shear, miter saw~~ control flow, functions, test cases) and give them scaffolded practice tasks (~~making a bookend~~ making data visualisations).
+They then proceed to work on their bookends, and while doing so struggle in little ways that neither they nor I expected.
+
+It&apos;s hard to do things for the first time!
+
+It&apos;s also worth remembering that I don&apos;t have any personal investment in being good at wood- or metal-working, so I was comfortable asking for help when I needed it, and was okay with taking a bit more time to make my bookend if I needed to.
+
+**This is usually not so for first-year CS students.**
+At Cal Poly we have a &quot;competitive enrolment policy&quot;, i.e., students are admitted directly into the CS major, or need to jump through some GPA hoops to transfer into the CS major.
+This can be a bad thing,[^competitive-enrolment-policy] in part because it results in students already having a bunch of perceived self-worth wrapped up in being good at computer science, which can get in the way of their learning.
+
+Anyway, I&apos;m grateful to the Red Tag training for (1) existing, and (2) reminding me what it&apos;s like to be a student doing something for the first time.
+I will try to remember the feeling during Q&amp;A sessions and office hours.
+
+---
+
+[^competitive-enrolment-policy]: Nguyen &amp; Lewis. _[Competitive Enrollment Policies in Computing Departments Negatively Predict First-Year Students’ Sense of Belonging, Self-Efficacy, and Perception of Department](https://par.nsf.gov/servlets/purl/10195776)_
+
     </description>
   </item>
   
@@ -63,7 +531,112 @@
     <guid>https://ayaankazerouni.org/blog/test-feedback-sensemaking/</guid>
     <pubDate>Thu, 04 Jan 2024</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/test-feedback-sensemaking/">https://ayaankazerouni.org/blog/test-feedback-sensemaking/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/test-feedback-sensemaking/">https://ayaankazerouni.org/blog/test-feedback-sensemaking/</a>.]]> -->
+      This is an overview of the research paper _[A Model of How Students Engineer Test Cases with Feedback](/publications#toce2023testing)_ published in ACM Transactions on Computing Education. The work was conducted at Cal Poly and was led by MS student [Austin Shin](https://www.linkedin.com/in/amshin98/).
+
+## Background
+
+Most programming courses require students to write automated software tests to verify and demonstrate the correctness of their solutions to programming problems.
+The quality of these test suites can vary in terms of their defect-detection capability.
+The thoroughness of a test suite can be measured using a *test adequacy criterion* like [code coverage](https://en.wikipedia.org/wiki/Code_coverage) or [mutation analysis](https://en.wikipedia.org/wiki/Mutation_testing).
+
+In most CS courses, it is matter of course to assess both the correctness of students&apos; programmed solutions as well as the thoroughness of their software tests.
+As students are encouraged to frequently write and run their own tests to check the correctness of their programs, so they are encouraged to frequently assess the thoroughness of their tests using one of the above criteria.
+
+Within this context, it is useful to understand how students respond to software testing feedback while creating test suites.
+
+## Summary
+
+We qualitatively studied how students made sense of software testing feedback generated using two feedback mechanisms: code coverage and mutation analysis.
+
+Our findings are summarised in the process model below.
+
+{% include image.html
+  url=&quot;process-model.png&quot;
+  description=&quot;A process model for how novices write software tests when being guided by a test adequacy criterion (code coverage or mutation analysis).&quot;
+  alt=&quot;A process diagram showing a novice&apos;s test selection process. A participant receives a testing task, then reads the source code or program description to first understand the problem and program. Once this is done, they write an initial set of tests based on experience and intuition. If any tests fail, the participant re-evaluates their understanding. Once all tests pass, they receive test adequacy feedback. They use strategies like code tracing to identify gaps in branch or mutation feedback. If mutation feedback is too difficult to address, the participant may fall back to addressing branch coverage instead. Once all feedback is satisfied, the testing task is done.&quot;
+%}
+
+## Method
+
+We did a series of one-on-one interviews in which we gave students a number of small programs for which they were asked to write test cases.
+Students were asked to think out loud while performing the testing tasks, and the sessions were recorded.
+
+Interviews went roughly as follows:
+
+1. Warm-up problem, with no testing feedback
+2. First testing problem, with no testing feedback
+3. Warm-up problem, with code coverage feedback
+4. Second testing problem, with code coverage feedback
+5. Warm-up problem, with mutation-based feedback
+6. Third testing problem, with mutation-based feedback
+
+Below is the interface in which students were given testing exercises.
+
+{% include image.html
+  url=&quot;muttle.png&quot;
+  description=&quot;Each exercise lets the user create, modify or delete test cases (A). If their test cases pass, they are given code coverage feedback in the coloured gutter next to the line numbers (B) or mutation-based feedback in the form of bug badges above the lines of code where mutations were made (C) In this example, the statement &lt;code&gt;return x * y&lt;/code&gt; was mutated to &lt;code&gt;return x ** y&lt;/code&gt;. The interviewer used the toggles at the top of the screen to switch between no coverage, code coverage, or mutation-based feedback, based on the experimental condition (D).&quot;
+  width=&quot;65%&quot;
+  alt=&quot;A screenshot of the testing interface, showing where the user creates test cases and receives branch coverage or mutation coverage feedback about those test cases&quot;
+%}
+
+We qualitatively analysed the transcripts from these interviews.
+For details about our analytic method, see [the paper](/publications#toce2023testing).
+
+## Results 
+
+Here are the highlights:
+
+**Problem and program comprehension had a strong influence on students&apos; abilities to write useful tests.**
+If they had a shaky understanding of the problem or the code under test, their ability to address gaps in code coverage or mutation coverage suffered.
+
+**Various intuitions came into play when no feedback was available.**
+Nearly all students started with a &quot;happy path&quot; test case---something simple that they could quickly work out in their minds.
+They may have been using these simple test cases as scaffolds to confirm that they understood the problem and program correctly.
+
+When no testing feedback was available, students often chose test inputs based on intuitions about &quot;edge cases&quot;---these most often took the form of boundary values for the data type at hand (e.g., zero, negative numbers, or empty lists).
+Importantly, these types of inputs were chosen whether or not they represented unexplored [equivalence partitions](https://en.wikipedia.org/wiki/Equivalence_partitioning) in the input space.
+
+Some students started by identifying beacons[^beacons] in the problem description or program, and targeting their initial tests toward those beacons.
+For example, in the _Rainfall problem_, the program is given an input list of numbers (daily rainfall), and is expected to compute the mean of all the positive numbers that occur before a &quot;sentinel value&quot; (say, 99999).
+In our interviews, most students zeroed in on that sentinel value requirement and wrote an early test to target that requirement.
+
+Finally, because students had seen code coverage before, some of them mentally simulated code coverage to self-assess their own test suites and identify gaps.
+
+**Code tracing strategies were employed while addressing code coverage feedback.**
+As described above, code comprehension played an important role in students&apos; abilities to address coverage gaps.
+They used various strategies to manage the cognitive load of code comprehension involved during testing.
+For example,
+
+- While tracing code to identify gaps in (code or mutation) coverage, students often limited their tracing to the *basic block*[^basic-block] in which the gap existed.
+- They used *variable roles*[^variable-roles] to help them reason about the variables involved their tracing.
+- Sometimes, they simply ignored the feedback and opted to write tests based on their intuitions.
+
+**Addressing mutation-based feedback proved to be cognitively demanding.**
+Reasoning about mutation-based feedback appeared to be a high-cognitive-load activity for the interviewed students.
+To devise test cases to address a gap in mutation coverage, students needed to develop and maintain an understanding of the mutated program *while simultaneously* maintaining their understanding of the original program.
+Moreover, they need to identify to point at which the two programs diverge.
+This was a demanding task.
+
+Even after demonstrating an understanding of the idea behind mutation analysis, students struggled mightily on certain mutants.
+One student was so distracted by this parallel comprehension task that when they eventually wrote a test case, they wrote one that would *pass* the mutated program, and *fail* the original program (i.e., the opposite of the task at hand).
+
+Difficulties more commonly arose for mutants that appeared at conditional branching points in the program, as opposed to, say, mutants that involved changes to arithmetic expressions or variable assignments.
+
+As before, students developing strategies to manage this demanding parallel code tracing task:
+- Like with code coverage, they traced basic blocks and reasoned about the program in terms of variable roles.
+- When addressing mutation-based feedback was too difficult, they &quot;fell back&quot; to addressing the weaker criterion (code coverage) instead. This heuristic---of simply targeting code coverage instead of mutants---was sometimes fruitful.
+- Finally, some students ignored the specific mutations and focused only on the fact that they were *present*. The presence of an un-addressed mutant alerted students to &quot;suspicious&quot; lines of code, and they did not need to look at the specific mutation in order to target their testing toward those lines.
+
+For more details, see [the paper](/publications#toce2023testing).
+
+---
+
+[^basic-block]: A basic block in a program is a straight-line sequence of statements such that &quot;if the first statement is executed, all statements in the block will be executed&quot;.
+[^variable-roles]: [Sajaniemi](https://ieeexplore.ieee.org/document/1046340) suggests that a small number of categories can describe the purposes of most variables in most programs. When novice programmers were explicitly taught to recognise these categories, their performance on code comprehension tasks improved significantly. This general idea has a [strong basis in human cognition](https://www.manning.com/books/the-programmers-brain), even if the specific categories suggested are are bit limited to imperative programming languages.
+[^beacons]: Prominent structures or symbols (variable names, function names, comments) in a program (or problem description, here) that help a reader to quickly understand the program&apos;s purpose.
+
+
     </description>
   </item>
   
@@ -75,7 +648,117 @@
     <guid>https://ayaankazerouni.org/blog/help-seeking-behaviours/</guid>
     <pubDate>Sat, 13 Nov 2021</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/help-seeking-behaviours/">https://ayaankazerouni.org/blog/help-seeking-behaviours/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/help-seeking-behaviours/">https://ayaankazerouni.org/blog/help-seeking-behaviours/</a>.]]> -->
+      &lt;small&gt;
+_This article was originally posted on [my Medium blog](https://ayaankazerouni.medium.com) on November 13, 2021._
+&lt;/small&gt;
+
+This is an overview of the paper _[Patterns of Academic Help-Seeking in Undergraduate Computing Students](https://ayaankazerouni.github.io/publications#koli2021help-seeking)_, appearing at the 2021 [Koli Calling](https://www.kolicalling.fi/) conference on computing education research. It was written by my student collaborator Augie Doebling and myself.
+
+Help-seeking is an expected phase in learning or problem-solving. The process involves a fair bit of self-regulatory skill; a learner must recognise that a problem or difficulty exists, assess whether they need help to surmount it, identify a help resource, and finally seek and process help.
+
+Undergraduate students tend to have a variety of academic help resources at their disposal. For example, taking Cal Poly as a typical example, students can seek help with their coursework from online sources, their peers, instructors, or the departmental peer tutoring centre.
+
+Much has been written about how students use individual resources, such as [TA office hours](https://dl.acm.org/doi/10.1145/3291279.3339418) or [Piazza](https://dl.acm.org/doi/10.1145/3017680.3017745). But what we know holistically about how computing students navigate this array of resources is largely anecdotal. What resources do they tend to use most frequently? Does this differ for different demographic groups? What influences students to approach or avoid certain resources?
+
+We conducted a mixed-methods study to better understand the help-seeking behaviours of students in the CSSE department at Cal Poly.
+
+* **Survey:** Distributed in a wide variety of Cal Poly CS courses, asking students about the frequency with which they accessed various help resources.
+* **Interviews:** A series of one-on-one interviews with students to learn the factors that influence their help-seeking decisions.
+
+We discussed the following resources (acronyms are for the figure that follows):
+
+* The instructor&amp;mdash;in office hours (IN-OH), in class (IN-CL), or online (IN-OC)
+* The TA&amp;mdash;in class (TA-CL) or online (TA-OC)
+* Peers&amp;mdash;enrolled in the same class (PEC) or other classes (OP)
+* The peer tutoring centre (CSTC)
+* Online materials&amp;mdash;specific to the course (OM-SC) or not specific to the course (OM-NSC)
+
+## Frequency of help-seeking
+
+We received 138 survey responses about the frequency with which students accessed various help resources.
+
+&lt;div style=&quot;background-color: grey;&quot;&gt;
+{% include image.html
+  url=&quot;frequency.png&quot;
+  description=&quot;Frequency of accessing various help resources.&quot;
+%}
+&lt;/div&gt;
+
+Students most frequently relied on **online sources**, followed closely by their **peers in class**.
+They reported modest reliance on the **instructor** for help, preferring to ask questions in class or online rather than going to office hours.
+
+Students did not report much use of **course TAs** or the **peer tutoring centre**.
+The former may be because TAs at Cal Poly do not hold office hours like they might at other universities&amp;mdash;there is typically much more contact with instructors than with TAs.
+
+## Trends by student demographics
+
+There was no difference in the overall frequency of help-seeking (across all resources) between men and women.
+However, women reported turning to the &quot;social&quot; help resources more often than men did: they attended instructor office hours and accepted help from peers roughly _Once a Week_ compared to men’s _Every Few Weeks_.
+
+**Why might this be?** [Previous research](https://bera-journals.onlinelibrary.wiley.com/doi/10.1002/rev3.3196) has suggested that women tend to have a better attitude toward help-seeking than men do, viewing it more as a learning strategy and less as a sign of dependence.
+It’s possible that students who are less inclined to seek help from social sources perceive some level of threat to their self-esteem from the act of seeking help.
+
+Finally, computing majors reported relying on their peers and online sources more often than did non-computing majors. No other notable patterns were observed for other resources and demographic groups (e.g., ethnicity, prior experience with computing, or academic progress).
+
+## What makes students approach or avoid help resources?
+
+Having discovered trends and correlations regarding frequency of accessing help resources, we turned to interviews to understand why students make the help-seeking decisions that they do.
+
+We asked students about the primary resources they turn to for academic help, the resources that they tend to avoid, and their reasons for both. A number of themes emerged from our qualitative analysis of interview transcripts.
+
+First, students tended to progress from informal to formal sources of help: a frequently reported pattern was the progression from *online sources* to *peers* to *instructors*, where students only progressed to the next resource if the previous resource did not help surmount a problem.
+
+Below, I describe students’ reasons for using or not using different sources of academic help.
+
+### Online sources
+
+Reasons for using:
+
+* *Ease of access:* Just a few button presses away.
+* *Concrete examples:* Sites like StackOverflow were reported as being useful when one is trying to “get the ball rolling” with a new language or API, but less useful for obtaining concept knowledge about a topic.
+ 
+Reasons for not using:
+
+* *Low signal-to-noise ratio:* It takes experience and expertise to sort through the wealth of information available through a simple Google search. Students reported that online resources became more useful to them as they became more experienced programmers, but were overwhelming when they were first learning programming.
+
+Interestingly, some students did not report online sources in their help-seeking process until specifically asked about them; they did not view it as seeking help, but rather viewed it as helping themselves.
+
+### Peers
+
+Reasons for using:
+
+* *Ease of access:* Peers are just a text message away.
+* *Stress-free help:* Peers tend to not judge one’s lack of knowledge. There is less (perceived or actual) “threat” from seeking help from a peer than there is from, say, course staff.
+
+Reasons for not using:
+
+* *Lack of a peer network:* First-year students, transfer students, or students from historically minoritised groups may not have access to a solid network of peers.
+* *Fear of academic dishonesty:* Students worried about accidentally breaking rules related to academic dishonesty if they worked too closely with peers. For example, they reported being hesitant to speak in detail about (or ask others about) their programming projects.
+
+### Instructors
+
+Reasons for using:
+
+* *Depth of content knowledge:* Instructors are knowledgeable about their subject matter, and often provide the definitive help needed to surmount a problem.
+* *Depth of pedagogical content knowledge:* Instructors have seen many of the common bugs, pitfalls, and strategies used for their assignments, and are best suited to help when a student is struggling.
+* *Forming a connection:* Synchronous office hours helped some students form connections with their instructors, making help-seeking and learning a stress-free experience.
+
+Reasons for not using:
+
+* *Tacit knowledge:* Instructors often have an “expert blind spot”, and the help they give often assumes knowledge that the student (1) doesn’t have, or (2) can’t automatically transfer to their current problem.
+* *Approachability:* Students reported that instructors could often be intimidating (or worse, demeaning) when they were asked for help. Importantly, many students reported that poor experiences with one instructor made them less likely to seek help from any instructors in the future.
+
+## Recommendations for CS instructors or departments
+
+Based on students’ responses, we close with some recommendations for reducing the barriers to seeking academic help.
+
+* **Online sources**&amp;mdash;In early courses, model a process for finding information online and identifying high-quality sources. This need not be limited to StackOverflow answers; it can also include official documentation for programming languages or APIs.
+* **Peers**&amp;mdash;Feature collaborative work more prominently in early courses. This could include team projects as well as teaching practices like peer instruction or think-pair-share. Featuring more collaborative work in earlier courses would provide students access to peers to work with “legally”, and would help them form peer networks that could last into future courses.
+* **Instructors**&amp;mdash;Ensure that classrooms and office hours are welcoming spaces. Instructors play a massive role in shaping the overall climate of a classroom or department. Being cognizant of this outsized impact and taking steps to ensure a welcoming atmosphere could have huge positive implications for student success.
+
+---
+
     </description>
   </item>
   
@@ -87,7 +770,169 @@
     <guid>https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/</guid>
     <pubDate>Wed, 17 Mar 2021</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/">https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/">https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/</a>.]]> -->
+      &lt;small&gt;
+_This post originally appeared on [my Medium blog](https://ayaankazerouni.medium.com) on March 17, 2021._
+&lt;/small&gt;
+
+This is an overview of the paper *[Fast and Accurate Incremental Feedback for Students’ Software Tests Using Selective Mutation Analysis](https://www.sciencedirect.com/science/article/pii/S0164121221000029)*, published in the Journal of Systems and Software. The paper is freely available. My co-authors were [Jamie Davis](https://davisjam.github.io), [Arinjoy Basak](https://arinjoy-basak.github.io/), [Cliff Shaffer](https://people.cs.vt.edu/shaffer), [Francisco Servant](https://people.cs.vt.edu/fservant), and [Steve Edwards](https://people.cs.vt.edu/edwards).
+
+TL;DR: Use the `RemoveConditionals` and arithmetic operator deletion (`AOD`) mutation operators for fast and reliable mutation analysis.
+
+## Summary
+
+Feedback about students’ software tests is often generated using code coverage criteria (like statement or condition coverage). These can be unreliable given that code coverage is satisfied simply by the execution of the code-under-test, and not by the actual assertions in the tests.
+
+*Mutation analysis* is a stronger but much more costly criterion for measuring the adequacy of software tests. In this paper, we evaluated the feasibility of existing approaches to mutation analysis for producing automated feedback for student-written software tests. After finding that existing approaches were infeasible, we proposed new approaches for fast and accurate mutation analysis. Finally, we evaluated our proposed approaches for validity on an external dataset of open-source codebases, and report that our results may be generalisable beyond our educational context.
+
+This post is of interest to Computer Science educators interested in giving students useful feedback about their software testing, and to software engineers interested in using mutation analysis to help them write stronger software tests.
+
+## Background
+
+Software testing is important. As it is increasingly incorporated into undergraduate programming courses, teachers are giving students feedback not only about the correctness of their programs, but also about the quality of their software tests.
+
+Much of this feedback is based on assessments of test adequacy, most commonly *code coverage criteria*.
+
+Code coverage criteria are satisfied when structural elements (statements, conditions, etc.) of a program are exercised by a test suite at least once. For example, under statement coverage, the test suite’s adequacy is measured as the percentage of program constructs that are executed by the tests. Code coverage is **fast to compute** and **amenable to incremental feedback**. But it can be **unreliable**, because the criterion is not bound to the *assertions* in software tests, just to the underlying code that is executed.
+
+*[Mutation analysis](https://en.wikipedia.org/wiki/Mutation_testing)* is a far more reliable option. Small changes (*mutations*) are made to the target program, creating incorrect variants called *mutants*. The test suite is run against these mutants, and its adequacy is measured as the percentage of mutants that are detected by the test suite (i.e., by a failing test). The different kinds of mutations you could make are called *mutation operators*.
+
+Mutation analysis subsumes code coverage as a test adequacy criterion[^1], and has been shown to be a **reliable measurement of test adequacy**. It can also be used to produce **incremental feedback**: I don’t need a student to have finished a project to give them feedback about their tests.
+
+## Reducing the cost of mutation analysis
+Unfortunately, mutation analysis can be **prohibitively expensive** computationally. The number of mutants produced for even a moderately sized project (~1 KLoC) can reach well into the thousands. Running the test suite for each of these mutants can take several minutes, sometimes hours.
+
+Significant research effort has been devoted to reducing this cost. One such approach is *selective mutation*. The main idea behind selective mutation is to select a subset of mutation operators that give you the best “bang for your buck”. That is, out of the **Full** set of mutation operators (all available operators) you want a subset that gives you a reliable test adequacy score — one that is close to the “true” thoroughness of your tests — while producing a small number of mutants.
+
+Numerous such operator subsets have been proposed. One key example is the **Deletion** set, originally proposed by Roland Untch[^2] and reified by Jeff Offutt and colleagues[^3].
+
+Deletion operators create mutants by systematically deleting program constructs. This simple mutation scheme results in significantly fewer mutants. For example, if we were to remove the arithmetic operator in the expression `a + b`, we just create two mutants: `a` and `b`. This is in contrast to the four mutants that would be created by arithmetic operator **replacement**: `a — b, a / b, a * b, a % b`.
+
+We used the mutation analysis system [PIT](https://pitest.org), which is built for speed and scalability. We approximated the Deletion set in PIT to be:
+
+* **RemoveConditionals**, which replaces conditional statements with boolean literals, i.e., `true` (forcing the execution of the “if” branch) or `false` (forcing execution of the “else” branch)
+* **Arithmetic operator deletion (AOD)**. E.g., the expression `a + b` would produce the mutants `a` and `b`, removing the arithmetic operator (and one operand) entirely.
+* **NonVoidMethodCalls**, which replaces calls to non-void methods with the default values for the specific return type. That is, `int`-returning method calls would be replaced with 0, `Object`-returning method calls would be replaced with `null`, etc.
+* **VoidMethodCalls**, which simply removes calls to methods that do not return anything.
+* **MemberVariable**, which removes assignments to instance variables.
+* **ConstructorCalls**, which replaces calls to constructors with `null`.
+ 
+## Fast and accurate mutation-based feedback
+
+Students in our courses are allowed and encouraged to make many incremental submissions to the auto-grader to help them ensure they’re on the right track. As deadlines approach, this can result in bursty traffic placing enormous load on the server.
+
+We ran mutation analysis on 1389 submissions in two courses in the CS program at Virginia Tech: a second year course on Software Design and Data Structures, and a third-year course on Data Structures and Algorithms. Projects were implemented in Java, and students were required to turn in [JUnit](https://junit.org) test suites with their project submissions.
+
+Analysis was conducted on a machine with similar specifications as the one serving our auto-grading infrastructure, [Web-CAT](https://web-cat.github.io). We did not eliminate *equivalent mutants* from our data-set. These cannot be automatically identified, which makes eliminating them from our corpus a daunting prospect.
+
+We grouped submissions by source lines of code (SLoC), ranging from ~150 LoC to ~1200 LoC.
+
+{% include image.html
+  url=&quot;submission-groups.png&quot;
+  alt=&quot;A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code.&quot;
+  description=&quot;Groups of submissions based on source lines of code (SLoC). Dashed lines indicate group boundaries.&quot;
+%}
+
+For each operator subset, we looked at
+* **Computational cost:** the running time in seconds (i.e., how long would a student spend twiddling their thumbs waiting for feedback?) and the number of mutants produced per thousand lines of code
+* **Accuracy** at predicting coverage under the Full set. That is, if mutants under a given subset are killed by the test suite, how likely is it that the test suite will also kill mutants under the Full set?
+ 
+Preliminary results showed that comprehensive mutation (i.e., using all available mutation operators) was certainly too slow for our purposes. For submissions in the larger submissions groups, even the Deletion set took too long (nearly a minute) to produce feedback.
+
+That said, the Deletion set showed promise. As Offutt and friends reported, it produces a remarkably good approximation of mutation adequacy at a fraction of the computational cost of comprehensive mutation.
+
+Can we reduce this cost further?
+
+## Reducing the cost of the Deletion set
+*Do we need all six Deletion operators to make a useful approximation of mutation adequacy?*
+
+We used forward selection to determine an appropriate ordering of Deletion operators, set up as follows:
+
+* **Dependent variable:** Mutation coverage using all available operators
+* **Independent variables:** Mutation coverage under each individual Deletion operator
+* **Procedure:** Starting from an empty set of operators, we iteratively added the single operator that most improved a model predicting comprehensive mutation coverage, stopping when all Deletion operators were included or when the model could no longer improve.
+ 
+All Deletion operators were included, in the following order: `RemoveConditionals, AOD, NonVoidMethodCalls, VoidMethodCalls, MemberVariable, ConstructorCalls`
+
+Then, we examined the cost and effectiveness of incremental slices of this ordering:
+
+* **1-operator subset**, containing only `RemoveConditionals`
+* **2-operator subset**, containing `RemoveConditionals` and `AOD`
+* **3-operator subset**, containing `RemoveConditionals`, `AOD`, and `NonVoidMethodCalls`
+* …continued until the entire Deletion set is included
+ 
+## Result
+We found that most of the Deletion set’s effectiveness comes from the first two operators, i.e., `RemoveConditionals` and `AOD`. Inclusion of additional operators drives up the cost, but with little improvement to accuracy.
+
+{% include image.html
+  url=&quot;inc-subsets.png&quot;
+  alt=&quot;Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy.&quot;
+  description=&quot;The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R&lt;sup&gt;2&lt;/sup&gt; predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.&quot;
+  wide=&quot;wide&quot;
+%}
+
+In the figure above,
+* Each column represents a single submission group,
+* Each box plot represents the cost distribution of a subset for that submission group, in mutations-per-thousand-LoC,
+* Each blue dot represents the percent of variance in comprehensive mutation that is explained by that subset for the given submission group
+ 
+We can see that for submission groups 2–4, the cost drops precipitously from Deletion &amp;rarr; 3-op &amp;rarr; 2-op &amp;rarr; 1-op, while the accuracy stays more or less the same. For the smaller submissions in group 1, it’s possible that they simply do not provide enough opportunities for mutation to take place, so accuracy takes a huge hit for each mutation operator that is excluded.
+
+Some key takeaways:
+
+**The RemoveConditionals operator, by itself, is enormously effective** for the larger, more complex submissions, pushing 90% adjusted R&lt;sup&gt;2&lt;/sup&gt; for group 4 submissions (see the 1-op box plot in the rightmost subplot). For groups 2 and 3, it still does pretty well, but requires the inclusion of `AOD` operator to cross the 90% threshold.
+
+**Which operators are most useful seems tied to the project itself.** It is no surprise that `RemoveConditionals` does not do so well for the group 1 submissions: they are of minimal cyclomatic complexity, meaning they contain few conditional statements. Including `AOD` substantially improves the approximation, because these projects tend to focus more on arithmetic operations and less on data structure implementations (in contrast to the submissions found in the Data Structures and Algorithms course).
+
+## Validating our results
+At this point, it looks like mutation analysis using `RemoveConditionals` or `RemoveConditionals+AOD` are feasible options for giving our students fast and reliable feedback about their test suites.
+
+The question now is: are these results generally useful? Or are they specific to submissions produced by students in our courses?
+
+We turn to a data-set[^4] released by Marinos Kintis and colleagues containing programs, mutants, and mutation-adequate test suites, drawn from 6 open-source Java projects.
+
+Using this dataset, we evaluated the cost and effectiveness of the Deletion, 3-op, 2-op, and 1-op subsets.
+
+For each subset, we examined:
+* **Reliability**, measured by creating a subset-adequate test suite, and seeing how it held up using all possible mutants. In other words, if a developer stopped testing when they satisfied a subset, how thorough would their test suite be under comprehensive mutation?
+* **Cost**, measured as the percentage of all possible mutants that were created by the subset.
+ 
+Kintis et al. also hand-marked equivalent mutants in their published data-set. This gives us an opportunity to test our operator subsets in the absence of these mutants, addressing a limitation present in our analysis of our students’ submissions.
+
+## Result
+Results were largely in agreement with the study described above.
+
+In terms of **reliability**, it appeared that the incremental subsets were nearly as effective as the entire Deletion set, with the 3-op subset (`NonVoidMethodCalls` and beyond) bringing diminishing returns. This is similar to our original results.
+
+{% include image.html
+  url=&quot;val-mutation-score.png&quot;
+  alt=&quot;Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively.&quot;
+  description=&quot;Mutation coverage: Proportion of Full mutants detected by the subset-adequate test suite.&quot;
+%}
+
+The **cost** naturally decreases in the order Deletion &amp;rarr; 3-op &amp;rarr; 2-op &amp;rarr; 1-op.
+
+{% include image.html
+  url=&quot;val-cost.png&quot;
+  alt=&quot;The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively.&quot;
+  description=&quot;Computational cost: Number of mutants produced by each subset, expressed as a proportion of the Full number of mutants.&quot;
+%}
+
+## Final remarks
+These results suggest that the `RemoveConditionals` operator is a feasible option for fast and accurate mutation analysis. And this makes sense, because `RemoveConditionals` can be thought of as a stronger form of condition coverage&amp;mdash;only instead of simply requiring that all conditions evaluate to true and false at least once, it is satisfied when the tests depend on the conditions evaluating to true or false at least once. The difference is subtle, but results in much more thorough tests when used as a basis for measuring test adequacy.
+
+Including the `AOD` operator provides an even stronger criterion, and it especially useful when the code-under-test has few logical branches. Including further Deletion operators drives up the cost but without improvements in effectiveness.
+
+It remains to be seen whether mutation-based testing feedback using one or both of these operators helps students to produce stronger test suites. Future work should involve evaluating mutation analysis for its utility as a device for practice and feedback with software testing.
+
+
+---
+
+[^1]: [Offutt, 1996](https://cs.gmu.edu/media/techreports/ISSE-TR-96-01.pdf)
+[^2]: [Untch, 2009](https://dl.acm.org/doi/10.1145/1566445.1566540)
+[^3]: [Delamaro, Offutt, &amp; Ammann, 2014](https://ieeexplore.ieee.org/document/6823861)
+[^4]: [Kintis et al., 2016](http://pages.cs.aueb.gr/~kintism/papers/scam2016/)
+
     </description>
   </item>
   
@@ -99,7 +944,156 @@
     <guid>https://ayaankazerouni.org/blog/explicit-project-milestones/</guid>
     <pubDate>Wed, 14 Oct 2020</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/explicit-project-milestones/">https://ayaankazerouni.org/blog/explicit-project-milestones/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/explicit-project-milestones/">https://ayaankazerouni.org/blog/explicit-project-milestones/</a>.]]> -->
+      &lt;small&gt;
+&lt;i&gt;This article was originally posted on [my Medium blog](https://ayaankazerouni.medium.com) on October 14, 2020.&lt;/i&gt;
+&lt;/small&gt;
+
+*This is an overview of the research paper &quot;__[The Impact of Programming Project Milestones on Procrastination, Project Outcomes, and Course Outcomes](/publications#sigcse2021milestones)__&quot; by [Cliff Shaffer](https://people.cs.vt.edu/shaffer) and myself, appearing at SIGCSE 2021.*
+
+## Summary
+
+Undergraduate CS students often lack experience working on large, un-scaffolded, and long-running software projects. When they encounter such projects for the first time in intermediate programming courses, they do so without any procedural knowledge for how to go about tackling them. As a result, many of them struggle to complete these projects on time or correctly. As educators, we can do a better job supporting students as they approach these projects.
+
+We started giving students explicit project milestones with intermediate deadlines, to go with software project specifications in a third-year Data Structures course. The goal is to give students guided practice with project decomposition, time management, and successful project completion.
+
+In a quasi-experiment to determine the impact that milestones had on timeliness, project correctness, and course outcomes, we found that:
+* Milestones had a considerably strong effect on timeliness, reducing the rate of late submissions by nearly 30%
+* Students with milestones produced projects with slightly higher correctness than students without milestones
+* Milestones had little effect on frequencies of course outcomes, with its positive effects limited to the “students in the middle”. Unfortunately, just as many students failed the course, and just as many students withdrew from the course, with or without milestones.
+
+Read on for more information.
+
+## Background
+
+Students in intermediate programming courses often work on large, un-scaffolded, and relatively long-running software projects. These tend to be larger and more complex than projects they have worked on in the past, and consequentially bring with them a set of self-regulatory challenges that the students may be ill-equipped to deal with. No longer are assignment specifications given as easy-to-approach bullet-lists of requirements. Instead, they’re presented with a “wall of prose” from which they must extract requirements, plan their development, and get to work.
+
+An expert software developer has the domain-specific self-regulatory skills to tackle such a project. She can decompose such a project into sub-goals and budget the time needed to tackle each one. Novices, however, are often unable to do this decomposition themselves, and are famously poor at estimating the time needed for a development task [^1]. So instead, they are left facing the project with no clear place to start, low self-efficacy regarding their ability to finish, and not much prior experience from which to draw strategies or confidence.
+
+A common manifestation of students’ ill-preparedness to approach these projects is procrastination, the “quintessential self-regulatory failure”[^2]. According to Science, there are many reasons for procrastination. Chief among them are task-related reasons. For example, we know that people are more likely to procrastinate:
+* when the task’s outcome is expected farther in the future[^3],
+* when they have low expectancy of successfully completing the task[^3], and
+* when the task offers numerous junctures for decision-making (e.g., the student doesn’t know where to start)[^4]
+
+Can we use this knowledge to reduce the frequency of procrastination on these projects and ameliorate its negative effects? I previously wrote about the pervasive and pernicious nature of procrastination in this context—students start late, work late, and finish late, often resulting in degraded project outcomes.
+
+In this post, I describe a simple classroom intervention that helped reduce the rate of late submissions on programming projects by about 30%, and helped improve class performance in the intermediate Data Structures and Algorithms (DSA) course at Virginia Tech.
+
+## Explicit project milestones
+
+Our intermediate DSA course involves three to four programming projects, each of which is worked on for about a month. Each project requires students to build one or more interacting data structures—for example, a hash table or a PR quad-tree. Projects are un-scaffolded (no starter code) and students are free to design their own solutions. They are allowed to make as many submissions as they like to our auto-grader, which tests their solutions using acceptance tests written by the course staff.
+
+Unfortunately, these projects usually have distressingly high rates of late submissions and failing grades, and about 25–30% of students either fail or withdraw from the course.
+
+We believe that poor self-regulation and project management (often manifesting as procrastination) may be a significant contributor to these poor outcomes. Therefore, we instituted explicit project milestones—we broke down projects into sub-tasks that students needed to complete by intermediate deadlines. We expected to observe reduced procrastination stemming from
+* outcomes that are too far in the future to be valued in the present,
+* students not being able to decompose a large engineering task into manageable sub-tasks, and
+* low expectancy of success, because completing each successive sub-task is likely to increase the student’s self-efficacy regarding the larger overarching task
+
+The milestones themselves were pretty straightforward, and checkable using our auto-grading infrastructure. For any given data structure (or database made up of interacting data structures), they were as follows:
+* **Milestone 1**: Make a first submission to the auto-grader (speaking as a former instructor for this course, this was surprisingly effective at making students start thinking about the project early)
+* **Milestone 2**: Complete the insertion operation
+* **Milestone 3**: Complete the search and update operations
+* **Final submission**: Complete the removal operation
+
+Done in that order, the removal operation is completed last. This is good because removal is often the hardest-to-implement operation in many data structures, involving complex structural rearrangements (e.g., re-ordering a binary search tree, or re-balancing a B+ tree). Our hope is that the experience of successfully completing the other, simpler operations a week or two earlier helps build the student’s self-efficacy regarding the more difficult sub-task ahead.
+
+## How helpful were the milestones?
+We instituted Milestones in the Spring of 2016. We are interested in knowing if the milestones had any impact on procrastination, project outcomes, or course outcomes. So we compared outcomes in the “milestones semester” (Spring 2016) with outcomes in a “no milestones semester”—Fall 2013. In Fall 2013, the course was taught by the same instructor (Cliff), and the projects were of comparable difficulty. In terms of LoC and cyclomatic complexity, there were no differences between project submissions in the two semesters.
+
+We measured differences in terms of timeliness, project correctness, and course outcomes. I present a high-level overview of our results below. More details can be found in the paper.
+
+### Timeliness
+
+Milestones were pretty effective! We measured the rate of late submissions and the time of project completion for the two semesters. We checked for differences between the two semesters as well as differences within the milestones semester based on the number of milestones completed.
+* The rate of late submissions dropped from 41% without milestones to 12% with milestones
+* Within the treatment semester, students who completed 0 or 1 milestones tended to finish on the day of or after the deadline, while students who completed 2 or 3 milestones tended to finish their projects a day or more before the deadline
+
+Results are summarised in the figure below.
+
+{% include image.html url=&quot;completion-time-milestone-group.png&quot; description=&quot;Completion times (in terms of hours before or after the deadline) with and without milestones. Whiskers are the 10th and 90th percentiles. Outliers beyond these percentiles are omitted.&quot; alt=&quot;A series of boxplots showing distributions of project completion times in terms of hours before the deadline. They generally completing more milestones led to generally earlier completion times.&quot; %}
+
+### Project correctness
+
+As I stated above, a lack of self-efficacy or discipline-specific procedural knowledge may be contributing to students’ poor outcomes on these projects. In addition to late submissions, students are prone to submitting incorrect or inadequately tested solutions. So we checked to see if milestones had any impact on project correctness.
+
+Project correctness was defined as the percentage of instructor-written acceptance tests that the student’s submission passed. We checked for differences in correctness between submissions in the two semesters, and differences within the milestones semester based on the number of milestones completed.
+
+* The mean correctness score increased slightly, from 72% (sd = 20%) without milestones to 76% (sd = 21%) with milestones
+* Students who completed 2 or more milestones tended to produce projects with higher correctness than those who completed fewer milestones
+
+{% include image.html url=&quot;correctness-milestone-group.png&quot; description=&quot;Correctness scores with and without milestones&quot; alt=&quot;A series of boxplots showing distributions of project scores in terms of percentage of reference tests passed. They generally completing more milestones led to more correct projects.&quot; alt=&quot;A column chart showing pass, withdraw, and failure rates between the milestones term and the term without milestones. There were largely no changes.&quot; %}
+
+### Course outcomes
+Having seen that milestones had a positive impact on timeliness and correctness, we now turn to course outcomes.
+
+**First**, we examine the pass, fail, and withdrawal rates in the course.
+
+Students at our institution tend to find this course challenging, and it is common to see 25–30% of students withdraw from the course or fail to achieve a grade that will let them progress on to subsequent courses.
+
+Success in the course is largely driven by success on the projects, and students may be withdrawing from the course based on early bad outcomes. So did milestones help to brighten this gloomy picture?
+
+Sadly, no.
+
+We first checked for differences in the frequency of the following course outcomes:
+* *Pass*, where the student achieved a grade that let them move on in the major
+* *Fail*, where the student completed the course, but would need to take it again before moving on
+* *Withdraw*, where the student did not complete the course[^5]
+
+&lt;!-- [&lt;sup id=&apos;1-source&apos;&gt;1&lt;/sup&gt;](#1-sink) --&gt;
+
+We didn’t find any differences in these outcomes between the two semesters. This is apparent in the figure below.
+
+{% include image.html url=&quot;outcomes.png&quot; description=&quot;Milestones seem not to have affected course Pass, Fail, and Withdraw rates.&quot; %}
+
+**Next**, we explored the impact that milestones had on frequencies of final course grades, which were a composite of project performance, exam performance, and performance on mastery-based homework assignments. Differences in these frequencies could indicate the specific groups of students who were helped or not helped by the milestones intervention.
+
+We examined differences in the frequencies of *A*, *B*, *C*, *D*, and *F* grades between the two semesters. Results are in the figure below.
+
+{% include image.html url=&quot;grades.png&quot; description=&quot;Final course grades with and without milestones.&quot; alt=&quot;A column chart showing percentages of A, B, C, D, and F grades in the two terms. There were more A grades and fewer B grades in the term with milestones than the term without. No changes in other grade frequencies are apparent.&quot; %}
+
+More students received *A* grades in the milestones semester (54%) than in the semester without milestones (34%). In contrast, fewer students received *B* grades in the milestones semester (20%) than in the semester without milestones (38%). We found no other differences.
+
+Taken together, the results above suggest that the positive effects of the milestones were more pronounced for the students “in the middle”: many *B*-level students became *A*-level students, but unfortunately the *C*-, *D*-, and *F*-level students continued to struggle in the course.
+
+It seems as though this intervention, while helpful, failed to assist the most vulnerable students in the course. Other supports and instructional changes are needed to help those students.
+
+## What did students think of the milestones?
+We included this question in an informal end-of-term survey:
+
+*How helpful did you find the Milestones in completing your programming projects on time? Please explain why you gave this response.*
+
+75% of students found the milestones to be Helpful or Very helpful. Students mentioned that milestones helped them avoid procrastination, encouraged them along the path to project completion, and helped them decompose the project.
+
+15% of students were Neutral about the milestones. These students indicated that they were already on track without the milestones.
+
+10% of students who found milestones to be Not helpful or Not at all helpful, and indicated that milestones were stressful and sometimes interfered with their existing project development plans.
+
+We interpret the above to mean that perceptions of the milestones were largely positive, though some students found them to be unnecessary or stressful.
+
+Note that this was just a single question in a survey — this is not a detailed qualitative analysis of students’ attitudes toward assigned project milestones.
+
+&gt; Aside: I’ve used milestones when teaching this course over the Summer session, and it may have been a blunder in that context. Summers tend to be intense, squeezing 15 weeks of material into 6 weeks of daily instruction. Month-long projects are 2-week projects. It’s hard to space out milestones appropriately in such a short timeframe (avoiding weekend deadlines, etc.). I had a student mention that they worked a job during the week, and did coursework on weekends. Milestones made this difficult.
+
+## Final Remarks
+
+A possible criticism of this work is that the ability to decompose and tackle an un-scaffolded programming project is a core competency that students are expected to learn during intermediate programming courses, and they will no longer do so because “we did it for them”.
+
+Fundamentally, the problem with this is that we don’t really teach these skills at this stage in the curriculum. So we end up putting students through a “trial-by-fire” in these courses, and those who make it can continue on in the major. Ironically, these are the students who reach the later software engineering and capstone courses in which we do teach these skills.
+
+Milestones are by no means perfect, but we believe they help students (1) by making them practice a successful approach to large programming projects, and (2) by giving them the experience of successfully completing these projects, that they can then draw on in later courses. Effects of explicit milestones going into later courses is an open question.
+
+I am sure that this is not a unique practice.
+But I haven’t seen this at other institutions I’ve been affiliated with, and the literature review didn’t turn up anything in the context of intermediate project development. If your courses use milestones or something similar, how’s it going for you?
+
+---
+[^1]: [Radermacher, 2014](https://doi.org/10.1145/2591062.2591159)
+[^2]: [Steel, 2007](http://doi.apa.org/getdoi.cfm?doi=10.1037/0033-2909.133.1.65)
+[^3]: [Ponton, 2010](http://doi.wiley.com/10.1002/j.2168-9830.2001.tb00599.x)
+[^4]: [Song, 2014](http://ieeexplore.ieee.org/document/7017768/)
+[^5]: Withdrawing is not always a bad thing; maybe they just didn’t want to learn the subject. But computing faces a retention crisis due a variety of external and internal factors, and a student in a third-year course probably did want to complete the course. So here, we treat it as a Bad Thing™. 
+
+
     </description>
   </item>
   
@@ -111,7 +1105,170 @@
     <guid>https://ayaankazerouni.org/blog/assessing-incremental-testing/</guid>
     <pubDate>Tue, 07 Jul 2020</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/assessing-incremental-testing/">https://ayaankazerouni.org/blog/assessing-incremental-testing/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/assessing-incremental-testing/">https://ayaankazerouni.org/blog/assessing-incremental-testing/</a>.]]> -->
+      &lt;small&gt;
+*This article was originally posted on [my Medium blog](https://ayaankazerouni.medium.com) on July 7 2020.*
+&lt;/small&gt;
+
+*This is a brief overview of the research paper “__[Assessing Incremental Testing Practices and Their Impact on Project Outcomes](/publications#sigcse2019paper”)__, published at SIGCSE 2019. My co-authors were [Cliff Shaffer](https://people.cs.vt.edu/~shaffer), [Steve Edwards](https://people.cs.vt.edu/~edwards), and [Francisco Servant](https://people.cs.vt.edu/~fservant).*
+
+Software testing is the most common method of ensuring the correctness of software. As students work on relatively long-running software projects, we would like to know if they are engaging with testing consistently through the life-cycle. The long-term goal is to provide students with feedback about their testing habits as they work on projects.
+
+This post is aimed at computing educators, researchers, and engineers.
+
+We examined the programming effort applied by students during (unsupervised) programming sessions as they worked on projects, and measured the proportion of that effort that was devoted to writing tests. This measurement is useful because it lets us avoid the “test-first” or “test-last” dichotomy and allowed for varying styles and levels of engagement with testing over time. It can also be easily measured in real-time, facilitating automated and adaptive formative feedback.
+
+## Summary
+
+### Goal
+* To assess a student’s software testing, not just their software tests
+* To understand how various levels of engagement with testing relate to project outcomes
+
+### Method
+* Collect high-resolution project snapshot histories from consenting students’ IDEs and mine them for insight about their testing habits
+* Test the relationships between students’ testing habits and their eventual project correctness and test suite quality
+
+### Findings
+Unsurprisingly, we found that when more of each session’s programming effort was devoted to testing, students produced solutions with higher correctness and test suites with higher condition coverage. We also found that project correctness was unrelated to whether students did their testing before or after writing the relevant solution code.
+
+Our findings suggest that the incremental nature of testing was more important than whether the student practiced “test-first” or “test-last” styles of development. The within-subjects nature of our experimental design hints that these relationships may be causal.
+
+## Motivation
+Students and new software engineering graduates often display poor testing ability and a disinclination to practice regular testing.[^1] It is now common practice to require unit tests to be submitted along with project solutions. But it is unclear if students are writing these tests incrementally as they work toward a solution, or if they are following the less desirable “code a lot, test a little” style of development.
+
+Learning a skill like incremental testing requires practice, and practice should be accompanied by feedback to maximise skill acquisition. But we cannot produce feedback about practice without observing it. We conducted a study in our third-year Data Structures &amp; Algorithms course to (1) measure students’ adherence to incremental test writing as they worked on large, complex programming projects, and (2) understand the impact that their test writing practices had on project outcomes.
+
+We focused on addressing two challenges to the pedagogy of software testing:
+First, existing testing feedback tends to focus on product rather than process. That is, assessments tend to be driven by “post-mortem” measures like code coverage, all-pairs execution, or (rarely) mutation coverage achieved by students’ submissions. Students’ adherence to test-oriented development processes as they produce those submissions is largely ignored.
+
+We addressed this by measuring the balance of students’ test writing vs. solution writing activities as they worked on their projects. If we can reliably measure students’ engagement with testing as they work on projects, we can provide formative feedback to help keep them on track in the short term, and help them form incremental testing habits in the long term.
+
+Second, there is a lack of agreement on what constitutes effective testing process. Numerous researchers have presented (often conflicting[^2] [^3]) evidence about the effectiveness of test-driven development (TDD) and incremental test-last (ITL) styles of development. But these findings may not generalise to students learning testing practices, and the conflicting evidence muddies the issue of what exactly we should teach or prescribe.
+We addressed this by avoiding the “TDD or not” dichotomy. Students’ (and indeed, professionals’) engagement with testing does not stay consistent over time, either in kind or in volume [^4] [^5]. Therefore, we didn’t attempt to classify student work as following TDD or not. Instead, we measured the extent to which they balanced their test writing and solution writing activities for increments of work over the course of their projects. This allowed us to more faithfully represent and study their varying levels of engagement with testing as they worked toward solutions.
+
+## Measuring Incremental Test Writing
+
+### Context and data collection
+Students in our context are working on software projects that are larger and more complex than what they have encountered in previous courses. Success usually necessitates adherence to disciplined software process, including time management and regular testing. We studied roughly 150 students working on 4 programming assignments over a semester (~3.5 month period).
+
+We used an [Eclipse plugin](https://github.com/web-cat/eclipse-plugins-importer-exporter/tree/DevEventTrackerAddition) to automatically collect frequent snapshots of students’ projects as they worked toward solutions. This snapshot history allowed us to paint a rich picture of a project’s evolution. In particular, it let us look at how the test code and solution code for a project emerged over time.
+
+### Proposed measurements of testing effort
+Using these data, we measured the balance and sequence of students’ test writing effort with respect to their solution writing effort. I describe these measurements below.
+
+Consider the following figure, which shows an example sequence of developer activity created from synthetic data. Colours indicate methods in the project; solid and shaded blocks are solution and test code, respectively; and groups of blocks indicate work sessions.
+
+{% include image.html
+  wide=true
+  alt=&quot;Coloured bars organised into groups, demarcating time spent writing production code and test code, devoted to individual methods.&quot;
+  url=&quot;example-dev-activity.png&quot;
+  description=&quot;An example sequence of developer activity (synthetic data).&quot; 
+%}
+
+We can derive measurements of balance and sequence of testing with this synthetic data in mind.
+The measures are summarised in the next figure.
+
+In terms of **balance**, we considered testing effort in terms of _space_ (methods in the project), _time_ (work sessions), _both_, or _neither_.
+
+* **Neither**: how much total testing took place over the course of the project and its lifecycle? (POB in the figure below)
+* **Space only**: how much testing took place for each method in the project? (MOB)
+* **Time only**: how much testing took place during each work session? (PSB)
+* **Both time and space**: how much testing took place for each method during each work session? (MSB)
+
+Each measurement is a proportion, i.e., the proportion of all code — written in a work session or for a method or on the entire project — that was test code. So if a student wrote 100 LoC in a work session, and 20 of them were test code, the proportion for that work session would be 0.2.
+
+In terms of **sequence**, we measured the extent to which students tended to write test code before finalising the solution code under test (MOS below).  
+This was measured as the proportion of test code devoted to a method that was written before the method was finalised (i.e., before it was changed for the last time).
+
+Note that this is different from measuring adherence to &quot;TDD or not&quot;.
+Instead of classifying a student’s work (in a work session, or on a method, etc.) as strictly test-first or test-last, we measure this concept on a continuous scale.
+This allows a more nuanced discussion of students’ tendencies to write test code earlier or later with respect to the solution code that is being tested.
+
+Measurements are depicted in the figure below. All measurements were aggregated as medians for each project.
+
+{% include image.html
+  alt=&quot;Coloured bars depicting time spent writing and testing individual methods in a program. They are grouped in four different ways: grouped by time (ignoring the methods being focused on), grouped by method, grouped by method and time, and grouped by sequence.&quot;
+  url=&quot;metrics.png&quot;
+  description=&quot;Measurements to be derived from a programming activity stream. Each row depicts a different way of aggregating the events from the figure above.&quot; 
+%}
+
+## Findings
+
+With these measurements in hand, we are able to examine students’ incremental testing practices and their impacts on project outcomes.
+
+### To what extent did students practice incremental testing?
+
+Using the measurements we described, we can make observations about how students distributed their testing effort as they worked on projects.
+
+The measurements are summarised in the figure below. The first four box-plots (in blue) represent measures of the balance of test writing effort. The fifth box-plot (in orange) represents proportion of test writing effort devoted before the relevant solution code was finalised.
+
+{% include image.html
+  url=&quot;boxplots-balance-sequence.png&quot;
+  description=&quot;Distributions of testing effort measurements described above.&quot;
+%}
+
+Our findings were as follows.
+
+**Balance of testing effort**
+
+* Students tended to devote about 25% of their total code writing effort to writing test code *(POB)*
+* Within individual work sessions, a majority of students devoted less than 20% of their coding effort to writing tests *(PSB)*
+* The median method seemed to received a considerable amount of testing effort (*MOB*, *MSB*), possibly attributable to the way we tied solution methods and test methods together [^6]
+
+The lower proportions of testing effort observed per work session, relative to the total project testing effort, suggests that some sessions tend to see more testing effort than others. Prior work suggests that this increased testing tends to take place toward the end of the project life-cycle, to satisfy condition coverage requirements imposed on students as part of the programming assignments.
+
+The lower proportions of testing effort observed per work session, relative to the total project testing effort, suggests that some sessions tend to see more testing effort than others. [Prior work](https://ayaankazerouni.github.io/assets/publications/quantifying-incremental-development-procrastination.pdf) suggests that this increased testing tends to take place toward the end of the project life-cycle, to satisfy condition coverage requirements imposed on students as part of the programming assignments.
+
+**Sequence of testing effort**
+
+* In an overwhelming majority of submissions (85%), students tended to do their testing after the relevant solution methods were finalised (*MOS*)
+
+### How did project outcomes relate to the balance and sequence of test writing activities?
+
+We measured the relationship between the measurements described above and two outcomes of interest:
+
+* _Correctness_, measured by an instructor-written oracle of reference tests
+* _Code coverage_, measured as the condition coverage achieved by the student’s own test suite
+
+We used linear mixed-effects models, with the outcome of interest as a dependent variable and the testing measurements as the independent variables.
+This allowed us to tease out the variance in project outcomes that was explained by traits inherent to individual students.
+
+We found that:
+* Students produced higher quality solutions and tests when they devoted a higher proportion of their programming effort in each session to writing tests
+* Whether this testing occurred before or after the relevant solution code was written was irrelevant to project correctness
+
+We also found a _negative_ relationship between doing more testing before finalising solution code and condition coverage scores.
+We do not think this means that _testing first is bad_&amp;mdash;more likely this is an effect of students adding tests to nearly complete projects to drive up condition coverage, which made up part of their grade.
+Incentives beget behaviours!
+
+Note that, after teasing out the variance explained by inherent variability in the students (conditional $$R^2$$ in the paper), our measurements explained an ultimately small percentage of variance in project correctness and condition coverage (marginal $$R^2$$ in the paper).
+More variance in outcomes can possibly be explained by any number of unaccounted-for factors.
+It is also possible that projects in the Data Structures course we studied didn’t &quot;hit the right switches&quot; in terms of depending on regular testing for success.
+
+## Conclusions
+
+Our findings largely support the conventional wisdom about the virtues of regular software testing.
+We did not find support for the notion that writing tests first leads to better project outcomes.
+
+Traits or situations inherent to individual students are unlikely to have affected our results.
+Students’ differing behaviours _and_ outcomes could both be symptoms of some other unknown factors (e.g., prior programming experience, differing demands on time).
+Therefore, we used _within-subjects_ comparisons&amp;mdash;i.e., assignments served as repeated measures for each student.
+Each student’s work on a given project was compared to their own work on other projects, and differences in testing practices and project outcomes were observed.
+
+The primary contribution of this work is that we are able to measure a student’s adherence to these practices with some lead time before final project deadlines.
+The short-term benefit of this is that we can provide feedback to students &quot;before the damage is done&quot;, i.e., before they face the consequences of poor testing practices that we have measured and observed.
+
+In the long-term, we think that formative feedback about testing, delivered as students work on projects, can help them to form disciplined test-oriented development habits.
+
+---
+
+[^1]: [Radermacher, 2013](https://dl.acm.org/doi/10.1145/2445196.2445351)
+[^2]: [Fucci, 2017](https://ieeexplore.ieee.org/abstract/document/7592412?casa_token=EairhmqPPOgAAAAA:ag2Z44va8LgKn-K5NhAhDLFyn-nmTRksrVGQTMvB2qftTlfS94O1FZZyClPDUvT8qM011tfC_ls)
+[^3]: [Bhat, 2006](https://dl.acm.org/doi/10.1145/1159733.1159787)
+[^4]: [Beller, 2015](https://inventitech.com/assets/publications/2017_beller_gousios_panichella_amann_proksch_zaidman_developer_testing_in_the_ide_patterns_beliefs_and_behavior.pdf)
+[^5]: [Beller, 2015a](https://inventitech.com/assets/publications/2017_beller_gousios_panichella_amann_proksch_zaidman_developer_testing_in_the_ide_patterns_beliefs_and_behavior.pdf)
+[^6]: Solution methods were tied to test methods if they were directly invoked in the test method. So whether or not an invoked method was the “focal method” of the test, it was treated as “being tested”. This could have inflated results for methods that were commonly used to set up test cases.
+
     </description>
   </item>
   
@@ -123,7 +1280,115 @@
     <guid>https://ayaankazerouni.org/blog/procrastination-feedback/</guid>
     <pubDate>Fri, 17 Apr 2020</pubDate>
     <description>
-      <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/procrastination-feedback/">https://ayaankazerouni.org/blog/procrastination-feedback/</a>.]]>
+      <!-- <![CDATA[See the article at <a href="https://ayaankazerouni.org/blog/procrastination-feedback/">https://ayaankazerouni.org/blog/procrastination-feedback/</a>.]]> -->
+      &lt;small&gt;
+_This article originally appeared on [my Medium blog](https://ayaankazerouni.medium.com) on April 17, 2020._
+&lt;/small&gt;
+
+*This is a brief overview of the following research papers by myself, [Steve Edwards](https://people.cs.vt.edu/~edwards/), and [Cliff Shaffer](https://people.cs.vt.edu/~shaffer/):*
+
+* *__[DevEventTracker: Tracking Development Events to Assess Incremental Development and Procrastination](/publications/iticse2017paper)__* (with T. Simin Hall), published at ITiCSE 2017, and
+* *__[Quantifying Incremental Development Practices and Their Relationship to Procrastination](/publications/icer2017paper)__*, published at ICER 2017
+
+I am summarising these papers together because they are closely related.
+
+## Summary
+
+We would like to determine the effectiveness of the time management practices displayed by students as they work on large and complex programming projects for the first time. We used qualitative data (obtained from interviews with students) and quantitative data (obtained using IDE logging infrastructure) to characterise their software development habits, and we analysed their relationships with project outcomes like correctness, total time taken, and the project’s early or late status.
+
+When students worked earlier and more often, they produced projects that:
+* were more correct,
+* were completed earlier,
+* took no more or less time to complete
+ 
+So working earlier and more often doesn’t seem to be giving the student more time to complete projects, just more *constructive* time.
+
+## Motivation
+
+Software development is a skill. Like any skill, it requires practice and feedback in order to develop. Ideally, this feedback should formative — delivered as students work on projects. However, in education contexts, assessments of software projects are driven by “after-the-fact” qualities like correctness, code coverage, code style, etc. In the papers listed above, my co-authors and I present methods to characterise students’ time management habits as they work on large and complex projects. The goal is to use this information to formulate formative feedback about their development practices.
+
+## Observing the development process
+
+To properly assess a ~30-hour programming process, we need to be able to observe it. We developed an Eclipse plugin that emits events for various in-IDE actions, including:
+* executions
+* compilations
+* file saves
+* line-level edits
+ 
+We use these data to capture, characterise, and determine the effectiveness of the software development process undertaken by students. This process involved ingesting a large (ish) volume of data and turning it into an objective measurement of some aspect of the programming process (in this case, procrastination).
+
+## When do students work on software projects?
+
+We set out to quantitatively measure the extent to which **procrastination** manifests as students work on software projects. We look at the work done by students as a distribution of work days, from the first day the student worked on the project until the last day, typically the day of the project deadline. The value for each work day is the amount of observable “work” that was put in on the project — the number of character code edits. The mean of this distribution gives us the “average day” on which students tended to work on the project. If we measure this in terms of *days until the deadline*, then a higher number indicates that more work was done earlier, and a lower number indicates that more work was done closer to the deadline.
+
+As an example, consider the figure below, which shows how a real student distributed their work across the days on which they worked on a project.
+
+{% include image.html
+  width=700
+  url=&quot;tm-early-often.png&quot;
+  description=&quot;The mean edit time for a student, drawn from real data.&quot; 
+%}
+
+&lt;!-- A bar chart showing the amount of work put in by a student on each day from August 28 to September 14. --&gt;
+The red line on September 14 indicates the project deadline, and the black line on September 8 indicates the student’s “mean edit time”, which is 6 days before the deadline. A sizeable portion of work was done within the period of September 1 to September 8, and daily work was much higher during the last three days of the project lifecycle. This leads the mean edit time to be roughly in the middle of those time periods. The student’s score is therefore sensitive to not only the days on which was done, but also to the amount of work that was done on those days. Since this is simply a mean edit time, we can measure this with solution code, test code, or both.
+
+We might also have measured the median edit time (i.e., on what day was half the work done on a project?). However, we opted for the mean since it is more sensitive to outliers, which are important when measuring procrastination (e.g., large amounts of code being written toward the end of a project timeline).
+
+The figure below indicates distributions of the mean edit time for solution code and for test code, across all project implementations.
+
+{% include image.html
+  width=500
+  url=&quot;solution-test-early-often-dists.png&quot;
+  description=&quot;On average, students tended to write code fewer than 10 days before the project deadline.&quot;
+  alt=&quot;Two box-and-whisker plots which show the mean edit times for solution code and test code.&quot;
+%}
+
+&lt;!-- On average, students tended to write code fewer than 10 days before the project deadline. --&gt;
+This figure tells us that students tended to work rather close to the deadline, even though they were given about 30 days to work on projects. Similar distributions of mean times were observed for solution code ($$\mu=8.48, \sigma=6.44$$), test code ($$\mu=7.78, \sigma=7.04$$), program executions ($$\mu=8.86, \sigma=8.82$$), and test executions ($$\mu=7.09, \sigma=7.10$$). Test editing and launching tends to occur slightly closer to the project deadline, but this difference appears to be negligible.
+
+## How valid is our measurement?
+
+The measurement described above is simple enough: it’s just a mean. Still, it is worth investigating whether it measures what we think it measures, i.e., the extent to which procrastination manifests on a software project. There is no readily-available “ground truth” against which one can test such a measurement. Therefore, we interviewed students in depth about their development experiences on two such assignments, and compared their responses with our measurements. Interviewees were given our measurements at the end of the interview, and we determined if they matched students’ expectations.
+
+In general, students felt that our measurements were accurate. Additionally, students believed that feedback driven by a measure such as this could help them stay on track on future programming projects. They stated unconditionally that they would make more of an effort to improve their programming practice if they were given feedback about their process between assignments.
+
+## Can this measurement explain differences in project outcomes?
+
+A primary thesis of these papers was that different software development habits can explain differences in software project outcomes for intermediate-to-advanced student software developers. With our measures and their qualitative evaluations in hand, we set out to quantitatively examine their relationships with the following project outcomes:
+* **Project correctness**, measured as the percentage of instructor-written reference tests passed,
+* **Time of completion**, measured as the number of hours before the deadline the project was completed, and
+* **Total time spent**, measured by adding up the lengths of all work sessions spent on the project
+
+We used within-subjects comparisons to make inferences, allowing us to control for traits unique to individual students. Different students’ behaviours *and* outcomes could be symptoms of some other unknown factor (e.g., differing course loads or prior experience), making such inferences weaker. To test for relationships with the outcome variables, we used an ANCOVA with repeated measures for each student. Students were subjects, and assignments served as repeated measures (with unequal variances), allowing within-subjects comparisons. In other words, each student’s software development habits were measured repeatedly (assignments), and differences in outcomes for the same student were analysed.
+
+Results are summarised below.
+
+**When students worked earlier and more often, they tended to produce programs with higher correctness.** To illustrate this, we split the dataset roughly into half: those projects that had “solved” the assigned problem (53%), and those that had not (47%). The figure below shows the difference in edit mean times between these populations.
+
+{% include image.html
+  width=500
+  url=&quot;solution-early-often-by-solved.png&quot;
+  description=&quot;Comparison of solution edit times between projects that correctly solved an assignment, and those that did not.&quot;
+  alt=&quot;Two box-and-whisker plots showing the mean edit time for solved and unsolved projects.&quot;
+%}
+
+**When students worked earlier and more often, they tended to finish their projects earlier.** This is so intuitive, it’s almost tautological. It is encouraging that the measurement is able to discriminate between early and late project submissions.
+
+{% include image.html
+  width=500
+  url=&quot;solution-early-often-by-on-time-status.png&quot;
+  description=&quot;Comparison of solution edit times between on-time and late submissions.&quot;
+  alt=&quot;Two box-and-whisker plots showing the mean edit time for late and on-time submissions.&quot;
+%}
+
+Finally, **there was no relationship between total amount of time spent on the project and the solution edit mean time.**
+
+## Final Remarks
+
+The important takeaway from these papers is not the revelation that _procrastination = bad_. It is that we can reliably identify when procrastination is taking place on software projects. If we can do this during a project timeline, i.e., while the student is working on it, we may be able to intervene and help them adjust their programming behaviours before they face the consequences of procrastination.
+
+---
+
     </description>
   </item>
   
