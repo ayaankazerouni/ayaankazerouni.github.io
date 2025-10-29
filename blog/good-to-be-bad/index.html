@@ -21,18 +21,19 @@
 </head>
 
 
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-J5STZ7GN6Z"
-  ></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-J5STZ7GN6Z");
+    // Push a fetch request to my val
+    const valUrl = 'https://blog-track.val.run';
+    window.fetch(valUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Referer': "https://ayaankazerouni.org/blog/good-to-be-bad/"
+      },
+      body: JSON.stringify({
+        slug: "good-to-be-bad"
+      })
+    });
   </script>
 
   <body>
