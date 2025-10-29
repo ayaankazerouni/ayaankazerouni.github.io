@@ -1,0 +1,364 @@
+<html>
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  <meta name="fediverse:creator" content="@ayaankazerouni@hci.social" />
+  
+
+	
+	<link rel="alternate" type="application/rss+xml" title="Ayaan Kazerouni's blog posts" href="/blog/feed.xml">
+	
+
+	<title>Incorporating Socially Responsible Computing in Early Undergraduate CS Courses - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/blog/src-in-early-cs-courses/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-J5STZ7GN6Z"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-J5STZ7GN6Z");
+  </script>
+
+  <body>
+    <aside>
+    <nav>
+        <ul>
+        
+            
+            <li><a href="/#" class="nav-link">Home</a></li>
+        
+            
+            <li><a href="/research" class="nav-link">Research</a></li>
+        
+            
+            <li><a href="/publications" class="nav-link">Publications</a></li>
+        
+            
+            <li><a href="/teaching" class="nav-link">Teaching</a></li>
+        
+            
+            <li><a href="/blog" class="nav-link">Blog</a></li>
+        
+        </ul>
+    </nav>
+</aside>
+
+
+    <main>
+      <h1>Incorporating Socially Responsible Computing in Early Undergraduate CS Courses</h1>
+      <article>
+        <div>
+          <p>
+            <time>April 10, 2025</time>&#9474;2173 words
+          </p>
+          
+        </div>
+        <h2 class="no_toc" id="contents">Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#what-did-we-do" id="markdown-toc-what-did-we-do">What did we do?</a></li>
+  <li><a href="#whats-src" id="markdown-toc-whats-src">What’s SRC?</a></li>
+  <li><a href="#did-it-work" id="markdown-toc-did-it-work">Did it work?</a></li>
+  <li><a href="#final-remarks" id="markdown-toc-final-remarks">Final remarks</a></li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>Hispanic/Latino students are currently underrepresented in CS majors in California.</p>
+
+<p>That is, the percentage of Hispanic/Latino students in CS majors is far lower than the percentage of college-going students in California who are Hispanic/Latino.
+<a href="https://tableau.calstate.edu/views/SelfEnrollmentDashboard/EnrollmentSummary">48% of students in the CSU system identified as Hispanic/Latino in Fall 2023</a>, but only <a href="https://tableau.calstate.edu/views/CSUDegreesIssued/CSUDegreesIssued">25% of the CS degrees awarded by the CSU in 2023 went to Hispanic/Latino students</a>.</p>
+
+<p>In an alliance of six campuses in the California State University system (CSU), we worked to incorporate <em>socially responsible computing</em> (SRC) into our early CS courses in a sustained effort to improve the experience of students who are historically under-represented in computing majors.
+Our explicit goal is to increase retention rates of students identifying as Hispanic/Latino—currently, these students tend to leave the CS major at our institutions at far higher rates than other students.
+We are driven by evidence that suggests that <a href="https://paul-bruno.com/wp-content/uploads/2019/07/Lewis_2019_CommunalGoals.pdf">we might draw more students toward computing through clear signalling of computing’s <em>communal goal affordances</em></a> (i.e., stronger signalling to students that they can use their computing knowledge to benefit society).</p>
+
+<p>This multi-year project was <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2216687&amp;HistoricalAwards=false">funded by the National Science Foundation in 2022</a>.
+This helped support the following activities and personnel:</p>
+
+<ul>
+  <li><strong>Development of new curricular materials,</strong> including two new courses at Cal Poly SLO and San Francisco State University. These materials have also been adopted at universities outside our six-campus alliance.</li>
+  <li><strong>Monthly online teacher training workshops,</strong> organised by social scientists and computer scientists, attended by 20–25 CS professors at various institutions.</li>
+  <li><strong>Annual 1.5 day-long in-person workshops</strong> in June 2023, 2024, and 2025 to support collaborative work, brainstorming, and feedback.</li>
+  <li><strong>Independent external evaluation</strong> by evaluators at the non-profit agency <a href="https://wested.org">WestEd.org</a>, who helped collect the data leading to the conclusions described in this post.</li>
+  <li><strong>Incentives for students to participate in focus groups</strong> about their experiences in the courses we studied.</li>
+</ul>
+
+<p>Our team was:</p>
+
+<ul>
+  <li>At Cal Poly SLO: Zoë Wood, Jane Lehr, and myself.</li>
+  <li>At CSU Fullerton: Paul Salvador Inventado, Kevin Wortman, and Kanika Sood.</li>
+  <li>At San Francisco State University (formerly and currently): Ilmi Yoon, Aakash Gautam, Anagha Kulkarni, and Zainab Agha.</li>
+  <li>At CSU Los Angeles: Elaine Eun-Young Kang and David Krum.</li>
+  <li>At CSU Dominguez Hills: Mohsen Beheshti and Sahar Hooshmand.</li>
+  <li>At Cal Poly Pomona: Daisy Tang, Yu Sun, and Amlan Chatterjee.</li>
+  <li>At WestEd.org: Aleata Hubbard Cheuoua and Melissa Lee.</li>
+  <li>At Colorado Evaluation and Research Consulting: Sarah Hug.</li>
+</ul>
+
+<p>In this post, I summarize the work done by our team over the last two-and-a-half years.</p>
+
+<h2 id="what-did-we-do">What did we do?</h2>
+
+<ul>
+  <li>We incorporated SRC in our intro CS courses at all six campuses. For example, at Cal Poly SLO, this took the form of a new data-centric introductory CS course focused on using computation to examine social trends and phenomena relevant to the students. The course is described in the paper <em><a href="https://ayaankazerouni.org/publications#sigcse2024cs0-course">Community-Action Computing: A Data-centric CS0 course</a></em> (SIGCSE 2024 Curricular Initiatives).</li>
+  <li>We also participated in a faculty learning community that met for monthly workshops led by social scientists (Jane Lehr from Cal Poly SLO and Sarah Hug from Colorado Evaluation and Research Consulting). Some lessons learned from these workshops were published in <em><a href="https://ayaankazerouni.org/publications#sigcse2025src-practices">Reflecting on Practices to Integrate Socially Responsible Computing in Introductory Computer Science Courses</a></em> (SIGCSE 2025 Experience Reports).</li>
+  <li><strong>Finally (the focus of this post) we found that our curricular additions had positive impacts on students’ sense of belonging in computing and their perceived learning and agency in early CS courses.</strong> These results were published in <em><a href="https://ayaankazerouni.org/publications#toce2025src">The Benefits of Socially Responsible Computing in Early Computing Courses: A Multi-Institutional Study at Primarily Undergraduate Hispanic-Serving Institutions</a></em> (TOCE).</li>
+</ul>
+
+<h2 id="whats-src">What’s SRC?</h2>
+
+<p>We sought to develop curricular materials that demonstrated to students that they could use computing to benefit their communities and society, and to encourage students to think critically about the impacts of computing on society.</p>
+
+<p>This went beyond teaching ethics in computing.
+We encouraged students to actively consider social and
+ethical implications of their work, acknowledge (with examples) the significant power that computing systems have in society, and aimed to prepare students to exercise that power responsibly as they develop technical skills.
+To this end, we integrated SRC considerations in the context of technical skills introduced in the class, rather than introducing separate modules for ethical and social
+considerations.</p>
+
+<p>These ideas have <a href="https://responsible.cs.brown.edu/">been</a> <a href="https://ethicalcs.github.io/">around</a> <a href="https://dl.acm.org/doi/10.1145/3702212.3702225">for</a> <a href="https://identity.cs.duke.edu/fellows.html">a while</a>.</p>
+
+<p><a href="https://evanpeck.github.io/">Evan Peck</a>’s work—a big source of inspiration for us—<a href="https://ethicalcs.github.io/">puts it well</a>:</p>
+
+<blockquote>
+  <ol>
+    <li><em><strong>Introduce a deeper level of reflection in CS 1 courses.</strong> I want students to see that their actions either directly or indirectly impact people, communities, and cultures, and that this impact is often not felt equally by different groups of people (along lines of gender, race, class, geography, etc.)</em></li>
+    <li><em><strong>Develop reflection habits alongside coding habits</strong> - all modules involve programming! I believe that habits are formed early in CS and must be tightly coupled with technical concepts in order for them to stick.</em></li>
+    <li><em><strong>Pair directly with existing CS 1 curriculum</strong> - CS 1 is already a busy course. You don’t need to set aside a month of new material. I believe that reflection and responsible computing pairs directly with technical concepts already taught (conditionals, for loops, etc.)</em></li>
+  </ol>
+</blockquote>
+
+<p>We were also driven by the knowledge that <a href="https://paul-bruno.com/wp-content/uploads/2019/07/Lewis_2019_CommunalGoals.pdf">some students, more than others, are strongly drawn to disciplines that <em>they believe</em> would help benefit society</a>.
+Clear signalling in early CS courses of computing’s impact on and relevance to society, and demonstration to students that even their nascent computing skills can be applied toward the social good should, in theory, improve their motivation and sense of belonging in computing.</p>
+
+<p>For example, at CSU Fullerton the lessons on control flow with <code class="language-plaintext highlighter-rouge">if</code> statements were accompanied by programming assignments where students designed, implemented, and critiqued in small groups schemes for allocating tips in restaurants.
+These were also accompanied by readings about <a href="https://www.nytimes.com/2021/02/05/opinion/minimum-wage-racism.html">the racialized history of tipping in America</a>.</p>
+
+<p>Also while learning about conditional logic, students at CSU Dominguez Hills wrote programs to determine individuals’ eligibilities for safe blood donations, and designed a simple system for tracking and managing blood donations.
+All of this was accompanied by readings and reflections about the <a href="https://www.youtube.com/watch?v=Tfwq_vJHwT8&amp;feature=youtu.be">need for blood donations</a>.</p>
+
+<p>At Cal Poly SLO, we developed a new <a href="https://ayaankazerouni.org/publications#sigcse2024cs0-course">data-centric introductory programming course</a> in which students used <a href="https://typescriptlang.org">TypeScript</a> and <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> to analyze and visualize datasets about socially relevant phenomena.
+Datasets were often chosen by the students and projects involved written and oral reflective components in addition to programs.
+Among other topics, students studied disparities in access to CS education in the state of California using data provided by the non-profit organization <a href="https://csforca.org">CSforCA</a>, data about the victims of fatal police shootings <a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">compiled by the Washington Post</a>, and data about people’s access to fresh food compiled by the <a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/">US Department of Agriculture’s Economic Research Service</a>.<sup id="fnref:corgis" role="doc-noteref"><a href="#fn:corgis" class="footnote" rel="footnote">1</a></sup>
+In all cases, students were given freedom to choose their topics, ask their own questions, and present their findings to the rest of the class.</p>
+
+<h2 id="did-it-work">Did it work?</h2>
+
+<p>Over two academic years—2022–2023 and 2023–2024—we collected survey data from students at all six campuses to measure their <em>sense of belonging</em> in CS.
+Belonging was measured using the 26-item survey developed by <a href="https://dl.acm.org/doi/10.1145/3408877.3432425">Moudgalya et al.</a>, containing statements about belonging scored from <em>Strongly disagree</em> (–3) to <em>Strongly agree</em> (3).</p>
+
+<p>Statements were positive or negative and preceded by the phrase “In this computer science class…”. Some example statements are:</p>
+
+<ul>
+  <li>I feel a connection with the computer science community.</li>
+  <li>I feel insignificant.</li>
+  <li>I feel at ease.</li>
+  <li>I enjoy being an active participant.</li>
+  <li>I try to say as little as possible.</li>
+</ul>
+
+<p>The Fall 2022 term was our “Baseline” group.
+Surveyed classes were taught with no added SRC curricular materials.
+Spring 2023, Fall 2023, and Spring 2024 were our “Intervention” groups (“Post” in the figure below).
+All surveyed courses had significant SRC materials added, ranging from individual assignments with discussions and reflective components (as in the case of <a href="https://dl.acm.org/doi/10.1145/3626252.3630853">CSU Fullerton</a>) to entirely new courses (as in the case of <a href="https://ayaankazerouni.org/publications#sigcse2024cs0-course">Cal Poly SLO</a> and <a href="https://dl.acm.org/doi/10.1145/3626252.3630926">San Francisco State University</a>).</p>
+
+<p><strong>Our intervention had significant positive impacts on students’ sense of belonging at some campuses, but not others.</strong>
+The split appeared to be between campuses that had “competitive enrolment policies” for their CS majors, and those that did not.
+<a href="https://dl.acm.org/doi/10.1145/3328778.3366805">Nguyen and Lewis</a> describe competitive enrolment policies as those in which students already at the University need to meet minimum GPA thresholds to declare a CS major and take CS courses, or where students are admitted directly to the CS major.</p>
+
+<p>In our study, the two Cal Polys (SLO and Pomona) have competitive enrolment policies, due in large part to enrolment pressures. 
+Students are either admitted directly into the CS major or must satisfy fairly intensive requirements before transferring into the CS major.
+Conversely, the other participating campuses—SFSU, Dominguez Hills, Fullerton, and CSU LA—have no such additional requirements for majoring in CS.
+They also have relatively higher proportions of students identifying as Hispanic/Latino.</p>
+
+<p>In general, we saw that the campuses <em>without</em> competitive enrolment policies were more likely to report significant positive impacts from SRC curricular additions. The pattern is visible in the figure below.</p>
+
+<p>(CSU Fullerton does not appear in this figure because no classes at Fullerton were surveyed in both the Baseline and Intervention terms. Fullerton features in other analyses in <a href="https://ayaankazerouni.org/publications#toce2025src">the paper</a>.)</p>
+
+<figure>
+<div id="chart" class="chart-container"></div>
+<figcaption>Sense of belonging scores at each campus in the Baseline term (Fall 2022) and in post-surveys in Intervention terms (Spring 2023, Fall 2023, Spring 2024). The paper reports transformed belonging scores based on a confirmatory factor analysis, but the same trend is visible and easier to interpret with the –3 &rarr; 3 scale shown here.</figcaption>
+</figure>
+
+<script type="module">
+    const tooltipTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+    const vega = (await import('https://cdn.jsdelivr.net/npm/vega@6/+esm')).default;
+    const vl = (await import('https://cdn.jsdelivr.net/npm/vega-lite@6/+esm')).default;
+    const vegaEmbed = (await import('https://cdn.jsdelivr.net/npm/vega-embed@6/+esm')).default;
+    const chartSpec = (await (await fetch('/blog/src-in-early-cs-courses//chart.json')).json());
+    vegaEmbed('#chart', chartSpec, { theme: 'ggplot2', tooltip: { theme: tooltipTheme } })
+</script>
+
+<h2 id="final-remarks">Final remarks</h2>
+
+<p>While there were <a href="https://ayaankazerouni.org/publications#toce2025src">other overall benefits</a> of our SRC curricular additions, in terms of sense of belonging our intervention appeared to impact students at some campuses far more than others.
+Five of the six participating campuses in our alliance were designated as Hispanic-Serving Institutions at the time the research was carried out (all except Cal Poly SLO).</p>
+
+<p>Upon reflection, perhaps the relative stability of sense of belonging at the institutions with competitive CS enrolment (the two Cal Polys) is to be expected.
+CS students at those campuses have already been put through significant filtering criteria, based on GPA thresholds within the University, and admissions that are heavily influenced by AP courses, the availability of which is largely dependent on school district and household income levels.
+It would make sense that these students, who were also more likely to have had pre-college CS experiences, had a relatively stable sense of self in the computing discipline.</p>
+
+<p>With occasional exceptions, the two groups of campuses also differed in other important ways,
+like overall University acceptance rates, representation and attrition of historically underrepresented students in CS, and percentage of students on federal Pell grants, a proxy for the overall socio-economic status of our student bodies.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>DH</th>
+      <th>LA</th>
+      <th>SF</th>
+      <th>Fullerton</th>
+      <th>Pomona</th>
+      <th>SLO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Had pre-college CS education</td>
+      <td>21%</td>
+      <td>38%</td>
+      <td>23%</td>
+      <td>43%</td>
+      <td>65%</td>
+      <td>47%</td>
+    </tr>
+    <tr>
+      <td>% Hispanic/Latino (University)</td>
+      <td>69%</td>
+      <td>75%</td>
+      <td>37%</td>
+      <td>52%</td>
+      <td>53%</td>
+      <td>23%</td>
+    </tr>
+    <tr>
+      <td>% Hispanic/Latino (CS Majors)</td>
+      <td>63%</td>
+      <td>54%</td>
+      <td>26%</td>
+      <td>27%</td>
+      <td>27%</td>
+      <td>11%</td>
+    </tr>
+    <tr>
+      <td>% of students who leave CS who are “URM”</td>
+      <td>42%</td>
+      <td>45%</td>
+      <td>45%</td>
+      <td>30%</td>
+      <td>26%</td>
+      <td>18%</td>
+    </tr>
+    <tr>
+      <td>% Receiving Pell grant</td>
+      <td>61%</td>
+      <td>66%</td>
+      <td>43%</td>
+      <td>47%</td>
+      <td>46%</td>
+      <td>18%</td>
+    </tr>
+    <tr>
+      <td>% First-generation students</td>
+      <td>46%</td>
+      <td>57%</td>
+      <td>32%</td>
+      <td>32%</td>
+      <td>55%</td>
+      <td>17%</td>
+    </tr>
+    <tr>
+      <td>University acceptance rate</td>
+      <td>86%</td>
+      <td>91%</td>
+      <td>93%</td>
+      <td>59%</td>
+      <td>44%</td>
+      <td>33%</td>
+    </tr>
+    <tr>
+      <td>Has competitive CS enrollment?</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>No</td>
+      <td>Yes</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>An example of how these environmental contexts might influence educational outcomes: we found that Hispanic/Latino students at the campuses without competitive enrolment policies were more likely than other students to report that work and family obligations interfered with their learning during the term.
+<a href="https://dl.acm.org/doi/10.1145/3446871.3469755">The same effect was observed by Salguero et al. at UC San Diego.</a> 
+<strong>However, no such effect was observed at the two participating Cal Polys.</strong></p>
+
+<p>These results underscore the importance of attending to institutional contextual differences when evaluating research results or considering (or disregarding) the adoption of curricular initiatives.</p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:corgis" role="doc-endnote">
+      <p>In many cases, students used tidied versions of the datasets from the <a href="https://corgis-edu.github.io/corgis/">CORGIS</a> dataset repository, which was a part of <a href="https://acbart.github.io/">Austin Cory Bart</a>’s wonderful dissertation project. <a href="#fnref:corgis" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+ 
+      </article>
+       <footer>
+  <div class='get-in-touch'>Contact<br></div>
+  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
+  <!--<div class='address'></div> -->
+  <div class='contact'>
+    <!-- <a href='https://twitter.com/ayaankazerouni'>
+      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
+      <span class='visible-hidden'>Twitter profile</span>
+    </a> -->
+    <a rel="me" href='https://hci.social/@ayaankazerouni'>
+      <i class='fab fa-mastodon' aria-label="Mastodon" title="Mastodon" target="_blank"></i>
+      <span class='visible-hidden'>Mastodon profile</span>
+    </a>
+    <a href='https://github.com/ayaankazerouni'>
+      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
+      <span class='visible-hidden'>GitHub profile</span>
+    </a>
+    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
+      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
+      <span class='visible-hidden'>LinkedIn profile</span>
+    </a> -->
+    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
+      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
+      <span class='visible-hidden'>Google Scholar profile</span>
+    </a>
+    <a href='https://dblp.org/pid/202/1256.html'>
+      <i class='ai ai-dblp-square' aria-label="DBLP" title="DBLP"></i>
+      <span class='visible-hidden'>DBLP page</span>
+    </a>
+    <!-- <a href='https://orcid.org/0000-0002-6574-1278'>
+      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
+      <span class='visible-hidden'>OrcID profile</span>
+    </a> -->
+  </div>
+</footer>
+
+    </main>
+  </body>
+</html>

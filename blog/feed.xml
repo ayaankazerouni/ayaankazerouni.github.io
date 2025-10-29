@@ -4,17 +4,18 @@
   <title>Ayaan M. Kazerouni</title>
   <link>https://ayaankazerouni.org/blog/</link>
   <description>Posts about computing education</description>
-  <lastBuildDate>Tue, 28 Oct 2025 20:59:12 -0700</lastBuildDate>
+  <lastBuildDate>Tue, 28 Oct 2025 21:31:05 -0700</lastBuildDate>
 
+  
   
   
   <item>
     <title>What Topics Interest Students in Socially Responsible Computing Coursework?</title>
-    <link>https://ayaankazerouni.org/blog/what-topics-interest-students</link>
-    <guid isPermaLink="true">https://ayaankazerouni.org/blog/what-topics-interest-students</guid>
+    <link>https://ayaankazerouni.org/blog/what-topics-interest-students/</link>
+    <guid>https://ayaankazerouni.org/blog/what-topics-interest-students/</guid>
     <pubDate>Sun, 14 Sep 2025</pubDate>
     <description>
-      &lt;p class=&quot;blurb&quot;&gt;This is a brief summary of the paper &lt;a href=&quot;/publications#koli2025topic-choices&quot;&gt;&lt;em&gt;What Topics Interest Students in Socially Responsible Computing Coursework?&lt;/em&gt;&lt;/a&gt;, appearing at &lt;a href=&quot;https://www.kolicalling.fi&quot;&gt;Koli Calling&lt;/a&gt; 2025.
+      &lt;p class=&quot;blurb&quot;&gt;This is a brief summary of the paper &lt;a href=&quot;https://ayaankazerouni.org/publications#koli2025topic-choices&quot;&gt;&lt;em&gt;What Topics Interest Students in Socially Responsible Computing Coursework?&lt;/em&gt;&lt;/a&gt;, appearing at &lt;a href=&quot;https://www.kolicalling.fi&quot;&gt;Koli Calling&lt;/a&gt; 2025.
 My co-authors were &lt;a href=&quot;https://cs.sfsu.edu/people/zainab-agha&quot;&gt;Zainab Agha&lt;/a&gt;, &lt;a href=&quot;https://aleatahubbard.com/&quot;&gt;Aleata Hubbard Cheuoua&lt;/a&gt;, &lt;a href=&quot;https://www.linkedin.com/in/melissa-lee-15637949&quot;&gt;Melissa Lee&lt;/a&gt;, &lt;a href=&quot;https://ethnicstudies.calpoly.edu/faculty-staff/jane-lehr&quot;&gt;Jane Lehr&lt;/a&gt;, &lt;a href=&quot;https://ilmiyoon8.wordpress.com/&quot;&gt;Ilmi Yoon&lt;/a&gt;, and &lt;a href=&quot;https://users.csc.calpoly.edu/~zwood/&quot;&gt;Zoë Wood&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;When teaching math or CS, we often need to ground examples or assignments in some &lt;em&gt;context&lt;/em&gt;.
@@ -52,7 +53,7 @@ We did this in three ways:&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;&lt;strong&gt;We talked to students&lt;/strong&gt;: We interviewed 4 students at San Francisco State University and 2 at Cal Poly SLO.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;We surveyed college students taking CS courses&lt;/strong&gt;: We surveyed 1443 students at &lt;a href=&quot;../src-in-early-cs-courses/&quot;&gt;six CSU campuses&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;We studied the choices students made when given free rein to pick a topic&lt;/strong&gt;: Two data-centric CS courses at Cal Poly SLO (an &lt;a href=&quot;/courses/csc123&quot;&gt;introductory programming course&lt;/a&gt; and a &lt;a href=&quot;/courses/csc477&quot;&gt;data visualisation course&lt;/a&gt;) included assignments where students were free to choose &lt;strong&gt;any&lt;/strong&gt; topic and dataset to work with. Their choices provide insight into their interests.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;We studied the choices students made when given free rein to pick a topic&lt;/strong&gt;: Two data-centric CS courses at Cal Poly SLO (an &lt;a href=&quot;https://ayaankazerouni.org/courses/csc123&quot;&gt;introductory programming course&lt;/a&gt; and a &lt;a href=&quot;https://ayaankazerouni.org/courses/csc477&quot;&gt;data visualisation course&lt;/a&gt;) included assignments where students were free to choose &lt;strong&gt;any&lt;/strong&gt; topic and dataset to work with. Their choices provide insight into their interests.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;what-did-students-find-interesting&quot;&gt;What did students find interesting?&lt;/h2&gt;
@@ -93,7 +94,7 @@ Instead, they focused on topics and datasets like:&lt;/p&gt;
 &lt;p&gt;For example, in the intro programming class, one student who’d been relatively quiet throughout the term went well beyond the assignment’s requirement when they were given freedom to choose a topic, and gave an animated and energetic presentation about trends in Broadway plays at the end of the term.
 Had I required a focus on “humanitarian” topics, this student might have lost this opportunity to connect their budding computing skills with an existing passion.&lt;/p&gt;
 
-&lt;p&gt;For more details, see &lt;a href=&quot;/publications#koli2025topic-choices&quot;&gt;the paper&lt;/a&gt;, or a &lt;a href=&quot;/blog/src-in-early-cs-courses&quot;&gt;previous post&lt;/a&gt; outlining some of the broader goals of our work.&lt;/p&gt;
+&lt;p&gt;For more details, see &lt;a href=&quot;https://ayaankazerouni.org/publications#koli2025topic-choices&quot;&gt;the paper&lt;/a&gt;, or a &lt;a href=&quot;https://ayaankazerouni.org/blog/src-in-early-cs-courses&quot;&gt;previous post&lt;/a&gt; outlining some of the broader goals of our work.&lt;/p&gt;
 
 &lt;hr /&gt;
 &lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
@@ -102,7 +103,271 @@ Had I required a focus on “humanitarian” topics, this student might have los
       &lt;p&gt;This is not the same as saying &lt;em&gt;that’s why they chose to study CS&lt;/em&gt;: &lt;a href=&quot;https://dl.acm.org/doi/abs/10.1145/2016911.2016915&quot;&gt;that’s a separate, multi-faceted decision&lt;/a&gt;. &lt;a href=&quot;#fnref:why&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:bias&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;Obviously, this is subject to individual impressions—see &lt;a href=&quot;/publications#koli2025-topic-choices&quot;&gt;the paper&lt;/a&gt; for details about how we categorised students’ submissions. &lt;a href=&quot;#fnref:bias&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Obviously, this is subject to individual impressions—see &lt;a href=&quot;https://ayaankazerouni.org/publications#koli2025-topic-choices&quot;&gt;the paper&lt;/a&gt; for details about how we categorised students’ submissions. &lt;a href=&quot;#fnref:bias&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+
+    </description>
+  </item>
+  
+  
+  
+  <item>
+    <title>Incorporating Socially Responsible Computing in Early Undergraduate CS Courses</title>
+    <link>https://ayaankazerouni.org/blog/src-in-early-cs-courses/</link>
+    <guid>https://ayaankazerouni.org/blog/src-in-early-cs-courses/</guid>
+    <pubDate>Thu, 10 Apr 2025</pubDate>
+    <description>
+      &lt;h2 class=&quot;no_toc&quot; id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#overview&quot; id=&quot;markdown-toc-overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-did-we-do&quot; id=&quot;markdown-toc-what-did-we-do&quot;&gt;What did we do?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#whats-src&quot; id=&quot;markdown-toc-whats-src&quot;&gt;What’s SRC?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#did-it-work&quot; id=&quot;markdown-toc-did-it-work&quot;&gt;Did it work?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#final-remarks&quot; id=&quot;markdown-toc-final-remarks&quot;&gt;Final remarks&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;Hispanic/Latino students are currently underrepresented in CS majors in California.&lt;/p&gt;
+
+&lt;p&gt;That is, the percentage of Hispanic/Latino students in CS majors is far lower than the percentage of college-going students in California who are Hispanic/Latino.
+&lt;a href=&quot;https://tableau.calstate.edu/views/SelfEnrollmentDashboard/EnrollmentSummary&quot;&gt;48% of students in the CSU system identified as Hispanic/Latino in Fall 2023&lt;/a&gt;, but only &lt;a href=&quot;https://tableau.calstate.edu/views/CSUDegreesIssued/CSUDegreesIssued&quot;&gt;25% of the CS degrees awarded by the CSU in 2023 went to Hispanic/Latino students&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In an alliance of six campuses in the California State University system (CSU), we worked to incorporate &lt;em&gt;socially responsible computing&lt;/em&gt; (SRC) into our early CS courses in a sustained effort to improve the experience of students who are historically under-represented in computing majors.
+Our explicit goal is to increase retention rates of students identifying as Hispanic/Latino—currently, these students tend to leave the CS major at our institutions at far higher rates than other students.
+We are driven by evidence that suggests that &lt;a href=&quot;https://paul-bruno.com/wp-content/uploads/2019/07/Lewis_2019_CommunalGoals.pdf&quot;&gt;we might draw more students toward computing through clear signalling of computing’s &lt;em&gt;communal goal affordances&lt;/em&gt;&lt;/a&gt; (i.e., stronger signalling to students that they can use their computing knowledge to benefit society).&lt;/p&gt;
+
+&lt;p&gt;This multi-year project was &lt;a href=&quot;https://www.nsf.gov/awardsearch/showAward?AWD_ID=2216687&amp;amp;HistoricalAwards=false&quot;&gt;funded by the National Science Foundation in 2022&lt;/a&gt;.
+This helped support the following activities and personnel:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Development of new curricular materials,&lt;/strong&gt; including two new courses at Cal Poly SLO and San Francisco State University. These materials have also been adopted at universities outside our six-campus alliance.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Monthly online teacher training workshops,&lt;/strong&gt; organised by social scientists and computer scientists, attended by 20–25 CS professors at various institutions.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Annual 1.5 day-long in-person workshops&lt;/strong&gt; in June 2023, 2024, and 2025 to support collaborative work, brainstorming, and feedback.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Independent external evaluation&lt;/strong&gt; by evaluators at the non-profit agency &lt;a href=&quot;https://wested.org&quot;&gt;WestEd.org&lt;/a&gt;, who helped collect the data leading to the conclusions described in this post.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Incentives for students to participate in focus groups&lt;/strong&gt; about their experiences in the courses we studied.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Our team was:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;At Cal Poly SLO: Zoë Wood, Jane Lehr, and myself.&lt;/li&gt;
+  &lt;li&gt;At CSU Fullerton: Paul Salvador Inventado, Kevin Wortman, and Kanika Sood.&lt;/li&gt;
+  &lt;li&gt;At San Francisco State University (formerly and currently): Ilmi Yoon, Aakash Gautam, Anagha Kulkarni, and Zainab Agha.&lt;/li&gt;
+  &lt;li&gt;At CSU Los Angeles: Elaine Eun-Young Kang and David Krum.&lt;/li&gt;
+  &lt;li&gt;At CSU Dominguez Hills: Mohsen Beheshti and Sahar Hooshmand.&lt;/li&gt;
+  &lt;li&gt;At Cal Poly Pomona: Daisy Tang, Yu Sun, and Amlan Chatterjee.&lt;/li&gt;
+  &lt;li&gt;At WestEd.org: Aleata Hubbard Cheuoua and Melissa Lee.&lt;/li&gt;
+  &lt;li&gt;At Colorado Evaluation and Research Consulting: Sarah Hug.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this post, I summarize the work done by our team over the last two-and-a-half years.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-did-we-do&quot;&gt;What did we do?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;We incorporated SRC in our intro CS courses at all six campuses. For example, at Cal Poly SLO, this took the form of a new data-centric introductory CS course focused on using computation to examine social trends and phenomena relevant to the students. The course is described in the paper &lt;em&gt;&lt;a href=&quot;https://ayaankazerouni.org/publications#sigcse2024cs0-course&quot;&gt;Community-Action Computing: A Data-centric CS0 course&lt;/a&gt;&lt;/em&gt; (SIGCSE 2024 Curricular Initiatives).&lt;/li&gt;
+  &lt;li&gt;We also participated in a faculty learning community that met for monthly workshops led by social scientists (Jane Lehr from Cal Poly SLO and Sarah Hug from Colorado Evaluation and Research Consulting). Some lessons learned from these workshops were published in &lt;em&gt;&lt;a href=&quot;https://ayaankazerouni.org/publications#sigcse2025src-practices&quot;&gt;Reflecting on Practices to Integrate Socially Responsible Computing in Introductory Computer Science Courses&lt;/a&gt;&lt;/em&gt; (SIGCSE 2025 Experience Reports).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Finally (the focus of this post) we found that our curricular additions had positive impacts on students’ sense of belonging in computing and their perceived learning and agency in early CS courses.&lt;/strong&gt; These results were published in &lt;em&gt;&lt;a href=&quot;https://ayaankazerouni.org/publications#toce2025src&quot;&gt;The Benefits of Socially Responsible Computing in Early Computing Courses: A Multi-Institutional Study at Primarily Undergraduate Hispanic-Serving Institutions&lt;/a&gt;&lt;/em&gt; (TOCE).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;whats-src&quot;&gt;What’s SRC?&lt;/h2&gt;
+
+&lt;p&gt;We sought to develop curricular materials that demonstrated to students that they could use computing to benefit their communities and society, and to encourage students to think critically about the impacts of computing on society.&lt;/p&gt;
+
+&lt;p&gt;This went beyond teaching ethics in computing.
+We encouraged students to actively consider social and
+ethical implications of their work, acknowledge (with examples) the significant power that computing systems have in society, and aimed to prepare students to exercise that power responsibly as they develop technical skills.
+To this end, we integrated SRC considerations in the context of technical skills introduced in the class, rather than introducing separate modules for ethical and social
+considerations.&lt;/p&gt;
+
+&lt;p&gt;These ideas have &lt;a href=&quot;https://responsible.cs.brown.edu/&quot;&gt;been&lt;/a&gt; &lt;a href=&quot;https://ethicalcs.github.io/&quot;&gt;around&lt;/a&gt; &lt;a href=&quot;https://dl.acm.org/doi/10.1145/3702212.3702225&quot;&gt;for&lt;/a&gt; &lt;a href=&quot;https://identity.cs.duke.edu/fellows.html&quot;&gt;a while&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://evanpeck.github.io/&quot;&gt;Evan Peck&lt;/a&gt;’s work—a big source of inspiration for us—&lt;a href=&quot;https://ethicalcs.github.io/&quot;&gt;puts it well&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;em&gt;&lt;strong&gt;Introduce a deeper level of reflection in CS 1 courses.&lt;/strong&gt; I want students to see that their actions either directly or indirectly impact people, communities, and cultures, and that this impact is often not felt equally by different groups of people (along lines of gender, race, class, geography, etc.)&lt;/em&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;em&gt;&lt;strong&gt;Develop reflection habits alongside coding habits&lt;/strong&gt; - all modules involve programming! I believe that habits are formed early in CS and must be tightly coupled with technical concepts in order for them to stick.&lt;/em&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;em&gt;&lt;strong&gt;Pair directly with existing CS 1 curriculum&lt;/strong&gt; - CS 1 is already a busy course. You don’t need to set aside a month of new material. I believe that reflection and responsible computing pairs directly with technical concepts already taught (conditionals, for loops, etc.)&lt;/em&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;We were also driven by the knowledge that &lt;a href=&quot;https://paul-bruno.com/wp-content/uploads/2019/07/Lewis_2019_CommunalGoals.pdf&quot;&gt;some students, more than others, are strongly drawn to disciplines that &lt;em&gt;they believe&lt;/em&gt; would help benefit society&lt;/a&gt;.
+Clear signalling in early CS courses of computing’s impact on and relevance to society, and demonstration to students that even their nascent computing skills can be applied toward the social good should, in theory, improve their motivation and sense of belonging in computing.&lt;/p&gt;
+
+&lt;p&gt;For example, at CSU Fullerton the lessons on control flow with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;if&lt;/code&gt; statements were accompanied by programming assignments where students designed, implemented, and critiqued in small groups schemes for allocating tips in restaurants.
+These were also accompanied by readings about &lt;a href=&quot;https://www.nytimes.com/2021/02/05/opinion/minimum-wage-racism.html&quot;&gt;the racialized history of tipping in America&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Also while learning about conditional logic, students at CSU Dominguez Hills wrote programs to determine individuals’ eligibilities for safe blood donations, and designed a simple system for tracking and managing blood donations.
+All of this was accompanied by readings and reflections about the &lt;a href=&quot;https://www.youtube.com/watch?v=Tfwq_vJHwT8&amp;amp;feature=youtu.be&quot;&gt;need for blood donations&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;At Cal Poly SLO, we developed a new &lt;a href=&quot;https://ayaankazerouni.org/publications#sigcse2024cs0-course&quot;&gt;data-centric introductory programming course&lt;/a&gt; in which students used &lt;a href=&quot;https://typescriptlang.org&quot;&gt;TypeScript&lt;/a&gt; and &lt;a href=&quot;https://vega.github.io/vega-lite/&quot;&gt;Vega-Lite&lt;/a&gt; to analyze and visualize datasets about socially relevant phenomena.
+Datasets were often chosen by the students and projects involved written and oral reflective components in addition to programs.
+Among other topics, students studied disparities in access to CS education in the state of California using data provided by the non-profit organization &lt;a href=&quot;https://csforca.org&quot;&gt;CSforCA&lt;/a&gt;, data about the victims of fatal police shootings &lt;a href=&quot;https://www.washingtonpost.com/graphics/investigations/police-shootings-database/&quot;&gt;compiled by the Washington Post&lt;/a&gt;, and data about people’s access to fresh food compiled by the &lt;a href=&quot;https://www.ers.usda.gov/data-products/food-access-research-atlas/download-the-data/&quot;&gt;US Department of Agriculture’s Economic Research Service&lt;/a&gt;.&lt;sup id=&quot;fnref:corgis&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:corgis&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
+In all cases, students were given freedom to choose their topics, ask their own questions, and present their findings to the rest of the class.&lt;/p&gt;
+
+&lt;h2 id=&quot;did-it-work&quot;&gt;Did it work?&lt;/h2&gt;
+
+&lt;p&gt;Over two academic years—2022–2023 and 2023–2024—we collected survey data from students at all six campuses to measure their &lt;em&gt;sense of belonging&lt;/em&gt; in CS.
+Belonging was measured using the 26-item survey developed by &lt;a href=&quot;https://dl.acm.org/doi/10.1145/3408877.3432425&quot;&gt;Moudgalya et al.&lt;/a&gt;, containing statements about belonging scored from &lt;em&gt;Strongly disagree&lt;/em&gt; (–3) to &lt;em&gt;Strongly agree&lt;/em&gt; (3).&lt;/p&gt;
+
+&lt;p&gt;Statements were positive or negative and preceded by the phrase “In this computer science class…”. Some example statements are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;I feel a connection with the computer science community.&lt;/li&gt;
+  &lt;li&gt;I feel insignificant.&lt;/li&gt;
+  &lt;li&gt;I feel at ease.&lt;/li&gt;
+  &lt;li&gt;I enjoy being an active participant.&lt;/li&gt;
+  &lt;li&gt;I try to say as little as possible.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The Fall 2022 term was our “Baseline” group.
+Surveyed classes were taught with no added SRC curricular materials.
+Spring 2023, Fall 2023, and Spring 2024 were our “Intervention” groups (“Post” in the figure below).
+All surveyed courses had significant SRC materials added, ranging from individual assignments with discussions and reflective components (as in the case of &lt;a href=&quot;https://dl.acm.org/doi/10.1145/3626252.3630853&quot;&gt;CSU Fullerton&lt;/a&gt;) to entirely new courses (as in the case of &lt;a href=&quot;https://ayaankazerouni.org/publications#sigcse2024cs0-course&quot;&gt;Cal Poly SLO&lt;/a&gt; and &lt;a href=&quot;https://dl.acm.org/doi/10.1145/3626252.3630926&quot;&gt;San Francisco State University&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Our intervention had significant positive impacts on students’ sense of belonging at some campuses, but not others.&lt;/strong&gt;
+The split appeared to be between campuses that had “competitive enrolment policies” for their CS majors, and those that did not.
+&lt;a href=&quot;https://dl.acm.org/doi/10.1145/3328778.3366805&quot;&gt;Nguyen and Lewis&lt;/a&gt; describe competitive enrolment policies as those in which students already at the University need to meet minimum GPA thresholds to declare a CS major and take CS courses, or where students are admitted directly to the CS major.&lt;/p&gt;
+
+&lt;p&gt;In our study, the two Cal Polys (SLO and Pomona) have competitive enrolment policies, due in large part to enrolment pressures. 
+Students are either admitted directly into the CS major or must satisfy fairly intensive requirements before transferring into the CS major.
+Conversely, the other participating campuses—SFSU, Dominguez Hills, Fullerton, and CSU LA—have no such additional requirements for majoring in CS.
+They also have relatively higher proportions of students identifying as Hispanic/Latino.&lt;/p&gt;
+
+&lt;p&gt;In general, we saw that the campuses &lt;em&gt;without&lt;/em&gt; competitive enrolment policies were more likely to report significant positive impacts from SRC curricular additions. The pattern is visible in the figure below.&lt;/p&gt;
+
+&lt;p&gt;(CSU Fullerton does not appear in this figure because no classes at Fullerton were surveyed in both the Baseline and Intervention terms. Fullerton features in other analyses in &lt;a href=&quot;https://ayaankazerouni.org/publications#toce2025src&quot;&gt;the paper&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;figure&gt;
+&lt;div id=&quot;chart&quot; class=&quot;chart-container&quot;&gt;&lt;/div&gt;
+&lt;figcaption&gt;Sense of belonging scores at each campus in the Baseline term (Fall 2022) and in post-surveys in Intervention terms (Spring 2023, Fall 2023, Spring 2024). The paper reports transformed belonging scores based on a confirmatory factor analysis, but the same trend is visible and easier to interpret with the –3 &amp;rarr; 3 scale shown here.&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+    const tooltipTheme = window.matchMedia(&apos;(prefers-color-scheme: dark)&apos;).matches ? &apos;dark&apos; : &apos;default&apos;;
+    const vega = (await import(&apos;https://cdn.jsdelivr.net/npm/vega@6/+esm&apos;)).default;
+    const vl = (await import(&apos;https://cdn.jsdelivr.net/npm/vega-lite@6/+esm&apos;)).default;
+    const vegaEmbed = (await import(&apos;https://cdn.jsdelivr.net/npm/vega-embed@6/+esm&apos;)).default;
+    const chartSpec = (await (await fetch(&apos;/blog/src-in-early-cs-courses//chart.json&apos;)).json());
+    vegaEmbed(&apos;#chart&apos;, chartSpec, { theme: &apos;ggplot2&apos;, tooltip: { theme: tooltipTheme } })
+&lt;/script&gt;
+
+&lt;h2 id=&quot;final-remarks&quot;&gt;Final remarks&lt;/h2&gt;
+
+&lt;p&gt;While there were &lt;a href=&quot;https://ayaankazerouni.org/publications#toce2025src&quot;&gt;other overall benefits&lt;/a&gt; of our SRC curricular additions, in terms of sense of belonging our intervention appeared to impact students at some campuses far more than others.
+Five of the six participating campuses in our alliance were designated as Hispanic-Serving Institutions at the time the research was carried out (all except Cal Poly SLO).&lt;/p&gt;
+
+&lt;p&gt;Upon reflection, perhaps the relative stability of sense of belonging at the institutions with competitive CS enrolment (the two Cal Polys) is to be expected.
+CS students at those campuses have already been put through significant filtering criteria, based on GPA thresholds within the University, and admissions that are heavily influenced by AP courses, the availability of which is largely dependent on school district and household income levels.
+It would make sense that these students, who were also more likely to have had pre-college CS experiences, had a relatively stable sense of self in the computing discipline.&lt;/p&gt;
+
+&lt;p&gt;With occasional exceptions, the two groups of campuses also differed in other important ways,
+like overall University acceptance rates, representation and attrition of historically underrepresented students in CS, and percentage of students on federal Pell grants, a proxy for the overall socio-economic status of our student bodies.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Attribute&lt;/th&gt;
+      &lt;th&gt;DH&lt;/th&gt;
+      &lt;th&gt;LA&lt;/th&gt;
+      &lt;th&gt;SF&lt;/th&gt;
+      &lt;th&gt;Fullerton&lt;/th&gt;
+      &lt;th&gt;Pomona&lt;/th&gt;
+      &lt;th&gt;SLO&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Had pre-college CS education&lt;/td&gt;
+      &lt;td&gt;21%&lt;/td&gt;
+      &lt;td&gt;38%&lt;/td&gt;
+      &lt;td&gt;23%&lt;/td&gt;
+      &lt;td&gt;43%&lt;/td&gt;
+      &lt;td&gt;65%&lt;/td&gt;
+      &lt;td&gt;47%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;% Hispanic/Latino (University)&lt;/td&gt;
+      &lt;td&gt;69%&lt;/td&gt;
+      &lt;td&gt;75%&lt;/td&gt;
+      &lt;td&gt;37%&lt;/td&gt;
+      &lt;td&gt;52%&lt;/td&gt;
+      &lt;td&gt;53%&lt;/td&gt;
+      &lt;td&gt;23%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;% Hispanic/Latino (CS Majors)&lt;/td&gt;
+      &lt;td&gt;63%&lt;/td&gt;
+      &lt;td&gt;54%&lt;/td&gt;
+      &lt;td&gt;26%&lt;/td&gt;
+      &lt;td&gt;27%&lt;/td&gt;
+      &lt;td&gt;27%&lt;/td&gt;
+      &lt;td&gt;11%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;% of students who leave CS who are “URM”&lt;/td&gt;
+      &lt;td&gt;42%&lt;/td&gt;
+      &lt;td&gt;45%&lt;/td&gt;
+      &lt;td&gt;45%&lt;/td&gt;
+      &lt;td&gt;30%&lt;/td&gt;
+      &lt;td&gt;26%&lt;/td&gt;
+      &lt;td&gt;18%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;% Receiving Pell grant&lt;/td&gt;
+      &lt;td&gt;61%&lt;/td&gt;
+      &lt;td&gt;66%&lt;/td&gt;
+      &lt;td&gt;43%&lt;/td&gt;
+      &lt;td&gt;47%&lt;/td&gt;
+      &lt;td&gt;46%&lt;/td&gt;
+      &lt;td&gt;18%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;% First-generation students&lt;/td&gt;
+      &lt;td&gt;46%&lt;/td&gt;
+      &lt;td&gt;57%&lt;/td&gt;
+      &lt;td&gt;32%&lt;/td&gt;
+      &lt;td&gt;32%&lt;/td&gt;
+      &lt;td&gt;55%&lt;/td&gt;
+      &lt;td&gt;17%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;University acceptance rate&lt;/td&gt;
+      &lt;td&gt;86%&lt;/td&gt;
+      &lt;td&gt;91%&lt;/td&gt;
+      &lt;td&gt;93%&lt;/td&gt;
+      &lt;td&gt;59%&lt;/td&gt;
+      &lt;td&gt;44%&lt;/td&gt;
+      &lt;td&gt;33%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Has competitive CS enrollment?&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;An example of how these environmental contexts might influence educational outcomes: we found that Hispanic/Latino students at the campuses without competitive enrolment policies were more likely than other students to report that work and family obligations interfered with their learning during the term.
+&lt;a href=&quot;https://dl.acm.org/doi/10.1145/3446871.3469755&quot;&gt;The same effect was observed by Salguero et al. at UC San Diego.&lt;/a&gt; 
+&lt;strong&gt;However, no such effect was observed at the two participating Cal Polys.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;These results underscore the importance of attending to institutional contextual differences when evaluating research results or considering (or disregarding) the adoption of curricular initiatives.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:corgis&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;In many cases, students used tidied versions of the datasets from the &lt;a href=&quot;https://corgis-edu.github.io/corgis/&quot;&gt;CORGIS&lt;/a&gt; dataset repository, which was a part of &lt;a href=&quot;https://acbart.github.io/&quot;&gt;Austin Cory Bart&lt;/a&gt;’s wonderful dissertation project. &lt;a href=&quot;#fnref:corgis&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -114,17 +379,17 @@ Had I required a focus on “humanitarian” topics, this student might have los
   
   <item>
     <title>Challenges with learning end-user programming: A case study with Chemistry undergraduate students</title>
-    <link>https://ayaankazerouni.org/blog/end-user-programming</link>
-    <guid isPermaLink="true">https://ayaankazerouni.org/blog/end-user-programming</guid>
+    <link>https://ayaankazerouni.org/blog/end-user-programming/</link>
+    <guid>https://ayaankazerouni.org/blog/end-user-programming/</guid>
     <pubDate>Tue, 25 Jun 2024</pubDate>
     <description>
-      &lt;p&gt;This is an overview of the research paper &lt;em&gt;&lt;a href=&quot;/publications#jce2024end-user-programming&quot;&gt;Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students&lt;/a&gt;&lt;/em&gt;, published in the American Chemical Society (ACS) Journal of Chemical Education.&lt;/p&gt;
+      &lt;p&gt;This is an overview of the research paper &lt;em&gt;&lt;a href=&quot;https://ayaankazerouni.org/publications#jce2024end-user-programming&quot;&gt;Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students&lt;/a&gt;&lt;/em&gt;, published in the American Chemical Society (ACS) Journal of Chemical Education.&lt;/p&gt;
 
 &lt;p&gt;The work was conducted at Cal Poly and was led by MS student &lt;a href=&quot;https://www.linkedin.com/in/wifuchs&quot;&gt;Will Fuchs&lt;/a&gt;.
 Our co-authors were &lt;a href=&quot;https://chemistry.calpoly.edu/content/faculty/ashley_mcdonald&quot;&gt;Dr. Ashley McDonald&lt;/a&gt; from the Chemistry &amp;amp; Biochemistry department at Cal Poly and &lt;a href=&quot;https://aakash.xyz&quot;&gt;Dr. Aakash Gautam&lt;/a&gt; from the CS department at the University of Pittsburgh.&lt;/p&gt;
 
 &lt;p&gt;This article should be of interest to educators in disciplines &lt;strong&gt;other than computer science or software engineering&lt;/strong&gt; who are teaching their students programming.
-For more details, see &lt;a href=&quot;/publications#jce2024end-user-programming&quot;&gt;the paper&lt;/a&gt;.&lt;/p&gt;
+For more details, see &lt;a href=&quot;https://ayaankazerouni.org/publications#jce2024end-user-programming&quot;&gt;the paper&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;where-should-we-teach-chemists-to-program&quot;&gt;Where should we teach Chemists to program?&lt;/h2&gt;
 
@@ -174,9 +439,9 @@ On average, the students reported negative attitudes toward computing: low confi
 They did perceive computing to be marginally useful.&lt;/p&gt;
 
 &lt;figure class=&quot;wrap&quot;&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/end-user-programmingattitudes.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/end-user-programming/attitudes.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/end-user-programmingattitudes.png&quot; alt=&quot;A column chart showing the average reported confidence with and enjoyment of computing, sense of belonging in computing, and sense that computing is important.&quot; width=&quot;100&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/end-user-programming/attitudes.png&quot; alt=&quot;A column chart showing the average reported confidence with and enjoyment of computing, sense of belonging in computing, and sense that computing is important.&quot; width=&quot;100&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -199,7 +464,7 @@ We can say nothing about what causes these negative attitudes, or what exactly t
 He asked them questions from the MCS1 assessment, and instead of framing them as multiple-choice questions, he framed them as open-ended short-answer questions, and asked the students to “think out loud” while answering them.
 He recorded the interviews (with the students’ consent), and together we analysed the transcripts.&lt;/p&gt;
 
-&lt;p&gt;Details are in &lt;a href=&quot;/publications#jce2024end-user-programming&quot;&gt;the paper&lt;/a&gt;, but here are the highlights:&lt;/p&gt;
+&lt;p&gt;Details are in &lt;a href=&quot;https://ayaankazerouni.org/publications#jce2024end-user-programming&quot;&gt;the paper&lt;/a&gt;, but here are the highlights:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;We used &lt;a href=&quot;https://kar.kent.ac.uk/23997/1/TaxonomyFuller.pdf&quot;&gt;Fuller et al.’s Matrix Taxonomy&lt;/a&gt; to categorise the level at which students were operating in terms of their programming knowledge. Students were generally competent with code comprehension involving patterns they had seen before.&lt;/li&gt;
@@ -307,8 +572,8 @@ The audience for the paper was right there.&lt;/p&gt;
   
   <item>
     <title>It&apos;s good to be bad at something</title>
-    <link>https://ayaankazerouni.org/blog/good-to-be-bad</link>
-    <guid isPermaLink="true">https://ayaankazerouni.org/blog/good-to-be-bad</guid>
+    <link>https://ayaankazerouni.org/blog/good-to-be-bad/</link>
+    <guid>https://ayaankazerouni.org/blog/good-to-be-bad/</guid>
     <pubDate>Sun, 31 Mar 2024</pubDate>
     <description>
       &lt;p&gt;&lt;em&gt;I signed up for a short machine shop training, and was reminded what it’s like to do something for the first time and struggle with it. In related news, I am teaching intro programming again in the Fall.&lt;/em&gt;&lt;/p&gt;
@@ -319,9 +584,9 @@ It was a 3-hour session that started with a whirlwind introduction to the machin
 Here’s mine:&lt;/p&gt;
 
 &lt;figure class=&quot;wrap&quot;&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/good-to-be-badbookend.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/good-to-be-bad/bookend.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/good-to-be-badbookend.png&quot; alt=&quot;A bookend made by me in a machine shop training session.&quot; width=&quot;400px&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/good-to-be-bad/bookend.png&quot; alt=&quot;A bookend made by me in a machine shop training session.&quot; width=&quot;400px&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -397,11 +662,11 @@ I will try to remember the feeling during Q&amp;amp;A sessions and office hours.
   
   <item>
     <title>How relative novices make sense of code coverage and mutation-based feedback</title>
-    <link>https://ayaankazerouni.org/blog/test-feedback-sensemaking</link>
-    <guid isPermaLink="true">https://ayaankazerouni.org/blog/test-feedback-sensemaking</guid>
+    <link>https://ayaankazerouni.org/blog/test-feedback-sensemaking/</link>
+    <guid>https://ayaankazerouni.org/blog/test-feedback-sensemaking/</guid>
     <pubDate>Thu, 04 Jan 2024</pubDate>
     <description>
-      &lt;p&gt;This is an overview of the research paper &lt;em&gt;&lt;a href=&quot;/publications#toce2023testing&quot;&gt;A Model of How Students Engineer Test Cases with Feedback&lt;/a&gt;&lt;/em&gt; published in ACM Transactions on Computing Education. The work was conducted at Cal Poly and was led by MS student &lt;a href=&quot;https://www.linkedin.com/in/amshin98/&quot;&gt;Austin Shin&lt;/a&gt;.&lt;/p&gt;
+      &lt;p&gt;This is an overview of the research paper &lt;em&gt;&lt;a href=&quot;https://ayaankazerouni.org/publications#toce2023testing&quot;&gt;A Model of How Students Engineer Test Cases with Feedback&lt;/a&gt;&lt;/em&gt; published in ACM Transactions on Computing Education. The work was conducted at Cal Poly and was led by MS student &lt;a href=&quot;https://www.linkedin.com/in/amshin98/&quot;&gt;Austin Shin&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
@@ -421,9 +686,9 @@ As students are encouraged to frequently write and run their own tests to check 
 &lt;p&gt;Our findings are summarised in the process model below.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemakingprocess-model.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemaking/process-model.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemakingprocess-model.png&quot; alt=&quot;A process diagram showing a novice&apos;s test selection process. A participant receives a testing task, then reads the source code or program description to first understand the problem and program. Once this is done, they write an initial set of tests based on experience and intuition. If any tests fail, the participant re-evaluates their understanding. Once all tests pass, they receive test adequacy feedback. They use strategies like code tracing to identify gaps in branch or mutation feedback. If mutation feedback is too difficult to address, the participant may fall back to addressing branch coverage instead. Once all feedback is satisfied, the testing task is done.&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemaking/process-model.png&quot; alt=&quot;A process diagram showing a novice&apos;s test selection process. A participant receives a testing task, then reads the source code or program description to first understand the problem and program. Once this is done, they write an initial set of tests based on experience and intuition. If any tests fail, the participant re-evaluates their understanding. Once all tests pass, they receive test adequacy feedback. They use strategies like code tracing to identify gaps in branch or mutation feedback. If mutation feedback is too difficult to address, the participant may fall back to addressing branch coverage instead. Once all feedback is satisfied, the testing task is done.&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -449,9 +714,9 @@ Students were asked to think out loud while performing the testing tasks, and th
 &lt;p&gt;Below is the interface in which students were given testing exercises.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemakingmuttle.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemaking/muttle.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemakingmuttle.png&quot; alt=&quot;A screenshot of the testing interface, showing where the user creates test cases and receives branch coverage or mutation coverage feedback about those test cases&quot; width=&quot;65%&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemaking/muttle.png&quot; alt=&quot;A screenshot of the testing interface, showing where the user creates test cases and receives branch coverage or mutation coverage feedback about those test cases&quot; width=&quot;65%&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -459,7 +724,7 @@ Students were asked to think out loud while performing the testing tasks, and th
 &lt;/figure&gt;
 
 &lt;p&gt;We qualitatively analysed the transcripts from these interviews.
-For details about our analytic method, see &lt;a href=&quot;/publications#toce2023testing&quot;&gt;the paper&lt;/a&gt;.&lt;/p&gt;
+For details about our analytic method, see &lt;a href=&quot;https://ayaankazerouni.org/publications#toce2023testing&quot;&gt;the paper&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
 
@@ -510,7 +775,7 @@ One student was so distracted by this parallel comprehension task that when they
   &lt;li&gt;Finally, some students ignored the specific mutations and focused only on the fact that they were &lt;em&gt;present&lt;/em&gt;. The presence of an un-addressed mutant alerted students to “suspicious” lines of code, and they did not need to look at the specific mutation in order to target their testing toward those lines.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;For more details, see &lt;a href=&quot;/publications#toce2023testing&quot;&gt;the paper&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For more details, see &lt;a href=&quot;https://ayaankazerouni.org/publications#toce2023testing&quot;&gt;the paper&lt;/a&gt;.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -535,8 +800,8 @@ One student was so distracted by this parallel comprehension task that when they
   
   <item>
     <title>What makes CS students seek or avoid academic help resources?</title>
-    <link>https://ayaankazerouni.org/blog/help-seeking-behaviours</link>
-    <guid isPermaLink="true">https://ayaankazerouni.org/blog/help-seeking-behaviours</guid>
+    <link>https://ayaankazerouni.org/blog/help-seeking-behaviours/</link>
+    <guid>https://ayaankazerouni.org/blog/help-seeking-behaviours/</guid>
     <pubDate>Sat, 13 Nov 2021</pubDate>
     <description>
       &lt;p&gt;&lt;small&gt;
@@ -576,9 +841,9 @@ One student was so distracted by this parallel comprehension task that when they
 
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/help-seeking-behavioursfrequency.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/help-seeking-behaviours/frequency.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/help-seeking-behavioursfrequency.png&quot; alt=&quot;&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/help-seeking-behaviours/frequency.png&quot; alt=&quot;&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -682,8 +947,8 @@ It’s possible that students who are less inclined to seek help from social sou
   
   <item>
     <title>Fast and Accurate Incremental Feedback for Students&apos; Software Tests Using Selective Mutation Analysis</title>
-    <link>https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback</link>
-    <guid isPermaLink="true">https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback</guid>
+    <link>https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/</link>
+    <guid>https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/</guid>
     <pubDate>Wed, 17 Mar 2021</pubDate>
     <description>
       &lt;p&gt;&lt;small&gt;
@@ -745,9 +1010,9 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;p&gt;We grouped submissions by source lines of code (SLoC), ranging from ~150 LoC to ~1200 LoC.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedbacksubmission-groups.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/submission-groups.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedbacksubmission-groups.png&quot; alt=&quot;A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code.&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/submission-groups.png&quot; alt=&quot;A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code.&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -792,8 +1057,8 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;p&gt;We found that most of the Deletion set’s effectiveness comes from the first two operators, i.e., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RemoveConditionals&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AOD&lt;/code&gt;. Inclusion of additional operators drives up the cost, but with little improvement to accuracy.&lt;/p&gt;
 
 &lt;figure class=&quot;wide&quot;&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedbackinc-subsets.png&quot; target=&quot;_blank&quot;&gt;
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedbackinc-subsets.png&quot; alt=&quot;Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy.&quot; /&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/inc-subsets.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/inc-subsets.png&quot; alt=&quot;Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy.&quot; /&gt;
   &lt;/a&gt;
 
   &lt;figcaption&gt;The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R&lt;sup&gt;2&lt;/sup&gt; predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.&lt;/figcaption&gt;
@@ -837,9 +1102,9 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;p&gt;In terms of &lt;strong&gt;reliability&lt;/strong&gt;, it appeared that the incremental subsets were nearly as effective as the entire Deletion set, with the 3-op subset (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NonVoidMethodCalls&lt;/code&gt; and beyond) bringing diminishing returns. This is similar to our original results.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedbackval-mutation-score.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-mutation-score.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedbackval-mutation-score.png&quot; alt=&quot;Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively.&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-mutation-score.png&quot; alt=&quot;Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively.&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -849,9 +1114,9 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;p&gt;The &lt;strong&gt;cost&lt;/strong&gt; naturally decreases in the order Deletion → 3-op → 2-op → 1-op.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedbackval-cost.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-cost.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedbackval-cost.png&quot; alt=&quot;The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively.&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-cost.png&quot; alt=&quot;The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively.&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -891,15 +1156,15 @@ It’s possible that students who are less inclined to seek help from social sou
   
   <item>
     <title>Explicit Milestones on Intermediate Software Projects are Pretty Not Bad</title>
-    <link>https://ayaankazerouni.org/blog/explicit-project-milestones</link>
-    <guid isPermaLink="true">https://ayaankazerouni.org/blog/explicit-project-milestones</guid>
+    <link>https://ayaankazerouni.org/blog/explicit-project-milestones/</link>
+    <guid>https://ayaankazerouni.org/blog/explicit-project-milestones/</guid>
     <pubDate>Wed, 14 Oct 2020</pubDate>
     <description>
       &lt;p&gt;&lt;small&gt;
 &lt;i&gt;This article was originally posted on &lt;a href=&quot;https://ayaankazerouni.medium.com&quot;&gt;my Medium blog&lt;/a&gt; on October 14, 2020.&lt;/i&gt;
 &lt;/small&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;This is an overview of the research paper “&lt;strong&gt;&lt;a href=&quot;/publications#sigcse2021milestones&quot;&gt;The Impact of Programming Project Milestones on Procrastination, Project Outcomes, and Course Outcomes&lt;/a&gt;&lt;/strong&gt;” by &lt;a href=&quot;https://people.cs.vt.edu/shaffer&quot;&gt;Cliff Shaffer&lt;/a&gt; and myself, appearing at SIGCSE 2021.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This is an overview of the research paper “&lt;strong&gt;&lt;a href=&quot;https://ayaankazerouni.org/publications#sigcse2021milestones&quot;&gt;The Impact of Programming Project Milestones on Procrastination, Project Outcomes, and Course Outcomes&lt;/a&gt;&lt;/strong&gt;” by &lt;a href=&quot;https://people.cs.vt.edu/shaffer&quot;&gt;Cliff Shaffer&lt;/a&gt; and myself, appearing at SIGCSE 2021.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
 
@@ -972,9 +1237,9 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;p&gt;Results are summarised in the figure below.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestonescompletion-time-milestone-group.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/completion-time-milestone-group.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/explicit-project-milestonescompletion-time-milestone-group.png&quot; alt=&quot;A series of boxplots showing distributions of project completion times in terms of hours before the deadline. They generally completing more milestones led to generally earlier completion times.&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/completion-time-milestone-group.png&quot; alt=&quot;A series of boxplots showing distributions of project completion times in terms of hours before the deadline. They generally completing more milestones led to generally earlier completion times.&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -993,9 +1258,9 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;/ul&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestonescorrectness-milestone-group.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/correctness-milestone-group.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/explicit-project-milestonescorrectness-milestone-group.png&quot; alt=&quot;A column chart showing pass, withdraw, and failure rates between the milestones term and the term without milestones. There were largely no changes.&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/correctness-milestone-group.png&quot; alt=&quot;A column chart showing pass, withdraw, and failure rates between the milestones term and the term without milestones. There were largely no changes.&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -1025,9 +1290,9 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;p&gt;We didn’t find any differences in these outcomes between the two semesters. This is apparent in the figure below.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestonesoutcomes.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/outcomes.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/explicit-project-milestonesoutcomes.png&quot; alt=&quot;&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/outcomes.png&quot; alt=&quot;&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -1039,9 +1304,9 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;p&gt;We examined differences in the frequencies of &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;D&lt;/em&gt;, and &lt;em&gt;F&lt;/em&gt; grades between the two semesters. Results are in the figure below.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestonesgrades.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/grades.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/explicit-project-milestonesgrades.png&quot; alt=&quot;A column chart showing percentages of A, B, C, D, and F grades in the two terms. There were more A grades and fewer B grades in the term with milestones than the term without. No changes in other grade frequencies are apparent.&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/grades.png&quot; alt=&quot;A column chart showing percentages of A, B, C, D, and F grades in the two terms. There were more A grades and fewer B grades in the term with milestones than the term without. No changes in other grade frequencies are apparent.&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -1113,15 +1378,15 @@ But I haven’t seen this at other institutions I’ve been affiliated with, and
   
   <item>
     <title>Assessing Incremental Testing Practices and Their Impact on Project Outcomes</title>
-    <link>https://ayaankazerouni.org/blog/assessing-incremental-testing</link>
-    <guid isPermaLink="true">https://ayaankazerouni.org/blog/assessing-incremental-testing</guid>
+    <link>https://ayaankazerouni.org/blog/assessing-incremental-testing/</link>
+    <guid>https://ayaankazerouni.org/blog/assessing-incremental-testing/</guid>
     <pubDate>Tue, 07 Jul 2020</pubDate>
     <description>
       &lt;p&gt;&lt;small&gt;
 &lt;em&gt;This article was originally posted on &lt;a href=&quot;https://ayaankazerouni.medium.com&quot;&gt;my Medium blog&lt;/a&gt; on July 7 2020.&lt;/em&gt;
 &lt;/small&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;This is a brief overview of the research paper “&lt;strong&gt;&lt;a href=&quot;/publications#sigcse2019paper”&quot;&gt;Assessing Incremental Testing Practices and Their Impact on Project Outcomes&lt;/a&gt;&lt;/strong&gt;, published at SIGCSE 2019. My co-authors were &lt;a href=&quot;https://people.cs.vt.edu/~shaffer&quot;&gt;Cliff Shaffer&lt;/a&gt;, &lt;a href=&quot;https://people.cs.vt.edu/~edwards&quot;&gt;Steve Edwards&lt;/a&gt;, and &lt;a href=&quot;https://people.cs.vt.edu/~fservant&quot;&gt;Francisco Servant&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This is a brief overview of the research paper “&lt;strong&gt;&lt;a href=&quot;https://ayaankazerouni.org/publications#sigcse2019paper&quot;&gt;Assessing Incremental Testing Practices and Their Impact on Project Outcomes&lt;/a&gt;&lt;/strong&gt;”, published at SIGCSE 2019. My co-authors were &lt;a href=&quot;https://people.cs.vt.edu/~shaffer&quot;&gt;Cliff Shaffer&lt;/a&gt;, &lt;a href=&quot;https://people.cs.vt.edu/~edwards&quot;&gt;Steve Edwards&lt;/a&gt;, and &lt;a href=&quot;https://people.cs.vt.edu/~fservant&quot;&gt;Francisco Servant&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Software testing is the most common method of ensuring the correctness of software. As students work on relatively long-running software projects, we would like to know if they are engaging with testing consistently through the life-cycle. The long-term goal is to provide students with feedback about their testing habits as they work on projects.&lt;/p&gt;
 
@@ -1174,8 +1439,8 @@ We addressed this by avoiding the “TDD or not” dichotomy. Students’ (and i
 &lt;p&gt;Consider the following figure, which shows an example sequence of developer activity created from synthetic data. Colours indicate methods in the project; solid and shaded blocks are solution and test code, respectively; and groups of blocks indicate work sessions.&lt;/p&gt;
 
 &lt;figure class=&quot;wide&quot;&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testingexample-dev-activity.png&quot; target=&quot;_blank&quot;&gt;
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testingexample-dev-activity.png&quot; alt=&quot;Coloured bars organised into groups, demarcating time spent writing production code and test code, devoted to individual methods.&quot; /&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/example-dev-activity.png&quot; target=&quot;_blank&quot;&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/example-dev-activity.png&quot; alt=&quot;Coloured bars organised into groups, demarcating time spent writing production code and test code, devoted to individual methods.&quot; /&gt;
   &lt;/a&gt;
 
   &lt;figcaption&gt;An example sequence of developer activity (synthetic data).&lt;/figcaption&gt;
@@ -1195,7 +1460,7 @@ The measures are summarised in the next figure.&lt;/p&gt;
 
 &lt;p&gt;Each measurement is a proportion, i.e., the proportion of all code — written in a work session or for a method or on the entire project — that was test code. So if a student wrote 100 LoC in a work session, and 20 of them were test code, the proportion for that work session would be 0.2.&lt;/p&gt;
 
-&lt;p&gt;In terms of &lt;strong&gt;sequence&lt;/strong&gt;, we measured the extent to which students tended to write test code before finalising the solution code under test (MOS below).&lt;br /&gt;
+&lt;p&gt;In terms of &lt;strong&gt;sequence&lt;/strong&gt;, we measured the extent to which students tended to write test code before finalising the solution code under test (MOS below).
 This was measured as the proportion of test code devoted to a method that was written before the method was finalised (i.e., before it was changed for the last time).&lt;/p&gt;
 
 &lt;p&gt;Note that this is different from measuring adherence to “TDD or not”.
@@ -1205,9 +1470,9 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 &lt;p&gt;Measurements are depicted in the figure below. All measurements were aggregated as medians for each project.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testingmetrics.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/metrics.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testingmetrics.png&quot; alt=&quot;Coloured bars depicting time spent writing and testing individual methods in a program. They are grouped in four different ways: grouped by time (ignoring the methods being focused on), grouped by method, grouped by method and time, and grouped by sequence.&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/metrics.png&quot; alt=&quot;Coloured bars depicting time spent writing and testing individual methods in a program. They are grouped in four different ways: grouped by time (ignoring the methods being focused on), grouped by method, grouped by method and time, and grouped by sequence.&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -1225,9 +1490,9 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 &lt;p&gt;The measurements are summarised in the figure below. The first four box-plots (in blue) represent measures of the balance of test writing effort. The fifth box-plot (in orange) represents proportion of test writing effort devoted before the relevant solution code was finalised.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testingboxplots-balance-sequence.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/boxplots-balance-sequence.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testingboxplots-balance-sequence.png&quot; alt=&quot;&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/boxplots-balance-sequence.png&quot; alt=&quot;&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -1327,8 +1592,8 @@ The short-term benefit of this is that we can provide feedback to students “be
   
   <item>
     <title>Developing Procrastination Feedback for Student Software Developers</title>
-    <link>https://ayaankazerouni.org/blog/procrastination-feedback</link>
-    <guid isPermaLink="true">https://ayaankazerouni.org/blog/procrastination-feedback</guid>
+    <link>https://ayaankazerouni.org/blog/procrastination-feedback/</link>
+    <guid>https://ayaankazerouni.org/blog/procrastination-feedback/</guid>
     <pubDate>Fri, 17 Apr 2020</pubDate>
     <description>
       &lt;p&gt;&lt;small&gt;
@@ -1338,8 +1603,8 @@ The short-term benefit of this is that we can provide feedback to students “be
 &lt;p&gt;&lt;em&gt;This is a brief overview of the following research papers by myself, &lt;a href=&quot;https://people.cs.vt.edu/~edwards/&quot;&gt;Steve Edwards&lt;/a&gt;, and &lt;a href=&quot;https://people.cs.vt.edu/~shaffer/&quot;&gt;Cliff Shaffer&lt;/a&gt;:&lt;/em&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;em&gt;&lt;strong&gt;&lt;a href=&quot;/publications/iticse2017paper&quot;&gt;DevEventTracker: Tracking Development Events to Assess Incremental Development and Procrastination&lt;/a&gt;&lt;/strong&gt;&lt;/em&gt; (with T. Simin Hall), published at ITiCSE 2017, and&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;&lt;strong&gt;&lt;a href=&quot;/publications/icer2017paper&quot;&gt;Quantifying Incremental Development Practices and Their Relationship to Procrastination&lt;/a&gt;&lt;/strong&gt;&lt;/em&gt;, published at ICER 2017&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;&lt;strong&gt;&lt;a href=&quot;https://ayaankazerouni.org/publications/iticse2017paper&quot;&gt;DevEventTracker: Tracking Development Events to Assess Incremental Development and Procrastination&lt;/a&gt;&lt;/strong&gt;&lt;/em&gt; (with T. Simin Hall), published at ITiCSE 2017, and&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;&lt;strong&gt;&lt;a href=&quot;https://ayaankazerouni.org/publications/icer2017paper&quot;&gt;Quantifying Incremental Development Practices and Their Relationship to Procrastination&lt;/a&gt;&lt;/strong&gt;&lt;/em&gt;, published at ICER 2017&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;I am summarising these papers together because they are closely related.&lt;/p&gt;
@@ -1380,9 +1645,9 @@ The short-term benefit of this is that we can provide feedback to students “be
 &lt;p&gt;As an example, consider the figure below, which shows how a real student distributed their work across the days on which they worked on a project.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedbacktm-early-often.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/tm-early-often.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/procrastination-feedbacktm-early-often.png&quot; alt=&quot;&quot; width=&quot;700&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/tm-early-often.png&quot; alt=&quot;&quot; width=&quot;700&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -1397,9 +1662,9 @@ The short-term benefit of this is that we can provide feedback to students “be
 &lt;p&gt;The figure below indicates distributions of the mean edit time for solution code and for test code, across all project implementations.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedbacksolution-test-early-often-dists.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/solution-test-early-often-dists.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/procrastination-feedbacksolution-test-early-often-dists.png&quot; alt=&quot;Two box-and-whisker plots which show the mean edit times for solution code and test code.&quot; width=&quot;500&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/solution-test-early-often-dists.png&quot; alt=&quot;Two box-and-whisker plots which show the mean edit times for solution code and test code.&quot; width=&quot;500&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -1431,9 +1696,9 @@ The short-term benefit of this is that we can provide feedback to students “be
 &lt;p&gt;&lt;strong&gt;When students worked earlier and more often, they tended to produce programs with higher correctness.&lt;/strong&gt; To illustrate this, we split the dataset roughly into half: those projects that had “solved” the assigned problem (53%), and those that had not (47%). The figure below shows the difference in edit mean times between these populations.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedbacksolution-early-often-by-solved.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/solution-early-often-by-solved.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/procrastination-feedbacksolution-early-often-by-solved.png&quot; alt=&quot;Two box-and-whisker plots showing the mean edit time for solved and unsolved projects.&quot; width=&quot;500&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/solution-early-often-by-solved.png&quot; alt=&quot;Two box-and-whisker plots showing the mean edit time for solved and unsolved projects.&quot; width=&quot;500&quot; /&gt;
     
   &lt;/a&gt;
 
@@ -1443,9 +1708,9 @@ The short-term benefit of this is that we can provide feedback to students “be
 &lt;p&gt;&lt;strong&gt;When students worked earlier and more often, they tended to finish their projects earlier.&lt;/strong&gt; This is so intuitive, it’s almost tautological. It is encouraging that the measurement is able to discriminate between early and late project submissions.&lt;/p&gt;
 
 &lt;figure&gt;
-  &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedbacksolution-early-often-by-on-time-status.png&quot; target=&quot;_blank&quot;&gt;
+  &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/solution-early-often-by-on-time-status.png&quot; target=&quot;_blank&quot;&gt;
     
-    &lt;img src=&quot;https://ayaankazerouni.org/blog/procrastination-feedbacksolution-early-often-by-on-time-status.png&quot; alt=&quot;Two box-and-whisker plots showing the mean edit time for late and on-time submissions.&quot; width=&quot;500&quot; /&gt;
+    &lt;img src=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/solution-early-often-by-on-time-status.png&quot; alt=&quot;Two box-and-whisker plots showing the mean edit time for late and on-time submissions.&quot; width=&quot;500&quot; /&gt;
     
   &lt;/a&gt;
 
