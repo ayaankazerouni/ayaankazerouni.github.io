@@ -40,30 +40,36 @@
   <h1>Web-based Data Visualization with Vega-Lite</h1>
   <article>
       <ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#data-types-in-vega-lite" id="markdown-toc-data-types-in-vega-lite">Data types in Vega-Lite</a></li>
   <li><a href="#using-vega-lite" id="markdown-toc-using-vega-lite">Using Vega-Lite</a></li>
   <li><a href="#in-class-activity-making-changes-yourself" id="markdown-toc-in-class-activity-making-changes-yourself">In-class Activity: Making changes yourself</a></li>
   <li><a href="#and-beyond" id="markdown-toc-and-beyond">And beyond</a></li>
 </ul>
 
-<p>So far, we have programmatically processed and analyzed datasets.
-However, a useful additional tool in our toolkit for gathering insights from data is <strong>data visualization</strong>.</p>
+<h2 id="overview">Overview</h2>
 
-<p>We’ll use Vega-Lite for data visualization.
-Vega-Lite lets us define fairly complex charts using a very simple syntax of field names and values.</p>
+<p>So far, we have processed and analyzed datasets <em>programmatically</em>, using TypeScript functions to compute summary statistics like average, minums, and maximums.
+An additional tool in the toolkits for data analysts is <strong>data visualization</strong>.
+Data visualization has been used throughout history to help humans explore and explain enormous amounts of data.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></p>
 
-<p>It’s important to know the kind of data we’re dealing with because that dictates what we can do while make charts based on the data.
-You know about data types in TypeScript like <code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">boolean</code>, <code class="language-plaintext highlighter-rouge">string</code>, or interfaces you create that are made up of these types.</p>
+<p>So, in addition to computing numerical statistics, we’ll make use of graphics to help communicate insights from our data.
+We’ll use <a href="https://vega.github.io/vega-lite/"><strong>Vega-Lite</strong></a> for this purpose.
+Vega-Lite lets us define fairly complex charts using a very simple syntax of field names and values, i.e., <a href="../15-1-objects/"><em>objects</em></a>.</p>
+
+<h2 id="data-types-in-vega-lite">Data types in Vega-Lite</h2>
+
+<p>Just like in TypeScript, it’s important to know the kind of data we’re dealing with, because that dictates what we can (and should) do while make charts based on the data.
+You know about TypeScript data types like <code class="language-plaintext highlighter-rouge">number</code>, <code class="language-plaintext highlighter-rouge">boolean</code>, <code class="language-plaintext highlighter-rouge">string</code>, or interfaces you create that are made up of these types.</p>
 
 <p>In Vega-Lite, a similar concept exists.
-It has its own (broader) categories of data that dictate how we can visualize it.</p>
+It has its own broader categories of data, described below.</p>
 
-<p>For example:</p>
+<p><strong>Quantitative data</strong> is numerical. It can be used in mathematical calculations; we can do things like calculating the average of a list of quantities. For example, a student’s <em>age</em> or the number of <em>units</em> they are taking are examples of quantitative data.</p>
 
-<ul>
-  <li><strong>Quantitative data</strong> is numerical—it can be used in mathematical calculations; we can do things like calculating the average of a list of quantities. For example, a student’s <em>age</em> or the number of <em>units</em> they are taking are examples of quantitative data.</li>
-  <li><strong>Nominal data</strong> is data that can be labelled or classified into different categories. For example, a student’s <em>major</em> or <em>favourite colour</em> are examples of nominal data. Importantly, there is no order or sequence associated with nominal data. The colour Green doesn’t come before or after the colour Red, and the major Computer Science is not better or worse than the major Palaeontology.</li>
-  <li><strong>Ordinal data</strong> is like nominal data, except that the labels do have natural orderings. For example, <em>months</em> are an example of ordinal data. Terms like January, February, etc. are labels, but there is a natural expected ordering between them. Another example are <em>letter grades</em> (i.e., A, A-, B+, etc.). Importantly, the “distance” between two labels of ordinal data is not known—we can’t calculate the “time difference” between events that occurred in January and February or the difference in score between A and B–scoring students.</li>
-</ul>
+<p><strong>Nominal data</strong> is data that can be labelled or classified into different categories. For example, a student’s <em>major</em> or <em>favourite colour</em> are examples of nominal data. Importantly, there is no order or sequence associated with nominal data. The colour Green doesn’t come before or after the colour Red, and the major Computer Science is not better or worse than the major Palaeontology.</p>
+
+<p><strong>Ordinal data</strong> is like nominal data, except that the labels do have natural orderings. For example, <em>months</em> are an example of ordinal data. Terms like January, February, etc. are labels, but there is a natural expected ordering between them. Another example are <em>letter grades</em> (i.e., A, A-, B+, etc.). Importantly, the “distance” between two labels of ordinal data is not known—we can’t calculate the “time difference” between events that occurred in January and February or the difference in score between A and B–scoring students.</p>
 
 <p>Consider the following data, showing the number of CS degrees awarded by Cal Poly each year from 2015 to 2019.</p>
 
@@ -80,11 +86,13 @@ It has its own (broader) categories of data that dictate how we can visualize it
 The <code class="language-plaintext highlighter-rouge">year</code> is <em>ordinal</em> (even though it looks like a number!).
 The <code class="language-plaintext highlighter-rouge">degrees</code> value is <em>quantitative</em>.</p>
 
+<p class="callout ponder">Why do you suppose we’re thinking of <code class="language-plaintext highlighter-rouge">year</code> as ordinal?</p>
+
 <h2 id="using-vega-lite">Using Vega-Lite</h2>
 
 <p>Now that we have some data in hand, let’s start simply. We’ll make a <em>univariate</em> visualization of only one field: the number of degrees awarded (<code class="language-plaintext highlighter-rouge">degrees</code>). You can follow along in the <a href="http://vega.github.io/editor/">online Vega editor</a>. Write your chart specification in the editor pane on the left, and the chart will appear on the right.</p>
 
-<p><strong>Visualizations in Vega-Lite are written as <a href="../11-objects/">Objects</a> with particular fields.</strong></p>
+<p><strong>Visualizations in Vega-Lite are written as <a href="../15-1-objects">Objects</a> with particular fields.</strong></p>
 
 <p>To create a Vega-Lite visualization, we need to specify the <strong>data</strong>, a <strong>mark</strong>, and <strong>graphical encodings</strong>.
 The data can be depicted as we’ve seen above, i.e., as an array.</p>
@@ -99,7 +107,10 @@ Some examples you’re like to use this quarter are: <a href="https://vega.githu
 
 <p>But we’ll start with a simple mark: a <strong>point</strong>. Copy the following into the Vega editor.</p>
 
-<p>(The <code class="language-plaintext highlighter-rouge">$schema</code> bit below acts sort of like an interface for this chart definition. It allows the editor to give us useful error messages if we make mistakes, for example, if we forget to provide data. Omitting it won’t cause an error, but it will make debugging more difficult.)</p>
+<p>(The <code class="language-plaintext highlighter-rouge">$schema</code> bit below acts sort of like an “interface” for this chart definition.
+It contains information about what fields are expected, allowing the editor to give us useful error messages if we make mistakes.
+For example,, we would get a compiler error if we forgot to provide <code class="language-plaintext highlighter-rouge">data</code>.
+Omitting the <code class="language-plaintext highlighter-rouge">$schema</code> won’t cause an error, but it will make debugging more difficult.)</p>
 
 <div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
   <span class="dl">"</span><span class="s2">$schema</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://vega.github.io/schema/vega-lite/v5.json</span><span class="dl">"</span><span class="p">,</span>
@@ -114,17 +125,17 @@ Some examples you’re like to use this quarter are: <a href="https://vega.githu
   <span class="p">},</span>
   <span class="dl">"</span><span class="s2">mark</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
     <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">point</span><span class="dl">"</span>
-  <span class="p">}</span> 
+  <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>You can additional fields to the <code class="language-plaintext highlighter-rouge">"mark"</code> object, e.g., to set its color.</p>
 
-<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">...</span><span class="nx">previous</span> <span class="nx">stuff</span> <span class="nx">stays</span> <span class="nx">the</span> <span class="nx">same</span>
-<span class="dl">"</span><span class="s2">mark</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-  <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">point</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">firebrick</span><span class="dl">"</span>
-<span class="p">}</span>
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="p">...</span><span class="nx">previous</span> <span class="nx">stuff</span> <span class="nx">stays</span> <span class="nx">the</span> <span class="nx">same</span>
+  <span class="dl">"</span><span class="s2">mark</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">point</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">color</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">firebrick</span><span class="dl">"</span>
+  <span class="p">}</span>
 </code></pre></div></div>
 
 <p>With the code above, we’ve given the chart <strong>data</strong> and we’ve given it a <strong>mark</strong> (i.e., a shape to draw).
@@ -278,6 +289,13 @@ Note that this is not really a limitation of the <em>computer</em>—the compute
 In the final project, you will (in teams) be asked to create multiple visualizations using Vega-Lite, and I would love if you explored the documentation and experimented with various visualization types!</p>
 
 <hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>For example, the earliest navigational maps were examples of data visualization. In the 1800s, the visualization work of John Snow (not that one) <a href="https://en.wikipedia.org/wiki/John_Snow#Cholera">helped stop a cholera outbreak</a>. And we’ve already seen Charles Minard’s visualization of <a href="../../napoleon/">Napoleon’s invasion of Russia</a>. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
       <footer class="nav-links">
         
