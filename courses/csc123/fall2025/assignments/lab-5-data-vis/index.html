@@ -1,0 +1,307 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  <meta name="fediverse:creator" content="@ayaankazerouni@hci.social" />
+  
+
+	
+
+	<title>Lab 5: Data Visualization with Vega-Lite - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc123/fall2025/assignments/lab-5-data-vis/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+<body>
+
+  <main class="course">
+    
+    
+    
+    
+    
+    <p>
+      
+      <a href="/courses/csc123/fall2025">&larr; CSC 123 Introduction to Community Action Computing</a>
+      
+    </p>
+    
+      <div class="content">
+     
+      <h1>Lab 5: Data Visualization with Vega-Lite</h1>
+      <p class="callout note">This lab assumes that you have worked through the lecture notes and in-class activity for <a href="../../../coursenotes/16-data-vis/">Data visualization with Vega-Lite</a>.</p>
+
+<p>This lab will give you practice making data visualizations to help make sense of large datasets.</p>
+
+<p>The lab asks you to create visualizations in the Vega Online Editor.  You will export three URLs, one per Part of this lab. <em>Make sure to save those URLs in a note on your computer as you complete each part, so you’re able to submit your work</em>.</p>
+
+<h2 id="part-1">Part 1</h2>
+
+<p>We’ll work with data about Measles cases in the</p>
+
+<p>You have a choice about the domain about which you want to make your visualisations.</p>
+
+<p>You can choose from the following datasets:</p>
+
+<ul>
+  <li><a href="https://gist.githubusercontent.com/ayaankazerouni/75e9764b762446d449f0e68b4ae416a0/raw/4d9d68f08055d18f3d3f0d74948944ef8ad45cdc/earthquakes-depth.json">Moderate or significant earthquakes since 1940</a></li>
+  <li><a href="https://gist.githubusercontent.com/ayaankazerouni/6c87dab8604b1f4d33c636477ccd5d8a/raw/35c26852dff4ab2d5bedcc495697a43689df76c5/construction_permits.json">House prices and construction permits since 2011</a></li>
+</ul>
+
+<p>Take some time to study these datasets.
+Each one contains  an <em>array</em> of <em>objects</em>.</p>
+
+<p>For example, in the <strong>earthquakes</strong> dataset, each object is a single earthquake. It holds information about the following fields:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">year</code>: the year in which the earthquake occurred</li>
+  <li><code class="language-plaintext highlighter-rouge">month</code>: the month in which the earthquake occurred</li>
+  <li><code class="language-plaintext highlighter-rouge">magnitude</code>: the magnitude of the earthquake on a scale from 1–10</li>
+  <li><code class="language-plaintext highlighter-rouge">numStations</code>: the number of seismic stations involved in detecting the earthquake</li>
+  <li><code class="language-plaintext highlighter-rouge">location</code>: the location of the earthquake</li>
+</ul>
+
+<p>The first object in this dataset is:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Aug"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"magnitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"numStations"</span><span class="p">:</span><span class="w"> </span><span class="mf">150.0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pacific-Antarctic Ridge"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>In the <strong>construction</strong> dataset, each object contains the new housing permits that were granted in a US given state in a particular month. It has the following fields:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">month</code>: the month in which permits were granted</li>
+  <li><code class="language-plaintext highlighter-rouge">year</code>: the year in which the permits were granted</li>
+  <li><code class="language-plaintext highlighter-rouge">state</code>: the name of the US state</li>
+  <li><code class="language-plaintext highlighter-rouge">numSingleUnitPermits</code>: the number of single-unit permits (single-family homes) that were granted that month</li>
+  <li><code class="language-plaintext highlighter-rouge">numFivePlusUnitPermits</code>: the number of permits for larger constructions (like builds of many condos as opposed to a house) that were granted that month</li>
+  <li><code class="language-plaintext highlighter-rouge">singleUnitValuationsK</code>: the estimated total value of all the single-unit constructions that month, in thousands of dollars</li>
+  <li><code class="language-plaintext highlighter-rouge">fivePlusUnitsValuationsK</code>: the estimated total value of all the 5+-unit constructions that month, in thousands of dollars</li>
+</ul>
+
+<p>The first object in this dataset is:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mississippi"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"numSingleUnitPermits"</span><span class="p">:</span><span class="w"> </span><span class="mi">286</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"numFivePlusUnitPermits"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"month"</span><span class="p">:</span><span class="w"> </span><span class="s2">"January"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2011</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"singleUnitValuationsK"</span><span class="p">:</span><span class="w"> </span><span class="mi">43160</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"fivePlusUnitsValuationsK"</span><span class="p">:</span><span class="w"> </span><span class="mi">1010</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Both these datasets have all the kinds of data that we talked about in class:</p>
+
+<ul>
+  <li>The earthquake <code class="language-plaintext highlighter-rouge">magnitude</code> and the <code class="language-plaintext highlighter-rouge">singleUnitValuationsK</code> are examples of <code class="language-plaintext highlighter-rouge">quantitative</code> data.</li>
+  <li>The earthquake <code class="language-plaintext highlighter-rouge">location</code> and the <code class="language-plaintext highlighter-rouge">state</code> of the construction permits are examples of <code class="language-plaintext highlighter-rouge">nominal</code> data.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">month</code> field in both datasets is an example of <code class="language-plaintext highlighter-rouge">ordinal</code> data. Indeed, the year is also an example of <code class="language-plaintext highlighter-rouge">ordinal</code> data—just because we use numbers to represent years doesn’t mean that it is quantitative!</li>
+</ul>
+
+<p>In this lab we’re going to use these datasets to make interesting charts.</p>
+
+<p>Use the following code as your starting point:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://vega.github.io/schema/vega-lite/v5.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"mark"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"encoding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"x"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"y"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>We will now be working with the datasets described above, so we need to point our chart to the appropriate data source.
+Since the earthquakes dataset and the construction permits dataset each have thousands of records, it’s not feasible to write out the records in the chart editor itself like we did in class.</p>
+
+<p>Modify the <code class="language-plaintext highlighter-rouge">data</code> field so that it looks like this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"choose a dataset above and paste its URL here"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Instead of pointing to a manually constructed list of records, we’re now pointing to data that’s available online.</p>
+
+<h3 id="main-task">Main task</h3>
+
+<p>Make a bar chart that with the following:</p>
+
+<ul>
+  <li>the <code class="language-plaintext highlighter-rouge">x</code> axis should have the <code class="language-plaintext highlighter-rouge">year</code> as an ordinal field</li>
+  <li>the <code class="language-plaintext highlighter-rouge">y</code> axis should display a quantitative field. If you use the earthquake dataset, display the <em>total number of earthquakes</em> in the given year. If you use the construction permits dataset, display the <em>total number of single-unit permits</em> issued in the given year.</li>
+</ul>
+
+<p>Let’s talk a bit more about the <code class="language-plaintext highlighter-rouge">y</code> axis. Depending on the dataset you choose to use, this visual channel will display a different field.</p>
+
+<p>Whichever dataset we work with, our data is not quite ready in its current form. Specifically,</p>
+
+<ul>
+  <li>In the earthquakes dataset, each object is a single earthquake. To get the number of earthquakes in a given year, we would need to <code class="language-plaintext highlighter-rouge">count</code> the number of records.</li>
+  <li>In the construction permits dataset, each object is a single month. To get the total number of single-unit permits given in a year, we would need to <code class="language-plaintext highlighter-rouge">sum</code> up the numSingleUnitPermits values for the given year.</li>
+</ul>
+
+<p>Vega-lite provides the ability to display fields in aggregate. For example, you can compute summary statistics (min, max, mean, median, etc.) or other simpler values such as count and sum.</p>
+
+<p>When you specify the <code class="language-plaintext highlighter-rouge">y</code> axis in the encoding, give it the following. Placeholder values that need to be replaced by you are shown in <code class="language-plaintext highlighter-rouge">&lt;angle brackets&gt;</code>.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"encoding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"x"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="err">...assumed</span><span class="w"> </span><span class="err">that</span><span class="w"> </span><span class="err">you've</span><span class="w"> </span><span class="err">given</span><span class="w"> </span><span class="err">it</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="s2">"year"</span><span class="w"> </span><span class="err">field</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nl">"y"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nl">"aggregate"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="s2">"count"</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="s2">"sum"</span><span class="err">&gt;</span><span class="w">
+     </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="s2">"The field on which you want to apply the aggregation"</span><span class="err">&gt;</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="s2">"quantitative, ordinal, or nominal---what kind of data is depicted?"</span><span class="err">&gt;</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p class="callout note"><strong>For the earthquake dataset:</strong>
+<br />
+Since the earthquake dataset covers years from 1940 onward, when you’re finished you’ll end up with a very <em>wide</em> chart.
+If you prefer, you can swap the <code class="language-plaintext highlighter-rouge">x</code> and <code class="language-plaintext highlighter-rouge">y</code> encodings, so that years appear on the vertical axis instead, and you scroll up and down instead of side-to-side to see the full thing.</p>
+
+<h3 id="exporting-for-submission">Exporting for submission</h3>
+
+<ol>
+  <li>Click the “Share” button and then “Copy Link to Clipboard”.</li>
+  <li>Save the link somewhere. <strong>It will not be accessible after you move on to part 2!</strong></li>
+</ol>
+
+<h2 id="part-2">Part 2</h2>
+
+<p>Now that you’ve had some experience playing with Vega-lite, let’s make a slightly more complex visualisation using another dataset.</p>
+
+<p>This new dataset contains information about cats sheltered by the Cal Poly Cat Program, a local no-kill cat shelter.
+Note that the dataset only contains information about 60 cats, and is not the complete population of the shelter.</p>
+
+<p>The dataset is at the following URL:</p>
+
+<ul>
+  <li><a href="https://gist.githubusercontent.com/ayaankazerouni/b760d0b26460d0d95d6b02e85d83cca7/raw/410eea50b2ebc97d99f8aed8a09018443793eb8d/cat-program.json">Cal Poly Cat Program data</a></li>
+</ul>
+
+<p>This is an example record from the dataset.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="s2">"Mystic"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"sex"</span><span class="p">:</span><span class="s2">"M"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="s2">"orange"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"upForAdoption"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arrivalDate"</span><span class="p">:</span><span class="s2">"2018-02-07"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"arrivalDetails"</span><span class="p">:</span><span class="s2">"Feral but was injured."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"healthIssues"</span><span class="p">:</span><span class="s2">"Was shot in the front left leg with a BB gun. He was treated by putting a pin in the fracture, but it did not work, so they ultimately amputated the leg."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"isMicrochipped"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fleaControl"</span><span class="p">:</span><span class="s2">"2018-02-07"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"dewormingDate"</span><span class="p">:</span><span class="s2">"2018-02-07"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fivFelvDate"</span><span class="p">:</span><span class="s2">"2018-02-20"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"birthday"</span><span class="p">:</span><span class="s2">"2013-11-07"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Most of the fields are self-explanatory, but here are descriptions of some that may be unclear:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">upForAdoption</code>: <code class="language-plaintext highlighter-rouge">true</code> if the cat can be adopted, <code class="language-plaintext highlighter-rouge">false</code> if the cat cannot be adopted and is staying at the shelter permanently.</li>
+  <li><code class="language-plaintext highlighter-rouge">arrivalDetails</code>: free-form text describing the circumstances under which the cat arrived at the shelter.</li>
+  <li><code class="language-plaintext highlighter-rouge">healthIssues</code>: A string describing health issues, or <code class="language-plaintext highlighter-rouge">null</code> if the cat has no health issues. Note that <code class="language-plaintext highlighter-rouge">null</code> may also mean that the CPCP did not receive the cat’s health records.</li>
+  <li><code class="language-plaintext highlighter-rouge">fivFelvDate</code>: The date on which the cat was tested for the Feline Immunodeficiency Virus (FIV) and the Feline Leukemia Virus (FeLV).</li>
+</ul>
+
+<h3 id="a-quick-note-about-temporal-data">A quick note about “temporal” data</h3>
+
+<p>Notice that the dataset has a number fields that are dates. For example, the following fields are all dates:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">birthday</code></li>
+  <li><code class="language-plaintext highlighter-rouge">arrivalDate</code></li>
+  <li><code class="language-plaintext highlighter-rouge">dewormingDate</code></li>
+  <li><code class="language-plaintext highlighter-rouge">fivFelvDate</code></li>
+</ul>
+
+<p>In our last class, we talked about dates as being “compound” type of data that isn’t easily thought of as quantitative, nominal, or ordinal.
+Instead, it’s made up of numbers (or words) representing the year, month, and day (or perhaps even more fine-grained units like hours, minutes, and seconds).</p>
+
+<p>However, dates are such a commonly used data type that Vega-Lite allows us to specify fields as being <em>temporal</em> fields (i.e., having to do with time).
+That is, in Vega, <code class="language-plaintext highlighter-rouge">temporal</code> is another type of data just like quantitative, nominal, and ordinal.
+We’ll take advantage of this in our next chart.</p>
+
+<h3 id="main-task-1">Main task</h3>
+
+<p>Go back to your Vega online editor, and start with the following code:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://vega.github.io/schema/vega-lite/v5.json"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gist.githubusercontent.com/ayaankazerouni/b760d0b26460d0d95d6b02e85d83cca7/raw/c398238db65456b8fff41187634e671036c71097/cat-program.json"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"mark"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"point"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Once again, you’ll see a single point on screen—one for each record in the dataset.</p>
+
+<p>Create a chart with the following visuals:</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">x</code> axis should depict the cat’s <code class="language-plaintext highlighter-rouge">birthday</code>, encoded as a temporal field.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">y</code> axis should depict the cat’s <code class="language-plaintext highlighter-rouge">arrivalDate</code>, encoded as a temporal field.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">color</code> of each point should depict the cat’s <code class="language-plaintext highlighter-rouge">upForAdoption</code> status. What type should this field be?</li>
+  <li>The <code class="language-plaintext highlighter-rouge">shape</code> of each point should depict the cat’s <code class="language-plaintext highlighter-rouge">sex</code>. What type should this field be? Note that we’re not looking for <em>TypeScript’s</em> data types here; we’re looking for <em>Vega-Lite’s</em> broader type categories.</li>
+</ul>
+
+<h3 id="export-for-submission">Export for submission</h3>
+
+<ol>
+  <li>Once again, click Export, and copy the URL to your clipboard.</li>
+  <li>Save the URL somewhere.</li>
+</ol>
+
+<h2 id="part-3">Part 3</h2>
+
+<p>In this part, you will create a figure of your own design using what you have learned.</p>
+
+<ol>
+  <li>First, using pen and paper, sketch out a visualization you’d like to create. <strong>It’s okay to keep it simple.</strong> Choose a small scope of variables from the dataset, and think about how you would depict a relationship between them (if any).</li>
+  <li>Implement your visualization in Vega-Lite. <strong>Please ask me or your neighbour for assistance or feedback as you go.</strong></li>
+  <li>Export the URL like you did for Parts 1 and 2.</li>
+</ol>
+
+<h2 id="final-submission">Final submission</h2>
+
+<p>To submit this lab, turn in all three URLs in Canvas. For Part 3, include a brief description of what you aimed to portray with your visualization.</p>
+
+      </div>
+    
+    
+  </main>
+
+</body>
+</html>
