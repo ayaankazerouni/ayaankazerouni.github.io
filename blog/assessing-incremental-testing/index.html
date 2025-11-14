@@ -126,6 +126,48 @@ We addressed this by avoiding the “TDD or not” dichotomy. Students’ (and i
 
 <p>Consider the following figure, which shows an example sequence of developer activity created from synthetic data. Colours indicate methods in the project; solid and shaded blocks are solution and test code, respectively; and groups of blocks indicate work sessions.</p>
 
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
+
 <figure class="wide">
   <a href="https://ayaankazerouni.org/blog/assessing-incremental-testing/example-dev-activity.png" target="_blank">
     <img src="https://ayaankazerouni.org/blog/assessing-incremental-testing/example-dev-activity.png" alt="Coloured bars organised into groups, demarcating time spent writing production code and test code, devoted to individual methods." />
@@ -157,6 +199,48 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 
 <p>Measurements are depicted in the figure below. All measurements were aggregated as medians for each project.</p>
 
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
+
 <figure>
   <a href="https://ayaankazerouni.org/blog/assessing-incremental-testing/metrics.png" target="_blank">
     
@@ -176,6 +260,48 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 <p>Using the measurements we described, we can make observations about how students distributed their testing effort as they worked on projects.</p>
 
 <p>The measurements are summarised in the figure below. The first four box-plots (in blue) represent measures of the balance of test writing effort. The fifth box-plot (in orange) represents proportion of test writing effort devoted before the relevant solution code was finalised.</p>
+
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
 
 <figure>
   <a href="https://ayaankazerouni.org/blog/assessing-incremental-testing/boxplots-balance-sequence.png" target="_blank">
@@ -281,7 +407,7 @@ The short-term benefit of this is that we can provide feedback to students “be
         
       </article>
        <footer>
-  <div class='get-in-touch'>Contact<br></div>
+  <div>Contact<br></div>
   <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
   <!--<div class='address'></div> -->
   <div class='contact'>

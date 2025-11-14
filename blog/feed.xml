@@ -4,7 +4,7 @@
   <title>Ayaan M. Kazerouni</title>
   <link>https://ayaankazerouni.org/blog/</link>
   <description>Posts about computing education</description>
-  <lastBuildDate>Thu, 13 Nov 2025 17:51:06 -0800</lastBuildDate>
+  <lastBuildDate>Thu, 13 Nov 2025 20:02:10 -0800</lastBuildDate>
 
   
   
@@ -119,7 +119,13 @@ Had I required a focus on “humanitarian” topics, this student might have los
     <guid>https://ayaankazerouni.org/blog/src-in-early-cs-courses/</guid>
     <pubDate>Thu, 10 Apr 2025</pubDate>
     <description>
-      &lt;h2 class=&quot;no_toc&quot; id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
+      &lt;style&gt;
+.chart-container {
+  margin-left: 10%;
+}
+&lt;/style&gt;
+
+&lt;h2 class=&quot;no_toc&quot; id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
 
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#overview&quot; id=&quot;markdown-toc-overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt;
@@ -438,6 +444,48 @@ In the second study, we conducted one-on-one interviews to gain deeper insight i
 On average, the students reported negative attitudes toward computing: low confidence, low enjoyment, and low sense of belonging to a computing community.
 They did perceive computing to be marginally useful.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure class=&quot;wrap&quot;&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/end-user-programming/attitudes.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -583,6 +631,48 @@ These are passes that allow us to use the wood and sheet metal shop on the Cal P
 It was a 3-hour session that started with a whirlwind introduction to the machine shop in the Aero Hangar on campus, following which we worked through a scaffolded sequence of steps to make our own bookends.
 Here’s mine:&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure class=&quot;wrap&quot;&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/good-to-be-bad/bookend.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -685,6 +775,48 @@ As students are encouraged to frequently write and run their own tests to check 
 
 &lt;p&gt;Our findings are summarised in the process model below.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemaking/process-model.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -712,6 +844,48 @@ Students were asked to think out loud while performing the testing tasks, and th
 &lt;/ol&gt;
 
 &lt;p&gt;Below is the interface in which students were given testing exercises.&lt;/p&gt;
+
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
 
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/test-feedback-sensemaking/muttle.png&quot; target=&quot;_blank&quot;&gt;
@@ -838,6 +1012,48 @@ One student was so distracted by this parallel comprehension task that when they
 &lt;p&gt;We received 138 survey responses about the frequency with which students accessed various help resources.&lt;/p&gt;
 
 &lt;div style=&quot;background-color: grey;&quot;&gt;
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 
 
 &lt;figure&gt;
@@ -1009,6 +1225,48 @@ It’s possible that students who are less inclined to seek help from social sou
 
 &lt;p&gt;We grouped submissions by source lines of code (SLoC), ranging from ~150 LoC to ~1200 LoC.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/submission-groups.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -1056,6 +1314,48 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;h2 id=&quot;result&quot;&gt;Result&lt;/h2&gt;
 &lt;p&gt;We found that most of the Deletion set’s effectiveness comes from the first two operators, i.e., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RemoveConditionals&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AOD&lt;/code&gt;. Inclusion of additional operators drives up the cost, but with little improvement to accuracy.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure class=&quot;wide&quot;&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/inc-subsets.png&quot; target=&quot;_blank&quot;&gt;
     &lt;img src=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/inc-subsets.png&quot; alt=&quot;Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy.&quot; /&gt;
@@ -1101,6 +1401,48 @@ It’s possible that students who are less inclined to seek help from social sou
 
 &lt;p&gt;In terms of &lt;strong&gt;reliability&lt;/strong&gt;, it appeared that the incremental subsets were nearly as effective as the entire Deletion set, with the 3-op subset (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NonVoidMethodCalls&lt;/code&gt; and beyond) bringing diminishing returns. This is similar to our original results.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-mutation-score.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -1112,6 +1454,48 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;/figure&gt;
 
 &lt;p&gt;The &lt;strong&gt;cost&lt;/strong&gt; naturally decreases in the order Deletion → 3-op → 2-op → 1-op.&lt;/p&gt;
+
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
 
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-cost.png&quot; target=&quot;_blank&quot;&gt;
@@ -1236,6 +1620,48 @@ It’s possible that students who are less inclined to seek help from social sou
 
 &lt;p&gt;Results are summarised in the figure below.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/completion-time-milestone-group.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -1256,6 +1682,48 @@ It’s possible that students who are less inclined to seek help from social sou
   &lt;li&gt;The mean correctness score increased slightly, from 72% (sd = 20%) without milestones to 76% (sd = 21%) with milestones&lt;/li&gt;
   &lt;li&gt;Students who completed 2 or more milestones tended to produce projects with higher correctness than those who completed fewer milestones&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
 
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/correctness-milestone-group.png&quot; target=&quot;_blank&quot;&gt;
@@ -1289,6 +1757,48 @@ It’s possible that students who are less inclined to seek help from social sou
 
 &lt;p&gt;We didn’t find any differences in these outcomes between the two semesters. This is apparent in the figure below.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/outcomes.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -1302,6 +1812,48 @@ It’s possible that students who are less inclined to seek help from social sou
 &lt;p&gt;&lt;strong&gt;Next&lt;/strong&gt;, we explored the impact that milestones had on frequencies of final course grades, which were a composite of project performance, exam performance, and performance on mastery-based homework assignments. Differences in these frequencies could indicate the specific groups of students who were helped or not helped by the milestones intervention.&lt;/p&gt;
 
 &lt;p&gt;We examined differences in the frequencies of &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;D&lt;/em&gt;, and &lt;em&gt;F&lt;/em&gt; grades between the two semesters. Results are in the figure below.&lt;/p&gt;
+
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
 
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/explicit-project-milestones/grades.png&quot; target=&quot;_blank&quot;&gt;
@@ -1438,6 +1990,48 @@ We addressed this by avoiding the “TDD or not” dichotomy. Students’ (and i
 
 &lt;p&gt;Consider the following figure, which shows an example sequence of developer activity created from synthetic data. Colours indicate methods in the project; solid and shaded blocks are solution and test code, respectively; and groups of blocks indicate work sessions.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure class=&quot;wide&quot;&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/example-dev-activity.png&quot; target=&quot;_blank&quot;&gt;
     &lt;img src=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/example-dev-activity.png&quot; alt=&quot;Coloured bars organised into groups, demarcating time spent writing production code and test code, devoted to individual methods.&quot; /&gt;
@@ -1469,6 +2063,48 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 
 &lt;p&gt;Measurements are depicted in the figure below. All measurements were aggregated as medians for each project.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/metrics.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -1488,6 +2124,48 @@ This allows a more nuanced discussion of students’ tendencies to write test co
 &lt;p&gt;Using the measurements we described, we can make observations about how students distributed their testing effort as they worked on projects.&lt;/p&gt;
 
 &lt;p&gt;The measurements are summarised in the figure below. The first four box-plots (in blue) represent measures of the balance of test writing effort. The fifth box-plot (in orange) represents proportion of test writing effort devoted before the relevant solution code was finalised.&lt;/p&gt;
+
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
 
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/assessing-incremental-testing/boxplots-balance-sequence.png&quot; target=&quot;_blank&quot;&gt;
@@ -1644,6 +2322,48 @@ The short-term benefit of this is that we can provide feedback to students “be
 
 &lt;p&gt;As an example, consider the figure below, which shows how a real student distributed their work across the days on which they worked on a project.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/tm-early-often.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -1660,6 +2380,48 @@ The short-term benefit of this is that we can provide feedback to students “be
 &lt;p&gt;We might also have measured the median edit time (i.e., on what day was half the work done on a project?). However, we opted for the mean since it is more sensitive to outliers, which are important when measuring procrastination (e.g., large amounts of code being written toward the end of a project timeline).&lt;/p&gt;
 
 &lt;p&gt;The figure below indicates distributions of the mean edit time for solution code and for test code, across all project implementations.&lt;/p&gt;
+
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
 
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/solution-test-early-often-dists.png&quot; target=&quot;_blank&quot;&gt;
@@ -1695,6 +2457,48 @@ The short-term benefit of this is that we can provide feedback to students “be
 
 &lt;p&gt;&lt;strong&gt;When students worked earlier and more often, they tended to produce programs with higher correctness.&lt;/strong&gt; To illustrate this, we split the dataset roughly into half: those projects that had “solved” the assigned problem (53%), and those that had not (47%). The figure below shows the difference in edit mean times between these populations.&lt;/p&gt;
 
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
+
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/solution-early-often-by-solved.png&quot; target=&quot;_blank&quot;&gt;
     
@@ -1706,6 +2510,48 @@ The short-term benefit of this is that we can provide feedback to students “be
 &lt;/figure&gt;
 
 &lt;p&gt;&lt;strong&gt;When students worked earlier and more often, they tended to finish their projects earlier.&lt;/strong&gt; This is so intuitive, it’s almost tautological. It is encouraging that the measurement is able to discriminate between early and late project submissions.&lt;/p&gt;
+
+&lt;style&gt;
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+&lt;/style&gt;
 
 &lt;figure&gt;
   &lt;a href=&quot;https://ayaankazerouni.org/blog/procrastination-feedback/solution-early-often-by-on-time-status.png&quot; target=&quot;_blank&quot;&gt;

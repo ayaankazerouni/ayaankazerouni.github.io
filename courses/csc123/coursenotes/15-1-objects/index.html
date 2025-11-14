@@ -45,8 +45,17 @@
   <li><a href="#whats-a-date" id="markdown-toc-whats-a-date">What’s a date?</a></li>
   <li><a href="#accessing-values-within-an-object" id="markdown-toc-accessing-values-within-an-object">Accessing values within an object</a></li>
   <li><a href="#accessing-fields-from-nested-objects" id="markdown-toc-accessing-fields-from-nested-objects">Accessing fields from nested objects</a></li>
-  <li><a href="#transforming-objects" id="markdown-toc-transforming-objects">Transforming objects</a></li>
-  <li><a href="#example-operations-involving-objects" id="markdown-toc-example-operations-involving-objects">Example operations involving objects</a></li>
+  <li><a href="#transforming-objects" id="markdown-toc-transforming-objects">Transforming objects</a>    <ul>
+      <li><a href="#the-spread-operator" id="markdown-toc-the-spread-operator">The spread operator</a></li>
+      <li><a href="#mutating-objects" id="markdown-toc-mutating-objects">Mutating objects</a></li>
+    </ul>
+  </li>
+  <li><a href="#example-operations-involving-objects" id="markdown-toc-example-operations-involving-objects">Example operations involving objects</a>    <ul>
+      <li><a href="#example-1" id="markdown-toc-example-1">Example 1</a></li>
+      <li><a href="#example-2" id="markdown-toc-example-2">Example 2</a></li>
+      <li><a href="#example-3" id="markdown-toc-example-3">Example 3</a></li>
+    </ul>
+  </li>
   <li><a href="#but-what-about-types" id="markdown-toc-but-what-about-types">But what about types?</a></li>
   <li><a href="#interfaces" id="markdown-toc-interfaces"><code class="language-plaintext highlighter-rouge">interface</code>s</a></li>
 </ul>
@@ -55,6 +64,48 @@
 However, any realistic data analysis or processing will need to work with data that cannot be represented with those primitive types alone.</p>
 
 <p>For example, in our early lessons, we talked about the various bits of data that make up a “tweet” (or substitute your favourite social medium’s made-up verb here).</p>
+
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
 
 <figure>
   <a href="https://ayaankazerouni.org/courses/csc123/coursenotes/02-abstraction-composition/composed-tweets.png" target="_blank">

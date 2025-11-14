@@ -42,7 +42,12 @@
       <ul id="markdown-toc">
   <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
   <li><a href="#data-types-in-vega-lite" id="markdown-toc-data-types-in-vega-lite">Data types in Vega-Lite</a></li>
-  <li><a href="#using-vega-lite" id="markdown-toc-using-vega-lite">Using Vega-Lite</a></li>
+  <li><a href="#using-vega-lite" id="markdown-toc-using-vega-lite">Using Vega-Lite</a>    <ul>
+      <li><a href="#mark" id="markdown-toc-mark">Mark</a></li>
+      <li><a href="#encodings" id="markdown-toc-encodings">Encodings</a></li>
+      <li><a href="#adding-another-variable" id="markdown-toc-adding-another-variable">Adding another variable</a></li>
+    </ul>
+  </li>
   <li><a href="#in-class-activity-making-changes-yourself" id="markdown-toc-in-class-activity-making-changes-yourself">In-class Activity: Making changes yourself</a></li>
   <li><a href="#and-beyond" id="markdown-toc-and-beyond">And beyond</a></li>
 </ul>
@@ -184,6 +189,48 @@ It is a way to control the appearance of marks in a data visualization, e.g., a 
 
 <p>We should now see the following univariate (single-variable) scatterplot.</p>
 
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
+
 <figure>
   <a href="https://ayaankazerouni.org/courses/csc123/coursenotes/16-data-vis/scatterplot-1.png" target="_blank">
     
@@ -203,6 +250,48 @@ Specifically, what if we had marked <code class="language-plaintext highlighter-
 <details>
 <summary>Expand to see the result.</summary>
 We’d get the following. The degrees values are being treated as *categories* instead of *numbers*, so they’re not being distanced according to their values. Moreover, they're not even in the right order! That’s why its important to be clear about the types of data we’re dealing with at all times.
+
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
 
 
 
@@ -259,6 +348,48 @@ Note that this is not really a limitation of the <em>computer</em>—the compute
 </code></pre></div></div>
 
 <p>We add in an encoding for the <code class="language-plaintext highlighter-rouge">y</code> axis, telling it to plot points based on the <code class="language-plaintext highlighter-rouge">year</code>. Notice that we’ve marked the <code class="language-plaintext highlighter-rouge">year</code> as an ordinal data type. Please read about the different types of data earlier in this module to remind yourself of why that is.</p>
+
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
 
 <figure>
   <a href="https://ayaankazerouni.org/courses/csc123/coursenotes/16-data-vis/scatterplot-3.png" target="_blank">

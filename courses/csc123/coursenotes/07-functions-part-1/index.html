@@ -41,7 +41,48 @@
   </div>
   <h1>Functions introduction</h1>
   <article>
-      
+      <style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
+
 <figure>
   <a href="https://ayaankazerouni.org/courses/csc123/coursenotes/07-functions-part-1/funcs.png" target="_blank">
     
@@ -70,6 +111,48 @@ A function processes data to create other data; as such, a function is a means t
 
 <p>Recall some of the problems that we have already thought about in our discussion of data. The webpage in the following image includes the use of (or is produced through the use of) a variety of functions. Can you list some?</p>
 
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
+
 <figure>
   <a href="https://ayaankazerouni.org/courses/csc123/coursenotes/01-data/is-text-data.png" target="_blank">
     
@@ -90,6 +173,48 @@ A function processes data to create other data; as such, a function is a means t
 </ul>
 
 <p>There are likely many functions used in the generation of a webpage such as that shown in the image below. Though we do not know the details of the implementation of the software, we can make guesses at the sort of behaviour/functionality needed.</p>
+
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
 
 <figure>
   <a href="https://ayaankazerouni.org/courses/csc123/coursenotes/02-abstraction-composition/tweets.png" target="_blank">
@@ -124,6 +249,48 @@ When the function is applied to different values for <code class="language-plain
 <p><strong>The graphical representation</strong></p>
 
 <p>Here is the function applied to increasing values of <code class="language-plaintext highlighter-rouge">x</code>. The <em>input</em> and <em>output</em> are plotted in the graph below.</p>
+
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
 
 <figure>
   <a href="https://ayaankazerouni.org/courses/csc123/coursenotes/07-functions-part-1/func-graphical.png" target="_blank">
@@ -213,6 +380,48 @@ f(-10.2) = -9.2\]
 <p>A benefit of using a function in this way is that we have now <em>abstracted away</em> the details of how to compute the area of a circle from its diameter. This means we can handle more complicated scenarios, like computing the area of an <em>annulus</em>.</p>
 
 <p>An <em>annulus</em> is a ring made of two concentric circles. Suppose we have an annulus like below, where the outer circle has a diameter of 17, and the inner circle has a diameter of 10. If we want to compute the area of the coloured portion of this shape, what would our strategy be?</p>
+
+<style>
+figure.wide {
+  overflow-x: visible;
+  max-width: 120%;
+}
+
+figure.wide img {
+  max-width: 120%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure.wrap {
+  float: left;
+}
+
+figure.wrap img {
+  max-width: 40vw;
+}
+
+figure.wrap figcaption {
+  max-width: 20vw;
+}
+
+figure.wrap img,
+figure.wrap figcaption {
+  margin-right: 5vw;
+}
+
+@media only screen and (max-width: 768px) {
+  figure.wrap {
+    float: unset;
+  }
+
+  figure.wrap img,
+  figure.wrap figcaption {
+    max-width: 95vw;
+  }
+}
+</style>
 
 <figure>
   <a href="https://ayaankazerouni.org/courses/csc123/coursenotes/07-functions-part-1/Annulus_700.svg" target="_blank">

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 @import url("/css/dark.css") screen and (prefers-color-scheme: dark);
 @import url("/css/github.css") screen and (prefers-color-scheme: light);
 :root {
@@ -71,8 +71,7 @@ body {
 
 h2,
 h3,
-h4,
-.degree {
+h4 {
   font-weight: 700;
   color: var(--heading-font-color);
   font-family: "Mulish", sans-serif;
@@ -100,11 +99,11 @@ a:visited:not(:has(img)):hover {
   text-decoration-thickness: 2px;
 }
 
-.hlt, .footnotes :target, .tag, .banner {
+.hlt, .footnotes :target, .banner {
   background-color: var(--highlight-color);
   color: var(--inverted-font-color);
 }
-.hlt a, .footnotes :target a, .tag a, .banner a {
+.hlt a, .footnotes :target a, .banner a {
   color: var(--inverted-font-color);
 }
 
@@ -139,9 +138,6 @@ header h1 {
   margin-left: 5px;
   margin-top: 0px;
 }
-header .info {
-  margin-left: 40px;
-}
 
 main {
   padding: 15px;
@@ -153,22 +149,6 @@ main {
 article {
   margin: auto;
   max-width: 50em;
-}
-
-.chart-container {
-  margin-left: 10%;
-}
-
-.writing {
-  display: grid;
-  grid-column-gap: 10px;
-  grid-row-gap: 15px;
-  grid-template-columns: 3fr 1fr;
-  margin: auto;
-}
-.writing a {
-  text-decoration: none;
-  font-weight: bold;
 }
 
 /* Aside */
@@ -228,17 +208,6 @@ aside nav:after {
   color: var(--emph);
 }
 
-.award {
-  display: inline-block;
-  background: var(--award-color);
-  color: white;
-  border-radius: 5px;
-  padding: 0 3px;
-  margin-left: 5px;
-  font-weight: bold;
-  font-size: 0.9em;
-}
-
 figure {
   margin: 25px auto;
   display: grid;
@@ -255,29 +224,6 @@ figure figcaption {
 figure img {
   max-width: 90%;
   margin: auto;
-}
-figure.wide {
-  overflow-x: visible;
-  max-width: 120%;
-}
-figure.wide img {
-  max-width: 120%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-figure.wrap {
-  float: left;
-}
-figure.wrap img {
-  max-width: 40vw;
-}
-figure.wrap figcaption {
-  max-width: 20vw;
-}
-figure.wrap img,
-figure.wrap figcaption {
-  margin-right: 5vw;
 }
 
 ul {
@@ -363,9 +309,6 @@ footer .address {
   color: var(--font-color);
   list-style-type: none;
 }
-.artifact-list details p.abstract {
-  font-size: 0.9em;
-}
 
 details > summary {
   cursor: pointer;
@@ -375,10 +318,6 @@ details > summary {
   padding: 5px;
   border-radius: 5px;
   border: var(--emph) solid 2px;
-}
-
-.grey {
-  opacity: 0.3;
 }
 
 code {
@@ -401,22 +340,6 @@ pre:not(.mermaid) {
   border-radius: 5px;
   border: 1pt solid var(--heading-font-color);
   line-height: 1.5;
-}
-
-.tag {
-  font-size: 0.8em;
-  font-family: "Mulish", sans-serif;
-  padding: 2px 5px;
-  margin: 5px;
-  border: 0.5pt solid var(--emph);
-  border-radius: 8px;
-  cursor: pointer;
-}
-.tag.active {
-  background-color: var(--header);
-}
-.tag.active a {
-  color: var(--highlight-color);
 }
 
 table {
@@ -540,15 +463,38 @@ sup[id^="fnref:"] {
   color: var(--inverted-font-color) !important;
 }
 
-@media only screen and (max-width: 750px) {
-  figure.wrap {
-    float: unset;
-  }
-  figure.wrap img,
-  figure.wrap figcaption {
-    max-width: 95vw;
+@media only screen and (min-width: 768px) {
+  .two-column-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .left-column {
+    position: sticky;
+    top: 20px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    width: 250px;
+    flex-shrink: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .right-column {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  main:has(.two-column-container) {
+    max-width: 90em;
+  }
+}
+
 @media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   main {
     max-width: 80%;
@@ -575,10 +521,6 @@ sup[id^="fnref:"] {
   .blurb {
     padding: 0 3px;
   }
-  .two-column > .main-content {
-    float: none;
-    width: inherit;
-  }
 }
 @media screen and (max-width: 415px) and (orientation: portrait) {
   details {
@@ -600,20 +542,6 @@ sup[id^="fnref:"] {
   }
   .artifact-list {
     margin-left: 0;
-  }
-  .content-box {
-    min-width: 100%;
-    margin: 10px auto;
-  }
-  .content-box .content {
-    font-size: 0.8em;
-  }
-  .content-box .title {
-    font-size: 1em;
-  }
-  .content-box .artifact-list {
-    max-width: 100%;
-    padding-left: 0px;
   }
   footer .email {
     font-size: 0.8em;
@@ -649,10 +577,6 @@ sup[id^="fnref:"] {
   aside nav ul li a.nav-link {
     padding: auto 7px auto 7px;
   }
-  .two-column > .main-content {
-    float: none;
-    width: inherit;
-  }
   img,
   figcaption {
     max-width: 95vw;
@@ -662,9 +586,6 @@ sup[id^="fnref:"] {
     margin-right: auto;
     width: auto;
     max-height: 60vh;
-  }
-  .post-title {
-    font-size: medium;
   }
 }
 
