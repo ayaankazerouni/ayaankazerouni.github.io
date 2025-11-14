@@ -40,11 +40,9 @@
 
 <p>This lab will give you practice making data visualizations to help make sense of large datasets.</p>
 
-<p>The lab asks you to create visualizations in the Vega Online Editor.  You will export three URLs, one per Part of this lab. <em>Make sure to save those URLs in a note on your computer as you complete each part, so you’re able to submit your work</em>.</p>
+<p>The lab asks you to create visualizations in the <a href="https://vega.github.io/editor/">Vega Online Editor</a>.  You will export three URLs, one per Part of this lab. <em>Make sure to save those URLs in a note on your computer as you complete each part, so you’re able to submit your work</em>.</p>
 
 <h2 id="part-1">Part 1</h2>
-
-<p>We’ll work with data about Measles cases in the</p>
 
 <p>You have a choice about the domain about which you want to make your visualisations.</p>
 
@@ -165,7 +163,7 @@ Since the earthquakes dataset and the construction permits dataset each have tho
   <li>In the construction permits dataset, each object is a single month. To get the total number of single-unit permits given in a year, we would need to <code class="language-plaintext highlighter-rouge">sum</code> up the numSingleUnitPermits values for the given year.</li>
 </ul>
 
-<p>Vega-lite provides the ability to display fields in aggregate. For example, you can compute summary statistics (min, max, mean, median, etc.) or other simpler values such as count and sum.</p>
+<p>Vega-Lite provides the ability to display fields in aggregate. For example, you can compute summary statistics (min, max, mean, median, etc.) or other simpler values such as count and sum.</p>
 
 <p>When you specify the <code class="language-plaintext highlighter-rouge">y</code> axis in the encoding, give it the following. Placeholder values that need to be replaced by you are shown in <code class="language-plaintext highlighter-rouge">&lt;angle brackets&gt;</code>.</p>
 
@@ -195,10 +193,9 @@ If you prefer, you can swap the <code class="language-plaintext highlighter-roug
 
 <h2 id="part-2">Part 2</h2>
 
-<p>Now that you’ve had some experience playing with Vega-lite, let’s make a slightly more complex visualisation using another dataset.</p>
+<p>Now that you’ve had some experience playing with Vega-Lite, let’s make a slightly more complex visualisation using another dataset.</p>
 
-<p>This new dataset contains information about cats sheltered by the Cal Poly Cat Program, a local no-kill cat shelter.
-Note that the dataset only contains information about 60 cats, and is not the complete population of the shelter.</p>
+<p>This new dataset contains information about cats sheltered by the Cal Poly Cat Program, a local no-kill cat shelter.</p>
 
 <p>The dataset is at the following URL:</p>
 
@@ -244,7 +241,7 @@ Note that the dataset only contains information about 60 cats, and is not the co
   <li><code class="language-plaintext highlighter-rouge">fivFelvDate</code></li>
 </ul>
 
-<p>In our last class, we talked about dates as being “compound” type of data that isn’t easily thought of as quantitative, nominal, or ordinal.
+<p>In our last class, we talked about dates as being a “compound” type of data that isn’t easily thought of as quantitative, nominal, or ordinal.
 Instead, it’s made up of numbers (or words) representing the year, month, and day (or perhaps even more fine-grained units like hours, minutes, and seconds).</p>
 
 <p>However, dates are such a commonly used data type that Vega-Lite allows us to specify fields as being <em>temporal</em> fields (i.e., having to do with time).
