@@ -1,0 +1,117 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  <meta name="fediverse:creator" content="@ayaankazerouni@hci.social" />
+  
+
+	
+
+	<title>CSC 313 Programming process assignment - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc313/winter2026/programming-process.html">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+<body>
+
+  <main class="course">
+    
+    
+    
+    
+    
+    <p>
+      
+      <a href="/courses/csc313/winter2026">&larr; CSC 313 Teaching Computing</a>
+      
+    </p>
+    
+      <div class="content">
+     
+      <h1>CSC 313 Programming process assignment</h1>
+      <p>(Assignment originally created by <a href="https://users.csc.calpoly.edu/~zwood">Dr. Zoë Wood</a>.)</p>
+
+<p>Computer science is a relatively new field and we are still figuring out how to teach it.</p>
+
+<p>While this class is by no means focused <em>only</em> on learning to program, programming is one important way in which computing professionals and enthusiasts make computers “do what they want”.
+We’ve all been programming for a while — when you have a bit of experience with programming, it can be difficult to predict or empathise with things that a novice might find difficult or outright strange about learning a programming language.</p>
+
+<p>So, this assignment’s goal is to examine our own programming process and to put us in (what I assume is) unfamiliar territory in terms of language and API.
+We’ll complete a fairly simple program — the objective here is not the program itself, but rather your documentation of your <em>process</em> that gets you to the final program.</p>
+
+<p><strong>Goal</strong>: To examine and document our personal programming process.</p>
+
+<p><strong>Process</strong>: We will create an interactive map which shows where in the world our classmates are from. That is, you will create a map that contains a little marker for each of your lab tablemates (should be 3–5, at most).
+We will accomplish using the <a href="https://openlayers.org/">OpenLayers API</a> in JavaScript.
+You may approach the problem using the structure proposed in the <a href="https://openlayers.org/doc/quickstart.html">Quick Start guide</a>.</p>
+
+<p><strong>Spirit of the problem</strong>: Document your coding process in detail to help us explore both the process of programming as well as the process of learning and working in unfamiliar territory.
+Create a detailed list, including a list of estimated times and activities taken to achieve the final goal.
+See the subset of my process anonymised as generalised activities so as not to not affect your process.</p>
+
+<p>You may use AI tools to aid you, but note that the spirit of this assignment is to examine and document both the programming process and the <em>learning</em> that takes place as your tackle the problem.
+Allowing generative AI to complete the entire assignment would rob you of that learning and would lead to a rather uninteresting process document.
+Remember that you’re not being graded on the correctness of your final solution, so I hope you do not feel pressure to produce a finished project at all costs.</p>
+
+<p>The programming specifications are as follows (intentionally general to allow you to explore your process):</p>
+
+<ul>
+  <li>Create a webpage which draws an interactive world map using OpenLayers. The map should be centred on Cal Poly (but note that you can zoom out to accommodate a wide area).</li>
+  <li>The map will include three different visual representations of icons used to represent where people enrolled in this class (and specifically in your “small” group) are from.</li>
+  <li>Identify people’s location based on the ESPG:4326 location of the city. You do not need to give one another your street address and may choose a closest big city if you feel more comfortable.</li>
+  <li>The visual representations will vary based on the number of people in each area. For example, the below static image from my implementation has one person in Santa Barbara (represented by a smaller yellow icon), two people in San Luis Obispo (represented as a medium sized orange icon) and three or more people in San Diego (represented by a larger purple icon).</li>
+  <li>You may choose a reasonable way to designate which style is associated with what number of people in that area. If your group does not have any regions with overlap, document your choice of what you will use visual style to represent and demonstrate the use of three different visual icon representations.</li>
+  <li>You are free to choose if your code just supports a static set of locations (easier and allowed) or if you would like to generalise it to read in a list of locations.</li>
+  <li>If you are feeling stuck, please do ping me and I can give you some hints but to start I’d like you to explore your process on your own. I will spare you one web wander and note that I found the following page useful: https://epsg.io/</li>
+</ul>
+
+<p><img src="map.png" alt="A picture of a map with markers in three locations in California." /></p>
+
+<p><strong>Core task</strong>: Document your programming process in detail. Here is a sample of my process log. Please produce something similar but complete and with exact details (for example, anything labelled <task a=""> should have the actual feature of code you are testing) - include labels about failures and working steps, etc. Highlight key process elements. For example:</task></p>
+
+<ul>
+  <li>Start 8:30</li>
+  <li>Explore idea (waste time identifying correct API)</li>
+  <li>Look for examples of code using identified API</li>
+  <li>Distracted by detail of problem, looked at unrelated example implementations that sounded cool</li>
+  <li>Try copy and pasting some example code - failed</li>
+  <li>Look at developer view to see error</li>
+  <li>Look for simpler example</li>
+  <li>Copy and try again - It worked!</li>
+  <li>Actually read the example code I got to work and think about what it is doing</li>
+  <li>Get distracted by a detail I find interesting and think about it a bit</li>
+  <li>Try changing example to accomplish <task a=""> - fail</task></li>
+  <li>Try changing different part of example for <task b=""> - it works!</task></li>
+  <li>Read documentation about <task a="">, notice an error in my thinking, fix code - it works</task></li>
+  <li>Create a back up of my code</li>
+  <li>Make a major change for <task c=""> - fails</task></li>
+  <li>Revert code to prior version</li>
+  <li>Do more reading about API</li>
+  <li>….etc…. I am not listing all steps so as to not pollute your process - you should list all your steps! And what they were trying to accomplish and whether it worked or failed.</li>
+  <li>5 more steps and simple version of <task c=""> is complete—yay it worked!</task></li>
+  <li>~20 minutes messing around with <tack d=""> &lt;Fill in for your exact steps - &gt;</tack></li>
+  <li>~20 minutes converting to code that generalises better for <task e=""></task></li>
+  <li>Done approximately 2 hours later</li>
+</ul>
+
+<p><strong>Deliverable</strong>: Turn in the following items separately in Canvas:</p>
+
+<ul>
+  <li>A zip file containing your program. <strong>Please do not include the <code class="language-plaintext highlighter-rouge">node_modules</code> folder in this zip file.</strong></li>
+  <li>A PDF containing your process documentation and a screenshot of your completed map.</li>
+</ul>
+
+      </div>
+    
+    
+  </main>
+
+</body>
+</html>

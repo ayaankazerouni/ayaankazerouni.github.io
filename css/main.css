@@ -69,6 +69,10 @@ body {
   line-height: 1.6;
 }
 
+strong {
+  font-weight: 1000;
+}
+
 h2,
 h3,
 h4 {
@@ -385,6 +389,15 @@ table tr > th:not(:last-child) {
 }
 .due::before {
   content: "DUE";
+}
+
+.in-class {
+  font-weight: bold;
+  background-color: rgb(41, 157, 203);
+  color: white;
+}
+.in-class::before {
+  content: "IN CLASS";
 }
 
 .callout {
