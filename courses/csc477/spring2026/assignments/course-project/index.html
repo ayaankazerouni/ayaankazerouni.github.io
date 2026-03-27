@@ -58,10 +58,11 @@
 <p>For this project, <strong>you’ll work in teams of 3–4</strong> to create and publish an interactive article that uses visualization to explain some complex subject to a reader.
 The visualizations you create should all embody the best practices for effective visualization that you have learned in class.</p>
 
-<p>In terms of toolkits, I expect most teams will build an “interactive webpage” using <a href="https://observablehq.com">Observable Notebooks</a>.
-I also expect most teams will use <strong><a href="https://vega.github.io/vega-lite/">Vega-Lite</a></strong> to create interactive visualizations, but you are also free to use <a href="https://d3js.org/">D3.js</a> or <a href="https://p5js.org/">p5.js</a> (both of which we will talk about later this term), or some combination thereof.
+<p>In terms of toolkits, I expect most teams will build an interactive webpage using <a href="https://observablehq.com/framework/">Observable Framework</a>.
+Observable Framework lets you create websites that run on the same reactive engine as Observable Notebooks, but you can also edit your code in an editor of your choice, work easily with teams using GitHub, and deploy your project to a webpage (e.g., using <a href="https://docs.github.com/en/pages">GitHub Pages</a>, <a href="https://www.netlify.com/">Netlify</a>, or similar services).
+I also expect most teams will use <a href="https://vega.github.io/vega-lite/">Vega-Lite</a> to create interactive visualizations, but you are also encouraged to use <a href="https://d3js.org/">D3.js</a> for custom interactive graphics.
 D3 in particular has a <a href="https://observablehq.com/@d3/gallery">vast gallery of examples</a> that <em>you are encouraged to explore and adapt as you see fit</em>.
-The only requirement here is that you cite your sources (in a code comment) whenever you use code from another example.</p>
+The only requirement here is that you cite your sources (see below) whenever you use code from another example.</p>
 
 <p>If you want to use other tools that we haven’t talked about or that are not JavaScript-based, please talk to me first.</p>
 
@@ -72,6 +73,8 @@ Within this constraint, I encourage you to select something of great personal in
 <p>Create an interactive, engaging <a href="https://worrydream.com/ExplorableExplanations/"><em>explorable explanation</em></a> of your topic.
 Your job is to <strong>educate your non-expert reader</strong> about your topic, and also highlight its importance to society.
 You should use interactive visualizations to do this.</p>
+
+<p class="callout note">As your project begins to take shape, please read <em><a href="https://worrydream.com/LadderOfAbstraction/">Up and Down the Ladder of Abstraction</a></em> by Bret Victor.</p>
 
 <p>You may be inspired by the following examples:</p>
 
@@ -84,7 +87,7 @@ You should use interactive visualizations to do this.</p>
   <li>See other examples at <a href="https://explorabl.es/">explorabl.es</a></li>
 </ul>
 
-<p>Before you start, please read <a href="https://www.cs.ubc.ca/labs/imager/tr/2009/NestedModel/NestedModel.pdf">A Nested Model for Visualization Design and Validation</a> by Tamara Munzner, or watch the videos about the topic (<a href="https://www.youtube.com/watch?v=KXswx4QSkHc">Part I</a> and <a href="https://www.youtube.com/watch?v=Yq2IkdgWr9Q">Part II</a>) to help you understand what goes into making an effective interactive visualization.</p>
+<!--Before you start, please read [A Nested Model for Visualization Design and Validation](https://www.cs.ubc.ca/labs/imager/tr/2009/NestedModel/NestedModel.pdf) by Tamara Munzner, or watch the videos about the topic ([Part I](https://www.youtube.com/watch?v=KXswx4QSkHc) and [Part II](https://www.youtube.com/watch?v=Yq2IkdgWr9Q)) to help you understand what goes into making an effective interactive visualization.-->
 
 <h2 id="milestones">Milestones</h2>
 
@@ -110,23 +113,18 @@ You should use interactive visualizations to do this.</p>
 
 <p>Not including sketches, your write-up should be no longer than 1.25 pages.</p>
 
-<p>As you brainstorm, consider that we will cover the following as this project progresses:</p>
+<p>As you brainstorm, consider the rest of the course schedule and see that we will cover more advanced visualization tools and techniques.
+So you are certainly going to go beyond the visualizations and interactions that are possible through Vega-Lite.</p>
 
-<ul>
-  <li>Cartographic visualizations.</li>
-  <li>p5.js and d3.js, allowing you to draw custom marks and animations, and graphics in general.</li>
-</ul>
-
-<p>So you are not limited to the visualizations and interactions that are possible through Vega-Lite.</p>
-
-<p>Turn in your write-up to Canvas as a PDF filled out by your team.</p>
+<p>Turn in your write-up to Canvas as a PDF.
+Only one team member will need to make the submission.</p>
 
 <h3 id="p2-interactive-prototype">P2: Interactive Prototype</h3>
 
 <p>Develop an initial interactive prototype on Observable and submit the following to Canvas:</p>
 
 <ol>
-  <li>A public (but possibly unlisted) link to your notebook. Please choose a custom URL for your notebook that communicates your chosen topic.</li>
+  <li>A public link to your webpage.</li>
   <li>A static PDF of your notebook, so that improvements you make between now and the final submission may be considered.</li>
   <li>A reflection of what you’ve learned and what you’ve been challenged by so far.</li>
 </ol>
@@ -146,9 +144,9 @@ However, you should have:</p>
 <h3 id="p3-final-deliverable">P3: Final Deliverable</h3>
 
 <p>Finalise and publish your interactive article, and prepare a live demo for the rest of the class.
-You will present to the class on the last two days of week 10.</p>
+You will present to the class on the last day of week 10.</p>
 
-<p>The final interactive visualization should have:</p>
+<p>The final interactive article should include:</p>
 
 <ul>
   <li>Significant improvements over the P2 prototype, based on feedback received.</li>
@@ -156,15 +154,18 @@ You will present to the class on the last two days of week 10.</p>
   <li>Well-written and concise prose interspersed through your visualizations. That said, try to avoid excessive amounts of prose in your article—the reader should primarily explore your topic through your visuals, not paragraphs of text.</li>
 </ul>
 
-<p>More details about the final presentation will be forthcoming closer to week 10.</p>
+<p>Additionally, your article should clearly cite its sources.
+This includes:</p>
+
+<ul>
+  <li>Links and attributions for your data sources.</li>
+  <li>Links and attributions to sources of design ideas or partial implementations that you used as building blocks (e.g., from the D3 example gallery).</li>
+  <li>References in support of any claims you make in your prose.</li>
+</ul>
 
 <h3 id="final-presentation">Final presentation</h3>
 
-<p>Final presentations will take place on the last day of class: <strong>Friday, June 6.</strong></p>
-
-<p>We have 9 groups and 100 minutes (50 minutes in lecture and 50 minutes in lab).
-Each group will have 7–10 minutes to present their project, <em>including time for questions and demonstrations</em>.
-Due to the limited time, I will be strict about each team’s time limit.</p>
+<p>Final presentations will take place on the last day of class: <strong>Thursday, June 4.</strong></p>
 
 <h4 id="presentation-content">Presentation content</h4>
 
@@ -173,7 +174,9 @@ Due to the limited time, I will be strict about each team’s time limit.</p>
 <ul>
   <li>A set of slides briefly introducing the project,</li>
   <li>A live demonstration of one or two major interactive elements of your explorable explanation,</li>
-  <li>A slide or two summarizing your contributions.</li>
+  <li>A slide or two summarizing your contributions (as in, your article’s contributions).</li>
+  <li>A description of preliminary evaluations of your contributions (in accordance with the nested model).</li>
+  <li>A brief analysis of possible future work or extensions o fyour design to different topics, extended data in the original topic, or more advanced visualization techniques.</li>
 </ul>
 
 <p>Since you have a relatively short time in which to present, <em>it’s extremely important that you rehearse!</em></p>
@@ -186,18 +189,18 @@ Due to the limited time, I will be strict about each team’s time limit.</p>
   <li><strong>Overarching approach</strong> (&lt; 1 minute): What was your approach to the explorable explanation? What tools did you use, what narrative structure?</li>
   <li><strong>Interactive elements</strong> (1–2 minutes): Include screen-captured GIFs or videos of the major interactive elements of your explorable explanation. This will serve two goals:
     <ul>
-      <li>To show the audience what you built in a lightweight way, and</li>
-      <li>To serve as a backup in case something goes wrong during the live demo (it happens!)</li>
+      <li>To show the audience what you built in a lightweight way. I expect you’ll spend less than 30 seconds on this.</li>
+      <li>Optionally, this would serve as a backup in case something goes wrong during the live demo (it happens!)</li>
     </ul>
   </li>
-  <li><strong>Live demo</strong> (2–3 minutes): At this point you will move to your Observable notebook and demonstrate live usage of the major interactive elements.
+  <li><strong>Live demo</strong> (2–3 minutes): At this point you will move to your webpage and demonstrate live usage of the major interactive elements.
     <ul>
       <li>It is strongly recommended that you include a link to your notebook in your slides so that your transition is smooth.</li>
       <li>Don’t try to show everything, just the important parts and the parts you’re most proud of.</li>
-      <li><em>Please have a plan ready for what you will demonstrate!</em> We won’t have time for an “unstructured walkthrough” of the notebook.</li>
+      <li><em>Please have a plan ready for what you will demonstrate!</em> We won’t have time for an “unstructured walkthrough” of the webpage.</li>
     </ul>
   </li>
-  <li><strong>Summary</strong> (1 minute): Close with a brief summary of your contribution, limitations in your approach, and how you would extend the project if you had more time.</li>
+  <li><strong>Summary</strong> (2 minutes): Close with a brief summary of your article’s contribution, evaluation, limitations in your approach, and how you would extend the project if you had more time.</li>
 </ul>
 
 <h4 id="deliverable-and-grading">Deliverable and grading</h4>
@@ -212,7 +215,7 @@ Due to the limited time, I will be strict about each team’s time limit.</p>
 <p>Presentations will be graded on the following criteria:</p>
 
 <ul>
-  <li>Submission: On time submission of slides.</li>
+  <li>Submission: On-time submission of slides.</li>
   <li>Attendance: Were all team members present and on time?</li>
   <li>Completeness: Did the presentation cover all of the required content in the allotted time?</li>
   <li>Clarity and professionalism: Was the presentation clear and practiced, or did it feel unprepared?</li>

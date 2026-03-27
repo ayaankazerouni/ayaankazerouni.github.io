@@ -36,14 +36,7 @@
       <div class="content">
      
       <h1>Assignment 3: Expository Visualization</h1>
-      <!-- <figure>
-<img src='A3-banner.png'  alt="A sketch of a table of data, followed by a hand-sketched visualization of grouped boxplots and an overlayed line chart, followed by a screenshot of a figure containing grouped boxplots and a layered line chart."/>
-<figcaption>
-From data to sketch to figure. Figure taken from <a href="https://www.sciencedirect.com/science/article/pii/S0164121221000029?via%3Dihub">Kazerouni et al., 2021.</a>
-</figcaption>
-</figure> -->
-
-<ul id="markdown-toc">
+      <ul id="markdown-toc">
   <li><a href="#deliverable" id="markdown-toc-deliverable">Deliverable</a></li>
   <li><a href="#dataset" id="markdown-toc-dataset">Dataset</a></li>
   <li><a href="#assignment" id="markdown-toc-assignment">Assignment</a>    <ul>
@@ -84,7 +77,7 @@ Please be sure to make your notebook <strong>publicly viewable</strong> and <str
 
 <p>It’s recommended that you add a cell with the following code to import Vega-Lite.<sup id="fnref:vl" role="doc-noteref"><a href="#fn:vl" class="footnote" rel="footnote">1</a></sup></p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">vl</span><span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@vega/vega-lite-api-v5</span><span class="dl">"</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span><span class="nx">vl</span><span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">@vega/vega-lite-api-v6</span><span class="dl">"</span>
 </code></pre></div></div>
 
 <p>You may also want to import Arquero for nice table viewing:</p>
@@ -179,20 +172,30 @@ For example, the <a href="https://data.ca.gov">data.ca.gov</a> website contains 
 
 <p>Your task is to design a static (i.e., non-interactive) visualization that you believe effectively communicates an idea about the data, and provide a short write-up (no more than 4 paragraphs) describing your design.</p>
 
-<p>You visualization may include multiple graphics concatenated together. We’ll talk about <em>multi-view composition</em> as this assignment progresses.</p>
+<p>You visualization may include multiple graphics concatenated together.
+We’ll talk about <em>multi-view composition</em> as this assignment progresses.</p>
 
 <h3 id="part-1-sketching">Part 1: Sketching</h3>
 
-<p>Start by choosing a question you’d like your visualization to answer.
-You’re encouraged to base your question on a combination of the provided dataset and some externally obtained data.
-I advise to start with a relatively small-scope question—this assignment is fairly open-ended and I want you to spend more time on the visualization than on scouring the Web for additional data sources.</p>
-
-<p>Then, design your visualization to answer that question.
-Begin this process by sketching (with pen and paper!) your visualizations of the dataset.</p>
+<p>In this part, you will sketch (with pen and paper!) <strong>three visualizations</strong> of the dataset and provide reflections on your designs.
+You should explicitly <em>not</em> analyze or visualize the assignment dataset with any tools or toolkit.</p>
 
 <p>Sketching allows us to explore initial ideas cheaply and quickly, and we also generate new ideas in the process.
 Sketches are also easy to share and solicit feedback about (from each other, from me, from anyone) without heavy investment into any one idea.
 Finally, research has shown that exploring several ideas in parallel can lead to better designs.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">3</a></sup></p>
+
+<p>Sketching may not always be appropriate for every data visualization.
+Indeed, in some cases, it’s advantageous to immediately use a visualization tool or dive directly into coding.
+However, any tool—whether it’s pen and paper, d3, or Excel—brings both opportunity and constraints and will influence your thinking, insights, and, ultimately, your final solution.
+Be aware of how tool choice informs your thoughts and design ideas.</p>
+
+<p>In the context of our course, there are educational benefits as well: sketching strips away superfluous adornments and feature richness and forces you to think deeply about visual form, data representation, and graphical encoding.
+Concepts that we will continue discussing throughout the course.</p>
+
+<p>Start by choosing a question you’d like your visualization to answer.
+You’re encouraged to base your question on a combination of the provided dataset and some externally obtained data.
+I advise to start with a relatively small-scope question—this assignment is fairly open-ended and I want you to spend more time on the visualization than on scouring the Web for additional data sources.
+Then, design your visualization to answer that question.</p>
 
 <p>Your sketches do not need to include every datapoint, or even precisely represent the data.
 The goal at this point is to think about data representation, communicating through visualization and sketching different visualization designs.
@@ -236,6 +239,7 @@ Here are examples of aspects that may lead to point deductions:</p>
   <li>Missing or incomplete design rationale in write-up.</li>
   <li>Missing references for external data.</li>
   <li>Excessive grammar mistakes/lack of proofreading in the write-up.</li>
+  <li>Lack of organisation in the notebook (i.e., you can order cells however you’d like, and you can write markdown or HTML in notebook cells; use them!).</li>
 </ul>
 
 <p>Examples of going above and beyond the assignment requirements include: entries with outstanding visual design, meaningful incorporation of external data and context to reveal and explain important trends, entries that demonstrate exceptional creativity, or effective annotations and other narrative devices.</p>
@@ -263,7 +267,7 @@ Here are examples of aspects that may lead to point deductions:</p>
       <p><a href="https://doi.org/10.1145/1879831.1879836">Parallel prototyping leads to better design results, more divergence, and increased self-efficacy</a>. Dow et al. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
-      <p><a href="https://data.ca.gov/dataset">Getting the right design and the design right</a>. Tohidi et al. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+      <p><a href="https://dl.acm.org/doi/10.1145/1124772.1124960">Getting the right design and the design right</a>. Tohidi et al. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
