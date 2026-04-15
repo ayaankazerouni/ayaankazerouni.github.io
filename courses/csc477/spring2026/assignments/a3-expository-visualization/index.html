@@ -36,7 +36,12 @@
       <div class="content">
      
       <h1>Assignment 3: Expository Visualization</h1>
-      <ul id="markdown-toc">
+      <figure>
+<img src="A3-banner.png" alt="Four visualization thumbnails, depicting a map of the US showing circles, basketball courts showing dots like a scatterplot, an area chart, and a GtiHub contributions chart." />
+<figcaption>An (idealized) example of a process leading to an expository visualization meant to convey a known (to the designer) bit of information to the viewer. The visualization is from <a href="https://ayaankazerouni.org/papers/2021/jss2021mutation-testing.pdf">this paper</a>.</figcaption>
+</figure>
+
+<ul id="markdown-toc">
   <li><a href="#deliverable" id="markdown-toc-deliverable">Deliverable</a></li>
   <li><a href="#dataset" id="markdown-toc-dataset">Dataset</a></li>
   <li><a href="#assignment" id="markdown-toc-assignment">Assignment</a>    <ul>
@@ -93,7 +98,7 @@ An extremely strong predictor of individuals’ impressions of computing and lik
 <p>In this assignment, you are given a dataset about the demographics of K-12 CS enrolment in the state of California, kindly provided to me by the non-profit organization <a href="https://csforca.org/">CSforCA.org</a>, which tracks K-12 access to CS coursework in California.
 <!-- Household income data was obtained from the [data.ca.gov](https://data.ca.gov) website. --></p>
 
-<p>Here are the first five records in the dataset, showing the number of students from each demographic group that were enrolled in AP CS courses, other (Non-AP) CS courses, and the total high school enrolment in that county. The report was published in 2021, and the data herein is about the 2018–2019 academic year.</p>
+<p>Here are the first five records in the dataset, showing the number of students from each demographic group that were enrolled in AP CS courses, other (Non-AP) CS courses, and the total high school enrolment in that county. <strong>The report was published in 2021, and the data herein is about the 2018–2019 academic year</strong>.</p>
 
 <table>
   <thead>
@@ -157,7 +162,7 @@ An extremely strong predictor of individuals’ impressions of computing and lik
 <span class="p">)</span>  
 </code></pre></div></div>
 
-<p>Also, add a reference to the <a href="https://csforca.org/wp-content/uploads/2021/09/KC21007_CS-for-CA_9-28-21-1-1.pdf">CS Access Report</a> to the bottom of your notebook, in a section titled <strong>References</strong>.
+<p>Your <strong>References</strong> section (see below) should include a reference to the <a href="https://csforca.org/wp-content/uploads/2021/09/KC21007_CS-for-CA_9-28-21-1-1.pdf">CS Access Report</a>.
 You should also skim the report to get a better sense of the issues at play.</p>
 
 <p>While you must use this provided data-set, you are free to transform it as you see fit.
@@ -177,30 +182,24 @@ We’ll talk about <em>multi-view composition</em> as this assignment progresses
 
 <h3 id="part-1-sketching">Part 1: Sketching</h3>
 
-<p>In this part, you will sketch (with pen and paper!) <strong>three visualizations</strong> of the dataset and provide reflections on your designs.
-You should explicitly <em>not</em> analyze or visualize the assignment dataset with any tools or toolkit.</p>
+<p>In this part, you will sketch (with pen and paper!) <strong>at least three visualizations</strong> of the dataset and provide reflections on your designs.
+Ideally, your reflections will be framed in terms of levels in the nested model for design and validation that we talked about in class.
+At this stage, you should explicitly <em>not</em> analyze or visualize the assignment dataset with any tools or toolkit.</p>
 
 <p>Sketching allows us to explore initial ideas cheaply and quickly, and we also generate new ideas in the process.
 Sketches are also easy to share and solicit feedback about (from each other, from me, from anyone) without heavy investment into any one idea.
 Finally, research has shown that exploring several ideas in parallel can lead to better designs.<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">2</a></sup><sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">3</a></sup></p>
 
-<p>Sketching may not always be appropriate for every data visualization.
-Indeed, in some cases, it’s advantageous to immediately use a visualization tool or dive directly into coding.
-However, any tool—whether it’s pen and paper, d3, or Excel—brings both opportunity and constraints and will influence your thinking, insights, and, ultimately, your final solution.
-Be aware of how tool choice informs your thoughts and design ideas.</p>
-
-<p>In the context of our course, there are educational benefits as well: sketching strips away superfluous adornments and feature richness and forces you to think deeply about visual form, data representation, and graphical encoding.
-Concepts that we will continue discussing throughout the course.</p>
+<p>In the context of our course, there are educational benefits as well: sketching strips away superfluous adornments and feature richness and forces you to think deeply about visual form, data representation, and graphical encoding.</p>
 
 <p>Start by choosing a question you’d like your visualization to answer.
-You’re encouraged to base your question on a combination of the provided dataset and some externally obtained data.
-I advise to start with a relatively small-scope question—this assignment is fairly open-ended and I want you to spend more time on the visualization than on scouring the Web for additional data sources.
+You’re encouraged to base your question on a combination of the provided dataset <em>and</em> some externally obtained data.
+<strong>I advise you to start with a relatively small-scope question</strong>—this assignment is fairly open-ended and I want you to spend more time on the visualization than on scouring the Web for additional data sources.
 Then, design your visualization to answer that question.</p>
 
 <p>Your sketches do not need to include every datapoint, or even precisely represent the data.
 The goal at this point is to think about data representation, communicating through visualization and sketching different visualization designs.
 I encourage you to use sharpies, colour pencils, or pens to control line thicknesses and colours.</p>
-
 <h3 id="part-2-implementation">Part 2: Implementation</h3>
 
 <p>Once you’ve arrived at an idea or set of ideas, implement them using Vega-Lite.
@@ -210,8 +209,7 @@ There’s no requirement that your final design look exactly like your sketch.</
 <p>Your graphic should be interpretable without recourse to your write-up (see below).
 Don’t forget to include title, axis labels, or legends as needed!</p>
 
-<p>Remember that the goal for this assignment is a <em>static</em> visualization (potentially made up of multiple layered or concatenated views).</p>
-
+<p>Remember that the goal for this assignment is a <em>static</em> visualization (potentially made up of multiple layered or concatenated views). Imagine that you are designing a graphic that will appear in a newspaper or research paper—it should do its job without recourse to interactive elements like tooltips or filters.</p>
 <h3 id="part-3-write-up">Part 3: Write-up</h3>
 
 <p>As different visualizations can emphasise different aspects of a data set, your write-up should document what aspects of the data you are attempting to most effectively communicate.
@@ -219,12 +217,17 @@ In short, what story are you trying to tell?
 Just as important, also note which aspects of the data might be obscured due to your visualization design.</p>
 
 <p>Your write-up should provide a rigorous rationale for your design decisions.
-Document the visual encodings you used and why they are appropriate for the data and your specific question.
-These decisions include the choice of visualization type, size, colour, scale, and other visual elements, as well as the use of sorting or other data transformations.
-How do these decisions facilitate effective communication?</p>
+You should document the following:</p>
+<ul>
+  <li><strong>Who</strong> is your intended audience for this graphic?</li>
+  <li><strong>Why</strong> are they looking at your graphic?</li>
+  <li><strong>What</strong> data did you show? This should go beyond “I showed the CS Education data”, and should instead describe the transformations your applied to the data to get it to the eventual displayed form, and how/why those transformations were appropriate for the intended visualization task.</li>
+  <li>Document the <strong>visual encodings</strong> you used and why they are appropriate for the data and your specific question. These decisions include the choice of visualization type, size, colour, scale, and other visual elements, as well as the use of sorting or other data transformations.</li>
+</ul>
 
 <p>Finally, although this assignment is organised into three parts, that is only a guideline.
-You are free to organize your notebook however you wish—whatever best communicates your exposition.</p>
+You should organize your notebook in whatever way best communicates your exposition.
+Remember that notebook cells can be moved around freely.</p>
 
 <h2 id="grading">Grading</h2>
 
@@ -258,6 +261,7 @@ Here are examples of aspects that may lead to point deductions:</p>
 <p>This assignment is adapted from similar assignments from <a href="https://courses.cs.washington.edu/courses/cse442/24au/a1.html">Jeffrey Heer</a> and <a href="https://docs.google.com/document/d/1k4WHViGAGRN02-kNpxR2J2aTWZg1LhDf6MgbgYMqM88/edit?tab=t.0#heading=h.5q6g0flf43al">Jon Froehlich</a>.</p>
 
 <hr />
+
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:vl" role="doc-endnote">
