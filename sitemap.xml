@@ -46,9 +46,6 @@
 <loc>https://ayaankazerouni.org/how-long</loc>
 </url>
 <url>
-<loc>https://ayaankazerouni.org/courses/csc313/coursenotes/metacognitive-scaffolding/</loc>
-</url>
-<url>
 <loc>https://ayaankazerouni.org/courses/csc313/coursenotes/</loc>
 </url>
 <url>
@@ -65,9 +62,6 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/blog/test-feedback-sensemaking/</loc>
-</url>
-<url>
-<loc>https://ayaankazerouni.org/blog/peer-collaboration-networks/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/blog/src-in-early-cs-courses/</loc>
@@ -104,6 +98,9 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc313/coursenotes/learning-a-second-programming-language/</loc>
+</url>
+<url>
+<loc>https://ayaankazerouni.org/courses/csc313/coursenotes/metacognitive-scaffolding/</loc>
 </url>
 <url>
 <loc>https://ayaankazerouni.org/courses/csc305/coursenotes/11-serialization/</loc>
@@ -471,6 +468,6 @@
 </url>
 <url>
 <loc>https://ayaankazerouni.org/papers/2026/iticse2026peer-collaboration.pdf</loc>
-<lastmod>2026-04-20T16:02:07-07:00</lastmod>
+<lastmod>2026-05-07T15:24:49-07:00</lastmod>
 </url>
 </urlset>
