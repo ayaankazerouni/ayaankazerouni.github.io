@@ -1,0 +1,130 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  <meta name="fediverse:creator" content="@ayaankazerouni@hci.social" />
+  
+
+	
+
+	<title>Assignment 5: Interactive Visualization with D3 - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc477/spring2026/assignments/a5-interactive-visualization/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+<body>
+
+  <main class="course">
+    
+    
+    
+    
+    
+    <p>
+      
+      <a href="/courses/csc477/spring2026">&larr; CSC 477 Scientific and Information Visualization</a>
+      
+    </p>
+    
+      <div class="content">
+     
+      <h1>Assignment 5: Interactive Visualization with D3</h1>
+      <p>This assignment involves building an interactive visualization of a dataset of your own choosing and deploying it on the web.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#deliverables" id="markdown-toc-deliverables">Deliverables</a>    <ul>
+      <li><a href="#interactive-visualization" id="markdown-toc-interactive-visualization">Interactive Visualization</a></li>
+      <li><a href="#implementation-requirements" id="markdown-toc-implementation-requirements">Implementation requirements</a></li>
+      <li><a href="#design-rationale" id="markdown-toc-design-rationale">Design rationale</a></li>
+    </ul>
+  </li>
+  <li><a href="#grading-criteria" id="markdown-toc-grading-criteria">Grading criteria</a></li>
+  <li><a href="#submission-details" id="markdown-toc-submission-details">Submission details</a></li>
+  <li><a href="#acknowledgement" id="markdown-toc-acknowledgement">Acknowledgement</a></li>
+</ul>
+<h2 id="overview">Overview</h2>
+
+<p>One goal of this assignment is for you to gain familiarity with various interaction techniques. We have seen many other examples of interactive visualizations in class and in the readings. The goal with this assignment is not only for you to gain hands-on implementation experience, but also for you to think about the effectiveness of the specific techniques for your chosen data domain.</p>
+
+<p>One challenge is to scope the assignment so that you can finish it in the allotted time. Focus on designing a limited yet compelling visualization that enables interactive exploration along a few critical dimensions.
+The <a href="https://www.benfry.com/zipdecode/">ZipDecode</a> and <a href="https://namerology.com/baby-name-grapher/">NameGrapher</a> applications are nice examples that use a simple but elegant interaction design to enable engaging explorations. A tightly-focused, well-implemented interactive graphic is much preferred to a sprawling design that attempts too much!</p>
+
+<p><strong>Remember, you need to scope this assignment so you can finish it in two weeks.</strong> Focus on designing a limited yet compelling visualization that enables interactive exploration along a few critical dimensions.
+A tightly-focused, well-implemented interactive graphic is much preferred to a sprawling design that attempts too much.</p>
+
+<h2 id="deliverables">Deliverables</h2>
+
+<h3 id="interactive-visualization">Interactive Visualization</h3>
+
+<p>Design and implement an interactive graphic aimed at enabling understanding of a compelling question for a dataset of your own choosing. In order to determine what subset of the data and which interactive options are most promising, you may want to perform additional exploratory analysis. What aspects of the data reveal the most interesting discoveries or stories? Do not feel obligated to try to convey <em>everything</em> about the data: focus on a compelling subset.</p>
+
+<p>Your graphic must include interactions that enable exploration. Possible techniques include panning, zooming, brushing, details-on-demand (e.g., tooltips), dynamic query filters, and selecting different measures to display. You are free to also consider highlights, annotations, or other narrative features intended to draw attention to particular items of interest and provide additional context. <strong>You are strongly encouraged to review the class resources on Interaction for sources of inspiration.</strong></p>
+
+<p>In addition to gaining hands-on implementation experience, another goal of this assignment is for you to think about the effectiveness of specific techniques for your chosen data domain.</p>
+
+<h3 id="implementation-requirements">Implementation requirements</h3>
+
+<p><strong>Implement your interactive graphic using D3</strong> and deploy it to the Web as a static website. You will submit a link to your website when finished. I expect most students to use <a href="https://observablehq.com/framework">Observable Framework</a> to do this, but you are free to use other publishing methods if you wish.</p>
+
+<p>Observable Framework is a static site generator for “data apps”. You get a similar reactive engine like Notebooks, but get more control over editing and publishing your website. For example, you can use an editor of your choosing and deploy to a custom domain if desired. Having the same reactive engine as Notebooks means that many of the idioms we learn in class for creating and updating interactive and animated graphics will transfer to Framework.</p>
+
+<p><strong><a href="https://observablehq.com/framework/deploying">Deploy your application to the open Web</a></strong> using a service like GitHub Pages or similar.</p>
+
+<p><strong>Include a link to your project repository in your website</strong>. This also requires that your repository be public.</p>
+<h3 id="design-rationale">Design rationale</h3>
+
+<p>In addition to your deployed webpage, you will also provide a write-up with the following components:</p>
+<ul>
+  <li>A rationale for your design decisions. How did you choose your particular visual encodings and interaction techniques? What alternatives did you consider and how did you arrive at your ultimate choices?</li>
+  <li>References to external resources. This includes data sources as well as references any existing work if your work adapts or builds from it. Missing references to these will be taken seriously.</li>
+</ul>
+
+<p>You may include this write-up in your website, or in the Canvas textbox for this assignment, or in a separate file in your repository. Wherever it is, please make it easy for me to find.</p>
+<h2 id="grading-criteria">Grading criteria</h2>
+
+<p>Squarely meeting the requirements as described above for this assignment will receive a score of 9/10.
+Going beyond above and beyond would net the final point. Examples of this include:</p>
+
+<ul>
+  <li>novel interaction techniques or visualization elements (i.e., novel to us and our class)</li>
+  <li>effective multi-view coordination</li>
+  <li>thoughtful and elegant graphic design that attends to what we’ve learned about effective visual encodings</li>
+  <li>insightful and engaging exploration experience</li>
+</ul>
+
+<p>Point deductions will be made when projects suffer from:</p>
+
+<ul>
+  <li>errors or broken features</li>
+  <li>clearly ineffective visual encodings</li>
+  <li>confusing interface design or unhelpful interactions</li>
+  <li>lack of exploratory interaction techniques</li>
+  <li>incomplete or insufficient write-up in Canvas
+    <h2 id="submission-details">Submission details</h2>
+  </li>
+</ul>
+
+<p>In Canvas, submit a link to your website (and optionally your design rationale).</p>
+
+<p>Note that submissions to this assignment will be reviewed as part of a subsequent peer-review assignment (tentatively due on Wednesday 6/2). So try to avoid late submissions.</p>
+
+<h2 id="acknowledgement">Acknowledgement</h2>
+
+<p>This assignment is adapted from <a href="https://courses.cs.washington.edu/courses/cse442/24au/a3.html">Jeffrey Heer’s assignment at UW</a>.</p>
+
+
+      </div>
+    
+    
+  </main>
+
+</body>
+</html>
