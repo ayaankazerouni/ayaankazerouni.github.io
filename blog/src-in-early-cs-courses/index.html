@@ -57,7 +57,7 @@
       <article>
         <div>
           <p>
-            <time>April 10, 2025</time>&#9474;2180 words
+            <time>April 10, 2025</time>&#9474;2191 words
           </p>
           
         </div>
@@ -192,18 +192,20 @@ They also have relatively higher proportions of students identifying as Hispanic
 <p>(CSU Fullerton does not appear in this figure because no classes at Fullerton were surveyed in both the Baseline and Intervention terms. Fullerton features in other analyses in <a href="https://ayaankazerouni.org/publications#toce2025src">the paper</a>.)</p>
 
 <figure>
-<div id="chart" class="chart-container"></div>
+<svg class="chart" viewBox="0 0 730 423" role="img" aria-label="Belonging score distributions" focusable="false">
+<use href="./chart.svg#chart"></use>
+</svg>
 <figcaption>Sense of belonging scores at each campus in the Baseline term (Fall 2022) and in post-surveys in Intervention terms (Spring 2023, Fall 2023, Spring 2024). The paper reports transformed belonging scores based on a confirmatory factor analysis, but the same trend is visible and easier to interpret with the –3 &rarr; 3 scale shown here.</figcaption>
 </figure>
 
-<script type="module">
+<!--<script type='module'>
     const tooltipTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
     const vega = (await import('https://cdn.jsdelivr.net/npm/vega@6/+esm')).default;
     const vl = (await import('https://cdn.jsdelivr.net/npm/vega-lite@6/+esm')).default;
     const vegaEmbed = (await import('https://cdn.jsdelivr.net/npm/vega-embed@6/+esm')).default;
     const chartSpec = (await (await fetch('/blog/src-in-early-cs-courses//chart.json')).json());
     vegaEmbed('#chart', chartSpec, { theme: 'ggplot2', tooltip: { theme: tooltipTheme } })
-</script>
+</script>-->
 
 <h2 id="final-remarks">Final remarks</h2>
 

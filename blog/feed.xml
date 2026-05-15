@@ -4,7 +4,7 @@
   <title>Ayaan M. Kazerouni</title>
   <link>https://ayaankazerouni.org/blog/</link>
   <description>Posts about computing education</description>
-  <lastBuildDate>Thu, 14 May 2026 23:12:13 -0700</lastBuildDate>
+  <lastBuildDate>Thu, 14 May 2026 23:27:05 -0700</lastBuildDate>
 
   
   
@@ -732,18 +732,20 @@ They also have relatively higher proportions of students identifying as Hispanic
 &lt;p&gt;(CSU Fullerton does not appear in this figure because no classes at Fullerton were surveyed in both the Baseline and Intervention terms. Fullerton features in other analyses in &lt;a href=&quot;https://ayaankazerouni.org/publications#toce2025src&quot;&gt;the paper&lt;/a&gt;.)&lt;/p&gt;
 
 &lt;figure&gt;
-&lt;div id=&quot;chart&quot; class=&quot;chart-container&quot;&gt;&lt;/div&gt;
+&lt;svg class=&quot;chart&quot; viewBox=&quot;0 0 730 423&quot; role=&quot;img&quot; aria-label=&quot;Belonging score distributions&quot; focusable=&quot;false&quot;&gt;
+&lt;use href=&quot;./chart.svg#chart&quot;&gt;&lt;/use&gt;
+&lt;/svg&gt;
 &lt;figcaption&gt;Sense of belonging scores at each campus in the Baseline term (Fall 2022) and in post-surveys in Intervention terms (Spring 2023, Fall 2023, Spring 2024). The paper reports transformed belonging scores based on a confirmatory factor analysis, but the same trend is visible and easier to interpret with the –3 &amp;rarr; 3 scale shown here.&lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;script type=&quot;module&quot;&gt;
+&lt;!--&lt;script type=&apos;module&apos;&gt;
     const tooltipTheme = window.matchMedia(&apos;(prefers-color-scheme: dark)&apos;).matches ? &apos;dark&apos; : &apos;default&apos;;
     const vega = (await import(&apos;https://cdn.jsdelivr.net/npm/vega@6/+esm&apos;)).default;
     const vl = (await import(&apos;https://cdn.jsdelivr.net/npm/vega-lite@6/+esm&apos;)).default;
     const vegaEmbed = (await import(&apos;https://cdn.jsdelivr.net/npm/vega-embed@6/+esm&apos;)).default;
     const chartSpec = (await (await fetch(&apos;/blog/src-in-early-cs-courses//chart.json&apos;)).json());
     vegaEmbed(&apos;#chart&apos;, chartSpec, { theme: &apos;ggplot2&apos;, tooltip: { theme: tooltipTheme } })
-&lt;/script&gt;
+&lt;/script&gt;--&gt;
 
 &lt;h2 id=&quot;final-remarks&quot;&gt;Final remarks&lt;/h2&gt;
 
