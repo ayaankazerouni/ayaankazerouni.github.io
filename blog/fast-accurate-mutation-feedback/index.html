@@ -57,7 +57,7 @@
       <article>
         <div>
           <p>
-            <time>March 17, 2021</time>&#9474;2293 words
+            <time>March 17, 2021</time>&#9474;2295 words
           </p>
           
         </div>
@@ -119,55 +119,8 @@
 
 <p>We grouped submissions by source lines of code (SLoC), ranging from ~150 LoC to ~1200 LoC.</p>
 
-<style>
-figure.wide {
-  overflow-x: visible;
-  max-width: 120%;
-}
-
-figure.wide img {
-  max-width: 120%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-figure.wrap {
-  float: left;
-}
-
-figure.wrap img {
-  max-width: 40vw;
-}
-
-figure.wrap figcaption {
-  max-width: 20vw;
-}
-
-figure.wrap img,
-figure.wrap figcaption {
-  margin-right: 5vw;
-}
-
-@media only screen and (max-width: 768px) {
-  figure.wrap {
-    float: unset;
-  }
-
-  figure.wrap img,
-  figure.wrap figcaption {
-    max-width: 95vw;
-  }
-}
-</style>
-
 <figure>
-  <a href="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/submission-groups.png" target="_blank">
-    
-    <img src="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/submission-groups.png" alt="A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code." />
-    
-  </a>
-
+  <img class="invert" src="submission-groups.png" alt="A histogram showing project groupings. Group 1, with submissions smaller than 341 lines of code, contains 672 submissions. Group 2, with submissions smaller than 666 lines of code, contains 353 submissions. Group 3, with submissions smaller than 1097 lines of code, contains 245 submissions. Group 4, with the largest submissions, contains 119 lines of code." />
   <figcaption>Groups of submissions based on source lines of code (SLoC). Dashed lines indicate group boundaries.</figcaption>
 </figure>
 
@@ -208,53 +161,8 @@ figure.wrap figcaption {
 <h2 id="result">Result</h2>
 <p>We found that most of the Deletion set’s effectiveness comes from the first two operators, i.e., <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> and <code class="language-plaintext highlighter-rouge">AOD</code>. Inclusion of additional operators drives up the cost, but with little improvement to accuracy.</p>
 
-<style>
-figure.wide {
-  overflow-x: visible;
-  max-width: 120%;
-}
-
-figure.wide img {
-  max-width: 120%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-figure.wrap {
-  float: left;
-}
-
-figure.wrap img {
-  max-width: 40vw;
-}
-
-figure.wrap figcaption {
-  max-width: 20vw;
-}
-
-figure.wrap img,
-figure.wrap figcaption {
-  margin-right: 5vw;
-}
-
-@media only screen and (max-width: 768px) {
-  figure.wrap {
-    float: unset;
-  }
-
-  figure.wrap img,
-  figure.wrap figcaption {
-    max-width: 95vw;
-  }
-}
-</style>
-
-<figure class="wide">
-  <a href="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/inc-subsets.png" target="_blank">
-    <img src="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/inc-subsets.png" alt="Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy." />
-  </a>
-
+<figure>
+  <img class="invert" src="inc-subsets.png" alt="Four subplots, each with four box plots showing operator subset cost, and line plots showing operator subset accuracy." />
   <figcaption>The cost and accuracy of our proposed incremental subsets of operators. For each subplot, the left axis represents cost (# mutants per KSLoC) and the right axis represents accuracy (Adjusted R<sup>2</sup> predicting Full coverage) Y-axes are shared across subplots. Inline text at the bottom of the charts indicates the median running time on our server.</figcaption>
 </figure>
 
@@ -295,111 +203,19 @@ figure.wrap figcaption {
 
 <p>In terms of <strong>reliability</strong>, it appeared that the incremental subsets were nearly as effective as the entire Deletion set, with the 3-op subset (<code class="language-plaintext highlighter-rouge">NonVoidMethodCalls</code> and beyond) bringing diminishing returns. This is similar to our original results.</p>
 
-<style>
-figure.wide {
-  overflow-x: visible;
-  max-width: 120%;
-}
-
-figure.wide img {
-  max-width: 120%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-figure.wrap {
-  float: left;
-}
-
-figure.wrap img {
-  max-width: 40vw;
-}
-
-figure.wrap figcaption {
-  max-width: 20vw;
-}
-
-figure.wrap img,
-figure.wrap figcaption {
-  margin-right: 5vw;
-}
-
-@media only screen and (max-width: 768px) {
-  figure.wrap {
-    float: unset;
-  }
-
-  figure.wrap img,
-  figure.wrap figcaption {
-    max-width: 95vw;
-  }
-}
-</style>
-
-<figure>
-  <a href="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-mutation-score.png" target="_blank">
-    
-    <img src="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-mutation-score.png" alt="Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively." />
-    
-  </a>
-
-  <figcaption>Mutation coverage: Proportion of Full mutants detected by the subset-adequate test suite.</figcaption>
-</figure>
-
 <p>The <strong>cost</strong> naturally decreases in the order Deletion → 3-op → 2-op → 1-op.</p>
 
-<style>
-figure.wide {
-  overflow-x: visible;
-  max-width: 120%;
-}
-
-figure.wide img {
-  max-width: 120%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-figure.wrap {
-  float: left;
-}
-
-figure.wrap img {
-  max-width: 40vw;
-}
-
-figure.wrap figcaption {
-  max-width: 20vw;
-}
-
-figure.wrap img,
-figure.wrap figcaption {
-  margin-right: 5vw;
-}
-
-@media only screen and (max-width: 768px) {
-  figure.wrap {
-    float: unset;
-  }
-
-  figure.wrap img,
-  figure.wrap figcaption {
-    max-width: 95vw;
-  }
-}
-</style>
-
+<div class="row">
 <figure>
-  <a href="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-cost.png" target="_blank">
-    
-    <img src="https://ayaankazerouni.org/blog/fast-accurate-mutation-feedback/val-cost.png" alt="The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively." />
-    
-  </a>
-
+  <img class="invert" src="val-mutation-score.png" alt="Four box-plots shows the Mutation score of the Deletion, 3-op, 2-op, and 1-op subsets. The median mutation scores are 0.95, 0.95, 0.95, and 0.9, respectively." />
+  <figcaption>Mutation coverage: Proportion of Full mutants detected by the subset-adequate test suite.</figcaption>
+</figure>
+<figure>
+  <img class="invert" src="val-cost.png" alt="The cost in terms of the proportion of mutants produced by the Deletion, 3-op, 2-op, and 1-op subsets. The median proportions are around 0.155, 0.148, 0.110, 0.060, respectively." />
   <figcaption>Computational cost: Number of mutants produced by each subset, expressed as a proportion of the Full number of mutants.</figcaption>
 </figure>
+
+</div>
 
 <h2 id="final-remarks">Final remarks</h2>
 <p>These results suggest that the <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> operator is a feasible option for fast and accurate mutation analysis. And this makes sense, because <code class="language-plaintext highlighter-rouge">RemoveConditionals</code> can be thought of as a stronger form of condition coverage—only instead of simply requiring that all conditions evaluate to true and false at least once, it is satisfied when the tests depend on the conditions evaluating to true or false at least once. The difference is subtle, but results in much more thorough tests when used as a basis for measuring test adequacy.</p>

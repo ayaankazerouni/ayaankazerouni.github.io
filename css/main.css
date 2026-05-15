@@ -57,6 +57,9 @@
     --reading-color: #03f6e6;
     --callout-background-color: #679da031;
   }
+  .invert {
+    filter: invert(1) hue-rotate(180deg);
+  }
 }
 body {
   background-color: var(--bg-color);
@@ -219,11 +222,14 @@ figure {
 figure figcaption {
   padding: 0;
   color: var(--caption-color);
-  font-family: Avenir;
-  margin-top: 2vw;
+  font-family: sans-serif;
+  font-size: 0.9em;
+  padding: 2px 0;
+  border-bottom: 1pt solid var(--caption-color);
 }
 figure img {
   max-width: 90%;
+  display: block;
   margin: auto;
 }
 
@@ -521,6 +527,9 @@ sup[id^="fnref:"] {
 .row > figure {
   flex: 0 0 auto;
   width: min-content;
+}
+.row > figure img {
+  max-width: min(350px, 90vw);
 }
 .row.center {
   justify-content: center;
