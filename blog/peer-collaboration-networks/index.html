@@ -1,0 +1,578 @@
+<html>
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  <meta name="fediverse:creator" content="@ayaankazerouni@hci.social" />
+  
+
+	
+	<link rel="alternate" type="application/rss+xml" title="Ayaan Kazerouni's blog posts" href="/blog/feed.xml">
+	
+
+	<title>Peer Networks and Instructor Resources as Complementary Support Systems in Six CS Classrooms - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/blog/peer-collaboration-networks/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+  <script
+    data-goatcounter="https://ayaankazerouni.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+  ></script>
+
+  <body>
+    <aside>
+    <nav>
+        <ul>
+        
+            
+            <li><a href="/#" class="nav-link">Home</a></li>
+        
+            
+            <li><a href="/research" class="nav-link">Research</a></li>
+        
+            
+            <li><a href="/publications" class="nav-link">Publications</a></li>
+        
+            
+            <li><a href="/teaching" class="nav-link">Teaching</a></li>
+        
+            
+            <li><a href="/blog" class="nav-link">Blog</a></li>
+        
+        </ul>
+    </nav>
+</aside>
+
+
+    <main>
+      <h1>Peer Networks and Instructor Resources as Complementary Support Systems in Six CS Classrooms</h1>
+      <article>
+        <div>
+          <p>
+            <time></time>&#9474;2525 words
+          </p>
+          
+          <div class="banner">
+            This is an unlisted post, which means it's in a draft state.
+          </div>
+          
+        </div>
+        <figure id="network-fig-inline" style="margin: 1rem 0;" aria-hidden="true">
+  <svg class="invert" height="20" width="380" style="display: block; margin: 0 auto;">
+    <circle cx="10" cy="10" r="6" fill="#1f77b4" class="gender-m"></circle>
+    <text x="22" y="14" style="font-family: Avenir; font-size: 0.75em">Man</text>
+    <circle cx="70" cy="10" r="6" fill="white" stroke="#ff7f0e" stroke-width="2" class="gender-wnb"></circle>
+    <text x="82" y="14" style="font-family: Avenir; font-size: 0.75em">Woman/Non-binary</text>
+    <line x1="220" y1="10" x2="244" y2="10" stroke="black" stroke-width="2" class="anonymous"></line>
+    <rect x="244" y="4" width="12" height="12" fill="black" class="anonymous"></rect>
+    <text x="262" y="14" style="font-family: Avenir; font-size: 0.75em">Anonymous student</text>
+  </svg>
+  <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+  
+  
+  
+  <figure class="fig-thumb">
+      <svg class="invert network-fig-thumb" viewBox="0 0 300 300">
+    <use href="./intro.svg#course"></use>
+  </svg>
+      <figcaption style="font-size: 0.7em;">Intro</figcaption>
+    </figure>
+  
+  <figure class="fig-thumb">
+      <svg class="invert network-fig-thumb" viewBox="0 0 300 300">
+    <use href="./eng.svg#course"></use>
+  </svg>
+      <figcaption style="font-size: 0.7em;">Eng</figcaption>
+    </figure>
+  
+  <figure class="fig-thumb">
+      <svg class="invert network-fig-thumb" viewBox="0 0 300 300">
+    <use href="./oop-fall2024.svg#course"></use>
+  </svg>
+      <figcaption style="font-size: 0.7em;">OOP F24</figcaption>
+    </figure>
+  
+  <figure class="fig-thumb">
+      <svg class="invert network-fig-thumb" viewBox="0 0 300 300">
+    <use href="./oop-spring2025.svg#course"></use>
+  </svg>
+      <figcaption style="font-size: 0.7em;">OOP S25</figcaption>
+    </figure>
+  
+  <figure class="fig-thumb">
+      <svg class="invert network-fig-thumb" viewBox="0 0 300 300">
+    <use href="./oop-fall2025.svg#course"></use>
+  </svg>
+      <figcaption style="font-size: 0.7em;">OOP F25</figcaption>
+    </figure>
+  
+  <figure class="fig-thumb">
+      <svg class="invert network-fig-thumb" viewBox="0 0 300 300">
+    <use href="./se.svg#course"></use>
+  </svg>
+      <figcaption style="font-size: 0.7em;">SE</figcaption>
+    </figure>
+  
+  </div>
+  <!-- <figcaption>Peer networks across the six classrooms.</figcaption> -->
+</figure>
+
+<p>This is an overview of the research paper <a href="https://ayaankazerouni.org/publications#iticse2026peer-collaboration"><em>Peer Networks and Instructor Resources as Complementary Support Systems in Six CS Classrooms</em></a>.
+The work was led by former master’s student <a href="https://www.linkedin.com/in/noah-r-252571129/">Noah Ravetch</a> and undergraduate students <a href="https://www.linkedin.com/in/naomi-nayman/">Naomi Nayman</a> and <a href="https://www.jackherberger.com/">Jack Herberger</a> at Cal Poly San Luis Obispo, and co-advised by my colleague <a href="https://theresamigler.com/">Theresa Migler</a>.</p>
+
+<h2 class="no_toc" id="contents">Contents</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#background" id="markdown-toc-background">Background</a></li>
+  <li><a href="#context" id="markdown-toc-context">Context</a></li>
+  <li><a href="#data" id="markdown-toc-data">Data</a></li>
+  <li><a href="#results" id="markdown-toc-results">Results</a>    <ul>
+      <li><a href="#who-participated-in-the-peer-networks" id="markdown-toc-who-participated-in-the-peer-networks">Who participated in the peer networks?</a></li>
+      <li><a href="#what-was-the-relationship-with-academic-performance" id="markdown-toc-what-was-the-relationship-with-academic-performance">What was the relationship with academic performance?</a></li>
+      <li><a href="#how-did-use-of-instructor-resources-factor-in" id="markdown-toc-how-did-use-of-instructor-resources-factor-in">How did use of instructor resources factor in?</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- ## Outline
+
+- background
+  - learning is a social process
+  - peers and instructors are part of this
+  - we have a lecture+lab setup in most courses --- not unique, but maybe not common either
+  - added contemporary concern: "all roads lead to chatgpt" -- erosion of the social fabric in CS courses
+  - RQs
+- what we did
+  - network figures
+  - men/women figure + finding
+  - isolated/non-isolated figure + finding
+  - table showing the four clusters of social resource usage
+- discussion
+  - what do our findings mean?
+    - 203 figures including encoding for use of instructor resources
+    - participation in the peer network and use of instructor office hours seemed to play a complementary role
+  - recommendations
+    - focus on collaborative work (not just group projects)
+    - less focus on "driving students to office hours" since that is inequitable and doesn't seem productive 
+-->
+
+<h2 id="background">Background</h2>
+
+<p>A classroom is a social system at work—students are participating in a network of peers, where each link represents a connection between two students, e.g., they studied together, collaborated on an assignment, or discussed course logistics.
+The instructor and course staff, along with the learners, play a role in establishing classroom culture, norms, and expectations.</p>
+
+<p>Participation in this process can lead to multiple benefits.
+Having strong connections in the peer network is a form of <em>social capital</em>: it can facilitate advice about courses, grading policies, and study materials, and it can positively impact a student’s sense that they belong and their expectations of themselves.
+All of this can lead to downstream benefits like improvements in academic persistence and performance.</p>
+
+<p>On the other hand, lacking this form of capital would prevent a student from reaping these benefits.
+A student might not participate in the peer network for a number of reasons.
+For example, a student worried about breaching academic integrity policies might be wary of discussing assignments with their classmates.
+A student who’s new to the institution (first-years or transfer students) might not know many potential collaborators.
+Additionally, a student might feel out of place if they feel they are underrepresented in the classroom in terms of race, culture, gender, or economic background.
+Similarly, some students might not use instructor resources like in-person office hours for a number of reasons, e.g., they are not familiar with what “office hours” means, they fear threats to their self-esteem arising from an instructor thinking they are asking bad questions, or they may be managing external obligations like family,  work, hobbies, or illness, that prevent them from visiting out-of-class office hours.</p>
+
+<p>Finally, evidence mounts that the availability of large language model-powered chatbots like ChatGPT are contributing to a general erosion of the social fabric of classrooms (cite).
+In addition to that evidence, I offer two bits of anecdata: first, I and my colleagues have experienced a steep dropoff in students attending office hours—no surprise, since it’s far more convenient to ask ChatGPT a question than to visit office hours on campus.
+Second, I advise the computer science peer tutoring center in our department at Cal Poly, where we’ve experienced a nearly 50% decrease in visits since LLM-based tools became mainstream.</p>
+
+<p>In this study, we investigated whether use of <em>social help resources</em>—such as collaborating with peers or seeking help from the instructor—was associated with better academic performance.
+We studied the peer networks that formed organically at six Computer Science course offerings at Cal Poly, and the relationship between participation in those networks and performance on summative assessments.
+Where the data was available, we also studied the use of instructor-provided resources, like in-person office hours and the online class forum.</p>
+
+<h2 id="context">Context</h2>
+
+<p>The study took place at Cal Poly San Luis Obispo, where some aspects of our classroom setup are salient to our research focus.</p>
+
+<p>First, we have small-to-medium class sizes.
+The six classrooms in this study ranged from 29 students to 35 students.
+A large lecture-hall-style class might observe markedly different peer network dynamics than we did.</p>
+
+<p>Second, the CS courses that we studied have a prominent lab component that is led by the instructor, and is given as much time during the week as lectures.
+This results in a significant amount of time available for students to work on course activities in proximity to their peers and to the instructor.<sup id="fnref:labs" role="doc-noteref"><a href="#fn:labs" class="footnote" rel="footnote">1</a></sup></p>
+
+<p>It is in these lab sessions that we expected peer networks to develop.</p>
+
+<p>We studied four courses (six classrooms), taught in terms from Spring 2024 to Fall 2025:</p>
+
+<ul>
+  <li><strong>Intro</strong>: 1 section of an <a href="https://ayaankazerouni.org/publications#sigcse2024cs0-course">introductory programming course taught in TypeScript</a>, taught by me. It was mostly made up of Graphic Communication majors.</li>
+  <li><strong>Eng</strong>: 1 section of an introductory programming course for engineers, taken by non-computing students in the College of Engineering (e.g., Mechanical, Industrial, Biomedical). It was taught by Noah, the MS student who led this work.</li>
+  <li><strong>OOP</strong>: 3 sections of a end-of-first-year/start-of-second-year Object-oriented Programming course, taught by me. This course is taken by students obtaining majors or minors in CSC or CPE.</li>
+  <li><strong>SE</strong>: 1 section of an upper-division software design course, required by software engineering majors, and available as an elective to other computing majors. This was taught by me.</li>
+</ul>
+
+<h2 id="data">Data</h2>
+
+<p>We studied three variables:</p>
+
+<ul>
+  <li><strong>Performance on a summative assessment</strong>: In <strong>Intro</strong>, <strong>Eng</strong>, and <strong>OOP</strong>, this was measured as a 0–100 score on a cumulative final exam. In <strong>SE</strong> this was measured as the average performance on programming assignments.</li>
+  <li><strong>Use of office hours or the online forum.</strong>: In the <strong>OOP</strong> sections, I kept track of office hour visits using a simple online form. Only the frequency of visits was tracked, not the length or purpose. For online forum usage, we downloaded analytics data from the course <a href="https://edstem.org">EdStem</a> platform.</li>
+  <li><strong>Participation in the classroom peer network</strong>: We used self-reported survey data to learn about peer collaborations.</li>
+</ul>
+
+<p>The network survey was distributed to students toward the end of the term in which data collection took place.
+The survey asked for informed consent, followed by demographic questions, and then prompted the student to list any classmates with whom they had worked that term.
+Students could list any number of classmates, and for each collaboration they were asked to choose one or more of the following options:</p>
+
+<ul>
+  <li><em>I helped them</em></li>
+  <li><em>They helped me</em></li>
+  <li><strong><em>We studied together</em></strong></li>
+  <li><strong><em>We collaborated on an assignment</em></strong></li>
+  <li><strong><em>We discussed course logistics</em></strong></li>
+  <li><em>Other</em> (free response; no students picked this option)</li>
+</ul>
+
+<p>The vast majority of students (over 95%) picked at least one of the <strong><em>bolded</em></strong> items above, indicating a bidirectional flow of help.</p>
+
+<p>As a result, using the survey responses, we constructed for each classroom an undirected disjoint graph in which each node was a student and edges indicated <em>any collaborative relationship</em> between two students.</p>
+
+<p>We took certain steps to protect the anonymity of students and to exclude information about non-consenting students:</p>
+
+<ul>
+  <li>It was made clear that questions were assumed to be about coursework on which collaboration was explicitly allowed.</li>
+  <li>Raw survey responses were not accessible to course instructors before anonymisation.</li>
+  <li>If a survey taker (i.e., a consenting student) listed a non-consenting student as a collaborator, we included that edge in the network, but removed all information about the non-consenting student from the dataset (i.e., their grade and office hours and forum usage). We did not exclude the edge entirely because this might falsely label the consenting student as “isolated” if it was their only connection.</li>
+  <li>If multiple survey takers listed the <em>same</em> non-consenting student as a collaborator, those survey takers received edges to <em>two separate anonymous nodes</em>, so no information about the non-consenting student would remain in our dataset.
+In effect, all that remained in these cases was the fact that the consenting students “had a friend” in the classroom.</li>
+</ul>
+
+<p>The peer networks so constructed are depicted below.</p>
+
+<h2 id="results">Results</h2>
+
+<p>This section summarises our results.</p>
+
+<h3 id="who-participated-in-the-peer-networks">Who participated in the peer networks?</h3>
+
+<p>Each classroom’s network is shown below.
+An edge depicts any collaboration between two peers, listed by either one of the peers.</p>
+
+<p>Our first focus was on students who were <em>isolated</em> in the peer network, i.e., those who did not list any collaborators and none listed them.</p>
+
+<figure style="margin: 2vw; display: flex; flex-direction: column; gap: 1rem;">
+  <svg class="invert" height="30" width="490" style="display: block; margin: 0 auto;" aria-hidden="true" focusable="false">
+    <circle cx="15" cy="15" r="10" fill="#1f77b4" class="gender-m"></circle>
+    <text x="30" y="20" text-anchor="start" style="font-family: Avenir; font-size: 0.9em">Man</text>
+    <circle cx="80" cy="15" r="10" fill="white" stroke="#ff7f0e" class="gender-wnb" stroke-width="2"></circle>
+    <text x="95" y="20" text-anchor="start" style="font-family: Avenir; font-size: 0.9em">Woman/Non-binary</text>
+    <line x1="240" y1="15" x2="270" y2="15" stroke="black" stroke-width="2" class="anonymous"></line>
+    <rect x="270" y="5" width="20" height="20" fill="black" class="anonymous"></rect>
+    <text x="295" y="20" text-anchor="start" style="font-family: Avenir; font-size: 0.9em">Edge to anonymous student</text>
+  </svg>
+
+<div style="display: flex; gap: 1rem; flex-direction: row; overflow-x: auto;">
+
+
+
+
+
+
+
+
+<figure class="fig">
+
+      <svg class="invert network-fig" viewBox="0 0 300 300" role="img" focusable="false" aria-labelledby="net-intro-desc}}">
+  <title id="net-intro-title">Network diagram for intro</title>
+  <desc id="net-intro-desc">An intro CS class made up mostly of women and non-binary students, with one large connected component and many small components.</desc>
+  <use href="./intro.svg#course"></use>
+</svg>
+
+      <figcaption style="font-size: 0.8em; font-family: sans-serif; margin-bottom: 1vh;">
+Intro
+</figcaption>
+    </figure>
+
+
+
+
+<figure class="fig">
+
+      <svg class="invert network-fig" viewBox="0 0 300 300" role="img" focusable="false" aria-labelledby="net-eng-desc}}">
+  <title id="net-eng-title">Network diagram for eng</title>
+  <desc id="net-eng-desc">An intro CS class for non-CS majors, made up mostly of male students, with a large connected component, and other dyads, triads, and isolates.</desc>
+  <use href="./eng.svg#course"></use>
+</svg>
+
+      <figcaption style="font-size: 0.8em; font-family: sans-serif; margin-bottom: 1vh;">
+Eng
+</figcaption>
+    </figure>
+
+
+
+
+<figure class="fig">
+
+      <svg class="invert network-fig" viewBox="0 0 300 300" role="img" focusable="false" aria-labelledby="net-oop-fall2024-desc}}">
+  <title id="net-oop-fall2024-title">Network diagram for oop-fall2024</title>
+  <desc id="net-oop-fall2024-desc">An object-oriented programming course made up mostly of male students, containing one large connected component, a smaller connected component, and dyads, triads, and isolates.</desc>
+  <use href="./oop-fall2024.svg#course"></use>
+</svg>
+
+      <figcaption style="font-size: 0.8em; font-family: sans-serif; margin-bottom: 1vh;">
+OOP (Fall 2024)
+</figcaption>
+    </figure>
+
+
+
+
+<figure class="fig">
+
+      <svg class="invert network-fig" viewBox="0 0 300 300" role="img" focusable="false" aria-labelledby="net-oop-spring2025-desc}}">
+  <title id="net-oop-spring2025-title">Network diagram for oop-spring2025</title>
+  <desc id="net-oop-spring2025-desc">Another object-oriented course mostly comprising four connected components.</desc>
+  <use href="./oop-spring2025.svg#course"></use>
+</svg>
+
+      <figcaption style="font-size: 0.8em; font-family: sans-serif; margin-bottom: 1vh;">
+OOP (Spring 2025)
+</figcaption>
+    </figure>
+
+
+
+
+<figure class="fig">
+
+      <svg class="invert network-fig" viewBox="0 0 300 300" role="img" focusable="false" aria-labelledby="net-oop-fall2025-desc}}">
+  <title id="net-oop-fall2025-title">Network diagram for oop-fall2025</title>
+  <desc id="net-oop-fall2025-desc">Another object-oriented course with fewer students, containing a small connected component and many isolates.</desc>
+  <use href="./oop-fall2025.svg#course"></use>
+</svg>
+
+      <figcaption style="font-size: 0.8em; font-family: sans-serif; margin-bottom: 1vh;">
+OOP (Fall 2025)
+</figcaption>
+    </figure>
+
+
+
+
+<figure class="fig">
+
+      <svg class="invert network-fig" viewBox="0 0 300 300" role="img" focusable="false" aria-labelledby="net-se-desc}}">
+  <title id="net-se-title">Network diagram for se</title>
+  <desc id="net-se-desc">A software engineering course containing a larger connected component and many isolates.</desc>
+  <use href="./se.svg#course"></use>
+</svg>
+
+      <figcaption style="font-size: 0.8em; font-family: sans-serif; margin-bottom: 1vh;">
+SE
+</figcaption>
+    </figure>
+
+
+
+</div>
+
+<figcaption>
+Peer collaborative networks in six CS classrooms.
+</figcaption>
+</figure>
+
+<p>About a quarter of the students were isolated, and men were more likely-than-expected to be isolated.
+They made up about 60% of the surveyed students, and made up just under 80% of isolated students.</p>
+
+<div class="row">
+<figure>
+  <svg class="invert num-collaborators" viewBox="0 0 612 120" role="img" focusable="false" aria-label="Num collaborators distribution.">
+    <use href="./num-collaborators.svg#num-collaborators"></use>
+  </svg>
+  <figcaption>
+  Most students had one or two collaborators, and none had more than four. 25% of students were isolated, i.e., they listed no collaborators, and none listed them.
+  </figcaption>
+</figure>
+<figure>
+  <svg class="invert isolation-gender" viewBox="0 0 498 83" role="img" focusable="false" aria-label="Isolation frequency by gender">
+    <use href="./isolation-gender.svg#isolation-gender"></use>
+  </svg>
+  <figcaption>
+  Men made up a higher-than-expected proportion of isolated students.
+  </figcaption>
+</figure>
+</div>
+
+<h3 id="what-was-the-relationship-with-academic-performance">What was the relationship with academic performance?</h3>
+
+<p>We used hypothesis tests to check for a relationship between a students’ connectedness in the network and their performance on the course’s summative assessment.</p>
+
+<div class="row">
+<div>
+Isolated students tended to perform worse on the summative assessment, but with great variability: even though they performed substantially lower on average, they were also represented among the class's highest performers, suggesting other factors at play.
+  </div>
+  <figure>
+    <svg class="invert isolation-grade" viewBox="0 0 377 82" role="img" focusable="false" aria-label="Grade distribution for isolated and non-isolated students." aria-describedby="grade-desc">
+      <title>Grade distribution</title>
+      <desc id="grade-desc">Isolated students scored an average of around 70% with a wide confidence interval. Non-isolated students scored an average of about 80% with a narrow confidence interval.</desc>
+      <use href="./isolation-grade.svg#isolation-grade"></use>
+    </svg>
+    <figcaption>
+    Each tick is a student's score on a summative assessment. The reddish dot and line represent the group average and 95% confidence interval.
+    </figcaption>
+  </figure>
+</div>
+
+<h3 id="how-did-use-of-instructor-resources-factor-in">How did use of instructor resources factor in?</h3>
+
+<p>In the three OOP classes, we collected data about office hour visits and use of the online EdStem forum.
+The distributions were remarkably similar:</p>
+
+<ul>
+  <li>58% of students did not visit office hours, and 55% of students did not post on EdStem.</li>
+  <li>19% of students visited office hours once, and 17% of students posted once on the EdStem.</li>
+  <li>Only a handful of students visited office hours or posted on the forum more than once.</li>
+</ul>
+
+<p>Statistical testing suggested a significant relationship between likelihood of posting on the forum and visiting office hours: students were likely to use <em>both</em> resources or <em>neither</em>.</p>
+
+<p>Finally, we turn to the interplay between use of instructor resources, participation in the peer network, and summative assessment performance.
+We looked at four groups of students: those who had peer collaborators, those who used instructor resources, those who used both, and those who used neither.</p>
+
+<div class="row">
+<div>
+Each group was pretty small, since we only collected office hours and forum usage data from the three OOP. So while these descriptive statistics are suggestive, they should be interpreted cautiously.
+</div>
+<figure>
+  <svg class="invert group-grades" viewBox="0 0 433 122" role="img" focusable="false" aria-label="Group grades" aria-describbedby="group-grades">
+    <desc id="group-grades">Students who didn't have peer collaborators and didn't use instructor resources performed dramatically worse than the others.</desc>  
+    <use href="./group-grades.svg#group-grades"></use>
+  </svg>
+</figure>
+</div>
+
+<p>Our results emphasise the importance of social connections in the classroom.
+Isolated students were likely to score lower on the summative assessment, and in OOP, students who were isolated from peers and the instructor performed dramatically worse, on average, than others. 
+Students who were connected to peers or the instructor or both, performed similarly, suggesting that using instructor resources may have compensated for a lack of peer collaborators, and vice-versa.</p>
+
+<p>For more details and discussion, see <a href="https://ayaankazerouni.org/publications#iticse2026peer-collaboration">the paper</a>.</p>
+
+<!-- end -->
+
+<style>
+.network-fig {
+  width: 200px;
+  height: 200px;
+}
+
+.isolation-gender, .num-collaborators, .isolation-grade, .group-grades {
+  width: max(25vw, 350px); 
+}
+
+.isolation-grade {
+  margin: 0 auto;
+}
+
+.network-fig-thumb {
+  width: 110px;
+  height: 110px;
+}
+
+circle.gender-wnb {
+  stroke-width: 2pt;
+}
+
+figure {
+  margin: 2 0;
+
+  &.fig {
+    border-bottom: 1pt dashed darkgrey;
+  }
+
+  figcaption {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .invert {
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  circle.gender-wnb {
+    fill: orange;
+  }
+
+/**
+
+  circle.gender-m {
+    stroke: #5fa8d3;
+    fill: #5fa8d3;
+  }
+
+  .anonymous {
+    stroke: white;
+    stroke-width: 0.75pt;
+  }
+
+  .link {
+    stroke: #6b6b6b;
+  }
+  */
+}
+</style>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:labs" role="doc-endnote">
+      <p>CS labs at Cal Poly are led by instructors as opposed to student assistants. <a href="#fnref:labs" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+ 
+      </article>
+       <footer>
+  <div>Contact<br></div>
+  <div class='address'><a href="mailto:ayaank@calpoly.edu">ayaank@calpoly.edu</a></div>
+  <!--<div class='address'></div> -->
+  <div class='contact'>
+    <!-- <a href='https://twitter.com/ayaankazerouni'>
+      <i class='fab fa-twitter-square' aria-label="Twitter" title="Twitter"></i>
+      <span class='visible-hidden'>Twitter profile</span>
+    </a> -->
+    <a rel="me" href='https://hci.social/@ayaankazerouni'>
+      <i class='fab fa-mastodon' aria-label="Mastodon" title="Mastodon" target="_blank"></i>
+      <span class='visible-hidden'>Mastodon profile</span>
+    </a>
+    <a href='https://github.com/ayaankazerouni'>
+      <i class='fab fa-github' aria-label="GitHub", title="GitHub"></i>
+      <span class='visible-hidden'>GitHub profile</span>
+    </a>
+    <!-- <a href='https://www.linkedin.com/in/ayaankazerouni'>
+      <i class='fab fa-linkedin' aria-label="LinkedIn" title="LinkedIn"></i>
+      <span class='visible-hidden'>LinkedIn profile</span>
+    </a> -->
+    <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en'>
+      <i class='ai ai-google-scholar-square' aria-label="Google Scholar" title="Google Scholar"></i>
+      <span class='visible-hidden'>Google Scholar profile</span>
+    </a>
+    <a href='https://dblp.org/pid/202/1256.html'>
+      <i class='ai ai-dblp-square' aria-label="DBLP" title="DBLP"></i>
+      <span class='visible-hidden'>DBLP page</span>
+    </a>
+    <!-- <a href='https://orcid.org/0000-0002-6574-1278'>
+      <i class='ai ai-orcid-square' aria-label="OrcID" title="OrcID"></i>
+      <span class='visible-hidden'>OrcID profile</span>
+    </a> -->
+  </div>
+</footer>
+
+    </main>
+  </body>
+</html>
