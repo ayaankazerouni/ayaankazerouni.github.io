@@ -4,7 +4,7 @@
   <title>Ayaan M. Kazerouni</title>
   <link>https://ayaankazerouni.org/blog/</link>
   <description>Posts about computing education</description>
-  <lastBuildDate>Fri, 15 May 2026 14:19:58 -0700</lastBuildDate>
+  <lastBuildDate>Fri, 15 May 2026 15:52:36 -0700</lastBuildDate>
 
   
   
@@ -129,7 +129,7 @@ A student who’s new to the institution (first-years or transfer students) migh
 Additionally, a student might feel out of place if they feel they are underrepresented in the classroom in terms of race, culture, gender, or economic background.
 Similarly, some students might not use instructor resources like in-person office hours for a number of reasons, e.g., they are not familiar with what “office hours” means, they fear threats to their self-esteem arising from an instructor thinking they are asking bad questions, or they may be managing external obligations like family,  work, hobbies, or illness, that prevent them from visiting out-of-class office hours.&lt;/p&gt;
 
-&lt;p&gt;Finally, evidence mounts that the availability of large language model-powered chatbots like ChatGPT are contributing to a general erosion of the social fabric of classrooms (cite).
+&lt;p&gt;Finally, &lt;a href=&quot;https://dl.acm.org/doi/abs/10.1145/3724363.3729024&quot;&gt;evidence mounts&lt;/a&gt; that the availability of large language model-powered chatbots like ChatGPT are contributing to a general erosion of the social fabric of classrooms.
 In addition to that evidence, I offer two bits of anecdata: first, I and my colleagues have experienced a steep dropoff in students attending office hours—no surprise, since it’s far more convenient to ask ChatGPT a question than to visit office hours on campus.
 Second, I advise the computer science peer tutoring center in our department at Cal Poly, where we’ve experienced a nearly 50% decrease in visits since LLM-based tools became mainstream.&lt;/p&gt;
 
@@ -710,7 +710,7 @@ They also have relatively higher proportions of students identifying as Hispanic
 &lt;p&gt;(CSU Fullerton does not appear in this figure because no classes at Fullerton were surveyed in both the Baseline and Intervention terms. Fullerton features in other analyses in &lt;a href=&quot;https://ayaankazerouni.org/publications#toce2025src&quot;&gt;the paper&lt;/a&gt;.)&lt;/p&gt;
 
 &lt;figure&gt;
-&lt;svg class=&quot;invert chart&quot; viewBox=&quot;0 0 730 423&quot; role=&quot;img&quot; aria-label=&quot;Belonging score distributions&quot; focusable=&quot;false&quot;&gt;
+&lt;svg class=&quot;chart&quot; viewBox=&quot;0 0 730 423&quot; role=&quot;img&quot; aria-label=&quot;Belonging score distributions&quot; focusable=&quot;false&quot;&gt;
 &lt;use href=&quot;./chart.svg#chart&quot;&gt;&lt;/use&gt;
 &lt;/svg&gt;
 &lt;figcaption&gt;Sense of belonging scores at each campus in the Baseline term (Fall 2022) and in post-surveys in Intervention terms (Spring 2023, Fall 2023, Spring 2024). The paper reports transformed belonging scores based on a confirmatory factor analysis, but the same trend is visible and easier to interpret with the –3 &amp;rarr; 3 scale shown here.&lt;/figcaption&gt;
