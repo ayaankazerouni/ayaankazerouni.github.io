@@ -4,7 +4,7 @@
   <title>Ayaan M. Kazerouni</title>
   <link>https://ayaankazerouni.org/blog/</link>
   <description>Posts about computing education</description>
-  <lastBuildDate>Fri, 15 May 2026 15:52:36 -0700</lastBuildDate>
+  <lastBuildDate>Fri, 15 May 2026 17:49:19 -0700</lastBuildDate>
 
   
   
@@ -77,18 +77,13 @@
 &lt;p&gt;This is an overview of the research paper &lt;a href=&quot;https://ayaankazerouni.org/publications#iticse2026peer-collaboration&quot;&gt;&lt;em&gt;Peer Networks and Instructor Resources as Complementary Support Systems in Six CS Classrooms&lt;/em&gt;&lt;/a&gt;.
 The work was led by former master’s student &lt;a href=&quot;https://www.linkedin.com/in/noah-r-252571129/&quot;&gt;Noah Ravetch&lt;/a&gt; and undergraduate students &lt;a href=&quot;https://www.linkedin.com/in/naomi-nayman/&quot;&gt;Naomi Nayman&lt;/a&gt; and &lt;a href=&quot;https://www.jackherberger.com/&quot;&gt;Jack Herberger&lt;/a&gt; at Cal Poly San Luis Obispo, and co-advised by my colleague &lt;a href=&quot;https://theresamigler.com/&quot;&gt;Theresa Migler&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 class=&quot;no_toc&quot; id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
-
-&lt;ul id=&quot;markdown-toc&quot;&gt;
+&lt;ul class=&quot;no_toc&quot; id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#background&quot; id=&quot;markdown-toc-background&quot;&gt;Background&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#context&quot; id=&quot;markdown-toc-context&quot;&gt;Context&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#data&quot; id=&quot;markdown-toc-data&quot;&gt;Data&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#results&quot; id=&quot;markdown-toc-results&quot;&gt;Results&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#who-participated-in-the-peer-networks&quot; id=&quot;markdown-toc-who-participated-in-the-peer-networks&quot;&gt;Who participated in the peer networks?&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#what-was-the-relationship-with-academic-performance&quot; id=&quot;markdown-toc-what-was-the-relationship-with-academic-performance&quot;&gt;What was the relationship with academic performance?&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#how-did-use-of-instructor-resources-factor-in&quot; id=&quot;markdown-toc-how-did-use-of-instructor-resources-factor-in&quot;&gt;How did use of instructor resources factor in?&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#who-participated-in-the-peer-networks&quot; id=&quot;markdown-toc-who-participated-in-the-peer-networks&quot;&gt;Who participated in the peer networks?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#what-was-the-relationship-with-academic-performance&quot; id=&quot;markdown-toc-what-was-the-relationship-with-academic-performance&quot;&gt;What was the relationship with academic performance?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#how-did-use-of-instructor-resources-factor-in&quot; id=&quot;markdown-toc-how-did-use-of-instructor-resources-factor-in&quot;&gt;How did use of instructor resources factor in?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;!-- ## Outline
@@ -113,65 +108,51 @@ The work was led by former master’s student &lt;a href=&quot;https://www.linke
     - less focus on &quot;driving students to office hours&quot; since that is inequitable and doesn&apos;t seem productive 
 --&gt;
 
+&lt;p&gt;We studied the interplay between peer collaboration networks in six CS classrooms, usage of instructor-provided help resources, and performance on summative assessments.
+Students who were unconnected to their peers scored relatively lower on summative assessments.
+Students who were connected to their peers &lt;em&gt;or&lt;/em&gt; used instructor resources performed dramatically better than those who used neither.&lt;/p&gt;
+
 &lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
-&lt;p&gt;A classroom is a social system at work—students are participating in a network of peers, where each link represents a connection between two students, e.g., they studied together, collaborated on an assignment, or discussed course logistics.
-The instructor and course staff, along with the learners, play a role in establishing classroom culture, norms, and expectations.&lt;/p&gt;
+&lt;p&gt;A classroom is a social system at work—students are participating in a network consisting of their peers and the instructor.
+Having strong connections in this network is a form of &lt;em&gt;social capital&lt;/em&gt;: it can facilitate advice about courses, policies, and study materials, and can lead to downstream improvements to academic persistence and performance.
+However, some students may lack this form of capital for a number of reasons, e.g., fear of breaching academic integrity policies, being new to the institution, or factors that prevent the student from interacting with their instructor (e.g., anxiety or external obligations preventing one from visiting office hours).&lt;/p&gt;
 
-&lt;p&gt;Participation in this process can lead to multiple benefits.
-Having strong connections in the peer network is a form of &lt;em&gt;social capital&lt;/em&gt;: it can facilitate advice about courses, grading policies, and study materials, and it can positively impact a student’s sense that they belong and their expectations of themselves.
-All of this can lead to downstream benefits like improvements in academic persistence and performance.&lt;/p&gt;
+&lt;!--Similarly, some students might not use instructor resources like in-person office hours for a number of reasons, e.g., they are not familiar with what &quot;office hours&quot; means, they&apos;re worried about asking &quot;good questions&quot;, or they may be managing external obligations like family,  work, hobbies, or illness, that prevent them from visiting out-of-class office hours.--&gt;
 
-&lt;p&gt;On the other hand, lacking this form of capital would prevent a student from reaping these benefits.
-A student might not participate in the peer network for a number of reasons.
-For example, a student worried about breaching academic integrity policies might be wary of discussing assignments with their classmates.
-A student who’s new to the institution (first-years or transfer students) might not know many potential collaborators.
-Additionally, a student might feel out of place if they feel they are underrepresented in the classroom in terms of race, culture, gender, or economic background.
-Similarly, some students might not use instructor resources like in-person office hours for a number of reasons, e.g., they are not familiar with what “office hours” means, they fear threats to their self-esteem arising from an instructor thinking they are asking bad questions, or they may be managing external obligations like family,  work, hobbies, or illness, that prevent them from visiting out-of-class office hours.&lt;/p&gt;
-
-&lt;p&gt;Finally, &lt;a href=&quot;https://dl.acm.org/doi/abs/10.1145/3724363.3729024&quot;&gt;evidence mounts&lt;/a&gt; that the availability of large language model-powered chatbots like ChatGPT are contributing to a general erosion of the social fabric of classrooms.
-In addition to that evidence, I offer two bits of anecdata: first, I and my colleagues have experienced a steep dropoff in students attending office hours—no surprise, since it’s far more convenient to ask ChatGPT a question than to visit office hours on campus.
+&lt;p&gt;&lt;a href=&quot;https://dl.acm.org/doi/abs/10.1145/3724363.3729024&quot;&gt;Evidence&lt;/a&gt; also mounts that general availability of large language model-powered chatbots like ChatGPT are contributing to a general erosion of the social fabric of classrooms.
+To add to that, I offer two bits of anecdata: first, I and my colleagues have experienced a steep dropoff in students attending office hours—no surprise, since it’s far more convenient to ask ChatGPT a question than to visit office hours on campus.
 Second, I advise the computer science peer tutoring center in our department at Cal Poly, where we’ve experienced a nearly 50% decrease in visits since LLM-based tools became mainstream.&lt;/p&gt;
 
-&lt;p&gt;In this study, we investigated whether use of &lt;em&gt;social help resources&lt;/em&gt;—such as collaborating with peers or seeking help from the instructor—was associated with better academic performance.
-We studied the peer networks that formed organically at six Computer Science course offerings at Cal Poly, and the relationship between participation in those networks and performance on summative assessments.
-Where the data was available, we also studied the use of instructor-provided resources, like in-person office hours and the online class forum.&lt;/p&gt;
+&lt;p&gt;In this study, we investigated whether use of &lt;em&gt;social help resources&lt;/em&gt;—such as collaborating with peers or seeking help from the instructor—was associated with better academic performance.&lt;/p&gt;
 
 &lt;h2 id=&quot;context&quot;&gt;Context&lt;/h2&gt;
 
-&lt;p&gt;The study took place at Cal Poly San Luis Obispo, where some aspects of our classroom setup are salient to our research focus.&lt;/p&gt;
-
-&lt;p&gt;First, we have small-to-medium class sizes.
-The six classrooms in this study ranged from 29 students to 35 students.
-A large lecture-hall-style class might observe markedly different peer network dynamics than we did.&lt;/p&gt;
-
-&lt;p&gt;Second, the CS courses that we studied have a prominent lab component that is led by the instructor, and is given as much time during the week as lectures.
-This results in a significant amount of time available for students to work on course activities in proximity to their peers and to the instructor.&lt;sup id=&quot;fnref:labs&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:labs&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
-
-&lt;p&gt;It is in these lab sessions that we expected peer networks to develop.&lt;/p&gt;
-
-&lt;p&gt;We studied four courses (six classrooms), taught in terms from Spring 2024 to Fall 2025:&lt;/p&gt;
+&lt;p&gt;The study took place at Cal Poly San Luis Obispo. Some salient info about our context:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Intro&lt;/strong&gt;: 1 section of an &lt;a href=&quot;https://ayaankazerouni.org/publications#sigcse2024cs0-course&quot;&gt;introductory programming course taught in TypeScript&lt;/a&gt;, taught by me. It was mostly made up of Graphic Communication majors.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Eng&lt;/strong&gt;: 1 section of an introductory programming course for engineers, taken by non-computing students in the College of Engineering (e.g., Mechanical, Industrial, Biomedical). It was taught by Noah, the MS student who led this work.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;OOP&lt;/strong&gt;: 3 sections of a end-of-first-year/start-of-second-year Object-oriented Programming course, taught by me. This course is taken by students obtaining majors or minors in CSC or CPE.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;SE&lt;/strong&gt;: 1 section of an upper-division software design course, required by software engineering majors, and available as an elective to other computing majors. This was taught by me.&lt;/li&gt;
+  &lt;li&gt;We have small-to-medium class sizes (in this study, 29–35 students in each class). A large lecture-hall-style class might observe markedly different peer network dynamics than we did.&lt;/li&gt;
+  &lt;li&gt;The courses that we studied have a prominent lab component that is led by the instructor, and is given as much time during the week as lectures.
+This results in a significant amount of time available for students to work on course activities in proximity to their peers and to the instructor.
+It is in these lab sessions that we expected peer networks to develop.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;We studied four courses (six classrooms): an introductory programming course taken mostly by Graphic Communication majors (referred to as Intro), an intro programming course taken by Engineering majors (Eng), three sections of an object-oriented programming course (OOP), and an upper-division software course (SE).
+Noah taught Eng and I taught the rest.&lt;/p&gt;
 
 &lt;h2 id=&quot;data&quot;&gt;Data&lt;/h2&gt;
 
 &lt;p&gt;We studied three variables:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Performance on a summative assessment&lt;/strong&gt;: In &lt;strong&gt;Intro&lt;/strong&gt;, &lt;strong&gt;Eng&lt;/strong&gt;, and &lt;strong&gt;OOP&lt;/strong&gt;, this was measured as a 0–100 score on a cumulative final exam. In &lt;strong&gt;SE&lt;/strong&gt; this was measured as the average performance on programming assignments.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Use of office hours or the online forum.&lt;/strong&gt;: In the &lt;strong&gt;OOP&lt;/strong&gt; sections, I kept track of office hour visits using a simple online form. Only the frequency of visits was tracked, not the length or purpose. For online forum usage, we downloaded analytics data from the course &lt;a href=&quot;https://edstem.org&quot;&gt;EdStem&lt;/a&gt; platform.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Performance on a summative assessment&lt;/strong&gt;: In Intro, OOP, and Eng, this was measured as a 0–100 score on a cumulative final exam. In SE, this was measured as the average performance on programming assignments.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Use of office hours or the online forum.&lt;/strong&gt;: In the OOP sections, I kept track of office hour visits using a simple online form. Only the frequency of visits was tracked, not the length or purpose. For online forum usage, we downloaded analytics data from the course &lt;a href=&quot;https://edstem.org&quot;&gt;EdStem&lt;/a&gt; platform.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Participation in the classroom peer network&lt;/strong&gt;: We used self-reported survey data to learn about peer collaborations.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The network survey was distributed to students toward the end of the term in which data collection took place.
-The survey asked for informed consent, followed by demographic questions, and then prompted the student to list any classmates with whom they had worked that term.
-Students could list any number of classmates, and for each collaboration they were asked to choose one or more of the following options:&lt;/p&gt;
+The survey asked for informed consent and demographic information, and then prompted the student to list any classmates with whom they had worked that term.
+For each collaboration they were asked to choose one or more of the following options:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;em&gt;I helped them&lt;/em&gt;&lt;/li&gt;
@@ -182,11 +163,10 @@ Students could list any number of classmates, and for each collaboration they we
   &lt;li&gt;&lt;em&gt;Other&lt;/em&gt; (free response; no students picked this option)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;The vast majority of students (over 95%) picked at least one of the &lt;strong&gt;&lt;em&gt;bolded&lt;/em&gt;&lt;/strong&gt; items above, indicating a bidirectional flow of help.&lt;/p&gt;
+&lt;p&gt;The vast majority of students (over 95%) picked at least one of the &lt;strong&gt;&lt;em&gt;bolded&lt;/em&gt;&lt;/strong&gt; items above, indicating a bidirectional flow of help.
+We used these responses to construct for each classroom an undirected disjoint graph in which edges indicated &lt;em&gt;any collaborative relationship&lt;/em&gt; between two students.&lt;/p&gt;
 
-&lt;p&gt;As a result, using the survey responses, we constructed for each classroom an undirected disjoint graph in which each node was a student and edges indicated &lt;em&gt;any collaborative relationship&lt;/em&gt; between two students.&lt;/p&gt;
-
-&lt;p&gt;We took certain steps to protect the anonymity of students and to exclude information about non-consenting students:&lt;/p&gt;
+&lt;p&gt;Since students were reporting on their collaborations, we enacted the following protections for surveyed students.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;It was made clear that questions were assumed to be about coursework on which collaboration was explicitly allowed.&lt;/li&gt;
@@ -198,16 +178,7 @@ In effect, all that remained in these cases was the fact that the consenting stu
 
 &lt;p&gt;The peer networks so constructed are depicted below.&lt;/p&gt;
 
-&lt;h2 id=&quot;results&quot;&gt;Results&lt;/h2&gt;
-
-&lt;p&gt;This section summarises our results.&lt;/p&gt;
-
-&lt;h3 id=&quot;who-participated-in-the-peer-networks&quot;&gt;Who participated in the peer networks?&lt;/h3&gt;
-
-&lt;p&gt;Each classroom’s network is shown below.
-An edge depicts any collaboration between two peers, listed by either one of the peers.&lt;/p&gt;
-
-&lt;p&gt;Our first focus was on students who were &lt;em&gt;isolated&lt;/em&gt; in the peer network, i.e., those who did not list any collaborators and none listed them.&lt;/p&gt;
+&lt;h2 id=&quot;who-participated-in-the-peer-networks&quot;&gt;Who participated in the peer networks?&lt;/h2&gt;
 
 &lt;figure style=&quot;margin: 2vw; display: flex; flex-direction: column; gap: 1rem;&quot;&gt;
   &lt;svg class=&quot;invert&quot; height=&quot;30&quot; width=&quot;490&quot; style=&quot;display: block; margin: 0 auto;&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;
@@ -337,8 +308,9 @@ Peer collaboration networks in six CS classrooms.
 &lt;/figcaption&gt;
 &lt;/figure&gt;
 
-&lt;p&gt;About a quarter of the students were isolated, and men were more likely than expected to be isolated.
-They made up about 60% of the surveyed students, and made up just under 80% of isolated students.&lt;/p&gt;
+&lt;p&gt;Our first focus was on students who were &lt;em&gt;isolated&lt;/em&gt; in the peer network, i.e., those who did not list any collaborators and none listed them.
+About a quarter of the students were isolated, and men were more likely than expected to be isolated.
+They were ~60% of the surveyed students but just under 80% of isolated students.&lt;/p&gt;
 
 &lt;div class=&quot;row&quot;&gt;
 &lt;figure&gt;
@@ -359,13 +331,13 @@ They made up about 60% of the surveyed students, and made up just under 80% of i
 &lt;/figure&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;what-was-the-relationship-with-academic-performance&quot;&gt;What was the relationship with academic performance?&lt;/h3&gt;
+&lt;h2 id=&quot;what-was-the-relationship-with-academic-performance&quot;&gt;What was the relationship with academic performance?&lt;/h2&gt;
 
 &lt;p&gt;We used hypothesis tests to check for a relationship between a students’ connectedness in the network and their performance on the course’s summative assessment.&lt;/p&gt;
 
 &lt;div class=&quot;row&quot;&gt;
 &lt;div&gt;
-Isolated students tended to perform worse on the summative assessment, but with great variability: even though they performed substantially lower on average, they were also represented among the class&apos;s highest performers, suggesting other factors at play.
+Isolated students tended to perform worse on the summative assessment, but with great variability, suggesting other factors at play.
   &lt;/div&gt;
   &lt;figure&gt;
     &lt;svg class=&quot;invert isolation-grade&quot; viewBox=&quot;0 0 377 82&quot; role=&quot;img&quot; focusable=&quot;false&quot; aria-label=&quot;Grade distribution for isolated and non-isolated students.&quot; aria-describedby=&quot;grade-desc&quot;&gt;
@@ -379,7 +351,7 @@ Isolated students tended to perform worse on the summative assessment, but with 
   &lt;/figure&gt;
 &lt;/div&gt;
 
-&lt;h3 id=&quot;how-did-use-of-instructor-resources-factor-in&quot;&gt;How did use of instructor resources factor in?&lt;/h3&gt;
+&lt;h2 id=&quot;how-did-use-of-instructor-resources-factor-in&quot;&gt;How did use of instructor resources factor in?&lt;/h2&gt;
 
 &lt;p&gt;In the three OOP classes, we collected data about office hour visits and use of the online EdStem forum.
 The distributions were remarkably similar:&lt;/p&gt;
@@ -390,7 +362,7 @@ The distributions were remarkably similar:&lt;/p&gt;
   &lt;li&gt;Only a handful of students visited office hours or posted on the forum more than once.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Statistical testing suggested a significant relationship between likelihood of posting on the forum and visiting office hours: students were likely to use &lt;em&gt;both&lt;/em&gt; resources or &lt;em&gt;neither&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Hypothesis testing suggested a significant relationship between likelihood of posting on the forum and visiting office hours: students were likely to use &lt;em&gt;both&lt;/em&gt; resources or &lt;em&gt;neither&lt;/em&gt;.&lt;/p&gt;
 
 &lt;p&gt;Finally, we turn to the interplay between use of instructor resources, participation in the peer network, and summative assessment performance.
 We looked at four groups of students: those who had peer collaborators, those who used instructor resources, those who used both, and those who used neither.&lt;/p&gt;
@@ -408,9 +380,8 @@ Each group was pretty small, since we only collected office hours and forum usag
 &lt;/figure&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Our results emphasise the importance of social connections in the classroom.
-Isolated students were likely to score lower on the summative assessment, and in OOP, students who were isolated from peers and the instructor performed dramatically worse, on average, than others. 
-Students who were connected to peers or the instructor or both, performed similarly, suggesting that using instructor resources may have compensated for a lack of peer collaborators, and vice-versa.&lt;/p&gt;
+&lt;p&gt;Given our results, we recommend that instructors take steps to broker social connections in the classroom, e.g., through in-class activities or collaborative assignments.
+Because peer connections seemed associated with comparable score improvements (to say nothing of other benefits of peer connections that we didn’t study), and because office hours impose real costs on students with external obligations, we place more emphasis on building in-class connection than on driving up office hours attendance.&lt;/p&gt;
 
 &lt;p&gt;For more details and discussion, see &lt;a href=&quot;https://ayaankazerouni.org/publications#iticse2026peer-collaboration&quot;&gt;the paper&lt;/a&gt;.&lt;/p&gt;
 
@@ -456,13 +427,6 @@ figure {
 
 &lt;hr /&gt;
 
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:labs&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;CS labs at Cal Poly are led by instructors as opposed to student assistants. &lt;a href=&quot;#fnref:labs&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
 
     </description>
   </item>
