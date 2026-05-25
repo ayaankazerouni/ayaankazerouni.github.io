@@ -4,7 +4,7 @@
   <title>Ayaan M. Kazerouni</title>
   <link>https://ayaankazerouni.org/blog/</link>
   <description>Posts about computing education</description>
-  <lastBuildDate>Thu, 21 May 2026 20:58:22 -0700</lastBuildDate>
+  <lastBuildDate>Mon, 25 May 2026 16:46:21 -0700</lastBuildDate>
 
   
   
@@ -181,15 +181,23 @@ In effect, all that remained in these cases was the fact that the consenting stu
 &lt;h2 id=&quot;who-participated-in-the-peer-networks&quot;&gt;Who participated in the peer networks?&lt;/h2&gt;
 
 &lt;figure style=&quot;margin: 2vw; display: flex; flex-direction: column; gap: 1rem;&quot;&gt;
-  &lt;svg class=&quot;invert&quot; height=&quot;30&quot; width=&quot;490&quot; style=&quot;display: block; margin: 0 auto;&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;
+  &lt;div style=&quot;display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.5rem;&quot;&gt;
+  &lt;svg class=&quot;invert&quot; height=&quot;30&quot; width=&quot;60&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;
     &lt;circle cx=&quot;15&quot; cy=&quot;15&quot; r=&quot;10&quot; fill=&quot;#1f77b4&quot; class=&quot;gender-m&quot;&gt;&lt;/circle&gt;
     &lt;text x=&quot;30&quot; y=&quot;20&quot; text-anchor=&quot;start&quot; style=&quot;font-family: Avenir; font-size: 0.9em&quot;&gt;Man&lt;/text&gt;
-    &lt;circle cx=&quot;80&quot; cy=&quot;15&quot; r=&quot;10&quot; fill=&quot;white&quot; stroke=&quot;#ff7f0e&quot; class=&quot;gender-wnb&quot; stroke-width=&quot;2&quot;&gt;&lt;/circle&gt;
-    &lt;text x=&quot;95&quot; y=&quot;20&quot; text-anchor=&quot;start&quot; style=&quot;font-family: Avenir; font-size: 0.9em&quot;&gt;Woman/Non-binary&lt;/text&gt;
-    &lt;line x1=&quot;240&quot; y1=&quot;15&quot; x2=&quot;270&quot; y2=&quot;15&quot; stroke=&quot;black&quot; stroke-width=&quot;2&quot; class=&quot;anonymous&quot;&gt;&lt;/line&gt;
-    &lt;rect x=&quot;270&quot; y=&quot;5&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;black&quot; class=&quot;anonymous&quot;&gt;&lt;/rect&gt;
-    &lt;text x=&quot;295&quot; y=&quot;20&quot; text-anchor=&quot;start&quot; style=&quot;font-family: Avenir; font-size: 0.9em&quot;&gt;Edge to anonymous student&lt;/text&gt;
   &lt;/svg&gt;
+
+  &lt;svg class=&quot;invert&quot; height=&quot;30&quot; width=&quot;170&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;
+    &lt;circle cx=&quot;15&quot; cy=&quot;15&quot; r=&quot;10&quot; fill=&quot;white&quot; stroke=&quot;#ff7f0e&quot; stroke-width=&quot;2&quot; class=&quot;gender-wnb&quot;&gt;&lt;/circle&gt;
+    &lt;text x=&quot;30&quot; y=&quot;20&quot; text-anchor=&quot;start&quot; style=&quot;font-family: Avenir; font-size: 0.9em&quot;&gt;Woman/Non-binary&lt;/text&gt;
+  &lt;/svg&gt;
+
+  &lt;svg class=&quot;invert&quot; height=&quot;30&quot; width=&quot;250&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;
+    &lt;line x1=&quot;0&quot; y1=&quot;15&quot; x2=&quot;30&quot; y2=&quot;15&quot; stroke=&quot;grey&quot; stroke-width=&quot;2&quot; class=&quot;anonymous&quot;&gt;&lt;/line&gt;
+    &lt;rect x=&quot;30&quot; y=&quot;5&quot; width=&quot;20&quot; height=&quot;20&quot; fill=&quot;black&quot; class=&quot;anonymous&quot;&gt;&lt;/rect&gt;
+    &lt;text x=&quot;55&quot; y=&quot;20&quot; text-anchor=&quot;start&quot; style=&quot;font-family: Avenir; font-size: 0.9em&quot;&gt;Edge to anonymous student&lt;/text&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;
 
 
 &lt;svg width=&quot;100&quot; height=&quot;15&quot; aria-hidden=&quot;true&quot; font-size=&quot;0.8em&quot;&gt;
@@ -333,11 +341,13 @@ They were ~60% of the surveyed students but just under 80% of isolated students.
 
 &lt;h2 id=&quot;what-was-the-relationship-with-academic-performance&quot;&gt;What was the relationship with academic performance?&lt;/h2&gt;
 
-&lt;p&gt;We used hypothesis tests to check for a relationship between a students’ connectedness in the network and their performance on the course’s summative assessment.&lt;/p&gt;
-
 &lt;div class=&quot;row&quot;&gt;
-&lt;div&gt;
-Isolated students tended to perform worse on the summative assessment, but with great variability, suggesting other factors at play.
+  &lt;div&gt;
+
+    &lt;p&gt;We used hypothesis tests to check for a relationship between a students’ connectedness in the network and their performance on the course’s summative assessment.&lt;/p&gt;
+
+    &lt;p&gt;Isolated students tended to perform worse on the summative assessment, but with great variability, suggesting other factors at play.&lt;/p&gt;
+
   &lt;/div&gt;
   &lt;figure&gt;
     &lt;svg class=&quot;invert isolation-grade&quot; viewBox=&quot;0 0 377 82&quot; role=&quot;img&quot; focusable=&quot;false&quot; aria-label=&quot;Grade distribution for isolated and non-isolated students.&quot; aria-describedby=&quot;grade-desc&quot;&gt;
@@ -394,7 +404,7 @@ Because peer connections seemed associated with comparable score improvements (t
 }
 
 .isolation-gender, .num-collaborators, .isolation-grade {
-  width: min(35vw, 375px); 
+  width: min(100vw, 375px); 
 }
 
 .isolation-grade {
@@ -402,7 +412,7 @@ Because peer connections seemed associated with comparable score improvements (t
 }
 
 .group-grades {
-  width: max(30vw, 400px);
+  width: min(100vw, 375px);
 }
 
 .network-fig-thumb {
@@ -420,7 +430,7 @@ figure {
 
 @media (prefers-color-scheme: dark) {
   circle.gender-wnb {
-    fill: orange;
+    fill: lightgrey;
   }
 }
 &lt;/style&gt;
