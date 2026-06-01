@@ -2,6 +2,13 @@
 @import url("/css/dark.css") screen and (prefers-color-scheme: dark);
 @import url("/css/github.css") screen and (prefers-color-scheme: light);
 :root {
+  --header-height: 50px;
+  --font-style: "Avenir Next", BlinkMacSystemFont, sans-serif;
+  --code-font-style: "Roboto Mono", monospace;
+  --heading-font: "Mulish", sans-serif;
+  --nav-height: 20px;
+  --breakpoint-mobile: 415px;
+  --breakpoint-small-tablet: 750px;
   --bg-color: rgb(255, 255, 255);
   --highlight-color: #fffb00;
   --font-color: #000000;
@@ -65,26 +72,20 @@
 body {
   background-color: var(--bg-color);
   color: var(--font-color);
-  text-rendering: optimizeLegibility;
-  font-family: "Avenir", BlinkMacSystemFont, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-size: 1rem;
+  font-family: var(--font-style);
+  font-size: 12pt;
   line-height: 1.6;
-}
-
-strong {
-  font-weight: 1000;
 }
 
 h1 {
   color: var(--header);
-  font-family: "Mulish", sans-serif;
+  font-family: var(--heading-font);
 }
 h1 a,
 h1 a:visited {
   text-decoration: none;
 }
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   h1 {
     font-size: 1.5em;
   }
@@ -95,7 +96,7 @@ h3,
 h4 {
   font-weight: 700;
   color: var(--heading-font-color);
-  font-family: "Mulish", sans-serif;
+  font-family: var(--heading-font);
   margin: auto;
   padding-top: 5px;
 }
@@ -115,7 +116,7 @@ ul {
   list-style-type: circle;
 }
 
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   ul,
   ol {
     padding-left: 0.8em;
@@ -140,20 +141,20 @@ figure img {
   margin: auto;
 }
 
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   img,
   figcaption {
     max-width: 95vw;
   }
 }
-@media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
+@media only screen and (max-height: 420px) and (max-width: var(--breakpoint-small-tablet)) and (orientation: landscape) {
   img,
   figcaption {
     max-width: 95vw;
   }
 }
 
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   img {
     margin-left: auto;
     margin-right: auto;
@@ -165,14 +166,14 @@ figure img {
 details > summary {
   cursor: pointer;
 }
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   details {
     max-width: 100%;
   }
 }
 
 code {
-  font-family: "Roboto Mono", monospace;
+  font-family: var(--code-font-style);
   font-weight: 450;
   font-size: 0.9em;
 }
@@ -220,7 +221,7 @@ blockquote {
   padding: 10px;
   margin: 0;
 }
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   blockquote {
     margin: 10px;
     padding: 0 20px;
@@ -230,7 +231,7 @@ blockquote {
 header {
   padding: 0px 15px;
   text-align: center;
-  margin: 50px 0 0;
+  margin: var(--header-height) 0 0;
   height: min(40vh, 200px);
   display: flex;
   flex-direction: row;
@@ -251,7 +252,7 @@ header h1 {
   margin-left: 5px;
   margin-top: 0px;
 }
-@media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
+@media only screen and (max-height: 420px) and (max-width: var(--breakpoint-small-tablet)) and (orientation: landscape) {
   header {
     flex-direction: row;
     height: 60vh;
@@ -264,7 +265,7 @@ header h1 {
     margin: 10px;
   }
 }
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   header h1 {
     font-size: 1.5em;
   }
@@ -283,12 +284,12 @@ main {
   max-width: 60em;
   margin: auto;
 }
-@media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
+@media only screen and (max-height: 420px) and (max-width: var(--breakpoint-small-tablet)) and (orientation: landscape) {
   main {
     max-width: 80%;
   }
 }
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   main {
     min-width: 100%;
     padding: 10px;
@@ -326,8 +327,8 @@ aside nav ul li a.nav-link {
   color: var(--nav-color);
   display: block;
   padding: 15px;
-  font-family: "Mulish", sans-serif;
-  line-height: 20px;
+  font-family: var(--heading-font);
+  line-height: var(--nav-height);
   margin-bottom: -1px;
   box-shadow: 0;
   transition: 0.3s;
@@ -342,7 +343,7 @@ aside nav::after {
   display: table;
   clear: both;
 }
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   aside {
     width: 100%;
   }
@@ -361,7 +362,7 @@ footer {
 footer .address {
   font-size: 0.8em;
 }
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   footer .email {
     font-size: 0.8em;
   }
@@ -434,7 +435,7 @@ footer .address {
   display: block;
   font-weight: bold;
   font-size: 0.85em;
-  font-family: "Mulish", sans-serif;
+  font-family: var(--heading-font);
   content: var(--callout-label);
   color: var(--callout-color);
 }
@@ -489,7 +490,7 @@ footer .address {
   color: var(--font-color);
   list-style-type: none;
 }
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   .artifact-list {
     margin-left: 0;
   }
@@ -571,12 +572,12 @@ sup[id^="fnref:"] {
   padding: 0 2em;
   max-width: 90%;
 }
-@media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
+@media only screen and (max-height: 420px) and (max-width: var(--breakpoint-small-tablet)) and (orientation: landscape) {
   .blurb {
     padding: 0 3px;
   }
 }
-@media screen and (max-width: 415px) and (orientation: portrait) {
+@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
   .blurb {
     min-width: 100%;
     padding: 0 0;
