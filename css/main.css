@@ -7,8 +7,6 @@
   --code-font-style: "Roboto Mono", monospace;
   --heading-font: "Mulish", sans-serif;
   --nav-height: 20px;
-  --breakpoint-mobile: 415px;
-  --breakpoint-small-tablet: 750px;
   --bg-color: rgb(255, 255, 255);
   --highlight-color: #fffb00;
   --font-color: #000000;
@@ -85,7 +83,7 @@ h1 a,
 h1 a:visited {
   text-decoration: none;
 }
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   h1 {
     font-size: 1.5em;
   }
@@ -116,7 +114,7 @@ ul {
   list-style-type: circle;
 }
 
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   ul,
   ol {
     padding-left: 0.8em;
@@ -141,20 +139,20 @@ figure img {
   margin: auto;
 }
 
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   img,
   figcaption {
     max-width: 95vw;
   }
 }
-@media only screen and (max-height: 420px) and (max-width: var(--breakpoint-small-tablet)) and (orientation: landscape) {
+@media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   img,
   figcaption {
     max-width: 95vw;
   }
 }
 
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   img {
     margin-left: auto;
     margin-right: auto;
@@ -166,7 +164,7 @@ figure img {
 details > summary {
   cursor: pointer;
 }
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   details {
     max-width: 100%;
   }
@@ -221,7 +219,7 @@ blockquote {
   padding: 10px;
   margin: 0;
 }
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   blockquote {
     margin: 10px;
     padding: 0 20px;
@@ -252,7 +250,7 @@ header h1 {
   margin-left: 5px;
   margin-top: 0px;
 }
-@media only screen and (max-height: 420px) and (max-width: var(--breakpoint-small-tablet)) and (orientation: landscape) {
+@media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   header {
     flex-direction: row;
     height: 60vh;
@@ -265,7 +263,7 @@ header h1 {
     margin: 10px;
   }
 }
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   header h1 {
     font-size: 1.5em;
   }
@@ -284,12 +282,12 @@ main {
   max-width: 60em;
   margin: auto;
 }
-@media only screen and (max-height: 420px) and (max-width: var(--breakpoint-small-tablet)) and (orientation: landscape) {
+@media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   main {
     max-width: 80%;
   }
 }
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   main {
     min-width: 100%;
     padding: 10px;
@@ -343,7 +341,7 @@ aside nav::after {
   display: table;
   clear: both;
 }
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   aside {
     width: 100%;
   }
@@ -362,7 +360,7 @@ footer {
 footer .address {
   font-size: 0.8em;
 }
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   footer .email {
     font-size: 0.8em;
   }
@@ -490,7 +488,7 @@ footer .address {
   color: var(--font-color);
   list-style-type: none;
 }
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   .artifact-list {
     margin-left: 0;
   }
@@ -572,12 +570,12 @@ sup[id^="fnref:"] {
   padding: 0 2em;
   max-width: 90%;
 }
-@media only screen and (max-height: 420px) and (max-width: var(--breakpoint-small-tablet)) and (orientation: landscape) {
+@media only screen and (max-height: 420px) and (max-width: 750px) and (orientation: landscape) {
   .blurb {
     padding: 0 3px;
   }
 }
-@media screen and (max-width: var(--breakpoint-mobile)) and (orientation: portrait) {
+@media screen and (max-width: 415px) and (orientation: portrait) {
   .blurb {
     min-width: 100%;
     padding: 0 0;
