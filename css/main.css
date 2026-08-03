@@ -481,6 +481,9 @@ footer .address {
 .artifact-list .authors {
   color: var(--emph);
 }
+.artifact-list .venue {
+  font-size: 0.9rem;
+}
 .artifact-list details > summary {
   outline: none;
   margin-bottom: 5px;
