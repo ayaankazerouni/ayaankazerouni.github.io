@@ -544,31 +544,37 @@ sup[id^="fnref:"] {
   max-width: 120ch;
 }
 
-.released {
+.schedule-badge, .in-class, .due, .released {
+  font-family: sans-serif;
+  padding: 1pt 2pt;
+  border-radius: 2px;
   font-weight: bold;
-  background-color: var(--released-background-color);
   color: white;
+}
+
+.released {
+  background-color: var(--released-background-color);
 }
 .released::before {
   content: "RELEASED";
 }
 
 .due {
-  font-weight: bold;
   background-color: var(--due-background-color);
-  color: white;
 }
 .due::before {
   content: "DUE";
 }
 
 .in-class {
-  font-weight: bold;
   background-color: var(--in-class-background-color);
-  color: white;
 }
 .in-class::before {
   content: "IN CLASS";
+}
+
+.schedule tr:has(.no-class) {
+  color: var(--caption-color);
 }
 
 .blurb {
