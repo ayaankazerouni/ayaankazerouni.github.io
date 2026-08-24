@@ -379,6 +379,9 @@ footer .address {
   }
 }
 
+.left-column {
+  font-size: 0.9em;
+}
 @media only screen and (min-width: 1000px) {
   .left-column {
     position: sticky;
