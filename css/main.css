@@ -54,7 +54,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-color: rgb(36, 39, 44);
+    --bg-color: rgb(36, 56, 56);
     --highlight-color: var(--emph);
     --font-color: #ffffff;
     --inverted-font-color: #000000;
