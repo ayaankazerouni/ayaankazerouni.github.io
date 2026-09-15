@@ -606,10 +606,22 @@ sup[id^="fnref:"] {
   content: "IN CLASS";
 }
 
+.schedule {
+  --activity-row-bg: rgba(0, 0, 0, 0.035);
+}
 .schedule tr:has(.no-class) {
   color: var(--caption-color);
 }
 
+.schedule tbody tr:nth-child(even):not(:has(.no-class)) {
+  background-color: var(--activity-row-bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  .schedule {
+    --activity-row-bg: rgba(255, 255, 255, 0.055);
+  }
+}
 .blurb {
   margin-bottom: 20px;
   font-size: 1em;
