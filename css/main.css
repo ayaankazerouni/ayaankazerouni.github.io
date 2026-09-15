@@ -498,8 +498,38 @@ footer .address {
   color: var(--font-color);
   list-style-type: none;
 }
+.artifact-list details[hidden],
+.artifact-list details[hidden] + hr {
+  display: none;
+}
 @media screen and (max-width: 415px) and (orientation: portrait) {
   .artifact-list {
+    margin-left: 0;
+  }
+}
+
+.topic-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 30px 30px;
+}
+.topic-filter a {
+  padding: 2px 8px;
+  border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.topic-filter a[aria-current=true] {
+  background-color: var(--highlight-color);
+  color: var(--inverted-font-color);
+}
+.topic-filter a[aria-current=true] a {
+  color: var(--inverted-font-color);
+}
+@media screen and (max-width: 415px) and (orientation: portrait) {
+  .topic-filter {
     margin-left: 0;
   }
 }
