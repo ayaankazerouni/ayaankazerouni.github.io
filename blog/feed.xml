@@ -4,7 +4,7 @@
   <title>Ayaan M. Kazerouni</title>
   <link>https://ayaankazerouni.org/blog/</link>
   <description>Posts about computing education</description>
-  <lastBuildDate>Sun, 27 Sep 2026 20:05:26 -0700</lastBuildDate>
+  <lastBuildDate>Sun, 27 Sep 2026 20:10:52 -0700</lastBuildDate>
 
   
   
@@ -379,7 +379,7 @@ We looked at four groups of students: those who had peer collaborators, those wh
 
 &lt;div class=&quot;row&quot;&gt;
 &lt;div&gt;
-Each group was pretty small, since we only collected office hours and forum usage data from the three OOP. So while these descriptive statistics are suggestive, they should be interpreted cautiously.
+Each group was pretty small, since we only collected office hours and forum usage data from the three OOP classes. So while these descriptive statistics are suggestive, they should be interpreted cautiously.
 &lt;/div&gt;
 &lt;figure&gt;
   &lt;svg class=&quot;invert group-grades&quot; viewBox=&quot;0 0 433 122&quot; role=&quot;img&quot; focusable=&quot;false&quot; aria-label=&quot;Group grades&quot; aria-describbedby=&quot;group-grades&quot;&gt;
@@ -537,7 +537,7 @@ Had I required a focus on “humanitarian” topics, this student might have los
       &lt;p&gt;This is not the same as saying &lt;em&gt;that’s why they chose to study CS&lt;/em&gt;: &lt;a href=&quot;https://dl.acm.org/doi/abs/10.1145/2016911.2016915&quot;&gt;that’s a separate, multi-faceted decision&lt;/a&gt;. &lt;a href=&quot;#fnref:why&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:bias&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;Obviously, this is subject to individual impressions—see &lt;a href=&quot;https://ayaankazerouni.org/publications#koli2025-topic-choices&quot;&gt;the paper&lt;/a&gt; for details about how we categorised students’ submissions. &lt;a href=&quot;#fnref:bias&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Obviously, this is subject to individual impressions—see &lt;a href=&quot;https://ayaankazerouni.org/publications#koli2025topic-choices&quot;&gt;the paper&lt;/a&gt; for details about how we categorised students’ submissions. &lt;a href=&quot;#fnref:bias&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
@@ -1323,7 +1323,7 @@ One student was so distracted by this parallel comprehension task that when they
 &lt;em&gt;This article was originally posted on &lt;a href=&quot;https://ayaankazerouni.medium.com&quot;&gt;my Medium blog&lt;/a&gt; on November 13, 2021.&lt;/em&gt;
 &lt;/small&gt;&lt;/p&gt;
 
-&lt;p&gt;This is an overview of the paper &lt;em&gt;&lt;a href=&quot;https://ayaankazerouni.github.io/publications#koli2021help-seeking&quot;&gt;Patterns of Academic Help-Seeking in Undergraduate Computing Students&lt;/a&gt;&lt;/em&gt;, appearing at the 2021 &lt;a href=&quot;https://www.kolicalling.fi/&quot;&gt;Koli Calling&lt;/a&gt; conference on computing education research. It was written by my student collaborator Augie Doebling and myself.&lt;/p&gt;
+&lt;p&gt;This is an overview of the paper &lt;em&gt;&lt;a href=&quot;/publications#koli2021help-seeking&quot;&gt;Patterns of Academic Help-Seeking in Undergraduate Computing Students&lt;/a&gt;&lt;/em&gt;, appearing at the 2021 &lt;a href=&quot;https://www.kolicalling.fi/&quot;&gt;Koli Calling&lt;/a&gt; conference on computing education research. It was written by my student collaborator Augie Doebling and myself.&lt;/p&gt;
 
 &lt;p&gt;Help-seeking is an expected phase in learning or problem-solving. The process involves a fair bit of self-regulatory skill; a learner must recognise that a problem or difficulty exists, assess whether they need help to surmount it, identify a help resource, and finally seek and process help.&lt;/p&gt;
 
@@ -1972,8 +1972,6 @@ Distributions of testing effort measurements described above.
   &lt;li&gt;Within individual work sessions, a majority of students devoted less than 20% of their coding effort to writing tests &lt;em&gt;(PSB)&lt;/em&gt;&lt;/li&gt;
   &lt;li&gt;The median method seemed to received a considerable amount of testing effort (&lt;em&gt;MOB&lt;/em&gt;, &lt;em&gt;MSB&lt;/em&gt;), possibly attributable to the way we tied solution methods and test methods together &lt;sup id=&quot;fnref:6&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:6&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;6&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;p&gt;The lower proportions of testing effort observed per work session, relative to the total project testing effort, suggests that some sessions tend to see more testing effort than others. Prior work suggests that this increased testing tends to take place toward the end of the project life-cycle, to satisfy condition coverage requirements imposed on students as part of the programming assignments.&lt;/p&gt;
 
 &lt;p&gt;The lower proportions of testing effort observed per work session, relative to the total project testing effort, suggests that some sessions tend to see more testing effort than others. &lt;a href=&quot;https://ayaankazerouni.github.io/assets/publications/quantifying-incremental-development-procrastination.pdf&quot;&gt;Prior work&lt;/a&gt; suggests that this increased testing tends to take place toward the end of the project life-cycle, to satisfy condition coverage requirements imposed on students as part of the programming assignments.&lt;/p&gt;
 
