@@ -528,9 +528,50 @@ footer .address {
 .topic-filter a[aria-current=true] a {
   color: var(--inverted-font-color);
 }
+.topic-filter a[data-topic=other] {
+  position: relative;
+  transition: border-radius 0.1s ease, border-right-color 0.1s ease;
+}
+.topic-filter .collapsed-topics {
+  position: absolute;
+  top: -1px;
+  left: calc(100% + 1px);
+  padding: 2px 8px 2px 0;
+  border: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  white-space: nowrap;
+  pointer-events: none;
+  clip-path: inset(-1px 100% -1px 0);
+  transition: clip-path 0.2s ease;
+  color: color-mix(in srgb, var(--font-color) 65%, var(--bg-color));
+}
+.topic-filter a[data-topic=other][aria-current=true] .collapsed-topics {
+  background-color: var(--highlight-color);
+  color: color-mix(in srgb, var(--inverted-font-color) 65%, var(--highlight-color));
+}
+.topic-filter a[data-topic=other]:hover,
+.topic-filter a[data-topic=other]:focus-visible {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-color: transparent;
+}
+.topic-filter a:hover .collapsed-topics,
+.topic-filter a:focus-visible .collapsed-topics {
+  clip-path: inset(-1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .topic-filter a[data-topic=other],
+  .topic-filter .collapsed-topics {
+    transition: none;
+  }
+}
 @media screen and (max-width: 415px) and (orientation: portrait) {
   .topic-filter {
     margin-left: 0;
+  }
+  .topic-filter .collapsed-topics {
+    display: none;
   }
 }
 
