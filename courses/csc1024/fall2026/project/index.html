@@ -1,0 +1,158 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
+  <meta name="fediverse:creator" content="@ayaankazerouni@hci.social" />
+  
+
+	
+
+	<title>CSC 1024 Final Project - Ayaan M. Kazerouni</title>
+
+	<link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/academicons/css/academicons.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="canonical" href="https://ayaankazerouni.org/courses/csc1024/fall2026/project/">
+	<script src="/assets/js/footnote-preview.js" ></script>
+</head>
+
+
+<body>
+
+  <main class="course">
+    
+    
+    
+    
+    
+    <p>
+      
+      <a href="/courses/csc1024/fall2026">&larr; CSC 1024 Introduction to Computing</a>
+      
+    </p>
+    
+      <div class="content">
+     
+      <h1>CSC 1024 Final Project</h1>
+      <p>For your final project in this course, you’ll work in groups of 3–4 to create an Observable Notebook containing a data-driven report about a topic of your choosing.
+The report will include analyses, visualizations, and reflections based on a real-world dataset of your own choosing.</p>
+
+<h2 id="finding-a-dataset">Finding a dataset</h2>
+
+<p>You can find data from any of the following sources, or even merge multiple datasets to help you come up with unique insights.</p>
+
+<p>Note: Not all of these are going to be super easy to work with. That’s okay! Please talk to me if you’re interested in a topic or dataset but find it difficult to download. I would much rather help you follow your interest than ask you to choose a different dataset.</p>
+
+<p>Possible data sources (you’re free to look elsewhere as well):</p>
+
+<ul>
+  <li>The <a href="https://corgis-edu.github.io/corgis/json/">CORGIS</a> repository of datasets.</li>
+  <li><a href="https://github.com/rfordatascience/tidytuesday?tab=readme-ov-file#datasets">TidyTuesday</a> is a community-led effort to collect “tidy” datasets that are interesting and easy to work with.
+    <ul>
+      <li>This link goes to a repository on GitHub.com, where many datasets are available, organized by year.</li>
+      <li>If you click through to a given dataset, you’ll see example code to download the dataset. The example code is usually in R or Python, not in TypeScript. However, you can still manually follow the URL in the example code and download the data from there.</li>
+    </ul>
+  </li>
+  <li><a href="https://www.gapminder.org/data/">Gapminder.org</a> collects a bunch of data about countries around the world.</li>
+  <li>Data repositories from the <a href="https://data.gov/">US Government</a> or the <a href="https://data.ca.gov/">California Government</a>. These are a little less friendly to work with, but the upside is you’d be getting data “directly from the source”, e.g., directly from surveyors or census takers collecting demographic info in each county.</li>
+  <li><a href="https://ourworldindata.org/">Our World in Data</a> has many data-driven articles that often make their data available for download.</li>
+</ul>
+
+<h2 id="task-overview">Task overview</h2>
+
+<p>Your task in this project is to produce a data-driven web-based report about the dataset you choose to work with.
+Think about it like writing a paper, but instead of just words, you’re also presenting your data analysis.</p>
+
+<p>You will put together everything you’ve learned so far to produce this document, i.e., TypeScript and Vega-Lite.</p>
+
+<p>Put simply, I’d like for you to tell me something interesting from the data. Teach me (and, through your presentation, the rest of the class) something about the topic you’ve chosen.</p>
+
+<p>You’re encouraged to pursue questions that <em>you</em> find interesting. There is no requirement that you come up with “significant” or “surprising” conclusions.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<p>This is a fairly open-ended project. But there are a few minimum requirements I’d like each project to meet.</p>
+
+<h3 id="non-technical-requirements">Non-technical requirements</h3>
+
+<h4 id="research-and-context">Research and context</h4>
+
+<p>For whatever dataset you choose, you must also find (<em>and read</em>) one or more articles that provide detail or context surrounding the dataset’s topic or field.</p>
+
+<p>This is important so we don’t accidentally make misleading claims or misrepresent the data.
+It is <em>particularly</em> important if you work with a dataset or topic that is of societal or scientic importance (encouraged!).
+And besides, reading will help you come up with more interesting ideas for questions or visuals!</p>
+
+<p>For example, if you choose to work with the <a href="https://corgis-edu.github.io/corgis/json/police_shootings/">CORGIS data about fatal police shootings</a>, you should definitely read the <a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/">Washington Post article</a> about how the data was collected. (The Washington Post originally collected the data, and the article’s data is more up to date than the CORGIS version.)</p>
+
+<p>So, your website’s front page should contain the following:</p>
+
+<ul>
+  <li>A brief paragraph or two giving an overview of what you studied and why.</li>
+  <li><em>At least</em> these two references:
+    <ul>
+      <li>The dataset or datasets you used, including a link to where you downloaded it from.</li>
+      <li>Links to the article or articles you read to inspire and inform your analysis.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="notebook-organization">Notebook organization</h4>
+
+<p>Your notebook should be well organized, using headers and well-formatted text to create a coherent narrative. Examples of issues that might lead to point deductions are:</p>
+
+<ul>
+  <li>Analyses and results that are buried under tons of setup code. Observable lets you re-organize cells however you’d like—make use of that capability!</li>
+  <li>Grammatical errors or typos that make reflections difficult to read understand.</li>
+  <li>Lack of proper organization, e.g., missing use of headings or paragraphs to organize code and text.</li>
+  <li>Poorly-formatted TypeScript or Vega-Lite code.</li>
+</ul>
+
+<h3 id="technical-requirements">Technical requirements</h3>
+
+<p>You will use TypeScript to transform the data into suitable formats for your charts and analyses. This involves using and writing functions, arrays, map/filter/reduce, etc.</p>
+
+<p>You must produce at least 3 Vega-Lite figures, but hopefully you will produce more!</p>
+
+<ul>
+  <li>Each figure should have a meaningful chart title and axis titles.</li>
+  <li>Each figure should be accompanied by text describing the main insights drawn from the figure.</li>
+  <li>There should be at least two types of figures (e.g., don’t produce only bar charts or only scatterplots).</li>
+  <li>At least one chart should be of a type we have not talked about in an in-class activity. <em>Please feel free to copy and modify examples from the <a href="https://vega.github.io/vega-lite/examples/">Vega-Lite Example Gallery</a></em>.</li>
+</ul>
+
+<h2 id="getting-started">Getting started</h2>
+
+<p>You will work in teams. Teams are already assigned (see the announcement in EdStem).</p>
+
+<p>Each team will produce <em>one</em> Observable Notebook, which they can edit collaboratively.</p>
+
+<p>I will add all of you to the <a href="https://old.observablehq.com/team/@kazerouni-calpoly/"><code class="language-plaintext highlighter-rouge">@kazerouni-calpoly</code></a> workspace in Observable. Once you’re added, one team member should create their notebook there and share edit access with their teammates.</p>
+
+<h2 id="submission-and-final-presentation">Submission and final presentation</h2>
+
+<p>Submit your project by making your team’s notebook <strong>Unlisted</strong> (or <strong>Public</strong>), if you want it visible to everyone.
+And submit the link in Canvas by the due date.</p>
+
+<p><strong>Presentation</strong></p>
+
+<p>In the last week of class, your group will give a brief (7–10-minute) presentation detailing your analysis of your report in front of the rest of the class.
+The presentation should cover the following items:</p>
+
+<ul>
+  <li>An overview of your topic and why you chose it.</li>
+  <li>A brief description of where you got your data and why we should trust it. For example, simply saying “TidyTuesday” is not sufficient, since TidyTuesday is merely curating data collected from <em>other</em> sources (which it cites). Follow those references and cite the original source.</li>
+  <li>(The bulk of your presentation) Your analysis and what you learned from the dataset you studied.</li>
+  <li>(If time permits) Anything you found particularly challenging that you are proud of overcoming.</li>
+</ul>
+
+
+      </div>
+    
+    
+  </main>
+
+</body>
+</html>
