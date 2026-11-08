@@ -10,5 +10,5 @@ echo "Deploying site..."
 cd ../ayaankazerouni.github.io
 git add --all
 git commit -m "Build."
-git push -f origin master
+git push -f origin main
 cd -
