@@ -1,0 +1,68 @@
+<style>
+.award {
+  display: inline-block;
+  background: var(--award-color);
+  color: white;
+  border-radius: 5px;
+  padding: 0 3px;
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.artifact-list details p.abstract {
+  font-size: 0.9em;
+}
+</style>
+
+{% assign item=include.item %} {% assign year=item.date | split: "-" | first %}
+{%- assign slugs = "" | split: "" -%}
+{%- for topic in item.topics -%}
+  {%- assign slug = topic | slugify -%}
+  {%- assign needle = "|" | append: slug | append: "|" -%}
+  {%- if include.other_slugs contains needle -%}{%- assign slug = "other" -%}{%- endif -%}
+  {%- assign slugs = slugs | push: slug -%}
+{%- endfor -%}
+{%- if include.other_slugs and slugs.size == 0 -%}{%- assign slugs = slugs | push: "other" -%}{%- endif -%}
+<details class="artifact" id="p_{{ item.id }}" data-topics="{{ slugs | uniq | join: '|' }}">
+  <summary>
+    <span>
+      {% if item.doi %}
+      <a href="{{item.doi}}">{{item.title}}</a>
+      {% else %} {{ item.title }} {% endif %}
+    </span>
+    <div class="sub">
+      {% if include.thesis %}
+      <div class="authors" style="display: inline;">{{ item.authors }}.</div>
+      {% else %}
+      <div class="authors">{{ item.authors }}</div>
+      {% endif %}
+      {% if item.pub_title %}
+      <i class='venue'> {{item.pub_title}} <b>({{item.venue}}).</b> </i>
+      {% endif %} {{year}}.
+      <br />
+      {% if item.pdf != nil %} {% if item.pdf contains "http" %}
+      <a href="{{ item.pdf }}">pdf</a>
+      {% elsif item.type == "d" %}
+      <a href="documents/{{ year }}/{{item.pdf}}">pdf</a>
+      {% else %}
+      <a href="{{ site.puburl }}/{{ year }}/{{ item.pdf }}">pdf</a>
+      {% endif %} {% endif %} {% if item.doi != nil %}
+      <a href="{{ item.doi }}">doi</a>
+      {% endif %} {% if item.bibtex != nil %}
+      <a>bibtex</a>
+      {% endif %} {% if item.links %}
+      {% assign sorted_links = item.links | sort %}
+      {% for link in sorted_links %}
+      <a href="{{ link[1] }}">{{ link[0] }}</a>
+      {% endfor %}
+      {% endif %} {% if item.award != nil %}
+      <span class="award">{{ item.award }}</span>
+      {% endif %}
+    </div>
+  </summary>
+  {% if item.abstract != nil %}
+  <p class="abstract"><strong>Abstract: </strong>{{ item.abstract }}</p>
+  {% endif %}
+</details>
+<hr style="color: rgba(0, 0, 0, 0.3)" />

@@ -1,0 +1,56 @@
+.course {
+  padding-top: 5px;
+  max-width: 120ch;
+}
+
+.schedule-badge {
+  font-family: sans-serif;
+  padding: 1pt 2pt;
+  border-radius: 2px;
+  font-weight: bold;
+  color: white;
+}
+
+.released {
+  @extend .schedule-badge;
+  &::before {
+    content: "RELEASED";
+  }
+  background-color: var(--released-background-color);
+}
+
+.due {
+  @extend .schedule-badge;
+  &::before {
+    content: "DUE";
+  }
+  background-color: var(--due-background-color);
+}
+
+.in-class {
+  @extend .schedule-badge;
+  &::before {
+    content: "IN CLASS";
+  }
+  background-color: var(--in-class-background-color);
+}
+
+.schedule {
+  --activity-row-bg: rgba(0, 0, 0, 0.035);
+
+  tr:has(.no-class) {
+    color: var(--caption-color);
+  }
+}
+
+.schedule tbody tr:nth-child(even):not(:has(.no-class)) {
+  background-color: var(--activity-row-bg);
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .schedule {
+    --activity-row-bg: rgba(255, 255, 255, 0.055);
+  }
+}
+

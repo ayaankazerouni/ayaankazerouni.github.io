@@ -1,0 +1,51 @@
+@use 'mixins' as *;
+
+// Not named .highlight to avoid colliding with syntax highlighting.
+.hlt {
+  @include highlight;
+}
+
+.emph {
+  color: var(--emph);
+}
+
+.fa,
+.fab,
+.far,
+.fas {
+  margin: 5px;
+  text-decoration: none;
+}
+
+// Inline SVG icons from _includes/icons/
+.icon {
+  width: 1em;
+  height: 1em;
+  margin: 5px;
+  fill: currentColor;
+  vertical-align: -0.125em;
+}
+
+.visible-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 0px;
+
+  &:focus {
+    clip: auto;
+    height: auto;
+    overflow: auto;
+    position: absolute;
+    width: auto;
+  }
+}
+
+// Invert colours in dark mode (used on images that should flip in dark mode).
+@media (prefers-color-scheme: dark) {
+  .invert {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}

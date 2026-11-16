@@ -1,0 +1,22 @@
+@use 'base' as *;
+
+@mixin highlight {
+  background-color: var(--highlight-color);
+  color: var(--highlight-text-color);
+
+  a {
+    color: var(--highlight-text-color);
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: $breakpoint-mobile) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin landscape-phone {
+  @media only screen and (max-height: 420px) and (max-width: $breakpoint-small-tablet) and (orientation: landscape) {
+    @content;
+  }
+}

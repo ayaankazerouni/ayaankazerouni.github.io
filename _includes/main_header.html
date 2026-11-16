@@ -1,0 +1,42 @@
+{% include navbar.html nav=site.data.menu %}
+
+<style>
+header .info {
+  margin-left: 40px;
+}
+</style>
+
+<header>
+  <img class='img-self' src="{{ "/assets/images/KazerouniAyaan.webp" | prepend: site.baseurl }}" alt='A picture of my face' width="406" height="399" />
+	<div class='info'>
+    <h1>{{ site.title }}</h1>
+    <a href="https://csc.calpoly.edu/">Cal Poly, San Luis Obispo</a><br>
+    <a href="mailto:ayaank@calpoly.edu" class='address'>{{ site.email }}</a><br>
+    Room 229, Frank E. Pilling (Building 14)
+    <div class='contact'>
+      <a rel="me" href='https://hci.social/@ayaankazerouni' title='Mastodon'>
+        {% include icons/mastodon.svg %}
+        <span class='visible-hidden'>Mastodon profile</span>
+      </a>
+      <a href='https://bsky.app/profile/ayaankazerouni.org' title='Bluesky'>
+        {% include icons/bluesky.svg %}
+        <span class='visible-hidden'>Bluesky profile</span>
+      </a>
+      <a href='https://github.com/ayaankazerouni' title='GitHub'>
+        {% include icons/github.svg %}
+        <span class='visible-hidden'>GitHub profile</span>
+      </a>
+      <a href='https://scholar.google.com/citations?user=jGSnCrUAAAAJ&hl=en' title='Google Scholar'>
+        {% include icons/google-scholar-square.svg %}
+        <span class='visible-hidden'>Google Scholar profile</span>
+      </a>
+      <a href='https://orcid.org/0000-0002-6574-1278' title='ORCID'>
+        {% include icons/orcid-square.svg %}
+        <span class='visible-hidden'>OrcID profile</span>
+      </a>
+      <a href="{{site.baseurl}}/documents/CV.pdf" title="CV">
+        {% include icons/cv-square.svg %}
+        <span class='visible-hidden'>CV</span>
+      </a>
+    </div>
+</header>

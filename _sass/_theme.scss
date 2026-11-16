@@ -1,0 +1,42 @@
+@use 'sass:meta';
+
+// Syntax-highlighting themes, inlined so they don't cost extra requests.
+@media screen and (prefers-color-scheme: dark) {
+  @include meta.load-css('syntax/dark');
+}
+@media screen and (prefers-color-scheme: light) {
+  @include meta.load-css('syntax/github');
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1c1e22;
+    // A faint, opaque red tint (the accent mixed into the background) with normal text.
+    --highlight-color: #3a2b2f;
+    --highlight-text-color: var(--font-color);
+    --font-color: #d8dbe0;
+    --inverted-font-color: #000000;
+    --heading-font-color: #a3b8d0;
+    --caption-color: #9a9ea6;
+    --emph: #f47c7c;
+    --code-color: var(--font-color);
+    --nav-color: var(--emph);
+    --link-color: var(--font-color);
+    --header: #f0f1f3;
+    --award-color: darkgreen;
+    --todo-color: rgb(222, 156, 248);
+    --todo-background-color: rgb(68, 44, 66, 0.7);
+    --ponder-color: #f1ce68;
+    --note-color: rgb(5, 155, 230);
+    --note-background-color: rgb(7, 31, 56);
+    --reading-background-color: #093102;
+    --reading-color: #03f6e6;
+    --callout-background-color: #679da031;
+  }
+
+  // Light-on-dark text renders heavier on macOS; grayscale smoothing keeps it crisp.
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}

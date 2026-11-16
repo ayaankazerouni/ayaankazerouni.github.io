@@ -1,0 +1,168 @@
+@use 'base' as *;
+@use 'mixins' as *;
+
+body {
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  font-family: var(--font-style);
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+h1 {
+  color: var(--header);
+  font-family: var(--heading-font);
+
+  a,
+  a:visited {
+    text-decoration: none;
+  }
+
+  @include mobile {
+    font-size: 1.5em;
+  }
+}
+
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  color: var(--heading-font-color);
+  font-family: var(--heading-font);
+  margin: auto;
+  padding-top: 5px;
+}
+
+a,
+a:visited {
+  color: var(--link-color);
+  text-decoration: underline 1pt;
+
+  &:not(:has(img)):hover {
+    text-decoration: var(--emph) underline 2pt;
+  }
+}
+
+ul {
+  list-style-type: circle;
+}
+
+ul,
+ol {
+  @include mobile {
+    padding-left: 0.8em;
+  }
+}
+
+figure {
+  margin: 25px auto;
+  display: grid;
+
+  figcaption {
+    padding: 0;
+    color: var(--caption-color);
+    font-family: sans-serif;
+    font-size: 0.9em;
+    padding: 2px 0;
+    border-bottom: 1pt solid var(--caption-color);
+  }
+
+  img {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+  }
+}
+
+img,
+figcaption {
+  @include mobile {
+    max-width: 95vw;
+  }
+
+  @include landscape-phone {
+    max-width: 95vw;
+  }
+}
+
+img {
+  @include mobile {
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    max-height: 60vh;
+  }
+}
+
+details {
+  & > summary {
+    cursor: pointer;
+  }
+
+  @include mobile {
+    max-width: 100%;
+  }
+}
+
+code {
+  font-family: var(--code-font-style);
+  font-weight: 450;
+  font-size: 0.9em;
+
+  &:not(.highlight code) {
+    color: var(--code-color);
+  }
+
+  h1 > &,
+  h2 > &,
+  h3 > & {
+    font-size: inherit;
+  }
+
+  a:hover > & {
+    color: var(--inverted-font-color);
+  }
+}
+
+pre:not(.mermaid) {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1pt solid var(--heading-font-color);
+  line-height: 1.5;
+}
+
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  border-bottom: 2pt solid var(--font-color);
+
+  th {
+    border-top: 2pt solid var(--font-color);
+    border-bottom: 2pt solid var(--font-color);
+  }
+
+  tr {
+    border-bottom: 0.5pt solid;
+  }
+
+  tr > td,
+  tr > th {
+    padding: 0.5em;
+    &:not(:last-child) {
+      border-right: 1pt solid;
+    }
+  }
+}
+
+blockquote {
+  border-left: 1.2pt dashed var(--emph);
+  border-right: 1.2pt dashed var(--emph);
+  padding: 7px;
+  margin: 0;
+
+  @include mobile {
+    margin: 10px;
+    padding: 0 20px;
+  }
+}

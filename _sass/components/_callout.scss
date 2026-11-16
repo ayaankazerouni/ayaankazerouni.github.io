@@ -1,0 +1,47 @@
+@use 'base' as *;
+
+.callout {
+  overflow: hidden;
+  border-left: 4px solid var(--callout-border-color, var(--emph));
+  background-color: var(--callout-bg-color, var(--callout-background-color));
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  list-style-type: none;
+
+  &::before {
+    display: block;
+    font-weight: bold;
+    font-size: 0.85em;
+    font-family: var(--heading-font);
+    content: var(--callout-label);
+    color: var(--callout-color);
+  }
+
+  &.note {
+    --callout-label: "NOTE";
+    --callout-color: var(--note-color);
+    --callout-bg-color: var(--note-background-color);
+    --callout-border-color: var(--note-color);
+  }
+
+  &.todo {
+    --callout-label: "TASK";
+    --callout-color: var(--todo-color);
+    --callout-bg-color: var(--todo-background-color);
+    --callout-border-color: var(--todo-color);
+  }
+
+  &.ponder {
+    --callout-label: "PONDER";
+    --callout-color: var(--ponder-color);
+    --callout-bg-color: var(--ponder-background-color);
+    --callout-border-color: var(--ponder-color);
+  }
+
+  &.reading {
+    --callout-label: "READING";
+    --callout-color: var(--reading-color);
+    --callout-bg-color: var(--reading-background-color);
+    --callout-border-color: var(--reading-color);
+  }
+}

@@ -1,0 +1,70 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible\
+# in the templates via {{ site.myvariable }}.
+title: Ayaan M. Kazerouni
+email: ayaank@calpoly.edu
+display_email: ayaank [at] calpoly [dot] edu
+description: > # this means to ignore newlines until "baseurl:"
+  Ayaan Kazerouni's personal website. Contains information about
+  his research in computing education and software engineering, and
+  his hobbies and interests.
+baseurl: "" # the subpath of your site, e.g. /blog
+puburl: "/papers"
+url: "https://ayaankazerouni.org"
+feed_url: "/blog/feed.xml"
+term_dates:
+  fall: [8, 15, 12, 31]      # Aug 15 - Dec 31
+  winter: [1, 1, 3, 31]     # Jan 1 - Mar 31
+  spring: [3, 25, 6, 15]     # Apr 1 - Jun 15
+  summer: [6, 16, 8, 14]    # Jun 16 - Aug 14
+github_username: ayaankazerouni
+repository: 'ayaankazerouni.github.io'
+sections:
+  - url: '/#'
+    title: 'Home'
+  - url: '/research'
+    title: 'Research'
+  - url: '/publications'
+    title: 'Publications'
+  - url: '/teaching'
+    title: 'Teaching'
+  - url: '/blog'
+    title: 'Blog'
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  toc_levels: "2,3"
+
+plugins:
+  - jekyll-sitemap
+
+defaults:
+  -
+    scope:
+      path: "assets/**/*"
+    values:
+      sitemap: false
+
+sass:
+  sass_dir: _sass
+  sourcemap: never
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - documents/CV.typ
+  - build

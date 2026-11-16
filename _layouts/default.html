@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  {% include head.html %}
+
+  <body>
+    {% if page.title == "Home" %}
+    {% include main_header.html %}
+    {% else %}
+    {% include navbar.html nav=site.data.menu %}
+    {% endif %}
+    <main>
+      {% if page.returnTo %}
+      &larr; <a href="{{page.returnTo.url}}">{{page.returnTo.title}}</a>
+      {% endif %}
+      <h1>{{page.title}}</h1>
+      {{ content }}
+      {% include footer.html %}
+    </main>
+  </body>
+</html>

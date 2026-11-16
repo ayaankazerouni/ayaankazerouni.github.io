@@ -1,0 +1,36 @@
+<html>
+{% include head.html %}
+
+<body>
+
+  <main class="course">
+    {% assign course_pieces = page.dir | split: 'courses/' | last | split: '/' %}
+    {% assign id = course_pieces[0] | trim  %}
+    {% assign term = course_pieces[1] | trim %}
+    {% assign course = site.data.courses | where: "id", id | first %}
+    {% if course %}
+    <p>
+      {% if term contains "fall" or term contains "winter" or term contains "spring" %}
+      <a href="{{site.baseurl}}/courses/{{course.id}}/{{term}}">&larr; {{course.name}}</a>
+      {% else %}
+      <a href="{{site.baseurl}}/courses/{{course.id}}">&larr; {{course.name}}</a>
+      {% endif %}
+    </p>
+    {% endif %}
+      <div class="content">
+     
+      <h1>{{ page.title }}</h1>
+      {{ content }}
+      </div>
+    {% if page.mathjax %}
+    <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    {% endif %}
+    {% if page.mermaid %}
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    </script>
+    {% endif %}
+  </main>
+
+</body>
+</html>

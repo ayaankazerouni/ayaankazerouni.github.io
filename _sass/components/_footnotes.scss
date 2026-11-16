@@ -1,0 +1,39 @@
+@use 'mixins' as *;
+
+.footnotes {
+  &::before {
+    font-size: 1.2em;
+    content: "Footnotes";
+  }
+
+  :target {
+    @include highlight;
+  }
+
+  font-size: 0.9em;
+}
+
+sup[id^="fnref:"] {
+  padding-right: 0.5em;
+}
+
+.fn-tooltip {
+  position: absolute;
+  font-size: 0.9em;
+  max-width: 25em;
+  border: 1px solid var(--font-color);
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  background-color: var(--tooltip-background-color);
+  color: var(--inverted-font-color);
+
+  a {
+    color: var(--inverted-font-color);
+  }
+
+  code {
+    color: var(--inverted-font-color) !important;
+  }
+}

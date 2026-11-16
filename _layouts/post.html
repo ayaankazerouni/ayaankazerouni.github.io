@@ -1,0 +1,53 @@
+<html>
+  {% include head.html %}
+
+  <script
+    data-goatcounter="https://ayaankazerouni.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+  ></script>
+
+  <body>
+    {% include navbar.html nav=site.data.menu %}
+
+    <main>
+      <h1>{{ page.title }}</h1>
+      <article>
+        <div>
+          <p>
+            <time>{{ page.date | date: "%B %d, %Y" }}</time>&#9474;{{
+            page.content | number_of_words }} words
+          </p>
+          {% if page.unlisted == true %}
+          <div class="banner">
+            This is an unlisted post, which means it's in a draft state.
+          </div>
+          {% endif %}
+        </div>
+        {{ content }} {% if page.mathjax %}
+        <script
+          type="text/javascript"
+          async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"
+        ></script>
+        {% endif %}
+      </article>
+      {% if page.mermaid %}
+      <script type="module">
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+
+        const mql = window.matchMedia("(prefers-color-scheme: dark)");
+        if (mql.matches) {
+          mermaid.initialize({
+            theme: "dark",
+          });
+        } else {
+          mermaid.initialize({
+            theme: "default",
+          });
+        }
+      </script>
+      {% endif %} {% include footer.html %}
+    </main>
+  </body>
+</html>

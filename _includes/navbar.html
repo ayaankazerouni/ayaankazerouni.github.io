@@ -1,0 +1,10 @@
+<aside>
+    <nav>
+        <ul>
+        {% for item in site.sections %}
+            {% assign classname = 'nav-link' %}
+            <li><a href="{{ item.url | prepend: site.baseurl }}" class="{{classname}}">{{ item.title }}</a></li>
+        {% endfor %}
+        </ul>
+    </nav>
+</aside>

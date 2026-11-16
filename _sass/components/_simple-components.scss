@@ -1,0 +1,55 @@
+@use 'mixins' as *;
+
+.blurb {
+  margin-bottom: 20px;
+  font-size: 1em;
+  padding: 0 2em;
+  max-width: 90%;
+
+  @include landscape-phone {
+    padding: 0 3px;
+  }
+
+  @include mobile {
+    min-width: 100%;
+    padding: 0 0;
+    font-size: 0.9em;
+  }
+}
+
+.sub {
+  font-size: 0.95em;
+  margin-top: 0;
+  margin-bottom: 5px;
+
+  a {
+    margin: 2px;
+  }
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  a,
+  a:visited {
+    font-size: 1.5em !important;
+    text-decoration: none;
+  }
+}
+
+.nav-links {
+  text-align: center;
+  a {
+    padding: 0 5px;
+  }
+}
+
+.banner {
+  padding: 5px;
+  border-radius: 5px;
+  border: var(--emph) solid 2px;
+  @include highlight;
+}

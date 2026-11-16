@@ -1,0 +1,51 @@
+<html>
+{% include head.html %}
+
+<body>
+  <main class="course">
+  <!-- <p><a href="/teaching">&larr; Ayaan M. Kazerouni</a></p> -->
+    {% assign id = page.dir | split: 'courses/' | last | split: '/' | first | trim  %}
+    {% assign course = site.data.courses | where: "id", id | first %}
+    {% assign latest = course['latest'] %}
+    {% assign term_id = page.dir | split: 'courses/' | last | split: '/' | last | trim %}
+    {% assign term_len = term_id | size %}
+    {% assign year_idx = term_len | minus: 4 %}
+    {% assign year = term_id | slice: year_idx, 4 | plus: 0 %}
+    {% assign term = term_id | slice: 0, year_idx %}
+    
+    {% assign term_name = term %}
+    {% assign term_range = site.term_dates[term_name] %}
+    {% assign current_month = site.time | date: "%m" | plus: 0 %}
+    {% assign current_day = site.time | date: "%d" | plus: 0 %}
+    {% assign current_year = site.time | date: "%Y" | plus: 0 %}
+   
+    {% if current_year == year and current_month >= term_range[0] and current_month <= term_range[2] %}
+      {% assign is_active = true %}
+    {% else %}
+      {% assign is_active = false %}
+    {% endif %}
+   
+    {% if course %}
+    <h1>
+      {{ course["name"] }}
+      {% if is_active == true %}
+      ({{term | capitalize}} {{year}})
+      {% endif %}
+    </h1>
+    {% if is_active == false %}
+    <div class="emph">
+      As taught in <b>{{term_name | capitalize}} {{year}}</b>.
+      {% if term_id != latest %}
+        See the <a href='/courses/{{id}}'>latest offering.</a>
+      {% endif %}
+      If you're a current student in the course, please refer to your course website.
+    </div>
+    {% endif %}
+    {% endif %}
+    {{ content }}
+    {% if page.mathjax %}
+    <script type="text/javascript" async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+    {% endif %}
+  </main>
+</body>
+</html>

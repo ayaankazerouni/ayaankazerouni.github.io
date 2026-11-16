@@ -1,0 +1,10 @@
+---
+---
+
+{% if entry.doi %}
+<a href="{{ entry.doi }}"><i>{{entry.title}}</i></a>
+{% else %}
+{{ entry.title }}
+{% endif %}
+
+{{ entry.authors }}

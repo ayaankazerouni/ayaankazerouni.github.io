@@ -1,0 +1,28 @@
+- id: csc1024
+  latest: fall2026
+  name: CSC 1024 Introduction to Computing
+  note: "Previously <a href='{{site.baseurl}}/courses/csc123'>CSC 123</a>."
+- id: csc123
+  latest: fall2025
+  name: CSC 123 Introduction to Community Action Computing
+  note: "<a href='publications#sigcse2024cs0-course'>See the paper describing the course.</a>"
+  hidden: true
+- id: csc203
+  name: CSC 203 Project-based Object-oriented Programming and Design 
+  latest: winter2026 
+- id: csc313
+  name: CSC 313 Teaching Computing
+  latest: winter2026
+- id: csc305
+  name: CSC 305 Individual Software Design and Development
+  latest: spring2024
+- id: csc477
+  name: CSC 477 Scientific and Information Visualization
+  latest: spring2026
+- id: csc513
+  name: CSC 513 Computing Education Research and Practice
+  latest: winter2023
+- id: csc590
+  name: CSC 590 Thesis Seminar
+  latest: winter2023
+
