@@ -1,0 +1,38 @@
+@use 'mixins' as *;
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18em), 1fr));
+  gap: 2em 1.5em;
+  margin-top: 1.5em;
+}
+
+.project {
+  // Override the global `article { margin: auto }`, which vertically
+  // centers grid items and misaligns cards of different heights.
+  margin: 0;
+  max-width: none;
+
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: top left;
+    border-radius: 5px;
+    border: 1px solid var(--caption-color);
+  }
+
+  h3 {
+    margin: 0.5em 0 0.25em;
+  }
+
+  p {
+    margin: 0 0 0.4em;
+  }
+
+  .project-links {
+    white-space: nowrap;
+    font-size: 0.9em;
+    color: var(--caption-color);
+  }
+}

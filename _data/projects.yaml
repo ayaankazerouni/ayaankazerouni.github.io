@@ -1,0 +1,46 @@
+- name: On This Day
+  image: on-this-day.jpg
+  alt: A world map with dots for historical events that happened on November 16
+  description: >
+    A map of things that happened on today's date throughout history, drawn
+    from Wikipedia, with period-appropriate borders.
+  links:
+    - text: Visit
+      url: https://ayaankazerouni.org/on-this-day/
+    - text: Source
+      url: https://github.com/ayaankazerouni/on-this-day
+- name: Inkling
+  image: inkling.jpg
+  alt: The Inkling editor, with a code editor, a hand-drawn heatmap sketch, and a natural language prompt
+  description: >
+    A prototype visualization editor where you can sketch, describe, and code
+    your way to a chart that's bound to your data. A research project with
+    students at Cal Poly.
+  links:
+    - text: Visit
+      url: https://inkling-vis.netlify.app
+    - text: Source
+      url: https://github.com/Cal-Poly-Human-Centered-Computing/inkling
+    - text: Research
+      url: /research
+- name: Code Review
+  image: code-review.jpg
+  alt: The code review tool showing a Java file with highlighted lines and review comments
+  description: >
+    A browser-only tool for leaving comments on a codebase and exporting them
+    as a standalone HTML file. I made it mostly for myself, so it's
+    keyboard-driven according to my own preferences.
+  links:
+    - text: Visit
+      url: https://ayaankazerouni.org/code-review/
+    - text: Source
+      url: https://github.com/ayaankazerouni/code-review
+- name: Music 
+  image: youtube.jpg
+  alt: A split-screen still of me playing acoustic guitar, electric guitar, and ukulele
+  description: >
+    I like to play folk music and dabble in other genres. I record videos
+    for fun/motivation to try new things.
+  links:
+    - text: Watch
+      url: https://youtube.com/playlist?list=PLhr8Dx61BR4Oy75Fs6ttp5PDc03UFj5tQ&si=jIij8aQci7jcizrc
