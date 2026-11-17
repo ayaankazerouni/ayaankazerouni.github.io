@@ -22,7 +22,7 @@
     - text: Source
       url: https://github.com/Cal-Poly-Human-Centered-Computing/inkling
     - text: Research
-      url: /research
+      url: /research#inkling
 - name: Code Review
   image: code-review.jpg
   alt: The code review tool showing a Java file with highlighted lines and review comments
@@ -42,5 +42,5 @@
     I like to play folk music and dabble in other genres. I record videos
     for fun/motivation to try new things.
   links:
-    - text: Watch
+    - text: Listen 
       url: https://youtube.com/playlist?list=PLhr8Dx61BR4Oy75Fs6ttp5PDc03UFj5tQ&si=jIij8aQci7jcizrc

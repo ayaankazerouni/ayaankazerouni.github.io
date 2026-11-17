@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Other projects 
-permalink: /projects
+permalink: /other
 ---
 
 Some things I've made for fun or work.
