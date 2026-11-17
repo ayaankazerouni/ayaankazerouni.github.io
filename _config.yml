@@ -42,6 +42,8 @@ sections:
     title: 'Teaching'
   - url: '/blog'
     title: 'Blog'
+  - url: '/other'
+    title: 'Other Projects'
 
 # Build settings
 markdown: kramdown

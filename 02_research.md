@@ -27,6 +27,7 @@ As part of this work, we've studied computing students' social help-seeking beha
 - Students' process journals in that course—in which they described their problem-solving steps and difficulties as they worked on programming homework—provided rich insight into their self-regulatory processes while programming, revealing the winding roads they took that would have otherwise gone unnoticed by course staff. [[Koli Calling '26]({{site.baseurl}}/publications#koli2026process-journals)]
 
 ### Inkling: Multimodal Data Visualization Authoring
+{: #inkling}
 
 [**Inkling**](https://inkling-vis.netlify.app) is a prototype visualization editor in which users can combine sketching, natural language instructions, and direct code editing to design visualizations that are bound to their data.
 [See the source code](https://github.com/Cal-Poly-Human-Centered-Computing/inkling).
