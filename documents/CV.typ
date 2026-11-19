@@ -2,9 +2,11 @@
 #set page(paper: "us-letter", margin: 0.5in)
 #set text(font: "Avenir Next", size: 9pt)
 #set par(spacing: 0.75em)
+// Lighter *strong*: regular (400) + 200 = demibold (600) instead of bold (700).
+#set strong(delta: 200)
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-#let award(x) = text(fill: rgb("#7F00FF"), weight: "bold")[#x]
+#let award(x) = text(fill: rgb("#7F00FF"), weight: "semibold")[#x]
 
 // Shared date gutter. Fixed em (not fr) so wrapping is inspectable: the widest
 // cell in any entry type is "09/2020–08/2026" at 8.1em.
@@ -103,13 +105,14 @@
 }
 
 // \PeerReviewedPublicationEntry{title}{authors}{venue}{abbrev}{date}{note?}
-#let pub-entry(title, authors, venue, abbrev, date, note: none) = {
+#let pub-entry(title, authors, venue, abbrev, date, note: none, doi: none) = {
   grid(
     columns: (date-col, 1fr),
     align: (right, left),
     column-gutter: date-gutter,
     inset: (y: 0.1em),
-    [#abbrev #date], [#emph(title). #venue.\ #text(size: 0.9em)[#authors.] #if note != none { [#note.] }]
+    [#abbrev #date],
+    [#emph(title). #venue.\ #text(size: 0.9em)[#authors.] #if note != none { [#note.] } #if doi != none { text(size: 0.9em)[DOI: #underline(link("https://doi.org/" + doi, doi))] }]
   )
 }
 
@@ -190,24 +193,28 @@
   "The Benefits of Socially Responsible Computing in Early Computing Courses: A Multi-Institutional Study at Primarily-Undergraduate Hispanic-Serving Institutions",
   [*A. M. Kazerouni*, M. Lee, A. Hubbard Cheuoua, A. Gautam, S. Hooshmand, P. S. Inventado, E. E. Kang, J. Lehr, Y. Sun, K. A. Wortman, I. Yoon, Z. Wood],
   "ACM Transactions on Computing Education", "TOCE", "2025",
+  doi: "10.1145/3727988",
 )
 
 #pub-entry(
   "Recommendations for Improving End-User Programming Education: A Case Study with Undergraduate Chemistry Students",
   [#student-author("W. Fuchs"), A. McDonald, A. Gautam, *A. M. Kazerouni*],
   "ACS Journal of Chemical Education", "J Chem Ed", "2024",
+  doi: "10.1021/acs.jchemed.4c00219",
 )
 
 #pub-entry(
   "A Model of How Students Engineer Test Cases With Feedback",
   [#student-author("A. Shin"), *A. M. Kazerouni*],
   "ACM Transactions on Computing Education", "TOCE", "2023",
+  doi: "10.1145/3628604",
 )
 
 #pub-entry(
   "Fast and Accurate Incremental Feedback for Students' Software Tests Using Selective Mutation Analysis",
   [*A. M. Kazerouni*, J. C. Davis, A. Basak, C. A. Shaffer, F. Servant, S. H. Edwards],
   "Journal of Systems and Software", "JSS", "2021",
+  doi: "10.1016/j.jss.2021.110905",
 )
 
 #subsection("Conference Papers")
@@ -223,78 +230,91 @@
   [#student-author("A. Chao"), #student-author("H. Li"), #student-author("K. Ma"), #student-author("A. Nazzal"), *A. M. Kazerouni*, L. Perlmutter, A. G. Soosai Raj],
   "Koli Calling International Conference on Computing Education Research", "Koli Calling", "2026",
   note: award("Honorable Mention"),
+  doi: "10.1145/3856208.3856238",
 )
 
 #pub-entry(
   "Peer Networks and Instructor Resources as Complementary Support Systems in Six CS Classrooms",
   [#student-author("N. Ravetch"), #student-author("N. Nayman"), #student-author("J. Herberger"), T. Migler, *A. M. Kazerouni*],
   "ACM Conference on Innovation and Technology in Computer Science Education", "ITiCSE", "2026",
+  doi: "10.1145/3803400.3809329",
 )
 
 #pub-entry(
   "What Topic Domains Interest Students in Socially Responsible Computing Coursework?",
   [*A. M. Kazerouni*, Z. Agha, A. Hubbard Cheuoua, M. Lee, J. Lehr, I. Yoon, Z. Wood],
   "Koli Calling International Conference on Computing Education Research", "Koli Calling", "2025",
+  doi: "10.1145/3769994.3770030",
 )
 
 #pub-entry(
   "Reflecting on Practices to Integrate Socially Responsible Computing in Introductory Computer Science Courses",
   [K. Wortman, A. Gautam, S. Hug, P. Salvador Inventado, *A. M. Kazerouni*, J. Lehr, K. Sood, Z. Wood],
   "ACM Technical Symposium on Computer Science Education", "SIGCSE", "2025",
+  doi: "10.1145/3641554.3701962",
 )
 
 #pub-entry(
   "Socially Responsible Computing: Promoting Latinx Student Retention Via Community Engagement in Early Computer Science Courses",
   [D. M. Krum, Z. Wood, E. Kang, *A. M. Kazerouni*, J. L. Lehr, S. Hug, P. S. B. Inventado, F. Tang, I. Yoon, A. Kulkarni, Y. Sun, M. Beheshti, A. Gautam, A. Hubbard Cheuoua, S. Hooshmand, K. A. Wortman],
   "ASEE Annual Conference and Exposition", "ASEE", "2024",
+  doi: "10.18260/1-2--46968",
 )
 
 #pub-entry(
   "Community Action Computing: A Data-centric CS0 Course",
   [*A. M. Kazerouni*, J. Lehr, Z. Wood],
   "ACM Technical Symposium on Computer Science Education", "SIGCSE", "2024",
+  doi: "10.1145/3626252.3630807",
 )
 
 #pub-entry(
   "Exploring the Impact of Cognitive Awareness Scaffolding for Debugging in an Introductory Computer Science Class",
   [#student-author("J. Lee"), *A. M. Kazerouni*, C. Siu, T. Migler],
   "ACM Technical Symposium on Computer Science Education", "SIGCSE", "2023",
+  doi: "10.1145/3545945.3569871",
 )
 
 #pub-entry(
   "Patterns of Academic Help-Seeking in Undergraduate Computing Students",
   [#student-author("A. Doebling"), *A. M. Kazerouni*],
   "Koli Calling Conference on Computing Education Research", "Koli Calling", "2021",
+  doi: "10.1145/3488042.3488052",
 )
 
 #pub-entry(
   "The Impact of Programming Project Milestones on Procrastination, Project Outcomes, and Course Outcomes: A Quasi-Experimental Study in a Third-Year Data Structures Course",
   [C. A. Shaffer, *A. M. Kazerouni*],
   "ACM Technical Symposium on Computer Science Education", "SIGCSE", "2021",
+  doi: "10.1145/3408877.3432356",
 )
 
 #pub-entry(
   "Exploring the Bug Investigation Techniques of Intermediate Student Programmers",
   [R. S. Mansur, *A. M. Kazerouni*, S. H. Edwards, C. A. Shaffer],
   "Koli Calling Conference on Computing Education Research", "Koli Calling", "2020",
+  doi: "10.1145/3428029.3428040",
 )
 
 #pub-entry(
   "ProgSnap2: A Flexible Format for Programming Process Data",
   [T. Price, D. Hovemeyer, K. Rivers, A. C. Bart, G. Gao, *A. M. Kazerouni*, B. Becker, A. Petersen, L. Gusukuma, S. H. Edwards, D. Babcock],
   "ACM Conference on Innovation and Technology in Computer Science Education", "ITiCSE", "2020",
+  doi: "10.1145/3341525.3387373",
 )
 
 #pub-entry(
   "Testing Regex Generalizability And Its Implications: A Large-Scale Many-Language Measurement Study",
   [J. C. Davis, D. Moyer, *A. M. Kazerouni*, D. Lee],
   "IEEE/ACM International Conference on Automated Software Engineering", "ASE", "2019",
+  doi: "10.1109/ase.2019.00048",
 )
 
 #pub-entry(
   "The Relationship Between Practicing Short Programming Exercises and Exam Performance",
   [S. H. Edwards, Krishnan P. Murali, *A. M. Kazerouni*],
   "ACM Global Computing Education Conference", "CompEd", "2019",
+  doi: "10.1145/3300115.3309525",
 )
 
 #pub-entry(
@@ -302,18 +322,21 @@
   [*A. M. Kazerouni*, C. A. Shaffer, S. H. Edwards],
   "ACM Technical Symposium on Computer Science Education", "SIGCSE", "2019",
   note: award("2nd Best Research Paper"),
+  doi: "10.1145/3287324.3287366",
 )
 
 #pub-entry(
   "Quantifying Incremental Development Practices and Their Relationship to Procrastination",
   [*A. M. Kazerouni*, C. A. Shaffer, S. H. Edwards],
   "ACM Conference on International Computing Education Research", "ICER", "2017",
+  doi: "10.1145/3105726.3106180",
 )
 
 #pub-entry(
   "DevEventTracker: Tracking Development Events to Assess Incremental Development and Procrastination",
   [*A. M. Kazerouni*, C. A. Shaffer, T. S. Hall, S. H. Edwards],
   "ACM Conference on Innovation and Technology in Computer Science Education", "ITiCSE", "2017",
+  doi: "10.1145/3059009.3059050",
 )
 
 #subsection("Workshop Papers")
@@ -331,12 +354,14 @@
   "Toward Continuous Assessment of the Programming Process",
   [*A. M. Kazerouni*],
   "ACM Conference on International Computing Education Research-Doctoral Consortium", "ICER", "2019",
+  doi: "10.1145/3291279.3339429",
 )
 
 #pub-entry(
   "Student Debugging Practices and Their Relationships with Project Outcomes",
   [*A. M. Kazerouni*, R. S. Mansur, S. H. Edwards, C. A. Shaffer],
   "ACM Technical Symposium on Computer Science Education-Poster", "SIGCSE", "2019",
+  doi: "10.1145/3287324.3293794",
 )
 
 #pub-entry(
@@ -344,6 +369,7 @@
   [*A. M. Kazerouni*],
   "ACM Technical Symposium on Computer Science Education-Student Research Competition", "SIGCSE", "2018",
   note: award("1st Place"),
+  doi: "10.1145/3159450.3162337",
 )
 
 #section("Funding", note: [#student-author("Underlined") author names indicate student co-authors.])
@@ -438,9 +464,11 @@
 
 #section("Honors and Awards")
 
+#award-entry("Honorable Mention for Best Paper", "2026", "Koli Calling International Conference on Computing Education Research (3/49 papers recognized)")
+
 #award-entry("Cal Poly's nominee for the CSU Wang Family Award for Excellence in Teaching", "2025", "1 nominee per CSU campus.")
 
-#award-entry("Outstanding Reviewer Award", "2024", "Koli Calling Conference on Computing Education Research (6/80 reviewers)")
+#award-entry("Outstanding Reviewer Award", "2024", "Koli Calling International Conference on Computing Education Research (6/80 reviewers)")
 
 #award-entry("Don and Paula Heye Annual Award for Outstanding Club Advisor (Hack4Impact)", "2024", "College of Engineering, Cal Poly")
 
