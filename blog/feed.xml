@@ -22,7 +22,7 @@ permalink: /blog/feed.xml
     <guid>{{ post.url | absolute_url }}</guid>
     <pubDate>{{ post.date | date: "%a, %d %b %Y" }}</pubDate>
     <description>
-      {{ post.rendered_content | xml_escape }}
+      {{ post.feed_content | xml_escape }}
     </description>
   </item>
   {% endif %}

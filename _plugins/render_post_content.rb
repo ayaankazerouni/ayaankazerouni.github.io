@@ -4,6 +4,7 @@ module Jekyll
     def to_liquid(attrs = nil)
       super(attrs).tap do |hash|
         hash['rendered_content'] = data['rendered_content'] if data['rendered_content']
+        hash['feed_content'] = data['feed_content'] if data['feed_content']
       end
     end
   end
@@ -49,7 +50,29 @@ module Jekyll
 
         # Store the fully rendered HTML content
         page.data['rendered_content'] = html_content
+
+        # Feed-safe variant: readers strip inline <svg> and block external
+        # <use>, and relative URLs have no base inside a feed entry.
+        base = "#{site.config['url']}#{site.baseurl}#{page.url}"
+        page.data['feed_content'] = feed_safe(html_content, base)
       end
+    end
+
+    private
+
+    # Replace <svg> wrappers around <use href="./file.svg#id"> with <img>,
+    # then make all "./" src/href URLs absolute.
+    def feed_safe(html, base)
+      html = html.gsub(%r{<svg\b[^>]*>.*?</svg>}m) do |svg|
+        use = svg.match(/<use\b[^>]*\bhref="(\.\/[^"#]+)/)
+        next svg unless use
+
+        alt = svg[%r{<desc\b[^>]*>(.*?)</desc>}m, 1] ||
+              svg[/\baria-label="([^"]*)"/, 1] || ""
+        %(<img src="#{use[1]}" alt="#{alt.strip.gsub('"', '&quot;')}">)
+      end
+
+      html.gsub(/\b(src|href)="\.\//) { %(#{$1}="#{base}) }
     end
   end
 end

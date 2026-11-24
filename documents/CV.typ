@@ -1,9 +1,10 @@
 // ── Page setup ───────────────────────────────────────────────────────────────
 #set page(paper: "us-letter", margin: 0.5in)
-#set text(font: "Avenir Next", size: 9pt)
+#set text(font: "Avenir Next", size: 10pt)
 #set par(spacing: 0.75em)
-// Lighter *strong*: regular (400) + 200 = demibold (600) instead of bold (700).
 #set strong(delta: 200)
+#set underline(offset: 2pt)
+#show link: set text(fill: blue)
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 #let award(x) = text(fill: rgb("#7F00FF"), weight: "semibold")[#x]
@@ -39,21 +40,24 @@
 }
 
 #let student-author(name) = {
-  underline(name, offset: 2pt)
+  emph(underline(name))
 }
 
 #let section(title, note: none) = {
   v(1em)
   [
     #text(size: 1.1em, weight: "semibold", smallcaps(title))
-    #if note != none { [ #h(1fr) #text(size: 0.9em)[#emph(note)] ] }
+    #if note != none { [ #h(1fr) #text(size: 0.9em)[#note] ] }
   ]
   line(length: 100%, stroke: (thickness: 0.5pt, paint: gray))
 }
 
-#let subsection(title) = {
+#let subsection(title, note: none) = {
   v(0.3em)
-  text(size: 1.1em, style: "italic")[#title]
+  [
+    #text(size: 1.1em, style: "italic")[#title]
+    #if note != none { [ #h(1fr) #text(size: 0.9em)[#note] ] }
+  ]
   line(length: 100%, stroke: (paint: gray, thickness: 0.3pt))
 }
 
@@ -112,7 +116,13 @@
     column-gutter: date-gutter,
     inset: (y: 0.1em),
     [#abbrev #date],
-    [#emph(title). #venue.\ #text(size: 0.9em)[#authors.] #if note != none { [#note.] } #if doi != none { text(size: 0.9em)[DOI: #underline(link("https://doi.org/" + doi, doi))] }]
+    [
+      #emph(title).
+      #venue.
+      #text(size: 0.9em)[#authors.]
+      #if doi != none { text(size: 0.9em)[#underline(link("https://doi.org/" + doi, doi))] }
+      #if note != none { [#note.] }
+    ]
   )
 }
 
@@ -342,7 +352,7 @@
 #subsection("Workshop Papers")
 
 #pub-entry(
-  [#smallcaps("INKLING"): Exploring How Students Design Visualizations with Integrated Sketching, Natural Language, and Code Editing],
+  [Inkling: Exploring How Students Design Visualizations with Integrated Sketching, Natural Language, and Code Editing],
   [#student-author("S. Fisher"), A. P. Wright, *A. M. Kazerouni*],
   "4th IEEE VIS Workshop on Visualization Education, Literacy, and Activities",
   "EduVis", "2026"
@@ -461,6 +471,23 @@
 
 #thesis-entry([Justin Evans], [2021], [Cal Poly])
 
+#section("Teaching")
+
+#subsection("Cal Poly")
+
+#teaching-entry("CSC 123/1024 Introduction to Computing", "2022–present", "Cal Poly")
+#teaching-entry("CSC 203 Project-based Object-oriented Programming and Design", "2020–2026", "Cal Poly")
+#teaching-entry("CSC 305 Individual Software Design and Development", "2023, 2024", "Cal Poly")
+#teaching-entry("CSC 307 Introduction to Software Engineering", "2021", "Cal Poly")
+#teaching-entry("CSC 313/3113 Teaching Computing", "2021–present", "Cal Poly")
+#teaching-entry("CSC 477 Scientific and Information Visualization", "2025–2026", "Cal Poly")
+#teaching-entry("CSC 513 Computing Education Research and Practice (Graduate)", "2021, 2023", "Cal Poly")
+#teaching-entry("CSC 590 Thesis Seminar (Graduate)", "2023", "Cal Poly")
+
+#subsection("Virginia Tech")
+
+#teaching-entry("CS 3114 Data Structures & Algorithms", "2018, 2019, 2020", "Virginia Tech")
+#teaching-entry("CS 3114 Data Structures & Algorithms (Teaching Assistant)", "2015–2016", "Virginia Tech")
 
 #section("Honors and Awards")
 
@@ -482,24 +509,6 @@
 
 // #award-entry("Outstanding Honors Sophomore, Junior", "2013, 2014", "University of West Georgia")
 
-
-#section("Teaching")
-
-#subsection("Cal Poly")
-
-#teaching-entry("CSC 123 Introduction to Community-Action Computing", "2022–2026", "Cal Poly")
-#teaching-entry("CSC 203 Project-based Object-oriented Programming and Design", "2020–2026", "Cal Poly")
-#teaching-entry("CSC 305 Individual Software Design and Development", "2023, 2024", "Cal Poly")
-#teaching-entry("CSC 307 Introduction to Software Engineering", "2021", "Cal Poly")
-#teaching-entry("CSC 313 Teaching Computing", "2021–2026", "Cal Poly")
-#teaching-entry("CSC 477 Scientific and Information Visualization", "2025–2026", "Cal Poly")
-#teaching-entry("CSC 513 Computing Education Research and Practice (Graduate)", "2021, 2023", "Cal Poly")
-#teaching-entry("CSC 590 Thesis Seminar (Graduate)", "2023", "Cal Poly")
-
-#subsection("Virginia Tech")
-
-#teaching-entry("CS 3114 Data Structures & Algorithms", "2018, 2019, 2020", "Virginia Tech")
-#teaching-entry("CS 3114 Data Structures & Algorithms (Teaching Assistant)", "2015–2016", "Virginia Tech")
 
 #section("Service")
 
