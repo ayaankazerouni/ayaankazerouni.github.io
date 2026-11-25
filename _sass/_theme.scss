@@ -11,19 +11,21 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-color: #1c1e22;
-    // A faint, opaque red tint (the accent mixed into the background) with normal text.
-    --highlight-color: #3a2b2f;
+    // A faint, opaque tint (~15% of the accent mixed into the background) with normal text.
+    --highlight-color: #3d2f2d;
     --highlight-text-color: var(--font-color);
     --font-color: #d8dbe0;
     --inverted-font-color: #000000;
     --heading-font-color: #a3b8d0;
     --caption-color: #9a9ea6;
-    --emph: #f47c7c;
+    // Bright coral: as vivid as the old red, but shifted toward orange so it reads warm, not alarming.
+    --emph: #f5906e;
     --code-color: var(--font-color);
     --nav-color: var(--emph);
     --link-color: var(--font-color);
     --header: #f0f1f3;
-    --award-color: darkgreen;
+    // Badge background behind white text: dark enough for ~5.4:1 against the white.
+    --award-color: #1e7a34;
     --todo-color: rgb(222, 156, 248);
     --todo-background-color: rgb(68, 44, 66, 0.7);
     --ponder-color: #f1ce68;

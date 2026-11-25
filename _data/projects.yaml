@@ -5,9 +5,9 @@
     A map of things that happened on today's date throughout history, drawn
     from Wikipedia, with period-appropriate borders.
   links:
-    - text: Visit
+    - text: website 
       url: https://ayaankazerouni.org/on-this-day/
-    - text: Source
+    - text: code 
       url: https://github.com/ayaankazerouni/on-this-day
 - name: Inkling
   image: inkling.jpg
@@ -17,11 +17,11 @@
     your way to a chart that's bound to your data. A research project with
     students at Cal Poly.
   links:
-    - text: Visit
+    - text: website 
       url: https://inkling-vis.netlify.app
-    - text: Source
+    - text: code 
       url: https://github.com/Cal-Poly-Human-Centered-Computing/inkling
-    - text: Research
+    - text: more info 
       url: /research#inkling
 - name: Code Review
   image: code-review.jpg
@@ -31,9 +31,9 @@
     as a standalone HTML file. I made it mostly for myself, so it's
     keyboard-driven according to my own preferences.
   links:
-    - text: Visit
+    - text: website 
       url: https://ayaankazerouni.org/code-review/
-    - text: Source
+    - text: code 
       url: https://github.com/ayaankazerouni/code-review
 - name: Music 
   image: youtube.jpg
@@ -42,5 +42,5 @@
     I like to play folk music and dabble in other genres. I record videos
     for fun/motivation to try new things.
   links:
-    - text: Listen 
+    - text: listen 
       url: https://youtube.com/playlist?list=PLhr8Dx61BR4Oy75Fs6ttp5PDc03UFj5tQ&si=jIij8aQci7jcizrc

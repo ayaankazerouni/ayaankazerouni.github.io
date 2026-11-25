@@ -4,6 +4,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="hIU2NRFm9Pwt76Z9R8DR92m2-kC85IQw6eIS3Ag7y7U" />
   <meta name="fediverse:creator" content="@ayaankazerouni@hci.social" />
+  {%- if page.author -%}
+    {%- assign meta_author = page.author | map: "name" | join: ", " -%}
+  {%- else -%}
+    {%- assign meta_author = site.title -%}
+  {%- endif %}
+  <meta name="author" content="{{ meta_author | escape }}" />
+  <meta property="og:site_name" content="Ayaan Kazerouni's personal website" />
   {% if include.noindex %}
   <meta name="robots" content="noindex">
   {% endif %}

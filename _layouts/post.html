@@ -16,7 +16,17 @@
         <div>
           <p>
             <time>{{ page.date | date: "%B %d, %Y" }}</time>&#9474;{{
-            page.content | number_of_words }} words
+            page.content | number_of_words }} words&#9474;
+            {%- if page.author -%}
+              {%- for a in page.author -%}
+                {%- unless forloop.first -%}
+                  {%- if forloop.last and forloop.length > 2 %}, and {% elsif forloop.last %} and {% else %}, {% endif -%}
+                {%- endunless -%}
+                {%- if a.link -%}<a href="{{ a.link }}" rel="author">{{ a.name }}</a>{%- else -%}{{ a.name }}{%- endif -%}
+              {%- endfor -%}
+            {%- else -%}
+              <a href="{{ '/' | relative_url }}" rel="author">{{ site.title }}</a>
+            {%- endif -%}
           </p>
           {% if page.unlisted == true %}
           <div class="banner">
